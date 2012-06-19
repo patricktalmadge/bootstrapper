@@ -5,22 +5,23 @@ Bootstraper is a set of classes that allow you to quickly create Twitter Bootstr
 ##View bundle site for full install instructions.
 http://bootstraper.phpfogapp.com/
 
-* Install using Artisan CLI:
+
+Install using Artisan CLI:
 
 	php artisan bundle:install bootstraper
 
-* Add the following line to application/bundles.php
+Add the following line to application/bundles.php
 
 	return array(
 		'bootstraper' => array('auto' => true),
 	);
 
-* Change Form and Paginator in the application.php config file to:
+Change Form and Paginator in the application.php config file to:
 
 	'Form' 			=> 'Bootstraper\\Form',
 	'Paginator'		=> 'Bootstraper\\Paginator',
 
-* Add the following to the application.php config file:
+Add the following to the application.php config file:
 
 	'Alert' 		=> 'Bootstraper\\Alert',
 	'Tabbable' 		=> 'Bootstraper\\Tabbable',
@@ -39,12 +40,12 @@ http://bootstraper.phpfogapp.com/
 	'Buttons'		=> 'Bootstraper\\Buttons',
 
 
-* Publish the bundle assets to your public folder.
+Publish the bundle assets to your public folder.
 
 	php artisan bundle:publish
 
 
-* Add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
+Add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
 
 	Asset::container('bootstraper')->styles();
 	Asset::container('bootstraper')->scripts();
