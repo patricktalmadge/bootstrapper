@@ -40,6 +40,15 @@ Add the following to the application.php config file:
 	'Buttons'		=> 'Bootstraper\\Buttons',
 
 
+Update laravel\database\query.php to use the Bootstraper Paginator and not the core class by changing the use statement.
+
+	//Change 
+	use Laravel\Paginator; 
+
+	//To
+	use Paginator;
+
+
 Publish the bundle assets to your public folder.
 
 	php artisan bundle:publish
