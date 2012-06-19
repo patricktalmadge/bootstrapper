@@ -2,37 +2,56 @@
 
 Bootstraper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
-Install using Artisan CLI:
+##View bundle site for full install instructions.
+http://bootstraper.phpfogapp.com/
+
+* Install using Artisan CLI:
 
 	php artisan bundle:install bootstraper
 
-
-Either auto-load the bundle in application/bundles.php:
+* Add the following line to application/bundles.php
 
 	return array(
-		'stripe' => array('auto'=>true)
+		'bootstraper' => array('auto' => true),
 	);
 
-Or manually start:
+* Change Form and Paginator in the application.php config file to:
 
-	Bundle::start('stripe');
+	'Form' 			=> 'Bootstraper\\Form',
+	'Paginator'		=> 'Bootstraper\\Paginator',
 
-You can than use the Stripe API like normal (see Stripe API https://stripe.com/docs/api?lang=php)
+* Add the following to the application.php config file:
 
-	Stripe::setApiKey("YOUR_KEY");
-	Stripe_Charge::create(array(
-		"amount" => 40000,
-		"currency" => "usd",
-		"card" => "tok_Ydsdsedsad", // obtained with Stripe.js
-		"description" => "Donation because you rock!")
-	);
+	'Alert' 		=> 'Bootstraper\\Alert',
+	'Tabbable' 		=> 'Bootstraper\\Tabbable',
+	'Navigation'	=> 'Bootstraper\\Navigation',
+	'Progress'		=> 'Bootstraper\\Progress',
+	'Badges'		=> 'Bootstraper\\Badges',
+	'Labels'		=> 'Bootstraper\\Labels',
+	'DropdownButton'=> 'Bootstraper\\DropdownButton',
+	'SplitDropdownButton'=> 'Bootstraper\\SplitDropdownButton',
+	'ButtonGroup'	=> 'Bootstraper\\ButtonGroup',
+	'ButtonToolbar'	=> 'Bootstraper\\ButtonToolbar',
+	'Navbar'		=> 'Bootstraper\\Navbar',
+	'Breadcrumbs'	=> 'Bootstraper\\Breadcrumbs',
+	'Carousel'		=> 'Bootstraper\\Carousel',
+	'Typeahead'		=> 'Bootstraper\\Typeahead',
+	'Buttons'		=> 'Bootstraper\\Buttons',
 
 
-##Current Stripe API version is 1.7.1.
+* Publish the bundle assets to your public folder.
+
+	php artisan bundle:publish
 
 
-Stripe is an payment company with a simple API and a reasonable fee structure.
+* Add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
 
-- Homepage:		   https://stripe.com/
-- PHP API: 	  	   https://stripe.com/docs/api?lang=php
-- Documentation:   https://stripe.com/docs 
+	Asset::container('bootstraper')->styles();
+	Asset::container('bootstraper')->scripts();
+
+
+
+##Current Twitter Bootstrap version is 2.0.4.
+
+- Homepage:		http://twitter.github.com/bootstrap/
+- GitHub:   	https://github.com/twitter/bootstrap/
