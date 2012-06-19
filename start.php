@@ -31,7 +31,7 @@ Autoloader::map(array(
 	'Bootstrapper\\Buttons' => __DIR__.'/buttons.php',
 ));
 
-Asset::container('bootstrapperbootstrapper')->bundle('bootstrapper');
+Asset::container('bootstrapper')->bundle('bootstrapper');
 
 //Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.7.2.js');
 Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.7.2.min.js');
