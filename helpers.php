@@ -1,7 +1,7 @@
-<?php namespace Bootstraper;
+<?php namespace Bootstrapper;
 
 /**
- * Common helper functions used by Bootstraper.
+ * Common helper functions used by Bootstrapper.
  * 
  * @package     Bundles
  * @subpackage  Twitter

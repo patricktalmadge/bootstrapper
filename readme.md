@@ -1,46 +1,46 @@
-## Bootstraper Bundle, by Patrick Talmadge
+## Bootstrapper Bundle, by Patrick Talmadge
 
-Bootstraper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
+Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
 ##View bundle site for full install instructions.
-http://bootstraper.phpfogapp.com/
+http://laravelbootstrapper.phpfogapp.com
 
 
 Install using Artisan CLI:
 
-	php artisan bundle:install bootstraper
+	php artisan bundle:install bootstrapper
 
 Add the following line to application/bundles.php
 
 	return array(
-		'bootstraper' => array('auto' => true),
+		'bootstrapper' => array('auto' => true),
 	);
 
 Change Form and Paginator in the application.php config file to:
 
-	'Form' 			=> 'Bootstraper\\Form',
-	'Paginator'		=> 'Bootstraper\\Paginator',
+	'Form' 			=> 'Bootstrapper\\Form',
+	'Paginator'		=> 'Bootstrapper\\Paginator',
 
 Add the following to the application.php config file:
 
-	'Alert' 		=> 'Bootstraper\\Alert',
-	'Tabbable' 		=> 'Bootstraper\\Tabbable',
-	'Navigation'	=> 'Bootstraper\\Navigation',
-	'Progress'		=> 'Bootstraper\\Progress',
-	'Badges'		=> 'Bootstraper\\Badges',
-	'Labels'		=> 'Bootstraper\\Labels',
-	'DropdownButton'=> 'Bootstraper\\DropdownButton',
-	'SplitDropdownButton'=> 'Bootstraper\\SplitDropdownButton',
-	'ButtonGroup'	=> 'Bootstraper\\ButtonGroup',
-	'ButtonToolbar'	=> 'Bootstraper\\ButtonToolbar',
-	'Navbar'		=> 'Bootstraper\\Navbar',
-	'Breadcrumbs'	=> 'Bootstraper\\Breadcrumbs',
-	'Carousel'		=> 'Bootstraper\\Carousel',
-	'Typeahead'		=> 'Bootstraper\\Typeahead',
-	'Buttons'		=> 'Bootstraper\\Buttons',
+	'Alert' 		=> 'Bootstrapper\\Alert',
+	'Tabbable' 		=> 'Bootstrapper\\Tabbable',
+	'Navigation'	=> 'Bootstrapper\\Navigation',
+	'Progress'		=> 'Bootstrapper\\Progress',
+	'Badges'		=> 'Bootstrapper\\Badges',
+	'Labels'		=> 'Bootstrapper\\Labels',
+	'DropdownButton'=> 'Bootstrapper\\DropdownButton',
+	'SplitDropdownButton'=> 'Bootstrapper\\SplitDropdownButton',
+	'ButtonGroup'	=> 'Bootstrapper\\ButtonGroup',
+	'ButtonToolbar'	=> 'Bootstrapper\\ButtonToolbar',
+	'Navbar'		=> 'Bootstrapper\\Navbar',
+	'Breadcrumbs'	=> 'Bootstrapper\\Breadcrumbs',
+	'Carousel'		=> 'Bootstrapper\\Carousel',
+	'Typeahead'		=> 'Bootstrapper\\Typeahead',
+	'Buttons'		=> 'Bootstrapper\\Buttons',
 
 
-Update laravel\database\query.php to use the Bootstraper Paginator and not the core class by changing the use statement.
+Update laravel\database\query.php to use the Bootstrapper Paginator and not the core class by changing the use statement.
 
 	//Change 
 	use Laravel\Paginator; 
@@ -56,8 +56,8 @@ Publish the bundle assets to your public folder.
 
 Add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
 
-	Asset::container('bootstraper')->styles();
-	Asset::container('bootstraper')->scripts();
+	Asset::container('bootstrapper')->styles();
+	Asset::container('bootstrapper')->scripts();
 
 
 

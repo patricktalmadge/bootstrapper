@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Bootstraper for creating Twitter Bootstrap markup.
+ * Bootstrapper for creating Twitter Bootstrap markup.
  * 
  * @package     Bundles
  * @subpackage  Twitter
@@ -11,39 +11,39 @@
  */
 
 Autoloader::map(array(
-	'Bootstraper\\Helpers' => __DIR__.'/helpers.php',
-	'Bootstraper\\Alert' => __DIR__.'/alert.php',
-	'Bootstraper\\Form' => __DIR__.'/form.php',
-	'Bootstraper\\Navigation' => __DIR__.'/navigation.php',
-	'Bootstraper\\Tabbable' => __DIR__.'/tabbable.php',
-	'Bootstraper\\Progress' => __DIR__.'/progress.php',
-	'Bootstraper\\Badges' => __DIR__.'/badges.php',
-	'Bootstraper\\Labels' => __DIR__.'/labels.php',
-	'Bootstraper\\DropdownButton' => __DIR__.'/dropdownbutton.php',
-	'Bootstraper\\SplitDropdownButton' => __DIR__.'/splitdropdownbutton.php',
-	'Bootstraper\\ButtonGroup' => __DIR__.'/buttongroup.php',
-	'Bootstraper\\ButtonToolbar' => __DIR__.'/buttontoolbar.php',
-	'Bootstraper\\Navbar' => __DIR__.'/navbar.php',
-	'Bootstraper\\Breadcrumbs' => __DIR__.'/breadcrumbs.php',
-	'Bootstraper\\Paginator' => __DIR__.'/paginator.php',
-	'Bootstraper\\Carousel' => __DIR__.'/carousel.php',
-	'Bootstraper\\Typeahead' => __DIR__.'/typeahead.php',
-	'Bootstraper\\Buttons' => __DIR__.'/buttons.php',
+	'Bootstrapper\\Helpers' => __DIR__.'/helpers.php',
+	'Bootstrapper\\Alert' => __DIR__.'/alert.php',
+	'Bootstrapper\\Form' => __DIR__.'/form.php',
+	'Bootstrapper\\Navigation' => __DIR__.'/navigation.php',
+	'Bootstrapper\\Tabbable' => __DIR__.'/tabbable.php',
+	'Bootstrapper\\Progress' => __DIR__.'/progress.php',
+	'BootstrapperBootstrapper\\Badges' => __DIR__.'/badges.php',
+	'Bootstrapper\\Labels' => __DIR__.'/labels.php',
+	'Bootstrapper\\DropdownButton' => __DIR__.'/dropdownbutton.php',
+	'Bootstrapper\\SplitDropdownButton' => __DIR__.'/splitdropdownbutton.php',
+	'Bootstrapper\\ButtonGroup' => __DIR__.'/buttongroup.php',
+	'Bootstrapper\\ButtonToolbar' => __DIR__.'/buttontoolbar.php',
+	'Bootstrapper\\Navbar' => __DIR__.'/navbar.php',
+	'Bootstrapper\\Breadcrumbs' => __DIR__.'/breadcrumbs.php',
+	'Bootstrapper\\Paginator' => __DIR__.'/paginator.php',
+	'Bootstrapper\\Carousel' => __DIR__.'/carousel.php',
+	'Bootstrapper\\Typeahead' => __DIR__.'/typeahead.php',
+	'Bootstrapper\\Buttons' => __DIR__.'/buttons.php',
 ));
 
-Asset::container('bootstraper')->bundle('bootstraper');
+Asset::container('bootstrapperbootstrapper')->bundle('bootstrapper');
 
-//Asset::container('bootstraper')->add('jquery',  'js/jquery-1.7.2.js');
-Asset::container('bootstraper')->add('jquery',  'js/jquery-1.7.2.min.js');
+//Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.7.2.js');
+Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.7.2.min.js');
 
-//Asset::container('bootstraper')->add('bootstrap',  'css/bootstrap.css');
-Asset::container('bootstraper')->add('bootstrap',  'css/bootstrap.min.css');
+//Asset::container('bootstrapper')->add('bootstrap',  'css/bootstrap.css');
+Asset::container('bootstrapper')->add('bootstrap',  'css/bootstrap.min.css');
 
 //Not Needed if you don't have the top nav bar
-Asset::container('bootstraper')->add('nav-fix',  'css/nav-fix.css');
+Asset::container('bootstrapper')->add('nav-fix',  'css/nav-fix.css');
 
-//Asset::container('bootstraper')->add('bootstrap-responsive',  'css/bootstrap-responsive.css');
-Asset::container('bootstraper')->add('bootstrap-responsive',  'css/bootstrap-responsive.min.css');
+//Asset::container('bootstrapper')->add('bootstrap-responsive',  'css/bootstrap-responsive.css');
+Asset::container('bootstrapper')->add('bootstrap-responsive',  'css/bootstrap-responsive.min.css');
 
-//Asset::container('bootstraper')->add('bootstrap-js',  'js/bootstrap.js');
-Asset::container('bootstraper')->add('bootstrap-js',  'js/bootstrap.min.js');
+//Asset::container('bootstrapper')->add('bootstrap-js',  'js/bootstrap.js');
+Asset::container('bootstrapper')->add('bootstrap-js',  'js/bootstrap.min.js');
