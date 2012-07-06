@@ -4,14 +4,14 @@ use \HTML;
 
 /**
  * Labels for creating Twitter Bootstrap style Labels.
- * 
+ *
  * @package     Bundles
  * @subpackage  Twitter
  * @author      Patrick Talmadge - Follow @patricktalmadge
  *
  * @see http://twitter.github.com/bootstrap/
  */
-class Labels 
+class Labels
 {
 	// Labels colors
 	const NORMAL = '';
@@ -30,7 +30,7 @@ class Labels
 	 * @param  array      $attributes
 	 * @return Label
 	 */
-	protected static function show($type = Badges::NORMAL, $message, $attributes = array())
+	protected static function show($type = Labels::NORMAL, $message, $attributes = array())
 	{
 		$attributes = Helpers::add_class($attributes, 'label '.$type);
 
@@ -46,7 +46,7 @@ class Labels
 	 */
 	public static function normal($message, $attributes = array())
 	{
-		return static::show(Badges::NORMAL, $message, $attributes);
+		return static::show(Labels::NORMAL, $message, $attributes);
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Labels
 	 */
 	public static function success($message, $attributes = array())
 	{
-		return static::show(Badges::SUCCESS, $message, $attributes);
+		return static::show(Labels::SUCCESS, $message, $attributes);
 	}
 
 	/**
@@ -70,7 +70,7 @@ class Labels
 	 */
 	public static function warning($message, $attributes = array())
 	{
-		return static::show(Badges::WARNING, $message, $attributes);
+		return static::show(Labels::WARNING, $message, $attributes);
 	}
 
 	/**
@@ -82,7 +82,7 @@ class Labels
 	 */
 	public static function important($message, $attributes = array())
 	{
-		return static::show(Badges::IMPORTANT, $message, $attributes);
+		return static::show(Labels::IMPORTANT, $message, $attributes);
 	}
 
 	/**
@@ -94,7 +94,7 @@ class Labels
 	 */
 	public static function info($message, $attributes = array())
 	{
-		return static::show(Badges::INFO, $message, $attributes);
+		return static::show(Labels::INFO, $message, $attributes);
 	}
 
 	/**
@@ -106,6 +106,6 @@ class Labels
 	 */
 	public static function inverse($message, $attributes = array())
 	{
-		return static::show(Badges::INVERSE, $message, $attributes);
+		return static::show(Labels::INVERSE, $message, $attributes);
 	}
 }
