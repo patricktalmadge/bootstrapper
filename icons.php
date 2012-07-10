@@ -29,7 +29,7 @@ class Icons
 		$method_array = array(array_get($method, 0));
 
 		// Set facultative white flag
-		if(array_get($method, 1) == 'white')
+		if(array_get($method, sizeof($method) - 1) == 'white')
 			$method_array[] = 'white';
 
 		// Prepend icon- to classes
