@@ -12,6 +12,7 @@
 
 Autoloader::map(array(
 	'Bootstrapper\\Alert'               => __DIR__.'/alert.php',
+	'Bootstrapper\\Badges'  	    => __DIR__.'/badges.php',
 	'Bootstrapper\\Breadcrumbs'         => __DIR__.'/breadcrumbs.php',
 	'Bootstrapper\\ButtonGroup'         => __DIR__.'/buttongroup.php',
 	'Bootstrapper\\Buttons'             => __DIR__.'/buttons.php',
@@ -29,7 +30,6 @@ Autoloader::map(array(
 	'Bootstrapper\\SplitDropdownButton' => __DIR__.'/splitdropdownbutton.php',
 	'Bootstrapper\\Tabbable'            => __DIR__.'/tabbable.php',
 	'Bootstrapper\\Typeahead'           => __DIR__.'/typeahead.php',
-	'BootstrapperBootstrapper\\Badges'  => __DIR__.'/badges.php',
 ));
 
 Asset::container('bootstrapper')->bundle('bootstrapper');
