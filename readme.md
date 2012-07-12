@@ -23,21 +23,23 @@ Change Form and Paginator in the application.php config file to:
 
 Add the following to the application.php config file:
 
-	'Alert' 		=> 'Bootstrapper\\Alert',
-	'Tabbable' 		=> 'Bootstrapper\\Tabbable',
-	'Navigation'	=> 'Bootstrapper\\Navigation',
-	'Progress'		=> 'Bootstrapper\\Progress',
-	'Badges'		=> 'Bootstrapper\\Badges',
-	'Labels'		=> 'Bootstrapper\\Labels',
-	'DropdownButton'=> 'Bootstrapper\\DropdownButton',
-	'SplitDropdownButton'=> 'Bootstrapper\\SplitDropdownButton',
-	'ButtonGroup'	=> 'Bootstrapper\\ButtonGroup',
-	'ButtonToolbar'	=> 'Bootstrapper\\ButtonToolbar',
-	'Navbar'		=> 'Bootstrapper\\Navbar',
-	'Breadcrumbs'	=> 'Bootstrapper\\Breadcrumbs',
-	'Carousel'		=> 'Bootstrapper\\Carousel',
-	'Typeahead'		=> 'Bootstrapper\\Typeahead',
-	'Buttons'		=> 'Bootstrapper\\Buttons',
+	'Alert'                 => 'Bootstrapper\\Alert',
+	'Badges'                => 'Bootstrapper\\Badges',
+	'Breadcrumbs'           => 'Bootstrapper\\Breadcrumbs',
+	'Buttons'               => 'Bootstrapper\\Buttons',
+	'ButtonGroup'           => 'Bootstrapper\\ButtonGroup',
+	'ButtonToolbar'         => 'Bootstrapper\\ButtonToolbar',
+	'Carousel'              => 'Bootstrapper\\Carousel',
+	'DropdownButton'        => 'Bootstrapper\\DropdownButton',
+	'Helpers'               => 'Bootstrapper\\Helpers',
+	'Icons'                 => 'Bootstrapper\\Icons',
+	'Labels'                => 'Bootstrapper\\Labels',
+	'Navbar'                => 'Bootstrapper\\Navbar',
+	'Navigation'            => 'Bootstrapper\\Navigation',
+	'Progress'	        => 'Bootstrapper\\Progress',
+	'SplitDropdownButton'   => 'Bootstrapper\\SplitDropdownButton',
+	'Tabbable'              => 'Bootstrapper\\Tabbable',
+	'Typeahead'             => 'Bootstrapper\\Typeahead', 
 
 
 Update laravel\database\query.php to use the Bootstrapper Paginator and not the core class by changing the use statement.
