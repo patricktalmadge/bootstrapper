@@ -108,4 +108,20 @@ class Labels
 	{
 		return static::show(Labels::INVERSE, $message, $attributes);
 	}
+	
+	/**
+	 * Create a new custom Labels instance.
+	 * This assumes you have created the appropriate css class for the label type.
+	 *
+	 * @param  string     $type
+	 * @param  string     $message
+	 * @param  array      $attributes
+	 * @return Label
+	 */
+	public static function custom($type, $message, $attributes = array())
+	{
+		$type = 'label-'.(string)$type;
+		
+		return static::show($type, $message, $attributes);
+	}	
 }
