@@ -30,7 +30,7 @@ class Helpers
 	}
 
 	/**
-	 * Function to create a random string of a differning legnth used for creating IDs 
+	 * Function to create a random string of a differing length used for creating IDs 
 	 *
 	 * @param  int  $length
 	 * @return string
