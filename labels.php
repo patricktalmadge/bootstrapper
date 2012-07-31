@@ -23,12 +23,12 @@ class Labels
 
 
 	/**
-	 * Create a new Labels instance.
+	 * Create a new Label.
 	 *
 	 * @param  string     $type
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	protected static function show($type = Labels::NORMAL, $message, $attributes = array())
 	{
@@ -38,11 +38,11 @@ class Labels
 	}
 
 	/**
-	 * Create a new Normal Labels instance.
+	 * Create a new Normal Label.
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function normal($message, $attributes = array())
 	{
@@ -50,11 +50,11 @@ class Labels
 	}
 
 	/**
-	 * Create a new Success Labels instance.
+	 * Create a new Success Label.
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function success($message, $attributes = array())
 	{
@@ -62,11 +62,11 @@ class Labels
 	}
 
 	/**
-	 * Create a new Warning Labels instance.
+	 * Create a new Warning Label.
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function warning($message, $attributes = array())
 	{
@@ -74,11 +74,11 @@ class Labels
 	}
 
 	/**
-	 * Create a new Important Labels instance.
+	 * Create a new Important Label.
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function important($message, $attributes = array())
 	{
@@ -90,7 +90,7 @@ class Labels
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function info($message, $attributes = array())
 	{
@@ -98,11 +98,11 @@ class Labels
 	}
 
 	/**
-	 * Create a new Inverse Labels instance.
+	 * Create a new Inverse Label.
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function inverse($message, $attributes = array())
 	{
@@ -110,13 +110,13 @@ class Labels
 	}
 	
 	/**
-	 * Create a new custom Labels instance.
+	 * Create a new custom Label.
 	 * This assumes you have created the appropriate css class for the label type.
 	 *
 	 * @param  string     $type
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Label
+	 * @return string     Label HTML
 	 */
 	public static function custom($type, $message, $attributes = array())
 	{
