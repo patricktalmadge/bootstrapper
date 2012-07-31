@@ -22,12 +22,12 @@ class Badges
 	const INVERSE  = 'badge-inverse';
 
 	/**
-	 * Create a new Badge instance.
+	 * Create a new Badge.
 	 *
 	 * @param  string     $type
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	protected static function show($type, $message, $attributes = array())
 	{
@@ -41,7 +41,7 @@ class Badges
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	public static function normal($message, $attributes = array())
 	{
@@ -53,7 +53,7 @@ class Badges
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	public static function success($message, $attributes = array())
 	{
@@ -65,7 +65,7 @@ class Badges
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	public static function warning($message, $attributes = array())
 	{
@@ -77,7 +77,7 @@ class Badges
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	public static function important($message, $attributes = array())
 	{
@@ -89,7 +89,7 @@ class Badges
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	public static function info($message, $attributes = array())
 	{
@@ -101,10 +101,26 @@ class Badges
 	 *
 	 * @param  string     $message
 	 * @param  array      $attributes
-	 * @return Badge
+	 * @return string     Badge HTML
 	 */
 	public static function inverse($message, $attributes = array())
 	{
 		return static::show(Badges::INVERSE, $message, $attributes);
+	}
+	
+	/**
+	 * Create a new custom Badge.
+	 * This assumes you have created the appropriate css class for the label type.
+	 *
+	 * @param  string     $type
+	 * @param  string     $message
+	 * @param  array      $attributes
+	 * @return string     Badge HTML
+	 */
+	public static function custom($type, $message, $attributes = array())
+	{
+		$type = 'badge-'.(string)$type;
+
+		return static::show($type, $message, $attributes);
 	}
 }

@@ -21,13 +21,13 @@ class Alert
 	const DANGER  = 'alert-danger';
 
 	/**
-	 * Create a new Alert instance.
+	 * Create a new Alert.
 	 *
 	 * @param  string     $type
 	 * @param  string     $message
 	 * @param  bool       $enable_close
 	 * @param  array      $attributes
-	 * @return Alert
+	 * @return string     Alert HTML
 	 */
 	protected static function show($type, $message, $enable_close = true, $attributes = array())
 	{
@@ -44,12 +44,12 @@ class Alert
 	}
 
 	/**
-	 * Create a new Success Alert instance.
+	 * Create a new Success Alert.
 	 *
 	 * @param  string     $message
 	 * @param  bool       $enable_close
 	 * @param  array      $attributes
-	 * @return Alert
+	 * @return string     Alert HTML
 	 */
 	public static function success($message, $enable_close = true, $attributes = array())
 	{
@@ -57,12 +57,12 @@ class Alert
 	}
 
 	/**
-	 * Create a new Info Alert instance.
+	 * Create a new Info Alert.
 	 *
 	 * @param  string     $message
 	 * @param  bool       $enable_close
 	 * @param  array      $attributes
-	 * @return Alert
+	 * @return string     Alert HTML
 	 */
 	public static function info($message, $enable_close = true, $attributes = array())
 	{
@@ -70,12 +70,12 @@ class Alert
 	}
 
 	/**
-	 * Create a new Warning Alert instance.
+	 * Create a new Warning Alert.
 	 *
 	 * @param  string     $message
 	 * @param  bool       $enable_close
 	 * @param  array      $attributes
-	 * @return Alert
+	 * @return string     Alert HTML
 	 */
 	public static function warning($message, $enable_close = true, $attributes = array())
 	{
@@ -83,12 +83,12 @@ class Alert
 	}
 
 	/**
-	 * Create a new Error Alert instance.
+	 * Create a new Error Alert.
 	 *
 	 * @param  string     $message
 	 * @param  bool       $enable_close
 	 * @param  array      $attributes
-	 * @return Alert
+	 * @return string     Alert HTML
 	 */
 	public static function error($message, $enable_close = true, $attributes = array())
 	{
@@ -96,15 +96,32 @@ class Alert
 	}
 
 	/**
-	 * Create a new Danger Alert instance.
+	 * Create a new Danger Alert.
 	 *
 	 * @param  string     $message
 	 * @param  bool       $enable_close
 	 * @param  array      $attributes
-	 * @return Alert
+	 * @return string     Alert HTML
 	 */
 	public static function danger($message, $enable_close = true, $attributes = array())
 	{
 		return static::show(Alert::DANGER, $message, $enable_close, $attributes);
+	}
+	
+	/**
+	 * Create a new custom Alert.
+	 * This assumes you have created the appropriate css class for the alert type.
+	 *
+	 * @param  string     $type
+	 * @param  string     $message
+	 * @param  bool       $enable_close
+	 * @param  array      $attributes
+	 * @return string     Alert HTML
+	 */
+	public static function custom($type, $message, $enable_close = true, $attributes = array())
+	{
+		$type = 'alert-'.(string)$type;
+
+		return static::show($type, $message, $enable_close, $attributes);
 	}
 }
