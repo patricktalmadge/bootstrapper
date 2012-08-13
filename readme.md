@@ -16,11 +16,6 @@ Add the following line to application/bundles.php
 		'bootstrapper' => array('auto' => true),
 	);
 
-Change Form and Paginator in the application.php config file to:
-
-	'Form' 			=> 'Bootstrapper\\Form',
-	'Paginator'		=> 'Bootstrapper\\Paginator',
-
 Add the following to the application.php config file:
 
 	'Alert'                 => 'Bootstrapper\\Alert',
@@ -31,11 +26,13 @@ Add the following to the application.php config file:
 	'ButtonToolbar'         => 'Bootstrapper\\ButtonToolbar',
 	'Carousel'              => 'Bootstrapper\\Carousel',
 	'DropdownButton'        => 'Bootstrapper\\DropdownButton',
+	'Form' 			=> 'Bootstrapper\\Form',
 	'Helpers'               => 'Bootstrapper\\Helpers',
 	'Icons'                 => 'Bootstrapper\\Icons',
 	'Labels'                => 'Bootstrapper\\Labels',
 	'Navbar'                => 'Bootstrapper\\Navbar',
 	'Navigation'            => 'Bootstrapper\\Navigation',
+	'Paginator'		=> 'Bootstrapper\\Paginator',
 	'Progress'	        => 'Bootstrapper\\Progress',
 	'SplitDropdownButton'   => 'Bootstrapper\\SplitDropdownButton',
 	'Tabbable'              => 'Bootstrapper\\Tabbable',
