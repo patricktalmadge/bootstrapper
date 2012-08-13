@@ -17,7 +17,7 @@ class Icons
 	 * Allows magic methods such as Icons::home([attributes]) or Icons::close_white()
 	 *
 	 * @param  string $method
-	 * @param  array  $attributes
+	 * @param  array  $parameters
 	 * @return string
 	 */
 	public static function __callStatic($method, $parameters)
@@ -37,4 +37,29 @@ class Icons
 
 		return '<i'.HTML::attributes($parameters[0]).'></i>';
 	}
+
+    /**
+     * Return icon HTML.
+     * Overload via __callStatic() allows calls like Icons::check() for a checkmark icon, 
+     * but it does not work well for hyphenated icons like paper-clip or folder-open. 
+     * Therefore, this method is recommended for general use.  
+     * 
+     * Usage:
+     * <code>
+     * <?php
+     * echo Icons::make('folder-open');
+     * echo Icons::make('film-white');
+     * return Icons::make('paper-clip',array('class'=>'attachment','data-toggle'=>'modal'));
+     * ?>
+     * </code>
+     * 
+     * @static
+     * @param $icon_class
+     * @param null $parameters
+     * @return string
+     */
+    public static function make($icon_class, $parameters = null)
+    {
+        return static::__callStatic($icon_class, $parameters);
+    }
 }
