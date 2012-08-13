@@ -64,7 +64,7 @@ class Buttons
 			$attributes['data-toggle'] = 'dropdown';
 		}
 		
-		return '<button'.HTML::attributes($attributes).'>'.HTML::entities($value).$extra.'</button>';
+        return '<button'.HTML::attributes($attributes).'>'.(string)$value.$extra.'</button>';
 	}
 
 
@@ -72,7 +72,7 @@ class Buttons
 	 * Create a HTML anchor tag styled like a button element.
 	 *
 	 * @param  string  $value
-	 * @param  string  $value
+	 * @param  string  $url
 	 * @param  array   $attributes
 	 * @param  bool    $hasDropdown
 	 * @return string
