@@ -34,8 +34,8 @@ Autoloader::map(array(
 
 Asset::container('bootstrapper')->bundle('bootstrapper');
 
-//Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.7.2.js');
-Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.7.2.min.js');
+//Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.8.0.js');
+Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.8.0.min.js');
 
 //Asset::container('bootstrapper')->add('bootstrap',  'css/bootstrap.css');
 Asset::container('bootstrapper')->add('bootstrap',  'css/bootstrap.min.css');
