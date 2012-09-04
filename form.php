@@ -274,7 +274,14 @@ class Form extends \Laravel\Form {
 	 */
 	public static function control_group($label, $control, $group_class = '', $help = null)
 	{
-		$html = '<div class="control-group '. $group_class .'">'; 
+		$class = 'control-group';
+		
+		if($group_class !== '')
+		{
+			$class .= ' '.$group_class;
+		}
+
+		$html = '<div class="'.$class.'">';  
 		$html .= static::add_attribute('class', 'control-label', $label);
      	$html .= '<div class="controls">';
 

@@ -23,8 +23,7 @@ class Helpers
 	*/
 	public static function add_class($array, $value, $key = 'class')
 	{
-		if(!isset($array[$key])){ $array[$key] = '';}
-		$array[$key] .= ' '.$value;
+		$array[$key] = isset($array[$key]) ? $array[$key].' '.$value : $value;
 
 		return $array;
 	}
@@ -77,6 +76,8 @@ class Helpers
 				$params[$index]['class'] .= $class;
 			}
 		}
+		
+		$params[$index]['class'] = trim($params[$index]['class']);
 		return $params;
 	}
 }
