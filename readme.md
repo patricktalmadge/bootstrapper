@@ -1,4 +1,4 @@
-## Bootstrapper Bundle, by Patrick Talmadge
+## Bootstrapper Bundle V. 3.6.7 build 1, by Patrick Talmadge
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
