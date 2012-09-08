@@ -17,7 +17,7 @@ class Buttons
 	 * The current button in memory
 	 * @var array
 	 */
-	private static $output = array();
+	private static $currentButton = array();
 
 	/**
 	 * Stores the current button for future output
@@ -29,7 +29,7 @@ class Buttons
 	 */
 	private static function storeButton($type, $value, $attributes, $hasDropdown)
 	{
-		static::$output = array(
+		static::$currentButton = array(
 			'type'        => $type,
 			'value'       => $value,
 			'attributes'  => $attributes,
@@ -117,7 +117,7 @@ class Buttons
 		$icon = Icons::make($icon);
 
 		// If there was no text, just use the icon, else put a space between
-		$value = static::$output['value'];
+		$value = static::$currentButton['value'];
 		if(empty($value)) $value = $icon;
 		else {
 			$value = $prependIcon
@@ -126,7 +126,7 @@ class Buttons
 		}
 
 		// Store modified value
-		static::$output['value'] = $value;
+		static::$currentButton['value'] = $value;
 
 		return new Buttons;
 	}
@@ -186,7 +186,7 @@ class Buttons
 	public function __toString()
 	{
 		// Gather variables
-		extract(static::$output);
+		extract(static::$currentButton);
 
 		// Add btn to classes and fallback type
 		if(!isset($attributes['type'])) $attributes['type'] = 'button';
