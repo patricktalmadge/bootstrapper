@@ -91,7 +91,7 @@ class Buttons
 			$attributes['data-toggle'] = 'dropdown';
 		}
 		
-		return '<a'.HTML::attributes($attributes).'>'.HTML::entities($value).$extra.'</a>';
+		return '<a'.HTML::attributes($attributes).'>'.(string)$value.$extra.'</a>';
 	}
 
 	/**
