@@ -107,9 +107,9 @@ class Buttons
 	/**
 	 * Adds an icon to the next button
 	 *
-	 * @param  string  $icon       The name of the icon to call
-	 * @param  array   $attributes Attributes to pass to the generated icon
-         * @param  boolean $prependIcon Whether we should prepend the icon, or append it
+	 * @param  string  $icon        The name of the icon to call
+	 * @param  array   $attributes  Attributes to pass to the generated icon
+   * @param  boolean $prependIcon Whether we should prepend the icon, or append it
 	 */
 	public function with_icon($icon, $attributes = array(), $prependIcon = true)
 	{
@@ -181,6 +181,7 @@ class Buttons
 
 	/**
 	 * Prints the current button in memory
+	 *
 	 * @return string A button
 	 */
 	public function __toString()
