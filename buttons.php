@@ -27,7 +27,7 @@ class Buttons
 	 * @param  array   $attributes  An array of attributes
 	 * @param  boolean $hasDropdown Whether the button has a dropdown
 	 */
-	public static function storeButton($type, $value, $attributes, $hasDropdown)
+	private static function storeButton($type, $value, $attributes, $hasDropdown)
 	{
 		static::$output = array(
 			'type'        => $type,
