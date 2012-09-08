@@ -29,6 +29,7 @@ Autoloader::map(array(
 	'Bootstrapper\\Progress'            => __DIR__.'/progress.php',
 	'Bootstrapper\\SplitDropdownButton' => __DIR__.'/splitdropdownbutton.php',
 	'Bootstrapper\\Tabbable'            => __DIR__.'/tabbable.php',
+	'Bootstrapper\\Tables'              => __DIR__.'/tables.php',
 	'Bootstrapper\\Typeahead'           => __DIR__.'/typeahead.php',
 ));
 
