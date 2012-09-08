@@ -203,7 +203,7 @@ class Buttons
 		}
 
 		// Write output according to tag
-		$tag = ($type == 'link') ? 'link' : 'button';
+		$tag = ($type == 'link') ? 'a' : 'button';
 		return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$extra.'</'.$tag.'>';
 	}
 }
