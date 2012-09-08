@@ -38,7 +38,14 @@ class Tables
 
     // Add each header with its attributes
     foreach($headers as $header => $attributes) {
-      $thead .= '<th'.HTML::attributes($attributes).'>' .$header. '</th>';
+
+      // Allows to not specify an attributes array for leaner syntax
+      if(is_string($attributes) and is_numeric($header)) {
+        $header = $attributes;
+        $attributes = array();
+      }
+
+      $thead .= '<th'.HTML::attributes($attributes).'>' .$header. '</th>'.PHP_EOL;
     }
 
     $thead .= '</thead>'.PHP_EOL;
