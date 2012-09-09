@@ -13,11 +13,13 @@ use \HTML;
  */
 class Buttons
 {
+	private static $instance = null;
+
 	/**
 	 * The current button in memory
 	 * @var array
 	 */
-	private static $currentButton = array();
+	private $currentButton = array();
 
 	/**
 	 * Stores the current button for future output
@@ -29,12 +31,18 @@ class Buttons
 	 */
 	private static function storeButton($type, $value, $attributes, $hasDropdown)
 	{
-		static::$currentButton = array(
+		// If we don't have an instance stored, create a new one
+		$currentInstance = self::$instance ?: new Buttons;
+
+		// Define new button
+		$currentInstance->currentButton = array(
 			'type'        => $type,
 			'value'       => $value,
 			'attributes'  => $attributes,
 			'hasDropdown' => $hasDropdown,
 		);
+
+		return $currentInstance;
 	}
 
 	/**
@@ -49,9 +57,7 @@ class Buttons
 	public static function submit($value, $attributes = array(), $hasDropdown = false)
 	{
 		$attributes['type'] = 'submit';
-		static::storeButton('normal', $value, $attributes, $hasDropdown);
-
-		return new Buttons;
+		return static::storeButton('normal', $value, $attributes, $hasDropdown);
 	}
 
 	/**
@@ -66,9 +72,7 @@ class Buttons
 	public static function reset($value, $attributes = array(), $hasDropdown = false)
 	{
 		$attributes['type'] = 'reset';
-		static::storeButton('normal', $value, $attributes, $hasDropdown);
-
-		return new Buttons;
+		return static::storeButton('normal', $value, $attributes, $hasDropdown);
 	}
 
 	/**
@@ -82,9 +86,7 @@ class Buttons
 	 */
 	public static function normal($value, $attributes = array(), $hasDropdown = false)
 	{
-		static::storeButton('normal', $value, $attributes, $hasDropdown);
-
-		return new Buttons;
+		return static::storeButton('normal', $value, $attributes, $hasDropdown);
 	}
 
 	/**
@@ -99,9 +101,7 @@ class Buttons
 	public static function link($value, $url, $attributes = array(), $hasDropdown = false)
 	{
 		$attributes['href'] = \URL::to($url);
-		static::storeButton('link', $value, $attributes, $hasDropdown);
-
-		return new Buttons;
+		return static::storeButton('link', $value, $attributes, $hasDropdown);
 	}
 
 	/**
@@ -117,7 +117,7 @@ class Buttons
 		$icon = Icons::make($icon);
 
 		// If there was no text, just use the icon, else put a space between
-		$value = static::$currentButton['value'];
+		$value = $this->currentButton['value'];
 		if(empty($value)) $value = $icon;
 		else {
 			$value = $prependIcon
@@ -126,9 +126,9 @@ class Buttons
 		}
 
 		// Store modified value
-		static::$currentButton['value'] = $value;
+		$this->currentButton['value'] = $value;
 
-		return new Buttons;
+		return $this;;
 	}
 
 	/**
@@ -187,7 +187,7 @@ class Buttons
 	public function __toString()
 	{
 		// Gather variables
-		extract(static::$currentButton);
+		extract($this->currentButton);
 
 		// Add btn to classes and fallback type
 		if(!isset($attributes['type'])) $attributes['type'] = 'button';
