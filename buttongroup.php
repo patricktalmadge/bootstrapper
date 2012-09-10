@@ -4,14 +4,14 @@ use \HTML;
 
 /**
  * ButtonGroup for creating Twitter Bootstrap style Buttons groups.
- * 
+ *
  * @package     Bundles
  * @subpackage  Twitter
  * @author      Patrick Talmadge - Follow @patricktalmadge
  *
  * @see http://twitter.github.com/bootstrap/
  */
-class ButtonGroup 
+class ButtonGroup
 {
 
 	/**
@@ -30,10 +30,25 @@ class ButtonGroup
 	const TOGGLE_RADIO = 'radio';
 
 	/**
+	 * Opens a vertical button group
+	 *
+	 * @param  boolean $toggle     Whether the button group should be togglable
+	 * @param  array   $attributes An array of attributes
+	 * @return string              An opening <div> tag
+	 */
+	public static function vertical_open($toggle = null, $attributes = array())
+	{
+		$attributes = Helpers::add_class($attributes, 'btn-group-vertical');
+
+		return static::open($toggle, $attributes);
+	}
+
+	/**
 	 * Opens a new ButtonGroup section.
-	 * @param string 	$toggle
-	 * @param array 	$attributes
-	 * @return string
+	 *
+	 * @param  string 	$toggle     Whether the button group should be togglable
+	 * @param  array 	  $attributes An array of attributes
+	 * @return string              An opening <div> tag
 	 */
 	public static function open($toggle = null, $attributes = array())
 	{
@@ -47,6 +62,7 @@ class ButtonGroup
 
 	/**
 	 * Closes the ButtonGroup section.
+	 *
 	 * @return string
 	 */
 	public static function close()
