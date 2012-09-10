@@ -10,8 +10,6 @@
  * @see http://twitter.github.com/bootstrap/
  */
 
-$libs_path = __DIR__.'/libraries';
-
 // Autoload Boostrapper
 Autoloader::namespaces(array(
   'Bootstrapper' => Bundle::path('bootstrapper') . 'libraries'
