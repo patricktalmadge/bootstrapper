@@ -150,7 +150,7 @@ class Navbar
       foreach ($this->menus as $menu) {
         if (is_string($menu)) $html .= $menu; // If is string add to html
         else {
-          $attr  = isset($menu['attributes']) ? $menu['attributes'] : array();
+          $attr  = array_get($menu, 'attributes', array());
           $html .= Navigation::unstyled($menu['items'], false, $attr, $this->autoroute);
         }
       }
