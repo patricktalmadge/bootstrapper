@@ -4,14 +4,14 @@ use \HTML;
 
 /**
  * Alert for creating Twitter Bootstrap style alerts.
- * 
+ *
  * @package     Bundles
  * @subpackage  Twitter
  * @author      Patrick Talmadge - Follow @patricktalmadge
  *
  * @see http://twitter.github.com/bootstrap/
  */
-class Alert 
+class Alert
 {
 	// Alert styles
 	const SUCCESS = 'alert-success';
@@ -34,11 +34,11 @@ class Alert
 		$attributes = Helpers::add_class($attributes, 'alert '.$type);
 
 		$html = '<div'.HTML::attributes($attributes).'>';
-		
+
 		if($enable_close)
 			$html .= '<a class="close" data-dismiss="alert" href="#">&times;</a>';
-		
-		$html .= $message.'</div>'; 
+
+		$html .= $message.'</div>';
 
 		return $html;
 	}
@@ -107,7 +107,7 @@ class Alert
 	{
 		return static::show(Alert::DANGER, $message, $enable_close, $attributes);
 	}
-	
+
 	/**
 	 * Create a new custom Alert.
 	 * This assumes you have created the appropriate css class for the alert type.
@@ -123,5 +123,30 @@ class Alert
 		$type = 'alert-'.(string)$type;
 
 		return static::show($type, $message, $enable_close, $attributes);
+	}
+
+	/**
+	 * Check to see if we're calling an informative alert
+	 *
+	 * @param  string $method     The function called
+	 * @param  array  $parameters Its parameters
+	 * @return Alert              An Alert
+	 */
+	public static function __callStatic($method, $parameters)
+	{
+		// Extract real method and type of alert
+		$method = explode('_', $method);
+		$isOpen = array_get($method, 0) == 'open';
+		$method = array_get($method, 1);
+
+		// If we have an informative alert
+		if($isOpen) {
+			// Fetch parameters
+			$message    = array_get($parameters, 0);
+			$attributes = array_get($parameters, 1);
+
+			return call_user_func('static::'.$method, $message, false, $attributes);
+		}
+		else call_user_func('static::'.$method, $parameters);
 	}
 }
