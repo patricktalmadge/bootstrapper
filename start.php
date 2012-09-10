@@ -12,7 +12,7 @@
 
 $libs_path = __DIR__.'/libraries';
 
-// Autoload Cerberus
+// Autoload Boostrapper
 Autoloader::namespaces(array(
   'Bootstrapper' => Bundle::path('bootstrapper') . 'libraries'
 ));
