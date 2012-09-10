@@ -27,6 +27,53 @@ class Tables
   }
 
   /**
+   * Closes current table
+   *
+   * @return string A </table> closing tag
+   */
+  public static function close()
+  {
+    return '</table>';
+  }
+
+  /**
+   * Display an array of data
+   * @param  mixed  $rows          Can be an array of data or models
+   * @param  array  $ignore        An array of columns to ignore
+   * @param  array  $supplementary An array of supplementary columns to append
+   * @return string                A table body
+   */
+  public static function display($rows, $ignore = array(), $supplementary = array())
+  {
+    // Open Table body
+    $html = '<tbody>';
+
+    // If no data given, return false
+    if(!$rows) return false;
+
+    // Iterate through the data
+    foreach($rows as $row) {
+      $html .= '<tr>';
+      $data = is_object($row) ? $row->attributes : $row;
+
+      // Read the data row with ignored keys
+      foreach($data as $column => $value) {
+        if(in_array($column, $ignore)) continue;
+        $html .= '<td class="column-' .$column. '">'. $value. '</td>';
+      }
+
+      // Add supplementary columns
+      foreach($supplementary as $class => $column) {
+        $column = static::replace_keywords($column, $data);
+        $html .= '<td class="column-'.$class.'">' .$column. '</td>';
+      }
+      $html .= '</tr>';
+    }
+
+    return $html.'</tbody>';
+  }
+
+  /**
    * Creates a table <thead> tag
    *
    * @param  array  $headers An array of thead rows
@@ -51,6 +98,28 @@ class Tables
     $thead .= '</thead>'.PHP_EOL;
 
     return $thead;
+  }
+
+  /**
+   * Replace keywords with data in a string
+   *
+   * @param  string $string A string with Laravel patterns (:key)
+   * @param  array  $data   An array of data to fetch from
+   * @return string         The modified string
+   */
+  private static function replace_keywords($string, $data)
+  {
+    // Gather used patterns
+    preg_match_all('/\(:(.+)\)/', $string, $matches);
+
+    // Replace patterns with data
+    foreach($matches[0] as $key => $replace) {
+      $with = array_get($matches, '1.'.$key);
+      $with = array_get($data, $with);
+      $string = str_replace($replace, $with, $string);
+    }
+
+    return $string;
   }
 
   /**
