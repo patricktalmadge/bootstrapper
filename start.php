@@ -10,28 +10,30 @@
  * @see http://twitter.github.com/bootstrap/
  */
 
+$libs_path = __DIR__.'/libraries';
+
 Autoloader::map(array(
-	'Bootstrapper\\Alert'               => __DIR__.'/alert.php',
-	'Bootstrapper\\Badges'              => __DIR__.'/badges.php',
-	'Bootstrapper\\Breadcrumbs'         => __DIR__.'/breadcrumbs.php',
-	'Bootstrapper\\ButtonGroup'         => __DIR__.'/buttongroup.php',
-	'Bootstrapper\\Buttons'             => __DIR__.'/buttons.php',
-	'Bootstrapper\\ButtonToolbar'       => __DIR__.'/buttontoolbar.php',
-	'Bootstrapper\\Carousel'            => __DIR__.'/carousel.php',
-	'Bootstrapper\\DropdownButton'      => __DIR__.'/dropdownbutton.php',
-	'Bootstrapper\\Form'                => __DIR__.'/form.php',
-	'Bootstrapper\\Helpers'             => __DIR__.'/helpers.php',
-	'Bootstrapper\\Icons'               => __DIR__.'/icons.php',
-	'Bootstrapper\\Images'              => __DIR__.'/images.php',
-	'Bootstrapper\\Labels'              => __DIR__.'/labels.php',
-	'Bootstrapper\\Navbar'              => __DIR__.'/navbar.php',
-	'Bootstrapper\\Navigation'          => __DIR__.'/navigation.php',
-	'Bootstrapper\\Paginator'           => __DIR__.'/paginator.php',
-	'Bootstrapper\\Progress'            => __DIR__.'/progress.php',
-	'Bootstrapper\\SplitDropdownButton' => __DIR__.'/splitdropdownbutton.php',
-	'Bootstrapper\\Tabbable'            => __DIR__.'/tabbable.php',
-	'Bootstrapper\\Tables'              => __DIR__.'/tables.php',
-	'Bootstrapper\\Typeahead'           => __DIR__.'/typeahead.php',
+	'Bootstrapper\\Alert'               => $libs_path.'/alert.php',
+	'Bootstrapper\\Badges'              => $libs_path.'/badges.php',
+	'Bootstrapper\\Breadcrumbs'         => $libs_path.'/breadcrumbs.php',
+	'Bootstrapper\\ButtonGroup'         => $libs_path.'/buttongroup.php',
+	'Bootstrapper\\Buttons'             => $libs_path.'/buttons.php',
+	'Bootstrapper\\ButtonToolbar'       => $libs_path.'/buttontoolbar.php',
+	'Bootstrapper\\Carousel'            => $libs_path.'/carousel.php',
+	'Bootstrapper\\DropdownButton'      => $libs_path.'/dropdownbutton.php',
+	'Bootstrapper\\Form'                => $libs_path.'/form.php',
+	'Bootstrapper\\Helpers'             => $libs_path.'/helpers.php',
+	'Bootstrapper\\Icons'               => $libs_path.'/icons.php',
+	'Bootstrapper\\Images'              => $libs_path.'/images.php',
+	'Bootstrapper\\Labels'              => $libs_path.'/labels.php',
+	'Bootstrapper\\Navbar'              => $libs_path.'/navbar.php',
+	'Bootstrapper\\Navigation'          => $libs_path.'/navigation.php',
+	'Bootstrapper\\Paginator'           => $libs_path.'/paginator.php',
+	'Bootstrapper\\Progress'            => $libs_path.'/progress.php',
+	'Bootstrapper\\SplitDropdownButton' => $libs_path.'/splitdropdownbutton.php',
+	'Bootstrapper\\Tabbable'            => $libs_path.'/tabbable.php',
+	'Bootstrapper\\Tables'              => $libs_path.'/tables.php',
+	'Bootstrapper\\Typeahead'           => $libs_path.'/typeahead.php',
 ));
 
 Asset::container('bootstrapper')->bundle('bootstrapper');
