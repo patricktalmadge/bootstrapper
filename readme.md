@@ -1,4 +1,4 @@
-## Bootstrapper Bundle V. 3.6.8 build 1, by Patrick Talmadge
+## Bootstrapper Bundle V. 4, by Patrick Talmadge
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
@@ -36,7 +36,7 @@ Add the following to the application.php config file:
 	'Progress'              => 'Bootstrapper\\Progress',
 	'SplitDropdownButton'   => 'Bootstrapper\\SplitDropdownButton',
 	'Tabbable'              => 'Bootstrapper\\Tabbable',
-	'Tables'		=> 'Bootstrapper\\Tables',
+	'Tables'                => 'Bootstrapper\\Tables',
 	'Typeahead'             => 'Bootstrapper\\Typeahead', 
 
 
