@@ -107,6 +107,16 @@ class Navbar
   }
 
   /**
+   * Prints out the current Navbar in case it doesn't do it automatically
+   *
+   * @return string A Navbar
+   */
+  public function get()
+  {
+    return static::__toString();
+  }
+
+  /**
    * Writes the current Navbar
    *
    * @return string A Bootstrap navbar
