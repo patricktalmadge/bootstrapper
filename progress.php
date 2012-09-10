@@ -4,27 +4,50 @@ use \HTML;
 
 /**
  * Progress for creating Twitter Bootstrap style progress bar.
- * 
+ *
  * @package     Bundles
  * @subpackage  Twitter
  * @author      Patrick Talmadge - Follow @patricktalmadge
  *
  * @see http://twitter.github.com/bootstrap/
  */
-class Progress 
+class Progress
 {
 	// Progress bar colors
-	const NORMAL = '';
-	const SUCCESS = 'progress-success';
-	const INFO    = 'progress-info';
-	const WARNING = 'progress-warning';
+	const NORMAL  = '';
 	const DANGER  = 'progress-danger';
+	const INFO    = 'progress-info';
+	const SUCCESS = 'progress-success';
+	const WARNING = 'progress-warning';
 
-	protected static function show($amount, $type = Progress::NORMAL, $attributes = array())
+	protected static function show($amounts, $type = Progress::NORMAL, $attributes = array())
 	{
+		if(is_array($amounts)) $type = Progress::NORMAL;
 		$attributes = Helpers::add_class($attributes, 'progress '.$type);
 
-		return '<div'.HTML::attributes($attributes).'><div class="bar" style="width: '.$amount.'%;"></div></div>';
+		// Create the progress bar(s)
+		$progress = '<div'.HTML::attributes($attributes).'>';
+			if(is_integer($amounts)) $amounts = array($amounts => null);
+			foreach($amounts as $amount => $style)
+				$progress .= static::bar($amount, $style);
+		$progress .= '</div>';
+
+		return $progress;
+	}
+
+	/**
+	 * Adds a bar to the current progress bar
+	 *
+	 * @param  integer $amount A progress amount
+	 * @param  string  $style  A class to use to style the bar
+	 * @return string          A Bootstrap bar
+	 */
+	protected static function bar($amount, $style = null)
+	{
+		// Prepend bar style with 'bar-'
+		$style = $style ? ' bar-'.$style : null;
+
+		return '<div class="bar' .$style. '" style="width: ' .$amount. '%;"></div>';
 	}
 
 	/**
