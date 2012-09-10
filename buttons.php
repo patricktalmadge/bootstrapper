@@ -92,13 +92,13 @@ class Buttons
 	/**
 	 * Create a HTML anchor tag styled like a button element.
 	 *
-	 * @param  string  $value
 	 * @param  string  $url
+	 * @param  string  $value
 	 * @param  array   $attributes
 	 * @param  bool    $hasDropdown
 	 * @return string
 	 */
-	public static function link($value, $url, $attributes = array(), $hasDropdown = false)
+	public static function link($url, $value, $attributes = array(), $hasDropdown = false)
 	{
 		$attributes['href'] = \URL::to($url);
 		return static::storeButton('link', $value, $attributes, $hasDropdown);

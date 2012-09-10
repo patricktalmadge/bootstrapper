@@ -29,6 +29,7 @@ Add the following to the application.php config file:
 	'Form'                  => 'Bootstrapper\\Form',
 	'Helpers'               => 'Bootstrapper\\Helpers',
 	'Icons'                 => 'Bootstrapper\\Icons',
+	'Images'                => 'Bootstrapper\\Images',
 	'Labels'                => 'Bootstrapper\\Labels',
 	'Navbar'                => 'Bootstrapper\\Navbar',
 	'Navigation'            => 'Bootstrapper\\Navigation',
