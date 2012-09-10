@@ -12,7 +12,7 @@
 
 Autoloader::map(array(
 	'Bootstrapper\\Alert'               => __DIR__.'/alert.php',
-	'Bootstrapper\\Badges'  	    => __DIR__.'/badges.php',
+	'Bootstrapper\\Badges'              => __DIR__.'/badges.php',
 	'Bootstrapper\\Breadcrumbs'         => __DIR__.'/breadcrumbs.php',
 	'Bootstrapper\\ButtonGroup'         => __DIR__.'/buttongroup.php',
 	'Bootstrapper\\Buttons'             => __DIR__.'/buttons.php',
@@ -22,6 +22,7 @@ Autoloader::map(array(
 	'Bootstrapper\\Form'                => __DIR__.'/form.php',
 	'Bootstrapper\\Helpers'             => __DIR__.'/helpers.php',
 	'Bootstrapper\\Icons'               => __DIR__.'/icons.php',
+	'Bootstrapper\\Images'              => __DIR__.'/images.php',
 	'Bootstrapper\\Labels'              => __DIR__.'/labels.php',
 	'Bootstrapper\\Navbar'              => __DIR__.'/navbar.php',
 	'Bootstrapper\\Navigation'          => __DIR__.'/navigation.php',
