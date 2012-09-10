@@ -36,16 +36,16 @@ class Tables
     return '</table>';
   }
 
-  /**
-   * Displays an array of data
-   *
-   * @param  mixed  $rows          Can be an array of data or models
-   * @param  array  $ignore        An array of columns to ignore
-   * @param  array  $supplementary An array of supplementary columns to append
-   * @return string                A table body
-   */
-  public static function display($rows, $ignore = array(), $supplementary = array())
-  {
+/**
+ * Displays an array of data
+ *
+ * @param  mixed  $rows          Can be an array of data or models
+ * @param  array  $ignore        An array of columns to ignore
+ * @param  array  $supplementary An array of supplementary columns to append
+ * @return string                A table body
+ */
+public static function display($rows, $ignore = array(), $supplementary = array())
+{
     // Open Table body
     $html = '<tbody>';
 
@@ -66,7 +66,7 @@ class Tables
       // Add supplementary columns
       foreach($supplementary as $class => $column) {
         $column = static::replace_keywords($column, $data);
-        $html .= '<td class="'.$class.'">' .$column. '</td>';
+        $html .= '<td class="column-'.$class.'">' .$column. '</td>';
       }
       $html .= '</tr>';
     }
