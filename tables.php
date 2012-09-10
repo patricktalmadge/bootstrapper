@@ -37,11 +37,12 @@ class Tables
   }
 
   /**
-   * Display an array of data
-   * @param  [type] $rows          [description]
-   * @param  array  $ignore        [description]
-   * @param  array  $supplementary [description]
-   * @return [type]                [description]
+   * Displays an array of data
+   *
+   * @param  mixed  $rows          Can be an array of data or models
+   * @param  array  $ignore        An array of columns to ignore
+   * @param  array  $supplementary An array of supplementary columns to append
+   * @return string                A table body
    */
   public static function display($rows, $ignore = array(), $supplementary = array())
   {
