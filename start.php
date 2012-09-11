@@ -3,17 +3,20 @@
 /**
  * Bootstrapper for creating Twitter Bootstrap markup.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 
 // Autoload Boostrapper
-Autoloader::namespaces(array(
-  'Bootstrapper' => Bundle::path('bootstrapper') . 'libraries'
-));
+Autoloader::namespaces(
+    array('Bootstrapper' => Bundle::path('bootstrapper') . 'libraries')
+);
 
 Asset::container('bootstrapper')->bundle('bootstrapper');
 
