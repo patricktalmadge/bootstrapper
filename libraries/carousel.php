@@ -27,31 +27,30 @@ class Carousel
   /**
    * Create a Bootstrap carousel. Returns the HTML for the carousel.
    *
-   * @param  array    $items
-   * @param  array    $attributes
+   * @param  array    $items      An array of carousel items
+   * @param  array    $attributes Attributes to apply the carousel itself
    * @return Carousel
    */
   public static function create($items, $attributes = array())
   {
     $attributes = Helpers::add_class($attributes, 'carousel slide');
 
-    if(!isset($attributes['id'])) {
-      $attributes['id'] = "carousel_".Helpers::rand_string(5);
-    }
+    // Calculate the Carousel ID
+    $carousel_id = '#'.array_get($attributes, 'id', 'carousel_'.Helpers::rand_string(5));
 
+    // Render main wrapper
     $html = '<div'.HTML::attributes($attributes).'>';
-    $html .= '<div class="carousel-inner">';
 
-    $first = true;
-    foreach ($items as $item) {
-      $html .= static::createItem($item, $first);
-      $first = false;
-    }
-
+      // Render items
+      $html .= '<div class="carousel-inner">';
+        foreach ($items as $key => $item) {
+          $html .= static::createItem($item, $key == 0);
+        }
       $html .= '</div>';
 
-      $html .= '<a class="carousel-control left" href="#'.$attributes['id'].'" data-slide="prev">'.Carousel::$prev.'</a>';
-      $html .= '<a class="carousel-control right" href="#'.$attributes['id'].'" data-slide="next">'.Carousel::$next.'</a>';
+      // Render navigation
+      $html .= HTML::link($carousel_id, Carousel::$prev, array('class' => 'carousel-control left', 'data-slide' => 'prev'));
+      $html .= HTML::link($carousel_id, Carousel::$next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
     $html .= '</div>';
 
     return $html;
@@ -60,39 +59,38 @@ class Carousel
   /**
    * Create a carousel item. Returns a HTML element for one slide.
    *
-   * @param  array  $item
-   * @param  bool   $isActive
+   * @param  array  $item      A carousel item to render
+   * @param  bool   $is_active Whether the item is active or not
    * @return string
    */
-  protected static function createItem($item, $isActive)
+  protected static function createItem($item, $is_active)
   {
-    // Set defaults if not set
-    if(!isset($item['alt_text'])) {
-      $item['alt_text'] = '';
-    }
+    // Gather necessary variables
+    $active     = $is_active ? ' active' : '';
+    $altText    = array_get($item, 'alt_text', '');
+    $attributes = array_get($item, 'attributes', array());
+    $caption    = array_get($item, 'caption', '');
+    $label      = array_get($item, 'label', '');
+    $image      = array_get($item, 'image');
 
-    if(!isset($item['attributes'])) {
-      $item['attributes'] = array();
-    }
-
-    if(!isset($item['label'])) {
-      $item['label'] = '';
-    }
-
-    if(!isset($item['caption'])) {
-      $item['caption'] = '';
-    }
-
-    $active = $isActive ? ' active' : '';
+    // If we were given an array of image paths instead of arrays
+    if(!$image and is_string($item)) $image = $item;
 
     // Build HTML
     $html = '<div class="item'.$active.'">';
-    $html .= HTML::image($item['image'], $item['alt_text'], $item['attributes']);
-    $html .= '<div class="carousel-caption">';
-      $html .= '<h4>'.$item['label'].'</h4>';
-      $html .= '<p>'.$item['caption'].'</p>';
-      $html .= '</div>';
-      $html .= '</div>';
+
+      // Render the image
+      $html .= HTML::image($item, $altText, $attributes);
+
+      // If we have a caption, render it
+      if($caption or $label) {
+        $html .= '<div class="carousel-caption">';
+          if($label) $html .= '<h4>'.$label.'</h4>';
+          if($caption) $html .= '<p>'.$caption.'</p>';
+        $html .= '</div>';
+      }
+
+    $html .= '</div>';
 
     return $html;
   }
