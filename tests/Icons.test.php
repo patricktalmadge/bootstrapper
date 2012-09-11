@@ -54,7 +54,6 @@ class IconsTest extends BootstrapperWrapper
   public function testStaticWithAttributes()
   {
     $icon = Icons::folder_open($this->testAttributes);
-    var_dump($icon);
 
     $this->assertTag($this->baseIconWithAttributes, $icon);
   }
