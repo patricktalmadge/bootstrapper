@@ -80,7 +80,7 @@ class Carousel
     $html = '<div class="item'.$active.'">';
 
       // Render the image
-      $html .= HTML::image($item, $altText, $attributes);
+      $html .= HTML::image($image, $altText, $attributes);
 
       // If we have a caption, render it
       if($caption or $label) {

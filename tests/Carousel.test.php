@@ -104,7 +104,7 @@ class CarouselTest extends BootstrapperWrapper
         'child' => array(
           'tag' => 'div',
           'attributes' => array('class' => 'carousel-caption'),
-          'child' => array('tag' => 'h4', 'content' => 'label'),
+          'child'      => array('tag' => 'h4', 'content' => 'label'),
           'descendant' => array('tag' => 'p', 'content' => 'caption'),
         )
       )
