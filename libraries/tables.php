@@ -133,8 +133,12 @@ class Tables
   */
   public static function __callStatic($method, $parameters)
   {
-    $method_array = explode('_', strtolower($method));
+    // Filter table classes
+    $method_array = array_intersect(
+      explode('_', strtolower($method)),
+      array('striped', 'bordered', 'hover', 'condensed'));
 
+    // Define base function
     $function = 'table';
 
     $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, 1, 'table-');
