@@ -1,8 +1,5 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\Icons;
-
-class IconsTest extends PHPUnit_Framework_TestCase
+class IconsTest extends BootstrapperWrapper
 {
   /**
    * The icon we'll test with (the most complex one)
@@ -17,7 +14,19 @@ class IconsTest extends PHPUnit_Framework_TestCase
   private $baseIcon = array(
     'tag' => 'i',
     'attributes' => array(
-      'class' => 'icon-folder-open'));
+      'class'    => 'icon-folder-open',
+  ));
+
+  /**
+   * Matcher for the icon with attributes
+   * @var array
+   */
+  private $baseIconWithAttributes = array(
+    'tag' => 'i',
+    'attributes' => array(
+      'class'    => 'foo icon-folder-open',
+      'data-foo' => 'bar',
+  ));
 
   // Tests --------------------------------------------------------- /
 
@@ -30,12 +39,9 @@ class IconsTest extends PHPUnit_Framework_TestCase
 
   public function testMakeWithAttributes()
   {
-    $icon = Icons::make($this->testIcon, array('data-foo' => 'bar'));
+    $icon = Icons::make($this->testIcon, $this->testAttributes);
 
-    $matcher = $this->baseIcon;
-    $matcher['attributes']['data-foo'] = 'bar';
-
-    $this->assertTag($matcher, $icon);
+    $this->assertTag($this->baseIconWithAttributes, $icon);
   }
 
   public function testStatic()
@@ -47,17 +53,15 @@ class IconsTest extends PHPUnit_Framework_TestCase
 
   public function testStaticWithAttributes()
   {
-    $icon = Icons::folder_open(array('data-foo' => 'bar'));
+    $icon = Icons::folder_open($this->testAttributes);
+    var_dump($icon);
 
-    $matcher = $this->baseIcon;
-    $matcher['attributes']['data-foo'] = 'bar';
-
-    $this->assertTag($matcher, $icon);
+    $this->assertTag($this->baseIconWithAttributes, $icon);
   }
 
   public function testStaticWhiteWithAttributes()
   {
-    $icon = Icons::white_folder_open(array('data-foo' => 'bar'));
+    $icon = Icons::white_folder_open($this->testAttributes);
 
     $matcher = $this->baseIcon;
     $matcher['attributes']['class']   .= ' icon-white';

@@ -1,8 +1,5 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\Images;
-
-class ImagesTest extends PHPUnit_Framework_TestCase
+class ImagesTest extends BootstrapperWrapper
 {
   /**
    * URL example
@@ -18,7 +15,7 @@ class ImagesTest extends PHPUnit_Framework_TestCase
       'tag' => 'img',
       'attributes' => array(
         'alt'      => 'foo',
-        'class'    => 'img-'.$class,
+        'class'    => 'foo img-'.$class,
         'data-foo' => 'bar',
         'src'      => $this->url,
       ),
@@ -43,7 +40,7 @@ class ImagesTest extends PHPUnit_Framework_TestCase
    */
   public function testImages($class)
   {
-    $image = call_user_func('Images::'.$class, $this->url, 'foo', array('data-foo' => 'bar'));
+    $image = call_user_func('Images::'.$class, $this->url, 'foo', $this->testAttributes);
 
     $this->assertTag($this->createMatcher($class), $image);
   }

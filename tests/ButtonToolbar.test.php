@@ -1,12 +1,9 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\ButtonToolbar;
-
-class ButtonToolbarTest extends PHPUnit_Framework_TestCase
+class ButtonToolbarTest extends BootstrapperWrapper
 {
   public function testOpen()
   {
-    $open = ButtonToolbar::open(array('class' => 'foo', 'data-foo' => 'bar'));
+    $open = ButtonToolbar::open($this->testAttributes);
     $matcher = array(
       'tag' => 'div',
       'attributes' => array(

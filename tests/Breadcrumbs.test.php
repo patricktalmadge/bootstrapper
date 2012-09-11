@@ -1,8 +1,5 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\Breadcrumbs;
-
-class BreadcrumbsTest extends PHPUnit_Framework_TestCase
+class BreadcrumbsTest extends BootstrapperWrapper
 {
   private $crumbs = array(
     'foo' => 'bar',
@@ -24,14 +21,14 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
       ),
     ),
     'attributes' => array(
+      'class'    => 'foo breadcrumb',
       'data-foo' => 'bar',
-      'class' => 'foo breadcrumb',
     ),
   );
 
   public function testCreate()
   {
-    $breadcrumbs = Breadcrumbs::create($this->crumbs, array('data-foo' => 'bar', 'class' => 'foo'));
+    $breadcrumbs = Breadcrumbs::create($this->crumbs, $this->testAttributes);
 
     $this->assertTag($this->matcher, $breadcrumbs);
   }
@@ -39,7 +36,7 @@ class BreadcrumbsTest extends PHPUnit_Framework_TestCase
   public function testChangeSeparator()
   {
     Breadcrumbs::$separator = '__';
-    $breadcrumbs = Breadcrumbs::create($this->crumbs, array('data-foo' => 'bar', 'class' => 'foo'));
+    $breadcrumbs = Breadcrumbs::create($this->crumbs, $this->testAttributes);
 
     $matcher = $this->matcher;
     $matcher['children']['only']['descendant']['content'] = '__';

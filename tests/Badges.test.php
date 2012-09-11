@@ -1,8 +1,5 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\Badges;
-
-class BadgesTest extends PHPUnit_Framework_TestCase
+class BadgesTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 

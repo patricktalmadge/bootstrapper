@@ -1,8 +1,5 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\Typeahead;
-
-class TypeaheadTest extends PHPUnit_Framework_TestCase
+class TypeaheadTest extends BootstrapperWrapper
 {
   private $items = array(
     'Lorem',
@@ -12,10 +9,11 @@ class TypeaheadTest extends PHPUnit_Framework_TestCase
 
   public function testCreate()
   {
-    $typeahead = Typeahead::create($this->items, 8, array('data-foo' => 'bar'));
+    $typeahead = Typeahead::create($this->items, 8, $this->testAttributes);
     $matcher = array(
       'tag' => 'input',
       'attributes' => array(
+        'class'        => 'foo',
         'data-foo'     => 'bar',
         'data-items'   => 8,
         'data-provide' => 'typeahead',

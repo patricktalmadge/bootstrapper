@@ -1,8 +1,5 @@
 <?php
-Bundle::start('bootstrapper');
-use Bootstrapper\Labels;
-
-class LabelsTest extends PHPUnit_Framework_TestCase
+class LabelsTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
@@ -10,7 +7,7 @@ class LabelsTest extends PHPUnit_Framework_TestCase
   {
     return array(
       'tag' => 'span',
-      'attributes' => array('class' => 'bar label label-'.$class),
+      'attributes' => array('class' => 'foo label label-'.$class),
       'content' => 'foo',
     );
   }
@@ -32,7 +29,7 @@ class LabelsTest extends PHPUnit_Framework_TestCase
 
   public function testCustom()
   {
-    $label = Labels::custom('success', 'foo', array('class' => 'bar'));
+    $label = Labels::custom('success', 'foo', $this->testAttributes);
     $match = $this->createMatcher('success');
 
     $this->assertTag($match, $label);
@@ -43,7 +40,7 @@ class LabelsTest extends PHPUnit_Framework_TestCase
    */
   public function testStatic($class)
   {
-    $label = call_user_func('Labels::'.$class, 'foo', array('class' => 'bar'));
+    $label = call_user_func('Labels::'.$class, 'foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $label);
