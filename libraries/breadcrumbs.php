@@ -30,7 +30,7 @@ class Breadcrumbs
   public static function create($links, $attributes = array())
   {
     if (empty($links)) {
-      return;
+      return false;
     }
 
     $l = array();

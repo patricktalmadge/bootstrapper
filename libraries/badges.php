@@ -15,12 +15,12 @@ use \HTML;
 class Badges
 {
   // Badge colors
-	const NORMAL    = '';
-	const IMPORTANT = 'badge-important';
-	const INFO      = 'badge-info';
-	const INVERSE   = 'badge-inverse';
-	const SUCCESS   = 'badge-success';
-	const WARNING   = 'badge-warning';
+    const NORMAL    = '';
+    const IMPORTANT = 'badge-important';
+    const INFO      = 'badge-info';
+    const INVERSE   = 'badge-inverse';
+    const SUCCESS   = 'badge-success';
+    const WARNING   = 'badge-warning';
 
   /**
    * Create a new Badge.
@@ -120,7 +120,7 @@ class Badges
    */
   public static function custom($type, $message, $attributes = array())
   {
-    $type = 'badge-'.(string)$type;
+    $type = 'badge-'.(string) $type;
 
     return static::show($type, $message, $attributes);
   }

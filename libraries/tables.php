@@ -1,4 +1,5 @@
-<?php namespace Bootstrapper;
+<?php
+namespace Bootstrapper;
 
 use \HTML;
 
@@ -52,18 +53,18 @@ class Tables
     if(!$rows) return false;
 
     // Iterate through the data
-    foreach($rows as $row) {
+    foreach ($rows as $row) {
       $html .= '<tr>';
       $data = is_object($row) ? $row->attributes : $row;
 
       // Read the data row with ignored keys
-      foreach($data as $column => $value) {
+      foreach ($data as $column => $value) {
         if(in_array($column, $ignore)) continue;
         $html .= '<td class="column-' .$column. '">'. $value. '</td>';
       }
 
       // Add supplementary columns
-      foreach($supplementary as $class => $column) {
+      foreach ($supplementary as $class => $column) {
         $column = static::replace_keywords($column, $data);
         $html .= '<td class="column-'.$class.'">' .$column. '</td>';
       }
@@ -84,10 +85,10 @@ class Tables
     $thead = '<thead>'.PHP_EOL;
 
     // Add each header with its attributes
-    foreach($headers as $header => $attributes) {
+    foreach ($headers as $header => $attributes) {
 
       // Allows to not specify an attributes array for leaner syntax
-      if(is_string($attributes) and is_numeric($header)) {
+      if (is_string($attributes) and is_numeric($header)) {
         $header = $attributes;
         $attributes = array();
       }
@@ -113,7 +114,7 @@ class Tables
     preg_match_all('/\(:(.+)\)/', $string, $matches);
 
     // Replace patterns with data
-    foreach($matches[0] as $key => $replace) {
+    foreach ($matches[0] as $key => $replace) {
       $with = array_get($matches, '1.'.$key);
       $with = array_get($data, $with);
       $string = str_replace($replace, $with, $string);

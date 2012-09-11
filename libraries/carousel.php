@@ -66,7 +66,7 @@ class Carousel
    */
   protected static function createItem($item, $isActive)
   {
-    //Set defaults if not set
+    // Set defaults if not set
     if(!isset($item['alt_text'])) {
       $item['alt_text'] = '';
     }
@@ -85,7 +85,7 @@ class Carousel
 
     $active = $isActive ? ' active' : '';
 
-    //Build HTML
+    // Build HTML
     $html = '<div class="item'.$active.'">';
     $html .= HTML::image($item['image'], $item['alt_text'], $item['attributes']);
     $html .= '<div class="carousel-caption">';
