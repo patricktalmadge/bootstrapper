@@ -37,8 +37,8 @@ class DropdownButton
     if($dropup) $attributes['class'] .= ' dropup';
 
     $html = '<div'.HTML::attributes($attributes).'>';
-    $html .= Form::button($value, array('class'=>$type), true);
-    $html .= Navigation::dropdown($list, $list_attr, $autoroute);
+      $html .= Form::button($value, array('class'=>$type), true);
+      $html .= Navigation::dropdown($list, $list_attr, $autoroute);
     $html .= '</div>';
 
     return $html;
@@ -99,5 +99,4 @@ class DropdownButton
 
     return static::show($type, $value, $list, $attributes, $right, $dropup, $autoroute);
   }
-
 }

@@ -23,6 +23,7 @@ class Breadcrumbs
 
   /**
    * Creates the a new Breadcrumb.
+   *
    * @param  array   $links
    * @param  array   $attributes
    * @return string
@@ -54,6 +55,7 @@ class Breadcrumbs
 
   /**
    * Renders a breadcrumb item.
+   *
    * @param  string  $content
    * @param  boolean $active
    * @return string
