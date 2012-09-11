@@ -14,7 +14,6 @@ use \HTML;
  */
 class Typeahead
 {
-
   /**
    * Creates a new Typeahead instance.
    *
@@ -25,9 +24,9 @@ class Typeahead
    */
   public static function create($source, $items = 8, $attributes = array())
   {
-    $attributes['type']         = "text";
+    $attributes['type']         = 'text';
     $attributes['data-items']   = $items;
-    $attributes['data-provide'] = "typeahead";
+    $attributes['data-provide'] = 'typeahead';
     $attributes['data-source']  = json_encode($source);
 
     return '<input'.HTML::attributes($attributes).'>';

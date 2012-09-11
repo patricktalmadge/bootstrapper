@@ -20,10 +20,9 @@ class Helpers
    * exists the value is concatenated to the end of the string.
    * Mainly used for adding classes.
    *
-   * @param array  $array array object to be added to
-   * @param string $value string value
-   * @param string $key   array key to use
-   *
+   * @param  array  $array Array object to be added to
+   * @param  string $value String value
+   * @param  string $key   Array key to use
    * @return array
   */
   public static function add_class($array, $value, $key = 'class')
@@ -36,8 +35,7 @@ class Helpers
   /**
    * Function to create a random string of a differing length used for creating IDs
    *
-   * @param int $length length of the random string
-   *
+   * @param  int    $length Length of the random string
    * @return string
   */
   public static function rand_string($length)
@@ -54,19 +52,19 @@ class Helpers
   }
 
   /**
-   * function used to prime the attributes array for dynamic calls.
+   * Function used to prime the attributes array for dynamic calls.
    *
-   * @param string $exclude    String to exclude from array
-   * @param array  $class_array  Class array
-   * @param array  $params     Parameters array
-   * @param int  $index    Index of the parameters array to use
-   * @param string $extra    prefix to the class
-   * @param string $extra_unless value to exclude the prefix from
-   *
+   * @param  string $exclude      String to exclude from array
+   * @param  array  $class_array  Class array
+   * @param  array  $params       Parameters array
+   * @param  int    $index        Index of the parameters array to use
+   * @param  string $extra        Prefix to the class
+   * @param  string $extra_unless Value to exclude the prefix from
    * @return array
   */
   public static function set_multi_class_attributes($exclude, $class_array, $params, $index, $extra = '', $extra_unless = null)
   {
+    // Make sure the class attribute exists
     if (!isset($params[$index])) $params[$index] = array();
     if (!isset($params[$index]['class'])) $params[$index]['class'] = '';
 

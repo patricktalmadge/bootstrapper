@@ -163,7 +163,7 @@ class Buttons
   {
     $method_array = explode('_', strtolower($method));
 
-    $btn_types = array('normal', 'submit', 'reset', 'link');
+    $btn_types  = array('normal', 'submit', 'reset', 'link');
     $type_found = array_intersect($method_array, $btn_types);
 
     if(count($type_found) > 0)
