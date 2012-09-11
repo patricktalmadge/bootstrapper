@@ -24,14 +24,14 @@ class IconsTest extends PHPUnit_Framework_TestCase
   public function testMake()
   {
     $icon = Icons::make($this->testIcon);
-    $matcher = $this->baseIcon;
 
-    $this->assertTag($matcher, $icon);
+    $this->assertTag($this->baseIcon, $icon);
   }
 
   public function testMakeWithAttributes()
   {
     $icon = Icons::make($this->testIcon, array('data-foo' => 'bar'));
+
     $matcher = $this->baseIcon;
     $matcher['attributes']['data-foo'] = 'bar';
 
@@ -41,14 +41,14 @@ class IconsTest extends PHPUnit_Framework_TestCase
   public function testStatic()
   {
     $icon = Icons::folder_open();
-    $matcher = $this->baseIcon;
 
-    $this->assertTag($matcher, $icon);
+    $this->assertTag($this->baseIcon, $icon);
   }
 
   public function testStaticWithAttributes()
   {
     $icon = Icons::folder_open(array('data-foo' => 'bar'));
+
     $matcher = $this->baseIcon;
     $matcher['attributes']['data-foo'] = 'bar';
 
@@ -58,6 +58,7 @@ class IconsTest extends PHPUnit_Framework_TestCase
   public function testStaticWhiteWithAttributes()
   {
     $icon = Icons::white_folder_open(array('data-foo' => 'bar'));
+
     $matcher = $this->baseIcon;
     $matcher['attributes']['class']   .= ' icon-white';
     $matcher['attributes']['data-foo'] = 'bar';

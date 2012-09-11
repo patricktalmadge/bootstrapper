@@ -44,8 +44,7 @@ class ImagesTest extends PHPUnit_Framework_TestCase
   public function testImages($class)
   {
     $image = call_user_func('Images::'.$class, $this->url, 'foo', array('data-foo' => 'bar'));
-    $matcher = $this->createMatcher($class);
 
-    $this->assertTag($matcher, $image);
+    $this->assertTag($this->createMatcher($class), $image);
   }
 }

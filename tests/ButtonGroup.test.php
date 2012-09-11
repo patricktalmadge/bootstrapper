@@ -15,9 +15,8 @@ class ButtonGroupTest extends PHPUnit_Framework_TestCase
   public function testOpen()
   {
     $open = ButtonGroup::open(false, array('data-foo' => 'bar'));
-    $matcher = $this->buttonGroup;
 
-    $this->assertTag($matcher, $open);
+    $this->assertTag($this->buttonGroup, $open);
   }
 
   public function OpenToggle()
@@ -32,6 +31,7 @@ class ButtonGroupTest extends PHPUnit_Framework_TestCase
   public function testHorizontalOpenCheckbox()
   {
     $open = ButtonGroup::horizontal_open('checkbox', array('data-foo' => 'bar'));
+
     $equals = ButtonGroup::open('checkbox', array('data-foo' => 'bar'));
     $matcher = $this->buttonGroup;
     $matcher['attributes']['data-toggle'] = 'buttons-checkbox';
@@ -43,6 +43,7 @@ class ButtonGroupTest extends PHPUnit_Framework_TestCase
   public function testVerticalOpenRadio()
   {
     $open = ButtonGroup::vertical_open('radio', array('data-foo' => 'bar'));
+
     $matcher = $this->buttonGroup;
     $matcher['attributes']['class'] = 'btn-group-vertical '.$matcher['attributes']['class'];
     $matcher['attributes']['data-toggle'] = 'buttons-radio';
