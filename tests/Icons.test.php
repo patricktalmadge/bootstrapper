@@ -24,7 +24,6 @@ class IconsTest extends PHPUnit_Framework_TestCase
        array('data-foo' => 'bar'));
     $matcher = $this->baseIcon;
     $matcher['attributes']['data-foo'] = 'bar';
-    dd($icon);
 
     $this->assertTag($matcher, $icon);
   }
