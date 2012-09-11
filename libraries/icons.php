@@ -33,7 +33,7 @@ class Icons
    * @param  array  $attributes
    * @return string
    */
-  public static function __callStatic($method, $attributes)
+  public static function __callStatic($method, $parameters)
   {
     // Explode method name
     $method_bits = explode('_', strtolower($method));
@@ -50,12 +50,15 @@ class Icons
     $icon_classes = array(implode('-',$method_bits));
     if($white) $icon_classes[] = 'white';
 
-    // Prepend icon- to classes
-    $parameters = Helpers::set_multi_class_attributes(null, $icon_classes, $attributes, 0, 'icon-');
-    $parameters = array_merge($parameters, $parameters[0]);
-    unset($parameters[0]);
+    // If the parameters weren't put into an array, do it
+    if(!isset($parameters[0])) {
+      $parameters = array(0 => $parameters);
+    }
 
-    return '<i'.HTML::attributes($parameters).'></i>';
+    // Prepend icon- to classes
+    $parameters = Helpers::set_multi_class_attributes(null, $icon_classes, $parameters, 0, 'icon-');
+
+    return '<i'.HTML::attributes($parameters[0]).'></i>';
   }
 
   /**
@@ -77,7 +80,7 @@ class Icons
    * @param  null   $attributes
    * @return string
    */
-  public static function make($icon_class, $attributes = null)
+  public static function make($icon_class, $attributes = array())
   {
     return static::__callStatic($icon_class, $attributes);
   }
