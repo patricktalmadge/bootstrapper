@@ -24,18 +24,17 @@ class Breadcrumbs
   /**
    * Creates the a new Breadcrumb.
    *
-   * @param  array   $links
-   * @param  array   $attributes
-   * @return string
+   * @param  array  $links      An array of breadcrumbs links
+   * @param  array  $attributes Attributes to apply the breadcrumbs wrapper
+   * @return string             A breadcrumbs-styled unordered list
    */
   public static function create($links, $attributes = array())
   {
-    if (empty($links)) {
-      return false;
-    }
+    // If no links given, cancel
+    if (empty($links)) return false;
 
+    // Render each link
     $l = array();
-
     foreach ($links as $label => $url)
     {
     	$l[] = (is_string($label) or is_array($url))
@@ -43,31 +42,35 @@ class Breadcrumbs
     		: static::renderItem($url, true);
     }
 
+    // Add global .breadcrumb class
     $attributes = Helpers::add_class($attributes, 'breadcrumb');
 
+    // Wrap in an <ul> tag
     $html = '<ul'.HTML::attributes($attributes).'>';
-    $html .= implode('', $l);
+      $html .= implode('', $l);
     $html .= '</ul>';
 
     return $html;
   }
 
-
   /**
-   * Renders a breadcrumb item.
+   * Renders a breadcrumb item
    *
-   * @param  string  $content
-   * @param  boolean $active
+   * @param  string  $content The item content
+   * @param  boolean $active  Whether the item is active or not
    * @return string
    */
   protected static function renderItem($content, $active = false)
   {
+    // If the link is not active it's the last one, don't append separator
     $separator = !$active ? '<span class="divider">'.static::$separator.'</span>' : '';
 
+    // If it's active, add correspondig class to it
     $class = $active ? ' class="active"' : '';
 
+    // Wrap item in a list item
     $html = '<li'.$class.'>';
-    $html .= $content.$separator;
+      $html .= $content.$separator;
     $html .= '</li>';
 
     return $html;
