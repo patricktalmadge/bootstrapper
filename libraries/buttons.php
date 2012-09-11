@@ -170,7 +170,7 @@ class Buttons
     {
       $function = $type_found[key($type_found)];
 
-      //Set default attributes index
+      // Set default attributes index
       $attr_index = $function != 'link' ? 1 : 2;
 
       $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'btn-', 'disabled');

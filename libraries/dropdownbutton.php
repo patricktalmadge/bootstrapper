@@ -63,43 +63,41 @@ class DropdownButton
 
     $value = array_get($parameters, 0, '');
 
-    //Set default $list and check for a set value
+    // Set default $list and check for a set value
     $list = array();
-    if(isset($parameters[1]) && is_array($parameters[1])) {
+    if (isset($parameters[1]) && is_array($parameters[1])) {
       $list = $parameters[1];
-    }
-    else throw new \Exception("DropdownButton list is required parameter should be an array of links");
+    } else throw new \Exception("DropdownButton list is required parameter should be an array of links");
 
     // Set default $attributes and check for a set value
     $attributes = array();
-    if(isset($parameters[2])) {
+    if (isset($parameters[2])) {
       if(is_array($parameters[2])) $attributes = $parameters[2];
       else throw new \Exception("DropdownButton attributes parameter should be an array of attributes");
     }
 
-    //Set default $right and check for a set value
+    // Set default $right and check for a set value
     $right = false;
-    if(isset($parameters[3])) {
+    if (isset($parameters[3])) {
       if(is_bool($parameters[3])) $right = $parameters[3];
       else throw new \Exception("DropdownButton right parameter should be a bool");
     }
 
-    //Set default $dropup and check for a set value
+    // Set default $dropup and check for a set value
     $dropup = false;
-    if(isset($parameters[4])) {
+    if (isset($parameters[4])) {
       if(is_bool($parameters[4])) $dropup = $parameters[4];
       else throw new \Exception("DropdownButton dropup parameter should be a bool");
     }
 
-    //Set default $autoroute and check for a set value
+    // Set default $autoroute and check for a set value
     $autoroute = true;
-    if(isset($parameters[5])) {
+    if (isset($parameters[5])) {
       if(is_bool($parameters[5])) $autoroute = $parameters[5];
       else throw new \Exception("DropdownButton autoroute parameter should be a bool");
     }
 
     return static::show($type, $value, $list, $attributes, $right, $dropup, $autoroute);
   }
-
 
 }

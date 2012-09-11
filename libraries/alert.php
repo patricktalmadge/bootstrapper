@@ -41,7 +41,7 @@ class Alert
     $html = '<div'.HTML::attributes($attributes).'>';
 
     // Add close icon if necessary
-    if($enable_close) {
+    if ($enable_close) {
       $html .= HTML::link('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
     }
 
@@ -133,7 +133,7 @@ class Alert
    */
   public static function custom($type, $message, $enable_close = true, $attributes = array())
   {
-    $type = 'alert-'.(string)$type;
+    $type = 'alert-'.(string) $type;
 
     return static::show($type, $message, $enable_close, $attributes);
   }
@@ -160,7 +160,6 @@ class Alert
       $attributes = array_get($parameters, 1);
 
       return call_user_func('static::'.$method, $message, false, $attributes);
-    }
-    else call_user_func('static::'.$method, $parameters);
+    } else call_user_func('static::'.$method, $parameters);
   }
 }

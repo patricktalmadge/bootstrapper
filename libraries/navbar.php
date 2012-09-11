@@ -1,4 +1,5 @@
-<?php namespace Bootstrapper;
+<?php
+namespace Bootstrapper;
 
 use \HTML;
 
@@ -131,10 +132,12 @@ class Navbar
     $html .= '<div class="navbar-inner"><div class="container">';
 
     // Collapsible button if asked for
-    if($this->collapsible)
-    {
-      $html .= '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+    if ($this->collapsible) {
+      $html .= '
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>';
     }
 
@@ -146,7 +149,7 @@ class Navbar
       $html .= '<div class="nav-collapse">';
 
     // Prints out menus
-    if($this->menus) {
+    if ($this->menus) {
       foreach ($this->menus as $menu) {
         if (is_string($menu)) $html .= $menu; // If is string add to html
         else {
@@ -159,8 +162,9 @@ class Navbar
     if($this->collapsible)
       $html .= '</div>';
 
-    //close navbar containers
+    // Close navbar containers
     $html .= '</div></div></div>';
+
     return $html;
   }
 
@@ -173,13 +177,12 @@ class Navbar
    */
   public static function __callStatic($method, $parameters)
   {
-    if($method == 'inverse') {
+    if ($method == 'inverse') {
       $attributes = array_get($parameters, 0);
       $type       = array_get($parameters, 1);
       $attributes = Helpers::add_class($attributes, 'navbar-inverse');
 
       return static::create($attributes, $type);
-    }
-    else return static::create();
+    } else return static::create();
   }
 }
