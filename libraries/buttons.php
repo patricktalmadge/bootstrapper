@@ -1,4 +1,5 @@
-<?php namespace Bootstrapper;
+<?php
+namespace Bootstrapper;
 
 use \HTML;
 
@@ -13,197 +14,197 @@ use \HTML;
  */
 class Buttons
 {
-	private static $instance = null;
+  private static $instance = null;
 
-	/**
-	 * The current button in memory
-	 * @var array
-	 */
-	private $currentButton = array();
+  /**
+   * The current button in memory
+   * @var array
+   */
+  private $currentButton = array();
 
-	/**
-	 * Stores the current button for future output
-	 *
-	 * @param  string  $type        A button type
-	 * @param  string  $value       Its text value
-	 * @param  array   $attributes  An array of attributes
-	 * @param  boolean $hasDropdown Whether the button has a dropdown
-	 */
-	private static function storeButton($type, $value, $attributes, $hasDropdown)
-	{
-		// If we don't have an instance stored, create a new one
-		$currentInstance = self::$instance ?: new Buttons;
+  /**
+   * Stores the current button for future output
+   *
+   * @param  string  $type        A button type
+   * @param  string  $value       Its text value
+   * @param  array   $attributes  An array of attributes
+   * @param  boolean $hasDropdown Whether the button has a dropdown
+   */
+  private static function storeButton($type, $value, $attributes, $hasDropdown)
+  {
+    // If we don't have an instance stored, create a new one
+    $currentInstance = self::$instance ?: new Buttons;
 
-		// Define new button
-		$currentInstance->currentButton = array(
-			'type'        => $type,
-			'value'       => $value,
-			'attributes'  => $attributes,
-			'hasDropdown' => $hasDropdown,
-		);
+    // Define new button
+    $currentInstance->currentButton = array(
+      'type'        => $type,
+      'value'       => $value,
+      'attributes'  => $attributes,
+      'hasDropdown' => $hasDropdown,
+    );
 
-		return $currentInstance;
-	}
+    return $currentInstance;
+  }
 
-	/**
-	 * Create a HTML submit input element.
-	 * Overriding the default input submit button from Laravel\Form
-	 *
-	 * @param  string  $value
-	 * @param  array   $attributes
-	 * @param  bool    $hasDropdown
-	 * @return string
-	 */
-	public static function submit($value, $attributes = array(), $hasDropdown = false)
-	{
-		$attributes['type'] = 'submit';
-		return static::storeButton('normal', $value, $attributes, $hasDropdown);
-	}
+  /**
+   * Create a HTML submit input element.
+   * Overriding the default input submit button from Laravel\Form
+   *
+   * @param  string  $value
+   * @param  array   $attributes
+   * @param  bool    $hasDropdown
+   * @return string
+   */
+  public static function submit($value, $attributes = array(), $hasDropdown = false)
+  {
+    $attributes['type'] = 'submit';
 
-	/**
-	 * Create a HTML reset input element.
-	 * Overriding the default input reset button from Laravel\Form
-	 *
-	 * @param  string  $value
-	 * @param  array   $attributes
-	 * @param  bool    $hasDropdown
-	 * @return string
-	 */
-	public static function reset($value, $attributes = array(), $hasDropdown = false)
-	{
-		$attributes['type'] = 'reset';
-		return static::storeButton('normal', $value, $attributes, $hasDropdown);
-	}
+    return static::storeButton('normal', $value, $attributes, $hasDropdown);
+  }
 
-	/**
-	 * Create a HTML button element.
-	 * Overriding the default button to add the correct class from Laravel\Form
-	 *
-	 * @param  string  $value
-	 * @param  array   $attributes
-	 * @param  bool    $hasDropdown
-	 * @return string
-	 */
-	public static function normal($value, $attributes = array(), $hasDropdown = false)
-	{
-		return static::storeButton('normal', $value, $attributes, $hasDropdown);
-	}
+  /**
+   * Create a HTML reset input element.
+   * Overriding the default input reset button from Laravel\Form
+   *
+   * @param  string  $value
+   * @param  array   $attributes
+   * @param  bool    $hasDropdown
+   * @return string
+   */
+  public static function reset($value, $attributes = array(), $hasDropdown = false)
+  {
+    $attributes['type'] = 'reset';
 
-	/**
-	 * Create a HTML anchor tag styled like a button element.
-	 *
-	 * @param  string  $url
-	 * @param  string  $value
-	 * @param  array   $attributes
-	 * @param  bool    $hasDropdown
-	 * @return string
-	 */
-	public static function link($url, $value, $attributes = array(), $hasDropdown = false)
-	{
-		$attributes['href'] = \URL::to($url);
-		return static::storeButton('link', $value, $attributes, $hasDropdown);
-	}
+    return static::storeButton('normal', $value, $attributes, $hasDropdown);
+  }
 
-	/**
-	 * Adds an icon to the next button
-	 *
-	 * @param  string  $icon        The name of the icon to call
-	 * @param  array   $attributes  Attributes to pass to the generated icon
+  /**
+   * Create a HTML button element.
+   * Overriding the default button to add the correct class from Laravel\Form
+   *
+   * @param  string  $value
+   * @param  array   $attributes
+   * @param  bool    $hasDropdown
+   * @return string
+   */
+  public static function normal($value, $attributes = array(), $hasDropdown = false)
+  {
+    return static::storeButton('normal', $value, $attributes, $hasDropdown);
+  }
+
+  /**
+   * Create a HTML anchor tag styled like a button element.
+   *
+   * @param  string  $url
+   * @param  string  $value
+   * @param  array   $attributes
+   * @param  bool    $hasDropdown
+   * @return string
+   */
+  public static function link($url, $value, $attributes = array(), $hasDropdown = false)
+  {
+    $attributes['href'] = \URL::to($url);
+
+    return static::storeButton('link', $value, $attributes, $hasDropdown);
+  }
+
+  /**
+   * Adds an icon to the next button
+   *
+   * @param  string  $icon        The name of the icon to call
+   * @param  array   $attributes  Attributes to pass to the generated icon
    * @param  boolean $prependIcon Whether we should prepend the icon, or append it
-	 */
-	public function with_icon($icon, $attributes = array(), $prependIcon = true)
-	{
-		// Call Icons to create the icon
-		$icon = Icons::make($icon);
+   */
+  public function with_icon($icon, $attributes = array(), $prependIcon = true)
+  {
+    // Call Icons to create the icon
+    $icon = Icons::make($icon);
 
-		// If there was no text, just use the icon, else put a space between
-		$value = $this->currentButton['value'];
-		if(empty($value)) $value = $icon;
-		else {
-			$value = $prependIcon
-      	? $icon.  ' ' .$value
-				: $value. ' ' .$icon;
-		}
+    // If there was no text, just use the icon, else put a space between
+    $value = $this->currentButton['value'];
+    if(empty($value)) $value = $icon;
+    else {
+      $value = $prependIcon
+        ? $icon.  ' ' .$value
+        : $value. ' ' .$icon;
+    }
 
-		// Store modified value
-		$this->currentButton['value'] = $value;
+    // Store modified value
+    $this->currentButton['value'] = $value;
 
-		return $this;;
-	}
+    return $this;;
+  }
 
-	/**
-	 * Alias for with_icon
-	 */
-	public function prepend_with_icon($icon, $attributes = array())
-	{
+  /**
+   * Alias for with_icon
+   */
+  public function prepend_with_icon($icon, $attributes = array())
+  {
     return $this->with_icon($icon, $attributes);
-	}
+  }
 
-	/**
-	 * Alias for with_icon with $prependIcon to false
-	 */
-	public function append_with_icon($icon, $attributes = array())
-	{
-		return $this->with_icon($icon, $attributes, false);
-	}
+  /**
+   * Alias for with_icon with $prependIcon to false
+   */
+  public function append_with_icon($icon, $attributes = array())
+  {
+    return $this->with_icon($icon, $attributes, false);
+  }
 
-	/**
-	 * Checks call to see if we can create a button from a magic call (for you wizards).
-	 * success_button, mini_primary_button, large_warning_submit, danger_reset, etc...
-	 *
-	 * @param  string  $method
-	 * @param  array   $parameters
-	 * @return mixed
-	*/
-	public static function __callStatic($method, $parameters)
-	{
-		$method_array = explode('_', strtolower($method));
+  /**
+   * Checks call to see if we can create a button from a magic call (for you wizards).
+   * success_button, mini_primary_button, large_warning_submit, danger_reset, etc...
+   *
+   * @param  string  $method
+   * @param  array   $parameters
+   * @return mixed
+  */
+  public static function __callStatic($method, $parameters)
+  {
+    $method_array = explode('_', strtolower($method));
 
-		$btn_types = array('normal', 'submit', 'reset', 'link');
-		$type_found = array_intersect($method_array, $btn_types);
+    $btn_types = array('normal', 'submit', 'reset', 'link');
+    $type_found = array_intersect($method_array, $btn_types);
 
-		if(count($type_found) > 0)
-		{
-			$function = $type_found[key($type_found)];
+    if(count($type_found) > 0)
+    {
+      $function = $type_found[key($type_found)];
 
-			//Set default attributes index
-			$attr_index = $function != 'link' ? 1 : 2;
+      //Set default attributes index
+      $attr_index = $function != 'link' ? 1 : 2;
 
-			$parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'btn-', 'disabled');
-			if(in_array('disabled', $method_array))
-			{
-				$parameters[$attr_index]['disabled'] = 'disabled';
-			}
+      $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'btn-', 'disabled');
+      if(in_array('disabled', $method_array)) $parameters[$attr_index]['disabled'] = 'disabled';
 
-			return call_user_func_array('static::'.$function, $parameters);
-		}
-	}
+      return call_user_func_array('static::'.$function, $parameters);
+    }
+  }
 
-	/**
-	 * Prints the current button in memory
-	 *
-	 * @return string A button
-	 */
-	public function __toString()
-	{
-		// Gather variables
-		extract($this->currentButton);
+  /**
+   * Prints the current button in memory
+   *
+   * @return string A button
+   */
+  public function __toString()
+  {
+    // Gather variables
+    extract($this->currentButton);
 
-		// Add btn to classes and fallback type
-		if(!isset($attributes['type'])) $attributes['type'] = 'button';
-		$attributes = Helpers::add_class($attributes, 'btn');
+    // Add btn to classes and fallback type
+    if(!isset($attributes['type'])) $attributes['type'] = 'button';
+    $attributes = Helpers::add_class($attributes, 'btn');
 
-		// Modify output if we have a dropdown
-		$extra = '';
-		if ($hasDropdown)
-		{
-			$attributes = Helpers::add_class($attributes, 'dropdown-toggle');
-			$extra = ' <span class="caret"></span>';
-			$attributes['data-toggle'] = 'dropdown';
-		}
+    // Modify output if we have a dropdown
+    $extra = '';
+    if ($hasDropdown) {
+      $attributes = Helpers::add_class($attributes, 'dropdown-toggle');
+      $extra = ' <span class="caret"></span>';
+      $attributes['data-toggle'] = 'dropdown';
+    }
 
-		// Write output according to tag
-		$tag = ($type == 'link') ? 'a' : 'button';
-		return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$extra.'</'.$tag.'>';
-	}
+    // Write output according to tag
+    $tag = ($type == 'link') ? 'a' : 'button';
+
+    return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$extra.'</'.$tag.'>';
+  }
 }
