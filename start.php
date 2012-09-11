@@ -25,7 +25,7 @@ Asset::container('bootstrapper')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.min.css')
     ->add('nav-fix',              'css/nav-fix.css')
     ->add('jquery',               'js/jquery-1.8.1.min.js')
-    ->add('bootstrap-js',         'js/bootstrap.min.js');
+    ->add('bootstrap-js',         'js/bootstrap.min.js', 'jquery');
 
 // Define unminified version of the assets
 Asset::container('bootstrapper-unminified')
@@ -34,4 +34,4 @@ Asset::container('bootstrapper-unminified')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.css')
     ->add('nav-fix',              'css/nav-fix.css')
     ->add('jquery',               'js/jquery-1.8.1.js')
-    ->add('bootstrap-js',         'js/bootstrap.js');
+    ->add('bootstrap-js',         'js/bootstrap.js', 'jquery');
