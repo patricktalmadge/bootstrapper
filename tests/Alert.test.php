@@ -4,11 +4,14 @@ use Bootstrapper\Alert;
 
 class AlertTest extends PHPUnit_Framework_TestCase
 {
+  // Matchers ------------------------------------------------------ /
+
   private function createMatcher($class)
   {
     return array(
       'tag' => 'div',
       'attributes' => array('class' => 'bar alert alert-'.$class),
+      'content' => 'foo',
       'child' => array(
         'tag' => 'a',
         'attributes' => array(
@@ -17,9 +20,23 @@ class AlertTest extends PHPUnit_Framework_TestCase
           'href' => '#',
         ),
       ),
-      'content' => 'foo',
     );
   }
+
+  // Data providers  ----------------------------------------------- /
+
+  public function classes()
+  {
+    return array(
+      array('danger'),
+      array('error'),
+      array('info'),
+      array('success'),
+      array('warning'),
+    );
+  }
+
+  // Tests --------------------------------------------------------- /
 
   public function testCustom()
   {
@@ -41,42 +58,13 @@ class AlertTest extends PHPUnit_Framework_TestCase
     $this->assertTag($match, $alert);
   }
 
-  public function testSuccess()
+  /**
+   * @dataProvider classes
+   */
+  public function testStatic($class)
   {
-    $alert = Alert::success('foo', true, array('class' => 'bar'));
-    $match = $this->createMatcher('success');
-
-    $this->assertTag($match, $alert);
-  }
-
-  public function testError()
-  {
-    $alert = Alert::error('foo', true, array('class' => 'bar'));
-    $match = $this->createMatcher('error');
-
-    $this->assertTag($match, $alert);
-  }
-
-  public function testDanger()
-  {
-    $alert = Alert::danger('foo', true, array('class' => 'bar'));
-    $match = $this->createMatcher('danger');
-
-    $this->assertTag($match, $alert);
-  }
-
-  public function testWarning()
-  {
-    $alert = Alert::warning('foo', true, array('class' => 'bar'));
-    $match = $this->createMatcher('warning');
-
-    $this->assertTag($match, $alert);
-  }
-
-  public function testInfo()
-  {
-    $alert = Alert::info('foo', true, array('class' => 'bar'));
-    $match = $this->createMatcher('info');
+    $alert = call_user_func('Alert::'.$class, 'foo', true, array('class' => 'bar'));
+    $match = $this->createMatcher($class);
 
     $this->assertTag($match, $alert);
   }

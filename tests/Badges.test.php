@@ -4,6 +4,8 @@ use Bootstrapper\Badges;
 
 class BadgesTest extends PHPUnit_Framework_TestCase
 {
+  // Matchers ------------------------------------------------------ /
+
   private function createMatcher($class)
   {
     return array(
@@ -13,6 +15,21 @@ class BadgesTest extends PHPUnit_Framework_TestCase
     );
   }
 
+  // Data providers  ----------------------------------------------- /
+
+  public function classes()
+  {
+    return array(
+      array('important'),
+      array('info'),
+      array('inverse'),
+      array('success'),
+      array('warning'),
+    );
+  }
+
+  // Tests --------------------------------------------------------- /
+
   public function testCustom()
   {
     $badge = Badges::custom('success', 'foo', array('class' => 'bar'));
@@ -21,42 +38,13 @@ class BadgesTest extends PHPUnit_Framework_TestCase
     $this->assertTag($match, $badge);
   }
 
-  public function testSuccess()
+  /**
+   * @dataProvider classes
+   */
+  public function testStatic($class)
   {
-    $badge = Badges::success('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('success');
-
-    $this->assertTag($match, $badge);
-  }
-
-  public function testInverse()
-  {
-    $badge = Badges::inverse('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('inverse');
-
-    $this->assertTag($match, $badge);
-  }
-
-  public function testImportant()
-  {
-    $badge = Badges::important('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('important');
-
-    $this->assertTag($match, $badge);
-  }
-
-  public function testWarning()
-  {
-    $badge = Badges::warning('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('warning');
-
-    $this->assertTag($match, $badge);
-  }
-
-  public function testInfo()
-  {
-    $badge = Badges::info('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('info');
+    $badge = call_user_func('Badges::'.$class, 'foo', array('class' => 'bar'));
+    $match = $this->createMatcher($class);
 
     $this->assertTag($match, $badge);
   }

@@ -4,6 +4,8 @@ use Bootstrapper\Labels;
 
 class LabelsTest extends PHPUnit_Framework_TestCase
 {
+  // Matchers ------------------------------------------------------ /
+
   private function createMatcher($class)
   {
     return array(
@@ -13,6 +15,21 @@ class LabelsTest extends PHPUnit_Framework_TestCase
     );
   }
 
+  // Data providers ------------------------------------------------ /
+
+  public function classes()
+  {
+    return array(
+      array('important'),
+      array('info'),
+      array('inverse'),
+      array('success'),
+      array('warning'),
+    );
+  }
+
+  // Tests --------------------------------------------------------- /
+
   public function testCustom()
   {
     $label = Labels::custom('success', 'foo', array('class' => 'bar'));
@@ -21,42 +38,13 @@ class LabelsTest extends PHPUnit_Framework_TestCase
     $this->assertTag($match, $label);
   }
 
-  public function testSuccess()
+  /**
+   * @dataProvider classes
+   */
+  public function testStatic($class)
   {
-    $label = Labels::success('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('success');
-
-    $this->assertTag($match, $label);
-  }
-
-  public function testInverse()
-  {
-    $label = Labels::inverse('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('inverse');
-
-    $this->assertTag($match, $label);
-  }
-
-  public function testImportant()
-  {
-    $label = Labels::important('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('important');
-
-    $this->assertTag($match, $label);
-  }
-
-  public function testWarning()
-  {
-    $label = Labels::warning('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('warning');
-
-    $this->assertTag($match, $label);
-  }
-
-  public function testInfo()
-  {
-    $label = Labels::info('foo', array('class' => 'bar'));
-    $match = $this->createMatcher('info');
+    $label = call_user_func('Labels::'.$class, 'foo', array('class' => 'bar'));
+    $match = $this->createMatcher($class);
 
     $this->assertTag($match, $label);
   }

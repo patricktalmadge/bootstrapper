@@ -10,12 +10,8 @@ class ImagesTest extends PHPUnit_Framework_TestCase
    */
   private $url = 'http://www.foo.fr/bar.jpg';
 
-  /**
-   * Creates the HTML structure of an image
-   *
-   * @param  string $class The class to apply
-   * @return array         An <img> tag matcher
-   */
+  // Matchers ------------------------------------------------------ /
+
   private function createMatcher($class)
   {
     return array(
@@ -29,26 +25,26 @@ class ImagesTest extends PHPUnit_Framework_TestCase
     );
   }
 
-  public function testRounded()
-  {
-    $image = Images::rounded($this->url, 'foo', array('data-foo' => 'bar'));
-    $matcher = $this->createMatcher('rounded');
+  // Data providers ------------------------------------------------ /
 
-    $this->assertTag($matcher, $image);
+  public function classes()
+  {
+    return array(
+      array('circle'),
+      array('polaroid'),
+      array('rounded'),
+    );
   }
 
-  public function testCircle()
-  {
-    $image = Images::circle($this->url, 'foo', array('data-foo' => 'bar'));
-    $matcher = $this->createMatcher('circle');
+  // Tests --------------------------------------------------------- /
 
-    $this->assertTag($matcher, $image);
-  }
-
-  public function testPolaroid()
+  /**
+   * @dataProvider classes
+   */
+  public function testImages($class)
   {
-    $image = Images::polaroid($this->url, 'foo', array('data-foo' => 'bar'));
-    $matcher = $this->createMatcher('polaroid');
+    $image = call_user_func('Images::'.$class, $this->url, 'foo', array('data-foo' => 'bar'));
+    $matcher = $this->createMatcher($class);
 
     $this->assertTag($matcher, $image);
   }
