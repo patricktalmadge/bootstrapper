@@ -44,7 +44,7 @@ class Carousel
       // Render items
       $html .= '<div class="carousel-inner">';
         foreach ($items as $key => $item) {
-          $html .= static::createItem($item, $key == 0);
+          $html .= static::createItem($item, $key == key($items));
         }
       $html .= '</div>';
 
