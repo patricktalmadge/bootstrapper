@@ -17,7 +17,10 @@ use \HTML;
  */
 class Alert
 {
-    // Alert styles
+    /**
+     * Alert styles
+     * @var constant
+     */
     const DANGER  = 'alert-danger';
     const ERROR   = 'alert-error';
     const INFO    = 'alert-info';

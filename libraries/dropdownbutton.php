@@ -17,7 +17,6 @@ use \HTML;
  */
 class DropdownButton
 {
-
     /**
      * Creates a DropdownButton.
      *

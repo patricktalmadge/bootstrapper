@@ -17,13 +17,17 @@ use \HTML;
  */
 class Buttons
 {
-    private static $_instance = null;
+    /**
+     * The current instant of Buttons being used
+     * @var Buttons
+     */
+    private static $instant = null;
 
     /**
      * The current button in memory
      * @var array
      */
-    private $_currentButton = array();
+    private $currentButton = array();
 
     /**
      * Stores the current button for future output
@@ -38,7 +42,7 @@ class Buttons
     private static function _storeButton($type, $value, $attributes, $hasDropdown)
     {
         // If we don't have an instance stored, create a new one
-        $currentInstance = self::$_instance ?: new Buttons;
+        $currentInstance = self::$instant ?: new Buttons;
 
         // Define new butto
         $currentInstance->currentButton = array(

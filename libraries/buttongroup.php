@@ -17,7 +17,6 @@ use \HTML;
  */
 class ButtonGroup
 {
-
     /**
      * Puts the ButtonGroup in a checkbox mode.
      *

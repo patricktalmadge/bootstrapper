@@ -17,7 +17,6 @@ use \HTML;
  */
 class Form extends \Laravel\Form
 {
-
     /**
      * Default - not required, left-aligned labels on top of controls
      */

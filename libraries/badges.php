@@ -17,7 +17,10 @@ use \HTML;
  */
 class Badges
 {
-    // Badge colors
+    /**
+     * Badges colors
+     * @var constant
+     */
     const NORMAL    = '';
     const IMPORTANT = 'badge-important';
     const INFO      = 'badge-info';

@@ -18,12 +18,14 @@ use \HTML;
 class Carousel
 {
     /**
-     * @var string the previous button content.
+     * The previous button content
+     * @var string
      */
     public static $prev = '&lsaquo;';
 
     /**
-     * @var string the next button content.
+     * The next button content
+     * @var string
      */
     public static $next = '&rsaquo;';
 
