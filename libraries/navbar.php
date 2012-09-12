@@ -14,175 +14,216 @@ use \HTML;
  */
 class Navbar
 {
+    /**
+     * The current Navbar's attributes
+     *
+     * @var array
+     */
+    private $attributes  = array();
 
-  // Current Navbar instance
-  private $attributes  = array();
-  private $autoroute   = true;
-  private $brand       = array();
-  private $collapsible = false;
-  private $menus       = null;
-  private $type        = Navbar::STATIC_BAR;
+    /**
+     * Whether the current Navbar should use automatic routing
+     *
+     * @var boolean
+     */
+    private $autoroute   = true;
 
-  private static $instance = null;
+    /**
+     * Contains the current Navbar's brand (if there is one)
+     *
+     * @var array
+     */
+    private $brand       = array();
 
-  // Navbar Toggle options.
-  const STATIC_BAR = '';
-  const FIX_TOP    = 'navbar-fixed-top';
-  const FIX_BOTTOM = 'navbar-fixed-bottom';
+    /**
+     * Whether the current Navbar should be collapsible or not
+     *
+     * @var boolean
+     */
+    private $collapsible = false;
 
-  /**
-   * Create a new Navbar instance.
-   *
-   * @param  array  $attributes An array of attributes for the current navbar
-   * @param  const  $type       The type of Navbar to create
-   * @return Navbar
-   */
-  public static function create($attributes = array(), $type = Navbar::STATIC_BAR)
-  {
-    // Fetch current instance
-    static::$instance = static::$instance ?: new Navbar;
+    /**
+     * All menus or elements of the current Navbar
+     *
+     * @var array
+     */
+    private $menus       = array();
 
-    // Save given parameters
-    static::$instance->attributes = $attributes;
-    static::$instance->type       = $type;
+    /**
+     * The current Navbar's type
+     *
+     * @var constant
+     */
+    private $type        = Navbar::STATIC_BAR;
 
-    return static::$instance;
-  }
+    /**
+     * The current Navbar instante
+     *
+     * @var Navbar
+     */
+    private static $instance = null;
 
-  /**
-   * Set the autoroute to true or false
-   *
-   * @param  boolean $autoroute The new autoroute value
-   * @return Navbar
-   */
-  public function autoroute($autoroute)
-  {
-    $this->autoroute = $autoroute;
+    /**
+     * The Navbar types
+     * @var constant
+     */
+    const STATIC_BAR = '';
+    const FIX_TOP    = 'navbar-fixed-top';
+    const FIX_BOTTOM = 'navbar-fixed-bottom';
 
-    return $this;
-  }
+    /**
+     * Create a new Navbar instance.
+     *
+     * @param  array  $attributes An array of attributes for the current navbar
+     * @param  const  $type       The type of Navbar to create
+     * @return Navbar
+     */
+    public static function create($attributes = array(), $type = Navbar::STATIC_BAR)
+    {
+        // Fetch current instance
+        static::$instance = static::$instance ?: new Navbar;
 
-  /**
-   * Add menus or strings to the current Navbar
-   *
-   * @param  mixed  $menus       An array of items or a string
-   * @param  array  $attributes  An array of attributes to use
-   * @return Navbar
-   */
-  public function with_menus($menus, $attributes = array())
-  {
-    $this->menus[] = is_string($menus)
-      ? $menus
-      : array('attributes' => $attributes, 'items' => $menus);
+        // Save given parameters
+        static::$instance->attributes = $attributes;
+        static::$instance->type       = $type;
 
-    return $this;
-  }
-
-  /**
-   * Add a brand to the current Navbar
-   *
-   * @param  string $brand     The brand name
-   * @param  string $brand_url The brand URL
-   * @return Navbar
-   */
-  public function with_brand($brand, $brand_url)
-  {
-    $this->brand = array(
-      'name' => $brand,
-      'url'  => $brand_url,
-    );
-
-    return $this;
-  }
-
-  /**
-   * Activates collapsible on the current Navbar
-   *
-   * @return Navbar
-   */
-  public function collapsible()
-  {
-    $this->collapsible = true;
-
-    return $this;
-  }
-
-  /**
-   * Prints out the current Navbar in case it doesn't do it automatically
-   *
-   * @return string A Navbar
-   */
-  public function get()
-  {
-    return static::__toString();
-  }
-
-
-  /**
-   * Writes the current Navbar
-   *
-   * @return string A Bootstrap navbar
-   */
-  public function __toString()
-  {
-    $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
-
-    // Open navbar containers
-    $html  = '<div'.HTML::attributes($attributes).'>';
-    $html .= '<div class="navbar-inner"><div class="container">';
-
-    // Collapsible button if asked for
-    if ($this->collapsible) {
-      $html .= '
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>';
+        return static::$instance;
     }
 
-    // Add brand if one was given
-    if($this->brand)
-      $html .= HTML::link($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
+    /**
+     * Set the autoroute to true or false
+     *
+     * @param  boolean $autoroute The new autoroute value
+     * @return Navbar
+     */
+    public function autoroute($autoroute)
+    {
+        $this->autoroute = $autoroute;
 
-    if($this->collapsible)
-      $html .= '<div class="nav-collapse">';
+        return $this;
+    }
 
-    // Prints out menus
-    if ($this->menus) {
-      foreach ($this->menus as $menu) {
-        if (is_string($menu)) $html .= $menu; // If is string add to html
-        else {
-          $attr  = array_get($menu, 'attributes', array());
-          $html .= Navigation::unstyled($menu['items'], false, $attr, $this->autoroute);
+    /**
+     * Add menus or strings to the current Navbar
+     *
+     * @param  mixed  $menus       An array of items or a string
+     * @param  array  $attributes  An array of attributes to use
+     * @return Navbar
+     */
+    public function with_menus($menus, $attributes = array())
+    {
+        $this->menus[] = is_string($menus)
+            ? $menus
+            : array('attributes' => $attributes, 'items' => $menus);
+
+        return $this;
+    }
+
+    /**
+     * Add a brand to the current Navbar
+     *
+     * @param  string $brand     The brand name
+     * @param  string $brand_url The brand URL
+     * @return Navbar
+     */
+    public function with_brand($brand, $brand_url)
+    {
+        $this->brand = array(
+            'name' => $brand,
+            'url'  => $brand_url,
+        );
+
+        return $this;
+    }
+
+    /**
+     * Activates collapsible on the current Navbar
+     *
+     * @return Navbar
+     */
+    public function collapsible()
+    {
+        $this->collapsible = true;
+
+        return $this;
+    }
+
+    /**
+     * Prints out the current Navbar in case it doesn't do it automatically
+     *
+     * @return string A Navbar
+     */
+    public function get()
+    {
+        return static::__toString();
+    }
+
+
+    /**
+     * Writes the current Navbar
+     *
+     * @return string A Bootstrap navbar
+     */
+    public function __toString()
+    {
+        $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
+
+        // Open navbar containers
+        $html  = '<div'.HTML::attributes($attributes).'>';
+        $html .= '<div class="navbar-inner"><div class="container">';
+
+        // Collapsible button if asked for
+        if ($this->collapsible) {
+            $html .= '
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>';
         }
-      }
+
+        // Add brand if one was given
+        if($this->brand)
+            $html .= HTML::link($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
+
+        if($this->collapsible)
+            $html .= '<div class="nav-collapse">';
+
+        // Prints out menus
+        if ($this->menus) {
+            foreach ($this->menus as $menu) {
+                if (is_string($menu)) $html .= $menu; // If is string add to html
+                else {
+                    $attr  = array_get($menu, 'attributes', array());
+                    $html .= Navigation::unstyled($menu['items'], false, $attr, $this->autoroute);
+                }
+            }
+        }
+
+        if($this->collapsible)
+            $html .= '</div>';
+
+        // Close navbar containers
+        $html .= '</div></div></div>';
+
+        return $html;
     }
 
-    if($this->collapsible)
-      $html .= '</div>';
+    /**
+     * Allows creation of inverted navbar
+     *
+     * @param  string $method     The method to call
+     * @param  array  $parameters An array of parameters
+     * @return Navbar
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        if ($method == 'inverse') {
+            $attributes = array_get($parameters, 0);
+            $type       = array_get($parameters, 1);
+            $attributes = Helpers::add_class($attributes, 'navbar-inverse');
 
-    // Close navbar containers
-    $html .= '</div></div></div>';
-
-    return $html;
-  }
-
-  /**
-   * Allows creation of inverted navbar
-   *
-   * @param  string $method     The method to call
-   * @param  array  $parameters An array of parameters
-   * @return Navbar
-   */
-  public static function __callStatic($method, $parameters)
-  {
-    if ($method == 'inverse') {
-      $attributes = array_get($parameters, 0);
-      $type       = array_get($parameters, 1);
-      $attributes = Helpers::add_class($attributes, 'navbar-inverse');
-
-      return static::create($attributes, $type);
-    } else return static::create();
-  }
+            return static::create($attributes, $type);
+        } else return static::create();
+    }
 }

@@ -15,12 +15,12 @@
 
 // Autoload Boostrapper
 Autoloader::namespaces(
-  array('Bootstrapper' => Bundle::path('bootstrapper') . 'libraries')
+    array('Bootstrapper' => Bundle::path('bootstrapper') . 'libraries')
 );
 
 // Define main assets
 Asset::container('bootstrapper')
-  ->bundle('bootstrapper')
+    ->bundle('bootstrapper')
     ->add('bootstrap',            'css/bootstrap.min.css')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.min.css')
     ->add('nav-fix',              'css/nav-fix.css')
@@ -29,7 +29,7 @@ Asset::container('bootstrapper')
 
 // Define unminified version of the assets
 Asset::container('bootstrapper-unminified')
-  ->bundle('bootstrapper')
+    ->bundle('bootstrapper')
     ->add('bootstrap',            'css/bootstrap.css')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.css')
     ->add('nav-fix',              'css/nav-fix.css')
