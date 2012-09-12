@@ -115,8 +115,8 @@ class Tables
 
         // Replace patterns with data
         foreach ($matches[0] as $key => $replace) {
-            $with = array_get($matches, '1.'.$key);
-            $with = array_get($data, $with);
+            $with   = array_get($matches, '1.'.$key);
+            $with   = array_get($data, $with);
             $string = str_replace($replace, $with, $string);
         }
 
@@ -141,8 +141,8 @@ class Tables
         // Define base function
         $function = 'table';
 
-        $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, 1, 'table-');
+        $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, 0, 'table-');
 
-        return call_user_func_array('static::'.$function, $parameters);
+        return static::$function($parameters[0]);
     }
 }
