@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Carousel;
+
 class CarouselTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /

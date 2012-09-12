@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Images;
+
 class ImagesTest extends BootstrapperWrapper
 {
   /**

@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Typeahead;
+
 class TypeaheadTest extends BootstrapperWrapper
 {
   private $items = array(

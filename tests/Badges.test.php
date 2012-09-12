@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Badges;
+
 class BadgesTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /

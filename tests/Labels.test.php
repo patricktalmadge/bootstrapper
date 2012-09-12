@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Labels;
+
 class LabelsTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /

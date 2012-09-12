@@ -1,5 +1,6 @@
 <?php
 include 'start.php';
+use Bootstrapper\Alert;
 
 class AlertTest extends BootstrapperWrapper
 {

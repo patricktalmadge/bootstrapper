@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Tables;
+
 class TablesTest extends BootstrapperWrapper
 {
   public function testOpen()

@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Breadcrumbs;
+
 class BreadcrumbsTest extends BootstrapperWrapper
 {
   private $crumbs = array(

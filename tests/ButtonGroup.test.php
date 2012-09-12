@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\ButtonGroup;
+
 class ButtonGroupTest extends BootstrapperWrapper
 {
   private $buttonGroup = array(

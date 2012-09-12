@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\Icons;
+
 class IconsTest extends BootstrapperWrapper
 {
   /**

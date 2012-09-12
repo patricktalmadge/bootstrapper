@@ -1,4 +1,6 @@
 <?php
+use Bootstrapper\ButtonToolbar;
+
 class ButtonToolbarTest extends BootstrapperWrapper
 {
   public function testOpen()
