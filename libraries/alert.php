@@ -162,7 +162,7 @@ class Alert
             $message  = array_get($parameters, 0);
             $attributes = array_get($parameters, 1);
 
-            return call_user_func('static::'.$method, $message, false, $attributes);
-        } else call_user_func('static::'.$method, $parameters);
+            return static::$method($message, false, $attributes);
+        } else static::$method($parameters);
     }
 }
