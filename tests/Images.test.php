@@ -42,7 +42,7 @@ class ImagesTest extends BootstrapperWrapper
    */
   public function testImages($class)
   {
-    $image = call_user_func('Images::'.$class, $this->url, 'foo', $this->testAttributes);
+    $image = Images::$class($this->url, 'foo', $this->testAttributes);
 
     $this->assertTag($this->createMatcher($class), $image);
   }

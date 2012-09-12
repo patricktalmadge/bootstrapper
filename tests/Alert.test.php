@@ -63,7 +63,7 @@ class AlertTest extends BootstrapperWrapper
    */
   public function testStatic($class)
   {
-    $alert = call_user_func('Alert::'.$class, 'foo', true, array('class' => 'bar'));
+    $alert = Alert::$class('foo', true, array('class' => 'bar'));
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $alert);

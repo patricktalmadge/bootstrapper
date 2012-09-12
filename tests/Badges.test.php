@@ -42,7 +42,7 @@ class BadgesTest extends BootstrapperWrapper
    */
   public function testStatic($class)
   {
-    $badge = call_user_func('Badges::'.$class, 'foo', array('class' => 'bar'));
+    $badge = Badges::$class('foo', array('class' => 'bar'));
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $badge);

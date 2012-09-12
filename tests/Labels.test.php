@@ -42,7 +42,7 @@ class LabelsTest extends BootstrapperWrapper
    */
   public function testStatic($class)
   {
-    $label = call_user_func('Labels::'.$class, 'foo', $this->testAttributes);
+    $label = Labels::$class('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $label);
