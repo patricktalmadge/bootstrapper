@@ -6,34 +6,38 @@ use \HTML;
 /**
  * ButtonToolbar for creating Twitter Bootstrap style Buttons toolbars.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class ButtonToolbar
 {
-  /**
-   * Opens a new ButtonToolbar section.
-   *
-   * @param  array  $attributes Attributes for the button toolbar
-   * @return string             A button toolbar
-   */
-  public static function open($attributes = array())
-  {
-    $attributes = Helpers::add_class($attributes, 'btn-toolbar');
+    /**
+     * Opens a new ButtonToolbar section.
+     *
+     * @param array $attributes Attributes for the button toolbar
+     *
+     * @return string             A button toolbar
+     */
+    public static function open($attributes = array())
+    {
+        $attributes = Helpers::add_class($attributes, 'btn-toolbar');
 
-    return '<div'.HTML::attributes($attributes).'>';
-  }
+        return '<div'.HTML::attributes($attributes).'>';
+    }
 
-  /**
-   * Closes the ButtonToolbar section.
-   *
-   * @return string
-   */
-  public static function close()
-  {
-    return '</div>';
-  }
+    /**
+     * Closes the ButtonToolbar section.
+     *
+     * @return string
+     */
+    public static function close()
+    {
+        return '</div>';
+    }
 }
