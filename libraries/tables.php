@@ -61,11 +61,23 @@ class Tables
             // Read the data row with ignored keys
             foreach ($data as $column => $value) {
                 if(in_array($column, $ignore)) continue;
+
+                // Check for replacing columns
+                $replace = array_get($supplementary, $column);
+                if($replace) {
+                    if(is_callable($replace)) $value = $replace($row);
+                    $value = static::replace_keywords($value, $data);
+                }
+
                 $html .= '<td class="column-' .$column. '">'. $value. '</td>';
             }
 
             // Add supplementary columns
             foreach ($supplementary as $class => $column) {
+
+                // Check for replacing columns
+                if(isset($data[$class])) continue;
+
                 // Calculate closures
                 if(is_callable($column)) $column = $column($row);
 
