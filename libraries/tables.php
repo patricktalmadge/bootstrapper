@@ -67,7 +67,7 @@ class Tables
             // Add supplementary columns
             foreach ($supplementary as $class => $column) {
                 // Calculate closures
-                if(is_callable($column)) $column = $column($data);
+                if(is_callable($column)) $column = $column($row);
 
                 $column = static::replace_keywords($column, $data);
                 $html .= '<td class="column-'.$class.'">' .$column. '</td>';
