@@ -18,35 +18,36 @@ Add the following line to application/bundles.php
 
 Add the following to the application.php config file:
 
-	'Alert'                 => 'Bootstrapper\\Alert',
-	'Badges'                => 'Bootstrapper\\Badges',
-	'Breadcrumbs'           => 'Bootstrapper\\Breadcrumbs',
-	'Buttons'               => 'Bootstrapper\\Buttons',
-	'ButtonGroup'           => 'Bootstrapper\\ButtonGroup',
-	'ButtonToolbar'         => 'Bootstrapper\\ButtonToolbar',
-	'Carousel'              => 'Bootstrapper\\Carousel',
-	'DropdownButton'        => 'Bootstrapper\\DropdownButton',
-	'Form'                  => 'Bootstrapper\\Form',
-	'Helpers'               => 'Bootstrapper\\Helpers',
-	'Icons'                 => 'Bootstrapper\\Icons',
-	'Images'                => 'Bootstrapper\\Images',
-	'Labels'                => 'Bootstrapper\\Labels',
-	'Navbar'                => 'Bootstrapper\\Navbar',
-	'Navigation'            => 'Bootstrapper\\Navigation',
-	'Paginator'             => 'Bootstrapper\\Paginator',
-	'Progress'              => 'Bootstrapper\\Progress',
-	'SplitDropdownButton'   => 'Bootstrapper\\SplitDropdownButton',
-	'Tabbable'              => 'Bootstrapper\\Tabbable',
-	'Tables'                => 'Bootstrapper\\Tables',
-	'Typeahead'             => 'Bootstrapper\\Typeahead', 
+	'Alert'               => 'Bootstrapper\\Alert',
+	'Badges'              => 'Bootstrapper\\Badges',
+	'Breadcrumbs'         => 'Bootstrapper\\Breadcrumbs',
+	'ButtonGroup'         => 'Bootstrapper\\ButtonGroup',
+	'Buttons'             => 'Bootstrapper\\Buttons',
+	'ButtonToolbar'       => 'Bootstrapper\\ButtonToolbar',
+	'Carousel'            => 'Bootstrapper\\Carousel',
+	'DropdownButton'      => 'Bootstrapper\\DropdownButton',
+	'Form'                => 'Bootstrapper\\Form',
+	'Helpers'             => 'Bootstrapper\\Helpers',
+	'Icons'               => 'Bootstrapper\\Icons',
+	'Images'              => 'Bootstrapper\\Images',
+	'Labels'              => 'Bootstrapper\\Labels',
+	'Lists'               => 'Bootstrapper\\Lists',
+	'Navbar'              => 'Bootstrapper\\Navbar',
+	'Navigation'          => 'Bootstrapper\\Navigation',
+	'Paginator'           => 'Bootstrapper\\Paginator',
+	'Progress'            => 'Bootstrapper\\Progress',
+	'SplitDropdownButton' => 'Bootstrapper\\SplitDropdownButton',
+	'Tabbable'            => 'Bootstrapper\\Tabbable',
+	'Tables'              => 'Bootstrapper\\Tables',
+	'Typeahead'           => 'Bootstrapper\\Typeahead',
 
 
 Update laravel\database\query.php to use the Bootstrapper Paginator and not the core class by changing the use statement.
 
-	//Change 
-	use Laravel\Paginator; 
+	// Change
+	use Laravel\Paginator;
 
-	//To
+	// To
 	use Paginator;
 
 

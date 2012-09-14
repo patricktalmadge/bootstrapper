@@ -39,32 +39,48 @@ class Tables
 
     /**
      * Display an array of data
-     * @param  mixed  $rows          Can be an array of data or models
+     *
+     * @param  mixed  $source        Can be an array of data or models
      * @param  array  $ignore        An array of columns to ignore
-     * @param  array  $supplementary An array of supplementary columns to append
+     * @param  mixed  $supplementary An array of supplementary columns to append
      * @return string                A table body
      */
-    public static function display($rows, $ignore = array(), $supplementary = array())
+    public static function display($source, $ignore = array(), $supplementary = array())
     {
         // Open Table body
         $html = '<tbody>';
 
         // If no data given, return false
-        if(!$rows) return false;
+        if(!$source) return false;
 
         // Iterate through the data
-        foreach ($rows as $row) {
+        foreach ($source as $row) {
             $html .= '<tr>';
             $data = is_object($row) ? $row->attributes : $row;
 
             // Read the data row with ignored keys
             foreach ($data as $column => $value) {
                 if(in_array($column, $ignore)) continue;
+
+                // Check for replacing columns
+                $replace = array_get($supplementary, $column);
+                if($replace) {
+                    if(is_callable($replace)) $value = $replace($row);
+                    $value = static::replace_keywords($value, $data);
+                }
+
                 $html .= '<td class="column-' .$column. '">'. $value. '</td>';
             }
 
             // Add supplementary columns
             foreach ($supplementary as $class => $column) {
+
+                // Check for replacing columns
+                if(isset($data[$class])) continue;
+
+                // Calculate closures
+                if(is_callable($column)) $column = $column($row);
+
                 $column = static::replace_keywords($column, $data);
                 $html .= '<td class="column-'.$class.'">' .$column. '</td>';
             }
