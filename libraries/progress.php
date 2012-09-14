@@ -31,7 +31,7 @@ class Progress
 
         // Create the progress bar(s)
         $progress = '<div'.HTML::attributes($attributes).'>';
-            if(is_integer($amounts)) $amounts = array($amounts => null);
+            if(!is_array($amounts)) $amounts = array((int) $amounts => null);
             foreach($amounts as $amount => $style)
                 $progress .= static::bar($amount, $style);
         $progress .= '</div>';
