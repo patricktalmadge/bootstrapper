@@ -1,5 +1,5 @@
 <?php
-namespace bootstrapper;
+namespace Bootstrapper;
 
 use \HTML;
 
