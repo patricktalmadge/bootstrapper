@@ -116,8 +116,11 @@ class Tables
      * @param  array  $headers An array of thead rows
      * @return string          A <thead> tag prefilled with rows
      */
-    public static function headers($headers = array())
+    public static function headers()
     {
+        $headers = func_get_args();
+        if(sizeof($headers) == 1 and is_array($headers[0])) $headers = $headers[0];
+
         $thead = '<thead>'.PHP_EOL;
 
         // Store the number of columns in this table
