@@ -115,6 +115,22 @@ class Progress
     }
 
     /**
+     * Automatically computes the progress bar's class according to the amount
+     * Thus 0 giving it a danger class and 100 giving it a success class
+     *
+     * @param  integer $amount     An amount
+     * @param  array   $attributes Additional attributes to give the progress bar
+     * @return string             A Progress bar
+     */
+    public static function automatic($amount, $attributes = array())
+    {
+        $progress = array(PROGRESS::DANGER, Progress::WARNING, Progress::INFO, Progress::SUCCESS);
+        $progress = array_get($progress, floor($amount / 25), Progress::SUCCESS);
+
+        return static::show($amount, $progress, $attributes);
+    }
+
+    /**
      * Checks call to see if we can create a progress bar from a magic call (for you wizards).
      * normal_striped_active, info_striped, etc...
      *
@@ -126,7 +142,7 @@ class Progress
     {
         $method_array = explode('_', strtolower($method));
 
-        $types = array('normal', 'success', 'info', 'warning', 'danger');
+        $types = array('normal', 'success', 'info', 'warning', 'danger', 'automatic');
         $type_found = array_intersect($method_array, $types);
 
         if (count($type_found) > 0) {
