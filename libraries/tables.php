@@ -14,6 +14,8 @@ use \HTML;
  */
 class Tables
 {
+    private static $numberColumns = 50;
+
     /**
      * Creates a table opening tag
      *
@@ -35,6 +37,21 @@ class Tables
     public static function close()
     {
         return '</table>';
+    }
+
+    /**
+     * Creates a table-wide row to display content
+     *
+     * @param  string $content    The content to display
+     * @param  array  $attributes The rows's attributes
+     * @return string             A single-column row spanning all table
+     */
+    public static function full_row($content, $attributes = array())
+    {
+        return
+        '<tr' .HTML::attributes($attributes). '>
+            <td colspan="' .static::$numberColumns. '">' .$content. '</td>
+        </tr>';
     }
 
     /**
@@ -99,6 +116,9 @@ class Tables
     public static function headers($headers = array())
     {
         $thead = '<thead>'.PHP_EOL;
+
+        // Store the number of columns in this table
+        static::$numberColumns = sizeof($headers);
 
         // Add each header with its attributes
         foreach ($headers as $header => $attributes) {
