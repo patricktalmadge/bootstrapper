@@ -48,6 +48,9 @@ class Tables
      */
     public static function full_row($content, $attributes = array())
     {
+        // Add a class for easy styling
+        $attributes = Helpers::add_class($attributes, 'full-row');
+
         return
         '<tr' .HTML::attributes($attributes). '>
             <td colspan="' .static::$numberColumns. '">' .$content. '</td>
