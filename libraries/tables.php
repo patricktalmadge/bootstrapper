@@ -40,20 +40,29 @@ class Tables
     }
 
     /**
+     * Render a full_row with <th> tags
+     */
+    public static function full_header($content, $attributes = array())
+    {
+        return static::full_row($content, $attributes, true);
+    }
+
+    /**
      * Creates a table-wide row to display content
      *
      * @param  string $content    The content to display
      * @param  array  $attributes The rows's attributes
      * @return string             A single-column row spanning all table
      */
-    public static function full_row($content, $attributes = array())
+    public static function full_row($content, $attributes = array(), $asHeaders = false)
     {
         // Add a class for easy styling
         $attributes = Helpers::add_class($attributes, 'full-row');
+        $tag = $asHeaders ? 'th' : 'td';
 
         return
         '<tr' .HTML::attributes($attributes). '>
-            <td colspan="' .static::$numberColumns. '">' .$content. '</td>
+            <' .$tag. ' colspan="' .static::$numberColumns. '">' .$content. '</' .$tag. '>
         </tr>';
     }
 
