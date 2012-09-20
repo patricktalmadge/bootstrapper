@@ -89,7 +89,7 @@ class Tables
 
             // Read the data row with ignored keys
             foreach ($data as $column => $value) {
-                if(in_array($column, $ignore)) continue;
+                if(in_array($column, (array) $ignore)) continue;
 
                 // Check for replacing columns
                 $replace = array_get($supplementary, $column);
