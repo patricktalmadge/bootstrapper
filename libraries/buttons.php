@@ -18,10 +18,10 @@ use \HTML;
 class Buttons
 {
     /**
-     * The current instant of Buttons being used
+     * The current instance of Buttons being used
      * @var Buttons
      */
-    private static $instant = null;
+    private static $instance = null;
 
     /**
      * The current button in memory
@@ -39,10 +39,10 @@ class Buttons
      *
      * @return object              Button instance
      */
-    private static function _storeButton($type, $value, $attributes, $hasDropdown)
+    private static function storeButton($type, $value, $attributes, $hasDropdown)
     {
         // If we don't have an instance stored, create a new one
-        $currentInstance = self::$instant ?: new Buttons;
+        $currentInstance = self::$instance ?: new Buttons;
 
         // Define new butto
         $currentInstance->currentButton = array(
@@ -69,7 +69,7 @@ class Buttons
     {
         $attributes['type'] = 'submit';
 
-        return static::_storeButton('normal', $value, $attributes, $hasDropdown);
+        return static::storeButton('normal', $value, $attributes, $hasDropdown);
     }
 
     /**
@@ -86,7 +86,7 @@ class Buttons
     {
         $attributes['type'] = 'reset';
 
-        return static::_storeButton('normal', $value, $attributes, $hasDropdown);
+        return static::storeButton('normal', $value, $attributes, $hasDropdown);
     }
 
     /**
@@ -101,7 +101,7 @@ class Buttons
      */
     public static function normal($value, $attributes = array(), $hasDropdown = false)
     {
-        return static::_storeButton('normal', $value, $attributes, $hasDropdown);
+        return static::storeButton('normal', $value, $attributes, $hasDropdown);
     }
 
     /**
@@ -118,7 +118,7 @@ class Buttons
     {
         $attributes['href'] = \URL::to($url);
 
-        return static::_storeButton('link', $value, $attributes, $hasDropdown);
+        return static::storeButton('link', $value, $attributes, $hasDropdown);
     }
 
     /**
@@ -191,6 +191,7 @@ class Buttons
 
         $btn_types  = array('normal', 'submit', 'reset', 'link');
         $type_found = array_intersect($method_array, $btn_types);
+        if(!$type_found) $type_found = (array) 'normal';
 
         if (count($type_found) > 0) {
             $function = $type_found[key($type_found)];
@@ -220,16 +221,16 @@ class Buttons
         $attributes = Helpers::add_class($attributes, 'btn');
 
         // Modify output if we have a dropdown
-        $extra = '';
+        $caret = null;
         if ($hasDropdown) {
             $attributes = Helpers::add_class($attributes, 'dropdown-toggle');
-            $extra = ' <span class="caret"></span>';
+            $caret = ' <span class="caret"></span>';
             $attributes['data-toggle'] = 'dropdown';
         }
 
         // Write output according to tag
         $tag = ($type == 'link') ? 'a' : 'button';
 
-        return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$extra.'</'.$tag.'>';
+        return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$caret.'</'.$tag.'>';
     }
 }
