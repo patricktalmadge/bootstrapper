@@ -7,9 +7,11 @@ class BadgesTest extends BootstrapperWrapper
 
   private function createMatcher($class)
   {
+    $class = ($class == 'normal') ? null : ' badge-'.$class;
+
     return array(
       'tag' => 'span',
-      'attributes' => array('class' => 'bar badge badge-'.$class),
+      'attributes' => array('class' => 'bar badge'.$class),
       'content' => 'foo',
     );
   }
@@ -19,6 +21,7 @@ class BadgesTest extends BootstrapperWrapper
   public function classes()
   {
     return array(
+      array('normal'),
       array('important'),
       array('info'),
       array('inverse'),
