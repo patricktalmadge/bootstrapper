@@ -11,6 +11,22 @@ class TablesTest extends BootstrapperWrapper
     ),
   );
 
+  private function matchFull($header = false)
+  {
+    return array(
+      'tag' => 'tr',
+      'attributes' => array(
+        'class' => 'foo full-row',
+        'data-foo' => 'bar',
+      ),
+      'child' => array(
+        'tag' => $header ? 'th' : 'td',
+        'attributes' => array('colspan' => 4),
+        'content' => 'foo',
+      ),
+    );
+  }
+
   public function testOpen()
   {
     $table = Tables::open($this->testAttributes);
@@ -64,5 +80,23 @@ class TablesTest extends BootstrapperWrapper
     '</thead>';
 
     $this->assertEquals($matcher, $headers);
+  }
+
+  public function testFullRow()
+  {
+    Tables::headers('foo', 'foo', 'foo', 'foo');
+    $fullRow = Tables::full_row('foo', $this->testAttributes);
+    $matcher = $this->matchFull();
+
+    $this->assertTag($matcher, $fullRow);
+  }
+
+  public function testFullHeader()
+  {
+    Tables::headers('foo', 'foo', 'foo', 'foo');
+    $fullRow = Tables::full_header('foo', $this->testAttributes);
+    $matcher = $this->matchFull(true);
+
+    $this->assertTag($matcher, $fullRow);
   }
 }

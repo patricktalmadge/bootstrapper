@@ -3,14 +3,21 @@ use Bootstrapper\Progress;
 
 class ProgressTest extends BootstrapperWrapper
 {
-  private function matchProgress($class = 'normal', $width = 50)
+  // Matchers ------------------------------------------------------ /
+
+  private function matchProgress($type = 'normal', $width = 50, $striped = false, $active = false)
   {
-    $class = ($class == 'normal') ? null : ' progress-'.$class;
+    $class = 'foo';
+
+    if($striped) $class .= ' progress-striped';
+    if($active) $class .= ' active ';
+    $class .= ' progress';
+    if($type != 'normal') $class .= ' progress-'.$type;
 
     return array(
       'tag' => 'div',
       'attributes' => array(
-        'class'    => 'foo progress'.$class,
+        'class'    => $class,
         'data-foo' => 'bar',
       ),
       'child' => array(
@@ -23,6 +30,8 @@ class ProgressTest extends BootstrapperWrapper
     );
   }
 
+  // Data providers ------------------------------------------------ /
+
   public function provideBars()
   {
     return array(
@@ -33,6 +42,8 @@ class ProgressTest extends BootstrapperWrapper
       array('danger'),
     );
   }
+
+  // Tests --------------------------------------------------------- /
 
   /**
    * @dataProvider provideBars
@@ -80,5 +91,54 @@ class ProgressTest extends BootstrapperWrapper
     $matcher = $this->matchProgress('success', 5);
 
     $this->assertTag($matcher, $progress);
+  }
+
+  public function testAutomatic()
+  {
+    $classes = array(
+      0   => 'danger',
+      20  => 'danger',
+      40  => 'warning',
+      60  => 'info',
+      80  => 'success',
+      100 => 'success');
+
+    for($i = 0; $i <= 100; $i = $i + 20) {
+      $progress = Progress::automatic($i, $this->testAttributes);
+      $matcher = $this->matchProgress($classes[$i], $i);
+
+      $this->assertTag($matcher, $progress);
+    }
+  }
+
+  public function testStriped()
+  {
+    $progress = Progress::striped_info(50, $this->testAttributes);
+    $matcher = $this->matchProgress('info', 50, true);
+
+    $this->assertTag($matcher, $progress);
+  }
+
+  public function testActive()
+  {
+    $progress = Progress::active_info(50, $this->testAttributes);
+    $matcher = $this->matchProgress('info', 50, false, true);
+
+    $this->assertTag($matcher, $progress);
+  }
+
+  public function testActiveStriped()
+  {
+    $progress = Progress::striped_active_info(50, $this->testAttributes);
+    $matcher = $this->matchProgress('info', 50, true, true);
+
+    $this->assertTag($matcher, $progress);
+  }
+
+  public function testExceptionAttributes()
+  {
+    $this->setExpectedException('Exception', 'Tabbable attributes parameter should be an array of attributes');
+
+    $progress = Progress::striped_normal(50, 'foo');
   }
 }
