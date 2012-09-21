@@ -18,6 +18,11 @@ class ButtonGroupTest extends BootstrapperWrapper
     $this->assertTag($this->buttonGroup, $open);
   }
 
+  public function testClose()
+  {
+    $this->assertEquals('</div>', ButtonGroup::close());
+  }
+
   public function OpenToggle()
   {
     $open = ButtonGroup::open(true, $this->testAttributes);
