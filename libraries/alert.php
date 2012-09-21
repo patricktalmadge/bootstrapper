@@ -156,13 +156,10 @@ class Alert
         $isOpen = array_get($method, 0) == 'open';
         $method = array_get($method, 1);
 
-        // If we have an informative alert
-        if ($isOpen) {
-            // Fetch parameters
-            $message  = array_get($parameters, 0);
-            $attributes = array_get($parameters, 1);
+        // Fetch parameters
+        $message  = array_get($parameters, 0);
+        $attributes = array_get($parameters, 1);
 
-            return static::$method($message, false, $attributes);
-        } else static::$method($parameters);
+        return static::$method($message, !$isOpen, $attributes);
     }
 }
