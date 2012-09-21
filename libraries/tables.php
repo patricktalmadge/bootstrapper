@@ -14,6 +14,8 @@ use \HTML;
  */
 class Tables
 {
+    private static $numberColumns = 50;
+
     /**
      * Creates a table opening tag
      *
@@ -35,6 +37,33 @@ class Tables
     public static function close()
     {
         return '</table>';
+    }
+
+    /**
+     * Render a full_row with <th> tags
+     */
+    public static function full_header($content, $attributes = array())
+    {
+        return static::full_row($content, $attributes, true);
+    }
+
+    /**
+     * Creates a table-wide row to display content
+     *
+     * @param  string $content    The content to display
+     * @param  array  $attributes The rows's attributes
+     * @return string             A single-column row spanning all table
+     */
+    public static function full_row($content, $attributes = array(), $asHeaders = false)
+    {
+        // Add a class for easy styling
+        $attributes = Helpers::add_class($attributes, 'full-row');
+        $tag = $asHeaders ? 'th' : 'td';
+
+        return
+        '<tr' .HTML::attributes($attributes). '>
+            <' .$tag. ' colspan="' .static::$numberColumns. '">' .$content. '</' .$tag. '>
+        </tr>';
     }
 
     /**
@@ -60,7 +89,7 @@ class Tables
 
             // Read the data row with ignored keys
             foreach ($data as $column => $value) {
-                if(in_array($column, $ignore)) continue;
+                if(in_array($column, (array) $ignore)) continue;
 
                 // Check for replacing columns
                 $replace = array_get($supplementary, $column);
@@ -96,9 +125,15 @@ class Tables
      * @param  array  $headers An array of thead rows
      * @return string          A <thead> tag prefilled with rows
      */
-    public static function headers($headers = array())
+    public static function headers()
     {
+        $headers = func_get_args();
+        if(sizeof($headers) == 1 and is_array($headers[0])) $headers = $headers[0];
+
         $thead = '<thead>'.PHP_EOL;
+
+        // Store the number of columns in this table
+        static::$numberColumns = sizeof($headers);
 
         // Add each header with its attributes
         foreach ($headers as $header => $attributes) {

@@ -587,8 +587,12 @@ class Form extends \Laravel\Form
      *
      * @return string
      */
-    public static function actions($buttons)
+    public static function actions()
     {
+        // Fetch arguments
+        $buttons = func_get_args();
+        if(sizeof($buttons) == 1) $buttons = $buttons[0];
+
         $html  = '<div class="form-actions">';
         $html .= is_array($buttons) ? implode(' ', $buttons) : $buttons;
         $html .= '</div>';
