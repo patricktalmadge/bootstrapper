@@ -154,7 +154,7 @@ class Progress
                 if (is_array($parameters[1])) {
                     $attributes = $parameters[1];
                 } else {
-                    throw new \Exception("Tabbable attributes parameter should be an array of attributes");
+                    throw new \InvalidArgumentException("Tabbable attributes parameter should be an array of attributes");
                 }
             }
 
