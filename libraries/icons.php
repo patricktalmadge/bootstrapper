@@ -6,11 +6,14 @@ use \HTML;
 /**
  * Labels for creating Twitter Bootstrap icons.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Icons
 {
@@ -29,8 +32,9 @@ class Icons
      * ?>
      * </code>
      *
-     * @param  string $method
-     * @param  array  $attributes
+     * @param string $method     Name of missing method
+     * @param array  $parameters array of parameters passed to missing method
+     *
      * @return string
      */
     public static function __callStatic($method, $parameters)
@@ -42,16 +46,19 @@ class Icons
         $white = in_array('white', $method_bits);
 
         // Remove white from array
-        $method_bits = array_filter($method_bits, function($val) {
-            return ($val != 'white');
-        });
+        $method_bits = array_filter(
+            $method_bits, 
+            function ($val) {
+                return ($val != 'white');
+            }
+        );
 
         // Get icon name
-        $icon_classes = array(implode('-',$method_bits));
-        if($white) $icon_classes[] = 'white';
+        $icon_classes = array(implode('-', $method_bits));
+        if ($white) $icon_classes[] = 'white';
 
         // If the parameters weren't put into an array, do it
-        if(!isset($parameters[0])) {
+        if (!isset($parameters[0])) {
             $parameters = array(0 => $parameters);
         }
 
