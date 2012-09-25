@@ -160,4 +160,12 @@ class ButtonsTest extends BootstrapperWrapper
     $this->assertTag($matcher, $button);
     $this->assertEquals($exact, $button);
   }
+
+  public function testMultipleButtons()
+  {
+    $buttons = Buttons::info('foo').Buttons::success('foo');
+    $matcher = '<button class="btn-info btn" type="button">foo</button><button class="btn-success btn" type="button">foo</button>';
+
+    $this->assertEquals($matcher, $buttons);
+  }
 }

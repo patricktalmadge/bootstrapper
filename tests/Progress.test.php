@@ -137,7 +137,7 @@ class ProgressTest extends BootstrapperWrapper
 
   public function testExceptionAttributes()
   {
-    $this->setExpectedException('Exception', 'Tabbable attributes parameter should be an array of attributes');
+    $this->setExpectedException('Exception');
 
     $progress = Progress::striped_normal(50, 'foo');
   }
