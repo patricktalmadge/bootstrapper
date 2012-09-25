@@ -137,7 +137,7 @@ class ProgressTest extends BootstrapperWrapper
 
   public function testExceptionAttributes()
   {
-    $this->setExpectedException('Exception');
+    $this->setExpectedException('InvalidArgumentException');
 
     $progress = Progress::striped_normal(50, 'foo');
   }
