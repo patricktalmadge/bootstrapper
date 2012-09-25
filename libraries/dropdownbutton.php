@@ -18,34 +18,52 @@ use \HTML;
 class DropdownButton
 {
     /**
-     * Creates a DropdownButton.
-     *
-     * @param string $type       Button type
-     * @param string $value      Button text value
-     * @param array  $list       Menu items array
-     * @param array  $attributes An array of attributes
-     * @param bool   $right      Pull button right
-     * @param bool   $dropup     Is menu a drop up menu
-     * @param bool   $autoroute  Should menu items auto route
-     *
-     * @return string
+     * The current dropdown instance
+     * @var DropdownButton
      */
-    protected static function show($type, $value, $list, $attributes = array(), $right = false, $dropup = false, $autoroute = true)
-    {
-        $attributes = Helpers::add_class($attributes, 'btn-group');
+    protected static $dropdown = null;
 
-        $list_attr = array();
-        if ($right) $list_attr['class'] = 'pull-right';
+    /**
+     * The main button's class
+     * @var string
+     */
+    protected $type = null;
 
-        if ($dropup) $attributes['class'] .= ' dropup';
+    /**
+     * The main button's label
+     * @var string
+     */
+    protected $label = null;
 
-        $html = '<div'.HTML::attributes($attributes).'>';
-        $html .= Form::button($value, array('class'=>$type), true);
-        $html .= Navigation::dropdown($list, $list_attr, $autoroute);
-        $html .= '</div>';
+    /**
+     * The dropdown's links
+     * @var array
+     */
+    protected $links = array();
 
-        return $html;
-    }
+    /**
+     * The dropdown's attributes
+     * @var array
+     */
+    protected $attributes = array();
+
+    /**
+     * Whether the dropdown should align right
+     * @var boolean
+     */
+    protected $pullRight = false;
+
+    /**
+     * Whether the dropdown's links should come up or down
+     * @var boolean
+     */
+    protected $dropup = false;
+
+    /**
+     * Whether links should be automatically routed or not
+     * @var boolean
+     */
+    protected $autoroute = true;
 
     /**
      * Checks call to see if we can create a button from a magic call (for you wizards).
@@ -60,47 +78,126 @@ class DropdownButton
     {
         $method_array = explode('_', strtolower($method));
 
+        // Get the dropdown's button text
+        $label = array_get($parameters, 0, null);
+
+        // Get the dropdown's links
+        $links = array_get($parameters, 1, array());
+        if(!is_array($links)) throw new \InvalidArgumentException('The dropdown\'s links should be an array');
+
+        // Get the dropdown's attributes
+        $attributes = array_get($parameters, 2, array());
+        if(!is_array($attributes)) throw new \InvalidArgumentException('Attributes should be an array');
+
+        // Filter the classes given and concatenate them
         $type = '';
-        foreach ($method_array as $s) {
-            if ($s != 'normal') $type .= ' btn-'.$s;
+        foreach ($method_array as $class) {
+            if ($class != 'normal') $type .= ' btn-'.$class;
         }
 
-        $value = array_get($parameters, 0, '');
+        // Create the new dropdown
+        static::$dropdown = new static($label, $links, $attributes, $type);
 
-        // Set default $list and check for a set value
-        $list = array();
-        if (isset($parameters[1]) && is_array($parameters[1])) {
-            $list = $parameters[1];
-        } else throw new \Exception("DropdownButton list is required parameter should be an array of links");
+        return static::$dropdown;
+    }
 
-        // Set default $attributes and check for a set value
-        $attributes = array();
-        if (isset($parameters[2])) {
-            if (is_array($parameters[2])) $attributes = $parameters[2];
-            else throw new \Exception("DropdownButton attributes parameter should be an array of attributes");
-        }
+    /**
+     * Creates a new button dropdown
+     *
+     * @param string $label Its label
+     * @param array  $links Its links
+     * @param string $type  Its classes
+     */
+    public function __construct($label, $links, $attributes, $type = null)
+    {
+        $this->label = $label;
 
-        // Set default $right and check for a set value
-        $right = false;
-        if (isset($parameters[3])) {
-            if (is_bool($parameters[3])) $right = $parameters[3];
-            else throw new \Exception("DropdownButton right parameter should be a bool");
-        }
+        $this->links = $links;
 
-        // Set default $dropup and check for a set value
-        $dropup = false;
-        if (isset($parameters[4])) {
-            if (is_bool($parameters[4])) $dropup = $parameters[4];
-            else throw new \Exception("DropdownButton dropup parameter should be a bool");
-        }
+        $this->attributes = $attributes;
 
-        // Set default $autoroute and check for a set value
-        $autoroute = true;
-        if (isset($parameters[5])) {
-            if (is_bool($parameters[5])) $autoroute = $parameters[5];
-            else throw new \Exception("DropdownButton autoroute parameter should be a bool");
-        }
+        $this->type .= $type;
+    }
 
-        return static::show($type, $value, $list, $attributes, $right, $dropup, $autoroute);
+    /**
+     * Dynamically set an attribute
+     *
+     * @param  string $attribute The attribute to set
+     * @param  string $value     Its value
+     */
+    public function __call($attribute, $value)
+    {
+        // Replace underscores
+        $attribute = str_replace('_', '-', $attribute);
+
+        // Get value and set it
+        $value = array_get($value, 0, 'true');
+        $this->attributes[$attribute] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Outputs the current Dropdown in instance
+     *
+     * @return string A Dropdown menu
+     */
+    public function __toString()
+    {
+        // Base class
+        $this->attributes = Helpers::add_class($this->attributes, 'btn-group');
+
+        // Pull right
+        $listAttributes = $this->pullRight
+            ? array('class' => 'pull-right')
+            : array();
+
+        // Dropup
+        if ($this->dropup) $this->attributes['class'] .= ' dropup';
+
+        $html = '<div'.HTML::attributes($this->attributes).'>';
+            $html .= Form::button($this->label, array('class' => $this->type), true);
+            $html .= Navigation::dropdown($this->links, $listAttributes, $this->autoroute);
+        $html .= '</div>';
+
+        return $html;
+    }
+
+    // Public methods ---------------------------------------------- /
+
+    /**
+     * Pull the dropdown's links to the right
+     *
+     * @param  boolean $pullRight
+     */
+    public function pull_right($pullRight = true)
+    {
+        $this->pullRight = $pullRight;
+
+        return $this;
+    }
+
+    /**
+     * Drop the menu up or down
+     *
+     * @param  boolean $dropup
+     */
+    public function dropup($dropup = true)
+    {
+        $this->dropup = $dropup;
+
+        return $this;
+    }
+
+    /**
+     * Auto route links or not
+     *
+     * @param  boolean $autoroute
+     */
+    public function autoroute($autoroute = true)
+    {
+        $this->autoroute = $autoroute;
+
+        return $this;
     }
 }

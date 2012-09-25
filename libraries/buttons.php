@@ -44,7 +44,7 @@ class Buttons
         // If we don't have an instance stored, create a new one
         $currentInstance = self::$instance ?: new Buttons;
 
-        // Define new butto
+        // Define new button
         $currentInstance->currentButton = array(
             'type'        => $type,
             'value'       => $value,
@@ -174,6 +174,19 @@ class Buttons
     public function append_with_icon($icon, $attributes = array())
     {
         return $this->with_icon($icon, $attributes, false);
+    }
+
+    /**
+     * Add class to deemphasize the button to look more like an anchor tag
+     *
+     * @return object            Button instance
+     */
+    public function deemphasize() 
+    {
+        // Add class to attributes array
+        $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-link');
+
+        return $this;
     }
 
     /**
