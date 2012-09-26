@@ -128,9 +128,9 @@ class Tables
                 $column = HTML::decode($column);
 
                 // Wrap content in a <td> tag if necessary
-                if(!starts_with($column, '<td')) {
-                    $html .= '<td class="column-'.$class.'">' .$column. '</td>';
-                }
+                $html .= starts_with($column, '<td')
+                    ? $column
+                    : '<td class="column-'.$class.'">' .$column. '</td>';
             }
             $html .= '</tr>';
         }
