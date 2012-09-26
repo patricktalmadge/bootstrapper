@@ -199,7 +199,7 @@ class Navigation
 
 		if(isset($icon))
 		{
-			$title = '<i class="icon-'.$icon.'"></i>'.$title;
+			$title = '<i class="icon-'.$icon.'"></i> '.$title;
 		}
 
 		return '<a href="'.$url.'"'.HTML::attributes($attributes).'>'.$title.'</a>';
