@@ -82,7 +82,7 @@ class Navigation
     /**
      * Creates a Bootstrap plan unstyled menu.
      *
-     * @param array $list       Menu items    
+     * @param array $list       Menu items
      * @param bool  $stacked    Should it be stacked
      * @param array $attributes attributes to apply the nav
      * @param bool  $autoroute  Autoroute links
@@ -97,7 +97,7 @@ class Navigation
     /**
      * Creates a Bootstrap Tabs menu.
      *
-     * @param array $list       Menu items    
+     * @param array $list       Menu items
      * @param bool  $stacked    Should it be stacked
      * @param array $attributes attributes to apply the nav
      * @param bool  $autoroute  Autoroute links
@@ -112,7 +112,7 @@ class Navigation
     /**
      * Creates a Bootstrap Pills menu.
      *
-     * @param array $list       Menu items    
+     * @param array $list       Menu items
      * @param bool  $stacked    Should it be stacked
      * @param array $attributes attributes to apply the nav
      * @param bool  $autoroute  Autoroute links
@@ -127,7 +127,7 @@ class Navigation
     /**
      * Creates a Bootstrap Lists menu.
      *
-     * @param array $list       Menu items    
+     * @param array $list       Menu items
      * @param bool  $stacked    Should it be stacked
      * @param array $attributes attributes to apply the nav
      * @param bool  $autoroute  Autoroute links
@@ -142,7 +142,7 @@ class Navigation
     /**
      * Creates a Bootstrap Dropdown menu.
      *
-     * @param array $list       Menu items    
+     * @param array $list       Menu items
      * @param array $attributes attributes to apply the nav
      * @param bool  $autoroute  Autoroute links
      *

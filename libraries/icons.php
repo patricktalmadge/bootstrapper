@@ -48,7 +48,7 @@ class Icons
 
         // Remove white from array
         $method_bits = array_filter(
-            $method_bits, 
+            $method_bits,
             function ($val) {
                 return ($val != 'white');
             }

@@ -182,7 +182,7 @@ class Buttons
      *
      * @return object            Button instance
      */
-    public function deemphasize() 
+    public function deemphasize()
     {
         // Add class to attributes array
         $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-link');

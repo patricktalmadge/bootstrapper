@@ -35,7 +35,7 @@ class Tabbable
      * @param string $menu_type          @see Navigation
      * @param bool   $stacked            Is statcked
      * @param array  $attributes         Attributes for the tabs
-     * @param array  $menu_attributes    Attributes for the menu 
+     * @param array  $menu_attributes    Attributes for the menu
      * @param array  $content_attributes Attributes for the content
      * @param bool   $autoroute          Autoroute the links
      *
@@ -49,7 +49,7 @@ class Tabbable
         $tabs = Navigation::menu($list, $menu_type, $stacked, $menu_attributes, $autoroute);
 
         // Tab content container
-        if (!isset($content_attributes['class'])) { 
+        if (!isset($content_attributes['class'])) {
             $content_attributes['class'] = '';
         }
 
@@ -141,8 +141,8 @@ class Tabbable
             $type = $type_found[key($type_found)];
 
             // Hack to get around dynamic list call
-            if ($type === 'lists') { 
-                $type = 'list'; 
+            if ($type === 'lists') {
+                $type = 'list';
             }
 
             // Check list parameters

@@ -35,7 +35,7 @@ class Progress
      * @param string  $type       Type of progress bar
      * @param array   $attributes array of attributes for progress bar
      *
-     * @return string 
+     * @return string
      */
     protected static function show($amounts, $type = Progress::NORMAL, $attributes = array())
     {
@@ -58,7 +58,7 @@ class Progress
      * @param integer $amount A progress amount
      * @param string  $style  A class to use to style the bar
      *
-     * @return string 
+     * @return string
      */
     protected static function bar($amount, $style = null)
     {
