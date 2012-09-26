@@ -6,11 +6,15 @@ use \HTML;
 /**
  * Tabbable for creating Twitter Bootstrap. Bootstrap JS is required.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Tabbable
 {
@@ -26,14 +30,15 @@ class Tabbable
     /**
      * Generate a Bootstrap tabbable object.
      *
-     * @param  array  $list
-     * @param  string $placement
-     * @param  string $menu_type      @see Navigation
-     * @param  bool   $stacked
-     * @param  array  $attributes
-     * @param  array  $menu_attributes
-     * @param  array  $content_attributes
-     * @param  bool   $autoroute
+     * @param array  $list               Tab items
+     * @param string $placement          The pacement of the tabs
+     * @param string $menu_type          @see Navigation
+     * @param bool   $stacked            Is statcked
+     * @param array  $attributes         Attributes for the tabs
+     * @param array  $menu_attributes    Attributes for the menu 
+     * @param array  $content_attributes Attributes for the content
+     * @param bool   $autoroute          Autoroute the links
+     *
      * @return string
      */
     public static function create($list, $placement = Tabbable::PLACEMENT_ABOVE, $menu_type = Navigation::TYPE_TABS, $stacked = false, $attributes = array(), $menu_attributes = array(), $content_attributes = array(), $autoroute = true)
@@ -44,7 +49,10 @@ class Tabbable
         $tabs = Navigation::menu($list, $menu_type, $stacked, $menu_attributes, $autoroute);
 
         // Tab content container
-        if (!isset($content_attributes['class'])) { $content_attributes['class'] = '';}
+        if (!isset($content_attributes['class'])) { 
+            $content_attributes['class'] = '';
+        }
+
         $content_attributes['class'] .= ' tab-content';
         $content = '<div '.HTML::attributes($content_attributes).'>'. implode('', $content).'</div>';
 
@@ -58,9 +66,10 @@ class Tabbable
     /**
      * Normalizes the items list and correct urls if any are set.
      *
-     * @param  array $items
-     * @param  array $panes
-     * @param  int   $i
+     * @param array $items  Tab items
+     * @param array &$panes array of panes
+     * @param int   &$i     index
+     *
      * @return array
      */
     protected static function normalize($items, &$panes, &$i = 0)
@@ -105,8 +114,9 @@ class Tabbable
      * Checks call to see if we can create a tabbable from a magic call (for you wizards).
      * tabs_above, tabs_left, pills, lists, etc...
      *
-     * @param  string $method
-     * @param  array  $parameters
+     * @param string $method     Method name
+     * @param array  $parameters Method parameters
+     *
      * @return mixed
      */
     public static function __callStatic($method, $parameters)
@@ -131,7 +141,9 @@ class Tabbable
             $type = $type_found[key($type_found)];
 
             // Hack to get around dynamic list call
-            if ($type === 'lists') { $type = 'list'; }
+            if ($type === 'lists') { 
+                $type = 'list'; 
+            }
 
             // Check list parameters
             if (!(isset($parameters[0]) && is_array($parameters[0]))) {

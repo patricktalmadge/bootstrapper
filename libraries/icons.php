@@ -10,6 +10,7 @@ use \HTML;
  * @package    Boostrapper
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -82,9 +83,9 @@ class Icons
      * ?>
      * </code>
      *
-     * @static
-     * @param $icon_class
-     * @param  null   $attributes
+     * @param string $icon_class name of the bootstrap icon class
+     * @param array  $attributes attributes to apply the icon itself
+     *
      * @return string
      */
     public static function make($icon_class, $attributes = array())

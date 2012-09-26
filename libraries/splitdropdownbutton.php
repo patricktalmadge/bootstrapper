@@ -6,24 +6,29 @@ use \HTML;
 /**
  * SplitDropdownButton for creating Twitter Bootstrap style Split Dropdown Buttons.
  *
- * @package   Bundles
- * @subpackage  Twitter
- * @author    Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Splitdropdownbutton
 {
     /**
      * Creates a SplitDropdownButton.
      *
-     * @param  string $type
-     * @param  string $value
-     * @param  array  $list
-     * @param  array  $attributes
-     * @param  bool   $right
-     * @param  bool   $dropup
-     * @param  bool   $autoroute
+     * @param string $type       Type of splitdropdown
+     * @param string $value      Value of the button
+     * @param array  $list       Menu items
+     * @param array  $attributes array of attributes for splitdropdown
+     * @param bool   $right      Pull to the right
+     * @param bool   $dropup     Is dropup
+     * @param bool   $autoroute  Auto route links
+     *
      * @return string
     */
     protected static function show($type, $value, $list, $attributes = array(), $right = false, $dropup = false, $autoroute = true)
@@ -52,8 +57,9 @@ class Splitdropdownbutton
      * Checks call to see if we can create a button from a magic call (for you wizards).
      * normal, mini_primary, large_warning, danger, etc...
      *
-     * @param  string $method
-     * @param  array  $parameters
+     * @param string $method     Method name
+     * @param array  $parameters Method Parameters
+     *
      * @return mixed
     */
     public static function __callStatic($method, $parameters)

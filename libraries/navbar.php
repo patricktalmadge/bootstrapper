@@ -6,11 +6,15 @@ use \HTML;
 /**
  * Navbar for creating Twitter Bootstrap style Navbar.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Navbar
 {
@@ -74,8 +78,9 @@ class Navbar
     /**
      * Create a new Navbar instance.
      *
-     * @param  array  $attributes An array of attributes for the current navbar
-     * @param  const  $type       The type of Navbar to create
+     * @param array $attributes An array of attributes for the current navbar
+     * @param const $type       The type of Navbar to create
+     *
      * @return Navbar
      */
     public static function create($attributes = array(), $type = Navbar::STATIC_BAR)
@@ -93,7 +98,8 @@ class Navbar
     /**
      * Set the autoroute to true or false
      *
-     * @param  boolean $autoroute The new autoroute value
+     * @param boolean $autoroute The new autoroute value
+     *
      * @return Navbar
      */
     public function autoroute($autoroute)
@@ -106,8 +112,9 @@ class Navbar
     /**
      * Add menus or strings to the current Navbar
      *
-     * @param  mixed  $menus       An array of items or a string
-     * @param  array  $attributes  An array of attributes to use
+     * @param mixed $menus      An array of items or a string
+     * @param array $attributes An array of attributes to use
+     *
      * @return Navbar
      */
     public function with_menus($menus, $attributes = array())
@@ -122,8 +129,9 @@ class Navbar
     /**
      * Add a brand to the current Navbar
      *
-     * @param  string $brand     The brand name
-     * @param  string $brand_url The brand URL
+     * @param string $brand     The brand name
+     * @param string $brand_url The brand URL
+     *
      * @return Navbar
      */
     public function with_brand($brand, $brand_url)
@@ -212,8 +220,9 @@ class Navbar
     /**
      * Allows creation of inverted navbar
      *
-     * @param  string $method     The method to call
-     * @param  array  $parameters An array of parameters
+     * @param string $method     The method to call
+     * @param array  $parameters An array of parameters
+     *
      * @return Navbar
      */
     public static function __callStatic($method, $parameters)

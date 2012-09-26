@@ -3,6 +3,19 @@ namespace Bootstrapper;
 
 use \HTML;
 
+/**
+ * Paginator for creating Twitter Bootstrap pagination.
+ *
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
+ *
+ * @see        http://twitter.github.com/bootstrap/
+ */
 class Paginator extends \Laravel\Paginator
 {
     /**
@@ -22,6 +35,13 @@ class Paginator extends \Laravel\Paginator
      */
     protected $dots = '<li class="disabled"><a href="#">...</a></li>';
 
+    /**
+     * Create the HTML pagination links.
+     *
+     * @param bool $align align pager
+     *
+     * @return string
+     */
     public function pager($align = false)
     {
         $this->pager_aligned = $align;
@@ -50,7 +70,9 @@ class Paginator extends \Laravel\Paginator
      *      echo $paginator->links(5);
      * </code>
      *
-     * @param  int  $adjacent
+     * @param int    $adjacent  Number of adjacent items
+     * @param string $alignment Alignment of pagination
+     *
      * @return string
      */
     public function links($adjacent = 3, $alignment = self::ALIGN_LEFT)
@@ -82,10 +104,11 @@ class Paginator extends \Laravel\Paginator
     /**
      * Create a chronological pagination element, such as a "previous" or "next" link.
      *
-     * @param  string  $element
-     * @param  int   $page
-     * @param  string  $text
-     * @param  Closure $disabled
+     * @param string  $element  Pagination element
+     * @param int     $page     Curent page
+     * @param string  $text     Text for current element
+     * @param Closure $disabled function to determine if disabled or not
+     *
      * @return string
      */
     protected function element($element, $page, $text, $disabled)
@@ -116,8 +139,9 @@ class Paginator extends \Laravel\Paginator
      *
      * For the current page, an HTML span element will be generated instead of a link.
      *
-     * @param  int  $start
-     * @param  int  $end
+     * @param int $start starting position
+     * @param int $end   ending position
+     *
      * @return string
      */
     protected function range($start, $end)

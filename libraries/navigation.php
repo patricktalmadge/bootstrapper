@@ -6,11 +6,15 @@ use \HTML;
 /**
  * Navigation for creating Twitter Bootstrap menus.
  *
- * @package   Bundles
- * @subpackage  Twitter
- * @author    Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Navigation
 {
@@ -26,11 +30,12 @@ class Navigation
     /**
      * Generates a nav menu and any dropdown if the $list array contains any dropdown objects.
      *
-     * @param  array  $list
-     * @param  string $type
-     * @param  bool   $stacked
-     * @param  array  $attributes
-     * @param  bool   $autoroute
+     * @param array  $list       Menu items
+     * @param string $type       Menu Type
+     * @param bool   $stacked    Should menu be stacked
+     * @param array  $attributes attributes to apply the nav
+     * @param bool   $autoroute  Autoroute links
+     *
      * @return string
      */
     public static function menu($list, $type = Navigation::TYPE_UNSTYLED, $stacked = false, $attributes = array(), $autoroute = true)
@@ -77,10 +82,11 @@ class Navigation
     /**
      * Creates a Bootstrap plan unstyled menu.
      *
-     * @param  array  $list
-     * @param  bool   $stacked
-     * @param  array  $attributes
-     * @param  bool   $autoroute
+     * @param array $list       Menu items    
+     * @param bool  $stacked    Should it be stacked
+     * @param array $attributes attributes to apply the nav
+     * @param bool  $autoroute  Autoroute links
+     *
      * @return string
      */
     public static function unstyled($list, $stacked = false, $attributes = array(), $autoroute = true)
@@ -91,10 +97,11 @@ class Navigation
     /**
      * Creates a Bootstrap Tabs menu.
      *
-     * @param  array  $list
-     * @param  bool   $stacked
-     * @param  array  $attributes
-     * @param  bool   $autoroute
+     * @param array $list       Menu items    
+     * @param bool  $stacked    Should it be stacked
+     * @param array $attributes attributes to apply the nav
+     * @param bool  $autoroute  Autoroute links
+     *
      * @return string
      */
     public static function tabs($list, $stacked = false, $attributes = array(), $autoroute = true)
@@ -105,10 +112,11 @@ class Navigation
     /**
      * Creates a Bootstrap Pills menu.
      *
-     * @param  array  $list
-     * @param  bool   $stacked
-     * @param  array  $attributes
-     * @param  bool   $autoroute
+     * @param array $list       Menu items    
+     * @param bool  $stacked    Should it be stacked
+     * @param array $attributes attributes to apply the nav
+     * @param bool  $autoroute  Autoroute links
+     *
      * @return string
      */
     public static function pills($list, $stacked = false, $attributes = array(), $autoroute = true)
@@ -119,10 +127,11 @@ class Navigation
     /**
      * Creates a Bootstrap Lists menu.
      *
-     * @param  array  $list
-     * @param  bool   $stacked
-     * @param  array  $attributes
-     * @param  bool   $autoroute
+     * @param array $list       Menu items    
+     * @param bool  $stacked    Should it be stacked
+     * @param array $attributes attributes to apply the nav
+     * @param bool  $autoroute  Autoroute links
+     *
      * @return string
      */
     public static function lists($list, $stacked = false, $attributes = array(), $autoroute = true)
@@ -133,9 +142,10 @@ class Navigation
     /**
      * Creates a Bootstrap Dropdown menu.
      *
-     * @param  array  $list
-     * @param  array  $attributes
-     * @param  bool   $autoroute
+     * @param array $list       Menu items    
+     * @param array $attributes attributes to apply the nav
+     * @param bool  $autoroute  Autoroute links
+     *
      * @return string
      */
     public static function dropdown($list, $attributes = array(), $autoroute = true)
@@ -148,9 +158,10 @@ class Navigation
     /**
      * Creates the class element for the menu item.
      *
-     * @param  array  $item
-     * @param  bool   $with_class
-     * @param  bool   $autoroute
+     * @param array $item       item array
+     * @param bool  $with_class with class
+     * @param bool  $autoroute  Autoroute links
+     *
      * @return string
      */
     protected static function getClasses($item, $with_class = true, $autoroute = true)
@@ -173,11 +184,12 @@ class Navigation
     /**
      * Generates a link without doing a getting the full url from Laravel
      *
-     * @param  string $url
-     * @param  string $title
-     * @param  array  $attributes
-     * @param  bool   $encode
-     * @param  string $icon
+     * @param string $url        Url for the link
+     * @param string $title      Title for thel ink
+     * @param array  $attributes Attributes to apply to the link
+     * @param bool   $encode     Encode title
+     * @param string $icon       Icon for the link
+     *
      * @return string
      */
     protected static function link($url, $title, $attributes = array(), $encode = true, $icon = null)
@@ -187,7 +199,7 @@ class Navigation
         }
 
         if (isset($icon)) {
-            $title = '<i class="icon-'.$icon.'"></i>'.$title;
+            $title = '<i class="icon-'.$icon.'"></i> '.$title;
         }
 
         return '<a href="'.$url.'"'.HTML::attributes($attributes).'>'.$title.'</a>';

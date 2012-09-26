@@ -6,11 +6,15 @@ use \HTML;
 /**
  * Progress for creating Twitter Bootstrap style progress bar.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Progress
 {
@@ -24,6 +28,15 @@ class Progress
     const SUCCESS = 'progress-success';
     const WARNING = 'progress-warning';
 
+    /**
+     * Adds a bar to the current progress bar
+     *
+     * @param integer $amounts    A progress amount
+     * @param string  $type       Type of progress bar
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string 
+     */
     protected static function show($amounts, $type = Progress::NORMAL, $attributes = array())
     {
         if(is_array($amounts)) $type = Progress::NORMAL;
@@ -42,9 +55,10 @@ class Progress
     /**
      * Adds a bar to the current progress bar
      *
-     * @param  integer $amount A progress amount
-     * @param  string  $style  A class to use to style the bar
-     * @return string  A Bootstrap bar
+     * @param integer $amount A progress amount
+     * @param string  $style  A class to use to style the bar
+     *
+     * @return string 
      */
     protected static function bar($amount, $style = null)
     {
@@ -57,9 +71,10 @@ class Progress
     /**
      * Create a new Normal Progress Bar.
      *
-     * @param  string   $amount
-     * @param  array  $attributes
-     * @return Progress
+     * @param integer $amount     Amount filled
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string
      */
     public static function normal($amount, $attributes = array())
     {
@@ -69,9 +84,10 @@ class Progress
     /**
      * Create a new Success Progress Bar.
      *
-     * @param  string   $amount
-     * @param  array  $attributes
-     * @return Progress
+     * @param integer $amount     Amount filled
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string
      */
     public static function success($amount, $attributes = array())
     {
@@ -81,9 +97,10 @@ class Progress
     /**
      * Create a new Info Progress Bar.
      *
-     * @param  string   $amount
-     * @param  array    $attributes
-     * @return Progress
+     * @param integer $amount     Amount filled
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string
      */
     public static function info($amount, $attributes = array())
     {
@@ -93,9 +110,10 @@ class Progress
     /**
      * Create a new Warning Progress Bar.
      *
-     * @param  string   $amount
-     * @param  array    $attributes
-     * @return Progress
+     * @param integer $amount     Amount filled
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string
      */
     public static function warning($amount, $attributes = array())
     {
@@ -105,9 +123,10 @@ class Progress
     /**
      * Create a new Danger Progress Bar.
      *
-     * @param  string   $amount
-     * @param  array    $attributes
-     * @return Progress
+     * @param integer $amount     Amount filled
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string
      */
     public static function danger($amount, $attributes = array())
     {
@@ -118,9 +137,10 @@ class Progress
      * Automatically computes the progress bar's class according to the amount
      * Thus 0 giving it a danger class and 100 giving it a success class
      *
-     * @param  integer $amount     An amount
-     * @param  array   $attributes Additional attributes to give the progress bar
-     * @return string             A Progress bar
+     * @param integer $amount     Amount filled
+     * @param array   $attributes array of attributes for progress bar
+     *
+     * @return string
      */
     public static function automatic($amount, $attributes = array())
     {
@@ -134,8 +154,9 @@ class Progress
      * Checks call to see if we can create a progress bar from a magic call (for you wizards).
      * normal_striped_active, info_striped, etc...
      *
-     * @param  string $method
-     * @param  array  $parameters
+     * @param string $method     Method name
+     * @param array  $parameters Method parameters
+     *
      * @return mixed
     */
     public static function __callStatic($method, $parameters)
@@ -158,11 +179,11 @@ class Progress
                 }
             }
 
-            if (in_array ('striped', $method_array)) {
+            if (in_array('striped', $method_array)) {
                 $attributes = Helpers::add_class($attributes, 'progress-striped');
             }
 
-            if (in_array ('active', $method_array)) {
+            if (in_array('active', $method_array)) {
                 $attributes = Helpers::add_class($attributes, 'active');
             }
 

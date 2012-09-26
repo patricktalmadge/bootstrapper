@@ -10,6 +10,7 @@ use \HTML;
  * @package    Boostrapper
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -104,9 +105,10 @@ class DropdownButton
     /**
      * Creates a new button dropdown
      *
-     * @param string $label Its label
-     * @param array  $links Its links
-     * @param string $type  Its classes
+     * @param string $label      Label Text
+     * @param array  $links      dropdown links
+     * @param array  $attributes Attributes to apply the dropdown itself
+     * @param string $type       Type of dropdown
      */
     public function __construct($label, $links, $attributes, $type = null)
     {
@@ -122,8 +124,10 @@ class DropdownButton
     /**
      * Dynamically set an attribute
      *
-     * @param  string $attribute The attribute to set
-     * @param  string $value     Its value
+     * @param string $attribute Attributes to apply the dropdown itself
+     * @param string $value     Value of dropdown
+     *
+     * @return object           dropdownbutton instance
      */
     public function __call($attribute, $value)
     {
@@ -168,7 +172,9 @@ class DropdownButton
     /**
      * Pull the dropdown's links to the right
      *
-     * @param  boolean $pullRight
+     * @param boolean $pullRight Pull menu to the right
+     *
+     * @return object            dropdownbutton instance
      */
     public function pull_right($pullRight = true)
     {
@@ -180,7 +186,9 @@ class DropdownButton
     /**
      * Drop the menu up or down
      *
-     * @param  boolean $dropup
+     * @param boolean $dropup Make menu go up
+     *
+     * @return object          dropdownbutton instance
      */
     public function dropup($dropup = true)
     {
@@ -192,7 +200,9 @@ class DropdownButton
     /**
      * Auto route links or not
      *
-     * @param  boolean $autoroute
+     * @param boolean $autoroute Should auto route links
+     *
+     * @return object             dropdownbutton instance
      */
     public function autoroute($autoroute = true)
     {

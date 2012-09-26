@@ -6,11 +6,15 @@ use \HTML;
 /**
  * Labels for creating Twitter Bootstrap style Labels.
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Labels
 {
@@ -28,10 +32,11 @@ class Labels
     /**
      * Create a new Label
      *
-     * @param  string $type
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $type       Label type
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     protected static function show($type = Labels::NORMAL, $message, $attributes = array())
     {
@@ -43,9 +48,10 @@ class Labels
     /**
      * Create a new Normal Label
      *
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function normal($message, $attributes = array())
     {
@@ -55,9 +61,10 @@ class Labels
     /**
      * Create a new Success Label
      *
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function success($message, $attributes = array())
     {
@@ -67,9 +74,10 @@ class Labels
     /**
      * Create a new Warning Label
      *
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function warning($message, $attributes = array())
     {
@@ -79,9 +87,10 @@ class Labels
     /**
      * Create a new Important Label
      *
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function important($message, $attributes = array())
     {
@@ -91,9 +100,10 @@ class Labels
     /**
      * Create a new Info Labels instance
      *
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function info($message, $attributes = array())
     {
@@ -103,9 +113,10 @@ class Labels
     /**
      * Create a new Inverse Label
      *
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function inverse($message, $attributes = array())
     {
@@ -116,10 +127,11 @@ class Labels
      * Create a new custom Label
      * This assumes you have created the appropriate css class for the label type.
      *
-     * @param  string $type
-     * @param  string $message
-     * @param  array  $attributes
-     * @return string Label HTML
+     * @param string $type       Label type
+     * @param string $message    Label text
+     * @param array  $attributes Attributes to apply the label itself
+     *
+     * @return string            Label HTML
      */
     public static function custom($type, $message, $attributes = array())
     {

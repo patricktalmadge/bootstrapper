@@ -8,6 +8,7 @@ namespace Bootstrapper;
  * @package    Boostrapper
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *

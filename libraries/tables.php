@@ -6,11 +6,15 @@ use \HTML;
 /**
  * Small helper class for creating tables with Bootstrap
  *
- * @package     Bundles
- * @subpackage  Twitter
- * @author      Patrick Talmadge - Follow @patricktalmadge
+ * @category   HTML/UI
+ * @package    Boostrapper
+ * @subpackage Twitter
+ * @author     Patrick Talmadge - <ptalmadge@gmail.com>
+ * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @license    MIT License <http://www.opensource.org/licenses/mit>
+ * @link       http://laravelbootstrapper.phpfogapp.com/
  *
- * @see http://twitter.github.com/bootstrap/
+ * @see        http://twitter.github.com/bootstrap/
  */
 class Tables
 {
@@ -19,8 +23,9 @@ class Tables
     /**
      * Creates a table opening tag
      *
-     * @param  array  $attributes An array of attributes
-     * @return string             A table opening tag
+     * @param array $attributes An array of attributes
+     *
+     * @return string           A table opening tag
      */
     public static function table($attributes = array())
     {
@@ -41,6 +46,11 @@ class Tables
 
     /**
      * Render a full_row with <th> tags
+     *
+     * @param string $content    The content to display
+     * @param array  $attributes An array of attributes
+     *
+     * @return string           A table opening tag
      */
     public static function full_header($content, $attributes = array())
     {
@@ -50,9 +60,11 @@ class Tables
     /**
      * Creates a table-wide row to display content
      *
-     * @param  string $content    The content to display
-     * @param  array  $attributes The rows's attributes
-     * @return string             A single-column row spanning all table
+     * @param string $content    The content to display
+     * @param array  $attributes The rows's attributes
+     * @param bool   $asHeaders  Draw row as header
+     *
+     * @return string            A single-column row spanning all table
      */
     public static function full_row($content, $attributes = array(), $asHeaders = false)
     {
@@ -69,9 +81,10 @@ class Tables
     /**
      * Display an array of data
      *
-     * @param  mixed  $source        Can be an array of data or models
-     * @param  array  $ignore        An array of columns to ignore
-     * @param  mixed  $supplementary An array of supplementary columns to append
+     * @param mixed $source        Can be an array of data or models
+     * @param array $ignore        An array of columns to ignore
+     * @param mixed $supplementary An array of supplementary columns to append
+     *
      * @return string                A table body
      */
     public static function display($source, $ignore = array(), $supplementary = array())
@@ -93,7 +106,7 @@ class Tables
 
                 // Check for replacing columns
                 $replace = array_get($supplementary, $column);
-                if($replace) {
+                if ($replace) {
                     if(is_callable($replace)) $value = $replace($row);
                     $value = static::replace_keywords($value, $data);
                 }
@@ -122,7 +135,6 @@ class Tables
     /**
      * Creates a table <thead> tag
      *
-     * @param  array  $headers An array of thead rows
      * @return string          A <thead> tag prefilled with rows
      */
     public static function headers()
@@ -155,8 +167,9 @@ class Tables
     /**
      * Replace keywords with data in a string
      *
-     * @param  string $string A string with Laravel patterns (:key)
-     * @param  array  $data   An array of data to fetch from
+     * @param string $string A string with Laravel patterns (:key)
+     * @param array  $data   An array of data to fetch from
+     *
      * @return string         The modified string
      */
     private static function replace_keywords($string, $data)
@@ -178,8 +191,9 @@ class Tables
      * Checks call to see if we can create a table from a magic call (for you wizards).
      * hover_striped, bordered_condensed, etc.
      *
-     * @param  string  $method
-     * @param  array   $parameters
+     * @param string $method     Method name
+     * @param array  $parameters Method parameters
+     *
      * @return mixed
     */
     public static function __callStatic($method, $parameters)
@@ -187,7 +201,8 @@ class Tables
         // Filter table classes
         $method_array = array_intersect(
             explode('_', strtolower($method)),
-            array('striped', 'bordered', 'hover', 'condensed'));
+            array('striped', 'bordered', 'hover', 'condensed')
+        );
 
         // Define base function
         $function = 'table';
