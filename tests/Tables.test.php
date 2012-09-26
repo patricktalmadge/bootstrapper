@@ -3,6 +3,9 @@ use Bootstrapper\Tables;
 
 class TablesTest extends BootstrapperWrapper
 {
+
+  // Matchers ------------------------------------------------------ /
+
   private $matcher = array(
     'tag' => 'table',
     'attributes' => array(
@@ -27,6 +30,20 @@ class TablesTest extends BootstrapperWrapper
     );
   }
 
+  private $body = array(array('foo' => 'foo', 'bar' => 'bar', 'kal' => 'kal'));
+
+  public function setUp()
+  {
+    Tables::open();
+  }
+
+  public function tearDown()
+  {
+    Tables::close();
+  }
+
+  // Tests --------------------------------------------------------- /
+
   public function testOpen()
   {
     $table = Tables::open($this->testAttributes);
@@ -36,7 +53,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testStaticOpen()
   {
-    $table = Tables::bordered_condensed_foobar($this->testAttributes);
+    $table = Tables::bordered_condensed_foobar_open($this->testAttributes);
     $matcher = $this->matcher;
     $matcher['attributes']['class'] = 'foo table-bordered table-condensed table';
 
@@ -52,7 +69,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testHeadersSimple()
   {
-    $headers = Tables::headers(array('foo', 'bar', 'tel', 'sub'));
+    $headers = Tables::headers('foo', 'bar', 'tel', 'sub');
     $headers = str_replace(PHP_EOL, null, $headers);
 
     $matcher =
@@ -98,5 +115,47 @@ class TablesTest extends BootstrapperWrapper
     $matcher = $this->matchFull(true);
 
     $this->assertTag($matcher, $fullRow);
+  }
+
+  public function testBody()
+  {
+    $body = Tables::body($this->body)->__toString();
+    $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-bar">bar</td><td class="column-kal">kal</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
+  public function testIgnore()
+  {
+    $body = Tables::body($this->body)->ignore('foo', 'bar')->__toString();
+    $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
+  public function testDynamicColumn()
+  {
+    $body = Tables::body(array(array('foo' => 'bar')))->fur('var')->__toString();
+    $matcher = '<tbody><tr><td class="column-foo">bar</td><td class="column-fur">var</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
+  public function testReplaceColumns()
+  {
+    $body = Tables::body(array(array('foo' => 'foo')))->foo('bar')->__toString();
+    $matcher = '<tbody><tr><td class="column-foo">bar</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
+  public function testAlwaysIgnore()
+  {
+    Tables::always_ignore('foo', 'bar');
+
+    $body = Tables::body($this->body)->__toString();
+    $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
   }
 }
