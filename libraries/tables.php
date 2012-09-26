@@ -123,8 +123,14 @@ class Tables
                 // Calculate closures
                 if(is_callable($column)) $column = $column($row);
 
+                // Parse and decode content
                 $column = static::replace_keywords($column, $data);
-                $html .= '<td class="column-'.$class.'">' .$column. '</td>';
+                $column = HTML::decode($column);
+
+                // Wrap content in a <td> tag if necessary
+                if(!starts_with($column, '<td')) {
+                    $html .= '<td class="column-'.$class.'">' .$column. '</td>';
+                }
             }
             $html .= '</tr>';
         }
