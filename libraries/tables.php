@@ -241,7 +241,7 @@ class Tables
      */
     private function ignore()
     {
-        $this->ignore = func_get_args();
+        $this->ignore = array_merge(static::$defaultIgnore, func_get_args());
 
         return $this;
     }

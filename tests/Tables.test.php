@@ -158,4 +158,14 @@ class TablesTest extends BootstrapperWrapper
 
     $this->assertEquals($matcher, $body);
   }
+
+  public function testAlwaysIgnoreThenManuallyIgnore()
+  {
+    Tables::always_ignore('foo');
+
+    $body = Tables::body($this->body)->ignore('bar')->__toString();
+    $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
 }
