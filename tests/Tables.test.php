@@ -149,6 +149,14 @@ class TablesTest extends BootstrapperWrapper
     $this->assertEquals($matcher, $body);
   }
 
+  public function testUnderscoreReplacement()
+  {
+    $body = Tables::body(array(array('foo_bar' => 'foo')))->foo_bar('bar')->bar_foo('foo')->__toString();
+    $matcher = '<tbody><tr><td class="column-foo_bar">bar</td><td class="column-bar foo">foo</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
   public function testAlwaysIgnore()
   {
     Tables::always_ignore('foo', 'bar');

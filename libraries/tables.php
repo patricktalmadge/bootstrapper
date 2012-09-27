@@ -149,8 +149,14 @@ class Tables
      */
     public function __set($column, $content)
     {
-        // Replace underscores by spaces
-        $column = str_replace('_', ' ', $column);
+        // List known keys
+        $columns = array_get($this->tbody, key($this->tbody));
+        $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
+
+        // If we're not replacing something, we're creating, assume classes
+        if(!in_array($column, $columns)) {
+            $column = str_replace('_', ' ', $column);
+        }
 
         // Store Closure/content
         $this->columns[$column] = $content;
