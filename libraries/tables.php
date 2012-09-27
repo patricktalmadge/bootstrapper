@@ -57,6 +57,12 @@ class Tables
     private $ignore = array();
 
     /**
+     * The order in which the columns are to be printed out
+     * @var array
+     */
+    private $order = array();
+
+    /**
      * Columns to append/replace in the current body
      * @var array
      */
@@ -184,8 +190,8 @@ class Tables
     /**
      * Creates a table opening tag
      *
-     * @param array $attributes An array of attributes
-     * @return string           A table opening tag
+     * @param  array $attributes An array of attributes
+     * @return string            A table opening tag
      */
     private function open()
     {
@@ -195,7 +201,7 @@ class Tables
     /**
      * Creates a table <thead> tag
      *
-     * @return string          A <thead> tag prefilled with rows
+     * @return string A <thead> tag prefilled with rows
      */
     private function headers()
     {
@@ -252,6 +258,21 @@ class Tables
         return $this;
     }
 
+    /**
+     * Iterate the columns in a certain order in the body to come
+     */
+    private function order()
+    {
+        $this->order = func_get_args();
+
+        return $this;
+    }
+
+    /**
+     * Outputs the current body in memory
+     *
+     * @return string A <tbody> with content
+     */
     public function __toString()
     {
         if(!$this->tbody) return false;
@@ -270,6 +291,11 @@ class Tables
             $columnCount = 0;
             $data = is_object($row) ? $row->attributes : $row;
 
+            // Reorder columns if necessary
+            if($this->order) {
+                $data = array_merge(array_flip($this->order), $data);
+            }
+
             // Read the data row with ignored keys
             foreach ($data as $column => $value) {
                 if(in_array($column, (array) $this->ignore)) continue;
@@ -282,7 +308,7 @@ class Tables
                 }
 
                 $columnCount++;
-                $html .= '<td class="column-' .$column. '">'. $value. '</td>';
+                $html .= static::appendColumn($column, $value);
             }
 
             // Add supplementary columns
@@ -301,9 +327,7 @@ class Tables
 
                 // Wrap content in a <td> tag if necessary
                 $columnCount++;
-                $html .= starts_with($column, '<td')
-                    ? $column
-                    : '<td class="column-'.$class.'">' .$column. '</td>';
+                $html .= static::appendColumn($class, $column);
             }
             $html .= '</tr>';
 
@@ -368,6 +392,20 @@ class Tables
     //////////////////////////////////////////////////////////////////
     ////////////////////////////// HELPERS ///////////////////////////
     //////////////////////////////////////////////////////////////////
+
+    /**
+     * Wrap a supplementary column in a column if it isn't
+     *
+     * @param  string $name  The column's name
+     * @param  string $value Its value
+     * @return string        A <td> tag
+     */
+    private static function appendColumn($name, $value)
+    {
+        return starts_with($value, '<td')
+            ? $value
+            : '<td class="column-'.$name.'">' .$value. '</td>';
+    }
 
     /**
      * Replace keywords with data in a string

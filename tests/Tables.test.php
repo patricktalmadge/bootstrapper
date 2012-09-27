@@ -133,6 +133,22 @@ class TablesTest extends BootstrapperWrapper
     $this->assertEquals($matcher, $body);
   }
 
+  public function testOrder()
+  {
+    $body = Tables::body($this->body)->order('kal', 'bar', 'foo')->__toString();
+    $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td><td class="column-foo">foo</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
+  public function testOrderIgnore()
+  {
+    $body = Tables::body($this->body)->ignore('foo')->order('kal')->__toString();
+    $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td></tr></tbody>';
+
+    $this->assertEquals($matcher, $body);
+  }
+
   public function testDynamicColumn()
   {
     $body = Tables::body(array(array('foo' => 'bar')))->fur('var')->__toString();
