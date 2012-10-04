@@ -39,6 +39,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function tearDown()
   {
+    Tables::defaultType(null);
     Tables::close();
   }
 
@@ -49,6 +50,14 @@ class TablesTest extends BootstrapperWrapper
     $table = Tables::open($this->testAttributes);
 
     $this->assertTag($this->matcher, $table);
+  }
+
+  public function testDefaultOpen()
+  {
+    Tables::defaultType('striped_foo_hover');
+    $table = Tables::open();
+
+    $this->assertEquals('<table class="table-striped table-hover table">', $table);
   }
 
   public function testStaticOpen()

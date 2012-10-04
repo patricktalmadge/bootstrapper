@@ -36,6 +36,12 @@ class Tables
      */
     private static $defaultIgnore = array();
 
+    /**
+     * The default tables type
+     * @var string
+     */
+    private static $defaultType = null;
+
     // Current table ----------------------------------------------- /
 
     /**
@@ -91,9 +97,12 @@ class Tables
     {
         // Opening a table
         if(str_contains($method, 'open') or $method == 'open') {
-            $method   = strtolower($method);
-            $classes  = explode('_', $method);
-            $method = array_pop($classes);
+            $method  = strtolower($method);
+            $classes = explode('_', $method);
+            $method  = array_pop($classes);
+
+            // Fallback to default type if defined
+            if(sizeof($classes) == 0) $classes = explode('_', static::$defaultType);
 
             // Filter table classes
             $classes = array_intersect($classes, static::$classes);
@@ -126,6 +135,16 @@ class Tables
     public static function always_ignore()
     {
         static::$defaultIgnore = func_get_args();
+    }
+
+    /**
+     * Set the default classes of the tables to create
+     *
+     * @param  string $type Default type
+     */
+    public static function defaultType($type)
+    {
+        static::$defaultType = $type;
     }
 
     /**
