@@ -33,6 +33,7 @@ Add the following to the application.php config file:
 'Images'              => 'Bootstrapper\\Images',
 'Labels'              => 'Bootstrapper\\Labels',
 'Lists'               => 'Bootstrapper\\Lists',
+'MediaObject'         => 'Bootstrapper\\MediaObject',
 'Navbar'              => 'Bootstrapper\\Navbar',
 'Navigation'          => 'Bootstrapper\\Navigation',
 'Paginator'           => 'Bootstrapper\\Paginator',
