@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Breadcrumbs;
+use Bootstrapper\Breadcrumb;
 
-class BreadcrumbsTest extends BootstrapperWrapper
+class BreadcrumbTest extends BootstrapperWrapper
 {
   private $crumbs = array(
     'foo' => 'bar',
@@ -30,19 +30,19 @@ class BreadcrumbsTest extends BootstrapperWrapper
 
   public function testCreate()
   {
-    $breadcrumbs = Breadcrumbs::create($this->crumbs, $this->testAttributes);
+    $breadcrumb = Breadcrumb::create($this->crumbs, $this->testAttributes);
 
-    $this->assertTag($this->matcher, $breadcrumbs);
+    $this->assertTag($this->matcher, $breadcrumb);
   }
 
   public function testChangeSeparator()
   {
-    Breadcrumbs::$separator = '__';
-    $breadcrumbs = Breadcrumbs::create($this->crumbs, $this->testAttributes);
+    Breadcrumb::$separator = '__';
+    $breadcrumb = Breadcrumb::create($this->crumbs, $this->testAttributes);
 
     $matcher = $this->matcher;
     $matcher['children']['only']['descendant']['content'] = '__';
 
-    $this->assertTag($matcher, $breadcrumbs);
+    $this->assertTag($matcher, $breadcrumb);
   }
 }

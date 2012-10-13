@@ -4,7 +4,7 @@ namespace Bootstrapper;
 use \HTML;
 
 /**
- * Breadcrumbs for creating Twitter Bootstrap style breadcrumbs.
+ * Breadcrumb for creating Twitter Bootstrap style breadcrumbs.
  *
  * @category   HTML/UI
  * @package    Boostrapper
@@ -16,7 +16,7 @@ use \HTML;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Breadcrumbs
+class Breadcrumb
 {
     /**
      * The values that represnts the Breadcrumb separator.

@@ -21,7 +21,7 @@ Add the following to the application.php config file:
 ```php
 'Alert'               => 'Bootstrapper\\Alert',
 'Badge'               => 'Bootstrapper\\Badge',
-'Breadcrumbs'         => 'Bootstrapper\\Breadcrumbs',
+'Breadcrumb'          => 'Bootstrapper\\Breadcrumb',
 'ButtonGroup'         => 'Bootstrapper\\ButtonGroup',
 'Button'              => 'Bootstrapper\\Button',
 'ButtonToolbar'       => 'Bootstrapper\\ButtonToolbar',
