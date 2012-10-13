@@ -4,7 +4,7 @@ namespace Bootstrapper;
 use \HTML;
 
 /**
- * Badges for creating Twitter Bootstrap style Badges.
+ * Badge for creating Twitter Bootstrap style Badges.
  *
  * @category   HTML/UI
  * @package    Boostrapper
@@ -16,10 +16,10 @@ use \HTML;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Badges
+class Badge
 {
     /**
-     * Badges colors
+     * Badge colors
      * @var constant
      */
     const NORMAL    = '';
@@ -55,7 +55,7 @@ class Badges
      */
     public static function normal($message, $attributes = array())
     {
-        return static::show(Badges::NORMAL, $message, $attributes);
+        return static::show(Badge::NORMAL, $message, $attributes);
     }
 
     /**
@@ -68,7 +68,7 @@ class Badges
      */
     public static function success($message, $attributes = array())
     {
-        return static::show(Badges::SUCCESS, $message, $attributes);
+        return static::show(Badge::SUCCESS, $message, $attributes);
     }
 
     /**
@@ -81,7 +81,7 @@ class Badges
      */
     public static function warning($message, $attributes = array())
     {
-        return static::show(Badges::WARNING, $message, $attributes);
+        return static::show(Badge::WARNING, $message, $attributes);
     }
 
     /**
@@ -94,7 +94,7 @@ class Badges
      */
     public static function important($message, $attributes = array())
     {
-        return static::show(Badges::IMPORTANT, $message, $attributes);
+        return static::show(Badge::IMPORTANT, $message, $attributes);
     }
 
     /**
@@ -107,7 +107,7 @@ class Badges
      */
     public static function info($message, $attributes = array())
     {
-        return static::show(Badges::INFO, $message, $attributes);
+        return static::show(Badge::INFO, $message, $attributes);
     }
 
     /**
@@ -120,7 +120,7 @@ class Badges
      */
     public static function inverse($message, $attributes = array())
     {
-        return static::show(Badges::INVERSE, $message, $attributes);
+        return static::show(Badge::INVERSE, $message, $attributes);
     }
 
     /**

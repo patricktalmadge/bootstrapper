@@ -4,7 +4,7 @@ namespace Bootstrapper;
 use \HTML;
 
 /**
- * Buttons methods for creating Twitter Bootstrap buttons.
+ * Button methods for creating Twitter Bootstrap buttons.
  *
  * @category   HTML/UI
  * @package    Boostrapper
@@ -16,11 +16,11 @@ use \HTML;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Buttons
+class Button
 {
     /**
-     * The current instance of Buttons being used
-     * @var Buttons
+     * The current instance of Button being used
+     * @var Button
      */
     private static $instance = null;
 
@@ -43,7 +43,7 @@ class Buttons
     private static function storeButton($type, $value, $attributes, $hasDropdown)
     {
         // If we don't have an instance stored, create a new one
-        $currentInstance = self::$instance ?: new Buttons;
+        $currentInstance = self::$instance ?: new Button;
 
         // Define new button
         $currentInstance->currentButton = array(
@@ -133,8 +133,8 @@ class Buttons
      */
     public function with_icon($icon, $attributes = array(), $prependIcon = true)
     {
-        // Call Icons to create the icon
-        $icon = Icons::make($icon);
+        // Call Icon to create the icon
+        $icon = Icon::make($icon);
 
         // If there was no text, just use the icon, else put a space between
         $value = $this->currentButton['value'];

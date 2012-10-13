@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Buttons;
+use Bootstrapper\Button;
 
-class ButtonsTest extends BootstrapperWrapper
+class ButtonTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
@@ -75,7 +75,7 @@ class ButtonsTest extends BootstrapperWrapper
    */
   public function testButton($class)
   {
-    $button = Buttons::$class('foo', $this->testAttributes)->__toString();
+    $button = Button::$class('foo', $this->testAttributes)->__toString();
     $matcher = $this->createMatcher($class);
 
     $this->assertTag($matcher, $button);
@@ -89,7 +89,7 @@ class ButtonsTest extends BootstrapperWrapper
     if($class == 'normal') $class = 'link';
     $method = $class.'_link';
 
-    $button = Buttons::$method('#', 'foo', $this->testAttributes)->__toString();
+    $button = Button::$method('#', 'foo', $this->testAttributes)->__toString();
     $matcher = $this->createLink($class);
 
     $this->assertTag($matcher, $button);
@@ -103,7 +103,7 @@ class ButtonsTest extends BootstrapperWrapper
     if($class == 'normal') $class = 'submit';
     $method = $class.'_submit';
 
-    $button = Buttons::$method('foo', $this->testAttributes)->__toString();
+    $button = Button::$method('foo', $this->testAttributes)->__toString();
     $matcher = $this->createSubmit($class);
 
     $this->assertTag($matcher, $button);
@@ -117,7 +117,7 @@ class ButtonsTest extends BootstrapperWrapper
     if($class == 'normal') $class = 'reset';
     $method = $class.'_reset';
 
-    $button = Buttons::$method('foo', $this->testAttributes)->__toString();
+    $button = Button::$method('foo', $this->testAttributes)->__toString();
     $matcher = $this->createReset($class);
 
     $this->assertTag($matcher, $button);
@@ -125,8 +125,8 @@ class ButtonsTest extends BootstrapperWrapper
 
   public function testWithIcon()
   {
-    $button1 = Buttons::info('foo', $this->testAttributes)->with_icon('folder_open')->__toString();
-    $button2 = Buttons::info('foo', $this->testAttributes)->prepend_with_icon('folder_open')->__toString();
+    $button1 = Button::info('foo', $this->testAttributes)->with_icon('folder_open')->__toString();
+    $button2 = Button::info('foo', $this->testAttributes)->prepend_with_icon('folder_open')->__toString();
     $matcher = $this->createMatcher('info');
     $matcher['child'] = $this->createIcon();
 
@@ -136,7 +136,7 @@ class ButtonsTest extends BootstrapperWrapper
 
   public function testWithIconAppended()
   {
-    $button = Buttons::info('foo', $this->testAttributes)->append_with_icon('folder_open')->__toString();
+    $button = Button::info('foo', $this->testAttributes)->append_with_icon('folder_open')->__toString();
     $matcher = $this->createMatcher('info');
     $matcher['child'] = $this->createIcon();
     $exact =
@@ -150,7 +150,7 @@ class ButtonsTest extends BootstrapperWrapper
 
   public function testDropDown()
   {
-    $button = Buttons::info('foo', $this->testAttributes, true)->__toString();
+    $button = Button::info('foo', $this->testAttributes, true)->__toString();
     $matcher = $this->createMatcher('info');
     $exact =
       '<button class="foo btn-info btn dropdown-toggle" data-foo="bar" type="button" data-toggle="dropdown">'.
@@ -163,7 +163,7 @@ class ButtonsTest extends BootstrapperWrapper
 
   public function testMultipleButtons()
   {
-    $buttons = Buttons::info('foo').Buttons::success('foo');
+    $buttons = Button::info('foo').Button::success('foo');
     $matcher = '<button class="btn-info btn" type="button">foo</button><button class="btn-success btn" type="button">foo</button>';
 
     $this->assertEquals($matcher, $buttons);

@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Icons;
+use Bootstrapper\Icon;
 
-class IconsTest extends BootstrapperWrapper
+class IconTest extends BootstrapperWrapper
 {
   /**
    * The icon we'll test with (the most complex one)
@@ -34,35 +34,35 @@ class IconsTest extends BootstrapperWrapper
 
   public function testMake()
   {
-    $icon = Icons::make($this->testIcon);
+    $icon = Icon::make($this->testIcon);
 
     $this->assertTag($this->baseIcon, $icon);
   }
 
   public function testMakeWithAttributes()
   {
-    $icon = Icons::make($this->testIcon, $this->testAttributes);
+    $icon = Icon::make($this->testIcon, $this->testAttributes);
 
     $this->assertTag($this->baseIconWithAttributes, $icon);
   }
 
   public function testStatic()
   {
-    $icon = Icons::folder_open();
+    $icon = Icon::folder_open();
 
     $this->assertTag($this->baseIcon, $icon);
   }
 
   public function testStaticWithAttributes()
   {
-    $icon = Icons::folder_open($this->testAttributes);
+    $icon = Icon::folder_open($this->testAttributes);
 
     $this->assertTag($this->baseIconWithAttributes, $icon);
   }
 
   public function testStaticWhiteWithAttributes()
   {
-    $icon = Icons::white_folder_open($this->testAttributes);
+    $icon = Icon::white_folder_open($this->testAttributes);
 
     $matcher = $this->baseIcon;
     $matcher['attributes']['class']   .= ' icon-white';

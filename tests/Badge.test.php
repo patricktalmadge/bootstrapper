@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Badges;
+use Bootstrapper\Badge;
 
-class BadgesTest extends BootstrapperWrapper
+class BadgeTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
@@ -34,7 +34,7 @@ class BadgesTest extends BootstrapperWrapper
 
   public function testCustom()
   {
-    $badge = Badges::custom('success', 'foo', array('class' => 'bar'));
+    $badge = Badge::custom('success', 'foo', array('class' => 'bar'));
     $match = $this->createMatcher('success');
 
     $this->assertTag($match, $badge);
@@ -45,7 +45,7 @@ class BadgesTest extends BootstrapperWrapper
    */
   public function testStatic($class)
   {
-    $badge = Badges::$class('foo', array('class' => 'bar'));
+    $badge = Badge::$class('foo', array('class' => 'bar'));
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $badge);

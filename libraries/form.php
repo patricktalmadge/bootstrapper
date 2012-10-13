@@ -668,7 +668,7 @@ class Form extends \Laravel\Form
      */
     public static function submit($value = null, $attributes = array(), $hasDropdown = false)
     {
-        return Buttons::submit($value, $attributes, $hasDropdown);
+        return Button::submit($value, $attributes, $hasDropdown);
     }
 
     /**
@@ -683,7 +683,7 @@ class Form extends \Laravel\Form
      */
     public static function reset($value = null, $attributes = array(), $hasDropdown = false)
     {
-        return Buttons::reset($value, $attributes, $hasDropdown);
+        return Button::reset($value, $attributes, $hasDropdown);
     }
 
     /**
@@ -698,7 +698,7 @@ class Form extends \Laravel\Form
      */
     public static function button($value = null, $attributes = array(), $hasDropdown = false)
     {
-        return Buttons::normal($value, $attributes, $hasDropdown);
+        return Button::normal($value, $attributes, $hasDropdown);
     }
 
     /**
