@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Labels;
+use Bootstrapper\Label;
 
-class LabelsTest extends BootstrapperWrapper
+class LabelTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
@@ -34,7 +34,7 @@ class LabelsTest extends BootstrapperWrapper
 
   public function testCustom()
   {
-    $label = Labels::custom('success', 'foo', $this->testAttributes);
+    $label = Label::custom('success', 'foo', $this->testAttributes);
     $match = $this->createMatcher('success');
 
     $this->assertTag($match, $label);
@@ -45,7 +45,7 @@ class LabelsTest extends BootstrapperWrapper
    */
   public function testStatic($class)
   {
-    $label = Labels::$class('foo', $this->testAttributes);
+    $label = Label::$class('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $label);

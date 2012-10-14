@@ -4,7 +4,7 @@ namespace Bootstrapper;
 use \HTML;
 
 /**
- * Labels for creating Twitter Bootstrap style Labels.
+ * Label for creating Twitter Bootstrap style Labels.
  *
  * @category   HTML/UI
  * @package    Boostrapper
@@ -16,10 +16,10 @@ use \HTML;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Labels
+class Label
 {
     /**
-     * Labels colors
+     * Label colors
      * @var constant
      */
     const NORMAL    = '';
@@ -38,7 +38,7 @@ class Labels
      *
      * @return string            Label HTML
      */
-    protected static function show($type = Labels::NORMAL, $message, $attributes = array())
+    protected static function show($type = Label::NORMAL, $message, $attributes = array())
     {
         $attributes = Helpers::add_class($attributes, 'label '.$type);
 
@@ -55,7 +55,7 @@ class Labels
      */
     public static function normal($message, $attributes = array())
     {
-        return static::show(Labels::NORMAL, $message, $attributes);
+        return static::show(Label::NORMAL, $message, $attributes);
     }
 
     /**
@@ -68,7 +68,7 @@ class Labels
      */
     public static function success($message, $attributes = array())
     {
-        return static::show(Labels::SUCCESS, $message, $attributes);
+        return static::show(Label::SUCCESS, $message, $attributes);
     }
 
     /**
@@ -81,7 +81,7 @@ class Labels
      */
     public static function warning($message, $attributes = array())
     {
-        return static::show(Labels::WARNING, $message, $attributes);
+        return static::show(Label::WARNING, $message, $attributes);
     }
 
     /**
@@ -94,11 +94,11 @@ class Labels
      */
     public static function important($message, $attributes = array())
     {
-        return static::show(Labels::IMPORTANT, $message, $attributes);
+        return static::show(Label::IMPORTANT, $message, $attributes);
     }
 
     /**
-     * Create a new Info Labels instance
+     * Create a new Info Label instance
      *
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
@@ -107,7 +107,7 @@ class Labels
      */
     public static function info($message, $attributes = array())
     {
-        return static::show(Labels::INFO, $message, $attributes);
+        return static::show(Label::INFO, $message, $attributes);
     }
 
     /**
@@ -120,7 +120,7 @@ class Labels
      */
     public static function inverse($message, $attributes = array())
     {
-        return static::show(Labels::INVERSE, $message, $attributes);
+        return static::show(Label::INVERSE, $message, $attributes);
     }
 
     /**

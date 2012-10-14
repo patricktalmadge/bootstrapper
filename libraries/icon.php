@@ -4,7 +4,7 @@ namespace Bootstrapper;
 use \HTML;
 
 /**
- * Labels for creating Twitter Bootstrap icons.
+ * Icon for creating Twitter Bootstrap icons.
  *
  * @category   HTML/UI
  * @package    Boostrapper

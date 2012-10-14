@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Images;
+use Bootstrapper\Image;
 
-class ImagesTest extends BootstrapperWrapper
+class ImageTest extends BootstrapperWrapper
 {
   /**
    * URL example
@@ -40,9 +40,9 @@ class ImagesTest extends BootstrapperWrapper
   /**
    * @dataProvider classes
    */
-  public function testImages($class)
+  public function testImage($class)
   {
-    $image = Images::$class($this->url, 'foo', $this->testAttributes);
+    $image = Image::$class($this->url, 'foo', $this->testAttributes);
 
     $this->assertTag($this->createMatcher($class), $image);
   }

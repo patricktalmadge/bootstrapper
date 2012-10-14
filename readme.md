@@ -30,9 +30,9 @@ Add the following to the application.php config file:
 'Form'                => 'Bootstrapper\\Form',
 'Helpers'             => 'Bootstrapper\\Helpers',
 'Icon'                => 'Bootstrapper\\Icon',
-'Images'              => 'Bootstrapper\\Images',
-'Labels'              => 'Bootstrapper\\Labels',
-'Lists'               => 'Bootstrapper\\Lists',
+'Image'               => 'Bootstrapper\\Image',
+'Label'               => 'Bootstrapper\\Label',
+'HTMLList'            => 'Bootstrapper\\HTMLList',
 'MediaObject'         => 'Bootstrapper\\MediaObject',
 'Navbar'              => 'Bootstrapper\\Navbar',
 'Navigation'          => 'Bootstrapper\\Navigation',
@@ -40,7 +40,7 @@ Add the following to the application.php config file:
 'Progress'            => 'Bootstrapper\\Progress',
 'SplitDropdownButton' => 'Bootstrapper\\SplitDropdownButton',
 'Tabbable'            => 'Bootstrapper\\Tabbable',
-'Tables'              => 'Bootstrapper\\Tables',
+'Table'               => 'Bootstrapper\\Table',
 'Typeahead'           => 'Bootstrapper\\Typeahead',
 ```
 

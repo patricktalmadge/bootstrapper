@@ -1,7 +1,7 @@
 <?php
-use Bootstrapper\Tables;
+use Bootstrapper\Table;
 
-class TablesTest extends BootstrapperWrapper
+class TableTest extends BootstrapperWrapper
 {
 
   // Matchers ------------------------------------------------------ /
@@ -34,35 +34,35 @@ class TablesTest extends BootstrapperWrapper
 
   public function setUp()
   {
-    Tables::open();
+    Table::open();
   }
 
   public function tearDown()
   {
-    Tables::defaultType(null);
-    Tables::close();
+    Table::defaultType(null);
+    Table::close();
   }
 
   // Tests --------------------------------------------------------- /
 
   public function testOpen()
   {
-    $table = Tables::open($this->testAttributes);
+    $table = Table::open($this->testAttributes);
 
     $this->assertTag($this->matcher, $table);
   }
 
   public function testDefaultOpen()
   {
-    Tables::defaultType('striped_foo_hover');
-    $table = Tables::open();
+    Table::defaultType('striped_foo_hover');
+    $table = Table::open();
 
     $this->assertEquals('<table class="table-striped table-hover table">', $table);
   }
 
   public function testStaticOpen()
   {
-    $table = Tables::bordered_condensed_foobar_open($this->testAttributes);
+    $table = Table::bordered_condensed_foobar_open($this->testAttributes);
     $matcher = $this->matcher;
     $matcher['attributes']['class'] = 'foo table-bordered table-condensed table';
 
@@ -71,14 +71,14 @@ class TablesTest extends BootstrapperWrapper
 
   public function testClose()
   {
-    $close = Tables::close();
+    $close = Table::close();
 
     $this->assertEquals('</table>', $close);
   }
 
   public function testHeadersSimple()
   {
-    $headers = Tables::headers('foo', 'bar', 'tel', 'sub');
+    $headers = Table::headers('foo', 'bar', 'tel', 'sub');
     $headers = str_replace(PHP_EOL, null, $headers);
 
     $matcher =
@@ -94,7 +94,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testHeadersComplex()
   {
-    $headers = Tables::headers(array(
+    $headers = Table::headers(array(
       'foo' => $this->testAttributes,
       'bar' => $this->testAttributes));
     $headers = str_replace(PHP_EOL, null, $headers);
@@ -110,8 +110,8 @@ class TablesTest extends BootstrapperWrapper
 
   public function testFullRow()
   {
-    Tables::headers('foo', 'foo', 'foo', 'foo');
-    $fullRow = Tables::full_row('foo', $this->testAttributes);
+    Table::headers('foo', 'foo', 'foo', 'foo');
+    $fullRow = Table::full_row('foo', $this->testAttributes);
     $matcher = $this->matchFull();
 
     $this->assertTag($matcher, $fullRow);
@@ -119,8 +119,8 @@ class TablesTest extends BootstrapperWrapper
 
   public function testFullHeader()
   {
-    Tables::headers('foo', 'foo', 'foo', 'foo');
-    $fullRow = Tables::full_header('foo', $this->testAttributes);
+    Table::headers('foo', 'foo', 'foo', 'foo');
+    $fullRow = Table::full_header('foo', $this->testAttributes);
     $matcher = $this->matchFull(true);
 
     $this->assertTag($matcher, $fullRow);
@@ -128,7 +128,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testBody()
   {
-    $body = Tables::body($this->body)->__toString();
+    $body = Table::body($this->body)->__toString();
     $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-bar">bar</td><td class="column-kal">kal</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -136,7 +136,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testIgnore()
   {
-    $body = Tables::body($this->body)->ignore('foo', 'bar')->__toString();
+    $body = Table::body($this->body)->ignore('foo', 'bar')->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -144,7 +144,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testOrder()
   {
-    $body = Tables::body($this->body)->order('kal', 'bar', 'foo')->__toString();
+    $body = Table::body($this->body)->order('kal', 'bar', 'foo')->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td><td class="column-foo">foo</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -152,7 +152,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testOrderIgnore()
   {
-    $body = Tables::body($this->body)->ignore('foo')->order('kal')->__toString();
+    $body = Table::body($this->body)->ignore('foo')->order('kal')->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -160,7 +160,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testDynamicColumn()
   {
-    $body = Tables::body(array(array('foo' => 'bar')))->fur('var')->__toString();
+    $body = Table::body(array(array('foo' => 'bar')))->fur('var')->__toString();
     $matcher = '<tbody><tr><td class="column-foo">bar</td><td class="column-fur">var</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -168,7 +168,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testReplaceColumns()
   {
-    $body = Tables::body(array(array('foo' => 'foo')))->foo('bar')->__toString();
+    $body = Table::body(array(array('foo' => 'foo')))->foo('bar')->__toString();
     $matcher = '<tbody><tr><td class="column-foo">bar</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -176,7 +176,7 @@ class TablesTest extends BootstrapperWrapper
 
   public function testUnderscoreReplacement()
   {
-    $body = Tables::body(array(array('foo_bar' => 'foo')))->foo_bar('bar')->bar_foo('foo')->__toString();
+    $body = Table::body(array(array('foo_bar' => 'foo')))->foo_bar('bar')->bar_foo('foo')->__toString();
     $matcher = '<tbody><tr><td class="column-foo_bar">bar</td><td class="column-bar foo">foo</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -184,9 +184,9 @@ class TablesTest extends BootstrapperWrapper
 
   public function testAlwaysIgnore()
   {
-    Tables::always_ignore('foo', 'bar');
+    Table::always_ignore('foo', 'bar');
 
-    $body = Tables::body($this->body)->__toString();
+    $body = Table::body($this->body)->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
@@ -194,9 +194,9 @@ class TablesTest extends BootstrapperWrapper
 
   public function testAlwaysIgnoreThenManuallyIgnore()
   {
-    Tables::always_ignore('foo');
+    Table::always_ignore('foo');
 
-    $body = Tables::body($this->body)->ignore('bar')->__toString();
+    $body = Table::body($this->body)->ignore('bar')->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
