@@ -23,6 +23,7 @@ class Typography
      * Typography types
      * @var constant
      */
+    const LEAD    = 'lead';
     const MUTED   = 'muted';
     const WARNING = 'text-warning';
     const ERROR   = 'text-error';
@@ -43,6 +44,18 @@ class Typography
         $attributes = Helpers::add_class($attributes, $type);
 
         return '<'.$tag.HTML::attributes($attributes).'>'.$message.'</'.$tag.'>';
+    }
+
+    /* Create a new lead text.
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string     Typography HTML
+     */
+    public static function lead($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::LEAD, $message, $tag, $attributes);
     }
 
     /**

@@ -29,6 +29,7 @@ class TypographyTest extends BootstrapperWrapper
   {
     return array(
       array('muted', 'muted'),
+      array('lead', 'lead'),
       array('warning', 'text-warning'),
       array('error', 'text-error'),
       array('info', 'text-info'),
