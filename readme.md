@@ -32,7 +32,6 @@ Add the following to the application.php config file:
 'Icon'                => 'Bootstrapper\\Icon',
 'Image'               => 'Bootstrapper\\Image',
 'Label'               => 'Bootstrapper\\Label',
-'HTMLList'            => 'Bootstrapper\\HTMLList',
 'MediaObject'         => 'Bootstrapper\\MediaObject',
 'Navbar'              => 'Bootstrapper\\Navbar',
 'Navigation'          => 'Bootstrapper\\Navigation',
