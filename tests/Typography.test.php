@@ -60,4 +60,36 @@ class TypographyTest extends BootstrapperWrapper
 
     $this->assertTag($match, $typography);
   }
+
+
+  private $list = array(
+    'foo' => 'bar',
+    'far' => 'bur'
+  );
+
+  private $listMatcher = array(
+    'tag' => 'dl',
+    'children' => array('count' => 4),
+    'attributes' => array(
+      'class' => 'foo',
+      'data-foo' => 'bar',
+    ),
+  );
+
+  public function testDl()
+  {
+    $dl = Typography::dl($this->list, $this->testAttributes);
+    $matcher = $this->listMatcher;
+
+    $this->assertTag($matcher, $dl);
+  }
+
+  public function testHorizontalDl()
+  {
+    $dl = Typography::horizontal_dl($this->list, $this->testAttributes);
+    $matcher = $this->listMatcher;
+    $matcher['attributes']['class'] = 'foo dl-horizontal';
+
+    $this->assertTag($matcher, $dl);
+  }
 }
