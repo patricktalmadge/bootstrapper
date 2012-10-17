@@ -5,7 +5,7 @@ class MediaObjectTest extends BootstrapperWrapper
 {
   public function createMatcher($image = null, $pull = null, $title = null)
   {
-    if(!$image) $image = '<img src="http://:/bar">';
+    if(!$image) $image = '<img src="http://:/bar" class="media-object">';
     if(!$pull) $pull ='left';
 
     return
@@ -67,7 +67,7 @@ class MediaObjectTest extends BootstrapperWrapper
   {
     $media = MediaObject::create('foo', null, $this->testAttributes)
       ->with_image('bar', 'alt', $this->testAttributes)->__toString();
-    $matcher = $this->createMatcher('<img src="http://:/bar" class="foo" data-foo="bar">');
+    $matcher = $this->createMatcher('<img src="http://:/bar" class="foo media-object" data-foo="bar">');
 
     $this->assertEquals($matcher, $media);
   }
@@ -128,10 +128,10 @@ class MediaObjectTest extends BootstrapperWrapper
       ->__toString();
     $matcher =
     '<div class="foo media" data-foo="bar">'.
-      '<a class="pull-left"><img src="http://:/bar"></a>'.
+      '<a class="pull-left"><img src="http://:/bar" class="media-object"></a>'.
       '<div class="media-body">foo'.
         '<div class="media">'.
-          '<a class="pull-left"><img src="http://:/bar2"></a>'.
+          '<a class="pull-left"><img src="http://:/bar2" class="media-object"></a>'.
           '<div class="media-body"><h1 class="media-heading">foobar</h1>foo2</div>'.
         '</div>'.
       '</div>'.
