@@ -335,7 +335,7 @@ class Table
                 foreach ($this->columns as $class => $column) {
 
                 // Check for replacing columns
-                if(isset($data[$class])) continue;
+                if(array_key_exists($class, $data)) continue;
 
                 // Calculate closures
                 if(is_callable($column)) $column = $column($row);
