@@ -166,10 +166,14 @@ class Navigation
      */
     protected static function getClasses($item, $with_class = true, $autoroute = true)
     {
-
         $class = '';
         if ((isset($item['active']) && $item['active']) || ($autoroute && \URL::current() == $item['url'])) {
             $class = 'active';
+        }
+
+        if (isset($item['disabled']) && $item['disabled']) {
+            $class = $class == '' ? '' : ' ';
+            $class .= 'disabled';
         }
 
         $class .= isset($item['align']) ? ' '.$item['align'] : '';
