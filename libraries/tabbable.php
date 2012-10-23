@@ -19,6 +19,63 @@ use \HTML;
 class Tabbable
 {
     /**
+     * All menu or elements of the current Tabbable
+     *
+     * @var array
+     */
+    private $menu = array();
+
+    /**
+     * The placement of the current Tabble item
+     *
+     * @var enum
+     */
+    private $placement = Tabbable::PLACEMENT_ABOVE;
+
+    /**
+     * The style of the current Tabble item
+     *
+     * @var enum
+     */
+    private $style = Navigation::TYPE_TABS;
+
+    /**
+     * Whether the current Tabble item should stacked or not
+     *
+     * @var boolean
+     */
+    private $stacked = false;
+
+    /**
+     * The current Tabbable's attributes
+     *
+     * @var array
+     */
+    private $attributes = array();
+
+    /**
+     * Set the current Tabbables menu attributes
+     *
+     * @var array
+     */
+    private $menu_attributes = array();
+
+
+    /**
+     * Set the current Tabbables content attributes
+     *
+     * @var array
+     */   
+    private $content_attributes = array();
+
+    /**
+     * Whether the current Tabble item should use automatic routing
+     *
+     * @var boolean
+     */
+    private $autoroute = true;
+
+    /**
      * Tabs placements
      * @var constant
      */
@@ -27,37 +84,144 @@ class Tabbable
     const PLACEMENT_LEFT  = 'tabs-left';
     const PLACEMENT_RIGHT = 'tabs-right';
 
+
     /**
      * Generate a Bootstrap tabbable object.
      *
-     * @param array  $list               Tab items
-     * @param string $placement          The pacement of the tabs
-     * @param string $menu_type          @see Navigation
-     * @param bool   $stacked            Is statcked
-     * @param array  $attributes         Attributes for the tabs
-     * @param array  $menu_attributes    Attributes for the menu
-     * @param array  $content_attributes Attributes for the content
-     * @param bool   $autoroute          Autoroute the links
+     * @param array  $menu       Tab items
+     * @param array  $attributes Attributes for the tabs
      *
      * @return string
      */
-    public static function create($list, $placement = Tabbable::PLACEMENT_ABOVE, $menu_type = Navigation::TYPE_TABS, $stacked = false, $attributes = array(), $menu_attributes = array(), $content_attributes = array(), $autoroute = true)
+    public static function create($menu, $attributes = array())
+    {
+        // Fetch current instance
+        $instance = new Tabbable;
+
+        // Save given parameters
+        $instance->menu       = $menu;
+        $instance->attributes = $attributes;
+
+        return $instance;
+    }
+
+    /**
+     * Set the placement to Tabbable enum
+     *
+     * @param string $placement The new placement value
+     *
+     * @return Tabbable
+     */
+    public function placement($placement)
+    {
+        $this->placement = $placement;
+
+        return $this;
+    }
+
+    /**
+     * Set the menu style to Navigation enum
+     *
+     * @param string $style The new menu style value
+     *
+     * @return Tabbable
+     */
+    public function style($style)
+    {
+        $this->style = $style;
+
+        return $this;
+    }
+
+    /**
+     * Set the stacked value to true or false
+     *
+     * @param boolean $stacked The new stacked value
+     *
+     * @return Tabbable
+     */
+    public function stacked($stacked = true)
+    {
+        $this->stacked = $stacked;
+
+        return $this;
+    }
+
+    /**
+     * Add menus or strings to the current Tabbable
+     *
+     * @param array $attributes An array of attributes to use
+     *
+     * @return Tabbable
+     */
+    public function menu_attributes($attributes = array())
+    {
+        $this->menu_attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Add attributes to the content of the current Tabbable
+     *
+     * @param array $attributes An array of attributes to use
+     *
+     * @return Tabbable
+     */
+    public function content_attributes($attributes)
+    {
+        $this->content_attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Set the autoroute to true or false
+     *
+     * @param boolean $autoroute The new autoroute value
+     *
+     * @return Tabbable
+     */
+    public function autoroute($autoroute)
+    {
+        $this->autoroute = $autoroute;
+
+        return $this;
+    }
+
+    /**
+     * Prints out the current Tabbable in case it doesn't do it automatically
+     *
+     * @return string A Tabbable
+     */
+    public function get()
+    {
+        return static::__toString();
+    }
+
+    /**
+     * Writes the current Tabbable
+     *
+     * @return string A Bootstrap Tabbable
+     */
+    public function __toString()
     {
         $content = array();
-        $list = static::normalize($list, $content);
+        $list = static::normalize($this->menu, $content);
 
-        $tabs = Navigation::menu($list, $menu_type, $stacked, $menu_attributes, $autoroute);
+        $tabs = Navigation::menu($list, $this->style, $this->stacked, $this->menu_attributes, $this->autoroute);
 
         // Tab content container
-        if (!isset($content_attributes['class'])) {
-            $content_attributes['class'] = '';
+        if (!isset($this->content_attributes['class'])) {
+            $this->content_attributes['class'] = 'tab-content';
+        }else{
+            $this->content_attributes['class'] .= ' tab-content';
         }
 
-        $content_attributes['class'] .= ' tab-content';
-        $content = '<div '.HTML::attributes($content_attributes).'>'. implode('', $content).'</div>';
+        $content = '<div '.HTML::attributes($this->content_attributes).'>'. implode('', $content).'</div>';
 
-        $html = '<div class="tabbable '.$placement.'"'.HTML::attributes($attributes).'>';
-        $html .= $placement === self::PLACEMENT_BELOW ? $content.$tabs : $tabs.$content;
+        $html = '<div class="tabbable '.$this->placement.'"'.HTML::attributes($this->attributes).'>';
+        $html .= $this->placement === self::PLACEMENT_BELOW ? $content.$tabs : $tabs.$content;
         $html .= '</div>';
 
         return $html;
@@ -79,10 +243,10 @@ class Tabbable
 
         if (!is_array($items)) return false;
 
-        foreach ($items as $key => $item) {
-            $tab = $item;
-
+        foreach ($items as $key => $tab) {
+            $tab['url'] = '#';
             if (isset($tab['items'])) {
+
                 $tab['items'] = static::normalize($tab['items'], $panes, $i);
             } else {
                 if (!isset($tab['content'])) {
@@ -90,8 +254,12 @@ class Tabbable
                 }
 
                 $tabId = 'tab_'.$id.'_'.$i;
-                $tab['attributes'] = array('data-toggle' => 'tab');
-                $tab['url'] = '#'.$tabId;
+
+                //if not disabled set toggle and url
+                if (!isset($tab['disabled']) || !$tab['disabled']) {
+                    $tab['attributes'] = array('data-toggle' => 'tab');
+                    $tab['url'] .= $tabId;
+                }
 
                 $class = 'tab-pane';
                 if (isset($tab['active']) && $tab['active']) {
@@ -111,6 +279,49 @@ class Tabbable
     }
 
     /**
+     * A simple clean way to create a single link array.
+     *
+     * @param string $label     Link name
+     * @param string $content   HTML content for the Tabbable link
+     * @param bool   $active    Set current tab as active
+     * @param bool   $disabled  Disabled the current tab
+     * @param array  $items     Array of for dropdown items
+     *
+     * @return mixed
+     */
+    public static function link($label, $content, $active = false, $disabled = false, $items = null)
+    {
+        return array('label'=> $label, 'active' => $active, 'content' => $content, 'disabled' => $disabled, 'items' => $items);
+    }
+
+    /**
+     * A simple clean way to create the associative array required for a Tabbable item
+     *
+     * @param array  $links array of links
+     *
+     * @return mixed
+     */
+    public static function links($links)
+    {
+        if($links == null){
+            return $links;
+        }
+
+        $l = array();
+        foreach ($links as $key => $link) {
+
+            $label = array_get($link, 0);
+            $content = array_get($link, 1);
+            $active = array_get($link, 2);
+            $disabled = array_get($link, 3);
+            $items = array_get($link, 4);
+            $l[] = static::link($label, $content, $active, $disabled, static::links($items));
+        }
+        return $l;
+    }
+
+
+    /**
      * Checks call to see if we can create a tabbable from a magic call (for you wizards).
      * tabs_above, tabs_left, pills, lists, etc...
      *
@@ -123,84 +334,46 @@ class Tabbable
     {
         $method_array = explode('_', strtolower($method));
 
-        $list_types = array('tabs', 'pills', 'lists');
-        $type_found = array_intersect($method_array, $list_types);
+        $list_styles = array('tabs', 'pills', 'lists');
+        $style_found = array_intersect($method_array, $list_styles);
 
         // Check for placment
         $list_placement = array('above', 'below', 'left', 'right');
         $placement_found = array_intersect($method_array, $list_placement);
-
-        // If placement not found default to above
-        if (count($placement_found) > 0 ) {
-            $placement = $placement_found[key($placement_found)];
-        } else {
-            $placement = 'above';
-        }
-
-        if (count($type_found) > 0) {
-            $type = $type_found[key($type_found)];
-
-            // Hack to get around dynamic list call
-            if ($type === 'lists') {
-                $type = 'list';
-            }
-
+        
+        if (count($style_found) > 0) {
             // Check list parameters
-            if (!(isset($parameters[0]) && is_array($parameters[0]))) {
+            $menu = array_get($parameters, 0);
+            if (!(isset($menu) && is_array($menu))) {
                 throw new \Exception("Tabbable requires an array of menu items");
             }
 
-            // Set default $stacked and check for a set value
-            $stacked = false;
-            if (isset($parameters[1])) {
-                if (is_bool($parameters[1])) {
-                    $stacked = $parameters[1];
-                } else {
-                    throw new \Exception("Tabbable stacked parameter should be a bool");
-                }
+            $attributes = array_get($parameters, 1);
+            if (isset($attributes) && !is_array($attributes)) {
+                throw new \Exception("Tabbable attributes parameter should be an array of attributes");
             }
 
-            // Set default $attributes and check for a set value
-            $attributes = array();
-            if (isset($parameters[2])) {
-                if (is_array($parameters[2])) {
-                    $attributes = $parameters[2];
-                } else {
-                    throw new \Exception("Tabbable attributes parameter should be an array of attributes");
-                }
-            }
+            $inst = static::create($menu, $attributes);
 
-            // Set default $menu_attributes and check for a set value
-            $menu_attributes = array();
-            if (isset($parameters[3])) {
-                if (is_array($parameters[3])) {
-                    $menu_attributes = $parameters[3];
-                } else {
-                    throw new \Exception("Tabbable menu_attributes paramter should be an array of menu attributes");
-                }
-            }
+            //Set placement
+            if (count($placement_found) > 0 ) {
+                $placement = $placement_found[key($placement_found)];
+                $inst->placement('tabs-'.$placement);
+            } 
 
-            // Set default $content_attributes and check for a set value
-            $content_attributes = array();
-            if (isset($parameters[4])) {
-                if (is_array($parameters[4])) {
-                    $content_attributes = $parameters[4];
-                } else {
-                    throw new \Exception("Tabbable content_attributes paramter should be an array of attributes");
-                }
-            }
+            //Set Style
+            if (count($style_found) > 0 ) {
+                $style = $style_found[key($style_found)];
 
-            // Set default $autoroute and check for a set value
-            $autoroute = true;
-            if (isset($parameters[5])) {
-                if (is_bool($parameters[5])) {
-                    $autoroute = $parameters[5];
-                } else {
-                    throw new \Exception("Tabbable autoroute parameter should be a bool");
+               // Hack to get around dynamic list call
+                if ($style === 'lists') {
+                    $style = 'list';
                 }
-            }
 
-            return static::create($parameters[0], 'tabs-'.$placement, 'nav-'.$type, $stacked, $attributes, $menu_attributes, $content_attributes, $autoroute);
+                $inst->style('nav-'.$style);
+            } 
+
+            return $inst;
         }
 
         throw new \Exception("Method [$method] does not exist.");
