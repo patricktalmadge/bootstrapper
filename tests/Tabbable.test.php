@@ -1,5 +1,5 @@
 <?php
-use Bootstrapper\Button;
+use Bootstrapper\Tabbable;
 
 class TabbableTest extends BootstrapperWrapper
 {
