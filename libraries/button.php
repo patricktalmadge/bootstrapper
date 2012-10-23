@@ -243,7 +243,11 @@ class Button
         }
 
         // Write output according to tag
-        $tag = ($type == 'link') ? 'a' : 'button';
+        $tag = 'button'; 
+        if ($type === 'link') { 
+            $tag = 'a'; 
+            unset($attributes['type']); 
+        } 
 
         return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$caret.'</'.$tag.'>';
     }

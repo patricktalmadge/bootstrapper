@@ -25,7 +25,7 @@ class ButtonTest extends BootstrapperWrapper
     $link = $this->createMatcher($class);
     $link['tag'] = 'a';
     $link['attributes']['href'] = '#';
-
+    unset($link['attributes']['type']);
     return $link;
   }
 
