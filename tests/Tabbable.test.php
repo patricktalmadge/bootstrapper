@@ -5,16 +5,17 @@ class TabbableTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
-  private function createMatcher($position, $childLinkText = null, $childContentText = null)
+  private function createMatcher($position, $type, $childLinkText = null, $childContentText = null)
   {
     $position = 'tabs-'.$position;
+    $type = 'nav-'.$type;
 
     $base = array(
       'tag' => 'div',
       'attributes' => array('class' => 'tabbable '.$position),
       'descendant' => array(
         'tag' => 'ul',
-        'attributes' => array('class' => 'nav nav-tabs'),
+        'attributes' => array('class' => 'nav '.$type),
         'children' => array(
           'count' => 3,
           'only' => array('tag' => 'li'),
@@ -87,7 +88,27 @@ class TabbableTest extends BootstrapperWrapper
     $arr = $this->createLinks();
 
     $tabs = Tabbable::tabs(Tabbable::links($arr));
-    $matcher = $this->createMatcher('above');
+    $matcher = $this->createMatcher('above','tabs');
+
+    $this->assertTag($matcher, $tabs);
+  }
+
+  public function testBasicPills()
+  {
+    $arr = $this->createLinks();
+
+    $tabs = Tabbable::pills(Tabbable::links($arr));
+    $matcher = $this->createMatcher('above','pills');
+
+    $this->assertTag($matcher, $tabs);
+  }
+
+  public function testBasicLists()
+  {
+    $arr = $this->createLinks();
+
+    $tabs = Tabbable::lists(Tabbable::links($arr));
+    $matcher = $this->createMatcher('above','list');
 
     $this->assertTag($matcher, $tabs);
   }
@@ -97,7 +118,7 @@ class TabbableTest extends BootstrapperWrapper
     $arr = $this->createLinks();
 
     $tabs = Tabbable::tabs_left(Tabbable::links($arr));
-    $matcher = $this->createMatcher('left');
+    $matcher = $this->createMatcher('left','tabs');
 
     $this->assertTag($matcher, $tabs);
   }
@@ -107,7 +128,7 @@ class TabbableTest extends BootstrapperWrapper
     $arr = $this->createLinks();
 
     $tabs = Tabbable::tabs_right(Tabbable::links($arr));
-    $matcher = $this->createMatcher('right');
+    $matcher = $this->createMatcher('right','tabs');
 
     $this->assertTag($matcher, $tabs);
   }
@@ -117,10 +138,44 @@ class TabbableTest extends BootstrapperWrapper
     $arr = $this->createLinks();
 
     $tabs = Tabbable::tabs_below(Tabbable::links($arr));
-    $matcher = $this->createMatcher('below');
+    $matcher = $this->createMatcher('below','tabs');
 
     $this->assertTag($matcher, $tabs);
   }
+
+  public function testStacked()
+  {
+    $arr = $this->createLinks();
+
+    $tabs = Tabbable::tabs(Tabbable::links($arr))->stacked();
+    $matcher = $this->createMatcher('above','tabs');
+    $matcher['descendant']['attributes']['class'] .= ' nav-stacked';
+    $this->assertTag($matcher, $tabs);
+  }
+
+  public function testMenuAttributes()
+  {
+    $arr = $this->createLinks();
+
+    $tabs = Tabbable::tabs(Tabbable::links($arr))->menu_attributes(array('class' => 'foo', 'data-bar' => 'bar'));
+    $matcher = $this->createMatcher('above','tabs');
+    $matcher['descendant']['attributes']['class'] = 'foo ' . $matcher['descendant']['attributes']['class'];
+    $matcher['descendant']['attributes']['data-bar'] = 'bar';
+    $this->assertTag($matcher, $tabs);
+  }
+
+  public function testContentAttributes()
+  {
+    $arr = $this->createLinks();
+
+    $tabs = Tabbable::tabs(Tabbable::links($arr))->content_attributes(array('class' => 'foo', 'data-bar' => 'bar'));
+    $matcher = $this->createMatcher('above','tabs');
+    $matcher['child']['attributes']['class'] = 'foo ' . $matcher['child']['attributes']['class'];
+    $matcher['child']['attributes']['data-bar'] = 'bar';
+    $this->assertTag($matcher, $tabs);
+  }
+
+
 
   public function testActiveTab()
   {
@@ -132,7 +187,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::tabs(Tabbable::links($arr));
 
     //Set matcher with 
-    $matcher = $this->createMatcher('above', 'Section 2', "Howdy, I'm in Section 2.");
+    $matcher = $this->createMatcher('above','tabs', 'Section 2', "Howdy, I'm in Section 2.");
     $this->assertTag($matcher, $tabs);
   }
 
