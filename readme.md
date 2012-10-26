@@ -22,8 +22,8 @@ Add the following to the application.php config file:
 'Alert'               => 'Bootstrapper\\Alert',
 'Badge'               => 'Bootstrapper\\Badge',
 'Breadcrumb'          => 'Bootstrapper\\Breadcrumb',
-'ButtonGroup'         => 'Bootstrapper\\ButtonGroup',
 'Button'              => 'Bootstrapper\\Button',
+'ButtonGroup'         => 'Bootstrapper\\ButtonGroup',
 'ButtonToolbar'       => 'Bootstrapper\\ButtonToolbar',
 'Carousel'            => 'Bootstrapper\\Carousel',
 'DropdownButton'      => 'Bootstrapper\\DropdownButton',
@@ -40,6 +40,7 @@ Add the following to the application.php config file:
 'SplitDropdownButton' => 'Bootstrapper\\SplitDropdownButton',
 'Tabbable'            => 'Bootstrapper\\Tabbable',
 'Table'               => 'Bootstrapper\\Table',
+'Thumbnail'           => 'Bootstrapper\\Thumbnail',
 'Typeahead'           => 'Bootstrapper\\Typeahead',
 ```
 
