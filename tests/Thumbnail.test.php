@@ -19,6 +19,7 @@ class ThumbnailTest extends BootstrapperWrapper
   public static function setUpBeforeClass()
   {
     URL::$base = 'http://test/';
+    Config::set('application.index', '');
     Config::set('application.asset_url', 'test');
   }
 
