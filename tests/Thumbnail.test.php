@@ -53,6 +53,18 @@ class ThumbnailTest extends BootstrapperWrapper
     $this->assertEquals($matcher, $thumbnails);
   }
 
+  public function testAlreadyWrappedThumbnails()
+  {
+    $images = array($this->image('foo'), $this->image('bar'));
+    $thumbnails = Thumbnail::create($images);
+    $matcher = $this->matcher(
+      '<li class="thumbnail">'.$this->image('foo').'</li>'.
+      '<li class="thumbnail">'.$this->image('bar').'</li>'
+    );
+
+    $this->assertEquals($matcher, $thumbnails);
+  }
+
   public function testLinkedThumbnails()
   {
     $thumbnails = Thumbnail::create($this->linkedImages);

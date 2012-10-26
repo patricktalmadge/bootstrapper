@@ -58,7 +58,8 @@ class Thumbnail
         }
 
         // Else just assume we were given an image path
-        $thumbnails .= '<li class="thumbnail">'.HTML::image($image).'</li>';
+        if(!str_contains($image, '<img')) $image = HTML::image($image);
+        $thumbnails .= '<li class="thumbnail">'.$image.'</li>';
       }
 
     $thumbnails .= '</ul>';
