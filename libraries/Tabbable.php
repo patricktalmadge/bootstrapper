@@ -2,6 +2,8 @@
 namespace Bootstrapper;
 
 use \HTML;
+use Bootstrapper\Navigation;
+
 
 /**
  * Tabbable for creating Twitter Bootstrap. Bootstrap JS is required.
@@ -281,8 +283,8 @@ class Tabbable
     /**
      * A simple clean way to create a single link array.
      *
-     * @param string $label     Link name
      * @param string $content   HTML content for the Tabbable link
+     * @param string $label     Link name
      * @param bool   $active    Set current tab as active
      * @param bool   $disabled  Disabled the current tab
      * @param array  $items     Array of for dropdown items
@@ -291,11 +293,12 @@ class Tabbable
      */
     public static function link($label, $content, $active = false, $disabled = false, $items = null)
     {
-        return array('label'=> $label, 'active' => $active, 'content' => $content, 'disabled' => $disabled, 'items' => $items);
+        return array('label'=> $label, 'content' => $content, 'active' => $active, 'disabled' => $disabled, 'items' => $items);
     }
 
     /**
-     * A simple clean way to create the associative array required for a Tabbable item
+     * A simple clean way to create the associative array required for a Tabbable item.
+     * Uses Link to build nested array. 
      *
      * @param array  $links array of links
      *
@@ -309,7 +312,6 @@ class Tabbable
 
         $l = array();
         foreach ($links as $key => $link) {
-
             $label = array_get($link, 0);
             $content = array_get($link, 1);
             $active = array_get($link, 2);

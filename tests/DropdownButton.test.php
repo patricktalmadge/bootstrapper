@@ -1,31 +1,42 @@
 <?php
 use Bootstrapper\DropdownButton;
+use Bootstrapper\Navigation;
 
 class DropdownButtonTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
-  private $links = array(
-    'label' => 'foo', 'url' => '#',
-  );
+  private $links;
 
-  private function matcher($class = 'normal', $right = false, $dropup = false)
+  protected function setUp() {
+    $this->links = Navigation::links(array(array('foo', '#'),array('bar','#')));
+  }
+
+  private function matcher($class = 'normal', $right = false, $dropup = false, $split = false)
   {
     $class = $class == 'normal' ? null : ' btn-'.$class;
     $right = $right ? 'pull-right ' : null;
     $dropup = $dropup ? ' dropup' : null;
 
+    if($split){
+      $btn = '<button class="' .$class. ' btn" type="button">foo</button>'.
+        '<button class="' .$class. ' btn dropdown-toggle" type="button" data-toggle="dropdown"> <span class="caret"></span></button>';
+    }else{
+      $btn = '<button class="' .$class. ' btn dropdown-toggle" type="button" data-toggle="dropdown">'.
+          'foo <span class="caret"></span>'.
+        '</button>';
+    }
+
     return
       '<div class="foo btn-group' .$dropup. '" data-foo="bar">'.
-        '<button class="' .$class. ' btn dropdown-toggle" type="button" data-toggle="dropdown">'.
-          'foo '.
-          '<span class="caret"></span>'.
-        '</button>'.
+        $btn.
         '<ul class="'.$right.'dropdown-menu">'.
-          '<li class="divider"></li>'.
-          '<li class="divider"></li>'.
+          '<li ><a href="#">foo</a></li>'.
+          '<li ><a href="#">bar</a></li>'.
         '</ul>'.
       '</div>';
+
+
   }
 
   // Data providers  ----------------------------------------------- /
@@ -54,6 +65,14 @@ class DropdownButtonTest extends BootstrapperWrapper
     $this->assertEquals($matcher, $dropdown);
   }
 
+  public function testSplitDropdown()
+  {
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->split()->__toString();
+    $matcher = $this->matcher('normal', false, false, true);
+
+    $this->assertEquals($matcher, $dropdown);
+  }
+
   public function testRightDropdown()
   {
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->__toString();
@@ -62,10 +81,26 @@ class DropdownButtonTest extends BootstrapperWrapper
     $this->assertEquals($matcher, $dropdown);
   }
 
+  public function testRightSplitDropdown()
+  {
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->split()->__toString();
+    $matcher = $this->matcher('normal', true, false, true);
+
+    $this->assertEquals($matcher, $dropdown);
+  }
+
   public function testDropup()
   {
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->__toString();
     $matcher = $this->matcher('normal', false, true);
+
+    $this->assertEquals($matcher, $dropdown);
+  }
+
+  public function testDropupSplit()
+  {
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->split()->__toString();
+    $matcher = $this->matcher('normal', false, true, true);
 
     $this->assertEquals($matcher, $dropdown);
   }

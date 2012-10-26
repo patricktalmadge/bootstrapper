@@ -55,6 +55,12 @@ class DropdownButton
     protected $pullRight = false;
 
     /**
+     * Whether button should be a split button or not
+     * @var boolean
+     */
+    protected $split = false;
+
+    /**
      * Whether the dropdown's links should come up or down
      * @var boolean
      */
@@ -160,7 +166,15 @@ class DropdownButton
         if ($this->dropup) $this->attributes['class'] .= ' dropup';
 
         $html = '<div'.HTML::attributes($this->attributes).'>';
-            $html .= Form::button($this->label, array('class' => $this->type), true);
+
+            //If split is false make this button dropdown
+            $html .= Form::button($this->label, array('class' => $this->type), !$this->split);
+
+            //Add split button if needed
+            if($this->split){
+                $html .= Form::button('', array('class' => $this->type), true);
+            }
+
             $html .= Navigation::dropdown($this->links, $listAttributes, $this->autoroute);
         $html .= '</div>';
 
@@ -193,6 +207,20 @@ class DropdownButton
     public function dropup($dropup = true)
     {
         $this->dropup = $dropup;
+
+        return $this;
+    }
+
+    /**
+     * Make button a split dropdown button
+     *
+     * @param boolean $split Make split button
+     *
+     * @return object          dropdownbutton instance
+     */
+    public function split($split = true)
+    {
+        $this->split = $split;
 
         return $this;
     }
