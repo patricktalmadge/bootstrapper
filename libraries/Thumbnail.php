@@ -23,16 +23,16 @@ class Thumbnail
     $thumbnails  = '<ul class="thumbnails">';
 
       // Generate the thumbnails
-      foreach($images as $image) {
+      foreach ($images as $image) {
 
         // If we provide a closure
-        if(is_callable($closure)) {
+        if (is_callable($closure)) {
           $thumbnails .= $closure($image);
           continue;
         }
 
         // If we provided a rich thumbnail
-        if(is_array($image)) {
+        if (is_array($image)) {
           $link    = array_get($image, 'link');
           $label   = array_get($image, 'label');
           $caption = array_get($image, 'caption');
@@ -41,7 +41,7 @@ class Thumbnail
           $thumbnails .= '<li>';
 
             // Linked thumbnail
-            if(!$caption and !$label and $link) {
+            if (!$caption and !$label and $link) {
               $image = HTML::image($image);
               $thumbnails .= HTML::decode( HTML::link($link, $image, array('class' => 'thumbnail')) );
 
