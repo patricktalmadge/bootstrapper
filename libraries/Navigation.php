@@ -43,7 +43,8 @@ class Navigation
         $html = '';
 
         if (isset($type)) {
-            $attributes = Helpers::add_class($attributes, 'nav '.$type);
+            $type = $type != '' ? ' '.$type : '';
+            $attributes = Helpers::add_class($attributes, 'nav'.$type);
         }
 
         if ($type !== Navigation::TYPE_LIST && $stacked) {
