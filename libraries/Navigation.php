@@ -27,6 +27,8 @@ class Navigation
     const TYPE_PILLS    = 'nav-pills';
     const TYPE_TABS     = 'nav-tabs';
 
+    const HEADER        = '-HEADER-';
+
     /**
      * Generates a nav menu and any dropdown if the $list array contains any dropdown objects.
      *
@@ -38,7 +40,7 @@ class Navigation
      *
      * @return string
      */
-    public static function menu($list, $type = Navigation::TYPE_UNSTYLED, $stacked = false, $attributes = array(), $autoroute = true)
+    public static function menu($list, $type = Navigation::TYPE_UNSTYLED, $stacked = false, $attributes = array(), $autoroute = true, $isDropdown = false)
     {
         $html = '';
 
@@ -58,16 +60,36 @@ class Navigation
         foreach ($list as $item) {
             $icon = isset($item['icon']) ? $item['icon'] : null;
 
-            if (!is_array($item)) {
-                // if string is ||| use vertical divider else use normal divider
-                $html .= $item === '|||' ? '<li class="divider-vertical"></li>' : '<li class="divider"></li>';
-            } elseif (isset($item['header'])) {
-                $html .= '<li class="nav-header">'.HTML::entities($item['header']).'</li>';
+            // Set vertical dividers 
+            if ($item['label'] === '|||') {
+                $html .= '<li class="divider-vertical"></li>';
+
+            // Set normal divider
+            } elseif($item['label'] === '---') {
+                $html .= '<li class="divider"></li>';
+
+            // Set Header if Label Equals HEADER const
+            } elseif ($item['label'] === Navigation::HEADER) {
+                $html .= '<li class="nav-header">'.HTML::entities($item['url']).'</li>';
+
+            // Set dropdown style
             } elseif (isset($item['items'])) {
-                $html .= '<li class="dropdown '.static::getClasses($item, false, $autoroute).'">';
-                $html .= static::linkItem($item['url'], $item['label'].' <b class="caret"></b>', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), false, $icon);
+                $dropClass = 'dropdown';
+                $att = array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown');
+                $extraCaret = ' <b class="caret"></b>';
+
+                if($isDropdown) {
+                    $dropClass = 'dropdown-submenu';
+                    $att = array();
+                    $extraCaret = '';
+                } 
+
+                $html .= '<li class="'.$dropClass.' '.static::getClasses($item, false, $autoroute).'">';
+                $html .= static::linkItem($item['url'], $item['label'].$extraCaret, $att, false, $icon);
                 $html .= static::dropdown($item['items']);
                 $html .= '</li>';
+
+            // Must be basic link
             } else {
                 if (!isset($item['attributes'])) {
                     $item['attributes'] = array();
@@ -153,7 +175,7 @@ class Navigation
     {
         $attributes = Helpers::add_class($attributes, 'dropdown-menu');
 
-        return static::menu($list, null, false, $attributes, $autoroute);
+        return static::menu($list, null, false, $attributes, $autoroute, true);
     }
 
     /**

@@ -52,6 +52,102 @@ class NavigationTest extends BootstrapperWrapper
 
   // Tests --------------------------------------------------------- /
 
+  public function testDivider()
+  {
+    $links = Navigation::links(array(
+        array('---')
+      ));
+
+    $tabs =  Navigation::tabs($links);
+    $match = '<ul class="nav nav-tabs"><li class="divider"></li></ul>';
+    $this->assertEquals($match, $tabs);
+  }
+
+  public function testVerticalDivider()
+  {
+    $links = Navigation::links(array(
+        array('|||')
+      ));
+
+    $tabs =  Navigation::tabs($links);
+    $match = '<ul class="nav nav-tabs"><li class="divider-vertical"></li></ul>';
+    $this->assertEquals($match, $tabs);
+  }
+
+  public function testHeader()
+  {
+    $links = Navigation::links(array(
+        array(Navigation::HEADER, 'Test')
+      ));
+
+    $tabs =  Navigation::tabs($links);
+    $match = '<ul class="nav nav-tabs"><li class="nav-header">Test</li></ul>';
+    $this->assertEquals($match, $tabs);
+  }
+
+  public function testSubMenu() 
+  {
+    $matcher = array(
+      'tag' => 'ul',
+      'attributes' => array(
+        'class' => 'nav nav-tabs'
+      ),
+      'child' => array(
+        'tag' => 'li',
+        'attributes' => array('class' => 'dropdown active'),
+        'descendant' => array(
+          'tag' => 'a',
+          'attributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
+          'content' => 'Dropdown',
+          'child' => array(
+            'tag' => 'b',
+            'attributes' => array('class' => 'caret'),
+          )
+        ),
+        'child' => array(
+          'tag' => 'ul',
+          'attributes' => array('class' => 'dropdown-menu'),
+          'child' => array(
+            'tag' => 'li',
+            'attributes' => array('class' => 'dropdown-submenu'),
+            'descendant' => array(
+              'tag' => 'a',
+              'content' => 'Action',
+            ),
+            'child' => array(
+              'tag' => 'ul',
+              'attributes' => array('class' => 'dropdown-menu'),
+              'child' => array(
+                'tag' => 'li',
+                'child' => array(
+                  'tag' => 'a',
+                  'content' => 'Sub Action'
+                )
+              )
+            )
+          ),
+        ),
+      )
+    );
+
+    $links = Navigation::links(array(
+        array('Dropdown', '#', true, false, 
+          array(
+            array('Action', '#', false, false, 
+              array(
+                array('Sub Action', '#')
+              )
+            ),
+          )
+        )
+    ));
+
+    $tabs = Navigation::tabs($links);
+
+    $this->assertTag($matcher, $tabs);
+
+  }
+
   public function testLinkBasic()
   {
     $link = Navigation::link('foo', '#');
