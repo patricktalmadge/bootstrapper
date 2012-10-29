@@ -246,13 +246,13 @@ class Tabbable
         if (!is_array($items)) return false;
 
         foreach ($items as $key => $tab) {
-            $tab['url'] = '#';
+            $url = '#';
             if (isset($tab['items'])) {
 
                 $tab['items'] = static::normalize($tab['items'], $panes, $i);
             } else {
-                if (!isset($tab['content'])) {
-                    $tab['content'] = '';
+                if (!isset($tab['url'])) {
+                    $tab['url'] = '';
                 }
 
                 $tabId = 'tab_'.$id.'_'.$i;
@@ -260,7 +260,7 @@ class Tabbable
                 //if not disabled set toggle and url
                 if (!isset($tab['disabled']) || !$tab['disabled']) {
                     $tab['attributes'] = array('data-toggle' => 'tab');
-                    $tab['url'] .= $tabId;
+                    $url .= $tabId;
                 }
 
                 $class = 'tab-pane';
@@ -268,10 +268,9 @@ class Tabbable
                     $class .= ' active';
                 }
 
-                $panes[] = '<div class="'.$class.'" id="'.$tabId.'">'.$tab['content'].'</div>';
+                $panes[] = '<div class="'.$class.'" id="'.$tabId.'">'.$tab['url'].'</div>';
 
-                unset($tab['content']);
-
+                $tab['url'] = $url;
                 $i++;
             }
             $tabs[] = $tab;
@@ -279,49 +278,6 @@ class Tabbable
 
         return $tabs;
     }
-
-    /**
-     * A simple clean way to create a single link array.
-     *
-     * @param string $content   HTML content for the Tabbable link
-     * @param string $label     Link name
-     * @param bool   $active    Set current tab as active
-     * @param bool   $disabled  Disabled the current tab
-     * @param array  $items     Array of for dropdown items
-     *
-     * @return mixed
-     */
-    public static function link($label, $content, $active = false, $disabled = false, $items = null)
-    {
-        return array('label'=> $label, 'content' => $content, 'active' => $active, 'disabled' => $disabled, 'items' => $items);
-    }
-
-    /**
-     * A simple clean way to create the associative array required for a Tabbable item.
-     * Uses Link to build nested array. 
-     *
-     * @param array  $links array of links
-     *
-     * @return mixed
-     */
-    public static function links($links)
-    {
-        if($links == null){
-            return $links;
-        }
-
-        $l = array();
-        foreach ($links as $key => $link) {
-            $label = array_get($link, 0);
-            $content = array_get($link, 1);
-            $active = array_get($link, 2);
-            $disabled = array_get($link, 3);
-            $items = array_get($link, 4);
-            $l[] = static::link($label, $content, $active, $disabled, static::links($items));
-        }
-        return $l;
-    }
-
 
     /**
      * Checks call to see if we can create a tabbable from a magic call (for you wizards).

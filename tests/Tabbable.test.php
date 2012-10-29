@@ -1,5 +1,6 @@
 <?php
 use Bootstrapper\Tabbable;
+use Bootstrapper\Navigation;
 
 class TabbableTest extends BootstrapperWrapper
 {
@@ -87,7 +88,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs(Tabbable::links($arr));
+    $tabs = Tabbable::tabs(Navigation::links($arr));
     $matcher = $this->createMatcher('above','tabs');
 
     $this->assertTag($matcher, $tabs);
@@ -97,7 +98,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::pills(Tabbable::links($arr));
+    $tabs = Tabbable::pills(Navigation::links($arr));
     $matcher = $this->createMatcher('above','pills');
 
     $this->assertTag($matcher, $tabs);
@@ -107,7 +108,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::lists(Tabbable::links($arr));
+    $tabs = Tabbable::lists(Navigation::links($arr));
     $matcher = $this->createMatcher('above','list');
 
     $this->assertTag($matcher, $tabs);
@@ -117,7 +118,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs_left(Tabbable::links($arr));
+    $tabs = Tabbable::tabs_left(Navigation::links($arr));
     $matcher = $this->createMatcher('left','tabs');
 
     $this->assertTag($matcher, $tabs);
@@ -127,7 +128,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs_right(Tabbable::links($arr));
+    $tabs = Tabbable::tabs_right(Navigation::links($arr));
     $matcher = $this->createMatcher('right','tabs');
 
     $this->assertTag($matcher, $tabs);
@@ -137,7 +138,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs_below(Tabbable::links($arr));
+    $tabs = Tabbable::tabs_below(Navigation::links($arr));
     $matcher = $this->createMatcher('below','tabs');
 
     $this->assertTag($matcher, $tabs);
@@ -147,7 +148,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs(Tabbable::links($arr))->stacked();
+    $tabs = Tabbable::tabs(Navigation::links($arr))->stacked();
     $matcher = $this->createMatcher('above','tabs');
     $matcher['descendant']['attributes']['class'] .= ' nav-stacked';
     $this->assertTag($matcher, $tabs);
@@ -157,7 +158,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs(Tabbable::links($arr))->menu_attributes(array('class' => 'foo', 'data-bar' => 'bar'));
+    $tabs = Tabbable::tabs(Navigation::links($arr))->menu_attributes(array('class' => 'foo', 'data-bar' => 'bar'));
     $matcher = $this->createMatcher('above','tabs');
     $matcher['descendant']['attributes']['class'] = 'foo ' . $matcher['descendant']['attributes']['class'];
     $matcher['descendant']['attributes']['data-bar'] = 'bar';
@@ -168,7 +169,7 @@ class TabbableTest extends BootstrapperWrapper
   {
     $arr = $this->createLinks();
 
-    $tabs = Tabbable::tabs(Tabbable::links($arr))->content_attributes(array('class' => 'foo', 'data-bar' => 'bar'));
+    $tabs = Tabbable::tabs(Navigation::links($arr))->content_attributes(array('class' => 'foo', 'data-bar' => 'bar'));
     $matcher = $this->createMatcher('above','tabs');
     $matcher['child']['attributes']['class'] = 'foo ' . $matcher['child']['attributes']['class'];
     $matcher['child']['attributes']['data-bar'] = 'bar';
@@ -184,7 +185,7 @@ class TabbableTest extends BootstrapperWrapper
     //Set second tab as active
     $arr[1][2] = true;
 
-    $tabs = Tabbable::tabs(Tabbable::links($arr));
+    $tabs = Tabbable::tabs(Navigation::links($arr));
 
     //Set matcher with 
     $matcher = $this->createMatcher('above','tabs', 'Section 2', "Howdy, I'm in Section 2.");
