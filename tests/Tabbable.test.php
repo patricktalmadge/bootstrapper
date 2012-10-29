@@ -71,19 +71,6 @@ class TabbableTest extends BootstrapperWrapper
       );
   }
 
-  // <div class="tabbable tabs-left">
-  //   <ul class="nav nav-tabs">
-  //     <li class="active"><a href="#tab_8zI7w_0" data-toggle="tab">Section 1</a></li>
-  //     <li ><a href="#tab_8zI7w_1" data-toggle="tab">Section 2</a></li>
-  //     <li ><a href="#tab_8zI7w_2" data-toggle="tab">Section 3</a></li>
-  //   </ul>
-  //   <div  class=" tab-content">
-  //     <div class="tab-pane active" id="tab_8zI7w_0"><p>I'm in Section 1.</p></div>
-  //     <div class="tab-pane" id="tab_8zI7w_1"><p>Howdy, I'm in Section 2.</p></div>
-  //     <div class="tab-pane" id="tab_8zI7w_2"><p>What up girl, this is Section 3.</p></div>
-  //   </div>
-  // </div>
-
   public function testBasicTab()
   {
     $arr = $this->createLinks();
