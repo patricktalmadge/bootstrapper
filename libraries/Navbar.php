@@ -61,13 +61,6 @@ class Navbar
     private $type        = Navbar::STATIC_BAR;
 
     /**
-     * The current Navbar instante
-     *
-     * @var Navbar
-     */
-    private static $instance = null;
-
-    /**
      * The Navbar types
      * @var constant
      */
@@ -86,13 +79,13 @@ class Navbar
     public static function create($attributes = array(), $type = Navbar::STATIC_BAR)
     {
         // Fetch current instance
-        static::$instance = static::$instance ?: new Navbar;
+        $instance = new Navbar;
 
         // Save given parameters
-        static::$instance->attributes = $attributes;
-        static::$instance->type       = $type;
+        $instance->attributes = $attributes;
+        $instance->type       = $type;
 
-        return static::$instance;
+        return $instance;
     }
 
     /**
