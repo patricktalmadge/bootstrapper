@@ -1,5 +1,6 @@
 <?php
 use Bootstrapper\Navbar;
+use Bootstrapper\Navigation;
 
 class NavbarTest extends BootstrapperWrapper
 {
