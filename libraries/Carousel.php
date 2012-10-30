@@ -28,7 +28,7 @@ class Carousel
      * How data will be fetched from each object/entry
      * @var array
      */
-    private static $schema = array(
+    private $schema = array(
         'key'        => 'id',
         'alt'        => 'alt_text',
         'attributes' => 'attributes',
@@ -155,6 +155,19 @@ class Carousel
     }
 
     /**
+     * Use a custom object schema for the images passed
+     *
+     * @param  array $schema A schema array
+     * @return Carousel
+     */
+    public function with_schema($schema)
+    {
+        $this->schema = (array) array_merge($this->schema, $schema);
+
+        return $this;
+    }
+
+    /**
      * Prints out the current Carousel instance
      *
      * @return string A carousel
@@ -195,12 +208,12 @@ class Carousel
     protected function createItem($item, $key)
     {
         // Gather necessary variables
-        $key        = static::getFromItem($item, 'key', $key);
-        $altText    = static::getFromItem($item, 'alt');
-        $attributes = static::getFromItem($item, 'attributes', array());
-        $caption    = static::getFromItem($item, 'caption');
-        $label      = static::getFromItem($item, 'label');
-        $image      = static::getFromItem($item, 'image');
+        $key        = $this->getFromItem($item, 'key', $key);
+        $altText    = $this->getFromItem($item, 'alt');
+        $attributes = $this->getFromItem($item, 'attributes', array());
+        $caption    = $this->getFromItem($item, 'caption');
+        $label      = $this->getFromItem($item, 'label');
+        $image      = $this->getFromItem($item, 'image');
 
         // If we were given an array of image paths instead of arrays
         if (!$image and is_string($item)) $image = $item;
@@ -233,9 +246,9 @@ class Carousel
      * @param  string $fallback A fallback to use
      * @return string           A data from the item
      */
-    private static function getFromItem($item, $key, $fallback = null)
+    private function getFromItem($item, $key, $fallback = null)
     {
-        $key = static::$schema[$key];
+        $key = $this->schema[$key];
 
         if(is_object($item)) {
             return isset($item->$key) ? $item->$key : $fallback;
