@@ -21,7 +21,6 @@ class NavbarTest extends BootstrapperWrapper
         return $matcher;
     }
 
-
     public function testBasic()
     {
         $navbar = Navbar::create();
