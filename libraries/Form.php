@@ -41,6 +41,14 @@ class Form extends \Laravel\Form
     const TYPE_SEARCH     = 'form-search';
 
     /**
+     * Display types
+     */
+    const NORMAL  = '';
+    const WARNING = 'warning';
+    const ERROR   = 'error';
+    const SUCCESS = 'success';
+
+    /**
      * Function adds the given value to the attribute of for the provided HTML.
      *
      * @param string $attr  attribute string
@@ -391,7 +399,7 @@ class Form extends \Laravel\Form
     {
         $attributes = Helpers::add_class($attributes, 'help-inline');
 
-        return '<span '.HTML::attributes($attributes).'>'.$value.'</span>';
+        return '<span'.HTML::attributes($attributes).'>'.$value.'</span>';
     }
 
     /**
@@ -406,7 +414,7 @@ class Form extends \Laravel\Form
     {
         $attributes = Helpers::add_class($attributes, 'help-block');
 
-        return '<p '.HTML::attributes($attributes).'>'.$value.'</p>';
+        return '<p'.HTML::attributes($attributes).'>'.$value.'</p>';
     }
 
     /**
