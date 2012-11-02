@@ -361,13 +361,11 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    public function testPrepend()
+    private function paMatcher($type)
     {
-        $html = Form::prepend(Form::text('inputfoo'), '$');
-
-        $matcher = array(
+        return array(
             'tag' => 'div',
-            'attributes' => array('class' => 'input-prepend'),
+            'attributes' => array('class' => $type),
             'child' => array(
                 'tag' => 'span',
                 'attributes' => array('class' => 'add-on'),
@@ -378,29 +376,19 @@ class FormTest extends BootstrapperWrapper
                 'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
             ),
         );
+    }
 
+    public function testPrepend()
+    {
+        $html = Form::prepend(Form::text('inputfoo'), '$');
+        $matcher = $this->paMatcher('input-prepend');
         $this->assertTag($matcher, $html);
     }
 
     public function testAppend()
     {
         $html = Form::append(Form::text('inputfoo'), '$');
-        $expected = '<div class="input-append"><input type="text" name="inputfoo" id="inputfoo"><span class="add-on">$</span></div>';
-
-        $matcher = array(
-            'tag' => 'div',
-            'attributes' => array('class' => 'input-append'),
-            'child' => array(
-                'tag' => 'span',
-                'attributes' => array('class' => 'add-on'),
-                'content' => '$',
-            ),
-            'descendant' => array(
-                'tag' => 'input',
-                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
-            ),
-        );
-
+        $matcher = $this->paMatcher('input-append');
         $this->assertTag($matcher, $html);
     }
 
@@ -429,4 +417,87 @@ class FormTest extends BootstrapperWrapper
 
         $this->assertTag($matcher, $html);
     }
+
+    public function testAppendButton()
+    {
+        $html = Form::append_buttons(Form::span2_text('appendedInputButton'), Form::button('Go!'));
+
+        $matcher = array(
+            'tag' => 'div',
+            'attributes' => array('class' => 'input-append'),
+            'child' => array(
+                'tag' => 'input',
+                'attributes' => array('class' => 'span2', 'type' => 'text', 'name' => 'appendedInputButton'),
+            ),
+            'descendant' => array(
+                'tag' => 'button',
+                'attributes' => array('class' => 'btn', 'type' => 'button'),
+                'content' => 'Go!',
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
+    }
+
+    public function testAppendButtons()
+    {
+        $html = Form::append_buttons(Form::span2_text('appendedInputButton'), array(Form::button('Search'),Form::button('Options')));
+
+        $matcher = array(
+            'tag' => 'input',
+            'attributes' => array('class' => 'span2', 'type' => 'text', 'name' => 'appendedInputButton'),
+            'parent' => array(
+                'tag' => 'div',
+                'attributes' => array('class' => 'input-append'),
+                'child' => array(
+                    'tag' => 'button',
+                    'attributes' => array('class' => 'btn', 'type' => 'button'),
+                    'content' => 'Search',
+                ),
+                'descendant' => array(
+                    'tag' => 'button',
+                    'attributes' => array('class' => 'btn', 'type' => 'button'),
+                    'content' => 'Options',
+                ),
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
+    }
+
+    private function createButtonMatcher($type)
+    {
+        return array(
+          'tag' => 'button',
+          'attributes' => array(
+            'type'     => $type,
+            'data-foo' => 'bar',
+            'class'    => 'foo btn'),
+          'content' => 'foo',
+        );
+    }
+
+    public function testSubmitButton()
+    {
+        $html = Form::submit('foo', $this->testAttributes);
+        $matcher = $this->createButtonMatcher('submit');
+        $this->assertTag($matcher, $html);
+    }
+
+    public function testResetButton()
+    {
+        $html = Form::reset('foo', $this->testAttributes);
+        $matcher = $this->createButtonMatcher('reset');
+        $this->assertTag($matcher, $html);
+    }
+
+    public function testButton()
+    {
+        $html = Form::button('foo', $this->testAttributes);
+        $matcher = $this->createButtonMatcher('button');
+        $this->assertTag($matcher, $html);
+    }
+
+    
+    
 }
