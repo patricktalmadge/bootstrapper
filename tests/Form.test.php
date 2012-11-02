@@ -118,7 +118,23 @@ class FormTest extends BootstrapperWrapper
             $class = ' '.$displaytype;
         }
 
-        $expected = '<div class="control-group'.$class.'"><label class="control-label" for="inputfoo">foo</label><div class="controls"><input type="text" name="inputfoo" id="inputfoo"></div></div>';
+        $matcher = array(
+            'tag' => 'div',
+            'attributes' => array('class' => 'control-group'.$class),
+            'child' => array(
+                'tag' => 'label',
+                'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
+                'content' => 'foo',
+            ),
+            'descendant' => array(
+                'tag' => 'div',
+                'attributes' => array('class' => 'controls'),
+                'child' => array(
+                    'tag' => 'input',
+                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+                )
+            ),
+        );
 
         $html = Form::control_group(
                     Form::label('inputfoo', 'foo'),
@@ -126,7 +142,7 @@ class FormTest extends BootstrapperWrapper
                     $displaytype
                 );
 
-        $this->assertEquals($expected, $html);
+        $this->assertTag($matcher, $html);
     }
 
     /**
@@ -140,7 +156,34 @@ class FormTest extends BootstrapperWrapper
             $class = ' '.$displaytype;
         }
 
-        $expected = '<div class="control-group'.$class.'"><label class="control-label" for="inputfoo">foo</label><div class="controls"><input type="text" name="inputfoo" id="inputfoo"><p class="help-block">You foobared that!</p></div></div>';
+        // Had to match label and go up to the parent
+        // than back down to get the other elements. Odd but can't 
+        // figure out how to find 3 different child elements
+        $matcher = array(
+            'tag' => 'div',
+            'attributes' => array('class' => 'controls'),
+            'child' => array(
+                'tag' => 'input',
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+            ),
+            'parent' => array(
+                'tag' => 'div',
+                'attributes' => array('class' => 'control-group'.$class),
+                'child' => array(
+                    'tag' => 'label',
+                    'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
+                    'content' => 'foo',
+                ),
+                'descendant' => array(
+                    'tag' => 'div',
+                    'attributes' => array('class' => 'controls'),
+                    'child' => array(
+                        'tag' => 'input',
+                        'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+                    )
+                ),
+            ),
+        );
 
         $html = Form::control_group(
                     Form::label('inputfoo', 'foo'),
@@ -149,79 +192,127 @@ class FormTest extends BootstrapperWrapper
                     Form::block_help('You foobared that!')
                 );
 
-        $this->assertEquals($expected, $html);
+        $this->assertTag($matcher, $html);
+    }
+
+    private function getLablledMatcher($type, $value, $full = false){
+        $matcher = array(
+            'tag' => 'label',
+            'attributes' => array('class' => $type),
+            'content' => 'foo',
+            'child' => array(
+                'tag' => 'input',
+                'attributes' => array('type' => $type, 'name' => 'foo', 'value' => $value),
+            ),
+        );
+
+        if($full) {
+            $matcher['child']['attributes']['class'] = 'foo';
+            $matcher['child']['attributes']['data-foo'] = 'bar';
+            $matcher['child']['attributes']['checked'] = 'checked';
+        }
+
+        return $matcher;
     }
 
     public function testLabelledCheckboxMin() 
     {
         $html = Form::labelled_checkbox('foo', 'foo');
-        $expected = '<label class="checkbox"><input type="checkbox" name="foo" value="1"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('checkbox', 1);
+        $this->assertTag($matcher, $html);
     }
 
     public function testLabelledCheckboxFull() 
     {
         $html = Form::labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
-        $expected = '<label class="checkbox"><input class="foo" data-foo="bar" checked="checked" type="checkbox" name="foo" value="bar"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
+        $this->assertTag($matcher, $html);
     }
 
     public function testInlineLabelledCheckboxMin() 
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo');
-        $expected = '<label class="checkbox inline"><input type="checkbox" name="foo" value="1"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('checkbox', 1);
+        $matcher['attributes']['class'] .= ' inline';
+        $this->assertTag($matcher, $html);
     }
 
     public function testInlineLabelledCheckboxFull() 
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
-        $expected = '<label class="checkbox inline"><input class="foo" data-foo="bar" checked="checked" type="checkbox" name="foo" value="bar"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
+        $matcher['attributes']['class'] .= ' inline';
+        $this->assertTag($matcher, $html);
     }
 
     public function testLabelledRadioMin() 
     {
         $html = Form::labelled_radio('foo', 'foo');
-        $expected = '<label class="radio"><input type="radio" name="foo" value="1"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('radio', 1);
+        $this->assertTag($matcher, $html);
     }
 
     public function testLabelledRadioFull() 
     {
         $html = Form::labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
-        $expected = '<label class="radio"><input class="foo" data-foo="bar" checked="checked" type="radio" name="foo" value="bar"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('radio', 'bar', true);
+        $this->assertTag($matcher, $html);
     }
 
     public function testInlineLabelledRadioMin() 
     {
         $html = Form::inline_labelled_radio('foo', 'foo');
-        $expected = '<label class="radio inline"><input type="radio" name="foo" value="1"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('radio', 1);
+        $matcher['attributes']['class'] .= ' inline';
+        $this->assertTag($matcher, $html);
     }
 
     public function testInlineLabelledRadioFull() 
     {
         $html = Form::inline_labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
-        $expected = '<label class="radio inline"><input class="foo" data-foo="bar" checked="checked" type="radio" name="foo" value="bar"> foo</label>';
-        $this->assertEquals($expected, $html);
+        $matcher = $this->getLablledMatcher('radio', 'bar', true);
+        $matcher['attributes']['class'] .= ' inline';
+        $this->assertTag($matcher, $html);
     }
 
     public function testMultiSelectMin()
     {
         $html = Form::multiselect('multiSelect', array('1', '2', '3', '4', '5'));
-        $expected = '<select multiple="multiple" name="multiSelect"><option value="0">1</option><option value="1">2</option><option value="2">3</option><option value="3">4</option><option value="4">5</option></select>';
 
-        $this->assertEquals($expected, $html);
+        $matcher = array(
+            'tag' => 'select',
+            'attributes' => array('multiple' => 'multiple', 'name' => 'multiSelect'),
+            'children' => array(
+                'count' => 5,
+                'only' => array(
+                    'tag' => 'option'
+                ),
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
     }
 
     public function testMultiSelectFull()
     {
         $html = Form::multiselect('multiSelect', array('1', '2', '3', '4', '5'), '3', $this->testAttributes);
-        $expected = '<select class="foo" data-foo="bar" multiple="multiple" name="multiSelect"><option value="0">1</option><option value="1">2</option><option value="2">3</option><option value="3" selected="selected">4</option><option value="4">5</option></select>';
 
-        $this->assertEquals($expected, $html);
+        $matcher = array(
+            'tag' => 'select',
+            'attributes' => array('multiple' => 'multiple', 'name' => 'multiSelect'),
+            'children' => array(
+                'count' => 5,
+                'only' => array(
+                    'tag' => 'option'
+                ),
+            ),
+            'child' => array(
+                'tag' => 'option',
+                'attributes' => array('value' => 3, 'selected' => 'selected'),
+            )
+        );
+
+        $this->assertTag($matcher, $html);
     }
 
     public function testUneditable()
@@ -251,17 +342,44 @@ class FormTest extends BootstrapperWrapper
     public function testActionBar()
     {
         $html = Form::actions(array(Button::primary_submit('Save changes'), Form::button('Cancel')));
-        $expected = '<div class="form-actions"><button class="btn-primary btn" type="submit">Save changes</button> <button type="button" class="btn">Cancel</button></div>';
 
-        $this->assertEquals($expected, $html);
+        $matcher = array(
+            'tag' => 'div',
+            'attributes' => array('class' => 'form-actions'),
+            'child' => array(
+                'tag' => 'button',
+                'attributes' => array('class' => 'btn-primary btn', 'type' => 'submit'),
+                'content' => 'Save changes',
+            ),
+            'descendant' => array(
+                'tag' => 'button',
+                'attributes' => array('class' => 'btn', 'type' => 'button'),
+                'content' => 'Cancel',
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
     }
 
     public function testPrepend()
     {
         $html = Form::prepend(Form::text('inputfoo'), '$');
-        $expected = '<div class="input-prepend"><span class="add-on">$</span><input type="text" name="inputfoo" id="inputfoo"></div>';
 
-        $this->assertEquals($expected, $html);
+        $matcher = array(
+            'tag' => 'div',
+            'attributes' => array('class' => 'input-prepend'),
+            'child' => array(
+                'tag' => 'span',
+                'attributes' => array('class' => 'add-on'),
+                'content' => '$',
+            ),
+            'descendant' => array(
+                'tag' => 'input',
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
     }
 
     public function testAppend()
@@ -269,14 +387,46 @@ class FormTest extends BootstrapperWrapper
         $html = Form::append(Form::text('inputfoo'), '$');
         $expected = '<div class="input-append"><input type="text" name="inputfoo" id="inputfoo"><span class="add-on">$</span></div>';
 
-        $this->assertEquals($expected, $html);
+        $matcher = array(
+            'tag' => 'div',
+            'attributes' => array('class' => 'input-append'),
+            'child' => array(
+                'tag' => 'span',
+                'attributes' => array('class' => 'add-on'),
+                'content' => '$',
+            ),
+            'descendant' => array(
+                'tag' => 'input',
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
     }
 
     public function testPrependAppend()
     {
         $html = Form::prepend_append(Form::text('inputfoo'), '$', '.00');
-        $expected = '<div class="input-prepend input-append"><span class="add-on">$</span><input type="text" name="inputfoo" id="inputfoo"><span class="add-on">.00</span></div>';
 
-        $this->assertEquals($expected, $html);
+        $matcher = array(
+            'tag' => 'input',
+            'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+            'parent' => array(
+                'tag' => 'div',
+                'attributes' => array('class' => 'input-append'),
+                'child' => array(
+                    'tag' => 'span',
+                    'attributes' => array('class' => 'add-on'),
+                    'content' => '$',
+                ),
+                'descendant' => array(
+                    'tag' => 'span',
+                    'attributes' => array('class' => 'add-on'),
+                    'content' => '.00',
+                ),
+            ),
+        );
+
+        $this->assertTag($matcher, $html);
     }
 }
