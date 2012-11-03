@@ -694,4 +694,16 @@ class FormTest extends BootstrapperWrapper
             $this->assertTag($matcher, $html);
         }
     }
+
+    public function testMacro()
+    {
+        Form::macro('foo', function()
+        {
+            return '<article type="bar">';
+        });
+
+        $html =  Form::foo();
+        $expected = '<article type="bar">';
+        $this->assertEquals($expected, $html);
+    }
 }
