@@ -498,6 +498,200 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    
-    
+    public function sizes(){
+        $sizes = array(
+            array('mini'), 
+            array('small'), 
+            array('medium'), 
+            array('large'), 
+            array('xlarge'),
+            array('xxlarge'),
+        );
+
+        for($i = 1; $i <= 12; $i++)
+        {
+            $sizes[] = array('span'.$i);
+        }
+
+        return $sizes;
+    }
+    // 'mini', 'small', 'medium', 'large', 'xlarge', 'xxlarge',
+
+    // 'input', 'text', 'password', 'uneditable', 'select', 'multiselect', 'file', 'textarea', 'date', 'number', 'url', 'telephone', 'email', 'search'
+
+
+    private function createMagicClass($size)
+    {
+        $class = $size;
+        if(!stristr($size, 'span'))
+        {
+            $class = 'input-'.$size;
+        }
+        return $class;
+    }
+
+    /**
+     * @dataProvider sizes
+     */
+    public function testPasswordFileSizes($size)
+    {
+        $types = array('password', 'file');
+        
+        $class = $this->createMagicClass($size);
+        foreach($types as $type)
+        {
+            $matcher = array(
+                'tag' => 'input',
+                'attributes' => array(
+                    'type'     => $type,
+                    'data-foo' => 'bar',
+                    'name'     => 'foo',
+                    'class'    => 'foo '.$class,
+                ),
+            );
+
+            $m = $size.'_'.$type;
+
+            $html = Form::$m('foo', $this->testAttributes);
+            $this->assertTag($matcher, $html);
+        }
+    }
+
+    /**
+     * @dataProvider sizes
+     */
+    public function testUneditableSizes($size)
+    {
+        $class = $this->createMagicClass($size);
+
+        $matcher = array(
+            'tag' => 'span',
+            'content'  => 'foo', 
+            'attributes' => array(
+                'class'    => 'foo '.$class.' uneditable-input',
+                'data-foo' => 'bar',
+            ),
+        );
+
+        $m = $size.'_uneditable';
+        $html = Form::$m('foo', $this->testAttributes);
+        $this->assertTag($matcher, $html);
+    }
+
+    /**
+     * @dataProvider sizes
+     */
+    public function testInputSizes($size)
+    {
+        $class = $this->createMagicClass($size);
+
+            $matcher = array(
+                'tag' => 'input',
+                'attributes' => array(
+                    'type'     => 'text',
+                    'data-foo' => 'bar',
+                    'name'     => 'foo',
+                    'value'    => 'hi',
+                    'class'    => 'foo '.$class,
+                ),
+            );
+
+            $m = $size.'_input';
+
+            $html = Form::$m('text', 'foo', 'hi', $this->testAttributes);
+            $this->assertTag($matcher, $html);
+    }
+
+    /**
+     * @dataProvider sizes
+     */
+    public function testSelectMultiSelectSizes($size)
+    {
+        $types = array('select', 'multiselect');
+        
+        $class = $this->createMagicClass($size);
+        foreach($types as $type)
+        {
+            $matcher = array(
+                'tag' => 'select',
+                'attributes' => array(
+                    'name' => 'foo',
+                    'data-foo' => 'bar',
+                    'class'    => 'foo',
+                ),
+                'children' => array(
+                    'count' => 5,
+                    'only' => array(
+                        'tag' => 'option'
+                    ),
+                ),
+                'child' => array(
+                    'tag' => 'option',
+                    'attributes' => array('value' => 3, 'selected' => 'selected'),
+                )
+            );
+
+            if($type === 'multiselect')
+            {
+                $matcher['attributes']['multiple'] = 'multiple';
+            }
+
+            $m = $size.'_'.$type;
+
+            $html = Form::$m('foo', array('1', '2', '3', '4', '5'), '3', $this->testAttributes);
+            $this->assertTag($matcher, $html);
+        }
+    }
+
+    /**
+     * @dataProvider sizes
+     */
+    public function testTextareaSizes($size)
+    {
+        $class = $this->createMagicClass($size);
+
+        $matcher = array(
+            'tag' => 'textarea',
+            'content'  => 'foobared', 
+            'attributes' => array(
+                'name'     => 'foo',
+                'class'    => 'foo '.$class,
+                'data-foo' => 'bar',
+                'rows'     => 10,
+                'cols'     => 50,
+            ),
+        );
+
+        $m = $size.'_textarea';
+        $html = Form::$m('foo', 'foobared', $this->testAttributes);
+        $this->assertTag($matcher, $html);
+    }
+
+    /**
+     * @dataProvider sizes
+     */
+    public function testOtherInputSizes($size)
+    {
+        $types = array('text', 'date', 'number', 'url', 'telephone', 'email', 'search');
+        
+        $class = $this->createMagicClass($size);
+        foreach($types as $type)
+        {
+            $dataType = $type === 'telephone' ? 'tel' : $type;
+            $matcher = array(
+                'tag' => 'input',
+                'attributes' => array(
+                    'type'     => $dataType,
+                    'data-foo' => 'bar',
+                    'value'    => 'hi',
+                    'name'     => 'foo',
+                    'class'    => 'foo '.$class,
+                ),
+            );
+
+            $m = $size.'_'.$type;
+            $html = Form::$m('foo', 'hi', $this->testAttributes);
+            $this->assertTag($matcher, $html);
+        }
+    }
 }
