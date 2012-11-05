@@ -191,6 +191,19 @@ class Button
     }
 
     /**
+     * Add class to make button block
+     *
+     * @return object            Button instance
+     */
+    public function block()
+    {
+        // Add class to attributes array
+        $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-block');
+
+        return $this;
+    }
+
+    /**
      * Checks call to see if we can create a button from a magic call (for you wizards).
      * success_button, mini_primary_button, large_warning_submit, danger_reset, etc...
      *

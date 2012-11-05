@@ -56,6 +56,17 @@ class ButtonTest extends BootstrapperWrapper
     );
   }
 
+  public function testDeemphasizeLink()
+  {
+    $button = Button::Link('#', 'foo', $this->testAttributes)->deemphasize();
+    $matcher = $this->createMatcher('link');
+    $matcher['tag'] = 'a';
+    $matcher['attributes']['href'] = '#';
+    unset($matcher['attributes']['type']);
+
+    $this->assertTag($matcher, $button);
+  }
+
   // Data providers  ----------------------------------------------- /
 
   public function classes()
@@ -79,6 +90,18 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::$class('foo', $this->testAttributes)->__toString();
     $matcher = $this->createMatcher($class);
 
+    $this->assertTag($matcher, $button);
+  }
+
+
+  /**
+   * @dataProvider classes
+   */
+  public function testButtonBlock($class)
+  {
+    $button = Button::$class('foo', $this->testAttributes)->block();
+    $matcher = $this->createMatcher($class);
+    $matcher['attributes']['class'] .= ' btn-block';
     $this->assertTag($matcher, $button);
   }
 
