@@ -52,7 +52,7 @@ class AlertTest extends BootstrapperWrapper
 
   public function testCustom()
   {
-    $alert = Alert::custom('success', 'foo', true, $this->testAttributes);
+    $alert = Alert::custom('success', 'foo', $this->testAttributes);
     $match = $this->createMatcher('success');
 
     $this->assertTag($match, $alert);
@@ -60,7 +60,7 @@ class AlertTest extends BootstrapperWrapper
 
   public function testCustomWithoutClose()
   {
-    $alert = Alert::custom('success', 'foo', false, $this->testAttributes);
+    $alert = Alert::custom('success', 'foo', $this->testAttributes)->open();
     $match = array(
       'attributes' => array('data-foo' => 'bar', 'class' => 'foo alert alert-success'),
       'content'    => 'foo',
@@ -78,10 +78,19 @@ class AlertTest extends BootstrapperWrapper
     $this->assertTag($match, $alert);
   }
 
+  public function testStaticOpenBlock()
+  {
+    $alert = Alert::open_block_success('foo', $this->testAttributes);
+    $match = $this->createMatcher('success', false);
+    $match['attributes']['class'] .= ' alert-block';
+
+    $this->assertTag($match, $alert);
+  }
+
   public function testStaticWhatever()
   {
-    $alert = Alert::foo_success('foo', $this->testAttributes);
-    $match = $this->createMatcher('success');
+    $alert = Alert::foo_bar('foo', $this->testAttributes);
+    $match = $this->createMatcher('foo-bar');
 
     $this->assertTag($match, $alert);
   }
@@ -91,7 +100,7 @@ class AlertTest extends BootstrapperWrapper
    */
   public function testStatic($class)
   {
-    $alert = Alert::$class('foo', true, $this->testAttributes);
+    $alert = Alert::$class('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
     $this->assertTag($match, $alert);
