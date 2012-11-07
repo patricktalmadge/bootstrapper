@@ -8,68 +8,68 @@ class FormTest extends BootstrapperWrapper
     {
         return array(
             array(
-                'search_open', 
-                '<form class="foo form-search" data-foo="bar" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                'search_open',
+                '<form class="foo form-search" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'search_open_secure',
-                '<form class="foo form-search" data-foo="bar" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'search_open_for_files',
-                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'search_open_secure_for_files',
-                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'inline_open',
-                '<form class="foo form-inline" data-foo="bar" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'inline_open_secure',
-                '<form class="foo form-inline" data-foo="bar" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'inline_open_for_files',
-                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'inline_open_secure_for_files',
-                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'horizontal_open',
-                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'horizontal_open_secure',
-                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'horizontal_open_for_files',
-                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'horizontal_open_secure_for_files',
-                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'vertical_open',
-                '<form class="foo" data-foo="bar" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'vertical_open_secure',
-                '<form class="foo" data-foo="bar" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'vertical_open_for_files',
-                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
                 ),
             array(
                 'vertical_open_secure_for_files',
-                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://:/index.php/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
                 )
         );
     }
@@ -89,7 +89,7 @@ class FormTest extends BootstrapperWrapper
         $html = Form::inline_help('foobar', $this->testAttributes);
         $this->assertEquals($exepcted, $html);
     }
-    
+
     public function testBlockHelp()
     {
         $exepcted = '<p class="foo help-block" data-foo="bar">foobar</p>';
@@ -138,7 +138,7 @@ class FormTest extends BootstrapperWrapper
 
         $html = Form::control_group(
                     Form::label('inputfoo', 'foo'),
-                    Form::text('inputfoo'), 
+                    Form::text('inputfoo'),
                     $displaytype
                 );
 
@@ -157,7 +157,7 @@ class FormTest extends BootstrapperWrapper
         }
 
         // Had to match label and go up to the parent
-        // than back down to get the other elements. Odd but can't 
+        // than back down to get the other elements. Odd but can't
         // figure out how to find 3 different child elements
         $matcher = array(
             'tag' => 'div',
@@ -187,8 +187,8 @@ class FormTest extends BootstrapperWrapper
 
         $html = Form::control_group(
                     Form::label('inputfoo', 'foo'),
-                    Form::text('inputfoo'), 
-                    $displaytype, 
+                    Form::text('inputfoo'),
+                    $displaytype,
                     Form::block_help('You foobared that!')
                 );
 
@@ -215,21 +215,21 @@ class FormTest extends BootstrapperWrapper
         return $matcher;
     }
 
-    public function testLabelledCheckboxMin() 
+    public function testLabelledCheckboxMin()
     {
         $html = Form::labelled_checkbox('foo', 'foo');
         $matcher = $this->getLablledMatcher('checkbox', 1);
         $this->assertTag($matcher, $html);
     }
 
-    public function testLabelledCheckboxFull() 
+    public function testLabelledCheckboxFull()
     {
         $html = Form::labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
         $this->assertTag($matcher, $html);
     }
 
-    public function testInlineLabelledCheckboxMin() 
+    public function testInlineLabelledCheckboxMin()
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo');
         $matcher = $this->getLablledMatcher('checkbox', 1);
@@ -237,7 +237,7 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    public function testInlineLabelledCheckboxFull() 
+    public function testInlineLabelledCheckboxFull()
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
@@ -245,21 +245,21 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    public function testLabelledRadioMin() 
+    public function testLabelledRadioMin()
     {
         $html = Form::labelled_radio('foo', 'foo');
         $matcher = $this->getLablledMatcher('radio', 1);
         $this->assertTag($matcher, $html);
     }
 
-    public function testLabelledRadioFull() 
+    public function testLabelledRadioFull()
     {
         $html = Form::labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('radio', 'bar', true);
         $this->assertTag($matcher, $html);
     }
 
-    public function testInlineLabelledRadioMin() 
+    public function testInlineLabelledRadioMin()
     {
         $html = Form::inline_labelled_radio('foo', 'foo');
         $matcher = $this->getLablledMatcher('radio', 1);
@@ -267,7 +267,7 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    public function testInlineLabelledRadioFull() 
+    public function testInlineLabelledRadioFull()
     {
         $html = Form::inline_labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('radio', 'bar', true);
@@ -500,10 +500,10 @@ class FormTest extends BootstrapperWrapper
 
     public function sizes(){
         $sizes = array(
-            array('mini'), 
-            array('small'), 
-            array('medium'), 
-            array('large'), 
+            array('mini'),
+            array('small'),
+            array('medium'),
+            array('large'),
             array('xlarge'),
             array('xxlarge'),
         );
@@ -536,7 +536,7 @@ class FormTest extends BootstrapperWrapper
     public function testPasswordFileSizes($size)
     {
         $types = array('password', 'file');
-        
+
         $class = $this->createMagicClass($size);
         foreach($types as $type)
         {
@@ -566,7 +566,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'span',
-            'content'  => 'foo', 
+            'content'  => 'foo',
             'attributes' => array(
                 'class'    => 'foo '.$class.' uneditable-input',
                 'data-foo' => 'bar',
@@ -608,7 +608,7 @@ class FormTest extends BootstrapperWrapper
     public function testSelectMultiSelectSizes($size)
     {
         $types = array('select', 'multiselect');
-        
+
         $class = $this->createMagicClass($size);
         foreach($types as $type)
         {
@@ -652,7 +652,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'textarea',
-            'content'  => 'foobared', 
+            'content'  => 'foobared',
             'attributes' => array(
                 'name'     => 'foo',
                 'class'    => 'foo '.$class,
@@ -673,7 +673,7 @@ class FormTest extends BootstrapperWrapper
     public function testOtherInputSizes($size)
     {
         $types = array('text', 'date', 'number', 'url', 'telephone', 'email', 'search');
-        
+
         $class = $this->createMagicClass($size);
         foreach($types as $type)
         {
