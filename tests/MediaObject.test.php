@@ -23,7 +23,7 @@ class MediaObjectTest extends BootstrapperWrapper
   public function titles()
   {
     $titles = array();
-    for($i = 1; $i <= 6; $i++) {
+    for ($i = 1; $i <= 6; $i++) {
       $titles[] = array(
         'with_h'.$i,
         '<h'.$i.' class="foo media-heading" data-foo="bar">foobar</h'.$i.'>',

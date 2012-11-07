@@ -25,7 +25,7 @@ class Image
      * @param string $alt        An alt text
      * @param array  $attributes An array of attributes
      *
-     * @return string            An img tag
+     * @return string An img tag
      */
     public static function rounded($url, $alt = '', $attributes = array())
     {
@@ -41,7 +41,7 @@ class Image
      * @param string $alt        An alt text
      * @param array  $attributes An array of attributes
      *
-     * @return string            An img tag
+     * @return string An img tag
      */
     public static function circle($url, $alt = '', $attributes = array())
     {
@@ -57,7 +57,7 @@ class Image
      * @param string $alt        An alt text
      * @param array  $attributes An array of attributes
      *
-     * @return string            An img tag
+     * @return string An img tag
      */
     public static function polaroid($url, $alt = '', $attributes = array())
     {

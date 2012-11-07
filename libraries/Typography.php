@@ -37,7 +37,7 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string            Typography HTML
+     * @return string Typography HTML
      */
     protected static function createEmphasis($type, $message, $tag = 'p', $attributes = array())
     {
@@ -51,7 +51,7 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Typography HTML
+     * @return string Typography HTML
      */
     public static function lead($message, $tag = 'p', $attributes = array())
     {
@@ -64,7 +64,7 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Typography HTML
+     * @return string Typography HTML
      */
     public static function muted($message, $tag = 'p', $attributes = array())
     {
@@ -77,7 +77,7 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Typography HTML
+     * @return string Typography HTML
      */
     public static function warning($message, $tag = 'p', $attributes = array())
     {
@@ -90,7 +90,7 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Typography HTML
+     * @return string Typography HTML
      */
     public static function error($message, $tag = 'p', $attributes = array())
     {
@@ -103,7 +103,7 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Typography HTML
+     * @return string Typography HTML
      */
     public static function info($message, $tag = 'p', $attributes = array())
     {
@@ -116,13 +116,12 @@ class Typography
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Typography HTML
+     * @return string Typography HTML
      */
     public static function success($message, $tag = 'p', $attributes = array())
     {
         return static::createEmphasis(Typography::SUCCESS, $message, $tag, $attributes);
     }
-
 
     /**
      * Creates a definition list
@@ -130,7 +129,7 @@ class Typography
      * @param array $list       An array [term => description]
      * @param array $attributes An array of attributes
      *
-     * @return string           A formatted <dl> list
+     * @return string A formatted <dl> list
      */
     public static function dl($list, $attributes = array())
     {
@@ -156,7 +155,7 @@ class Typography
      * @param array $list       An array [term => description]
      * @param array $attributes An array of attributes
      *
-     * @return string           A formatted <dl> list
+     * @return string A formatted <dl> list
      */
     public static function horizontal_dl($list, $attributes = array())
     {

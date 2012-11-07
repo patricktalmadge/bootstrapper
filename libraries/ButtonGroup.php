@@ -39,7 +39,7 @@ class ButtonGroup
      * @param boolean $toggle     Whether the button group should be togglable
      * @param array   $attributes An array of attributes
      *
-     * @return string              An opening <div> tag
+     * @return string An opening <div> tag
      */
     public static function vertical_open($toggle = null, $attributes = array())
     {
@@ -54,7 +54,7 @@ class ButtonGroup
      * @param boolean $toggle     Whether the button group should be togglable
      * @param array   $attributes An array of attributes
      *
-     * @return string              An opening <div> tag
+     * @return string An opening <div> tag
      */
     public static function horizontal_open($toggle = null, $attributes = array())
     {
@@ -67,7 +67,7 @@ class ButtonGroup
      * @param string $toggle     Whether the button group should be togglable
      * @param array  $attributes An array of attributes
      *
-     * @return string             An opening <div> tag
+     * @return string An opening <div> tag
      */
     public static function open($toggle = null, $attributes = array())
     {

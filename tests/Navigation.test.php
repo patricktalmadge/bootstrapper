@@ -85,7 +85,7 @@ class NavigationTest extends BootstrapperWrapper
     $this->assertEquals($match, $tabs);
   }
 
-  public function testSubMenu() 
+  public function testSubMenu()
   {
     $matcher = array(
       'tag' => 'ul',
@@ -131,9 +131,9 @@ class NavigationTest extends BootstrapperWrapper
     );
 
     $links = Navigation::links(array(
-        array('Dropdown', '#', true, false, 
+        array('Dropdown', '#', true, false,
           array(
-            array('Action', '#', false, false, 
+            array('Action', '#', false, false,
               array(
                 array('Sub Action', '#')
               )
@@ -178,17 +178,17 @@ class NavigationTest extends BootstrapperWrapper
   public function testLinksAll()
   {
     $link = Navigation::links(array(
-        array('foo', '#', true, false, 
+        array('foo', '#', true, false,
           array(
-            array('foo1', '#foo1'), 
+            array('foo1', '#foo1'),
             array('foo2', '#foo2')
-          ) 
+          )
         ),
         array('bar', '#', false, true)
       ));
 
     $match = array(
-        array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' => 
+        array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' =>
           array(
             array('label'=> 'foo1', 'url' => '#foo1', 'active' => false, 'disabled' => false, 'items' => null),
             array('label'=> 'foo2', 'url' => '#foo2', 'active' => false, 'disabled' => false, 'items' => null),
@@ -201,7 +201,7 @@ class NavigationTest extends BootstrapperWrapper
   }
 
   public function testDropdownBasic()
-  {    
+  {
     $links = Navigation::links(array(array('foo', '#'),array('bar','#')));
     $dropdown = Navigation::dropdown($links);
 
@@ -211,7 +211,7 @@ class NavigationTest extends BootstrapperWrapper
   }
 
   public function testDropdownAll()
-  {    
+  {
     $links = Navigation::links(array(array('foo', '#'),array('bar','#')));
     $dropdown = Navigation::dropdown($links, array('class' => 'bar', 'data-foo' => 'bar'));
 

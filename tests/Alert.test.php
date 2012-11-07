@@ -8,7 +8,7 @@ class AlertTest extends BootstrapperWrapper
 
   private function createMatcher($class, $close = true)
   {
-    if($close) {
+    if ($close) {
       return array(
         'tag' => 'div',
         'attributes' => array(

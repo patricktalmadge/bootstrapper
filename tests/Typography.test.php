@@ -61,7 +61,6 @@ class TypographyTest extends BootstrapperWrapper
     $this->assertTag($match, $typography);
   }
 
-
   private $list = array(
     'foo' => 'bar',
     'far' => 'bur'

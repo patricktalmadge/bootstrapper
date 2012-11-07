@@ -4,7 +4,6 @@ namespace Bootstrapper;
 use \HTML;
 use Bootstrapper\Navigation;
 
-
 /**
  * Tabbable for creating Twitter Bootstrap. Bootstrap JS is required.
  *
@@ -67,7 +66,7 @@ class Tabbable
      * Set the current Tabbables content attributes
      *
      * @var array
-     */   
+     */
     private $content_attributes = array();
 
     /**
@@ -90,8 +89,8 @@ class Tabbable
     /**
      * Generate a Bootstrap tabbable object.
      *
-     * @param array  $menu       Tab items
-     * @param array  $attributes Attributes for the tabs
+     * @param array $menu       Tab items
+     * @param array $attributes Attributes for the tabs
      *
      * @return string
      */
@@ -216,7 +215,7 @@ class Tabbable
         // Tab content container
         if (!isset($this->content_attributes['class'])) {
             $this->content_attributes['class'] = 'tab-content';
-        }else{
+        } else {
             $this->content_attributes['class'] .= ' tab-content';
         }
 
@@ -232,7 +231,7 @@ class Tabbable
     /**
      * Normalizes the items list and correct urls if any are set.
      *
-     * @param array $items  Tab items
+     * @param array $items Tab items
      * @param array &$panes array of panes
      * @param int   &$i     index
      *
@@ -298,7 +297,7 @@ class Tabbable
         // Check for placment
         $list_placement = array('above', 'below', 'left', 'right');
         $placement_found = array_intersect($method_array, $list_placement);
-        
+
         if (count($style_found) > 0) {
             // Check list parameters
             $menu = array_get($parameters, 0);
@@ -317,7 +316,7 @@ class Tabbable
             if (count($placement_found) > 0 ) {
                 $placement = $placement_found[key($placement_found)];
                 $inst->placement('tabs-'.$placement);
-            } 
+            }
 
             //Set Style
             if (count($style_found) > 0 ) {
@@ -329,7 +328,7 @@ class Tabbable
                 }
 
                 $inst->style('nav-'.$style);
-            } 
+            }
 
             return $inst;
         }

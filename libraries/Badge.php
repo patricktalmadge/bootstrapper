@@ -36,7 +36,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string            Badge HTML
+     * @return string Badge HTML
      */
     protected static function show($type, $message, $attributes = array())
     {
@@ -51,7 +51,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function normal($message, $attributes = array())
     {
@@ -64,7 +64,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function success($message, $attributes = array())
     {
@@ -77,7 +77,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function warning($message, $attributes = array())
     {
@@ -90,7 +90,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function important($message, $attributes = array())
     {
@@ -103,7 +103,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function info($message, $attributes = array())
     {
@@ -116,7 +116,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function inverse($message, $attributes = array())
     {
@@ -131,7 +131,7 @@ class Badge
      * @param string $message    Message in badge
      * @param array  $attributes Parent div attributes
      *
-     * @return string     Badge HTML
+     * @return string Badge HTML
      */
     public static function custom($type, $message, $attributes = array())
     {

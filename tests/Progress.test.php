@@ -103,7 +103,7 @@ class ProgressTest extends BootstrapperWrapper
       80  => 'success',
       100 => 'success');
 
-    for($i = 0; $i <= 100; $i = $i + 20) {
+    for ($i = 0; $i <= 100; $i = $i + 20) {
       $progress = Progress::automatic($i, $this->testAttributes);
       $matcher = $this->matchProgress($classes[$i], $i);
 

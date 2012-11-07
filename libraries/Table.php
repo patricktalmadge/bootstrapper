@@ -96,7 +96,7 @@ class Table
     public static function __callStatic($method, $parameters)
     {
         // Opening a table
-        if(str_contains($method, 'open') or $method == 'open') {
+        if (str_contains($method, 'open') or $method == 'open') {
             $method  = strtolower($method);
             $classes = explode('_', $method);
             $method  = array_pop($classes);
@@ -110,6 +110,7 @@ class Table
             $attributes = array_get($attributes, 0);
 
             static::$table = new static($attributes);
+
             return static::$table->open();
         }
 
@@ -117,10 +118,11 @@ class Table
         if(!$method) $method = 'table';
 
         // Use cases
-        switch($method) {
+        switch ($method) {
             case 'close':
                 $close = static::table()->close();
                 static::$table = null;
+
                 return $close;
                 break;
             default:
@@ -140,7 +142,7 @@ class Table
     /**
      * Set the default classes of the tables to create
      *
-     * @param  string $type Default type
+     * @param string $type Default type
      */
     public static function defaultType($type)
     {
@@ -152,13 +154,14 @@ class Table
      *
      * @param  string $method     The method to call
      * @param  array  $parameters Its parameters
-     * @return Table              A Table instance
+     * @return Table  A Table instance
      */
     public function __call($method, $parameters)
     {
         // If trying to set a column
-        if(!method_exists(static::$table, $method)) {
+        if (!method_exists(static::$table, $method)) {
             $this->$method = $parameters[0];
+
             return $this;
         }
 
@@ -179,7 +182,7 @@ class Table
         $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
 
         // If we're not replacing something, we're creating, assume classes
-        if(!in_array($column, $columns)) {
+        if (!in_array($column, $columns)) {
             $column = str_replace('_', ' ', $column);
         }
 
@@ -209,8 +212,8 @@ class Table
     /**
      * Creates a table opening tag
      *
-     * @param  array $attributes An array of attributes
-     * @return string            A table opening tag
+     * @param  array  $attributes An array of attributes
+     * @return string A table opening tag
      */
     private function open()
     {
@@ -254,7 +257,7 @@ class Table
      * Set the content to be used for the next body
      *
      * @param  mixed $content Can be results from a Query or a bare array
-     * @return Table          The current table instance
+     * @return Table The current table instance
      */
     private function body($content)
     {
@@ -304,14 +307,14 @@ class Table
         $html = '<tbody>';
 
         // Iterate through the data
-        foreach($content as $row) {
+        foreach ($content as $row) {
 
             $html .= '<tr>';
             $columnCount = 0;
             $data = is_object($row) ? $row->attributes : $row;
 
             // Reorder columns if necessary
-            if($this->order) {
+            if ($this->order) {
                 $data = array_merge(array_flip($this->order), $data);
             }
 
@@ -370,7 +373,7 @@ class Table
      * @param string $content    The content to display
      * @param array  $attributes An array of attributes
      *
-     * @return string           A table opening tag
+     * @return string A table opening tag
      */
     private function full_header($content, $attributes = array())
     {
@@ -384,7 +387,7 @@ class Table
      * @param array  $attributes The rows's attributes
      * @param bool   $asHeaders  Draw row as header
      *
-     * @return string            A single-column row spanning all table
+     * @return string A single-column row spanning all table
      */
     private function full_row($content, $attributes = array(), $asHeaders = false)
     {
@@ -417,7 +420,7 @@ class Table
      *
      * @param  string $name  The column's name
      * @param  string $value Its value
-     * @return string        A <td> tag
+     * @return string A <td> tag
      */
     private static function appendColumn($name, $value)
     {
@@ -432,7 +435,7 @@ class Table
      * @param string $string A string with Laravel patterns (:key)
      * @param array  $data   An array of data to fetch from
      *
-     * @return string         The modified string
+     * @return string The modified string
      */
     private static function replace_keywords($string, $data)
     {

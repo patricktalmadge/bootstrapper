@@ -133,7 +133,7 @@ class DropdownButton
      * @param string $attribute Attributes to apply the dropdown itself
      * @param string $value     Value of dropdown
      *
-     * @return object           dropdownbutton instance
+     * @return object dropdownbutton instance
      */
     public function __call($attribute, $value)
     {
@@ -171,7 +171,7 @@ class DropdownButton
             $html .= Form::button($this->label, array('class' => $this->type), !$this->split);
 
             //Add split button if needed
-            if($this->split){
+            if ($this->split) {
                 $html .= Form::button('', array('class' => $this->type), true);
             }
 
@@ -188,7 +188,7 @@ class DropdownButton
      *
      * @param boolean $pullRight Pull menu to the right
      *
-     * @return object            dropdownbutton instance
+     * @return object dropdownbutton instance
      */
     public function pull_right($pullRight = true)
     {
@@ -202,7 +202,7 @@ class DropdownButton
      *
      * @param boolean $dropup Make menu go up
      *
-     * @return object          dropdownbutton instance
+     * @return object dropdownbutton instance
      */
     public function dropup($dropup = true)
     {
@@ -216,7 +216,7 @@ class DropdownButton
      *
      * @param boolean $split Make split button
      *
-     * @return object          dropdownbutton instance
+     * @return object dropdownbutton instance
      */
     public function split($split = true)
     {
@@ -230,7 +230,7 @@ class DropdownButton
      *
      * @param boolean $autoroute Should auto route links
      *
-     * @return object             dropdownbutton instance
+     * @return object dropdownbutton instance
      */
     public function autoroute($autoroute = true)
     {

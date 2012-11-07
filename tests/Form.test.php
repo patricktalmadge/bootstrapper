@@ -114,7 +114,7 @@ class FormTest extends BootstrapperWrapper
     {
         $class = $displaytype;
 
-        if($displaytype != ''){
+        if ($displaytype != '') {
             $class = ' '.$displaytype;
         }
 
@@ -152,7 +152,7 @@ class FormTest extends BootstrapperWrapper
     {
         $class = $displaytype;
 
-        if($displaytype != ''){
+        if ($displaytype != '') {
             $class = ' '.$displaytype;
         }
 
@@ -195,7 +195,8 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    private function getLablledMatcher($type, $value, $full = false){
+    private function getLablledMatcher($type, $value, $full = false)
+    {
         $matcher = array(
             'tag' => 'label',
             'attributes' => array('class' => $type),
@@ -206,7 +207,7 @@ class FormTest extends BootstrapperWrapper
             ),
         );
 
-        if($full) {
+        if ($full) {
             $matcher['child']['attributes']['class'] = 'foo';
             $matcher['child']['attributes']['data-foo'] = 'bar';
             $matcher['child']['attributes']['checked'] = 'checked';
@@ -498,7 +499,8 @@ class FormTest extends BootstrapperWrapper
         $this->assertTag($matcher, $html);
     }
 
-    public function sizes(){
+    public function sizes()
+    {
         $sizes = array(
             array('mini'),
             array('small'),
@@ -508,8 +510,7 @@ class FormTest extends BootstrapperWrapper
             array('xxlarge'),
         );
 
-        for($i = 1; $i <= 12; $i++)
-        {
+        for ($i = 1; $i <= 12; $i++) {
             $sizes[] = array('span'.$i);
         }
 
@@ -523,10 +524,10 @@ class FormTest extends BootstrapperWrapper
     private function createMagicClass($size)
     {
         $class = $size;
-        if(!stristr($size, 'span'))
-        {
+        if (!stristr($size, 'span')) {
             $class = 'input-'.$size;
         }
+
         return $class;
     }
 
@@ -538,8 +539,7 @@ class FormTest extends BootstrapperWrapper
         $types = array('password', 'file');
 
         $class = $this->createMagicClass($size);
-        foreach($types as $type)
-        {
+        foreach ($types as $type) {
             $matcher = array(
                 'tag' => 'input',
                 'attributes' => array(
@@ -610,8 +610,7 @@ class FormTest extends BootstrapperWrapper
         $types = array('select', 'multiselect');
 
         $class = $this->createMagicClass($size);
-        foreach($types as $type)
-        {
+        foreach ($types as $type) {
             $matcher = array(
                 'tag' => 'select',
                 'attributes' => array(
@@ -631,8 +630,7 @@ class FormTest extends BootstrapperWrapper
                 )
             );
 
-            if($type === 'multiselect')
-            {
+            if ($type === 'multiselect') {
                 $matcher['attributes']['multiple'] = 'multiple';
             }
 
@@ -675,8 +673,7 @@ class FormTest extends BootstrapperWrapper
         $types = array('text', 'date', 'number', 'url', 'telephone', 'email', 'search');
 
         $class = $this->createMagicClass($size);
-        foreach($types as $type)
-        {
+        foreach ($types as $type) {
             $dataType = $type === 'telephone' ? 'tel' : $type;
             $matcher = array(
                 'tag' => 'input',
@@ -697,8 +694,7 @@ class FormTest extends BootstrapperWrapper
 
     public function testMacro()
     {
-        Form::macro('foo', function()
-        {
+        Form::macro('foo', function() {
             return '<article type="bar">';
         });
 

@@ -26,7 +26,7 @@ class Form extends \Laravel\Form
     /**
      * Right-aligned labels controls are on the same line.
      * This requires the control-group container.
-     *@see control_group($label, $control, $group_class = '', $help = null)
+     * @see control_group($label, $control, $group_class = '', $help = null)
      */
     const TYPE_HORIZONTAL = 'form-horizontal';
 

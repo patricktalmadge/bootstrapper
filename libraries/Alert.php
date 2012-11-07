@@ -28,7 +28,6 @@ class Alert
     const SUCCESS = 'alert-success';
     const WARNING = 'alert-warning';
 
-
     /**
      * The type of the alert
      *
@@ -43,14 +42,12 @@ class Alert
      */
     private $message = false;
 
-
     /**
      * Whether the current alert is closeable
      *
      * @var boolean
      */
     private $isCloseable = true;
-
 
     /**
      * The current alert's attributes
@@ -75,7 +72,7 @@ class Alert
      * @param bool   $enable_close Is Alert closable
      * @param array  $attributes   Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     protected static function show($type, $message, $attributes = array())
     {
@@ -92,10 +89,10 @@ class Alert
     /**
      * Create a new Success Alert.
      *
-     * @param string $message      Message in alert
-     * @param array  $attributes   Parent div attributes
+     * @param string $message    Message in alert
+     * @param array  $attributes Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     public static function success($message, $attributes = array())
     {
@@ -105,10 +102,10 @@ class Alert
     /**
      * Create a new Info Alert.
      *
-     * @param string $message      Message in alert
-     * @param array  $attributes   Parent div attributes
+     * @param string $message    Message in alert
+     * @param array  $attributes Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     public static function info($message, $attributes = array())
     {
@@ -118,10 +115,10 @@ class Alert
     /**
      * Create a new Warning Alert.
      *
-     * @param string $message      Message in alert
-     * @param array  $attributes   Parent div attributes
+     * @param string $message    Message in alert
+     * @param array  $attributes Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     public static function warning($message, $attributes = array())
     {
@@ -131,10 +128,10 @@ class Alert
     /**
      * Create a new Error Alert.
      *
-     * @param string $message      Message in alert
-     * @param array  $attributes   Parent div attributes
+     * @param string $message    Message in alert
+     * @param array  $attributes Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     public static function error($message, $attributes = array())
     {
@@ -144,10 +141,10 @@ class Alert
     /**
      * Create a new Danger Alert.
      *
-     * @param string $message      Message in alert
-     * @param array  $attributes   Parent div attributes
+     * @param string $message    Message in alert
+     * @param array  $attributes Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     public static function danger($message, $attributes = array())
     {
@@ -158,11 +155,11 @@ class Alert
      * Create a new custom Alert.
      * This assumes you have created the appropriate css class for the alert type.
      *
-     * @param string $type         Type of alert
-     * @param string $message      Message in alert
-     * @param array  $attributes   Parent div attributes
+     * @param string $type       Type of alert
+     * @param string $message    Message in alert
+     * @param array  $attributes Parent div attributes
      *
-     * @return string              Alert HTML
+     * @return string Alert HTML
      */
     public static function custom($type, $message, $attributes = array())
     {
@@ -219,8 +216,7 @@ class Alert
     {
         $attr = Helpers::add_class($this->attributes, 'alert '.$this->type);
 
-        if($this->isBlock)
-        {
+        if ($this->isBlock) {
             $attr = Helpers::add_class($attr, 'alert-block');
         }
 
@@ -235,7 +231,6 @@ class Alert
 
         return $html;
     }
-
 
     /**
      * Check to see if we're calling an informative alert
@@ -253,15 +248,13 @@ class Alert
         $instance = new Alert;
 
         $open = array_search('open', $method);
-        if($open !== false)
-        {
+        if ($open !== false) {
             $instance->isCloseable = false;
             unset($method[$open]);
         }
 
         $block = array_search('block', $method);
-        if($block !== false)
-        {
+        if ($block !== false) {
             $instance->isBlock = true;
             unset($method[$block]);
         }

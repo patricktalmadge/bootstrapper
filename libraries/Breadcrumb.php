@@ -31,7 +31,7 @@ class Breadcrumb
      * @param array $links      An array of breadcrumbs links
      * @param array $attributes Attributes to apply the breadcrumbs wrapper
      *
-     * @return string           A breadcrumbs-styled unordered list
+     * @return string A breadcrumbs-styled unordered list
      */
     public static function create($links, $attributes = array())
     {

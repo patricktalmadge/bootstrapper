@@ -38,7 +38,7 @@ class Button
      * @param array   $attributes  An array of attributes
      * @param boolean $hasDropdown Whether the button has a dropdown
      *
-     * @return object              Button instance
+     * @return object Button instance
      */
     private static function storeButton($type, $value, $attributes, $hasDropdown)
     {
@@ -64,7 +64,7 @@ class Button
      * @param array  $attributes  array of attributes
      * @param bool   $hasDropdown Whether the button has a dropdown
      *
-     * @return object             Button instance
+     * @return object Button instance
      */
     public static function submit($value, $attributes = array(), $hasDropdown = false)
     {
@@ -81,7 +81,7 @@ class Button
      * @param array  $attributes  array of attributes
      * @param bool   $hasDropdown Whether the button has a dropdown
      *
-     * @return object             Button instance
+     * @return object Button instance
      */
     public static function reset($value, $attributes = array(), $hasDropdown = false)
     {
@@ -98,7 +98,7 @@ class Button
      * @param array  $attributes  array of attributes
      * @param bool   $hasDropdown Whether the button has a dropdown
      *
-     * @return object             Button instance
+     * @return object Button instance
      */
     public static function normal($value, $attributes = array(), $hasDropdown = false)
     {
@@ -113,7 +113,7 @@ class Button
      * @param array  $attributes  array of attributes
      * @param bool   $hasDropdown Whether the button has a dropdown
      *
-     * @return object             Button instance
+     * @return object Button instance
      */
     public static function link($url, $value, $attributes = array(), $hasDropdown = false)
     {
@@ -129,7 +129,7 @@ class Button
      * @param array   $attributes  Attributes to pass to the generated icon
      * @param boolean $prependIcon Whether we should prepend the icon, or append it
      *
-     * @return object              Button instance
+     * @return object Button instance
      */
     public function with_icon($icon, $attributes = array(), $prependIcon = true)
     {
@@ -157,7 +157,7 @@ class Button
      * @param string $icon       The name of the icon to call
      * @param array  $attributes Attributes to pass to the generated icon
      *
-     * @return object            Button instance
+     * @return object Button instance
      */
     public function prepend_with_icon($icon, $attributes = array())
     {
@@ -170,7 +170,7 @@ class Button
      * @param string $icon       The name of the icon to call
      * @param array  $attributes Attributes to pass to the generated icon
      *
-     * @return object            Button instance
+     * @return object Button instance
      */
     public function append_with_icon($icon, $attributes = array())
     {
@@ -180,7 +180,7 @@ class Button
     /**
      * Add class to deemphasize the button to look more like an anchor tag
      *
-     * @return object            Button instance
+     * @return object Button instance
      */
     public function deemphasize()
     {
@@ -193,7 +193,7 @@ class Button
     /**
      * Add class to make button block
      *
-     * @return object            Button instance
+     * @return object Button instance
      */
     public function block()
     {
@@ -256,12 +256,12 @@ class Button
         }
 
         // Write output according to tag
-        $tag = 'button'; 
-        if ($type === 'link') { 
-            $tag = 'a'; 
-            unset($attributes['type']); 
-        } 
+        $tag = 'button';
+        if ($type === 'link') {
+            $tag = 'a';
+            unset($attributes['type']);
+        }
 
-        return '<'.$tag.HTML::attributes($attributes).'>'.(string)$value.$caret.'</'.$tag.'>';
+        return '<'.$tag.HTML::attributes($attributes).'>'.(string) $value.$caret.'</'.$tag.'>';
     }
 }

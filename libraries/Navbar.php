@@ -159,7 +159,6 @@ class Navbar
         return static::__toString();
     }
 
-
     /**
      * Writes the current Navbar
      *

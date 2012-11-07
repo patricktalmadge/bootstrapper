@@ -35,30 +35,29 @@ class TabbableTest extends BootstrapperWrapper
       )
     );
 
-    if($childLinkText !== null)
-    {
+    if ($childLinkText !== null) {
       $base['descendant']['child'] = array(
             'tag' => 'li',
             'class' => 'active',
             'child' => array(
               'tag' => 'a',
-              'attributes' => array('data-toggle' => 'tab'),          
+              'attributes' => array('data-toggle' => 'tab'),
               'content' => $childLinkText
             )
           );
     }
 
-    if($childContentText !== null)
-    {
+    if ($childContentText !== null) {
       $base['child']['child'] = array(
           'tag' => 'div',
           'attributes' => array('class' => 'tab-pane active'),
           'child' => array(
-            'tag' => 'p',         
+            'tag' => 'p',
             'content' => $childContentText
           )
         );
     }
+
     return $base;
   }
 
@@ -163,8 +162,6 @@ class TabbableTest extends BootstrapperWrapper
     $this->assertTag($matcher, $tabs);
   }
 
-
-
   public function testActiveTab()
   {
     $arr = $this->createLinks();
@@ -174,7 +171,7 @@ class TabbableTest extends BootstrapperWrapper
 
     $tabs = Tabbable::tabs(Navigation::links($arr));
 
-    //Set matcher with 
+    //Set matcher with
     $matcher = $this->createMatcher('above','tabs', 'Section 2', "Howdy, I'm in Section 2.");
     $this->assertTag($matcher, $tabs);
   }

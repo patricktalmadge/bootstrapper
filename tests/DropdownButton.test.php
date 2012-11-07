@@ -8,7 +8,8 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   private $links;
 
-  protected function setUp() {
+  protected function setUp()
+  {
     $this->links = Navigation::links(array(array('foo', '#'),array('bar','#')));
   }
 
@@ -18,10 +19,10 @@ class DropdownButtonTest extends BootstrapperWrapper
     $right = $right ? 'pull-right ' : null;
     $dropup = $dropup ? ' dropup' : null;
 
-    if($split){
+    if ($split) {
       $btn = '<button class="' .$class. ' btn" type="button">foo</button>'.
         '<button class="' .$class. ' btn dropdown-toggle" type="button" data-toggle="dropdown"> <span class="caret"></span></button>';
-    }else{
+    } else {
       $btn = '<button class="' .$class. ' btn dropdown-toggle" type="button" data-toggle="dropdown">'.
           'foo <span class="caret"></span>'.
         '</button>';
@@ -35,7 +36,6 @@ class DropdownButtonTest extends BootstrapperWrapper
           '<li ><a href="#">bar</a></li>'.
         '</ul>'.
       '</div>';
-
 
   }
 

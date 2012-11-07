@@ -60,12 +60,12 @@ class Navigation
         foreach ($list as $item) {
             $icon = isset($item['icon']) ? $item['icon'] : null;
 
-            // Set vertical dividers 
+            // Set vertical dividers
             if ($item['label'] === '|||') {
                 $html .= '<li class="divider-vertical"></li>';
 
             // Set normal divider
-            } elseif($item['label'] === '---') {
+            } elseif ($item['label'] === '---') {
                 $html .= '<li class="divider"></li>';
 
             // Set Header if Label Equals HEADER const
@@ -78,11 +78,11 @@ class Navigation
                 $att = array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown');
                 $extraCaret = ' <b class="caret"></b>';
 
-                if($isDropdown) {
+                if ($isDropdown) {
                     $dropClass = 'dropdown-submenu';
                     $att = array();
                     $extraCaret = '';
-                } 
+                }
 
                 $html .= '<li class="'.$dropClass.' '.static::getClasses($item, false, $autoroute).'">';
                 $html .= static::linkItem($item['url'], $item['label'].$extraCaret, $att, false, $icon);
@@ -232,14 +232,13 @@ class Navigation
         return '<a href="'.$url.'"'.HTML::attributes($attributes).'>'.$title.'</a>';
     }
 
-
         /**
      * A simple clean way to create a single link array.
      *
-     * @param string $label     Link name
-     * @param bool   $active    Set current tab as active
-     * @param bool   $disabled  Disabled the current tab
-     * @param array  $items     Array of for dropdown items
+     * @param string $label    Link name
+     * @param bool   $active   Set current tab as active
+     * @param bool   $disabled Disabled the current tab
+     * @param array  $items    Array of for dropdown items
      *
      * @return mixed
      */
@@ -248,17 +247,16 @@ class Navigation
         return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items);
     }
 
-
     /**
      * A simple clean way to create the associative array required for a Navigation item
      *
-     * @param array  $links array of links
+     * @param array $links array of links
      *
      * @return mixed
      */
     public static function links($links)
     {
-        if($links == null){
+        if ($links == null) {
             return $links;
         }
 
@@ -271,6 +269,7 @@ class Navigation
             $items = array_get($link, 4);
             $l[] = static::link($label, $url, $active, $disabled, static::links($items));
         }
+
         return $l;
     }
 }

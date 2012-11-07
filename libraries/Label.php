@@ -36,7 +36,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     protected static function show($type = Label::NORMAL, $message, $attributes = array())
     {
@@ -51,7 +51,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function normal($message, $attributes = array())
     {
@@ -64,7 +64,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function success($message, $attributes = array())
     {
@@ -77,7 +77,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function warning($message, $attributes = array())
     {
@@ -90,7 +90,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function important($message, $attributes = array())
     {
@@ -103,7 +103,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function info($message, $attributes = array())
     {
@@ -116,7 +116,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function inverse($message, $attributes = array())
     {
@@ -131,7 +131,7 @@ class Label
      * @param string $message    Label text
      * @param array  $attributes Attributes to apply the label itself
      *
-     * @return string            Label HTML
+     * @return string Label HTML
      */
     public static function custom($type, $message, $attributes = array())
     {

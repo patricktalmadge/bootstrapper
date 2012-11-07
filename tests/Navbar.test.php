@@ -4,7 +4,8 @@ use Bootstrapper\Navigation;
 
 class NavbarTest extends BootstrapperWrapper
 {
-    private function getBasicMatcher(){
+    private function getBasicMatcher()
+    {
         $matcher = array(
             'tag' => 'div',
             'attributes' => array('class' => 'navbar'),
@@ -53,8 +54,8 @@ class NavbarTest extends BootstrapperWrapper
         $this->assertTag($matcher, $navbar);
     }
 
-    public function testInverse() 
-    {   
+    public function testInverse()
+    {
         $navbar = Navbar::inverse();
         $matcher = $this->getBasicMatcher();
         $matcher['attributes']['class'] .= ' navbar-inverse';
@@ -74,7 +75,6 @@ class NavbarTest extends BootstrapperWrapper
             'content' => 'Bootstrapper'
         );
 
-
         $this->assertTag($matcher, $navbar);
 
     }
@@ -88,8 +88,8 @@ class NavbarTest extends BootstrapperWrapper
         $matcher['child']['child']['child'] = array(
             'tag' => 'a',
             'attributes' => array(
-                'class' => 'btn btn-navbar', 
-                'data-toggle' => 'collapse', 
+                'class' => 'btn btn-navbar',
+                'data-toggle' => 'collapse',
                 'data-target' => '.nav-collapse'
             ),
             'children' => array(
@@ -129,7 +129,6 @@ class NavbarTest extends BootstrapperWrapper
 
         $this->assertTag($matcher, $navbar);
     }
-
 
     public function testMenuAttributes()
     {

@@ -23,7 +23,7 @@ class ButtonToolbar
      *
      * @param array $attributes Attributes for the button toolbar
      *
-     * @return string             A button toolbar
+     * @return string A button toolbar
      */
     public static function open($attributes = array())
     {

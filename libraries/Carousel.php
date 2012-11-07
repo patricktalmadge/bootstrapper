@@ -94,7 +94,7 @@ class Carousel
      * @param  string $id   The Carousel ID
      * @param  string $prev The previous link text
      * @param  string $next The next link text
-     * @return string       A Carousel navigation
+     * @return string A Carousel navigation
      */
     public static function navigation($id, $prev, $next)
     {
@@ -107,8 +107,8 @@ class Carousel
     /**
      * Creates a new Carousel instance
      *
-     * @param array  $items      The items to use as pictures
-     * @param array  $attributes Its attributes
+     * @param array $items      The items to use as pictures
+     * @param array $attributes Its attributes
      */
     public function __construct($items, $attributes = array())
     {
@@ -133,7 +133,7 @@ class Carousel
     {
         // Dynamic schema editing
         // Example : ->as_label('name') and $item->name/$item['name'] will be used as label
-        if(starts_with($method, 'as_')) {
+        if (starts_with($method, 'as_')) {
             $use = substr($method, 3);
             if(!isset($this->schema[$use])) return $this;
             else {
@@ -241,8 +241,8 @@ class Carousel
     /**
      * Create a carousel item. Returns a HTML element for one slide.
      *
-     * @param array $item A carousel item to render
-     * @param bool  $key  A fallback key as the item's position in the array
+     * @param  array  $item A carousel item to render
+     * @param  bool   $key  A fallback key as the item's position in the array
      * @return string
      */
     protected function createItem($item, $key)
@@ -284,13 +284,13 @@ class Carousel
      * @param  mixed  $item     The item
      * @param  string $key      The key to fetch
      * @param  string $fallback A fallback to use
-     * @return string           A data from the item
+     * @return string A data from the item
      */
     private function getFromItem($item, $key, $fallback = null)
     {
         $key = $this->schema[$key];
 
-        if(is_object($item)) {
+        if (is_object($item)) {
             return isset($item->$key) ? $item->$key : $fallback;
         } else {
             return array_get($item, $key, $fallback);
