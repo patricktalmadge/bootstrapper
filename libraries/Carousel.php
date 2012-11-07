@@ -89,6 +89,22 @@ class Carousel
     }
 
     /**
+     * Renders a Carousel navigation for custom carousels
+     *
+     * @param  string $id   The Carousel ID
+     * @param  string $prev The previous link text
+     * @param  string $next The next link text
+     * @return string       A Carousel navigation
+     */
+    public static function navigation($id, $prev, $next)
+    {
+        $navigation  = HTML::link($id, $prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
+        $navigation .= HTML::link($id, $next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+
+        return $navigation;
+    }
+
+    /**
      * Creates a new Carousel instance
      *
      * @param array  $items      The items to use as pictures
@@ -129,9 +145,35 @@ class Carousel
     }
 
     /**
+     * Changes the text for the prev link
+     *
+     * @param  string   $prev The new text
+     * @return Carousel
+     */
+    public function prev($next)
+    {
+        $this->prev = $prev;
+
+        return $this;
+    }
+
+    /**
+     * Changes the text for the next link
+     *
+     * @param  string   $next The new text
+     * @return Carousel
+     */
+    public function next($next)
+    {
+        $this->next = $next;
+
+        return $this;
+    }
+
+    /**
      * Set which element will be the active one
      *
-     * @param  integer $key A key
+     * @param  integer  $key A key
      * @return Carousel
      */
     public function active($key)
@@ -144,7 +186,7 @@ class Carousel
     /**
      * Set the current Carousel's #id
      *
-     * @param  string $id The new id
+     * @param  string   $id The new id
      * @return Carousel
      */
     public function id($id)
@@ -157,7 +199,7 @@ class Carousel
     /**
      * Use a custom object schema for the images passed
      *
-     * @param  array $schema A schema array
+     * @param  array    $schema A schema array
      * @return Carousel
      */
     public function with_schema($schema)
@@ -186,8 +228,7 @@ class Carousel
             $html .= '</div>';
 
             // Render navigation
-            $html .= HTML::link($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
-            $html .= HTML::link($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+            $html .= Carousel::navigation($this->hash, $this->prev, $this->next);
         $html .= '</div>';
 
         return $html;
@@ -200,9 +241,8 @@ class Carousel
     /**
      * Create a carousel item. Returns a HTML element for one slide.
      *
-     * @param array $item  A carousel item to render
-     * @param bool  $key   A fallback key as the item's position in the array
-     *
+     * @param array $item A carousel item to render
+     * @param bool  $key  A fallback key as the item's position in the array
      * @return string
      */
     protected function createItem($item, $key)
