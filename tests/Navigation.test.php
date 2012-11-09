@@ -55,7 +55,7 @@ class NavigationTest extends BootstrapperWrapper
   public function testDivider()
   {
     $links = Navigation::links(array(
-        array('---')
+        array(Navigation::DIVIDER)
       ));
 
     $tabs =  Navigation::tabs($links);
@@ -66,7 +66,7 @@ class NavigationTest extends BootstrapperWrapper
   public function testVerticalDivider()
   {
     $links = Navigation::links(array(
-        array('|||')
+        array(Navigation::VERTICAL_DIVIDER)
       ));
 
     $tabs =  Navigation::tabs($links);
@@ -151,14 +151,14 @@ class NavigationTest extends BootstrapperWrapper
   public function testLinkBasic()
   {
     $link = Navigation::link('foo', '#');
-    $match = array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null);
+    $match = array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null);
     $this->assertEquals($match, $link);
   }
 
   public function testLinkAll()
   {
     $link = Navigation::link('foo', '#', true, false, array('label' => 'bar', 'url' => '#1'));
-    $match = array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' => array('label' => 'bar', 'url' => '#1'));
+    $match = array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' => array('label' => 'bar', 'url' => '#1'), 'icon' => null);
     $this->assertEquals($match, $link);
   }
 
@@ -169,8 +169,8 @@ class NavigationTest extends BootstrapperWrapper
         array('bar', '#')
       ));
     $match = array(
-      array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null),
-      array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null),
+      array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null),
+      array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null),
       );
     $this->assertEquals($match, $link);
   }
@@ -190,11 +190,11 @@ class NavigationTest extends BootstrapperWrapper
     $match = array(
         array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' =>
           array(
-            array('label'=> 'foo1', 'url' => '#foo1', 'active' => false, 'disabled' => false, 'items' => null),
-            array('label'=> 'foo2', 'url' => '#foo2', 'active' => false, 'disabled' => false, 'items' => null),
-          )
+            array('label'=> 'foo1', 'url' => '#foo1', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null),
+            array('label'=> 'foo2', 'url' => '#foo2', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null),
+          ), 'icon' => null
         ),
-        array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => true, 'items' => null),
+        array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => true, 'items' => null, 'icon' => null),
       );
 
     $this->assertEquals($match, $link);
