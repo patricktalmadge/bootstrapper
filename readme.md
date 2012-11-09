@@ -61,7 +61,7 @@ Add the following to your template view file to include the Twitter Bootstrap CS
 
 
 
-##Current Twitter Bootstrap version is 2.1.1.
+##Current Twitter Bootstrap version is 2.2.1.
 
 - Homepage:		http://twitter.github.com/bootstrap/
 - GitHub:   	https://github.com/twitter/bootstrap/
