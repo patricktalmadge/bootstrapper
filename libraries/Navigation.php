@@ -22,15 +22,12 @@ class Navigation
      * Menu types
      * @var constant
      */
-    const TYPE_UNSTYLED    = '';
-    const TYPE_LIST        = 'nav-list';
-    const TYPE_PILLS       = 'nav-pills';
-    const TYPE_TABS        = 'nav-tabs';
+    const TYPE_UNSTYLED = '';
+    const TYPE_LIST     = 'nav-list';
+    const TYPE_PILLS    = 'nav-pills';
+    const TYPE_TABS     = 'nav-tabs';
 
-    const HEADER           = '-HEADER-';
-    const DIVIDER          = '---';
-    const VERTICAL_DIVIDER = '|||';
-
+    const HEADER        = '-HEADER-';
 
     /**
      * Generates a nav menu and any dropdown if the $list array contains any dropdown objects.
@@ -64,6 +61,7 @@ class Navigation
             $icon = isset($item['icon']) ? $item['icon'] : null;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             // Set vertical dividers
             if ($item['label'] === '|||') {
                 $html .= '<li class="divider-vertical"></li>';
@@ -78,6 +76,14 @@ class Navigation
             // Set normal divider
             } elseif($item['label'] === Navigation::DIVIDER) {
 >>>>>>> Added Divider consts
+=======
+            // Set vertical dividers
+            if ($item['label'] === '|||') {
+                $html .= '<li class="divider-vertical"></li>';
+
+            // Set normal divider
+            } elseif ($item['label'] === '---') {
+>>>>>>> server version
                 $html .= '<li class="divider"></li>';
 
             // Set Header if Label Equals HEADER const
@@ -254,9 +260,9 @@ class Navigation
      *
      * @return mixed
      */
-    public static function link($label, $url, $active = false, $disabled = false, $items = null, $icon = null)
+    public static function link($label, $url, $active = false, $disabled = false, $items = null)
     {
-        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items, 'icon' => $icon);
+        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items);
     }
 
     /**
@@ -279,8 +285,7 @@ class Navigation
             $active = array_get($link, 2);
             $disabled = array_get($link, 3);
             $items = array_get($link, 4);
-            $icon = array_get($link, 5);
-            $l[] = static::link($label, $url, $active, $disabled, static::links($items), $icon);
+            $l[] = static::link($label, $url, $active, $disabled, static::links($items));
         }
 
         return $l;
