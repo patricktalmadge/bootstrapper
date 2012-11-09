@@ -43,7 +43,7 @@ Asset::container('bootstrapper')->scripts();
 
 http://laravelbootstrapper.phpfogapp.com
 
-## Current Twitter Bootstrap version is 2.1.1
+## Current Twitter Bootstrap version is 2.2.1
 
 - Homepage:     http://twitter.github.com/bootstrap/
 - GitHub:       https://github.com/twitter/bootstrap/
