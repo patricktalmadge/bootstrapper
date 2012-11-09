@@ -37,7 +37,7 @@ class Progress
      *
      * @return string
      */
-    protected static function show($amounts, $type = Progress::NORMAL, $attributes = array())
+    protected static function show($amounts = 0, $type = Progress::NORMAL, $attributes = array())
     {
         if(is_array($amounts)) $type = Progress::NORMAL;
         $attributes = Helpers::add_class($attributes, 'progress '.$type);
@@ -60,7 +60,7 @@ class Progress
      *
      * @return string
      */
-    protected static function bar($amount, $style = null)
+    protected static function bar($amount = 0, $style = null)
     {
         // Prepend bar style with 'bar-'
         $style = $style ? ' bar-'.$style : null;
@@ -76,7 +76,7 @@ class Progress
      *
      * @return string
      */
-    public static function normal($amount, $attributes = array())
+    public static function normal($amount = 0, $attributes = array())
     {
         return static::show($amount, Progress::NORMAL, $attributes);
     }
@@ -89,7 +89,7 @@ class Progress
      *
      * @return string
      */
-    public static function success($amount, $attributes = array())
+    public static function success($amount = 0, $attributes = array())
     {
         return static::show($amount, Progress::SUCCESS, $attributes);
     }
@@ -102,7 +102,7 @@ class Progress
      *
      * @return string
      */
-    public static function info($amount, $attributes = array())
+    public static function info($amount = 0, $attributes = array())
     {
         return static::show($amount, Progress::INFO, $attributes);
     }
@@ -115,7 +115,7 @@ class Progress
      *
      * @return string
      */
-    public static function warning($amount, $attributes = array())
+    public static function warning($amount = 0, $attributes = array())
     {
         return static::show($amount, Progress::WARNING, $attributes);
     }
@@ -128,7 +128,7 @@ class Progress
      *
      * @return string
      */
-    public static function danger($amount, $attributes = array())
+    public static function danger($amount = 0, $attributes = array())
     {
         return static::show($amount, Progress::DANGER, $attributes);
     }
@@ -142,7 +142,7 @@ class Progress
      *
      * @return string
      */
-    public static function automatic($amount, $attributes = array())
+    public static function automatic($amount = 0, $attributes = array())
     {
         $progress = array(PROGRESS::DANGER, Progress::WARNING, Progress::INFO, Progress::SUCCESS);
         $progress = array_get($progress, floor($amount / 25), Progress::SUCCESS);
