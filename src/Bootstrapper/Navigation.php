@@ -72,7 +72,12 @@ class Navigation
 
             // Set Header if Label Equals HEADER const
             } elseif ($item['label'] === Navigation::HEADER) {
-                $html .= '<li class="nav-header">'.HTML::entities($item['url']).'</li>';
+                $iconStr = "";
+                if ($icon !== null) {
+                    $iconStr = '<i class="icon-'.$icon.'"></i> ';
+                }
+
+                $html .= '<li class="nav-header">'.$iconStr.HTML::entities($item['url']).'</li>';
 
             // Set dropdown style
             } elseif (isset($item['items'])) {
