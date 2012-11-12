@@ -7,8 +7,8 @@ class ConfigTest extends BootstrapperWrapper
 {
   public function setUp()
   {
-    LaravelConfig::set('bootstrapper', array());
-    LaravelConfig::set('bootstrapper::bootstrapper', array());
+    LaravelConfig::set('bootstrapper.foo', null);
+    LaravelConfig::set('bootstrapper::bootstrapper.foo', null);
   }
 
   public function testCanSetCustomValues()
@@ -29,8 +29,8 @@ class ConfigTest extends BootstrapperWrapper
 
   public function testCanProvideAFallback()
   {
-    LaravelConfig::set('bootstrapper.ter', 'bar');
-    $config = Config::get('foo', 'fallback');
+    LaravelConfig::set('bootstrapper.foo', 'bar');
+    $config = Config::get('ter', 'fallback');
 
     $this->assertEquals('fallback', $config);
   }
