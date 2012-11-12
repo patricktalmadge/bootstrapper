@@ -64,7 +64,7 @@ class Icon
         }
 
         // Prepend icon- to classes
-        $parameters = Helpers::set_multi_class_attributes(null, $icon_classes, $parameters, 0, 'icon-');
+        $parameters = Helpers::set_multi_class_attributes(null, $icon_classes, $parameters, 0, Config::get('icons_prefix'));
 
         return '<i'.HTML::attributes($parameters[0]).'></i>';
     }

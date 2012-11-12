@@ -74,7 +74,7 @@ class Navigation
             } elseif ($item['label'] === Navigation::HEADER) {
                 $iconStr = "";
                 if ($icon !== null) {
-                    $iconStr = '<i class="icon-'.$icon.'"></i> ';
+                    $iconStr = '<i class="' .Config::get('icons_prefix').$icon.'"></i> ';
                 }
 
                 $html .= '<li class="nav-header">'.$iconStr.HTML::entities($item['url']).'</li>';
@@ -233,7 +233,7 @@ class Navigation
         }
 
         if (isset($icon)) {
-            $title = '<i class="icon-'.$icon.'"></i> '.$title;
+            $title = '<i class="'.Config::get('icons_prefix').$icon.'"></i> '.$title;
         }
 
         return '<a href="'.$url.'"'.HTML::attributes($attributes).'>'.$title.'</a>';
