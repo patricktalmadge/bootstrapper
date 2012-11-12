@@ -1,4 +1,5 @@
 <?php
+use Bootstrapper\Config;
 use Bootstrapper\Table;
 
 class TableTest extends BootstrapperWrapper
@@ -39,7 +40,7 @@ class TableTest extends BootstrapperWrapper
 
   public function tearDown()
   {
-    Table::defaultType(null);
+    Config::set('table.classes', array());
     Table::close();
   }
 
@@ -54,7 +55,7 @@ class TableTest extends BootstrapperWrapper
 
   public function testDefaultOpen()
   {
-    Table::defaultType('striped_foo_hover');
+    Config::set('table.classes', array('striped', 'foo', 'hover'));
     $table = Table::open();
 
     $this->assertEquals('<table class="table-striped table-hover table">', $table);
@@ -184,7 +185,7 @@ class TableTest extends BootstrapperWrapper
 
   public function testAlwaysIgnore()
   {
-    Table::always_ignore('foo', 'bar');
+    Config::set('table.ignore', array('foo', 'bar'));
 
     $body = Table::body($this->body)->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
@@ -192,12 +193,12 @@ class TableTest extends BootstrapperWrapper
     $this->assertEquals($matcher, $body);
   }
 
-  public function testAlwaysIgnoreThenManuallyIgnore()
+  public function testAlwaysIgnoreOverridesManuallyIgnore()
   {
-    Table::always_ignore('foo');
+    Config::set('table.ignore', array('foo'));
 
     $body = Table::body($this->body)->ignore('bar')->__toString();
-    $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
+    $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
   }

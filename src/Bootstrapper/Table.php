@@ -30,18 +30,6 @@ class Table
      */
     private static $classes = array('striped', 'bordered', 'hover', 'condensed');
 
-    /**
-     * The default columns to ignore
-     * @var array
-     */
-    private static $defaultIgnore = array();
-
-    /**
-     * The default tables type
-     * @var string
-     */
-    private static $defaultType = null;
-
     // Current table ----------------------------------------------- /
 
     /**
@@ -54,7 +42,7 @@ class Table
      * The current table body in memory
      * @var string
      */
-    private $tbody = null;
+    private $tbody = array();
 
     /**
      * The rows to be ignored in the next body to come
@@ -102,7 +90,7 @@ class Table
             $method  = array_pop($classes);
 
             // Fallback to default type if defined
-            if(sizeof($classes) == 0) $classes = explode('_', static::$defaultType);
+            if(sizeof($classes) == 0) $classes = Config::get('table.classes');
 
             // Filter table classes
             $classes = array_intersect($classes, static::$classes);
@@ -129,24 +117,6 @@ class Table
                 return call_user_func_array(array(static::table(), $method), $parameters);
                 break;
         }
-    }
-
-    /**
-     * Always ignore the following columns
-     */
-    public static function always_ignore()
-    {
-        static::$defaultIgnore = func_get_args();
-    }
-
-    /**
-     * Set the default classes of the tables to create
-     *
-     * @param string $type Default type
-     */
-    public static function defaultType($type)
-    {
-        static::$defaultType = $type;
     }
 
     /**
@@ -275,7 +245,7 @@ class Table
      */
     private function ignore()
     {
-        $this->ignore = array_merge(static::$defaultIgnore, func_get_args());
+        $this->ignore = func_get_args();
 
         return $this;
     }
@@ -299,9 +269,11 @@ class Table
     {
         if(!$this->tbody) return false;
 
+        // Fetch ignored columns
+        if (!$this->ignore) $this->ignore = Config::get('table.ignore');
+
         // Fetch variables
         $content = $this->tbody;
-        if(!$this->ignore) $this->ignore = static::$defaultIgnore;
 
         // Open table body
         $html = '<tbody>';
