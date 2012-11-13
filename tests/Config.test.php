@@ -34,4 +34,12 @@ class ConfigTest extends BootstrapperWrapper
 
     $this->assertEquals('fallback', $config);
   }
+
+  public function testUserCanSetEmptyConfigKeys()
+  {
+    LaravelConfig::set('bootstrapper.foo', '');
+    $config = Config::get('foo');
+
+    $this->assertEquals('', $config);
+  }
 }

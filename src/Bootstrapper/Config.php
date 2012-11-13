@@ -27,10 +27,10 @@ class Config
    */
   public static function get($key, $fallback = null)
   {
-    $user   = LaravelConfig::get('bootstrapper.'.$key);
+    $user   = LaravelConfig::get('bootstrapper.'.$key, null);
     $vendor = LaravelConfig::get('bootstrapper::bootstrapper.'.$key, $fallback);
 
-    return $user ?: $vendor;
+    return is_null($user) ? $vendor : $user;
   }
 
   /**
