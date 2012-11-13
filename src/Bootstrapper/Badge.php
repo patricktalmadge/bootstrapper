@@ -20,6 +20,7 @@ class Badge
 {
     /**
      * Badge colors
+     *
      * @var constant
      */
     const NORMAL    = '';

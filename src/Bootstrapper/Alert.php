@@ -20,6 +20,7 @@ class Alert
 {
     /**
      * Alert styles
+     *
      * @var constant
      */
     const DANGER  = 'alert-danger';
@@ -43,13 +44,6 @@ class Alert
     private $message = false;
 
     /**
-     * Whether the current alert is closeable
-     *
-     * @var boolean
-     */
-    private $isCloseable = true;
-
-    /**
      * The current alert's attributes
      *
      * @var array
@@ -57,12 +51,18 @@ class Alert
     private $attributes = array();
 
     /**
+     * Whether the current alert is closeable
+     *
+     * @var boolean
+     */
+    private $isCloseable = true;
+
+    /**
      * Whether the current alert is block or not.
      *
      * @var boolean
      */
     private $isBlock = false;
-
 
     /**
      * Create a new Alert.
@@ -247,18 +247,21 @@ class Alert
 
         $instance = new Alert;
 
+        // Search for "open_type" method
         $open = array_search('open', $method);
         if ($open !== false) {
             $instance->isCloseable = false;
             unset($method[$open]);
         }
 
+        // Search for "block_type" method
         $block = array_search('block', $method);
         if ($block !== false) {
             $instance->isBlock = true;
             unset($method[$block]);
         }
 
+        // Create Alert class
         $type = 'alert-'.implode("-", $method);
 
         // Save given parameters
