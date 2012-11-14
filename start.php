@@ -12,7 +12,7 @@
 
 Autoloader::map(array(
 	'Bootstrapper\\Alert'               => __DIR__.'/alert.php',
-	'Bootstrapper\\Badges'  	    => __DIR__.'/badges.php',
+	'Bootstrapper\\Badges'              => __DIR__.'/badges.php',
 	'Bootstrapper\\Breadcrumbs'         => __DIR__.'/breadcrumbs.php',
 	'Bootstrapper\\ButtonGroup'         => __DIR__.'/buttongroup.php',
 	'Bootstrapper\\Buttons'             => __DIR__.'/buttons.php',
@@ -35,8 +35,8 @@ Autoloader::map(array(
 
 Asset::container('bootstrapper')->bundle('bootstrapper');
 
-//Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.8.1.js');
-Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.8.1.min.js');
+//Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.8.2.js');
+Asset::container('bootstrapper')->add('jquery',  'js/jquery-1.8.2.min.js');
 
 //Asset::container('bootstrapper')->add('bootstrap',  'css/bootstrap.css');
 Asset::container('bootstrapper')->add('bootstrap',  'css/bootstrap.min.css');
