@@ -92,7 +92,7 @@ class Paginator extends \Laravel\Paginator {
 	 */
 	protected function element($element, $page, $text, $disabled)
 	{
-		$class = $this->pager_aligned ? "{$element}" : "";
+		$class = $this->pager_aligned ? "{$element}" : null;
 
 		if (is_null($text))
 		{
@@ -105,13 +105,12 @@ class Paginator extends \Laravel\Paginator {
 		// the "first" element should be a span instead of a link.
 		if ($disabled($this->page, $this->last))
 		{
-			$class .= " disabled";
+                        $class .= " disabled";
 			return '<li'.HTML::attributes(compact("class")).'><a href="#">'.HTML::entities($text).'</a></li>';
 		}
 		else
 		{
-
-			return '<li'.HTML::attributes(compact("class")).'>'.$this->link($page, $text, null).'</li>';
+			return $this->link($page, $text, $class);
 		}
 	}
 
@@ -142,7 +141,7 @@ class Paginator extends \Laravel\Paginator {
 			}
 			else
 			{
-				$pages[] = '<li>'.$this->link($page, $page, null).'</li>';
+				$pages[] = $this->link($page, $page, null);
 			}
 		}
 
