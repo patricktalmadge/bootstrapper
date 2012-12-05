@@ -23,8 +23,13 @@ class Paginator extends \Laravel\Paginator
      * @var constant
      */
     const ALIGN_LEFT   = '';
-    const ALIGN_CENTER = 'pagination-centered';
-    const ALIGN_RIGHT  = 'pagination-right';
+    const ALIGN_CENTER = ' pagination-centered';
+    const ALIGN_RIGHT  = ' pagination-right';
+
+    const SIZE_DEFAULT = '';
+    const SIZE_LARGE   = ' pagination-large';
+    const SIZE_SMALL   = ' pagination-small';
+    const SIZE_MINI    = ' pagination-mini';
 
     protected $pager_aligned = false;
 
@@ -75,7 +80,7 @@ class Paginator extends \Laravel\Paginator
      *
      * @return string
      */
-    public function links($adjacent = 3, $alignment = self::ALIGN_LEFT)
+    public function links($adjacent = 3, $alignment = self::ALIGN_LEFT, $size = self::SIZE_DEFAULT)
     {
         if ($this->last <= 1) return '';
 
@@ -95,7 +100,7 @@ class Paginator extends \Laravel\Paginator
         $content = $this->previous().' '.$links.' '.$this->next();
 
 
-        $attributes = array("class" => "pagination ".$alignment);
+        $attributes = array("class" => "pagination".$alignment.$size);
 
         return '<div'.HTML::attributes($attributes).'><ul>'.$content.'</ul></div>';
     }
