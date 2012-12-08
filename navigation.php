@@ -66,7 +66,7 @@ class Navigation
 			{
 				$html .= '<li class="dropdown '.static::getClasses($item, false, $autoroute).'">';
 				$html .= static::link($item['url'], $item['label'].' <b class="caret"></b>', array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'), false, $icon);
-				$html .= static::dropdown($item['items']);
+				$html .= static::dropdown($item['items'], array(), $autoroute);
 				$html .= '</li>';
 			}
 			else
