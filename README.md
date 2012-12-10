@@ -1,4 +1,6 @@
-# Bootstrapper V4, by Patrick Talmadge
+# Bootstrapper V4
+
+Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=master)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
