@@ -93,7 +93,7 @@ class Navigation
 
                 $html .= '<li class="'.$dropClass.' '.static::getClasses($item, false, $autoroute).'">';
                 $html .= static::linkItem($item['url'], $item['label'].$extraCaret, $att, false, $icon);
-                $html .= static::dropdown($item['items']);
+                $html .= static::dropdown($item['items'], array(), $autoroute);
                 $html .= '</li>';
 
             // Must be basic link
