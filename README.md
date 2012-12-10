@@ -71,7 +71,7 @@ Asset::container('bootstrapper')->scripts();
 
 http://bootstrapper.aws.af.cm/
 
-## Current Twitter Bootstrap version is 2.2.1
+## Current Twitter Bootstrap version is 2.2.2
 
 - Homepage:     http://twitter.github.com/bootstrap/
 - GitHub:       https://github.com/twitter/bootstrap/

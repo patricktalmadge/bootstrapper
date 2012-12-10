@@ -24,7 +24,7 @@ Asset::container('bootstrapper')
     ->add('bootstrap',            'css/bootstrap.min.css')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.min.css')
     ->add('nav-fix',              'css/nav-fix.css')
-    ->add('jquery',               'js/jquery-1.8.2.min.js')
+    ->add('jquery',               'js/jquery-1.8.3.min.js')
     ->add('bootstrap-js',         'js/bootstrap.min.js', 'jquery');
 
 // Define unminified version of the assets
@@ -33,7 +33,7 @@ Asset::container('bootstrapper-unminified')
     ->add('bootstrap',            'css/bootstrap.css')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.css')
     ->add('nav-fix',              'css/nav-fix.css')
-    ->add('jquery',               'js/jquery-1.8.2.js')
+    ->add('jquery',               'js/jquery-1.8.3.js')
     ->add('bootstrap-js',         'js/bootstrap.js', 'jquery');
 
 // Prevent the need for modifying config/application.php
