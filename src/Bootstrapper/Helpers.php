@@ -87,4 +87,40 @@ class Helpers
 
         return $params;
     }
+
+    /**
+     * Generate the javascript code needed to activate popover, tooltip, etc
+     * Usage: {{ Bootstrapper\Helpers::inject_activate_js(array('popover','tooltip')) }}
+     * 
+     * @param mixed $elements Array (popover, tooltip) or string for single element
+     * @return string
+     */
+    public static function inject_activate_js($elements = null)
+    {
+        if ($elements == null) return;
+
+        $js_code = null;
+        if (is_array($elements)) {
+            foreach ($elements as $element) {
+                $js_code .= static::create_js_activation_code($element);
+            }
+        }
+        else if (is_string($elements)) {
+            $js_code = static::create_js_activation_code($element);
+        }
+        return $js_code;
+    }
+
+    /**
+     * create the javascript snippet
+     * @param string $element 
+     * @return string
+     */
+    private static function create_js_activation_code($element)
+    {
+        if ($element == null || !is_string($element)) return;
+
+        $js_code = '<script type="text/javascript">$(document).ready(function (){ $("[rel=%s]").%s();});</script>'.PHP_EOL;
+        return sprintf($js_code, $element, $element);
+    }
 }
