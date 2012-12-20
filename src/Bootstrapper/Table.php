@@ -283,7 +283,7 @@ class Table
 
             $html .= '<tr>';
             $columnCount = 0;
-            $data = is_object($row) ? $row->attributes : $row;
+            $data = ($row instanceof \Eloquent) ? $row->to_array() : $row;
 
             // Reorder columns if necessary
             if ($this->order) {
