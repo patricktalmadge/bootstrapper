@@ -1,6 +1,7 @@
 <?php
 namespace Bootstrapper;
-
+use Eloquent;
+use Closure;
 use \HTML;
 
 /**
@@ -149,12 +150,7 @@ class Table
     {
         // List known keys
         $columns = array_get($this->tbody, key($this->tbody));
-        $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
-
-        // If we're not replacing something, we're creating, assume classes
-        if (!in_array($column, $columns)) {
-            $column = str_replace('_', ' ', $column);
-        }
+        $columns = array_keys(($columns instanceof Eloquent)? $columns->attributes : $columns);
 
         // Store Closure/content
         $this->columns[$column] = $content;
@@ -278,55 +274,39 @@ class Table
         // Open table body
         $html = '<tbody>';
 
-        // Iterate through the data
-        foreach ($content as $row) {
-
-            $html .= '<tr>';
-            $columnCount = 0;
-            $data = ($row instanceof \Eloquent) ? $row->to_array() : $row;
+        if($row = head($content)) {
+            $data = ($row instanceof Eloquent) ? $row->attributes : $row;
 
             // Reorder columns if necessary
+
+            $columns = array_values(array_diff(array_keys($data), (array) $this->ignore));
+            $columns = array_merge($columns, array_keys($this->columns));
+            
             if ($this->order) {
-                $data = array_merge(array_flip($this->order), $data);
+                $columns = array_unique(array_merge($this->order, $columns));
             }
 
-            // Read the data row with ignored keys
-            foreach ($data as $column => $value) {
-                if(in_array($column, (array) $this->ignore)) continue;
+            $this->numberColumns = count($columns);
+        }
 
-                // Check for replacing columns
-                $replace = array_get($this->columns, $column);
-                if ($replace) {
-                    $value = is_callable($replace) ? $replace($row) : $replace;
-                    $value = static::replace_keywords($value, $data);
+        // Iterate through the data
+        foreach ($content as $i => $row) {
+
+            $html .= '<tr>';
+
+            $data = ($row instanceof Eloquent) ? $row->attributes : $row;
+
+            foreach($columns as $j => $column) {
+                $value = array_get($data, $column);
+
+                if($replace = array_get($this->columns, $column)) {
+                    $value = ($replace instanceof Closure) ? $replace($row) : $replace;
                 }
 
-                $columnCount++;
                 $html .= static::appendColumn($column, $value);
             }
 
-            // Add supplementary columns
-            if($this->columns)
-                foreach ($this->columns as $class => $column) {
-
-                // Check for replacing columns
-                if(array_key_exists($class, $data)) continue;
-
-                // Calculate closures
-                if(is_callable($column)) $column = $column($row);
-
-                // Parse and decode content
-                $column = static::replace_keywords($column, $data);
-                $column = HTML::decode($column);
-
-                // Wrap content in a <td> tag if necessary
-                $columnCount++;
-                $html .= static::appendColumn($class, $column);
-            }
-            $html .= '</tr>';
-
-            // Save new number of columns
-            if($columnCount > $this->numberColumns) $this->numberColumns = $columnCount;
+            $html .= '</tr>';            
         }
 
         $html .= '</tbody>';
