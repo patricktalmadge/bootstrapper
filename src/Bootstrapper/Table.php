@@ -52,6 +52,12 @@ class Table
     private $ignore = array();
 
     /**
+     * The columns to be allowed in the body
+     * @var array
+     */
+    private $only = array();    
+
+    /**
      * The order in which the columns are to be printed out
      * @var array
      */
@@ -247,6 +253,18 @@ class Table
     }
 
     /**
+     * Only allow a certain columns
+     *
+     * @return Table The current table instance
+     */
+    private function only()
+    {
+        $this->only = func_get_args();
+
+        return $this;
+    }
+
+    /**
      * Iterate the columns in a certain order in the body to come
      */
     private function order()
@@ -274,20 +292,18 @@ class Table
         // Open table body
         $html = '<tbody>';
 
-        if($row = head($content)) {
+        if( ! ($columns = $this->only) and $row = head($content)) {
             $data = ($row instanceof Eloquent) ? $row->attributes : $row;
-
-            // Reorder columns if necessary
 
             $columns = array_unique(array_merge(array_keys($data), array_keys($this->columns)));
             $columns = array_values(array_diff($columns, (array) $this->ignore));
             
-            
+            // Reorder columns if necessary
+
             if ($this->order) {
-                $columns = array_unique(array_merge($this->order, $columns));
+                $order = array_values(array_diff($this->order, $columns));
+                $columns = array_unique(array_merge($order, $columns));
             }
-
-
 
             $this->numberColumns = count($columns);
         }
@@ -318,6 +334,7 @@ class Table
         $this->ignore  = array();
         $this->columns = array();
         $this->tbody   = null;
+        $this->only = array();
 
         return $html;
     }
