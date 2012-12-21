@@ -71,7 +71,14 @@ class Modal
      *
      * @var boolean
      */
-    private $autoclose   = true;
+    public $autoclose   = true;
+
+    /**
+     * Whether the current Modal should add a close button on the Footer
+     *
+     * @var boolean
+     */
+    public $autofooter   = true;
 
     /**
      * Create a new Modal instance.
@@ -242,12 +249,30 @@ class Modal
      */
     public function get_launch_anchor($a_text, $attributes = null)
     {
-        $defaultAttributes = 'class="btn" role="button" data-toggle="modal" ';
+        $defaultAttributes = ' role="button" data-toggle="modal" ';
         if (is_array($attributes)) {
             $defaultAttributes .= HTML::attributes($attributes);
         }
-        $html  = '<a '.$defaultAttributes.' data-target="#'.$this->name.'">'.$a_text.'</a>';
+        $html  = '<a href="#"'.$defaultAttributes.' data-target="#'.$this->name.'">'.$a_text.'</a>';
         return $html;
+    }
+
+    /**
+     * get the attributes for launcher
+     *
+     * @param array $attributes         An array of attributes for the current anchor
+     * @return array                   An anchor to use as launcher
+     */
+    public function get_launcher_attributes($attributes = null)
+    {
+        $defaultAttributes = array();
+        $defaultAttributes['role'] = "button";
+        $defaultAttributes['data-toggle'] = "modal";
+        $defaultAttributes['data-target'] = '#'.$this->name;
+        if (is_array($attributes)) {
+            $defaultAttributes += $attributes;
+        }
+        return $defaultAttributes;
     }
 
     /**
@@ -277,16 +302,20 @@ class Modal
             $html .= implode(PHP_EOL, $this->bodies);
         $html .= '</div>';
 
-        $html .= '<div class="modal-footer">';
+        $hasfooter = true;
+        $footerdiv = '<div class="modal-footer">';
         if (!empty($this->footer))
-            $html .= '<p>'.$this->footer.'</p>';
+            $footerdiv .= '<p>'.$this->footer.'</p>';
         if (!empty($this->footers))
-            $html .= implode(PHP_EOL, $this->footers);
+            $footerdiv .= implode(PHP_EOL, $this->footers);
         if (empty($this->footer) && empty($this->footers)) {
-            $html .= '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>';
+            if ($this->autofooter)
+                $footerdiv .= '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>';
+            else
+                $hasfooter = false;
         }
-
-        $html .= '</div>';
+        $footerdiv .= '</div>';
+        if ($hasfooter) $html .= $footerdiv;
 
         // Close Modal containers
         $html .= '</div>';
