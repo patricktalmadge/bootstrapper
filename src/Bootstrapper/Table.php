@@ -279,12 +279,15 @@ class Table
 
             // Reorder columns if necessary
 
-            $columns = array_values(array_diff(array_keys($data), (array) $this->ignore));
-            $columns = array_merge($columns, array_keys($this->columns));
+            $columns = array_unique(array_merge(array_keys($data), array_keys($this->columns)));
+            $columns = array_values(array_diff($columns, (array) $this->ignore));
+            
             
             if ($this->order) {
                 $columns = array_unique(array_merge($this->order, $columns));
             }
+
+
 
             $this->numberColumns = count($columns);
         }
