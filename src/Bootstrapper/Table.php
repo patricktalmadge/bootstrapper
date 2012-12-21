@@ -146,6 +146,11 @@ class Table
         return call_user_func_array(array(static::$table, $method), $parameters);
     }
 
+    public function __get($prop)
+    {
+        return $this->$prop;
+    }
+
     /**
      * Dynamically set a column's content
      *
@@ -296,17 +301,19 @@ class Table
             $data = ($row instanceof Eloquent) ? $row->attributes : $row;
 
             $columns = array_unique(array_merge(array_keys($data), array_keys($this->columns)));
-            $columns = array_values(array_diff($columns, (array) $this->ignore));
-            
-            // Reorder columns if necessary
-
-            if ($this->order) {
-                $order = array_values(array_diff($this->order, $columns));
-                $columns = array_unique(array_merge($order, $columns));
-            }
-
-            $this->numberColumns = count($columns);
         }
+
+        //ignore columns are ignored
+        $columns = array_values(array_diff($columns, (array) $this->ignore));
+
+        // Reorder columns if necessary
+
+        if ($this->order) {
+            $order = array_values(array_intersect($this->order, $columns));
+            $columns = array_unique(array_merge($order, $columns));
+        }
+
+        $this->numberColumns = count($columns);
 
         // Iterate through the data
         foreach ($content as $i => $row) {
