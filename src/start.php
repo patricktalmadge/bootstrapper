@@ -22,7 +22,7 @@ Autoloader::namespaces(
 Asset::container('bootstrapper')
     ->bundle('bootstrapper')
     ->add('bootstrap',            'css/bootstrap.min.css')
-    ->add('font-awesome',         'css/font-awesome.min.css')
+    ->add('font-awesome',         'css/font-awesome.css')
     ->add('bootstrap-responsive', 'css/bootstrap-responsive.min.css')
     ->add('nav-fix',              'css/nav-fix.css')
     ->add('jquery',               'js/jquery-1.8.3.min.js')
@@ -43,6 +43,12 @@ Asset::container('bootstrapper-datepicker')
     ->bundle('bootstrapper')
     ->add('datepicker',           'css/datepicker.css')
     ->add('datepicker-js',        'js/bootstrap-datepicker.js');
+
+// Define datepicker
+Asset::container('bootstrapper-x-editable')
+    ->bundle('bootstrapper')
+    ->add('bootstrap-editable',           'css/bootstrap-editable.css')
+    ->add('bootstrap-editable-js',        'js/bootstrap-editable.js');
 
 // Prevent the need for modifying config/application.php
 // $custom_aliases = array(
