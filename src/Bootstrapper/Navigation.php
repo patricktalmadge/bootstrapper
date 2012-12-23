@@ -197,7 +197,7 @@ class Navigation
     protected static function getClasses($item, $with_class = true, $autoroute = true)
     {
         $class = '';
-        if ((isset($item['active']) && $item['active']) || ($autoroute && \URL::current() == $item['url'])) {
+        if ((isset($item['active']) && $item['active']) || ($autoroute && static::shouldActivate($item)) {
             $class = 'active';
         }
 
@@ -213,6 +213,31 @@ class Navigation
         }
 
         return $class;
+    }
+    
+    /**
+     * checks whether an item should be activated or not.
+     * If the item is not to be activated via URL::current(), it checks
+     * if the item is a dropdown and returns true if any of the children
+     * of items have target === URL::crrent()
+     *
+     * @param array $item       item array
+     *
+     * @return boolean
+     */    
+    protected static function shouldActivate($item)
+    {
+        if(\URL::current() == $item['url'])
+            return true;
+
+        if(isset($item['items']) and is_array($item['items'])) {
+            foreach($item['items'] as $i) {
+                if(static::shouldActivate($i) === true)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     /**
