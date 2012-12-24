@@ -197,7 +197,7 @@ class Navigation
     protected static function getClasses($item, $with_class = true, $autoroute = true)
     {
         $class = '';
-        if ((isset($item['active']) && $item['active']) || ($autoroute && static::shouldActivate($item)) {
+        if ((isset($item['active']) && $item['active']) || ($autoroute && static::shouldActivate($item))) {
             $class = 'active';
         }
 
