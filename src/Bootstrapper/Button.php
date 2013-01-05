@@ -134,7 +134,7 @@ class Button
     public function with_icon($icon, $attributes = array(), $prependIcon = true)
     {
         // Call Icon to create the icon
-        $icon = Icon::make($icon);
+        $icon = Icon::make($icon, $attributes);
 
         // If there was no text, just use the icon, else put a space between
         $value = $this->currentButton['value'];
