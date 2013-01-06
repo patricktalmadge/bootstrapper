@@ -1,10 +1,11 @@
 # Enhanced Bootstrapper
 
+## Bootstrapper V4
 Bootstrapper V4 is a set of classes that allow you to quickly create Twitter Bootstrap style markup for Laravel framework.
 This library was originally developed by [patrick talmadge](https://github.com/patricktalmadge/bootstrapper)
 You can read the documentation [here](https://github.com/patricktalmadge/bootstrapper/blob/master/README.md) and play with the demo [here](http://bootstrapper.aws.af.cm/)
 
-## Bootstrapper V4
+## Enhanced Bootstrapper
 I added the following components:
 - A Javascript Injector helper
 - [Modal Component](#modal)
