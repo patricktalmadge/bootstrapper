@@ -7,13 +7,13 @@ You can read the documentation [here](https://github.com/patricktalmadge/bootstr
 
 ## Enhanced Bootstrapper
 I added the following components:
-- A Javascript Injector helper
+- A [Javascript Injector](javascripter) helper
 - [Modal Component](#modal)
-- Tooltip
-- Popover
+- [Tooltip and Popover](#tooltip)
 - Datepicker widget (not part of the twitter implementation)
 - Font awesome icons
 
+<a name='javascripter'></a>
 ## Javascript Injector
 Tooltip, Popover and Datepicker needs it to produce the necessary javascript dinamically. When you use the above classes, Javascripter stores automatically the javascript code and inject it on your page:
 ```php
@@ -63,6 +63,7 @@ Once you created a Modal you can launch it using a button or an anchor or get th
 <a {{$modal->get_launcher_attributes()}}>Open Modal</a>
 ```
 
+<a name='tooltip'></a>
 ## Tooltip/Popover
 With this class you can use the twitter [Tooltips](http://twitter.github.com/bootstrap/javascript.html#tooltips) and [Popover](http://twitter.github.com/bootstrap/javascript.html#popovers).
 Don't forget to use the Javascripter to animate the tooltips once you created them.
