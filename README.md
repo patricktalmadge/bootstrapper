@@ -9,7 +9,7 @@ You can read the documentation here(https://github.com/patricktalmadge/bootstrap
 # Enhanced Bootstrapper
 I added some nice features:
 - A Javascript Injector helper
-- Modal component
+- [Modal Component](#modal)
 - Tooltip
 - Popover
 - Datepicker widget (not part of the twitter implementation)
@@ -26,7 +26,7 @@ You can also add your own javascript with:
 {{Bootstrapper\Javascripter::add_js_snippet('$("#username").editable();')}}
 {{Bootstrapper\Javascripter::write_javascript()}}
 ```
-
+<a name='modal'></a>
 ## Modal Component
 It creates a Modal window (http://twitter.github.com/bootstrap/javascript.html#modals)
 
