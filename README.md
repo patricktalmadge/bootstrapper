@@ -1,13 +1,11 @@
-## Bootstrapper V4
-
-Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=master)](https://travis-ci.org/patricktalmadge/bootstrapper)
-
-Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
-This library was originally developed by patrick talmadge (https://github.com/patricktalmadge/bootstrapper)
-You can read the documentation here(https://github.com/patricktalmadge/bootstrapper/blob/master/README.md) and try the demo here(http://bootstrapper.aws.af.cm/)
-
 # Enhanced Bootstrapper
-I added some nice features:
+
+Bootstrapper V4 is a set of classes that allow you to quickly create Twitter Bootstrap style markup for Laravel framework.
+This library was originally developed by [patrick talmadge](https://github.com/patricktalmadge/bootstrapper)
+You can read the documentation [here](https://github.com/patricktalmadge/bootstrapper/blob/master/README.md) and play with the demo [here](http://bootstrapper.aws.af.cm/)
+
+## Bootstrapper V4
+I added the following components:
 - A Javascript Injector helper
 - [Modal Component](#modal)
 - Tooltip
@@ -28,7 +26,7 @@ You can also add your own javascript with:
 ```
 <a name='modal'></a>
 ## Modal Component
-It creates a Modal window (http://twitter.github.com/bootstrap/javascript.html#modals)
+It creates a [Modal window](http://twitter.github.com/bootstrap/javascript.html#modals)
 
 ```php
 //Simplest way to create a modal
@@ -65,7 +63,7 @@ Once you created a Modal you can launch it using a button or an anchor or get th
 ```
 
 ## Tooltip/Popover
-With this class you can uses the twitter Tooltips(http://twitter.github.com/bootstrap/javascript.html#tooltips) and Popover(http://twitter.github.com/bootstrap/javascript.html#popovers).
+With this class you can use the twitter [Tooltips](http://twitter.github.com/bootstrap/javascript.html#tooltips) and [Popover](http://twitter.github.com/bootstrap/javascript.html#popovers).
 Don't forget to use the Javascripter to animate the tooltips once you created them.
 
 ```php
