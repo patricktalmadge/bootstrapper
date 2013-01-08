@@ -118,7 +118,7 @@ class Datepicker
     {
         if (is_string($date)) 
             //$this->data_date = $date;
-            $defaultAttributes['data-date'] = $date;
+            $this->attributes['data-date'] = $date;
 
         return $this;
     }
@@ -133,7 +133,7 @@ class Datepicker
     {
         if (is_string($date)) 
             //$this->data_date_format = $date;
-            $defaultAttributes['data-date-format'] = $date;
+            $this->attributes['data-date-format'] = $date;
 
         return $this;
     }
@@ -264,7 +264,6 @@ class Datepicker
             $attributes = array_merge($this->attributes, $override_attributes);
 
         $this->produce_javascript();
-
         return $attributes;
     }
 
