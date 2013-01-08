@@ -135,10 +135,8 @@ class Carousel
         // Example : ->as_label('name') and $item->name/$item['name'] will be used as label
         if (starts_with($method, 'as_')) {
             $use = substr($method, 3);
-            if(!isset($this->schema[$use])) return $this;
-            else {
-                $this->schema[$use] = array_get($parameters, 0);
-            }
+            $as = array_get($parameters, 0);
+            $this->schema[$as] = $use;
         }
 
         return $this;
