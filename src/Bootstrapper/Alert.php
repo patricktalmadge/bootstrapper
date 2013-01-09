@@ -74,7 +74,7 @@ class Alert
      *
      * @return string Alert HTML
      */
-    protected static function show($type, $message, $attributes = array())
+    public static function show($type, $message, $attributes = array())
     {
         $instance = new Alert;
 

@@ -270,6 +270,7 @@ class Navigation
         $l = array();
         foreach ($links as $key => $link) {
             $label = array_get($link, 0);
+            if (empty($label)) continue;
             $url = array_get($link, 1);
             $active = array_get($link, 2);
             $disabled = array_get($link, 3);
