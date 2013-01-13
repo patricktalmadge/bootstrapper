@@ -178,7 +178,7 @@ class TableTest extends BootstrapperWrapper
   public function testUnderscoreReplacement()
   {
     $body = Table::body(array(array('foo_bar' => 'foo')))->foo_bar('bar')->bar_foo('foo')->__toString();
-    $matcher = '<tbody><tr><td class="column-foo_bar">bar</td><td class="column-bar foo">foo</td></tr></tbody>';
+    $matcher = '<tbody><tr><td class="column-foo_bar">bar</td><td class="column-bar_foo">foo</td></tr></tbody>';
 
     $this->assertEquals($matcher, $body);
   }

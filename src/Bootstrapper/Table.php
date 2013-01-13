@@ -1,6 +1,7 @@
 <?php
 namespace Bootstrapper;
-
+use Eloquent;
+use Closure;
 use \HTML;
 
 /**
@@ -49,6 +50,12 @@ class Table
      * @var array
      */
     private $ignore = array();
+
+    /**
+     * The columns to be allowed in the body
+     * @var array
+     */
+    private $only = array();    
 
     /**
      * The order in which the columns are to be printed out
@@ -139,6 +146,11 @@ class Table
         return call_user_func_array(array(static::$table, $method), $parameters);
     }
 
+    public function __get($prop)
+    {
+        return $this->$prop;
+    }
+
     /**
      * Dynamically set a column's content
      *
@@ -149,12 +161,7 @@ class Table
     {
         // List known keys
         $columns = array_get($this->tbody, key($this->tbody));
-        $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
-
-        // If we're not replacing something, we're creating, assume classes
-        if (!in_array($column, $columns)) {
-            $column = str_replace('_', ' ', $column);
-        }
+        $columns = array_keys(($columns instanceof Eloquent)? $columns->attributes : $columns);
 
         // Store Closure/content
         $this->columns[$column] = $content;
@@ -251,6 +258,18 @@ class Table
     }
 
     /**
+     * Only allow a certain columns
+     *
+     * @return Table The current table instance
+     */
+    private function only()
+    {
+        $this->only = func_get_args();
+
+        return $this;
+    }
+
+    /**
      * Iterate the columns in a certain order in the body to come
      */
     private function order()
@@ -278,55 +297,42 @@ class Table
         // Open table body
         $html = '<tbody>';
 
+        if( ! ($columns = $this->only) and $row = head($content)) {
+            $data = ($row instanceof Eloquent) ? $row->attributes : $row;
+
+            $columns = array_unique(array_merge(array_keys($data), array_keys($this->columns)));
+        }
+
+        //ignore columns are ignored
+        $columns = array_values(array_diff($columns, (array) $this->ignore));
+
+        // Reorder columns if necessary
+
+        if ($this->order) {
+            $order = array_values(array_intersect($this->order, $columns));
+            $columns = array_unique(array_merge($order, $columns));
+        }
+
+        $this->numberColumns = count($columns);
+
         // Iterate through the data
-        foreach ($content as $row) {
+        foreach ($content as $i => $row) {
 
             $html .= '<tr>';
-            $columnCount = 0;
-            $data = is_object($row) ? $row->attributes : $row;
 
-            // Reorder columns if necessary
-            if ($this->order) {
-                $data = array_merge(array_flip($this->order), $data);
-            }
+            $data = ($row instanceof Eloquent) ? $row->attributes : $row;
 
-            // Read the data row with ignored keys
-            foreach ($data as $column => $value) {
-                if(in_array($column, (array) $this->ignore)) continue;
+            foreach($columns as $j => $column) {
+                $value = array_get($data, $column);
 
-                // Check for replacing columns
-                $replace = array_get($this->columns, $column);
-                if ($replace) {
-                    $value = is_callable($replace) ? $replace($row) : $replace;
-                    $value = static::replace_keywords($value, $data);
+                if($replace = array_get($this->columns, $column)) {
+                    $value = ($replace instanceof Closure) ? $replace($row) : $replace;
                 }
 
-                $columnCount++;
                 $html .= static::appendColumn($column, $value);
             }
 
-            // Add supplementary columns
-            if($this->columns)
-                foreach ($this->columns as $class => $column) {
-
-                // Check for replacing columns
-                if(array_key_exists($class, $data)) continue;
-
-                // Calculate closures
-                if(is_callable($column)) $column = $column($row);
-
-                // Parse and decode content
-                $column = static::replace_keywords($column, $data);
-                $column = HTML::decode($column);
-
-                // Wrap content in a <td> tag if necessary
-                $columnCount++;
-                $html .= static::appendColumn($class, $column);
-            }
-            $html .= '</tr>';
-
-            // Save new number of columns
-            if($columnCount > $this->numberColumns) $this->numberColumns = $columnCount;
+            $html .= '</tr>';            
         }
 
         $html .= '</tbody>';
@@ -335,6 +341,7 @@ class Table
         $this->ignore  = array();
         $this->columns = array();
         $this->tbody   = null;
+        $this->only = array();
 
         return $html;
     }
