@@ -13,5 +13,4 @@
     // Example : ['bordered', 'striped', 'hover']
     'classes' => array(),
   ),
-
 );
