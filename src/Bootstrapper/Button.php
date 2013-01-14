@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Button methods for creating Twitter Bootstrap buttons.
  *

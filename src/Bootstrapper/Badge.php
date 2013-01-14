@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Badge for creating Twitter Bootstrap style Badges.
  *

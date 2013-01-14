@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Typography for creating Twitter Bootstrap typography elments.
  *

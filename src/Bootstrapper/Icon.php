@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Icon for creating Twitter Bootstrap icons.
  *

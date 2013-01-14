@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * ButtonToolbar for creating Twitter Bootstrap style Buttons toolbars.
  *

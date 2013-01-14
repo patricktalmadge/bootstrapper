@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Navigation for creating Twitter Bootstrap menus.
  *
@@ -22,12 +20,12 @@ class Navigation
      * Menu types
      * @var constant
      */
-    const TYPE_UNSTYLED = '';
-    const TYPE_LIST     = 'nav-list';
-    const TYPE_PILLS    = 'nav-pills';
-    const TYPE_TABS     = 'nav-tabs';
+    const TYPE_UNSTYLED    = '';
+    const TYPE_LIST        = 'nav-list';
+    const TYPE_PILLS       = 'nav-pills';
+    const TYPE_TABS        = 'nav-tabs';
 
-    const HEADER        = '-HEADER-';
+    const HEADER           = '-HEADER-';
     const DIVIDER          = '---';
     const VERTICAL_DIVIDER = '|||';
 

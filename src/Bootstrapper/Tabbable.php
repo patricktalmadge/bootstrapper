@@ -1,7 +1,5 @@
 <?php
 namespace Bootstrapper;
-
-use \Meido\HTML\HTML;
 use Bootstrapper\Navigation;
 
 /**

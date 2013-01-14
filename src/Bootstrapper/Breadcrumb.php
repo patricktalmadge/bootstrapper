@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Breadcrumb for creating Twitter Bootstrap style breadcrumbs.
  *

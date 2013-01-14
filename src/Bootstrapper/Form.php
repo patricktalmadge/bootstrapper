@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Form methods for creating Twitter Bootstrap forms.
  *
@@ -16,7 +14,7 @@ use \Meido\HTML\HTML;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Form extends \Laravel\Form
+class Form extends \Meido\Form\FormFacade
 {
     /**
      * Default - not required, left-aligned labels on top of controls

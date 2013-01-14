@@ -1,6 +1,4 @@
 <?php
-Bundle::start('bootstrapper');
-
 abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 {
   protected $testAttributes = array(
@@ -13,10 +11,10 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
    */
   public static function setUpBeforeClass()
   {
-      URL::$base = 'http://test/';
+      /*URL::$base = 'http://test/';
       Config::set('application.languages', array());
       Config::set('application.index', '');
       Config::set('application.asset_url', '');
-      Config::set('application.ssl', true);
+      Config::set('application.ssl', true);*/
   }
 }

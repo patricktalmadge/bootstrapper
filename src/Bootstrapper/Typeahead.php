@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Meido\HTML\HTML;
-
 /**
  * Typeahead for creating Twitter Bootstrap style Typeahead.
  *
