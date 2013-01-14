@@ -1,0 +1,28 @@
+{
+  "name": "patricktalmadge/bootstrapper",
+  "description": "Twitter Bootstrap markup generator",
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "laravel"
+  ],
+  "authors": [
+    {
+      "name": "Patrick Talmadge",
+      "email": "ptalmadge@gmail.com"
+    },
+    {
+      "name": "Maxime Fabre",
+      "email": "ehtnam6@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/container": "dev-master",
+    "meido/html": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "Bootstrapper": "src"
+    }
+  }
+}
