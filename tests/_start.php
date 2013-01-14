@@ -5,16 +5,4 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     'class'    => 'foo',
     'data-foo' => 'bar',
   );
-
-  /**
-   * Uniformize test environment
-   */
-  public static function setUpBeforeClass()
-  {
-      /*URL::$base = 'http://test/';
-      Config::set('application.languages', array());
-      Config::set('application.index', '');
-      Config::set('application.asset_url', '');
-      Config::set('application.ssl', true);*/
-  }
 }

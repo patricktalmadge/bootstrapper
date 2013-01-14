@@ -1,8 +1,9 @@
 <?php
 include '_start.php';
+
 use Bootstrapper\Alert;
 
-class AlertTest extends BootstrapperWrapper
+class AlertTest extends PHPUnit_Framework_TestCase
 {
   // Matchers ------------------------------------------------------ /
 

@@ -41,7 +41,7 @@ class Thumbnail
             // Linked thumbnail
             if (!$caption and !$label and $link) {
               $image = HTML::image($image);
-              $thumbnails .= HTML::decode( HTML::link($link, $image, array('class' => 'thumbnail')) );
+              $thumbnails .= HTML::decode( HTML::to($link, $image, array('class' => 'thumbnail')) );
 
             // Plain thumbnail
             } else {

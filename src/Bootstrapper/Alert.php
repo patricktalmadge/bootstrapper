@@ -222,7 +222,7 @@ class Alert
 
         // Add close icon if necessary
         if ($this->isCloseable) {
-            $html .= HTML::link('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
+            $html .= HTML::to('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
         }
 
         $html .= $this->message.'</div>';
