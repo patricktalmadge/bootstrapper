@@ -1,7 +1,7 @@
 <?php
 namespace Bootstrapper;
 
-use \HTML;
+use \Meido\HTML\HTML;
 
 /**
  * Navigation for creating Twitter Bootstrap menus.

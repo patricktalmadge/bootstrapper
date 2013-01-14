@@ -1,7 +1,7 @@
 <?php
 namespace Bootstrapper;
 
-use \HTML;
+use \Meido\HTML\HTML;
 
 /**
  * Small helper class for creating tables with Bootstrap

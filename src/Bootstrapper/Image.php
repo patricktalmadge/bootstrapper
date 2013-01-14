@@ -1,7 +1,7 @@
 <?php
 namespace Bootstrapper;
 
-use \HTML;
+use \Meido\HTML\HTML;
 
 /**
  * Image class for wrapping images with Bootstrap classes
