@@ -17,6 +17,7 @@
     }
   ],
   "require": {
+    "php": ">=5.3.0",
     "illuminate/container": "dev-master",
     "meido/html": "dev-master"
   },
