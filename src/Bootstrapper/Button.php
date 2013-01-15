@@ -115,7 +115,7 @@ class Button
      */
     public static function link($url, $value, $attributes = array(), $hasDropdown = false)
     {
-        $attributes['href'] = \URL::to($url);
+        $attributes['href'] = HTML::getUrlGenerator()->to($url);
 
         return static::storeButton('link', $value, $attributes, $hasDropdown);
     }
