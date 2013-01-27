@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use \Config;
+
 /**
  * Icon for creating Twitter Bootstrap icons.
  *

@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use \Config;
+
 /**
  * Small helper class for creating tables with Bootstrap
  *
