@@ -48,7 +48,9 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 
 ## Using the included Bootstrap assets
 
-As there is no **Asset** class in Laravel 4, Bootstrapper uses the famous [Basset](http://jasonlewis.me/code/basset) package to manage its assets. In order to use the Bootstrap version included with Bootstrapper, you first need to publish the package assets to your public folder.
+As there is no **Asset** class in Laravel 4, Bootstrapper uses the famous [Basset](http://jasonlewis.me/code/basset) package to manage its assets. In order to use the Bootstrap version included with Bootstrapper, you first need to add Basset's Service Provider and facade to your app file. For this refer to Basset's installation instructions.
+
+Once this is done, publish the package assets to your public folder.
 
 ```shell
 php artisan asset:publish patricktalmadge/bootstrapper
@@ -67,5 +69,5 @@ http://bootstrapper.aws.af.cm/
 
 ## Current Twitter Bootstrap version is 2.2.2
 
-- Homepage:     http://twitter.github.com/bootstrap/
-- GitHub:       https://github.com/twitter/bootstrap/
+- Homepage : http://twitter.github.com/bootstrap/
+- GitHub   : https://github.com/twitter/bootstrap/

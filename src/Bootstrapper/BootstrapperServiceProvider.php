@@ -3,6 +3,9 @@ namespace Bootstrapper;
 
 use Illuminate\Support\ServiceProvider;
 
+// Manually register Basset as we need it now
+include __DIR__.'/../../../../jasonlewis/basset/src/Basset/BassetServiceProvider.php';
+
 class BootstrapperServiceProvider extends ServiceProvider
 {
   /**
@@ -12,9 +15,6 @@ class BootstrapperServiceProvider extends ServiceProvider
    */
   public function register()
   {
-    // Manually register Basset as we need it now
-    include __DIR__.'/../../../../jasonlewis/basset/src/Basset/BassetServiceProvider.php';
-
     $this->package('patricktalmadge/bootstrapper');
   }
 
@@ -29,7 +29,7 @@ class BootstrapperServiceProvider extends ServiceProvider
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap.min.css');
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap-responsive.min.css');
 
-      $collection->add('packages/patricktalmadge/bootstrapper/js/jquery-1.8.3.min.css');
+      $collection->add('packages/patricktalmadge/bootstrapper/js/jquery-1.8.3.min.js');
     });
   }
 }
