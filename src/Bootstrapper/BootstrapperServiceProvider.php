@@ -4,7 +4,9 @@ namespace Bootstrapper;
 use Illuminate\Support\ServiceProvider;
 
 // Manually register Basset as we need it now
-include __DIR__.'/../../../../jasonlewis/basset/src/Basset/BassetServiceProvider.php';
+if (!class_exists('Basset\BassetServiceProvider')) {
+  include __DIR__.'/../../../../jasonlewis/basset/src/Basset/BassetServiceProvider.php';
+}
 
 class BootstrapperServiceProvider extends ServiceProvider
 {
@@ -25,7 +27,7 @@ class BootstrapperServiceProvider extends ServiceProvider
    */
   public function boot()
   {
-    $this->app['basset']->collection('bootstrapper', function($collection) {
+    $this->app['config']->set('basset::collections.bootstrapper', function($collection) {
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap.min.css');
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap-responsive.min.css');
 
