@@ -1,24 +1,24 @@
-# Bootstrapper V4
+# Bootstrapper 4.0.0
 
-Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=master)](https://travis-ci.org/patricktalmadge/bootstrapper)
+Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=develop)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
 ## Installation
 
-Install using Artisan CLI:
+Add the following to your `composer.json` file :
 
-```shell
-php artisan bundle:install bootstrapper
+```json
+"patricktalmadge/bootstrapper": "dev-develop"
 ```
 
-Add the following line to application/bundles.php
+Then register Bootstrapper's service provider with Laravel :
 
 ```php
-'bootstrapper' => array('auto' => true),
+'Bootstrapper\BootstrapperServiceProvider',
 ```
 
-Add the following to the application.php config file:
+You can then (if you want to) add the following aliases to your `aliases` array in your `config/app.php` file.
 
 ```php
 'Alert'          => 'Bootstrapper\\Alert',
@@ -46,27 +46,19 @@ Add the following to the application.php config file:
 'Typography'     => 'Bootstrapper\\Typography',
 ```
 
-Update `laravel\database\query.php` to use the Bootstrapper Paginator and not the core class by changing the use statement.
+## Using the included Bootstrap assets
 
-```php
-// Change
-use Laravel\Paginator;
-
-// To
-use Paginator;
-```
-
-Publish the bundle assets to your public folder.
+As there is no **Asset** class in Laravel 4, Bootstrapper uses the famous [Basset](http://jasonlewis.me/code/basset) package to manage its assets. In order to use the Bootstrap version included with Bootstrapper, you first need to publish the package assets to your public folder.
 
 ```shell
-php artisan bundle:publish
+php artisan asset:publish patricktalmadge/bootstrapper
 ```
 
-Add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
+And then add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
 
 ```php
-Asset::container('bootstrapper')->styles();
-Asset::container('bootstrapper')->scripts();
+{{ Basset::show('bootstrapper.css') }}
+{{ Basset::show('bootstrapper.js') }}
 ```
 
 ## View bundle site for full install instructions.
