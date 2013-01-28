@@ -30,6 +30,7 @@ class BootstrapperServiceProvider extends ServiceProvider
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap-responsive.min.css');
 
       $collection->add('packages/patricktalmadge/bootstrapper/js/jquery-1.8.3.min.js');
+      $collection->add('packages/patricktalmadge/bootstrapper/js/bootstrap.min.js');
     });
   }
 }
