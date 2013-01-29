@@ -18,6 +18,8 @@ class BootstrapperServiceProvider extends ServiceProvider
   public function register()
   {
     $this->package('patricktalmadge/bootstrapper');
+
+    $this->app['config']->package('patricktalmadge/bootstrapper', __DIR__. '/../config');
   }
 
   /**
