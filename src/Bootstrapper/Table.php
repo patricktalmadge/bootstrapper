@@ -90,7 +90,7 @@ class Table
             $method  = array_pop($classes);
 
             // Fallback to default type if defined
-            if(sizeof($classes) == 0) $classes = Config::get('table.classes');
+            if(sizeof($classes) == 0) $classes = Config::get('bootstrapper::table.classes');
 
             // Filter table classes
             $classes = array_intersect($classes, static::$classes);
@@ -270,7 +270,7 @@ class Table
         if(!$this->tbody) return false;
 
         // Fetch ignored columns
-        if (!$this->ignore) $this->ignore = Config::get('table.ignore');
+        if (!$this->ignore) $this->ignore = Config::get('bootstrapper::table.ignore');
 
         // Fetch variables
         $content = $this->tbody;
