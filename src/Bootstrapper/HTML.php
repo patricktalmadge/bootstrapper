@@ -2,14 +2,20 @@
 namespace Bootstrapper;
 
 use \App;
-use \Illuminate\Routing\UrlGenerator;
+use \Meido\HTML\HTMLFacade;
+use \Meido\HTML\HTML as MeidoHTML;
 
-class HTML extends \Meido\HTML\HTMLFacade
+class HTML
 {
-  public static function getFacadeAccessor()
-  {
-    $url = App::make('url');
+  public static $html;
 
-    return new \Meido\HTML\HTML($url);
+  public static function construct($html)
+  {
+    static::$html = $html;
+  }
+
+  public static function __callStatic($method, $parameters)
+  {
+    return call_user_func_array(array(static::$html, $method), $parameters);
   }
 }
