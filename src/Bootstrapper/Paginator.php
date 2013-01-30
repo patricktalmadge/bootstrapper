@@ -14,7 +14,7 @@ namespace Bootstrapper;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Paginator extends \Laravel\Paginator
+class Paginator extends \Illuminate\Pagination\Paginator
 {
     /**
      * Paginator types
