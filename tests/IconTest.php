@@ -36,28 +36,28 @@ class IconTest extends BootstrapperWrapper
   {
     $icon = Icon::make($this->testIcon);
 
-    $this->assertTag($this->baseIcon, $icon);
+    $this->assertHTML($this->baseIcon, $icon);
   }
 
   public function testMakeWithAttributes()
   {
     $icon = Icon::make($this->testIcon, $this->testAttributes);
 
-    $this->assertTag($this->baseIconWithAttributes, $icon);
+    $this->assertHTML($this->baseIconWithAttributes, $icon);
   }
 
   public function testStatic()
   {
     $icon = Icon::folder_open();
 
-    $this->assertTag($this->baseIcon, $icon);
+    $this->assertHTML($this->baseIcon, $icon);
   }
 
   public function testStaticWithAttributes()
   {
     $icon = Icon::folder_open($this->testAttributes);
 
-    $this->assertTag($this->baseIconWithAttributes, $icon);
+    $this->assertHTML($this->baseIconWithAttributes, $icon);
   }
 
   public function testStaticWhiteWithAttributes()
@@ -68,6 +68,6 @@ class IconTest extends BootstrapperWrapper
     $matcher['attributes']['class']   .= ' icon-white';
     $matcher['attributes']['data-foo'] = 'bar';
 
-    $this->assertTag($matcher, $icon);
+    $this->assertHTML($matcher, $icon);
   }
 }

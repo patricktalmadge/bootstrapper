@@ -37,7 +37,7 @@ class LabelTest extends BootstrapperWrapper
     $label = Label::custom('success', 'foo', $this->testAttributes);
     $match = $this->createMatcher('success');
 
-    $this->assertTag($match, $label);
+    $this->assertHTML($match, $label);
   }
 
   /**
@@ -48,6 +48,6 @@ class LabelTest extends BootstrapperWrapper
     $label = Label::$class('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
-    $this->assertTag($match, $label);
+    $this->assertHTML($match, $label);
   }
 }

@@ -32,7 +32,7 @@ class BreadcrumbTest extends BootstrapperWrapper
   {
     $breadcrumb = Breadcrumb::create($this->crumbs, $this->testAttributes);
 
-    $this->assertTag($this->matcher, $breadcrumb);
+    $this->assertHTML($this->matcher, $breadcrumb);
   }
 
   public function testChangeSeparator()
@@ -43,6 +43,6 @@ class BreadcrumbTest extends BootstrapperWrapper
     $matcher = $this->matcher;
     $matcher['children']['only']['descendant']['content'] = '__';
 
-    $this->assertTag($matcher, $breadcrumb);
+    $this->assertHTML($matcher, $breadcrumb);
   }
 }

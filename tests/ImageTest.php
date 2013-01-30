@@ -44,6 +44,6 @@ class ImageTest extends BootstrapperWrapper
   {
     $image = Image::$class($this->url, 'foo', $this->testAttributes);
 
-    $this->assertTag($this->createMatcher($class), $image);
+    $this->assertHTML($this->createMatcher($class), $image);
   }
 }

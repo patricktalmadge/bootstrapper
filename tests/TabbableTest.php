@@ -77,7 +77,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::tabs(Navigation::links($arr));
     $matcher = $this->createMatcher('above','tabs');
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testBasicPills()
@@ -87,7 +87,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::pills(Navigation::links($arr));
     $matcher = $this->createMatcher('above','pills');
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testBasicLists()
@@ -97,7 +97,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::lists(Navigation::links($arr));
     $matcher = $this->createMatcher('above','list');
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testLeftTab()
@@ -107,7 +107,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::tabs_left(Navigation::links($arr));
     $matcher = $this->createMatcher('left','tabs');
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testRightTab()
@@ -117,7 +117,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::tabs_right(Navigation::links($arr));
     $matcher = $this->createMatcher('right','tabs');
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testBelowTab()
@@ -127,7 +127,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::tabs_below(Navigation::links($arr));
     $matcher = $this->createMatcher('below','tabs');
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testStacked()
@@ -137,7 +137,7 @@ class TabbableTest extends BootstrapperWrapper
     $tabs = Tabbable::tabs(Navigation::links($arr))->stacked();
     $matcher = $this->createMatcher('above','tabs');
     $matcher['descendant']['attributes']['class'] .= ' nav-stacked';
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testMenuAttributes()
@@ -148,7 +148,7 @@ class TabbableTest extends BootstrapperWrapper
     $matcher = $this->createMatcher('above','tabs');
     $matcher['descendant']['attributes']['class'] = 'foo ' . $matcher['descendant']['attributes']['class'];
     $matcher['descendant']['attributes']['data-bar'] = 'bar';
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testContentAttributes()
@@ -159,7 +159,7 @@ class TabbableTest extends BootstrapperWrapper
     $matcher = $this->createMatcher('above','tabs');
     $matcher['child']['attributes']['class'] = 'foo ' . $matcher['child']['attributes']['class'];
     $matcher['child']['attributes']['data-bar'] = 'bar';
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
   public function testActiveTab()
@@ -173,7 +173,7 @@ class TabbableTest extends BootstrapperWrapper
 
     //Set matcher with
     $matcher = $this->createMatcher('above','tabs', 'Section 2', "Howdy, I'm in Section 2.");
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
   }
 
 }

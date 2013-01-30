@@ -24,6 +24,6 @@ class TypeaheadTest extends BootstrapperWrapper
       ),
     );
 
-    $this->assertTag($matcher, $typeahead);
+    $this->assertHTML($matcher, $typeahead);
   }
 }

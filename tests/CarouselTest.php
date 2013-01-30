@@ -62,8 +62,8 @@ class CarouselTest extends BootstrapperWrapper
       )
     );
 
-    $this->assertTag($matcherLeft,   $html);
-    $this->assertTag($matcherRight,  $html);
+    $this->assertHTML($matcherLeft,   $html);
+    $this->assertHTML($matcherRight,  $html);
   }
 
   // Tests --------------------------------------------------------- /
@@ -76,7 +76,7 @@ class CarouselTest extends BootstrapperWrapper
     $matcherSlide = $this->innerItem;
 
     $this->carouselMarkup($carousel);
-    $this->assertTag($matcherSlide, $carousel);
+    $this->assertHTML($matcherSlide, $carousel);
   }
 
   public function testCarouselComplex()
@@ -113,7 +113,7 @@ class CarouselTest extends BootstrapperWrapper
     );
 
     $this->carouselMarkup($carousel);
-    $this->assertTag($matcherSlide, $carousel);
-    $this->assertTag($matcherCaption, $carousel);
+    $this->assertHTML($matcherSlide, $carousel);
+    $this->assertHTML($matcherCaption, $carousel);
   }
 }

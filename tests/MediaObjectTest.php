@@ -35,6 +35,8 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function tearDown()
   {
+    parent::tearDown();
+
     MediaObject::close_list();
     MediaObject::$object = null;
   }

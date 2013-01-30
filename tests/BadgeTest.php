@@ -37,7 +37,7 @@ class BadgeTest extends BootstrapperWrapper
     $badge = Badge::custom('success', 'foo', array('class' => 'bar'));
     $match = $this->createMatcher('success');
 
-    $this->assertTag($match, $badge);
+    $this->assertHTML($match, $badge);
   }
 
   /**
@@ -48,6 +48,6 @@ class BadgeTest extends BootstrapperWrapper
     $badge = Badge::$class('foo', array('class' => 'bar'));
     $match = $this->createMatcher($class);
 
-    $this->assertTag($match, $badge);
+    $this->assertHTML($match, $badge);
   }
 }

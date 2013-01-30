@@ -144,7 +144,7 @@ class NavigationTest extends BootstrapperWrapper
 
     $tabs = Navigation::tabs($links);
 
-    $this->assertTag($matcher, $tabs);
+    $this->assertHTML($matcher, $tabs);
 
   }
 
@@ -207,7 +207,7 @@ class NavigationTest extends BootstrapperWrapper
 
     $matcher = $this->createDropdownMatcher();
 
-    $this->assertTag($matcher, $dropdown);
+    $this->assertHTML($matcher, $dropdown);
   }
 
   public function testDropdownAll()
@@ -218,7 +218,7 @@ class NavigationTest extends BootstrapperWrapper
     $matcher = $this->createDropdownMatcher('bar');
     $matcher['attributes']['data-foo'] = 'bar';
 
-    $this->assertTag($matcher, $dropdown);
+    $this->assertHTML($matcher, $dropdown);
   }
 
   /**
@@ -231,7 +231,7 @@ class NavigationTest extends BootstrapperWrapper
     $menu = Navigation::$class($links);
     $match = $this->createNavMatcher($class);
 
-    $this->assertTag($match, $menu);
+    $this->assertHTML($match, $menu);
   }
 
   /**
@@ -244,7 +244,7 @@ class NavigationTest extends BootstrapperWrapper
     $menu = Navigation::$class($links, true);
     $match = $this->createNavMatcher($class, '', true);
 
-    $this->assertTag($match, $menu);
+    $this->assertHTML($match, $menu);
   }
 
   /**
@@ -258,6 +258,6 @@ class NavigationTest extends BootstrapperWrapper
     $match = $this->createNavMatcher($class, 'bar', true);
     $match['attributes']['data-foo'] = 'bar';
 
-    $this->assertTag($match, $menu);
+    $this->assertHTML($match, $menu);
   }
 }

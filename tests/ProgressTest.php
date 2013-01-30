@@ -53,7 +53,7 @@ class ProgressTest extends BootstrapperWrapper
     $progress = Progress::$class(50, $this->testAttributes);
     $matcher = $this->matchProgress($class);
 
-    $this->assertTag($matcher, $progress);
+    $this->assertHTML($matcher, $progress);
   }
 
   public function testStacked()
@@ -82,7 +82,7 @@ class ProgressTest extends BootstrapperWrapper
       ),
     );
 
-    $this->assertTag($matcher, $progress);
+    $this->assertHTML($matcher, $progress);
   }
 
   public function testFloat()
@@ -90,7 +90,7 @@ class ProgressTest extends BootstrapperWrapper
     $progress = Progress::success(5.40, $this->testAttributes);
     $matcher = $this->matchProgress('success', 5);
 
-    $this->assertTag($matcher, $progress);
+    $this->assertHTML($matcher, $progress);
   }
 
   public function testAutomatic()
@@ -107,7 +107,7 @@ class ProgressTest extends BootstrapperWrapper
       $progress = Progress::automatic($i, $this->testAttributes);
       $matcher = $this->matchProgress($classes[$i], $i);
 
-      $this->assertTag($matcher, $progress);
+      $this->assertHTML($matcher, $progress);
     }
   }
 
@@ -116,7 +116,7 @@ class ProgressTest extends BootstrapperWrapper
     $progress = Progress::striped_info(50, $this->testAttributes);
     $matcher = $this->matchProgress('info', 50, true);
 
-    $this->assertTag($matcher, $progress);
+    $this->assertHTML($matcher, $progress);
   }
 
   public function testActive()
@@ -124,7 +124,7 @@ class ProgressTest extends BootstrapperWrapper
     $progress = Progress::active_info(50, $this->testAttributes);
     $matcher = $this->matchProgress('info', 50, false, true);
 
-    $this->assertTag($matcher, $progress);
+    $this->assertHTML($matcher, $progress);
   }
 
   public function testActiveStriped()
@@ -132,7 +132,7 @@ class ProgressTest extends BootstrapperWrapper
     $progress = Progress::striped_active_info(50, $this->testAttributes);
     $matcher = $this->matchProgress('info', 50, true, true);
 
-    $this->assertTag($matcher, $progress);
+    $this->assertHTML($matcher, $progress);
   }
 
   public function testExceptionAttributes()

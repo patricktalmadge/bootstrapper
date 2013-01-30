@@ -142,7 +142,7 @@ class FormTest extends BootstrapperWrapper
                     $displaytype
                 );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     /**
@@ -192,7 +192,7 @@ class FormTest extends BootstrapperWrapper
                     Form::block_help('You foobared that!')
                 );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     private function getLablledMatcher($type, $value, $full = false)
@@ -220,14 +220,14 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::labelled_checkbox('foo', 'foo');
         $matcher = $this->getLablledMatcher('checkbox', 1);
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testLabelledCheckboxFull()
     {
         $html = Form::labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testInlineLabelledCheckboxMin()
@@ -235,7 +235,7 @@ class FormTest extends BootstrapperWrapper
         $html = Form::inline_labelled_checkbox('foo', 'foo');
         $matcher = $this->getLablledMatcher('checkbox', 1);
         $matcher['attributes']['class'] .= ' inline';
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testInlineLabelledCheckboxFull()
@@ -243,21 +243,21 @@ class FormTest extends BootstrapperWrapper
         $html = Form::inline_labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
         $matcher['attributes']['class'] .= ' inline';
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testLabelledRadioMin()
     {
         $html = Form::labelled_radio('foo', 'foo');
         $matcher = $this->getLablledMatcher('radio', 1);
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testLabelledRadioFull()
     {
         $html = Form::labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('radio', 'bar', true);
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testInlineLabelledRadioMin()
@@ -265,7 +265,7 @@ class FormTest extends BootstrapperWrapper
         $html = Form::inline_labelled_radio('foo', 'foo');
         $matcher = $this->getLablledMatcher('radio', 1);
         $matcher['attributes']['class'] .= ' inline';
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testInlineLabelledRadioFull()
@@ -273,7 +273,7 @@ class FormTest extends BootstrapperWrapper
         $html = Form::inline_labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('radio', 'bar', true);
         $matcher['attributes']['class'] .= ' inline';
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testMultiSelectMin()
@@ -291,7 +291,7 @@ class FormTest extends BootstrapperWrapper
             ),
         );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testMultiSelectFull()
@@ -313,7 +313,7 @@ class FormTest extends BootstrapperWrapper
             )
         );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testUneditable()
@@ -359,7 +359,7 @@ class FormTest extends BootstrapperWrapper
             ),
         );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     private function paMatcher($type)
@@ -383,14 +383,14 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::prepend(Form::text('inputfoo'), '$');
         $matcher = $this->paMatcher('input-prepend');
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testAppend()
     {
         $html = Form::append(Form::text('inputfoo'), '$');
         $matcher = $this->paMatcher('input-append');
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testPrependAppend()
@@ -416,7 +416,7 @@ class FormTest extends BootstrapperWrapper
             ),
         );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testAppendButton()
@@ -437,7 +437,7 @@ class FormTest extends BootstrapperWrapper
             ),
         );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testAppendButtons()
@@ -463,7 +463,7 @@ class FormTest extends BootstrapperWrapper
             ),
         );
 
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     private function createButtonMatcher($type)
@@ -482,21 +482,21 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::submit('foo', $this->testAttributes);
         $matcher = $this->createButtonMatcher('submit');
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testResetButton()
     {
         $html = Form::reset('foo', $this->testAttributes);
         $matcher = $this->createButtonMatcher('reset');
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function testButton()
     {
         $html = Form::button('foo', $this->testAttributes);
         $matcher = $this->createButtonMatcher('button');
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     public function sizes()
@@ -553,7 +553,7 @@ class FormTest extends BootstrapperWrapper
             $m = $size.'_'.$type;
 
             $html = Form::$m('foo', $this->testAttributes);
-            $this->assertTag($matcher, $html);
+            $this->assertHTML($matcher, $html);
         }
     }
 
@@ -575,7 +575,7 @@ class FormTest extends BootstrapperWrapper
 
         $m = $size.'_uneditable';
         $html = Form::$m('foo', $this->testAttributes);
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     /**
@@ -599,7 +599,7 @@ class FormTest extends BootstrapperWrapper
             $m = $size.'_input';
 
             $html = Form::$m('text', 'foo', 'hi', $this->testAttributes);
-            $this->assertTag($matcher, $html);
+            $this->assertHTML($matcher, $html);
     }
 
     /**
@@ -637,7 +637,7 @@ class FormTest extends BootstrapperWrapper
             $m = $size.'_'.$type;
 
             $html = Form::$m('foo', array('1', '2', '3', '4', '5'), '3', $this->testAttributes);
-            $this->assertTag($matcher, $html);
+            $this->assertHTML($matcher, $html);
         }
     }
 
@@ -662,7 +662,7 @@ class FormTest extends BootstrapperWrapper
 
         $m = $size.'_textarea';
         $html = Form::$m('foo', 'foobared', $this->testAttributes);
-        $this->assertTag($matcher, $html);
+        $this->assertHTML($matcher, $html);
     }
 
     /**
@@ -688,7 +688,7 @@ class FormTest extends BootstrapperWrapper
 
             $m = $size.'_'.$type;
             $html = Form::$m('foo', 'hi', $this->testAttributes);
-            $this->assertTag($matcher, $html);
+            $this->assertHTML($matcher, $html);
         }
     }
 

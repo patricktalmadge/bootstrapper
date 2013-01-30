@@ -35,11 +35,15 @@ class TableTest extends BootstrapperWrapper
 
   public function setUp()
   {
+    parent::setUp();
+
     Table::open();
   }
 
   public function tearDown()
   {
+    parent::tearDown();
+
     Config::set('table.classes', array());
     Table::close();
   }
@@ -50,7 +54,7 @@ class TableTest extends BootstrapperWrapper
   {
     $table = Table::open($this->testAttributes);
 
-    $this->assertTag($this->matcher, $table);
+    $this->assertHTML($this->matcher, $table);
   }
 
   public function testDefaultOpen()
@@ -67,7 +71,7 @@ class TableTest extends BootstrapperWrapper
     $matcher = $this->matcher;
     $matcher['attributes']['class'] = 'foo table-bordered table-condensed table';
 
-    $this->assertTag($matcher, $table);
+    $this->assertHTML($matcher, $table);
   }
 
   public function testClose()
@@ -115,7 +119,7 @@ class TableTest extends BootstrapperWrapper
     $fullRow = Table::full_row('foo', $this->testAttributes);
     $matcher = $this->matchFull();
 
-    $this->assertTag($matcher, $fullRow);
+    $this->assertHTML($matcher, $fullRow);
   }
 
   public function testFullHeader()
@@ -124,7 +128,7 @@ class TableTest extends BootstrapperWrapper
     $fullRow = Table::full_header('foo', $this->testAttributes);
     $matcher = $this->matchFull(true);
 
-    $this->assertTag($matcher, $fullRow);
+    $this->assertHTML($matcher, $fullRow);
   }
 
   public function testBody()

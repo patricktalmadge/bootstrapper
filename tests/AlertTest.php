@@ -3,7 +3,7 @@ include '_start.php';
 
 use Bootstrapper\Alert;
 
-class AlertTest extends PHPUnit_Framework_TestCase
+class AlertTest extends BootstrapperWrapper
 {
   // Matchers ------------------------------------------------------ /
 
@@ -56,7 +56,7 @@ class AlertTest extends PHPUnit_Framework_TestCase
     $alert = Alert::custom('success', 'foo', $this->testAttributes);
     $match = $this->createMatcher('success');
 
-    $this->assertTag($match, $alert);
+    $this->assertHTML($match, $alert);
   }
 
   public function testCustomWithoutClose()
@@ -68,7 +68,7 @@ class AlertTest extends PHPUnit_Framework_TestCase
       'tag'        => 'div',
     );
 
-    $this->assertTag($match, $alert);
+    $this->assertHTML($match, $alert);
   }
 
   public function testStaticOpened()
@@ -76,7 +76,7 @@ class AlertTest extends PHPUnit_Framework_TestCase
     $alert = Alert::open_success('foo', $this->testAttributes);
     $match = $this->createMatcher('success', false);
 
-    $this->assertTag($match, $alert);
+    $this->assertHTML($match, $alert);
   }
 
   public function testStaticOpenBlock()
@@ -85,7 +85,7 @@ class AlertTest extends PHPUnit_Framework_TestCase
     $match = $this->createMatcher('success', false);
     $match['attributes']['class'] .= ' alert-block';
 
-    $this->assertTag($match, $alert);
+    $this->assertHTML($match, $alert);
   }
 
   public function testStaticWhatever()
@@ -93,7 +93,7 @@ class AlertTest extends PHPUnit_Framework_TestCase
     $alert = Alert::foo_bar('foo', $this->testAttributes);
     $match = $this->createMatcher('foo-bar');
 
-    $this->assertTag($match, $alert);
+    $this->assertHTML($match, $alert);
   }
 
   /**
@@ -104,6 +104,6 @@ class AlertTest extends PHPUnit_Framework_TestCase
     $alert = Alert::$class('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
-    $this->assertTag($match, $alert);
+    $this->assertHTML($match, $alert);
   }
 }

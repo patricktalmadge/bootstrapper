@@ -26,7 +26,7 @@ class NavbarTest extends BootstrapperWrapper
     {
         $navbar = Navbar::create();
         $matcher = $this->getBasicMatcher();
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 
     public function testAttributes()
@@ -35,7 +35,7 @@ class NavbarTest extends BootstrapperWrapper
         $matcher = $this->getBasicMatcher();
         $matcher['attributes']['class'] .= ' foo';
         $matcher['attributes']['data-foo'] = 'bar';
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 
     public function testFixTop()
@@ -43,7 +43,7 @@ class NavbarTest extends BootstrapperWrapper
         $navbar = Navbar::create(array(), Navbar::FIX_TOP);
         $matcher = $this->getBasicMatcher();
         $matcher['attributes']['class'] .= ' navbar-fixed-top';
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 
     public function testFixBottom()
@@ -51,7 +51,7 @@ class NavbarTest extends BootstrapperWrapper
         $navbar = Navbar::create(array(), Navbar::FIX_BOTTOM);
         $matcher = $this->getBasicMatcher();
         $matcher['attributes']['class'] .= ' navbar-fixed-bottom';
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 
     public function testInverse()
@@ -60,7 +60,7 @@ class NavbarTest extends BootstrapperWrapper
         $matcher = $this->getBasicMatcher();
         $matcher['attributes']['class'] .= ' navbar-inverse';
 
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
 
     }
 
@@ -75,7 +75,7 @@ class NavbarTest extends BootstrapperWrapper
             'content' => 'Bootstrapper'
         );
 
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
 
     }
 
@@ -105,7 +105,7 @@ class NavbarTest extends BootstrapperWrapper
             'attributes' => array('class' => 'nav-collapse')
         );
 
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 
     public function testMenu()
@@ -127,7 +127,7 @@ class NavbarTest extends BootstrapperWrapper
             )
         );
 
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 
     public function testMenuAttributes()
@@ -150,6 +150,6 @@ class NavbarTest extends BootstrapperWrapper
             )
         );
 
-        $this->assertTag($matcher, $navbar);
+        $this->assertHTML($matcher, $navbar);
     }
 }

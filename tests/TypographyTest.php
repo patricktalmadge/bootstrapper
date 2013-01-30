@@ -47,7 +47,7 @@ class TypographyTest extends BootstrapperWrapper
     $typography = Typography::$method('foo');
     $match = $this->createMatcher($class);
 
-    $this->assertTag($match, $typography);
+    $this->assertHTML($match, $typography);
   }
 
   /**
@@ -58,7 +58,7 @@ class TypographyTest extends BootstrapperWrapper
     $typography = Typography::$method('foo', 'div', $this->testAttributes);
     $match = $this->createMatcher2($class);
 
-    $this->assertTag($match, $typography);
+    $this->assertHTML($match, $typography);
   }
 
   private $list = array(
@@ -80,7 +80,7 @@ class TypographyTest extends BootstrapperWrapper
     $dl = Typography::dl($this->list, $this->testAttributes);
     $matcher = $this->listMatcher;
 
-    $this->assertTag($matcher, $dl);
+    $this->assertHTML($matcher, $dl);
   }
 
   public function testHorizontalDl()
@@ -89,6 +89,6 @@ class TypographyTest extends BootstrapperWrapper
     $matcher = $this->listMatcher;
     $matcher['attributes']['class'] = 'foo dl-horizontal';
 
-    $this->assertTag($matcher, $dl);
+    $this->assertHTML($matcher, $dl);
   }
 }

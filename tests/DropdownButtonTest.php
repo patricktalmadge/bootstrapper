@@ -10,6 +10,8 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   protected function setUp()
   {
+    parent::setUp();
+
     $this->links = Navigation::links(array(array('foo', '#'),array('bar','#')));
   }
 

@@ -15,7 +15,7 @@ class ButtonGroupTest extends BootstrapperWrapper
   {
     $open = ButtonGroup::open(false, $this->testAttributes);
 
-    $this->assertTag($this->buttonGroup, $open);
+    $this->assertHTML($this->buttonGroup, $open);
   }
 
   public function testClose()
@@ -29,7 +29,7 @@ class ButtonGroupTest extends BootstrapperWrapper
     $matcher = $this->buttonGroup;
     $matcher['attributes']['data-toggle'] = 'buttons-1';
 
-    $this->assertTag($matcher, $open);
+    $this->assertHTML($matcher, $open);
   }
 
   public function testHorizontalOpenCheckbox()
@@ -40,7 +40,7 @@ class ButtonGroupTest extends BootstrapperWrapper
     $matcher = $this->buttonGroup;
     $matcher['attributes']['data-toggle'] = 'buttons-checkbox';
 
-    $this->assertTag($matcher, $open);
+    $this->assertHTML($matcher, $open);
     $this->assertEquals($equals, $open);
   }
 
@@ -52,6 +52,6 @@ class ButtonGroupTest extends BootstrapperWrapper
     $matcher['attributes']['class'] = 'btn-group-vertical '.$matcher['attributes']['class'];
     $matcher['attributes']['data-toggle'] = 'buttons-radio';
 
-    $this->assertTag($matcher, $open);
+    $this->assertHTML($matcher, $open);
   }
 }

@@ -14,7 +14,7 @@ class ButtonToolbarTest extends BootstrapperWrapper
       ),
     );
 
-    $this->assertTag($matcher, $open);
+    $this->assertHTML($matcher, $open);
   }
 
   public function testClose()

@@ -65,7 +65,7 @@ class ButtonTest extends BootstrapperWrapper
     $matcher['attributes']['href'] = '#';
     unset($matcher['attributes']['type']);
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
   }
 
   // Data providers  ----------------------------------------------- /
@@ -91,7 +91,7 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::$class('foo', $this->testAttributes)->__toString();
     $matcher = $this->createMatcher($class);
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
   }
 
   /**
@@ -102,7 +102,7 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::$class('foo', $this->testAttributes)->block();
     $matcher = $this->createMatcher($class);
     $matcher['attributes']['class'] .= ' btn-block';
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
   }
 
   /**
@@ -116,7 +116,7 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::$method('#', 'foo', $this->testAttributes)->__toString();
     $matcher = $this->createLink($class);
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
   }
 
   /**
@@ -130,7 +130,7 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::$method('foo', $this->testAttributes)->__toString();
     $matcher = $this->createSubmit($class);
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
   }
 
   /**
@@ -144,7 +144,7 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::$method('foo', $this->testAttributes)->__toString();
     $matcher = $this->createReset($class);
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
   }
 
   public function testWithIcon()
@@ -154,8 +154,8 @@ class ButtonTest extends BootstrapperWrapper
     $matcher = $this->createMatcher('info');
     $matcher['child'] = $this->createIcon();
 
-    $this->assertTag($matcher, $button1);
-    $this->assertTag($matcher, $button2);
+    $this->assertHTML($matcher, $button1);
+    $this->assertHTML($matcher, $button2);
   }
 
   public function testWithIconAppended()
@@ -168,7 +168,7 @@ class ButtonTest extends BootstrapperWrapper
       'foo <i class="icon-folder-open"></i>'.
     '</button>';
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
     $this->assertEquals($exact, $button);
   }
 
@@ -181,7 +181,7 @@ class ButtonTest extends BootstrapperWrapper
         'foo <span class="caret"></span>'.
       '</button>';
 
-    $this->assertTag($matcher, $button);
+    $this->assertHTML($matcher, $button);
     $this->assertEquals($exact, $button);
   }
 
