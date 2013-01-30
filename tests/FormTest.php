@@ -9,67 +9,67 @@ class FormTest extends BootstrapperWrapper
         return array(
             array(
                 'search_open',
-                '<form class="foo form-search" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'search_open_secure',
-                '<form class="foo form-search" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'search_open_for_files',
-                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'search_open_secure_for_files',
-                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'inline_open',
-                '<form class="foo form-inline" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'inline_open_secure',
-                '<form class="foo form-inline" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'inline_open_for_files',
-                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'inline_open_secure_for_files',
-                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'horizontal_open',
-                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'horizontal_open_secure',
-                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'horizontal_open_for_files',
-                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'horizontal_open_secure_for_files',
-                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'vertical_open',
-                '<form class="foo" data-foo="bar" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'vertical_open_secure',
-                '<form class="foo" data-foo="bar" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'vertical_open_for_files',
-                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
                 ),
             array(
                 'vertical_open_secure_for_files',
-                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="UTF-8">'
+                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
                 )
         );
     }
