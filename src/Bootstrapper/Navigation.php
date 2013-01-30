@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use \Request;
+
 /**
  * Navigation for creating Twitter Bootstrap menus.
  *
@@ -195,7 +197,7 @@ class Navigation
     protected static function getClasses($item, $with_class = true, $autoroute = true)
     {
         $class = '';
-        if ((isset($item['active']) && $item['active']) || ($autoroute && \URL::current() == $item['url'])) {
+        if ((isset($item['active']) && $item['active']) || ($autoroute && Request::url() == $item['url'])) {
             $class = 'active';
         }
 
