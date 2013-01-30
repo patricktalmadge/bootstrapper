@@ -20,7 +20,8 @@
     "php": ">=5.3.0",
     "illuminate/support": "4.0.x",
     "jasonlewis/basset": "dev-master",
-    "meido/html": "1.1.*"
+    "meido/html": "1.1.*",
+    "meido/form": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "dev-master"
