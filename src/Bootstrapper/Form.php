@@ -47,6 +47,16 @@ class Form extends \Meido\Form\FormFacade
     const SUCCESS = 'success';
 
     /**
+     * Redirect calls to Form facade
+     */
+    public static function getFacadeAccessor()
+    {
+        $url = \App::make('url');
+
+        return new \Meido\Form\Form($url);
+    }
+
+    /**
      * Function adds the given value to the attribute of for the provided HTML.
      *
      * @param string $attr  attribute string

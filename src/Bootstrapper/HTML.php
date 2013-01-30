@@ -5,17 +5,15 @@ use \App;
 use \Meido\HTML\HTMLFacade;
 use \Meido\HTML\HTML as MeidoHTML;
 
-class HTML
+class HTML extends HTMLFacade
 {
-  public static $html;
+    /**
+     * Redirect calls to HTML facade
+     */
+    public static function getFacadeAccessor()
+    {
+        $url = App::make('url');
 
-  public static function construct($html)
-  {
-    static::$html = $html;
-  }
-
-  public static function __callStatic($method, $parameters)
-  {
-    return call_user_func_array(array(static::$html, $method), $parameters);
-  }
+        return new MeidoHTML($url);
+    }
 }

@@ -6,14 +6,6 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     'data-foo' => 'bar',
   );
 
-  public static function setUpBeforeClass()
-  {
-    $url = static::getURL();
-    $html = new Meido\HTML\HTML($url);
-
-    Bootstrapper\HTML::construct($html);
-  }
-
   protected function setUp()
   {
     if (!class_exists('URL')) {
@@ -43,8 +35,8 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
   private static function getURL()
   {
     $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
-    $url->shouldReceive('to')->andReturnUsing(function($to) {
-      return $to == '#' ? '#' : 'http://test/'.$to;
+    $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
+      return $to == '#' ? '#' : 'http' .($https ? 's' : null). '://test/'.$to;
     });
 
     return $url;
