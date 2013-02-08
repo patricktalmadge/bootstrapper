@@ -18,7 +18,7 @@
   ],
   "require": {
     "illuminate/container": "dev-master",
-    "meido/html": "dev-master"
+    "meido/html": "1.1.*"
   },
   "autoload": {
     "psr-0": {
