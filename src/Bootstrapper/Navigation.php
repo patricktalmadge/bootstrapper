@@ -61,6 +61,8 @@ class Navigation
 
         foreach ($list as $item) {
             $visible = isset($item['visible']) ? $item['visible'] : true;
+            $visible = is_callable($visible) ? $visible($item) : $visible;
+
             $icon = isset($item['icon']) ? $item['icon'] : null;
 
             // Skip not visible items
