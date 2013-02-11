@@ -152,4 +152,27 @@ class NavbarTest extends BootstrapperWrapper
 
         $this->assertHTML($matcher, $navbar);
     }
+
+    public function testNotVisibleMenu()
+    {
+        $navbar = Navbar::create()->with_menus(
+            Navigation::links(array(
+                array('foo', '#', false, false, null, null, true),
+                array('bar', '#'),
+                array('baz', '#', false, false, null, null, false)
+            ))
+        );
+
+        $matcher = $this->getBasicMatcher();
+        $matcher['child']['child']['child'] = array(
+            'tag' => 'ul',
+            'attributes' => array('class' => 'nav'),
+            'children' => array(
+                'count' => 2,
+                'only' => array('tag' => 'li')
+            )
+        );
+
+        $this->assertHTML($matcher, $navbar);
+    }
 }

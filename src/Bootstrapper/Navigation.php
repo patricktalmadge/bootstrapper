@@ -60,7 +60,13 @@ class Navigation
         }
 
         foreach ($list as $item) {
+            $visible = isset($item['visible']) ? $item['visible'] : true;
             $icon = isset($item['icon']) ? $item['icon'] : null;
+
+            // Skip not visible items
+            if (!$visible) {
+                continue;
+            }
 
             // Set vertical dividers
             if ($item['label'] === Navigation::VERTICAL_DIVIDER) {
@@ -249,9 +255,9 @@ class Navigation
      *
      * @return mixed
      */
-    public static function link($label, $url, $active = false, $disabled = false, $items = null, $icon = null)
+    public static function link($label, $url, $active = false, $disabled = false, $items = null, $icon = null, $visible = true)
     {
-        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items, 'icon' => $icon);
+        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items, 'icon' => $icon, 'visible' => $visible);
     }
 
     /**
@@ -275,7 +281,8 @@ class Navigation
             $disabled = array_get($link, 3);
             $items = array_get($link, 4);
             $icon = array_get($link, 5);
-            $l[] = static::link($label, $url, $active, $disabled, static::links($items), $icon);
+            $visible = array_get($link, 6);
+            $l[] = static::link($label, $url, $active, $disabled, static::links($items), $icon, $visible);
         }
 
         return $l;
