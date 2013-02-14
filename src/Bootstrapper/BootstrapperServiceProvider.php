@@ -5,7 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 // Manually register Basset as we need it now
 if (!class_exists('Basset\BassetServiceProvider')) {
-  include __DIR__.'/../../../../jasonlewis/basset/src/Basset/BassetServiceProvider.php';
+  $basset = __DIR__.'/../../../../jasonlewis/basset/src/Basset/BassetServiceProvider.php';
+  if (file_exists($basset)) include $basset;
 }
 
 class BootstrapperServiceProvider extends ServiceProvider
