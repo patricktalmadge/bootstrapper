@@ -1,6 +1,10 @@
 <?php
 namespace Bootstrapper;
 
+use App;
+use Meido\Form\FormFacade;
+use Meido\Form\Form as MeidoForm;
+
 /**
  * Form methods for creating Twitter Bootstrap forms.
  *
@@ -14,7 +18,7 @@ namespace Bootstrapper;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Form extends \Meido\Form\FormFacade
+class Form extends FormFacade
 {
     /**
      * Default - not required, left-aligned labels on top of controls
@@ -51,9 +55,9 @@ class Form extends \Meido\Form\FormFacade
      */
     public static function getFacadeAccessor()
     {
-        $url = \App::make('url');
+        $url = App::make('url');
 
-        return new \Meido\Form\Form($url);
+        return new MeidoForm($url);
     }
 
     /**
@@ -143,10 +147,16 @@ class Form extends \Meido\Form\FormFacade
                 $attr_index = 2;
                 break;
             }
-            $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'input-', 'span');
 
-            return call_user_func_array('static::'.$function, $parameters);
+            $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'input-', 'span');
+            $method = $function;
         }
+
+        if (method_exists('Meido\Form\Form', $method)) {
+            return parent::__callStatic($method, $parameters);
+        }
+
+        return call_user_func_array('static::'.$method, $parameters);
     }
 
     /**
@@ -727,11 +737,6 @@ class Form extends \Meido\Form\FormFacade
      */
     public static function __callStatic($method, $parameters)
     {
-        $in = static::magic_input($method, $parameters);
-        if ($in !== null) {
-            return $in;
-        }
-
-        return parent::__callStatic($method, $parameters);
+        return static::magic_input($method, $parameters);
     }
 }
