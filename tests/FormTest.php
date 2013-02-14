@@ -327,7 +327,7 @@ class FormTest extends BootstrapperWrapper
     public function testFile()
     {
         $html = Form::file('foo', $this->testAttributes);
-        $expected = '<input class="foo input-file" data-foo="bar" type="file" name="foo">';
+        $expected = '<input class="foo input-file" data-foo="bar" type="file" name="foo" />';
 
         $this->assertEquals($expected, $html);
     }
@@ -335,7 +335,7 @@ class FormTest extends BootstrapperWrapper
     public function testSearchBox()
     {
         $html = Form::search_box('foo', 'bar', $this->testAttributes);
-        $expected = '<input class="foo search-query" data-foo="bar" type="text" name="foo" value="bar">';
+        $expected = '<input class="foo search-query" data-foo="bar" type="text" name="foo" value="bar" />';
 
         $this->assertEquals($expected, $html);
     }
@@ -695,11 +695,11 @@ class FormTest extends BootstrapperWrapper
     public function testMacro()
     {
         Form::macro('foo', function() {
-            return '<article type="bar">';
+            return '<article type="bar" />';
         });
 
         $html =  Form::foo();
-        $expected = '<article type="bar">';
+        $expected = '<article type="bar" />';
         $this->assertEquals($expected, $html);
     }
 }

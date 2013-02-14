@@ -61,6 +61,7 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 
     $app = Mockery::mock('alias:App');
     $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
+    $app->shouldReceive('make')->with('form')->andReturn(new Meido\Form\Form(static::getURL()));
 
     return $app;
   }

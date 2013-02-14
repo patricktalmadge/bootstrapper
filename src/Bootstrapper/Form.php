@@ -55,9 +55,7 @@ class Form extends FormFacade
      */
     public static function getFacadeAccessor()
     {
-        $url = App::make('url');
-
-        return new MeidoForm($url);
+        return App::make('form');
     }
 
     /**
@@ -152,11 +150,11 @@ class Form extends FormFacade
             $method = $function;
         }
 
-        if (method_exists('Meido\Form\Form', $method)) {
-            return parent::__callStatic($method, $parameters);
+        if (method_exists('Bootstrapper\Form', $method)) {
+            return call_user_func_array('static::'.$method, $parameters);
         }
 
-        return call_user_func_array('static::'.$method, $parameters);
+        return parent::__callStatic($method, $parameters);
     }
 
     /**
