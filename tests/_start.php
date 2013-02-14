@@ -45,14 +45,14 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     return $url;
   }
 
-  private static function getConfig($tableClasses = array())
+  private static function getConfig($ignore = array())
   {
     if (class_exists('Config')) return false;
 
     $config = Mockery::mock('alias:Config');
     $config->shouldReceive('get')->with('bootstrapper::icons_prefix')->andReturn('icon-');
     $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
-    $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn(array('foo', 'bar'));
+    $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn($ignore);
 
     return $config;
   }

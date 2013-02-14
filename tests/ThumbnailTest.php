@@ -26,7 +26,7 @@ class ThumbnailTest extends BootstrapperWrapper
 
   public function image($image)
   {
-    return '<img src="test/'.$image.'" alt="">';
+    return '<img src="http://test/'.$image.'" alt="' .$image. '">';
   }
 
   public function link($content)
