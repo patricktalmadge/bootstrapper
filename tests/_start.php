@@ -37,7 +37,9 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
   {
     $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
     $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
-      return $to == '#' ? '#' : 'http' .($https ? 's' : null). '://test/'.$to;
+      if ($to == '#' or starts_with($to, 'http://')) return $to;
+
+      return 'http' .($https ? 's' : null). '://test/'.$to;
     });
 
     return $url;
