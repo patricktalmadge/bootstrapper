@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '64M');
 abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 {
   protected $testAttributes = array(
@@ -42,12 +43,14 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     return $url;
   }
 
-  private static function getConfig()
+  private static function getConfig($tableClasses = array())
   {
     if (class_exists('Config')) return false;
 
     $config = Mockery::mock('alias:Config');
     $config->shouldReceive('get')->with('bootstrapper::icons_prefix')->andReturn('icon-');
+    $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
+    $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn(array('foo', 'bar'));
 
     return $config;
   }

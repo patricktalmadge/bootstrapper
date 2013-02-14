@@ -1,5 +1,6 @@
 <?php
 use Bootstrapper\Thumbnail;
+use Bootstrapper\HTML;
 
 class ThumbnailTest extends BootstrapperWrapper
 {
@@ -15,13 +16,6 @@ class ThumbnailTest extends BootstrapperWrapper
     array('image' => 'bar', 'label' => 'bar'),
     array('image' => 'den', 'label' => 'den', 'caption' => 'kel'),
   );
-
-  public static function setUpBeforeClass()
-  {
-    URL::$base = 'http://test/';
-    Config::set('application.index', '');
-    Config::set('application.asset_url', 'test');
-  }
 
   // Matchers ------------------------------------------------------ /
 

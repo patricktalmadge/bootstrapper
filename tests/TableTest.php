@@ -44,7 +44,6 @@ class TableTest extends BootstrapperWrapper
   {
     parent::tearDown();
 
-    Config::set('table.classes', array());
     Table::close();
   }
 
@@ -59,7 +58,6 @@ class TableTest extends BootstrapperWrapper
 
   public function testDefaultOpen()
   {
-    Config::set('table.classes', array('striped', 'foo', 'hover'));
     $table = Table::open();
 
     $this->assertEquals('<table class="table-striped table-hover table">', $table);
@@ -189,8 +187,6 @@ class TableTest extends BootstrapperWrapper
 
   public function testAlwaysIgnore()
   {
-    Config::set('table.ignore', array('foo', 'bar'));
-
     $body = Table::body($this->body)->__toString();
     $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
@@ -199,8 +195,6 @@ class TableTest extends BootstrapperWrapper
 
   public function testAlwaysIgnoreOverridesManuallyIgnore()
   {
-    Config::set('table.ignore', array('foo'));
-
     $body = Table::body($this->body)->ignore('bar')->__toString();
     $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
 
