@@ -22,8 +22,9 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     $this->app['config']->package('patricktalmadge/bootstrapper', __DIR__. '/../config');
 
-    $this->app->singleton('form', function($this->app) {
-      return new Meido\Form\Form($this->app['url']);
+    $app = $this->app;
+    $this->app->singleton('form', function($app) {
+      return new Meido\Form\Form($app['url']);
     });
   }
 
