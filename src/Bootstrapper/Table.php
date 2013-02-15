@@ -148,7 +148,7 @@ class Table
     public function __set($column, $content)
     {
         // List known keys
-        $columns = array_get($this->tbody, key($this->tbody));
+        $columns = array_get($this->tbody, key($this->tbody), array());
         $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
 
         // If we're not replacing something, we're creating, assume classes
