@@ -245,7 +245,12 @@ class Table
      */
     private function ignore()
     {
-        $this->ignore = func_get_args();
+        $ignored = func_get_args();
+        if (sizeof($ignored) == 1 and is_array($ignored)) {
+            $ignored = $ignored[0];
+        }
+
+        $this->ignore = $ignored;
 
         return $this;
     }
