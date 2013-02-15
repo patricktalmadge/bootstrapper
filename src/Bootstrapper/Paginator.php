@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use Illuminate\Pagination\Paginator as LaravelPaginator;
+
 /**
  * Paginator for creating Twitter Bootstrap pagination.
  *
@@ -14,7 +16,7 @@ namespace Bootstrapper;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Paginator extends \Laravel\Paginator
+class Paginator extends LaravelPaginator
 {
     /**
      * Paginator types
