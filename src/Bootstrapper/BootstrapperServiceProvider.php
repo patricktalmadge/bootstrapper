@@ -36,6 +36,8 @@ class BootstrapperServiceProvider extends ServiceProvider
    */
   public function boot()
   {
+    if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
+
     $this->app['config']->set('basset::collections.bootstrapper', function($collection) {
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap.min.css');
       $collection->add('packages/patricktalmadge/bootstrapper/css/bootstrap-responsive.min.css');
