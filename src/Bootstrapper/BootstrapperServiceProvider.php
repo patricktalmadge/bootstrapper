@@ -2,6 +2,7 @@
 namespace Bootstrapper;
 
 use Illuminate\Support\ServiceProvider;
+use Meido\Form\Form as MeidoForm;
 
 // Manually register Basset as we need it now
 if (!class_exists('Basset\BassetServiceProvider')) {
@@ -24,7 +25,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     $app = $this->app;
     $this->app->singleton('form', function($app) {
-      return new Meido\Form\Form($app['url']);
+      return new MeidoForm($app['url']);
     });
   }
 
