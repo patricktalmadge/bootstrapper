@@ -63,11 +63,8 @@ And then add the following to your template view file to include the Twitter Boo
 {{{ Basset::show('bootstrapper.js') }}}
 ```
 
-## View bundle site for full install instructions.
+## Documentation
 
-http://bootstrapper.aws.af.cm/
-
-## Current Twitter Bootstrap version is 2.2.2
-
-- Homepage : http://twitter.github.com/bootstrap/
-- GitHub   : https://github.com/twitter/bootstrap/
+- [Bootstrapper documentation](http://bootstrapper.aws.af.cm)
+- [Twitter Bootstrap documentation](http://twitter.github.com/bootstrap)
+- [Twitter Bootstrap on Github](https://github.com/twitter/bootstrap)
