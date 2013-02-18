@@ -1,5 +1,5 @@
 <?php
-ini_set('memory_limit', '64M');
+ini_set('memory_limit', '120M');
 abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 {
   protected $testAttributes = array(

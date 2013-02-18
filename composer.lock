@@ -90,19 +90,19 @@
             "target-dir": "Illuminate/Container",
             "source": {
                 "type": "git",
-                "url": "http://github.com/illuminate/container",
-                "reference": "v4.0.0-BETA3"
+                "url": "https://github.com/illuminate/container.git",
+                "reference": "fceee6a7748fec2a93a8f3d320f5104baad92629"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/v4.0.0-BETA3",
-                "reference": "v4.0.0-BETA3",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/fceee6a7748fec2a93a8f3d320f5104baad92629",
+                "reference": "fceee6a7748fec2a93a8f3d320f5104baad92629",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2013-01-24 04:39:29",
+            "time": "2013-02-15 16:15:55",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -128,13 +128,13 @@
             "target-dir": "Illuminate/Cookie",
             "source": {
                 "type": "git",
-                "url": "http://github.com/illuminate/cookie",
-                "reference": "v4.0.0-BETA3"
+                "url": "https://github.com/illuminate/cookie.git",
+                "reference": "41917ad1a2ab8b8d58598dc55fdd67dc8490e9ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cookie/zipball/v4.0.0-BETA3",
-                "reference": "v4.0.0-BETA3",
+                "url": "https://api.github.com/repos/illuminate/cookie/zipball/41917ad1a2ab8b8d58598dc55fdd67dc8490e9ee",
+                "reference": "41917ad1a2ab8b8d58598dc55fdd67dc8490e9ee",
                 "shasum": ""
             },
             "require": {
@@ -146,7 +146,7 @@
             "require-dev": {
                 "mockery/mockery": "0.7.2"
             },
-            "time": "2013-02-01 16:50:10",
+            "time": "2013-02-16 03:38:54",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -174,12 +174,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "960b781cd3d9d3c5bbdca76674c603728ace67a6"
+                "reference": "c8ed4735135397655b6439156ad74a4b76fe42c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/960b781cd3d9d3c5bbdca76674c603728ace67a6",
-                "reference": "960b781cd3d9d3c5bbdca76674c603728ace67a6",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/c8ed4735135397655b6439156ad74a4b76fe42c5",
+                "reference": "c8ed4735135397655b6439156ad74a4b76fe42c5",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 "illuminate/support": "4.0.x",
                 "mockery/mockery": "0.7.2"
             },
-            "time": "2013-02-14 14:45:12",
+            "time": "2013-02-15 14:09:42",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -398,13 +398,13 @@
             "target-dir": "Illuminate/Redis",
             "source": {
                 "type": "git",
-                "url": "http://github.com/illuminate/redis",
-                "reference": "v4.0.0-BETA3"
+                "url": "https://github.com/illuminate/redis.git",
+                "reference": "c3e010e35e658926c735aebb237f92e63ceeaead"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/redis/zipball/v4.0.0-BETA3",
-                "reference": "v4.0.0-BETA3",
+                "url": "https://api.github.com/repos/illuminate/redis/zipball/c3e010e35e658926c735aebb237f92e63ceeaead",
+                "reference": "c3e010e35e658926c735aebb237f92e63ceeaead",
                 "shasum": ""
             },
             "require": {
@@ -414,7 +414,7 @@
             "require-dev": {
                 "mockery/mockery": "0.7.2"
             },
-            "time": "2013-01-19 06:57:50",
+            "time": "2013-02-16 04:01:19",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -496,13 +496,13 @@
             "target-dir": "Illuminate/Session",
             "source": {
                 "type": "git",
-                "url": "http://github.com/illuminate/session",
-                "reference": "bd00c76349d4fe4b344736292a9527a1b934bfbe"
+                "url": "https://github.com/illuminate/session.git",
+                "reference": "e49055916cdc5d8704651032e2604ac8c2d79af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/bd00c76349d4fe4b344736292a9527a1b934bfbe",
-                "reference": "bd00c76349d4fe4b344736292a9527a1b934bfbe",
+                "url": "https://api.github.com/repos/illuminate/session/zipball/e49055916cdc5d8704651032e2604ac8c2d79af3",
+                "reference": "e49055916cdc5d8704651032e2604ac8c2d79af3",
                 "shasum": ""
             },
             "require": {
@@ -519,7 +519,7 @@
                 "illuminate/console": "4.0.x",
                 "mockery/mockery": ">=0.7.2"
             },
-            "time": "2013-02-13 20:29:04",
+            "time": "2013-02-18 04:42:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -546,20 +546,23 @@
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
-                "url": "http://github.com/illuminate/support",
-                "reference": "6d81af2c4d831342b36951172df38b047f5f2805"
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "adb14323ecb85edfa97eb6c569c46ab09c2d258d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/6d81af2c4d831342b36951172df38b047f5f2805",
-                "reference": "6d81af2c4d831342b36951172df38b047f5f2805",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/adb14323ecb85edfa97eb6c569c46ab09c2d258d",
+                "reference": "adb14323ecb85edfa97eb6c569c46ab09c2d258d",
                 "shasum": ""
             },
             "require": {
-                "patchwork/utf8": "1.0.*",
                 "php": ">=5.3.0"
             },
-            "time": "2013-02-13 22:58:08",
+            "require-dev": {
+                "mockery/mockery": "0.7.2",
+                "patchwork/utf8": "1.0.*"
+            },
+            "time": "2013-02-16 13:26:14",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1151,12 +1154,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "88bc366b3727e7a51419ae956f834f1924b40630"
+                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/88bc366b3727e7a51419ae956f834f1924b40630",
-                "reference": "88bc366b3727e7a51419ae956f834f1924b40630",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/bac68ea04775a33c2da668de646ad9827dc4c380",
+                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380",
                 "shasum": ""
             },
             "require": {
@@ -1165,7 +1168,7 @@
             "require-dev": {
                 "hamcrest/hamcrest": "1.1.0"
             },
-            "time": "2013-02-14 20:03:37",
+            "time": "2013-02-17 12:15:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
