@@ -132,8 +132,8 @@ class Carousel
         // Dynamic schema editing
         // Example : ->as_label('name') and $item->name/$item['name'] will be used as label
         if (starts_with($method, 'as_')) {
-            $use = substr($method, 3);
-            $as = array_get($parameters, 0);
+            $as = substr($method, 3);
+            $use = array_get($parameters, 0);
             $this->schema[$as] = $use;
         }
 
@@ -287,7 +287,7 @@ class Carousel
         $key = $this->schema[$key];
 
         if (is_object($item)) {
-            return isset($item->$key) ? $item->$key : $fallback;
+            return $item->$key ?: $fallback;
         } else {
             return array_get($item, $key, $fallback);
         }
