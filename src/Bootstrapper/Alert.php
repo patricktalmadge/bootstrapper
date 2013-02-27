@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use HtmlObject\Element;
+
 /**
  * Alert for creating Twitter Bootstrap style alerts.
  *
@@ -14,7 +16,7 @@ namespace Bootstrapper;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Alert
+class Alert extends Element
 {
     /**
      * Alert styles
@@ -35,20 +37,6 @@ class Alert
     private $type = Alert::SUCCESS;
 
     /**
-     * The message for the alert.
-     *
-     * @var string
-     */
-    private $message = false;
-
-    /**
-     * The current alert's attributes
-     *
-     * @var array
-     */
-    private $attributes = array();
-
-    /**
      * Whether the current alert is closeable
      *
      * @var boolean
@@ -62,6 +50,104 @@ class Alert
      */
     private $isBlock = false;
 
+    //////////////////////////////////////////////////////////////////
+    ////////////////////////// CORE METHODS //////////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    /**
+     * Writes the current Alert
+     *
+     * @return string A Bootstrap Alert
+     */
+    public function __toString()
+    {
+        $this->addClass('alert');
+
+        // Block alert
+        if ($this->isBlock) $this->addClass('alert-block');
+
+        // Add close icon if necessary
+        if ($this->isCloseable) {
+            $close = HTML::to('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
+            $this->nest($close);
+        }
+
+        return $this->render();
+    }
+
+    /**
+     * Check to see if we're calling an informative alert
+     *
+     * @param string $method     The function called
+     * @param array  $parameters Its parameters
+     *
+     * @return Alert
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        // Extract real method and type of alert
+        $method = explode('_', $method);
+
+        // Search for "open_type" method
+        $open = array_search('open', $method);
+        if ($closable = ($open !== false)) {
+            unset($method[$open]);
+        }
+
+        // Search for "block_type" method
+        $block = array_search('block', $method);
+        if ($blockType = ($block !== false)) {
+            unset($method[$block]);
+        }
+
+        $type       = 'alert-'.implode('-', $method);
+        $message    = array_get($parameters, 0);
+        $attributes = array_get($parameters, 1);
+        $instance   = Alert::show($type, $message, $attributes);
+
+        $instance->open(!$closable);
+        $instance->block($blockType);
+
+        return $instance;
+    }
+
+    //////////////////////////////////////////////////////////////////
+    ///////////////////////// PUBLIC METHODS /////////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    /**
+     * Force the alert to be open
+     *
+     * @param bool $closeable If the alert should be closeable or not
+     *
+     * @return Alert
+     */
+    public function open($closeable = false)
+    {
+        $this->isCloseable = $closeable;
+
+        return $this;
+    }
+
+
+    /**
+     * Make the alert block
+     *
+     * @param bool $block If the alert should be block or not
+     *
+     * @return Alert
+     */
+    public function block($block = true)
+    {
+        $this->isBlock = $block;
+
+        return $this;
+    }
+
+    //////////////////////////////////////////////////////////////////
+    /////////////////////////// ALERT TYPES //////////////////////////
+    //////////////////////////////////////////////////////////////////
+
     /**
      * Create a new Alert.
      *
@@ -74,12 +160,11 @@ class Alert
      */
     protected static function show($type, $message, $attributes = array())
     {
-        $instance = new Alert;
+        $instance = new static('div', $message);
 
         // Save given parameters
-        $instance->type       = $type;
-        $instance->message    = $message;
         $instance->attributes = $attributes;
+        $instance->addClass($type);
 
         return $instance;
     }
@@ -164,109 +249,5 @@ class Alert
         $type = 'alert-'.(string) $type;
 
         return static::show($type, $message, $attributes);
-    }
-
-    /**
-     * Force the alert to be open
-     *
-     * @param bool $closeable If the alert should be closeable or not
-     *
-     * @return Alert
-     */
-    public function open($closeable = false)
-    {
-        $this->isCloseable = $closeable;
-
-        return $this;
-    }
-
-
-    /**
-     * Make the alert block
-     *
-     * @param bool $block If the alert should be block or not
-     *
-     * @return Alert
-     */
-    public function block($block = true)
-    {
-        $this->isBlock = $block;
-
-        return $this;
-    }
-
-    /**
-     * Prints out the current Alert in case it doesn't do it automatically
-     *
-     * @return string A Alert
-     */
-    public function get()
-    {
-        return static::__toString();
-    }
-
-    /**
-     * Writes the current Alert
-     *
-     * @return string A Bootstrap Alert
-     */
-    public function __toString()
-    {
-        $attr = Helpers::add_class($this->attributes, 'alert '.$this->type);
-
-        if ($this->isBlock) {
-            $attr = Helpers::add_class($attr, 'alert-block');
-        }
-
-        $html = '<div'.HTML::attributes($attr).'>';
-
-        // Add close icon if necessary
-        if ($this->isCloseable) {
-            $html .= HTML::to('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
-        }
-
-        $html .= $this->message.'</div>';
-
-        return $html;
-    }
-
-    /**
-     * Check to see if we're calling an informative alert
-     *
-     * @param string $method     The function called
-     * @param array  $parameters Its parameters
-     *
-     * @return Alert
-     */
-    public static function __callStatic($method, $parameters)
-    {
-        // Extract real method and type of alert
-        $method = explode('_', $method);
-
-        $instance = new Alert;
-
-        // Search for "open_type" method
-        $open = array_search('open', $method);
-        if ($open !== false) {
-            $instance->isCloseable = false;
-            unset($method[$open]);
-        }
-
-        // Search for "block_type" method
-        $block = array_search('block', $method);
-        if ($block !== false) {
-            $instance->isBlock = true;
-            unset($method[$block]);
-        }
-
-        // Create Alert class
-        $type = 'alert-'.implode("-", $method);
-
-        // Save given parameters
-        $instance->type       = $type;
-        $instance->message    = array_get($parameters, 0);
-        $instance->attributes = array_get($parameters, 1);
-
-        return $instance;
     }
 }
