@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/html-object.git",
-                "reference": "b97c3718092ede1f296db00a76bce0cce9d73e3d"
+                "reference": "12eb512dc08595075077157841d1db08800987ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/b97c3718092ede1f296db00a76bce0cce9d73e3d",
-                "reference": "b97c3718092ede1f296db00a76bce0cce9d73e3d",
+                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/12eb512dc08595075077157841d1db08800987ad",
+                "reference": "12eb512dc08595075077157841d1db08800987ad",
                 "shasum": ""
             },
             "require": {
@@ -35,7 +35,7 @@
                 }
             ],
             "description": "A set of classes to create and manipulate HTML objects abstractions",
-            "time": "2013-02-27 14:40:49"
+            "time": "2013-02-27 15:11:49"
         },
         {
             "name": "anahkiasen/underscore-php",
@@ -1176,61 +1176,7 @@
             "time": "2013-02-11 11:24:47"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "mockery/mockery",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
-                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/bac68ea04775a33c2da668de646ad9827dc4c380",
-                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "hamcrest/hamcrest": "1.1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Mockery": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Pádraic Brady",
-                    "email": "padraic.brady@gmail.com",
-                    "homepage": "http://blog.astrumfutura.com"
-                }
-            ],
-            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
-            "homepage": "http://github.com/padraic/mockery",
-            "keywords": [
-                "BDD",
-                "TDD",
-                "library",
-                "mock",
-                "mock objects",
-                "mockery",
-                "stub",
-                "test",
-                "test double",
-                "testing"
-            ],
-            "time": "2013-02-17 12:15:28"
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
