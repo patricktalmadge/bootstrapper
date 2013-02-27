@@ -34,15 +34,4 @@ class BreadcrumbTest extends BootstrapperWrapper
 
     $this->assertHTML($this->matcher, $breadcrumb);
   }
-
-  public function testChangeSeparator()
-  {
-    Breadcrumb::$separator = '__';
-    $breadcrumb = Breadcrumb::create($this->crumbs, $this->testAttributes);
-
-    $matcher = $this->matcher;
-    $matcher['children']['only']['descendant']['content'] = '__';
-
-    $this->assertHTML($matcher, $breadcrumb);
-  }
 }

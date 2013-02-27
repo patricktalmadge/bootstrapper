@@ -51,6 +51,7 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 
     $config = Mockery::mock('alias:Config');
     $config->shouldReceive('get')->with('bootstrapper::icons_prefix')->andReturn('icon-');
+    $config->shouldReceive('get')->with('bootstrapper::breadcrumbs_separator')->andReturn('/');
     $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
     $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn($ignore);
 
