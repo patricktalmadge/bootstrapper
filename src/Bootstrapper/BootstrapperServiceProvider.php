@@ -40,7 +40,8 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     $this->app['config']->set('basset::collections.bootstrapper', function($collection) {
       $collection->requireDirectory('packages/patricktalmadge/bootstrapper/css');
-      $collection->requireDirectory('packages/patricktalmadge/bootstrapper/js');
+      $collection->add('packages/patricktalmadge/bootstrapper/js/jquery-1.9.1.min.js');
+      $collection->add('packages/patricktalmadge/bootstrapper/js/bootstrap.min.js');
     });
   }
 }
