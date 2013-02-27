@@ -17,49 +17,30 @@ namespace Bootstrapper;
 class Image
 {
     /**
-     * Creates an image with rounded corners
-     *
-     * @param string $url        An url
-     * @param string $alt        An alt text
-     * @param array  $attributes An array of attributes
-     *
-     * @return string An img tag
+     * Catch-all method
      */
-    public static function rounded($url, $alt = '', $attributes = array())
+    public static function __callStatic($method, $parameters)
     {
-        $attributes = Helpers::add_class($attributes, 'img-'.__FUNCTION__);
+        $url        = array_get($parameters, 0);
+        $alt        = array_get($parameters, 1);
+        $attributes = array_get($parameters, 2);
 
-        return HTML::image($url, $alt, $attributes);
+        return static::create($method, $url, $alt, $attributes);
     }
 
     /**
-     * Creates an image masked with a circle
+     * Creates a Bootstrap image
      *
-     * @param string $url        An url
-     * @param string $alt        An alt text
+     * @param string $type The image type
+     * @param string $url  An url
+     * @param string $alt  An alt text
      * @param array  $attributes An array of attributes
      *
      * @return string An img tag
      */
-    public static function circle($url, $alt = '', $attributes = array())
+    protected static function create($type, $url, $alt, $attributes)
     {
-        $attributes = Helpers::add_class($attributes, 'img-'.__FUNCTION__);
-
-        return HTML::image($url, $alt, $attributes);
-    }
-
-    /**
-     * Creates an image with polaroid borders
-     *
-     * @param string $url        An url
-     * @param string $alt        An alt text
-     * @param array  $attributes An array of attributes
-     *
-     * @return string An img tag
-     */
-    public static function polaroid($url, $alt = '', $attributes = array())
-    {
-        $attributes = Helpers::add_class($attributes, 'img-'.__FUNCTION__);
+        $attributes = Helpers::add_class($attributes, 'img-'.$type);
 
         return HTML::image($url, $alt, $attributes);
     }
