@@ -1,5 +1,5 @@
 {
-    "hash": "e88e841c98ec80577aa303135ed551d9",
+    "hash": "b6fe497a8ded991c25283ace751cca05",
     "packages": [
         {
             "name": "anahkiasen/html-object",
@@ -210,12 +210,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "89107ec898d364a51be662bc3aa9fd9e7f27c03a"
+                "reference": "2c0abedc87a9f46d96e0217c13e07782eb8eb528"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/89107ec898d364a51be662bc3aa9fd9e7f27c03a",
-                "reference": "89107ec898d364a51be662bc3aa9fd9e7f27c03a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/2c0abedc87a9f46d96e0217c13e07782eb8eb528",
+                "reference": "2c0abedc87a9f46d96e0217c13e07782eb8eb528",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +256,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2013-03-03 21:57:58"
+            "time": "2013-03-05 01:35:50"
         },
         {
             "name": "illuminate/encryption",
@@ -480,12 +480,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
-                "reference": "78e4485f39306b6b6c9c2a6bb90327737c65aa45"
+                "reference": "f986a8ac6d42f8c0d0b76433d99571a866110ea9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/routing/zipball/78e4485f39306b6b6c9c2a6bb90327737c65aa45",
-                "reference": "78e4485f39306b6b6c9c2a6bb90327737c65aa45",
+                "url": "https://api.github.com/repos/illuminate/routing/zipball/f986a8ac6d42f8c0d0b76433d99571a866110ea9",
+                "reference": "f986a8ac6d42f8c0d0b76433d99571a866110ea9",
                 "shasum": ""
             },
             "require": {
@@ -524,7 +524,7 @@
             "keywords": [
                 "laravel"
             ],
-            "time": "2013-03-03 01:00:36"
+            "time": "2013-03-05 05:22:59"
         },
         {
             "name": "illuminate/session",
@@ -583,12 +583,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "7c35ef7d7fd90355f0e4e406a70258ad75e9ff0d"
+                "reference": "d77757feb3fd0846bf3e44c79be8abb0d6cb0cce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/7c35ef7d7fd90355f0e4e406a70258ad75e9ff0d",
-                "reference": "7c35ef7d7fd90355f0e4e406a70258ad75e9ff0d",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/d77757feb3fd0846bf3e44c79be8abb0d6cb0cce",
+                "reference": "d77757feb3fd0846bf3e44c79be8abb0d6cb0cce",
                 "shasum": ""
             },
             "require": {
@@ -620,7 +620,7 @@
                 }
             ],
             "description": "Various utilities and support functions.",
-            "time": "2013-03-01 02:03:02"
+            "time": "2013-03-04 21:32:55"
         },
         {
             "name": "jasonlewis/basset",
@@ -747,16 +747,16 @@
         },
         {
             "name": "meido/form",
-            "version": "dev-master",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/meido/form.git",
-                "reference": "33835f2d1eb9998d155b9d204e1a9a5b98f79fbe"
+                "reference": "v1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/meido/form/zipball/33835f2d1eb9998d155b9d204e1a9a5b98f79fbe",
-                "reference": "33835f2d1eb9998d155b9d204e1a9a5b98f79fbe",
+                "url": "https://api.github.com/repos/meido/form/zipball/v1.1.1",
+                "reference": "v1.1.1",
                 "shasum": ""
             },
             "require": {
@@ -782,7 +782,7 @@
                 }
             ],
             "description": "A port of Laravel 3's Form class",
-            "time": "2013-02-22 04:27:03"
+            "time": "2013-02-22 03:45:35"
         },
         {
             "name": "meido/html",
@@ -1202,7 +1202,6 @@
         "anahkiasen/html-object": 20,
         "illuminate/support": 20,
         "jasonlewis/basset": 20,
-        "meido/form": 20,
         "mockery/mockery": 20
     },
     "platform": {
