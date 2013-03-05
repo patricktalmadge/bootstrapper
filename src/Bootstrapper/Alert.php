@@ -59,7 +59,7 @@ class Alert extends Element
      *
      * @return string A Bootstrap Alert
      */
-    public function __toString()
+    public function render()
     {
         $this->addClass('alert');
 
@@ -72,7 +72,7 @@ class Alert extends Element
             $this->nest($close);
         }
 
-        return $this->render();
+        return '<'.$this->element.HTML::attributes($this->attributes).'>'.$this->getContent().$this->close();
     }
 
     /**
@@ -160,10 +160,9 @@ class Alert extends Element
      */
     protected static function show($type, $message, $attributes = array())
     {
-        $instance = new static('div', $message);
+        $instance = new static('div', $message, $attributes);
 
         // Save given parameters
-        $instance->attributes = $attributes;
         $instance->addClass($type);
 
         return $instance;
