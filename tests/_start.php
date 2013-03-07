@@ -33,6 +33,11 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     return $request;
   }
 
+  public static function getHTML()
+  {
+    return new LaravelBook\Laravel4Powerpack\HTML(static::getURL());
+  }
+
   private static function getURL()
   {
     $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
@@ -64,7 +69,7 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 
     $app = Mockery::mock('alias:App');
     $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
-    $app->shouldReceive('make')->with('form')->andReturn(new Meido\Form\Form(static::getURL()));
+    $app->shouldReceive('make')->with('form')->andReturn(new LaravelBook\Laravel4Powerpack\Form(static::getHTML()));
 
     return $app;
   }

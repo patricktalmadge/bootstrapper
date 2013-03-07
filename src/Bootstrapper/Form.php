@@ -2,8 +2,8 @@
 namespace Bootstrapper;
 
 use App;
-use Meido\Form\FormFacade;
-use Meido\Form\Form as MeidoForm;
+use LaravelBook\Laravel4Powerpack\Facades\FormFacade;
+use LaravelBook\Laravel4Powerpack\Facades\Form as MeidoForm;
 
 /**
  * Form methods for creating Twitter Bootstrap forms.
