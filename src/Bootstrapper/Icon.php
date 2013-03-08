@@ -1,7 +1,8 @@
 <?php
 namespace Bootstrapper;
 
-use \Config;
+use Config;
+use HtmlObject\Traits\Tag;
 
 /**
  * Icon for creating Twitter Bootstrap icons.
@@ -16,8 +17,25 @@ use \Config;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Icon
+class Icon extends Tag
 {
+    /**
+     * The Tag element
+     *
+     * @var string
+     */
+    protected $element = 'i';
+
+    /**
+     * Build a new icon
+     *
+     * @param array $attributes
+     */
+    public function __construct($attributes = array())
+    {
+        $this->attributes = $attributes;
+    }
+
     /**
      * Allows magic methods such as Icon::home([attributes]) or Icon::close_white()
      *
@@ -41,32 +59,20 @@ class Icon
     public static function __callStatic($method, $parameters)
     {
         // Explode method name
-        $method_bits = explode('_', strtolower($method));
+        $classes = explode('_', strtolower($method));
+        $white = in_array('white', $classes);
+        if ($white) unset($classes[array_search('white', $classes)]);
 
-        // White icon variant? (when using glyphicons sprite version)
-        $white = in_array('white', $method_bits);
+        // Concatenate icons
+        $classes = Config::get('bootstrapper::icons_prefix').implode('-', $classes);
+        if ($white) $classes .= ' ' .Config::get('bootstrapper::icons_prefix').'white';
 
-        // Remove white from array
-        $method_bits = array_filter(
-            $method_bits,
-            function ($val) {
-                return ($val != 'white');
-            }
-        );
+        $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;
 
-        // Get icon name
-        $icon_classes = array(implode('-', $method_bits));
-        if ($white) $icon_classes[] = 'white';
+        $icon = new static($attributes);
+        $icon->addClass($classes);
 
-        // If the parameters weren't put into an array, do it
-        if (!isset($parameters[0])) {
-            $parameters = array(0 => $parameters);
-        }
-
-        // Prepend icon- to classes
-        $parameters = Helpers::set_multi_class_attributes(null, $icon_classes, $parameters, 0, Config::get('bootstrapper::icons_prefix'));
-
-        return '<i'.HTML::attributes($parameters[0]).'></i>';
+        return $icon;
     }
 
     /**
@@ -83,13 +89,13 @@ class Icon
      * ?>
      * </code>
      *
-     * @param string $icon_class name of the bootstrap icon class
-     * @param array  $attributes attributes to apply the icon itself
+     * @param string $icon       Name of the bootstrap icon class
+     * @param array  $attributes Attributes to apply the icon itself
      *
      * @return string
      */
-    public static function make($icon_class, $attributes = array())
+    public static function make($icon, $attributes = array())
     {
-        return static::__callStatic($icon_class, $attributes);
+        return static::__callStatic($icon, $attributes);
     }
 }
