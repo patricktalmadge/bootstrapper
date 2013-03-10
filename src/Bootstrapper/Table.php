@@ -247,6 +247,9 @@ class Table
     {
         $this->ignore = func_get_args();
 
+        if( sizeof( $this->ignore ) == 1 and is_array($this->ignore[0]) ) 
+            $this->ignore = $this->ignore[0];
+
         return $this;
     }
 
@@ -256,6 +259,9 @@ class Table
     private function order()
     {
         $this->order = func_get_args();
+
+        if( sizeof( $this->order ) == 1 and is_array($this->order[0]) ) 
+            $this->order = $this->order[0];
 
         return $this;
     }
