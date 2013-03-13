@@ -2,7 +2,7 @@
 namespace Bootstrapper;
 
 use Illuminate\Support\ServiceProvider;
-use Meido\Form\Form as MeidoForm;
+use LaravelBook\Laravel4Powerpack\Form as MeidoForm;
 
 // Manually register Basset as we need it now
 if (!class_exists('Basset\BassetServiceProvider')) {
