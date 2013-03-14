@@ -133,7 +133,7 @@ class Paginator extends \Laravel\Paginator
 
             return '<li'.HTML::attributes(compact("class")).'><a href="#">'.HTML::entities($text).'</a></li>';
         } else {
-            return '<li'.HTML::attributes(compact("class")).'>'.$this->link($page, $text, null).'</li>';
+            return $this->link($page, $text, null);
         }
     }
 
