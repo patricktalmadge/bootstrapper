@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * Thumbnails helper class

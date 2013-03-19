@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * Carousel for creating Twitter Bootstrap style Carousels.

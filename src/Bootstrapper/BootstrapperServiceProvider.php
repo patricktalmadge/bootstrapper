@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 use Illuminate\Support\ServiceProvider;
 use LaravelBook\Laravel4Powerpack\Form as MeidoForm;

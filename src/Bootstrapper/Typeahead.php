@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * Typeahead for creating Twitter Bootstrap style Typeahead.

@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * Typography for creating Twitter Bootstrap typography elments.

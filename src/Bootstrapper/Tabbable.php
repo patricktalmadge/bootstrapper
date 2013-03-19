@@ -1,5 +1,5 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
+
 use Bootstrapper\Navigation;
 
 /**
