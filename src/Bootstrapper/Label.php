@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use HtmlObject\Element;
+
 /**
  * Label for creating Twitter Bootstrap style Labels.
  *
@@ -14,127 +16,52 @@ namespace Bootstrapper;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Label
+class Label extends Element
 {
     /**
      * Label colors
+     *
      * @var constant
      */
-    const NORMAL    = '';
-    const IMPORTANT = 'label-important';
-    const INFO      = 'label-info';
-    const INVERSE   = 'label-inverse';
-    const SUCCESS   = 'label-success';
-    const WARNING   = 'label-warning';
+    protected static $colors = array(
+        'normal',
+        'important',
+        'info',
+        'inverse',
+        'success',
+        'warning',
+    );
 
     /**
-     * Create a new Label
-     *
-     * @param string $type       Label type
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
+     * Dynamically create labels
      */
-    protected static function show($type = Label::NORMAL, $message, $attributes = array())
+    public static function __callStatic($method, $parameters)
     {
-        $attributes = Helpers::add_class($attributes, 'label '.$type);
+        // Get Label type
+        if ($method == 'normal') $type = null;
+        else $type = 'label-'.(string) $method;
 
-        return '<span'.HTML::attributes($attributes).'>'.$message.'</span>';
+        // Get content and attributes
+        $content    = isset($parameters[0]) ? $parameters[0] : null;
+        $attributes = isset($parameters[1]) ? $parameters[1] : array();
+
+        $label = new static('span', $content, $attributes);
+        $label->addClass('label '.$type);
+
+        return $label;
     }
 
     /**
-     * Create a new Normal Label
+     * Create a custom label (this is here for backward compatibility)
      *
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
+     * @param string $type       The label type
+     * @param string $message    The content
+     * @param array  $attributes The attributes
      *
-     * @return string Label HTML
+     * @return Label
      */
-    public static function normal($message, $attributes = array())
+    public static function custom($type, $message, $attributes)
     {
-        return static::show(Label::NORMAL, $message, $attributes);
-    }
-
-    /**
-     * Create a new Success Label
-     *
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
-     */
-    public static function success($message, $attributes = array())
-    {
-        return static::show(Label::SUCCESS, $message, $attributes);
-    }
-
-    /**
-     * Create a new Warning Label
-     *
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
-     */
-    public static function warning($message, $attributes = array())
-    {
-        return static::show(Label::WARNING, $message, $attributes);
-    }
-
-    /**
-     * Create a new Important Label
-     *
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
-     */
-    public static function important($message, $attributes = array())
-    {
-        return static::show(Label::IMPORTANT, $message, $attributes);
-    }
-
-    /**
-     * Create a new Info Label instance
-     *
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
-     */
-    public static function info($message, $attributes = array())
-    {
-        return static::show(Label::INFO, $message, $attributes);
-    }
-
-    /**
-     * Create a new Inverse Label
-     *
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
-     */
-    public static function inverse($message, $attributes = array())
-    {
-        return static::show(Label::INVERSE, $message, $attributes);
-    }
-
-    /**
-     * Create a new custom Label
-     * This assumes you have created the appropriate css class for the label type.
-     *
-     * @param string $type       Label type
-     * @param string $message    Label text
-     * @param array  $attributes Attributes to apply the label itself
-     *
-     * @return string Label HTML
-     */
-    public static function custom($type, $message, $attributes = array())
-    {
-        $type = 'label-'.(string) $type;
-
-        return static::show($type, $message, $attributes);
+        return static::$type($message, $attributes);
     }
 }
