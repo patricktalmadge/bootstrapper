@@ -1,7 +1,7 @@
 <?php
 namespace Bootstrapper;
 
-use HtmlObject\Element;
+use Bootstrapper\Traits\ClassableElement;
 
 /**
  * Label for creating Twitter Bootstrap style Labels.
@@ -16,40 +16,14 @@ use HtmlObject\Element;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Label extends Element
+class Label extends ClassableElement
 {
     /**
-     * Label colors
+     * The base class
      *
-     * @var constant
+     * @var string
      */
-    protected static $colors = array(
-        'normal',
-        'important',
-        'info',
-        'inverse',
-        'success',
-        'warning',
-    );
-
-    /**
-     * Dynamically create labels
-     */
-    public static function __callStatic($method, $parameters)
-    {
-        // Get Label type
-        if ($method == 'normal') $type = null;
-        else $type = 'label-'.(string) $method;
-
-        // Get content and attributes
-        $content    = isset($parameters[0]) ? $parameters[0] : null;
-        $attributes = isset($parameters[1]) ? $parameters[1] : array();
-
-        $label = new static('span', $content, $attributes);
-        $label->addClass('label '.$type);
-
-        return $label;
-    }
+    protected static $baseClass = 'label';
 
     /**
      * Create a custom label (this is here for backward compatibility)
