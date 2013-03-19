@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * DropdownButton for creating Twitter Bootstrap style Dropdown Buttons.

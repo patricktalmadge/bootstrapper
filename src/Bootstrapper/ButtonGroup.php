@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * ButtonGroup for creating Twitter Bootstrap style Buttons groups.

@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 /**
  * ButtonToolbar for creating Twitter Bootstrap style Buttons toolbars.

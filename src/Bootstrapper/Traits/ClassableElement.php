@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper\Traits;
+<?php namespace Bootstrapper\Traits;
 
 use HtmlObject\Element;
 

@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 use Illuminate\Pagination\Paginator as LaravelPaginator;
 

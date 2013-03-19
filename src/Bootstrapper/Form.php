@@ -1,5 +1,4 @@
-<?php
-namespace Bootstrapper;
+<?php namespace Bootstrapper;
 
 use App;
 use LaravelBook\Laravel4Powerpack\Facades\FormFacade;
