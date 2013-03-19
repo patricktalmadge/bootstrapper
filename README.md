@@ -59,8 +59,8 @@ php artisan asset:publish patricktalmadge/bootstrapper
 And then add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
 
 ```php
-{{{ Basset::show('bootstrapper.css') }}}
-{{{ Basset::show('bootstrapper.js') }}}
+{{ Basset::show('bootstrapper.css') }}
+{{ Basset::show('bootstrapper.js') }}
 ```
 
 ## Documentation
