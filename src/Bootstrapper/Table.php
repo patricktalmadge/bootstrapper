@@ -180,6 +180,16 @@ class Table
     }
 
     /**
+     * Renders the Table
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->render();
+    }
+
+    /**
      * Creates a table opening tag
      *
      * @param  array  $attributes An array of attributes
@@ -270,7 +280,7 @@ class Table
      *
      * @return string A <tbody> with content
      */
-    public function __toString()
+    public function render()
     {
         if(!$this->tbody) return false;
 
