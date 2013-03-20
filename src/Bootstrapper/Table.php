@@ -1,7 +1,8 @@
 <?php
 namespace Bootstrapper;
 
-use \Config;
+use Config;
+use Str;
 
 /**
  * Small helper class for creating tables with Bootstrap
@@ -412,7 +413,7 @@ class Table
      */
     private static function appendColumn($name, $value)
     {
-        return starts_with($value, '<td')
+        return Str::startsWith($value, '<td')
             ? $value
             : '<td class="column-'.$name.'">' .$value. '</td>';
     }
