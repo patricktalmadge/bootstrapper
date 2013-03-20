@@ -2,7 +2,7 @@
 namespace Bootstrapper;
 
 use Config;
-use Str;
+use Illuminate\Support\Str;
 
 /**
  * Small helper class for creating tables with Bootstrap

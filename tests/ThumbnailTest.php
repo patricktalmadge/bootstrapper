@@ -38,7 +38,7 @@ class ThumbnailTest extends BootstrapperWrapper
 
   public function testSimpleThumbnails()
   {
-    $thumbnails = Thumbnail::create($this->images);
+    $thumbnails = Thumbnail::create($this->images)->render();
     $matcher = $this->matcher(
       '<li class="thumbnail">'.$this->image('foo').'</li>'.
       '<li class="thumbnail">'.$this->image('bar').'</li>'
@@ -50,7 +50,7 @@ class ThumbnailTest extends BootstrapperWrapper
   public function testAlreadyWrappedThumbnails()
   {
     $images = array($this->image('foo'), $this->image('bar'));
-    $thumbnails = Thumbnail::create($images);
+    $thumbnails = Thumbnail::create($images)->render();
     $matcher = $this->matcher(
       '<li class="thumbnail">'.$this->image('foo').'</li>'.
       '<li class="thumbnail">'.$this->image('bar').'</li>'
@@ -61,7 +61,7 @@ class ThumbnailTest extends BootstrapperWrapper
 
   public function testLinkedThumbnails()
   {
-    $thumbnails = Thumbnail::create($this->linkedImages);
+    $thumbnails = Thumbnail::create($this->linkedImages)->render();
     $matcher = $this->matcher(
       '<li>'.$this->link($this->image('foo')).'</li>'.
       '<li>'.$this->link($this->image('bar')).'</li>'
@@ -72,7 +72,7 @@ class ThumbnailTest extends BootstrapperWrapper
 
   public function testRichThumbnails()
   {
-    $thumbnails = Thumbnail::create($this->richImages);
+    $thumbnails = Thumbnail::create($this->richImages)->render();
     $matcher = $this->matcher(
       '<li><div class="thumbnail">'.$this->image('foo').'<p>kel</p></div></li>'.
       '<li><div class="thumbnail">'.$this->image('bar').'<h3>bar</h3></div></li>'.
@@ -92,7 +92,7 @@ class ThumbnailTest extends BootstrapperWrapper
       $return .= '</li>';
 
       return $return;
-    });
+    })->render();
     $matcher = $this->matcher(
       '<li class="thumbnail"><figure>'.$this->image('foo').'</figure></li>'.
       '<li class="thumbnail"><figure>'.$this->image('bar').'</figure><h2>bar</h2></li>'.

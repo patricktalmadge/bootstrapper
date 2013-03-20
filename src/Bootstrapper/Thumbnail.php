@@ -1,6 +1,14 @@
 <?php
 namespace Bootstrapper;
 
+use Closure;
+use HtmlObject\Element;
+use HtmlObject\Image as HtmlImage;
+use HtmlObject\Link;
+use HtmlObject\Traits\Tag;
+use Underscore\Methods\ArraysMethods as Arrays;
+use Underscore\Methods\StringMethods as String;
+
 /**
  * Thumbnails helper class
  *
@@ -14,53 +22,131 @@ namespace Bootstrapper;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Thumbnail
+class Thumbnail extends Tag
 {
-  public static function create($images = null, $closure = null)
+
+  /**
+   * The default element
+   *
+   * @var string
+   */
+  protected $element = 'ul';
+
+  /**
+   * A Callable to pass the images through
+   *
+   * @var Callable
+   */
+  protected $presenter;
+
+  /**
+   * Create a new thumbnail grid
+   *
+   * @param array $attributes
+   */
+  public function __construct($attributes = array(), Closure $presenter = null)
   {
-    $thumbnails  = '<ul class="thumbnails">';
+    $this->attributes = $attributes;
+    $this->presenter  = $presenter;
 
-      // Generate the thumbnails
-      foreach ($images as $image) {
+    $this->addClass('thumbnails');
+  }
 
-        // If we provide a closure
-        if (is_callable($closure)) {
-          $thumbnails .= $closure($image);
-          continue;
-        }
+  /**
+   * Add an image to the grid
+   *
+   * @param string|array $imageData An image
+   */
+  protected function addRichImage($imageData)
+  {
+    $imageData = $this->present($imageData);
 
-        // If we provided a rich thumbnail
-        if (is_array($image)) {
-          $link    = array_get($image, 'link');
-          $label   = array_get($image, 'label');
-          $caption = array_get($image, 'caption');
-          $image   = array_get($image, 'image');
+    if ($this->presenter) {
+      return $this->nest($imageData);
+    }
 
-          $thumbnails .= '<li>';
+    // If we provided a rich thumbnail
+    $link    = Arrays::get($imageData, 'link');
+    $label   = Arrays::get($imageData, 'label');
+    $caption = Arrays::get($imageData, 'caption');
 
-            // Linked thumbnail
-            if (!$caption and !$label and $link) {
-              $image = HTML::image($image);
-              $thumbnails .= HTML::decode( HTML::to($link, $image, array('class' => 'thumbnail')) );
+    // Create image
+    $image = Arrays::get($imageData, 'image');
+    $image = HtmlImage::create($image);
 
-            // Plain thumbnail
-            } else {
-              $thumbnails .= '<div class="thumbnail">';
-                $thumbnails .= HTML::image($image);
-                if($label) $thumbnails .= '<h3>' .$label. '</h3>';
-                if($caption) $thumbnails .= '<p>' .$caption. '</p>';
-              $thumbnails .= '</div>';
-            }
-          $thumbnails .= '</li>';
-          continue;
-        }
+    // Linked thumbnail
+    if (!$caption and !$label and $link) {
+      $image = Link::create($link, $image)->addClass('thumbnail');
 
-        // Else just assume we were given an image path
-        if(!str_contains($image, '<img')) $image = HTML::image($image);
-        $thumbnails .= '<li class="thumbnail">'.$image.'</li>';
-      }
+    // Plain thumbnail
+    } else {
+      $thumbnail = Element::create('div', $image)->addClass('thumbnail');
+      if($label)   $thumbnail->nest(Element::create('h3', $label));
+      if($caption) $thumbnail->nest(Element::create('p', $caption));
+      $image = $thumbnail;
+    }
 
-    $thumbnails .= '</ul>';
+    return $this->nest(
+      Element::create('li', $image)
+    );
+  }
+
+  /**
+   * Pass an image through a presenter if any
+   *
+   * @param array|string $image
+   *
+   * @return array|string
+   */
+  protected function present($image)
+  {
+    if ($presenter = $this->presenter) {
+      $image = $presenter($image);
+    }
+
+    return $image;
+  }
+
+  /**
+   * Add a plain image
+   *
+   * @param string $image
+   */
+  protected function addPlainImage($image)
+  {
+    $image = $this->present($image);
+
+    // Else just assume we were given an image path
+    if(!String::contains($image, '<img')) {
+      $image = HtmlImage::create($image);
+    }
+
+    return $this->nest(
+      Element::create('li', $image)->addClass('thumbnail')
+    );
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  ///////////////////////// STATIC INTERFACE /////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+  /**
+   * Create a grid of thumbnails
+   *
+   * @param array    $images    An array of images paths
+   * @param Callable $presenter A presenter
+   *
+   * @return Thumbnail
+   */
+  public static function create($images = null, Closure $presenter = null, $attributes = array())
+  {
+    $thumbnails  = new static($attributes, $presenter);
+
+    // Generate the thumbnails
+    foreach ($images as $image) {
+      if (is_string($image)) $thumbnails->addPlainImage($image);
+      else $thumbnails->addRichImage($image);
+    }
 
     return $thumbnails;
   }

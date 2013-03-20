@@ -1,5 +1,5 @@
 {
-    "hash": "594948112d7929934e1ef413d956c9b8",
+    "hash": "190c96dda26f0941987b6aac89a7a15f",
     "packages": [
         {
             "name": "anahkiasen/html-object",
@@ -38,18 +38,56 @@
             "time": "2013-03-17 23:54:21"
         },
         {
+            "name": "anahkiasen/underscore-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Anahkiasen/underscore-php.git",
+                "reference": "98a5b49e064aad1a52733116ae697cb54b2f4f5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/98a5b49e064aad1a52733116ae697cb54b2f4f5b",
+                "reference": "98a5b49e064aad1a52733116ae697cb54b2f4f5b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.0.*@dev",
+                "patchwork/utf8": "1.0.*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Underscore": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Fabre",
+                    "email": "ehtnam6@gmail.com"
+                }
+            ],
+            "description": "A redacted port of Underscore.js for PHP",
+            "time": "2013-03-19 02:15:59"
+        },
+        {
             "name": "illuminate/cache",
             "version": "dev-master",
             "target-dir": "Illuminate/Cache",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
-                "reference": "78a01b43c31a410f7bf4c36f0875770e85cee869"
+                "reference": "d2efd17dc2a2d6411f6b1d6da916e415ab22352a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cache/zipball/78a01b43c31a410f7bf4c36f0875770e85cee869",
-                "reference": "78a01b43c31a410f7bf4c36f0875770e85cee869",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/d2efd17dc2a2d6411f6b1d6da916e415ab22352a",
+                "reference": "d2efd17dc2a2d6411f6b1d6da916e415ab22352a",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +116,7 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "time": "2013-03-15 22:14:46"
+            "time": "2013-03-18 13:53:48"
         },
         {
             "name": "illuminate/config",
@@ -210,12 +248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "1e2215f9199954b2abfebcdbd00aac1d24f0a28a"
+                "reference": "18f7be59d1d8150a889e74aed99741cfb95171bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/1e2215f9199954b2abfebcdbd00aac1d24f0a28a",
-                "reference": "1e2215f9199954b2abfebcdbd00aac1d24f0a28a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/18f7be59d1d8150a889e74aed99741cfb95171bb",
+                "reference": "18f7be59d1d8150a889e74aed99741cfb95171bb",
                 "shasum": ""
             },
             "require": {
@@ -256,7 +294,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2013-03-16 02:22:52"
+            "time": "2013-03-18 09:18:52"
         },
         {
             "name": "illuminate/encryption",
@@ -480,12 +518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/routing.git",
-                "reference": "8d82c91e3a87a8bb3a1fc051fae4c4ac20c1fcf2"
+                "reference": "e1c7745ca2f219a905e9d665704accbca222867b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/routing/zipball/8d82c91e3a87a8bb3a1fc051fae4c4ac20c1fcf2",
-                "reference": "8d82c91e3a87a8bb3a1fc051fae4c4ac20c1fcf2",
+                "url": "https://api.github.com/repos/illuminate/routing/zipball/e1c7745ca2f219a905e9d665704accbca222867b",
+                "reference": "e1c7745ca2f219a905e9d665704accbca222867b",
                 "shasum": ""
             },
             "require": {
@@ -524,7 +562,7 @@
             "keywords": [
                 "laravel"
             ],
-            "time": "2013-03-14 21:39:59"
+            "time": "2013-03-20 03:13:22"
         },
         {
             "name": "illuminate/session",
@@ -583,12 +621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "b46d591dd8fe100603777ea84ace34a5314c48a3"
+                "reference": "75a8e4b985ede4db00377005a6b69746c8d87dc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/b46d591dd8fe100603777ea84ace34a5314c48a3",
-                "reference": "b46d591dd8fe100603777ea84ace34a5314c48a3",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/75a8e4b985ede4db00377005a6b69746c8d87dc8",
+                "reference": "75a8e4b985ede4db00377005a6b69746c8d87dc8",
                 "shasum": ""
             },
             "require": {
@@ -620,7 +658,7 @@
                 }
             ],
             "description": "Various utilities and support functions.",
-            "time": "2013-03-15 03:55:30"
+            "time": "2013-03-20 01:32:32"
         },
         {
             "name": "jasonlewis/basset",
@@ -680,12 +718,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "fcee205a5a3a859c009d976ba3acfe67958e912c"
+                "reference": "89e9837425ec32dedf1c90bb3cc48056b9315113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/fcee205a5a3a859c009d976ba3acfe67958e912c",
-                "reference": "fcee205a5a3a859c009d976ba3acfe67958e912c",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/89e9837425ec32dedf1c90bb3cc48056b9315113",
+                "reference": "89e9837425ec32dedf1c90bb3cc48056b9315113",
                 "shasum": ""
             },
             "require": {
@@ -743,7 +781,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-03-05 17:56:54"
+            "time": "2013-03-20 02:05:59"
         },
         {
             "name": "laravelbook/laravel4-powerpack",
@@ -796,6 +834,50 @@
             "time": "2013-03-08 14:42:38"
         },
         {
+            "name": "patchwork/utf8",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
+                "reference": "v1.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/nicolas-grekas/Patchwork-UTF8/archive/v1.0.4.zip",
+                "reference": "v1.0.4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootup.utf8.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(Apache-2.0 or GPL-2.0)"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "UTF-8 strings handling for PHP 5.3: portable, performant and extended",
+            "homepage": "https://github.com/nicolas-grekas/Patchwork-UTF8",
+            "keywords": [
+                "i18n",
+                "unicode",
+                "utf-8",
+                "utf8"
+            ],
+            "time": "2012-12-13 08:48:39"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -839,12 +921,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/raveren/kint.git",
-                "reference": "f633572340a5ee32169698efe421e21ea918a944"
+                "reference": "39b2fdda4af931f55f35c5eb3e1d5d58cf61deae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/raveren/kint/zipball/f633572340a5ee32169698efe421e21ea918a944",
-                "reference": "f633572340a5ee32169698efe421e21ea918a944",
+                "url": "https://api.github.com/repos/raveren/kint/zipball/39b2fdda4af931f55f35c5eb3e1d5d58cf61deae",
+                "reference": "39b2fdda4af931f55f35c5eb3e1d5d58cf61deae",
                 "shasum": ""
             },
             "require": {
@@ -877,7 +959,7 @@
                 "kint",
                 "php"
             ],
-            "time": "2013-03-15 07:43:49"
+            "time": "2013-03-20 07:42:41"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -940,12 +1022,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "d154b0d9a6b5dac26413a314df1846abe197aaef"
+                "reference": "13e8107d6360467250d1f5ed5c831c53e44efcde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/d154b0d9a6b5dac26413a314df1846abe197aaef",
-                "reference": "d154b0d9a6b5dac26413a314df1846abe197aaef",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/13e8107d6360467250d1f5ed5c831c53e44efcde",
+                "reference": "13e8107d6360467250d1f5ed5c831c53e44efcde",
                 "shasum": ""
             },
             "require": {
@@ -981,7 +1063,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-01 10:42:10"
+            "time": "2013-03-19 20:41:20"
         },
         {
             "name": "symfony/http-kernel",
@@ -990,12 +1072,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "e0f3be3a7a82f8027bb3d2a199b0460fb7b461d8"
+                "reference": "4f512dbe806f52729494ec16013cb84f49968f27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/e0f3be3a7a82f8027bb3d2a199b0460fb7b461d8",
-                "reference": "e0f3be3a7a82f8027bb3d2a199b0460fb7b461d8",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/4f512dbe806f52729494ec16013cb84f49968f27",
+                "reference": "4f512dbe806f52729494ec16013cb84f49968f27",
                 "shasum": ""
             },
             "require": {
@@ -1050,7 +1132,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-15 12:43:45"
+            "time": "2013-03-19 20:41:20"
         },
         {
             "name": "symfony/process",
@@ -1165,12 +1247,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "1174be6aed7b3c1e048834f14902ce796b6483c2"
+                "reference": "e01c03dfa2f12086c3bbd69e9ca19e4953c6c7d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/1174be6aed7b3c1e048834f14902ce796b6483c2",
-                "reference": "1174be6aed7b3c1e048834f14902ce796b6483c2",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/e01c03dfa2f12086c3bbd69e9ca19e4953c6c7d9",
+                "reference": "e01c03dfa2f12086c3bbd69e9ca19e4953c6c7d9",
                 "shasum": ""
             },
             "require": {
@@ -1210,7 +1292,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2013-03-11 13:49:28"
+            "time": "2013-03-19 17:42:50"
         }
     ],
     "aliases": [
@@ -1219,6 +1301,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "anahkiasen/html-object": 20,
+        "anahkiasen/underscore-php": 20,
         "illuminate/support": 20,
         "jasonlewis/basset": 20,
         "laravelbook/laravel4-powerpack": 20,

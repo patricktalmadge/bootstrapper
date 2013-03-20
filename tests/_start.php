@@ -1,5 +1,6 @@
 <?php
-ini_set('memory_limit', '120M');
+ini_set('memory_limit', '1200M');
+
 abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 {
   protected $testAttributes = array(
@@ -12,6 +13,9 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     if (!class_exists('URL')) {
       Mockery::mock('alias:URL');
     }
+
+    HtmlObject\Image::$urlGenerator = static::getURL();
+    HtmlObject\Link::$urlGenerator = static::getURL();
 
     static::getURL();
     static::getConfig();
@@ -42,6 +46,11 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
   {
     $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
     $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
+      if ($to == '#' or starts_with($to, 'http://')) return $to;
+
+      return 'http' .($https ? 's' : null). '://test/'.$to;
+    });
+    $url->shouldReceive('asset')->andReturnUsing(function($to, $foo = array(), $https = false) {
       if ($to == '#' or starts_with($to, 'http://')) return $to;
 
       return 'http' .($https ? 's' : null). '://test/'.$to;
