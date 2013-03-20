@@ -288,7 +288,8 @@ class Table
 
             $html .= '<tr>';
             $columnCount = 0;
-            $data = is_object($row) ? $row->attributes : $row;
+            if(method_exists($row, 'toArray')) $data =  $row->toArray();
+            else $data = is_object($row) ? $row->attributes : $row;
 
             // Reorder columns if necessary
             if ($this->order) {
