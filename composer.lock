@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/html-object.git",
-                "reference": "962217e03cbe1b44b7a571e47cc8ba5c6f435e30"
+                "reference": "b3629dafe07df940620f0c6f4846fc046e98c79f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/962217e03cbe1b44b7a571e47cc8ba5c6f435e30",
-                "reference": "962217e03cbe1b44b7a571e47cc8ba5c6f435e30",
+                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/b3629dafe07df940620f0c6f4846fc046e98c79f",
+                "reference": "b3629dafe07df940620f0c6f4846fc046e98c79f",
                 "shasum": ""
             },
             "require": {
@@ -35,7 +35,7 @@
                 }
             ],
             "description": "A set of classes to create and manipulate HTML objects abstractions",
-            "time": "2013-03-17 23:54:21"
+            "time": "2013-03-20 16:36:55"
         },
         {
             "name": "anahkiasen/underscore-php",
