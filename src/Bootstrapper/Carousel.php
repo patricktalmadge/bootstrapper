@@ -89,15 +89,16 @@ class Carousel
     /**
      * Renders a Carousel navigation for custom carousels
      *
-     * @param  string $id   The Carousel ID
-     * @param  string $prev The previous link text
-     * @param  string $next The next link text
      * @return string A Carousel navigation
      */
-    public static function navigation($id, $prev, $next)
+    public function navigation()
     {
-        $navigation  = HTML::to($id, $prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
-        $navigation .= HTML::to($id, $next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+        $navigation = null;
+
+        if (sizeof($this->items) > 1) {
+            $navigation  = HTML::to($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
+            $navigation .= HTML::to($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+        }
 
         return $navigation;
     }
@@ -210,7 +211,7 @@ class Carousel
      *
      * @return string A carousel
      */
-    public function __toString()
+    public function render()
     {
         // Render main wrapper
         $this->attributes['id'] = substr($this->hash, 1);
@@ -224,10 +225,15 @@ class Carousel
             $html .= '</div>';
 
             // Render navigation
-            $html .= Carousel::navigation($this->hash, $this->prev, $this->next);
+            $html .= $this->navigation($this->hash, $this->prev, $this->next);
         $html .= '</div>';
 
         return $html;
+    }
+
+    public function __toString()
+    {
+        return $this->render();
     }
 
     //////////////////////////////////////////////////////////////////
