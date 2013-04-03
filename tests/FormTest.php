@@ -9,67 +9,67 @@ class FormTest extends BootstrapperWrapper
         return array(
             array(
                 'search_open',
-                '<form class="foo form-search" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar">'
                 ),
             array(
                 'search_open_secure',
-                '<form class="foo form-search" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar">'
                 ),
             array(
                 'search_open_for_files',
-                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'search_open_secure_for_files',
-                '<form class="foo form-search" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'inline_open',
-                '<form class="foo form-inline" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar">'
                 ),
             array(
                 'inline_open_secure',
-                '<form class="foo form-inline" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar">'
                 ),
             array(
                 'inline_open_for_files',
-                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'inline_open_secure_for_files',
-                '<form class="foo form-inline" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'horizontal_open',
-                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar">'
                 ),
             array(
                 'horizontal_open_secure',
-                '<form class="foo form-horizontal" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar">'
                 ),
             array(
                 'horizontal_open_for_files',
-                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'horizontal_open_secure_for_files',
-                '<form class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'vertical_open',
-                '<form class="foo" data-foo="bar" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
                 ),
             array(
                 'vertical_open_secure',
-                '<form class="foo" data-foo="bar" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
                 ),
             array(
                 'vertical_open_for_files',
-                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="http://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'vertical_open_secure_for_files',
-                '<form class="foo" data-foo="bar" enctype="multipart/form-data" method="POST" action="https://test/login" accept-charset="utf-8">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
                 )
         );
     }
@@ -327,7 +327,7 @@ class FormTest extends BootstrapperWrapper
     public function testFile()
     {
         $html = Form::file('foo', $this->testAttributes);
-        $expected = '<input class="foo input-file" data-foo="bar" type="file" name="foo" />';
+        $expected = '<input class="foo input-file" data-foo="bar" name="foo" type="file">';
 
         $this->assertEquals($expected, $html);
     }
@@ -335,7 +335,7 @@ class FormTest extends BootstrapperWrapper
     public function testSearchBox()
     {
         $html = Form::search_box('foo', 'bar', $this->testAttributes);
-        $expected = '<input class="foo search-query" data-foo="bar" type="text" name="foo" value="bar" />';
+        $expected = '<input class="foo search-query" data-foo="bar" name="foo" type="text" value="bar">';
 
         $this->assertEquals($expected, $html);
     }
@@ -670,7 +670,7 @@ class FormTest extends BootstrapperWrapper
      */
     public function testOtherInputSizes($size)
     {
-        $types = array('text', 'date', 'number', 'url', 'telephone', 'email', 'search');
+        $types = array('text', 'date', 'number', 'url', 'tel', 'email', 'search');
 
         $class = $this->createMagicClass($size);
         foreach ($types as $type) {
@@ -697,11 +697,11 @@ class FormTest extends BootstrapperWrapper
         $this->markTestSkipped('Waiting for a fix on Power Pack Form class');
 
         Form::macro('foo', function() {
-            return '<article type="bar" />';
+            return '<article type="bar">';
         });
 
         $html =  Form::foo();
-        $expected = '<article type="bar" />';
+        $expected = '<article type="bar">';
         $this->assertEquals($expected, $html);
     }
 }

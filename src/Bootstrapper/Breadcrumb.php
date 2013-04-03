@@ -37,7 +37,7 @@ class Breadcrumb
         $listItems = array();
         foreach ($links as $label => $url) {
             $listItems[] = (is_string($label) or is_array($url))
-            ? static::renderItem(HTML::to($url, $label))
+            ? static::renderItem(HTML::link($url, $label))
             : static::renderItem($url, true);
         }
 

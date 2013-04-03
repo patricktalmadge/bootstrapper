@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use App;
+
 /**
  * Button methods for creating Twitter Bootstrap buttons.
  *
@@ -115,7 +117,7 @@ class Button
      */
     public static function link($url, $value, $attributes = array(), $hasDropdown = false)
     {
-        $attributes['href'] = HTML::getUrlGenerator()->to($url);
+        $attributes['href'] = App::make('url')->to($url);
 
         return static::storeButton('link', $value, $attributes, $hasDropdown);
     }

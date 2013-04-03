@@ -182,7 +182,7 @@ class Navbar
 
         // Add brand if one was given
         if($this->brand)
-            $html .= HTML::to($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
+            $html .= HTML::link($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
 
         if($this->collapsible)
             $html .= '<div class="nav-collapse">';

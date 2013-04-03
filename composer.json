@@ -22,7 +22,7 @@
     "anahkiasen/underscore-php": "dev-master",
     "illuminate/support": "4.0.*@dev",
     "jasonlewis/basset": "dev-master",
-    "laravelbook/laravel4-powerpack": "dev-master"
+    "illuminate/html": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "dev-master"

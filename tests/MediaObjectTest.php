@@ -69,7 +69,7 @@ class MediaObjectTest extends BootstrapperWrapper
   {
     $media = MediaObject::create('foo', null, $this->testAttributes)
       ->with_image('bar', 'alt', $this->testAttributes)->__toString();
-    $matcher = $this->createMatcher('<img src="http://test/bar" class="foo media-object" data-foo="bar" alt="bar">');
+    $matcher = $this->createMatcher('<img src="http://test/bar" class="foo media-object" data-foo="bar" alt="alt">');
 
     $this->assertEquals($matcher, $media);
   }

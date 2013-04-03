@@ -2,8 +2,7 @@
 namespace Bootstrapper;
 
 use App;
-use LaravelBook\Laravel4Powerpack\Facades\FormFacade;
-use LaravelBook\Laravel4Powerpack\Facades\Form as MeidoForm;
+use Illuminate\Support\Facades\Facade;
 
 /**
  * Form methods for creating Twitter Bootstrap forms.
@@ -18,7 +17,7 @@ use LaravelBook\Laravel4Powerpack\Facades\Form as MeidoForm;
  *
  * @see        http://twitter.github.com/bootstrap/
  */
-class Form extends FormFacade
+class Form extends Facade
 {
     /**
      * Default - not required, left-aligned labels on top of controls
@@ -99,9 +98,8 @@ class Form extends FormFacade
      */
     protected static function magic_input($method, $parameters)
     {
-        //.input-
-        //$sizes = array('mini' , 'small', 'medium', 'large', 'xlarge', 'xxlarge');
-        $types = array('input', 'text', 'password', 'uneditable', 'select', 'multiselect', 'file', 'textarea', 'date', 'number', 'url', 'telephone', 'email', 'search');
+        //$sizes = array('mini' , 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'span1', 'span2', 'span3', 'span4', 'span5', 'span6', 'span7', 'span8', 'span9', 'span10', 'span11', 'span12');
+        $types = array('input', 'text', 'password', 'uneditable', 'select', 'multiselect', 'file', 'textarea', 'date', 'number', 'url', 'tel', 'email', 'search');
 
         $method_array = explode('_', strtolower($method));
         $type_found = array_intersect($method_array, $types);
@@ -111,39 +109,39 @@ class Form extends FormFacade
             $attr_index = 0;
 
             switch ($function) {
-            case 'password':
-            case 'file':
-            case 'uneditable':
-                // password($name, $attributes = array())
-                // Set attributes array and call function
-                $attr_index = 1;
-                break;
-            case 'input':
-                // input($type, $name, $value = null, $attributes = array())
-                // Set defaults and attributes array and call function
-                if (!isset($parameters[2])) $parameters[2] = null;
-                $attr_index = 3;
-                break;
-            case 'select':
-            case 'multiselect':
-                // select($name, $options = array(), $selected = null, $attributes = array())
-                // Set defaults and attributes array and call function
-                if (!isset($parameters[1])) $parameters[1] = array();
-                if (!isset($parameters[2])) $parameters[2] = null;
-                $attr_index = 3;
-                break;
-            case 'textarea':
-                // textarea($name, $value = '', $attributes = array())
-                // Covers all the other methods
-                if (!isset($parameters[1])) $parameters[1] = '';
-                $attr_index = 2;
-                break;
-            default:
-                // text($name, $value = null, $attributes = array())
-                // Covers all the other methods
-                if (!isset($parameters[1])) $parameters[1] = null;
-                $attr_index = 2;
-                break;
+                case 'password':
+                case 'file':
+                case 'uneditable':
+                    // password($name, $attributes = array())
+                    // Set attributes array and call function
+                    $attr_index = 1;
+                    break;
+                case 'input':
+                    // input($type, $name, $value = null, $attributes = array())
+                    // Set defaults and attributes array and call function
+                    if (!isset($parameters[2])) $parameters[2] = null;
+                    $attr_index = 3;
+                    break;
+                case 'select':
+                case 'multiselect':
+                    // select($name, $options = array(), $selected = null, $attributes = array())
+                    // Set defaults and attributes array and call function
+                    if (!isset($parameters[1])) $parameters[1] = array();
+                    if (!isset($parameters[2])) $parameters[2] = null;
+                    $attr_index = 3;
+                    break;
+                case 'textarea':
+                    // textarea($name, $value = '', $attributes = array())
+                    // Covers all the other methods
+                    if (!isset($parameters[1])) $parameters[1] = '';
+                    $attr_index = 2;
+                    break;
+                default:
+                    // text($name, $value = null, $attributes = array())
+                    // Covers all the other methods
+                    if (!isset($parameters[1])) $parameters[1] = null;
+                    $attr_index = 2;
+                    break;
             }
 
             $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'input-', 'span');
@@ -152,9 +150,13 @@ class Form extends FormFacade
 
         if (method_exists('Bootstrapper\Form', $method)) {
             return call_user_func_array('static::'.$method, $parameters);
+        } elseif (method_exists(static::getFacadeAccessor(), $method)) {
+            return parent::__callStatic($method, $parameters);
         }
 
-        return parent::__callStatic($method, $parameters);
+        array_unshift($parameters, $method);
+
+        return call_user_func_array('parent::input', $parameters);
     }
 
     /**
@@ -171,7 +173,10 @@ class Form extends FormFacade
     {
         $attributes = Helpers::add_class($attributes, Form::TYPE_SEARCH);
 
-        return static::open($action, $method, $attributes, $https);
+        return static::open(array_merge($attributes, array(
+            'action' => $action,
+            'method' => $method,
+        )));
     }
 
     /**
@@ -233,7 +238,10 @@ class Form extends FormFacade
     {
         $attributes = Helpers::add_class($attributes, Form::TYPE_INLINE);
 
-        return static::open($action, $method, $attributes, $https);
+        return static::open(array_merge($attributes, array(
+            'action' => $action,
+            'method' => $method,
+        )));
     }
 
     /**
@@ -295,7 +303,10 @@ class Form extends FormFacade
     {
         $attributes = Helpers::add_class($attributes, Form::TYPE_HORIZONTAL);
 
-        return static::open($action, $method, $attributes, $https);
+        return static::open(array_merge($attributes, array(
+            'action' => $action,
+            'method' => $method,
+        )));
     }
 
     /**
@@ -355,7 +366,10 @@ class Form extends FormFacade
      */
     public static function vertical_open($action = null, $method = 'POST', $attributes = array(), $https = null)
     {
-        return static::open($action, $method, $attributes, $https);
+        return static::open(array_merge($attributes, array(
+            'action' => $action,
+            'method' => $method,
+        )));
     }
 
     /**

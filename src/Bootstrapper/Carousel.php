@@ -96,8 +96,8 @@ class Carousel
         $navigation = null;
 
         if (sizeof($this->items) > 1) {
-            $navigation  = HTML::to($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
-            $navigation .= HTML::to($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+            $navigation  = HTML::link($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
+            $navigation .= HTML::link($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
         }
 
         return $navigation;

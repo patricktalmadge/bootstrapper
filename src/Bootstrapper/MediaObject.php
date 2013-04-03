@@ -157,8 +157,10 @@ class MediaObject
      */
     public function with_image($image, $alt = null, $attributes = array())
     {
-        $attributes = Helpers::add_class($attributes, 'media-object');
-        $this->media = HTML::image($image, null, $attributes);
+        if (!$alt) $alt = $image;
+
+        $attributes  = Helpers::add_class($attributes, 'media-object');
+        $this->media = HTML::image($image, $alt, $attributes);
 
         return $this;
     }

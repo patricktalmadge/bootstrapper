@@ -15,7 +15,7 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     }
 
     HtmlObject\Image::$urlGenerator = static::getURL();
-    HtmlObject\Link::$urlGenerator = static::getURL();
+    HtmlObject\Link::$urlGenerator  = static::getURL();
 
     static::getURL();
     static::getConfig();
@@ -39,13 +39,23 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 
   public static function getHTML()
   {
-    return new LaravelBook\Laravel4Powerpack\HTML(static::getURL());
+    return new Illuminate\Html\HtmlBuilder(static::getURL());
+  }
+
+  public static function getForm()
+  {
+    return new Illuminate\Html\FormBuilder(static::getHTML(), static::getUrl(), 'foo');
   }
 
   private static function getURL()
   {
     $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
     $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
+      if ($to == '#' or starts_with($to, 'http://')) return $to;
+
+      return 'http' .($https ? 's' : null). '://test/'.$to;
+    });
+    $url->shouldReceive('action')->andReturnUsing(function($to, $foo = array(), $https = false) {
       if ($to == '#' or starts_with($to, 'http://')) return $to;
 
       return 'http' .($https ? 's' : null). '://test/'.$to;
@@ -78,7 +88,8 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 
     $app = Mockery::mock('alias:App');
     $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
-    $app->shouldReceive('make')->with('form')->andReturn(new LaravelBook\Laravel4Powerpack\Form(static::getHTML()));
+    $app->shouldReceive('make')->with('html')->andReturn(static::getHTML());
+    $app->shouldReceive('make')->with('form')->andReturn(static::getForm());
 
     return $app;
   }
