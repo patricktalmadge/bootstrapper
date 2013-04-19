@@ -130,14 +130,9 @@ class Form extends Facade
                     if (!isset($parameters[2])) $parameters[2] = null;
                     $attr_index = 3;
                     break;
-                case 'textarea':
-                    // textarea($name, $value = '', $attributes = array())
-                    // Covers all the other methods
-                    if (!isset($parameters[1])) $parameters[1] = '';
-                    $attr_index = 2;
-                    break;
                 default:
                     // text($name, $value = null, $attributes = array())
+                    // textarea($name, $value = null, $attributes = array())                    
                     // Covers all the other methods
                     if (!isset($parameters[1])) $parameters[1] = null;
                     $attr_index = 2;
