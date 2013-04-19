@@ -41,7 +41,7 @@ class Typography
     {
         $attributes = Helpers::add_class($attributes, $type);
 
-        return '<'.$tag.HTML::attributes($attributes).'>'.$message.'</'.$tag.'>';
+        return '<'.$tag.Helpers::getContainer('html')->attributes($attributes).'>'.$message.'</'.$tag.'>';
     }
 
     /* Create a new lead text.
@@ -140,11 +140,11 @@ class Typography
 
         // Write each entry
         foreach ($list as $term => $description) {
-            $dl .= '<dt>'.HTML::entities($term).'</dt>';
-            $dl .= '<dd>'.HTML::entities($description).'</dd>';
+            $dl .= '<dt>'.Helpers::getContainer('html')->entities($term).'</dt>';
+            $dl .= '<dd>'.Helpers::getContainer('html')->entities($description).'</dd>';
         }
 
-        return '<dl'.HTML::attributes($attributes).'>'.$dl.'</dl>';
+        return '<dl'.Helpers::getContainer('html')->attributes($attributes).'>'.$dl.'</dl>';
     }
 
     /**

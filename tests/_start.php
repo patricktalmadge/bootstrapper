@@ -18,20 +18,28 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     HtmlObject\Link::$urlGenerator  = static::getURL();
 
     static::getURL();
-    static::getConfig();
     static::getApp();
-    static::getRequest();
   }
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// ILLUMINATE ////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
+  private static function getApp()
+  {
+    $app = Mockery::mock('Illuminate\Container\Container');
+    $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
+    $app->shouldReceive('make')->with('html')->andReturn(static::getHTML());
+    $app->shouldReceive('make')->with('request')->andReturn(static::getRequest());
+    $app->shouldReceive('make')->with('form')->andReturn(static::getForm());
+    $app->shouldReceive('make')->with('config')->andReturn(static::getConfig());
+
+    Bootstrapper\Helpers::setContainer($app);
+  }
+
   private static function getRequest()
   {
-    if (class_exists('Request')) return false;
-
-    $request = Mockery::mock('alias:Request');
+    $request = Mockery::mock('Request');
     $request->shouldReceive('url')->andReturn('http://test/');
 
     return $request;
@@ -52,17 +60,14 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
     $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
       if ($to == '#' or starts_with($to, 'http://')) return $to;
-
       return 'http' .($https ? 's' : null). '://test/'.$to;
     });
     $url->shouldReceive('action')->andReturnUsing(function($to, $foo = array(), $https = false) {
       if ($to == '#' or starts_with($to, 'http://')) return $to;
-
       return 'http' .($https ? 's' : null). '://test/'.$to;
     });
     $url->shouldReceive('asset')->andReturnUsing(function($to, $foo = array(), $https = false) {
       if ($to == '#' or starts_with($to, 'http://')) return $to;
-
       return 'http' .($https ? 's' : null). '://test/'.$to;
     });
 
@@ -71,9 +76,7 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 
   private static function getConfig($ignore = array())
   {
-    if (class_exists('Config')) return false;
-
-    $config = Mockery::mock('alias:Config');
+    $config = Mockery::mock('Config');
     $config->shouldReceive('get')->with('bootstrapper::icons_prefix')->andReturn('icon-');
     $config->shouldReceive('get')->with('bootstrapper::breadcrumbs_separator')->andReturn('/');
     $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
@@ -82,24 +85,14 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
     return $config;
   }
 
-  private static function getApp()
-  {
-    if (class_exists('App')) return false;
-
-    $app = Mockery::mock('alias:App');
-    $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
-    $app->shouldReceive('make')->with('html')->andReturn(static::getHTML());
-    $app->shouldReceive('make')->with('form')->andReturn(static::getForm());
-
-    return $app;
-  }
-
   ////////////////////////////////////////////////////////////////////
   //////////////////////////// ASSERTIONS ////////////////////////////
   ////////////////////////////////////////////////////////////////////
 
   public function assertHTML($matcher, $input)
   {
+    if (is_object($input)) $input = $input->render();
+
     $this->assertTag(
       $matcher,
       $input,

@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use \Request;
-
 /**
  * Navigation for creating Twitter Bootstrap menus.
  *
@@ -85,7 +83,7 @@ class Navigation
                     $iconStr = Icon::$icon().' ';
                 }
 
-                $html .= '<li class="nav-header">'.$iconStr.HTML::entities($item['url']).'</li>';
+                $html .= '<li class="nav-header">'.$iconStr.Helpers::getContainer('html')->entities($item['url']).'</li>';
 
             // Set dropdown style
             } elseif (isset($item['items'])) {
@@ -114,7 +112,7 @@ class Navigation
             }
         }
 
-        return '<ul'.HTML::attributes($attributes).'>'.$html.'</ul>';
+        return '<ul'.Helpers::getContainer('html')->attributes($attributes).'>'.$html.'</ul>';
     }
 
     /**
@@ -205,7 +203,7 @@ class Navigation
     protected static function getClasses($item, $with_class = true, $autoroute = true)
     {
         $class = '';
-        if ((isset($item['active']) && $item['active']) || ($autoroute && Request::url() == $item['url'])) {
+        if ((isset($item['active']) && $item['active']) || ($autoroute && Helpers::getContainer('request')->url() == $item['url'])) {
             $class = 'active';
         }
 
@@ -237,14 +235,14 @@ class Navigation
     protected static function linkItem($url, $title, $attributes = array(), $encode = true, $icon = null)
     {
         if ($encode) {
-            $title = HTML::entities($title);
+            $title = Helpers::getContainer('html')->entities($title);
         }
 
         if (isset($icon)) {
             $title = Icon::$icon().' '.$title;
         }
 
-        return '<a href="'.$url.'"'.HTML::attributes($attributes).'>'.$title.'</a>';
+        return '<a href="'.$url.'"'.Helpers::getContainer('html')->attributes($attributes).'>'.$title.'</a>';
     }
 
         /**

@@ -1,7 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use Config;
 use HtmlObject\Element;
 use HtmlObject\Lists;
 
@@ -37,7 +36,7 @@ class Breadcrumb
         $listItems = array();
         foreach ($links as $label => $url) {
             $listItems[] = (is_string($label) or is_array($url))
-            ? static::renderItem(HTML::link($url, $label))
+            ? static::renderItem(Helpers::getContainer('html')->link($url, $label))
             : static::renderItem($url, true);
         }
 
@@ -55,13 +54,12 @@ class Breadcrumb
     protected static function renderItem($content, $active = false)
     {
         $item = Element::li($content);
-        $separator = Config::get('bootstrapper::breadcrumbs_separator');
+        $separator = Helpers::getContainer('config')->get('bootstrapper::breadcrumbs_separator');
         $separator = Element::span($separator)->addClass('divider');
 
         // If the link is not active it's the last one, don't append separator
         if (!$active) $item->nest($separator);
         else $item->addClass('active');
-
         return $item;
     }
 }

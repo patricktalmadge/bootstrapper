@@ -1,7 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use Config;
 use Illuminate\Support\Str;
 
 /**
@@ -91,7 +90,7 @@ class Table
             $method  = array_pop($classes);
 
             // Fallback to default type if defined
-            if(sizeof($classes) == 0) $classes = Config::get('bootstrapper::table.classes');
+            if(sizeof($classes) == 0) $classes = Helpers::getContainer('config')->get('bootstrapper::table.classes');
 
             // Filter table classes
             $classes = array_intersect($classes, static::$classes);
@@ -198,7 +197,7 @@ class Table
      */
     protected function open()
     {
-        return '<table'.HTML::attributes($this->attributes).'>';
+        return '<table'.Helpers::getContainer('html')->attributes($this->attributes).'>';
     }
 
     /**
@@ -226,7 +225,7 @@ class Table
                 $attributes = array();
             }
 
-            $thead .= '<th'.HTML::attributes($attributes).'>' .$header. '</th>'.PHP_EOL;
+            $thead .= '<th'.Helpers::getContainer('html')->attributes($attributes).'>' .$header. '</th>'.PHP_EOL;
         }
 
         $thead .= '</thead>'.PHP_EOL;
@@ -286,7 +285,7 @@ class Table
         if(!$this->tbody) return false;
 
         // Fetch ignored columns
-        if (!$this->ignore) $this->ignore = Config::get('bootstrapper::table.ignore');
+        if (!$this->ignore) $this->ignore = Helpers::getContainer('config')->get('bootstrapper::table.ignore');
 
         // Fetch variables
         $content = $this->tbody;
@@ -334,7 +333,7 @@ class Table
 
                 // Parse and decode content
                 $column = static::replace_keywords($column, $data);
-                $column = HTML::decode($column);
+                $column = Helpers::getContainer('html')->decode($column);
 
                 // Wrap content in a <td> tag if necessary
                 $columnCount++;
@@ -385,7 +384,7 @@ class Table
         $tag = $asHeaders ? 'th' : 'td';
 
         return
-        '<tr' .HTML::attributes($attributes). '>
+        '<tr' .Helpers::getContainer('html')->attributes($attributes). '>
             <' .$tag. ' colspan="' .$this->numberColumns. '">' .$content. '</' .$tag. '>
         </tr>';
     }

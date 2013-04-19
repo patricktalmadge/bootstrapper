@@ -68,11 +68,11 @@ class Alert extends Element
 
         // Add close icon if necessary
         if ($this->isCloseable) {
-            $close = HTML::link('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
+            $close = Helpers::getContainer('html')->link('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
             $this->nest($close);
         }
 
-        return '<'.$this->element.HTML::attributes($this->attributes).'>'.$this->getContent().$this->close();
+        return '<'.$this->element.Helpers::getContainer('html')->attributes($this->attributes).'>'.$this->getContent().$this->close();
     }
 
     /**

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "946b47c51c136fe7743357e71e227549",
+    "hash": "a1cf973003ff7e55916619483f3bfdb1",
     "packages": [
         {
             "name": "anahkiasen/html-object",
@@ -1325,9 +1325,9 @@
     "stability-flags": {
         "anahkiasen/html-object": 20,
         "anahkiasen/underscore-php": 20,
+        "illuminate/html": 20,
         "illuminate/support": 20,
         "jasonlewis/basset": 20,
-        "illuminate/html": 20,
         "mockery/mockery": 20
     },
     "platform": {

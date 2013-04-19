@@ -1,6 +1,6 @@
 <?php
+use Bootstrapper\Helpers;
 use Bootstrapper\Thumbnail;
-use Bootstrapper\HTML;
 
 class ThumbnailTest extends BootstrapperWrapper
 {
@@ -87,7 +87,7 @@ class ThumbnailTest extends BootstrapperWrapper
     $thumbnails = Thumbnail::create($this->richImages, function($image) {
       $image = (object) $image;
 
-      $return = '<li class="thumbnail"><figure>' .HTML::image($image->image, $image->image). '</figure>';
+      $return = '<li class="thumbnail"><figure>' .Helpers::getContainer('html')->image($image->image, $image->image). '</figure>';
       if(isset($image->label)) $return .= '<h2>'.$image->label.'</h2>';
       $return .= '</li>';
 

@@ -20,9 +20,9 @@
     "php": ">=5.3.0",
     "anahkiasen/html-object": "dev-master",
     "anahkiasen/underscore-php": "dev-master",
+    "illuminate/html": "dev-master",
     "illuminate/support": "4.0.*@dev",
-    "jasonlewis/basset": "dev-master",
-    "illuminate/html": "dev-master"
+    "jasonlewis/basset": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "dev-master"

@@ -152,9 +152,9 @@ class Navbar
      *
      * @return string A Navbar
      */
-    public function get()
+    public function __toString()
     {
-        return static::__toString();
+        return $this->render();
     }
 
     /**
@@ -162,12 +162,12 @@ class Navbar
      *
      * @return string A Bootstrap navbar
      */
-    public function __toString()
+    public function render()
     {
         $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
 
         // Open navbar containers
-        $html  = '<div'.HTML::attributes($attributes).'>';
+        $html  = '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
         $html .= '<div class="navbar-inner"><div class="container">';
 
         // Collapsible button if asked for
@@ -182,7 +182,7 @@ class Navbar
 
         // Add brand if one was given
         if($this->brand)
-            $html .= HTML::link($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
+            $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
 
         if($this->collapsible)
             $html .= '<div class="nav-collapse">';

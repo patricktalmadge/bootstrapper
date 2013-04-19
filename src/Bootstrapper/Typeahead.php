@@ -32,6 +32,6 @@ class Typeahead
         $attributes['data-provide'] = 'typeahead';
         $attributes['data-source']  = json_encode($source);
 
-        return '<input'.HTML::attributes($attributes).'>';
+        return '<input'.Helpers::getContainer('html')->attributes($attributes).'>';
     }
 }

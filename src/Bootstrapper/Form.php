@@ -1,7 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use App;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -54,7 +53,7 @@ class Form extends Facade
      */
     public static function getFacadeAccessor()
     {
-        return App::make('form');
+        return Helpers::getContainer('form');
     }
 
     /**
@@ -424,7 +423,7 @@ class Form extends Facade
     {
         $attributes = Helpers::add_class($attributes, 'help-inline');
 
-        return '<span'.HTML::attributes($attributes).'>'.$value.'</span>';
+        return '<span'.Helpers::getContainer('html')->attributes($attributes).'>'.$value.'</span>';
     }
 
     /**
@@ -439,7 +438,7 @@ class Form extends Facade
     {
         $attributes = Helpers::add_class($attributes, 'help-block');
 
-        return '<p'.HTML::attributes($attributes).'>'.$value.'</p>';
+        return '<p'.Helpers::getContainer('html')->attributes($attributes).'>'.$value.'</p>';
     }
 
     /**
@@ -578,7 +577,7 @@ class Form extends Facade
     {
         $attributes = Helpers::add_class($attributes, 'uneditable-input');
 
-        return '<span'.HTML::attributes($attributes).'>'.HTML::entities($value).'</span>';
+        return '<span'.Helpers::getContainer('html')->attributes($attributes).'>'.Helpers::getContainer('html')->entities($value).'</span>';
     }
 
     /**

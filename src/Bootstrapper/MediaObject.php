@@ -92,7 +92,7 @@ class MediaObject
         static::$listed = true;
         $attributes = Helpers::add_class($attributes, 'media-list');
 
-        return '<ul'.HTML::attributes($attributes).'>';
+        return '<ul'.Helpers::getContainer('html')->attributes($attributes).'>';
     }
 
     /**
@@ -141,7 +141,7 @@ class MediaObject
             $title      = array_get($parameters, 0);
             $attributes = array_get($parameters, 1, array());
             $attributes = Helpers::add_class($attributes, 'media-heading');
-            $title      = '<h'.$heading.HTML::attributes($attributes).'>'.$title.'</h'.$heading.'>';
+            $title      = '<h'.$heading.Helpers::getContainer('html')->attributes($attributes).'>'.$title.'</h'.$heading.'>';
 
             return $this->with_title($title);
         }
@@ -160,7 +160,7 @@ class MediaObject
         if (!$alt) $alt = $image;
 
         $attributes  = Helpers::add_class($attributes, 'media-object');
-        $this->media = HTML::image($image, $alt, $attributes);
+        $this->media = Helpers::getContainer('html')->image($image, $alt, $attributes);
 
         return $this;
     }
@@ -218,7 +218,7 @@ class MediaObject
 
         // Open the media object
         $attributes = Helpers::add_class($this->attributes, 'media');
-        $html = '<' .$children.HTML::attributes($attributes). '>';
+        $html = '<' .$children.Helpers::getContainer('html')->attributes($attributes). '>';
 
             // Add the media itself
             $html .= '<a class="pull-' .$this->pull. '">';

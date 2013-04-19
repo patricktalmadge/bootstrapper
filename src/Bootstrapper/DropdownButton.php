@@ -150,7 +150,7 @@ class DropdownButton
      *
      * @return string A Dropdown menu
      */
-    public function __toString()
+    public function render()
     {
         // Base class
         $this->attributes = Helpers::add_class($this->attributes, 'btn-group');
@@ -163,7 +163,7 @@ class DropdownButton
         // Dropup
         if ($this->dropup) $this->attributes['class'] .= ' dropup';
 
-        $html = '<div'.HTML::attributes($this->attributes).'>';
+        $html = '<div'.Helpers::getContainer('html')->attributes($this->attributes).'>';
 
             //If split is false make this button dropdown
             $html .= Form::button($this->label, array('class' => $this->type), !$this->split);
@@ -177,6 +177,11 @@ class DropdownButton
         $html .= '</div>';
 
         return $html;
+    }
+
+    public function __toString()
+    {
+        return $this->render();
     }
 
     // Public methods ---------------------------------------------- /

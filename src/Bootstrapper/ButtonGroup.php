@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use Illuminate\Support\Facades\HTML;
+
 /**
  * ButtonGroup for creating Twitter Bootstrap style Buttons groups.
  *
@@ -76,7 +78,7 @@ class ButtonGroup
 
         $attributes = Helpers::add_class($attributes, 'btn-group');
 
-        return '<div'.HTML::attributes($attributes).'>';
+        return '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
     }
 
     /**

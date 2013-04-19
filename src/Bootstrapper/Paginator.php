@@ -102,7 +102,7 @@ class Paginator extends LaravelPaginator
 
         $attributes = array("class" => "pagination".$alignment.$size);
 
-        return '<div'.HTML::attributes($attributes).'><ul>'.$content.'</ul></div>';
+        return '<div'.Helpers::getContainer('html')->attributes($attributes).'><ul>'.$content.'</ul></div>';
     }
 
 
@@ -131,9 +131,9 @@ class Paginator extends LaravelPaginator
         if ($disabled($this->page, $this->last)) {
             $class .= " disabled";
 
-            return '<li'.HTML::attributes(compact("class")).'><a href="#">'.HTML::entities($text).'</a></li>';
+            return '<li'.Helpers::getContainer('html')->attributes(compact("class")).'><a href="#">'.Helpers::getContainer('html')->entities($text).'</a></li>';
         } else {
-            return '<li'.HTML::attributes(compact("class")).'>'.$this->link($page, $text, null).'</li>';
+            return '<li'.Helpers::getContainer('html')->attributes(compact("class")).'>'.$this->link($page, $text, null).'</li>';
         }
     }
 
@@ -159,7 +159,7 @@ class Paginator extends LaravelPaginator
         // will be assigned the "current" CSS class for convenient styling.
         for ($page = $start; $page <= $end; $page++) {
             if ($this->page == $page) {
-                $pages[] = '<li class="active"><a href="#">'.HTML::entities($page).'</a></li>';
+                $pages[] = '<li class="active"><a href="#">'.Helpers::getContainer('html')->entities($page).'</a></li>';
             } else {
                 $pages[] = '<li>'.$this->link($page, $page, null).'</li>';
             }

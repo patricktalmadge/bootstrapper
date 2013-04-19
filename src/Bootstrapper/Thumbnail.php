@@ -117,7 +117,7 @@ class Thumbnail extends Tag
     $image = $this->present($image);
 
     // Else just assume we were given an image path
-    if(!String::contains($image, '<img')) {
+    if (!String::contains($image, '<img')) {
       $image = HtmlImage::create($image);
     }
 

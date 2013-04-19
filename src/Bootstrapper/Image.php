@@ -31,9 +31,9 @@ class Image
     /**
      * Creates a Bootstrap image
      *
-     * @param string $type The image type
-     * @param string $url  An url
-     * @param string $alt  An alt text
+     * @param string $type       The image type
+     * @param string $url        An url
+     * @param string $alt        An alt text
      * @param array  $attributes An array of attributes
      *
      * @return string An img tag
@@ -42,6 +42,6 @@ class Image
     {
         $attributes = Helpers::add_class($attributes, 'img-'.$type);
 
-        return HTML::image($url, $alt, $attributes);
+        return Helpers::getContainer('html')->image($url, $alt, $attributes);
     }
 }

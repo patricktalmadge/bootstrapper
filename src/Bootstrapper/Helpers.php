@@ -1,6 +1,8 @@
 <?php
 namespace Bootstrapper;
 
+use Illuminate\Container\Container;
+
 /**
  * Common helper functions used by Bootstrapper.
  *
@@ -16,6 +18,39 @@ namespace Bootstrapper;
  */
 class Helpers
 {
+
+    protected static $container;
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////// IOC CONTAINER ///////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    /**
+     * Bind a Container to Bootstrapper
+     *
+     * @param Container $container
+     */
+    public static function setContainer(Container $container)
+    {
+        static::$container = $container;
+    }
+
+    /**
+     * Get the Container from Bootstrapper
+     *
+     * @param string $make A dependency to make on the fluy
+     *
+     * @return Container
+     */
+    public static function getContainer($make = null)
+    {
+        if ($make) {
+            return static::$container->make($make);
+        }
+
+        return static::$container;
+    }
+
     /**
      * Function adds the given value to an array. If the key already
      * exists the value is concatenated to the end of the string.

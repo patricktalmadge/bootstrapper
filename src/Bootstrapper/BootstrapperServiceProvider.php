@@ -2,7 +2,6 @@
 namespace Bootstrapper;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelBook\Laravel4Powerpack\Form as MeidoForm;
 
 // Manually register Basset as we need it now
 if (!class_exists('Basset\BassetServiceProvider')) {
@@ -23,9 +22,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     $this->app['config']->package('patricktalmadge/bootstrapper', __DIR__. '/../config');
 
-    $this->app->singleton('form', function($app) {
-      return new MeidoForm($app['url']);
-    });
+    Helpers::setContainer($this->app);
   }
 
   /**

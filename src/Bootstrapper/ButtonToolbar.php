@@ -27,7 +27,7 @@ class ButtonToolbar
     {
         $attributes = Helpers::add_class($attributes, 'btn-toolbar');
 
-        return '<div'.HTML::attributes($attributes).'>';
+        return '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
     }
 
     /**

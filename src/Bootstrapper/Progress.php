@@ -41,7 +41,7 @@ class Progress
         $attributes = Helpers::add_class($attributes, 'progress '.$type);
 
         // Create the progress bar(s)
-        $progress = '<div'.HTML::attributes($attributes).'>';
+        $progress = '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
             if(!is_array($amounts)) $amounts = array((int) $amounts => null);
             foreach($amounts as $amount => $style)
                 $progress .= static::bar($amount, $style);

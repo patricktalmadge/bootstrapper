@@ -1,8 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use App;
-
 /**
  * Button methods for creating Twitter Bootstrap buttons.
  *
@@ -117,7 +115,7 @@ class Button
      */
     public static function link($url, $value, $attributes = array(), $hasDropdown = false)
     {
-        $attributes['href'] = App::make('url')->to($url);
+        $attributes['href'] = Helpers::getContainer('url')->to($url);
 
         return static::storeButton('link', $value, $attributes, $hasDropdown);
     }
@@ -238,7 +236,7 @@ class Button
      *
      * @return string A button
      */
-    public function __toString()
+    public function render()
     {
         // Gather variables
         extract($this->currentButton);
@@ -262,6 +260,11 @@ class Button
             unset($attributes['type']);
         }
 
-        return '<'.$tag.HTML::attributes($attributes).'>'.(string) $value.$caret.'</'.$tag.'>';
+        return '<'.$tag.Helpers::getContainer('html')->attributes($attributes).'>'.(string) $value.$caret.'</'.$tag.'>';
+    }
+
+    public function __toString()
+    {
+        return $this->render();
     }
 }

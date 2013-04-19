@@ -61,7 +61,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDropdown()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->render();
     $matcher = $this->matcher();
 
     $this->assertEquals($matcher, $dropdown);
@@ -69,7 +69,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testSplitDropdown()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->split()->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->split()->render();
     $matcher = $this->matcher('normal', false, false, true);
 
     $this->assertEquals($matcher, $dropdown);
@@ -77,7 +77,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testRightDropdown()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->render();
     $matcher = $this->matcher('normal', true);
 
     $this->assertEquals($matcher, $dropdown);
@@ -85,7 +85,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testRightSplitDropdown()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->split()->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->split()->render();
     $matcher = $this->matcher('normal', true, false, true);
 
     $this->assertEquals($matcher, $dropdown);
@@ -93,7 +93,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDropup()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->render();
     $matcher = $this->matcher('normal', false, true);
 
     $this->assertEquals($matcher, $dropdown);
@@ -101,7 +101,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDropupSplit()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->split()->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->split()->render();
     $matcher = $this->matcher('normal', false, true, true);
 
     $this->assertEquals($matcher, $dropdown);
@@ -112,7 +112,7 @@ class DropdownButtonTest extends BootstrapperWrapper
    */
   public function testCallStatic($class)
   {
-    $dropdown = DropdownButton::$class('foo', $this->links, $this->testAttributes)->__toString();
+    $dropdown = DropdownButton::$class('foo', $this->links, $this->testAttributes)->render();
     $matcher = $this->matcher($class);
 
     $this->assertEquals($matcher, $dropdown);
@@ -120,7 +120,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDynamicAttribute()
   {
-    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->data_foo('bar')->class('foo')->__toString();
+    $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->data_foo('bar')->class('foo')->render();
     $matcher = $this->matcher();
 
     $this->assertEquals($matcher, $dropdown);
@@ -129,8 +129,8 @@ class DropdownButtonTest extends BootstrapperWrapper
   public function testMultipleDropdowns()
   {
     $dropdowns =
-      DropdownButton::normal('foo', $this->links, $this->testAttributes).
-      DropdownButton::normal('bar', $this->links, $this->testAttributes);
+      DropdownButton::normal('foo', $this->links, $this->testAttributes)->render().
+      DropdownButton::normal('bar', $this->links, $this->testAttributes)->render();
     $matcher = $this->matcher().str_replace('foo <span', 'bar <span', $this->matcher());
 
     $this->assertEquals($matcher, $dropdowns);

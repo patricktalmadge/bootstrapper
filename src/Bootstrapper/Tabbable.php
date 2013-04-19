@@ -1,6 +1,5 @@
 <?php
 namespace Bootstrapper;
-use Bootstrapper\Navigation;
 
 /**
  * Tabbable for creating Twitter Bootstrap. Bootstrap JS is required.
@@ -193,9 +192,9 @@ class Tabbable
      *
      * @return string A Tabbable
      */
-    public function get()
+    public function __toString()
     {
-        return static::__toString();
+        return $this->render();
     }
 
     /**
@@ -203,7 +202,7 @@ class Tabbable
      *
      * @return string A Bootstrap Tabbable
      */
-    public function __toString()
+    public function render()
     {
         $content = array();
         $list = static::normalize($this->menu, $content);
@@ -217,9 +216,9 @@ class Tabbable
             $this->content_attributes['class'] .= ' tab-content';
         }
 
-        $content = '<div '.HTML::attributes($this->content_attributes).'>'. implode('', $content).'</div>';
+        $content = '<div '.Helpers::getContainer('html')->attributes($this->content_attributes).'>'. implode('', $content).'</div>';
 
-        $html = '<div class="tabbable '.$this->placement.'"'.HTML::attributes($this->attributes).'>';
+        $html = '<div class="tabbable '.$this->placement.'"'.Helpers::getContainer('html')->attributes($this->attributes).'>';
         $html .= $this->placement === self::PLACEMENT_BELOW ? $content.$tabs : $tabs.$content;
         $html .= '</div>';
 
@@ -229,7 +228,7 @@ class Tabbable
     /**
      * Normalizes the items list and correct urls if any are set.
      *
-     * @param array $items Tab items
+     * @param array $items  Tab items
      * @param array &$panes array of panes
      * @param int   &$i     index
      *

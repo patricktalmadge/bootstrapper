@@ -96,8 +96,8 @@ class Carousel
         $navigation = null;
 
         if (sizeof($this->items) > 1) {
-            $navigation  = HTML::link($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
-            $navigation .= HTML::link($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+            $navigation  = Helpers::getContainer('html')->link($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
+            $navigation .= Helpers::getContainer('html')->link($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
         }
 
         return $navigation;
@@ -215,7 +215,7 @@ class Carousel
     {
         // Render main wrapper
         $this->attributes['id'] = substr($this->hash, 1);
-        $html = '<div'.HTML::attributes($this->attributes).'>';
+        $html = '<div'.Helpers::getContainer('html')->attributes($this->attributes).'>';
 
             // Render items
             $html .= '<div class="carousel-inner">';
@@ -265,7 +265,7 @@ class Carousel
         $html = '<div class="item'.$active.'">';
 
         // Render the image
-        $html .= HTML::image($image, $altText, $attributes);
+        $html .= Helpers::getContainer('html')->image($image, $altText, $attributes);
 
         // If we have a caption, render it
         if ($caption or $label) {

@@ -1,7 +1,6 @@
 <?php
 namespace Bootstrapper;
 
-use Config;
 use HtmlObject\Traits\Tag;
 
 /**
@@ -64,8 +63,8 @@ class Icon extends Tag
         if ($white) unset($classes[array_search('white', $classes)]);
 
         // Concatenate icons
-        $classes = Config::get('bootstrapper::icons_prefix').implode('-', $classes);
-        if ($white) $classes .= ' ' .Config::get('bootstrapper::icons_prefix').'white';
+        $classes = Helpers::getContainer('config')->get('bootstrapper::icons_prefix').implode('-', $classes);
+        if ($white) $classes .= ' ' .Helpers::getContainer('config')->get('bootstrapper::icons_prefix').'white';
 
         $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;
 
