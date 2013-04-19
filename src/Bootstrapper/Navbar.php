@@ -21,42 +21,42 @@ class Navbar
      *
      * @var array
      */
-    private $attributes  = array();
+    protected $attributes  = array();
 
     /**
      * Whether the current Navbar should use automatic routing
      *
      * @var boolean
      */
-    private $autoroute   = true;
+    protected $autoroute   = true;
 
     /**
      * Contains the current Navbar's brand (if there is one)
      *
      * @var array
      */
-    private $brand       = array();
+    protected $brand       = array();
 
     /**
      * Whether the current Navbar should be collapsible or not
      *
      * @var boolean
      */
-    private $collapsible = false;
+    protected $collapsible = false;
 
     /**
      * All menus or elements of the current Navbar
      *
      * @var array
      */
-    private $menus       = array();
+    protected $menus       = array();
 
     /**
      * The current Navbar's type
      *
      * @var constant
      */
-    private $type        = Navbar::STATIC_BAR;
+    protected $type        = Navbar::STATIC_BAR;
 
     /**
      * The Navbar types

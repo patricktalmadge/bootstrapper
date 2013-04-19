@@ -22,13 +22,13 @@ class Button
      * The current instance of Button being used
      * @var Button
      */
-    private static $instance = null;
+    protected static $instance = null;
 
     /**
      * The current button in memory
      * @var array
      */
-    private $currentButton = array();
+    protected $currentButton = array();
 
     /**
      * Stores the current button for future output
@@ -40,7 +40,7 @@ class Button
      *
      * @return object Button instance
      */
-    private static function storeButton($type, $value, $attributes, $hasDropdown)
+    protected static function storeButton($type, $value, $attributes, $hasDropdown)
     {
         // If we don't have an instance stored, create a new one
         $currentInstance = self::$instance ?: new Button;

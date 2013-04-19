@@ -26,7 +26,7 @@ class MediaObject
      * Whether the MediaObjects should be rendered as a list
      * @var boolean
      */
-    private static $listed = false;
+    protected static $listed = false;
 
     /**
      * An array of nested Media objects
@@ -38,31 +38,31 @@ class MediaObject
      * The body of the media object
      * @var string
      */
-    private $content = null;
+    protected $content = null;
 
     /**
      * The title of the media object
      * @var string
      */
-    private $title = null;
+    protected $title = null;
 
     /**
      * The media of the media object
      * @var string
      */
-    private $media = null;
+    protected $media = null;
 
     /**
      * The media object's attributes
      * @var array
      */
-    private $attributes = array();
+    protected $attributes = array();
 
     /**
      * Which side the media will be
      * @var string
      */
-    private $pull = 'left';
+    protected $pull = 'left';
 
     /**
      * Statically creates a new MediaObject instance

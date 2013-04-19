@@ -22,42 +22,42 @@ class Tabbable
      *
      * @var array
      */
-    private $menu = array();
+    protected $menu = array();
 
     /**
      * The placement of the current Tabble item
      *
      * @var enum
      */
-    private $placement = Tabbable::PLACEMENT_ABOVE;
+    protected $placement = Tabbable::PLACEMENT_ABOVE;
 
     /**
      * The style of the current Tabble item
      *
      * @var enum
      */
-    private $style = Navigation::TYPE_TABS;
+    protected $style = Navigation::TYPE_TABS;
 
     /**
      * Whether the current Tabble item should stacked or not
      *
      * @var boolean
      */
-    private $stacked = false;
+    protected $stacked = false;
 
     /**
      * The current Tabbable's attributes
      *
      * @var array
      */
-    private $attributes = array();
+    protected $attributes = array();
 
     /**
      * Set the current Tabbables menu attributes
      *
      * @var array
      */
-    private $menu_attributes = array();
+    protected $menu_attributes = array();
 
 
     /**
@@ -65,14 +65,14 @@ class Tabbable
      *
      * @var array
      */
-    private $content_attributes = array();
+    protected $content_attributes = array();
 
     /**
      * Whether the current Tabble item should use automatic routing
      *
      * @var boolean
      */
-    private $autoroute = true;
+    protected $autoroute = true;
 
     /**
      * Tabs placements

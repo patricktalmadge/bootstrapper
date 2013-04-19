@@ -20,13 +20,13 @@ class Carousel
      * The current Carousel instance
      * @var Carousel
      */
-    private static $carousel;
+    protected static $carousel;
 
     /**
      * How data will be fetched from each object/entry
      * @var array
      */
-    private $schema = array(
+    protected $schema = array(
         'key'        => 'id',
         'alt'        => 'alt_text',
         'attributes' => 'attributes',
@@ -39,37 +39,37 @@ class Carousel
      * The carousel's items
      * @var array
      */
-    private $items = array();
+    protected $items = array();
 
     /**
      * The carousel's attributes
      * @var array
      */
-    private $attributes = array();
+    protected $attributes = array();
 
     /**
      * The previous button content
      * @var string
      */
-    private $prev = '&lsaquo;';
+    protected $prev = '&lsaquo;';
 
     /**
      * The next button content
      * @var string
      */
-    private $next = '&rsaquo;';
+    protected $next = '&rsaquo;';
 
     /**
      * The current carousel's hash
      * @var string
      */
-    private $hash = null;
+    protected $hash = null;
 
     /**
      * The current active element in the carousel
      * @var integer
      */
-    private $active = null;
+    protected $active = null;
 
     /**
      * Create a Bootstrap carousel. Returns the HTML for the carousel.
@@ -288,7 +288,7 @@ class Carousel
      * @param  string $fallback A fallback to use
      * @return string A data from the item
      */
-    private function getFromItem($item, $key, $fallback = null)
+    protected function getFromItem($item, $key, $fallback = null)
     {
         $key = $this->schema[$key];
 

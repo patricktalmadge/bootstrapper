@@ -23,13 +23,13 @@ class Table
      * The current Table instance
      * @var Table
      */
-    private static $table = null;
+    protected static $table = null;
 
     /**
      * The availables classes for a Table
      * @var array
      */
-    private static $classes = array('striped', 'bordered', 'hover', 'condensed');
+    protected static $classes = array('striped', 'bordered', 'hover', 'condensed');
 
     // Current table ----------------------------------------------- /
 
@@ -37,37 +37,37 @@ class Table
      * The current table's number of columns
      * @var integer
      */
-    private $numberColumns = 50;
+    protected $numberColumns = 50;
 
     /**
      * The current table body in memory
      * @var string
      */
-    private $tbody = array();
+    protected $tbody = array();
 
     /**
      * The rows to be ignored in the next body to come
      * @var array
      */
-    private $ignore = array();
+    protected $ignore = array();
 
     /**
      * The order in which the columns are to be printed out
      * @var array
      */
-    private $order = array();
+    protected $order = array();
 
     /**
      * Columns to append/replace in the current body
      * @var array
      */
-    private $columns = array();
+    protected $columns = array();
 
     /**
      * The table's attributes
      * @var array
      */
-    private $attributes = array();
+    protected $attributes = array();
 
     //////////////////////////////////////////////////////////////////
     ////////////////////////// STATIC FUNCTIONS //////////////////////
@@ -175,7 +175,7 @@ class Table
      *
      * @param array $attributes An array of attributes to create for the table
      */
-    private function __construct($attributes = array())
+    protected function __construct($attributes = array())
     {
         $this->attributes = Helpers::add_class($attributes, 'table');
     }
@@ -196,7 +196,7 @@ class Table
      * @param  array  $attributes An array of attributes
      * @return string A table opening tag
      */
-    private function open()
+    protected function open()
     {
         return '<table'.HTML::attributes($this->attributes).'>';
     }
@@ -206,7 +206,7 @@ class Table
      *
      * @return string A <thead> tag prefilled with rows
      */
-    private function headers()
+    protected function headers()
     {
         $headers = func_get_args();
         if(sizeof($headers) == 1 and is_array($headers[0])) $headers = $headers[0];
@@ -240,7 +240,7 @@ class Table
      * @param  mixed $content Can be results from a Query or a bare array
      * @return Table The current table instance
      */
-    private function body($content)
+    protected function body($content)
     {
         if(!$content) return false;
 
@@ -254,7 +254,7 @@ class Table
      *
      * @return Table The current table instance
      */
-    private function ignore()
+    protected function ignore()
     {
         $ignored = func_get_args();
         if (sizeof($ignored) == 1 and is_array($ignored)) {
@@ -269,7 +269,7 @@ class Table
     /**
      * Iterate the columns in a certain order in the body to come
      */
-    private function order()
+    protected function order()
     {
         $this->order = func_get_args();
 
@@ -364,7 +364,7 @@ class Table
      *
      * @return string A table opening tag
      */
-    private function full_header($content, $attributes = array())
+    protected function full_header($content, $attributes = array())
     {
         return static::table()->full_row($content, $attributes, true);
     }
@@ -378,7 +378,7 @@ class Table
      *
      * @return string A single-column row spanning all table
      */
-    private function full_row($content, $attributes = array(), $asHeaders = false)
+    protected function full_row($content, $attributes = array(), $asHeaders = false)
     {
         // Add a class for easy styling
         $attributes = Helpers::add_class($attributes, 'full-row');
@@ -395,7 +395,7 @@ class Table
      *
      * @return string A </table> closing tag
      */
-    private function close()
+    protected function close()
     {
         return '</table>';
     }
@@ -411,7 +411,7 @@ class Table
      * @param  string $value Its value
      * @return string A <td> tag
      */
-    private static function appendColumn($name, $value)
+    protected static function appendColumn($name, $value)
     {
         return Str::startsWith($value, '<td')
             ? $value
@@ -426,7 +426,7 @@ class Table
      *
      * @return string The modified string
      */
-    private static function replace_keywords($string, $data)
+    protected static function replace_keywords($string, $data)
     {
         // Gather used patterns
         preg_match_all('/\(:(.+)\)/', $string, $matches);

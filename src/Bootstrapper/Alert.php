@@ -34,21 +34,21 @@ class Alert extends Element
      *
      * @var enum
      */
-    private $type = Alert::SUCCESS;
+    protected $type = Alert::SUCCESS;
 
     /**
      * Whether the current alert is closeable
      *
      * @var boolean
      */
-    private $isCloseable = true;
+    protected $isCloseable = true;
 
     /**
      * Whether the current alert is block or not.
      *
      * @var boolean
      */
-    private $isBlock = false;
+    protected $isBlock = false;
 
     //////////////////////////////////////////////////////////////////
     ////////////////////////// CORE METHODS //////////////////////////
