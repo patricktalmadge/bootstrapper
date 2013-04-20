@@ -52,6 +52,8 @@ class Navigation
         if ($type !== Navigation::TYPE_LIST && $stacked) {
             $attributes = Helpers::add_class($attributes, 'nav-stacked');
         }
+        
+        $disable_dropdown = ( isset($attributes['nodropdown']) && ($attributes['nodropdown']) ) ? true : false;
 
         if (count($list) == 0) {
             return $html;
@@ -89,17 +91,23 @@ class Navigation
             } elseif (isset($item['items'])) {
                 $dropClass = 'dropdown';
                 $att = array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown');
-                $extraCaret = ' <b class="caret"></b>';
+                $extraCaret = ' <b class="caret"></b>';                    
 
                 if ($isDropdown) {
                     $dropClass = 'dropdown-submenu';
                     $att = array();
                     $extraCaret = '';
+                }                    
+                
+                if($disable_dropdown) {
+                    $dropClass = '';
+                    $att = array();
+                    $extraCaret = '';  
                 }
 
                 $html .= '<li class="'.$dropClass.' '.static::getClasses($item, false, $autoroute).'">';
                 $html .= static::linkItem($item['url'], $item['label'].$extraCaret, $att, false, $icon);
-                $html .= static::dropdown($item['items'], array(), $autoroute);
+                $html .= static::dropdown($item['items'], array(), $disable_dropdown, $autoroute);
                 $html .= '</li>';
 
             // Must be basic link
@@ -184,9 +192,13 @@ class Navigation
      *
      * @return string
      */
-    public static function dropdown($list, $attributes = array(), $autoroute = true)
+    public static function dropdown($list, $attributes = array(), $disable_dropdown = false, $autoroute = true)
     {
-        $attributes = Helpers::add_class($attributes, 'dropdown-menu');
+        if($disable_dropdown) {
+            $attributes = Helpers::add_class($attributes, '');            
+        } else {
+            $attributes = Helpers::add_class($attributes, 'dropdown-menu');        
+        }
 
         return static::menu($list, null, false, $attributes, $autoroute, true);
     }
