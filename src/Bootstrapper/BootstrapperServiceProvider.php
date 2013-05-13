@@ -34,7 +34,6 @@ class BootstrapperServiceProvider extends ServiceProvider
   {
     if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
 
-    if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
     $this->app['basset']->package('patricktalmadge/bootstrapper');
     $this->app['basset']->collection('bootstrapper', function($collection)
     {
@@ -42,5 +41,6 @@ class BootstrapperServiceProvider extends ServiceProvider
       $collection->add('bootstrapper::css/bootstrap-responsive.min.css');
       $collection->add('bootstrapper::js/jquery-1.9.1.min.js');
       $collection->add('bootstrapper::js/bootstrap.min.js');
+    });
   }
 }
