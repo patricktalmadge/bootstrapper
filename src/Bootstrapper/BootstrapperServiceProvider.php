@@ -33,8 +33,6 @@ class BootstrapperServiceProvider extends ServiceProvider
   public function boot()
   {
     if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
-
-    if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
     $this->app['basset']->package('patricktalmadge/bootstrapper');
     $this->app['basset']->collection('bootstrapper', function($collection)
     {
