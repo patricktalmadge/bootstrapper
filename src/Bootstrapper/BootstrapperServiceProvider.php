@@ -42,5 +42,6 @@ class BootstrapperServiceProvider extends ServiceProvider
       $collection->add('bootstrapper::css/bootstrap-responsive.min.css');
       $collection->add('bootstrapper::js/jquery-1.9.1.min.js');
       $collection->add('bootstrapper::js/bootstrap.min.js');
+    });
   }
 }
