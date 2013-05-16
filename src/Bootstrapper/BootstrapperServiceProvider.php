@@ -18,7 +18,6 @@ class BootstrapperServiceProvider extends ServiceProvider
    */
   public function register()
   {
-    $this->package('patricktalmadge/bootstrapper');
 
     $this->app['config']->package('patricktalmadge/bootstrapper', __DIR__. '/../config');
 
@@ -32,6 +31,8 @@ class BootstrapperServiceProvider extends ServiceProvider
    */
   public function boot()
   {
+    $this->package('patricktalmadge/bootstrapper');
+
     if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
 
     if (!is_dir($this->app['path.public'].'/packages/patricktalmadge/')) return false;
