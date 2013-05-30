@@ -19,7 +19,6 @@ class BootstrapperServiceProvider extends ServiceProvider
   public function register()
   {
     $this->package('patricktalmadge/bootstrapper');
-
     $this->app['config']->package('patricktalmadge/bootstrapper', __DIR__. '/../config');
 
     Helpers::setContainer($this->app);
@@ -40,7 +39,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     $this->app['basset']->collection('bootstrapper', function($collection) {
       $collection->add('bootstrapper::css/bootstrap.min.css');
       $collection->add('bootstrapper::css/bootstrap-responsive.min.css');
-      $collection->add('bootstrapper::js/jquery-1.9.1.min.js');
+      $collection->add('bootstrapper::js/jquery-1.10.0.min.js');
       $collection->add('bootstrapper::js/bootstrap.min.js');
     });
   }
