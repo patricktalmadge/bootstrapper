@@ -2,6 +2,7 @@
 namespace Bootstrapper;
 
 use HtmlObject\Element;
+use HtmlObject\Text;
 
 /**
  * Alert for creating Twitter Bootstrap style alerts.
@@ -79,7 +80,7 @@ class Alert extends Element
             $this->nest($close);
         }
 
-        $this->nest($this->message);
+        $this->nest(new Text($this->message));
 
         return '<'.$this->element.Helpers::getContainer('html')->attributes($this->attributes).'>'.$this->getContent().$this->close();
     }

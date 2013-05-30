@@ -80,7 +80,7 @@ class FormTest extends BootstrapperWrapper
     public function testFormOpen($type, $exepcted)
     {
         $form = Form::$type('login', 'POST', $this->testAttributes);
-        $this->assertEquals($exepcted, $form);
+        $this->assertEquals($exepcted.'<input name="_token" type="hidden" value="foo">', $form);
     }
 
     public function testInlineHelp()
@@ -374,7 +374,7 @@ class FormTest extends BootstrapperWrapper
             ),
             'descendant' => array(
                 'tag' => 'input',
-                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo'),
             ),
         );
     }
@@ -399,7 +399,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'input',
-            'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+            'attributes' => array('type' => 'text', 'name' => 'inputfoo'),
             'parent' => array(
                 'tag' => 'div',
                 'attributes' => array('class' => 'input-append'),
