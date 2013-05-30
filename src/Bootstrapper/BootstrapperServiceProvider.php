@@ -37,8 +37,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     }
 
     $this->app['basset']->package('patricktalmadge/bootstrapper');
-    $this->app['basset']->collection('bootstrapper', function($collection)
-    {
+    $this->app['basset']->collection('bootstrapper', function($collection) {
       $collection->add('bootstrapper::css/bootstrap.min.css');
       $collection->add('bootstrapper::css/bootstrap-responsive.min.css');
       $collection->add('bootstrapper::js/jquery-1.9.1.min.js');

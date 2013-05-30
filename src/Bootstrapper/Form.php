@@ -131,7 +131,7 @@ class Form extends Facade
                     break;
                 default:
                     // text($name, $value = null, $attributes = array())
-                    // textarea($name, $value = null, $attributes = array())                    
+                    // textarea($name, $value = null, $attributes = array())
                     // Covers all the other methods
                     if (!isset($parameters[1])) $parameters[1] = null;
                     $attr_index = 2;
