@@ -51,7 +51,7 @@ class AlertTest extends BootstrapperWrapper
 
   // Tests --------------------------------------------------------- /
 
-  public function testCustom()
+  public function testCanCreateCustomAlerts()
   {
     $alert = Alert::custom('success', 'foo', $this->testAttributes);
     $match = $this->createMatcher('success');
@@ -59,7 +59,14 @@ class AlertTest extends BootstrapperWrapper
     $this->assertHTML($match, $alert);
   }
 
-  public function testCustomWithoutClose()
+  public function testOrderOfChildrenIsCorrect()
+  {
+    $alert = Alert::error('foobar')->render();
+
+    $this->assertEquals('<div class="alert-error alert"><a href="#" class="close" data-dismiss="alert">&times;</a>foobar</div>', $alert);
+  }
+
+  public function testCanCreateCustomAlertsWithoutClose()
   {
     $alert = Alert::custom('success', 'foo', $this->testAttributes)->open();
     $match = array(
@@ -71,7 +78,7 @@ class AlertTest extends BootstrapperWrapper
     $this->assertHTML($match, $alert);
   }
 
-  public function testStaticOpened()
+  public function testCanUseConcatenatedStaticOpener()
   {
     $alert = Alert::open_success('foo', $this->testAttributes);
     $match = $this->createMatcher('success', false);
@@ -79,7 +86,7 @@ class AlertTest extends BootstrapperWrapper
     $this->assertHTML($match, $alert);
   }
 
-  public function testStaticOpenBlock()
+  public function testCanUseStaticBlockOpener()
   {
     $alert = Alert::open_block_success('foo', $this->testAttributes);
     $match = $this->createMatcher('success', false);
@@ -88,7 +95,7 @@ class AlertTest extends BootstrapperWrapper
     $this->assertHTML($match, $alert);
   }
 
-  public function testStaticWhatever()
+  public function testCanDoWhateverTheFuckIWant()
   {
     $alert = Alert::foo_bar('foo', $this->testAttributes);
     $match = $this->createMatcher('foo-bar');
@@ -99,7 +106,7 @@ class AlertTest extends BootstrapperWrapper
   /**
    * @dataProvider classes
    */
-  public function testStatic($class)
+  public function testCanUseStaticOpener($class)
   {
     $alert = Alert::$class('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
