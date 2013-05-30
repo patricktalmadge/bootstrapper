@@ -227,12 +227,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "839bfa48946def4e9678c51ef8429bb287288b0f"
+                "reference": "3c172ffbd698d98f78390071684daaf83ec58612"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/839bfa48946def4e9678c51ef8429bb287288b0f",
-                "reference": "839bfa48946def4e9678c51ef8429bb287288b0f",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/3c172ffbd698d98f78390071684daaf83ec58612",
+                "reference": "3c172ffbd698d98f78390071684daaf83ec58612",
                 "shasum": ""
             },
             "require": {
@@ -278,7 +278,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2013-05-28 20:37:43"
+            "time": "2013-05-29 22:33:43"
         },
         {
             "name": "illuminate/encryption",
