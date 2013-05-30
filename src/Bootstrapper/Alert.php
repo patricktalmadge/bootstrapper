@@ -37,6 +37,13 @@ class Alert extends Element
     protected $type = Alert::SUCCESS;
 
     /**
+     * The message of the alert
+     *
+     * @var string
+     */
+    protected $message = null;
+
+    /**
      * Whether the current alert is closeable
      *
      * @var boolean
@@ -71,6 +78,8 @@ class Alert extends Element
             $close = Helpers::getContainer('html')->link('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
             $this->nest($close);
         }
+
+        $this->nest($this->message);
 
         return '<'.$this->element.Helpers::getContainer('html')->attributes($this->attributes).'>'.$this->getContent().$this->close();
     }
@@ -160,10 +169,11 @@ class Alert extends Element
      */
     protected static function show($type, $message, $attributes = array())
     {
-        $instance = new static('div', $message, $attributes);
+        $instance = new static('div', null, $attributes);
 
         // Save given parameters
         $instance->addClass($type);
+        $instance->message = $message;
 
         return $instance;
     }
