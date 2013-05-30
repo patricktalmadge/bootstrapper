@@ -168,7 +168,7 @@ class Form extends Facade
         $attributes = Helpers::add_class($attributes, Form::TYPE_SEARCH);
 
         return static::open(array_merge($attributes, array(
-            'action' => $action,
+            'url' => $action,
             'method' => $method,
         )));
     }
@@ -233,7 +233,7 @@ class Form extends Facade
         $attributes = Helpers::add_class($attributes, Form::TYPE_INLINE);
 
         return static::open(array_merge($attributes, array(
-            'action' => $action,
+            'url' => $action,
             'method' => $method,
         )));
     }
@@ -298,7 +298,7 @@ class Form extends Facade
         $attributes = Helpers::add_class($attributes, Form::TYPE_HORIZONTAL);
 
         return static::open(array_merge($attributes, array(
-            'action' => $action,
+            'url' => $action,
             'method' => $method,
         )));
     }
@@ -361,7 +361,7 @@ class Form extends Facade
     public static function vertical_open($action = null, $method = 'POST', $attributes = array(), $https = null)
     {
         return static::open(array_merge($attributes, array(
-            'action' => $action,
+            'url' => $action,
             'method' => $method,
         )));
     }
