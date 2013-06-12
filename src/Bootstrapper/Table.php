@@ -201,7 +201,7 @@ class Table
         if(sizeof($headers) == 1 and is_array($headers[0])) $headers = $headers[0];
 
         // Open headers
-        $thead = '<thead>'.PHP_EOL;
+        $thead = '<thead>'.PHP_EOL.'<tr>'.PHP_EOL;
 
         // Store the number of columns in this table
         $this->numberColumns = sizeof($headers);
@@ -218,7 +218,7 @@ class Table
             $thead .= '<th'.HTML::attributes($attributes).'>' .$header. '</th>'.PHP_EOL;
         }
 
-        $thead .= '</thead>'.PHP_EOL;
+        $thead .= '</tr>'.PHP_EOL.'</thead>'.PHP_EOL;
 
         return $thead;
     }
