@@ -432,7 +432,13 @@ class Form extends \Laravel\Form
     public static function control_group($label, $control, $group_class = '', $help = null)
     {
         $class = 'control-group';
-
+        
+        //its useful with form validation
+        if($group_class == '' && $help != '') {
+            $group_class = 'error';
+            $help = Form::block_help($help);
+        }
+        
         if ($group_class !== '') {
             $class .= ' '.$group_class;
         }
