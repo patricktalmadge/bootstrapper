@@ -146,6 +146,15 @@ class Form extends Facade
             return call_user_func_array('static::'.$method, $parameters);
         } elseif (method_exists(static::getFacadeAccessor(), $method)) {
             return parent::__callStatic($method, $parameters);
+        }else{
+            
+            try{
+                //Try solving a macro
+                return parent::__callStatic($method, $parameters);
+            }catch(\BadMethodCallException $e){
+                //Silences in case there is no macro and continues execution
+            }
+            
         }
 
         array_unshift($parameters, $method);
