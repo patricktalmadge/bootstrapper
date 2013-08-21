@@ -38,7 +38,7 @@ class Helpers
     /**
      * Get the Container from Bootstrapper
      *
-     * @param string $make A dependency to make on the fluy
+     * @param string $make A dependency to make on the fly
      *
      * @return Container
      */
