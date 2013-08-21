@@ -120,7 +120,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'div',
-            'attributes' => array('class' => 'control-group'.$class),
+            'attributes' => array('class' => 'form-group'.$class),
             'child' => array(
                 'tag' => 'label',
                 'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
@@ -131,7 +131,7 @@ class FormTest extends BootstrapperWrapper
                 'attributes' => array('class' => 'controls'),
                 'child' => array(
                     'tag' => 'input',
-                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
+                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
                 )
             ),
         );
@@ -234,7 +234,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo');
         $matcher = $this->getLablledMatcher('checkbox', 1);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -242,7 +242,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -264,7 +264,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_radio('foo', 'foo');
         $matcher = $this->getLablledMatcher('radio', 1);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -272,7 +272,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('radio', 'bar', true);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -282,7 +282,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'select',
-            'attributes' => array('multiple' => 'multiple', 'name' => 'multiSelect'),
+            'attributes' => array('class' => 'form-control', 'multiple', 'name' => 'multiSelect'),
             'children' => array(
                 'count' => 5,
                 'only' => array(
@@ -295,12 +295,12 @@ class FormTest extends BootstrapperWrapper
     }
 
     public function testMultiSelectFull()
-    {
+   nn {
         $html = Form::multiselect('multiSelect', array('1', '2', '3', '4', '5'), '3', $this->testAttributes);
 
         $matcher = array(
             'tag' => 'select',
-            'attributes' => array('multiple' => 'multiple', 'name' => 'multiSelect'),
+            'attributes' => array('class' => 'form-control', 'multiple', 'name' => 'multiSelect'),
             'children' => array(
                 'count' => 5,
                 'only' => array(
@@ -319,7 +319,7 @@ class FormTest extends BootstrapperWrapper
     public function testUneditable()
     {
         $html = Form::uneditable('foo', $this->testAttributes);
-        $expected = '<span class="foo uneditable-input" data-foo="bar">foo</span>';
+        $expected = '<span class="foo uneditable-inputfoo" data-foo="bar">foo</span>';
 
         $this->assertEquals($expected, $html);
     }
@@ -346,7 +346,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'div',
-            'attributes' => array('class' => 'form-actions'),
+            'attributes' => array('class' => 'form-control'),
             'child' => array(
                 'tag' => 'button',
                 'attributes' => array('class' => 'btn-primary btn', 'type' => 'submit'),
