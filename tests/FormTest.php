@@ -295,7 +295,7 @@ class FormTest extends BootstrapperWrapper
     }
 
     public function testMultiSelectFull()
-   nn {
+    {
         $html = Form::multiselect('multiSelect', array('1', '2', '3', '4', '5'), '3', $this->testAttributes);
 
         $matcher = array(
