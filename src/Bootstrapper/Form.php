@@ -496,6 +496,8 @@ class Form extends Facade
      */
     public static function labelled_checkbox($name, $label, $value = 1, $checked = false, $attributes = array())
     {
+        //Force the value of checked
+        $attributes['checked'] = $checked ? "checked" : null;
         return '<label class="checkbox">'.static::checkbox($name, $value, $checked, $attributes).' '.$label.'</label>';
     }
 
@@ -514,6 +516,8 @@ class Form extends Facade
      */
     public static function inline_labelled_checkbox($name, $label, $value = 1, $checked = false, $attributes = array())
     {
+        //Force the value of checked
+        $attributes['checked'] = $checked ? "checked" : null;
         return '<label class="checkbox-inline">'.static::checkbox($name, $value, $checked, $attributes).' ' .$label.'</label>';
     }
 

@@ -28,14 +28,24 @@ class Badge extends ClassableElement
     /**
      * Create a custom label (this is here for backward compatibility)
      *
-     * @param string $type       The label type
+     * @param string $type       The badge type
      * @param string $message    The content
      * @param array  $attributes The attributes
      *
-     * @return Label
+     * @return Badge
      */
     public static function custom($type, $message, $attributes)
     {
         return static::$type($message, $attributes);
+    }
+
+    /**
+     * Bootstrap no longer has specific badge classes, so we seperate
+     * them.
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        $badge = parent::$method($parameters[0], $parameters[1]);
+        return str_replace('badge-', null, $badge);
     }
 }

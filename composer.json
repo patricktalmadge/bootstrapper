@@ -14,7 +14,10 @@
     {
       "name": "Maxime Fabre",
       "email": "ehtnam6@gmail.com"
-    }
+    },
+    {
+      "name": "Patrick Rose",
+      "email": "pjr0911025@gmail.com"
   ],
   "require": {
     "php": ">=5.3.0",

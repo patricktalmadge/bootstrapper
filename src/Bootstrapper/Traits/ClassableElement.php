@@ -38,10 +38,11 @@ abstract class ClassableElement extends Element
     public static function __callStatic($method, $parameters)
     {
         // Get Label type
-        if ($method == 'normal') $type = null;
-        else $type = static::$baseClass.'-'.(string) $method;
+        $type = ($method == 'normal') ? null : static::$baseClass.'-'.(string) $method;
+
 
         // Get content and attributes
+        
         $content    = isset($parameters[0]) ? $parameters[0] : null;
         $attributes = isset($parameters[1]) ? $parameters[1] : array();
 
