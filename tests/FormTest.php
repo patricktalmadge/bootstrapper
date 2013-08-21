@@ -123,16 +123,12 @@ class FormTest extends BootstrapperWrapper
             'attributes' => array('class' => 'form-group'.$class),
             'child' => array(
                 'tag' => 'label',
-                'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
+                'attributes' => array('for' => 'inputfoo'),
                 'content' => 'foo',
             ),
             'descendant' => array(
-                'tag' => 'div',
-                'attributes' => array('class' => 'controls'),
-                'child' => array(
-                    'tag' => 'input',
-                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
-                )
+                'tag' => 'input',
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),                
             ),
         );
 
@@ -160,28 +156,22 @@ class FormTest extends BootstrapperWrapper
         // than back down to get the other elements. Odd but can't
         // figure out how to find 3 different child elements
         $matcher = array(
-            'tag' => 'div',
-            'attributes' => array('class' => 'controls'),
-            'child' => array(
-                'tag' => 'input',
-                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
-            ),
+            'tag' => 'label',
+            'attributes' => array('for' => 'inputfoo'),
+            'content' => 'foo',
             'parent' => array(
                 'tag' => 'div',
-                'attributes' => array('class' => 'control-group'.$class),
+                'attributes' => array('class' => 'form-group'.$class),
                 'child' => array(
-                    'tag' => 'label',
-                    'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
-                    'content' => 'foo',
-                ),
+                    'tag' => 'input',
+                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
+                 ),
                 'descendant' => array(
-                    'tag' => 'div',
-                    'attributes' => array('class' => 'controls'),
-                    'child' => array(
-                        'tag' => 'input',
-                        'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
-                    )
+                    'tag' => 'p',
+                    'attributes' => array('class'=>'help-block'),
+                    'content' => 'You foobared that!',
                 ),
+                
             ),
         );
 
@@ -282,7 +272,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'select',
-            'attributes' => array('class' => 'form-control', 'multiple', 'name' => 'multiSelect'),
+            'attributes' => array('class' => 'form-control', 'multiple' => 'multiple', 'name' => 'multiSelect'),
             'children' => array(
                 'count' => 5,
                 'only' => array(
@@ -300,7 +290,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'select',
-            'attributes' => array('class' => 'form-control', 'multiple', 'name' => 'multiSelect'),
+            'attributes' => array('class' => 'form-control foo', 'multiple' => 'multiple', 'name' => 'multiSelect'),
             'children' => array(
                 'count' => 5,
                 'only' => array(
@@ -319,7 +309,7 @@ class FormTest extends BootstrapperWrapper
     public function testUneditable()
     {
         $html = Form::uneditable('foo', $this->testAttributes);
-        $expected = '<span class="foo uneditable-inputfoo" data-foo="bar">foo</span>';
+        $expected = '<span class="foo uneditable-input" data-foo="bar">foo</span>';
 
         $this->assertEquals($expected, $html);
     }
@@ -335,7 +325,7 @@ class FormTest extends BootstrapperWrapper
     public function testSearchBox()
     {
         $html = Form::search_box('foo', 'bar', $this->testAttributes);
-        $expected = '<input class="foo search-query" data-foo="bar" name="foo" type="text" value="bar">';
+        $expected = '<input class="foo search-query form-control" data-foo="bar" name="foo" type="text" value="bar">';
 
         $this->assertEquals($expected, $html);
     }

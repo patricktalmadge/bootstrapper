@@ -86,10 +86,12 @@ class TableTest extends BootstrapperWrapper
 
     $matcher =
     '<thead>'.
+      '<tr>' .
       '<th>foo</th>'.
       '<th>bar</th>'.
       '<th>tel</th>'.
       '<th>sub</th>'.
+      '</tr>' .
     '</thead>';
 
     $this->assertEquals($matcher, $headers);
@@ -104,8 +106,10 @@ class TableTest extends BootstrapperWrapper
 
     $matcher =
     '<thead>'.
+      '<tr>'.
       '<th class="foo" data-foo="bar">foo</th>'.
       '<th class="foo" data-foo="bar">bar</th>'.
+      '</tr>'.
     '</thead>';
 
     $this->assertEquals($matcher, $headers);
