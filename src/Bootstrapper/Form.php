@@ -38,8 +38,9 @@ class Form extends Facade
 
     /**
      * Adds extra roundind to text input fields
+     * PRose: .form-search removed in BS3
      */
-    const TYPE_SEARCH     = 'form-search';
+    const TYPE_SEARCH     = "form-search"; 
 
     /**
      * Display types
@@ -172,7 +173,8 @@ class Form extends Facade
      */
     public static function search_open($action = null, $method = 'POST', $attributes = array(), $https = null)
     {
-        $attributes = Helpers::add_class($attributes, Form::TYPE_SEARCH);
+        //.form-search not in BS3
+        //$attributes = Helpers::add_class($attributes, Form::TYPE_SEARCH);
 
         return static::open(array_merge($attributes, array(
             'url' => $action,

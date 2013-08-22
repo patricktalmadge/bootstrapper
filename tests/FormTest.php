@@ -9,19 +9,19 @@ class FormTest extends BootstrapperWrapper
         return array(
             array(
                 'search_open',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
                 ),
             array(
                 'search_open_secure',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
                 ),
             array(
                 'search_open_for_files',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar" enctype="multipart/form-data">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'search_open_secure_for_files',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar" enctype="multipart/form-data">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'inline_open',
@@ -77,24 +77,24 @@ class FormTest extends BootstrapperWrapper
     /**
      * @dataProvider types
      */
-    public function testFormOpen($type, $exepcted)
+    public function testFormOpen($type, $expected)
     {
         $form = Form::$type('login', 'POST', $this->testAttributes);
-        $this->assertEquals($exepcted.'<input name="_token" type="hidden" value="foo">', $form);
+        $this->assertEquals($expected.'<input name="_token" type="hidden" value="foo">', $form);
     }
 
     public function testInlineHelp()
     {
-        $exepcted = '<span class="foo help-inline" data-foo="bar">foobar</span>';
+        $expected = '<span class="foo help-inline" data-foo="bar">foobar</span>';
         $html = Form::inline_help('foobar', $this->testAttributes);
-        $this->assertEquals($exepcted, $html);
+        $this->assertEquals($expected, $html);
     }
 
     public function testBlockHelp()
     {
-        $exepcted = '<p class="foo help-block" data-foo="bar">foobar</p>';
+        $expected = '<p class="foo help-block" data-foo="bar">foobar</p>';
         $html = Form::block_help('foobar', $this->testAttributes);
-        $this->assertEquals($exepcted, $html);
+        $this->assertEquals($expected, $html);
     }
 
     public function displaytypes()

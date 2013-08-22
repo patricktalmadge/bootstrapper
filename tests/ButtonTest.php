@@ -7,8 +7,11 @@ class ButtonTest extends BootstrapperWrapper
 
   private function createMatcher($class)
   {
+    $class = ($class == 'normal') ? 'default' : $class;
+
     $class = (in_array($class, array('normal', 'submit', 'link', 'reset')))
       ? null : ' btn-'.$class;
+    
 
     return array(
       'tag' => 'button',
