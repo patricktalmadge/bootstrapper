@@ -17,7 +17,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   private function matcher($class = 'normal', $right = false, $dropup = false, $split = false)
   {
-    $class = $class == 'normal' ? null : ' btn-'.$class;
+    $class = $class == 'normal' ? ' btn-default' : ' btn-'.$class;
     $right = $right ? 'pull-right ' : null;
     $dropup = $dropup ? ' dropup' : null;
 
@@ -61,7 +61,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDropdown()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->render();
     $matcher = $this->matcher();
 
@@ -70,7 +69,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testSplitDropdown()
   {
-    $this->markTestSkipped("Not yet updated for BS3");    
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->split()->render();
     $matcher = $this->matcher('normal', false, false, true);
 
@@ -79,7 +77,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testRightDropdown()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->render();
     $matcher = $this->matcher('normal', true);
 
@@ -88,7 +85,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testRightSplitDropdown()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->pull_right()->split()->render();
     $matcher = $this->matcher('normal', true, false, true);
 
@@ -97,7 +93,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDropup()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->render();
     $matcher = $this->matcher('normal', false, true);
 
@@ -106,7 +101,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDropupSplit()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->dropup()->split()->render();
     $matcher = $this->matcher('normal', false, true, true);
 
@@ -118,7 +112,6 @@ class DropdownButtonTest extends BootstrapperWrapper
    */
   public function testCallStatic($class)
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::$class('foo', $this->links, $this->testAttributes)->render();
     $matcher = $this->matcher($class);
 
@@ -127,7 +120,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testDynamicAttribute()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdown = DropdownButton::normal('foo', $this->links, $this->testAttributes)->data_foo('bar')->class('foo')->render();
     $matcher = $this->matcher();
 
@@ -136,7 +128,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testMultipleDropdowns()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $dropdowns =
       DropdownButton::normal('foo', $this->links, $this->testAttributes)->render().
       DropdownButton::normal('bar', $this->links, $this->testAttributes)->render();
@@ -147,7 +138,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testWrongLinks()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $this->setExpectedException('InvalidArgumentException');
 
     $dropdown = DropdownButton::normal('foo', 'bar');
@@ -155,7 +145,6 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   public function testWrongAttributes()
   {
-    $this->markTestSkipped("Not yet updated for BS3");
     $this->setExpectedException('InvalidArgumentException');
 
     $dropdown = DropdownButton::normal('foo', array(), 'bar');

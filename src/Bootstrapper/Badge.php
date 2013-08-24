@@ -11,6 +11,7 @@ use Bootstrapper\Traits\ClassableElement;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Patrick Rose - <pjr0911025@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -46,6 +47,6 @@ class Badge extends ClassableElement
     public static function __callStatic($method, $parameters)
     {
         $badge = parent::$method($parameters[0], $parameters[1]);
-        return str_replace('badge-', null, $badge);
+        return str_replace('badge-', null, str_replace('default', null, $badge));
     }
 }

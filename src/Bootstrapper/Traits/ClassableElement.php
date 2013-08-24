@@ -11,6 +11,7 @@ use HtmlObject\Element;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Patrick Rose - <pjr0911025@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -38,7 +39,7 @@ abstract class ClassableElement extends Element
     public static function __callStatic($method, $parameters)
     {
         // Get Label type
-        $type = ($method == 'normal') ? null : static::$baseClass.'-'.(string) $method;
+        $type = ($method == 'normal') ? static::$baseClass . '-default' : static::$baseClass.'-'.(string) $method;
 
 
         // Get content and attributes

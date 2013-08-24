@@ -7,7 +7,7 @@ class LabelTest extends BootstrapperWrapper
 
   private function createMatcher($class)
   {
-    $class = ($class == 'normal') ? null : ' label-'.$class;
+    $class = ($class == 'normal') ? ' label-default' : ' label-'.$class;
 
     return array(
       'tag' => 'span',

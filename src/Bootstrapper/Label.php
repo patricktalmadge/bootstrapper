@@ -11,6 +11,7 @@ use Bootstrapper\Traits\ClassableElement;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Patrick Rose - <pjr0911025@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -35,7 +36,7 @@ class Label extends ClassableElement
      * @return Label
      */
     public static function custom($type, $message, $attributes)
-    {
+    {    
         return static::$type($message, $attributes);
     }
 }

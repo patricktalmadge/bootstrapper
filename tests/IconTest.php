@@ -35,8 +35,6 @@ class IconTest extends BootstrapperWrapper
 
   public function testMake()
   {
-      print_r(Helpers::getContainer('config')->get('bootstrapper::icons_prefix'));
-
     $icon = Icon::make($this->testIcon);
 
     $this->assertHTML($this->baseIcon, $icon);
