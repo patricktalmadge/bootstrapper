@@ -1,6 +1,6 @@
 {
-  "name": "patrickrose/bootstrapper3",
-  "description": "Twitter Bootstrap 3 markup generator",
+  "name": "patrickrose/bootstrapper",
+  "description": "Twitter Bootstrap 3 markup generator, forked from Patrick Talmadge",
   "license": "MIT",
   "keywords": [
     "bootstrap",
