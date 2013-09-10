@@ -120,7 +120,7 @@ class NavbarTest extends BootstrapperWrapper
     $matcher = $this->getBasicMatcher();
     $matcher['descendant'] = array(
       'tag' => 'ul',
-      'attributes' => array('class' => 'nav'),
+      'attributes' => array('class' => 'nav navbar-nav'),
       'children' => array(
         'count' => 2,
         'only' => array('tag' => 'li')
@@ -143,7 +143,7 @@ class NavbarTest extends BootstrapperWrapper
     $matcher = $this->getBasicMatcher();
     $matcher['descendant'] = array(
       'tag' => 'ul',
-      'attributes' => array('class' => 'nav foo', 'data-foo' => 'bar'),
+      'attributes' => array('class' => 'nav navbar-nav foo', 'data-foo' => 'bar'),
       'children' => array(
         'count' => 2,
         'only' => array('tag' => 'li')

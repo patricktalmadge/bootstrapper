@@ -110,6 +110,7 @@ class Navbar
      */
     public function with_menus($menus, $attributes = array())
     {
+        $attributes = Helpers::add_class($attributes, 'navbar-nav');
         $this->menus[] = is_string($menus)
             ? $menus
             : array('attributes' => $attributes, 'items' => $menus);
