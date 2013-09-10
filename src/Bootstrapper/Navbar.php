@@ -178,7 +178,7 @@ class Navbar
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </a>';
+            </button>';
         }
 
         // Add brand if one was given
