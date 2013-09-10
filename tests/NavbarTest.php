@@ -32,7 +32,7 @@ class NavbarTest extends BootstrapperWrapper
           'count' => 3,
           'only' => array(
             'tag' => 'span',
-            'class' => 'glyphicon-bar'
+            'class' => 'icon-bar'
           ),
         ),
       );

@@ -174,9 +174,9 @@ class Navbar
         if ($this->collapsible) {
             $html .= '
             <a class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="glyphicon-bar"></span>
-                <span class="glyphicon-bar"></span>
-                <span class="glyphicon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </a>';
         }
 
