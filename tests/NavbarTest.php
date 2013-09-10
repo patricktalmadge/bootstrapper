@@ -7,7 +7,7 @@ class NavbarTest extends BootstrapperWrapper
   private function getBasicMatcher($collapsible = false)
   {
     $matcher = array(
-      'tag' => 'div',
+      'tag' => 'nav',
       'attributes' => array('class' => 'navbar'),
       'child' => array(
         'tag' => 'div',

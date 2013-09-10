@@ -167,7 +167,7 @@ class Navbar
         $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
 
         // Open navbar containers
-        $html  = '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
+        $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).'>';
         $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
@@ -203,7 +203,7 @@ class Navbar
             $html .= '</div>';
 
         // Close navbar containers
-        $html .= '</div>';
+        $html .= '</nav>';
 
         return $html;
     }
