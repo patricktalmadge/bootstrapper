@@ -1,4 +1,5 @@
 <?php
+use Bootstrapper\Helpers;
 use Bootstrapper\Icon;
 
 class IconTest extends BootstrapperWrapper
@@ -16,7 +17,7 @@ class IconTest extends BootstrapperWrapper
   private $baseIcon = array(
     'tag' => 'i',
     'attributes' => array(
-      'class'    => 'icon-folder-open',
+      'class'    => 'glyphicon-folder-open',
   ));
 
   /**
@@ -26,7 +27,7 @@ class IconTest extends BootstrapperWrapper
   private $baseIconWithAttributes = array(
     'tag' => 'i',
     'attributes' => array(
-      'class'    => 'foo icon-folder-open',
+      'class'    => 'foo glyphicon-folder-open',
       'data-foo' => 'bar',
   ));
 
@@ -65,7 +66,7 @@ class IconTest extends BootstrapperWrapper
     $icon = Icon::white_folder_open($this->testAttributes);
 
     $matcher = $this->baseIcon;
-    $matcher['attributes']['class']   .= ' icon-white';
+    $matcher['attributes']['class']   .= ' glyphicon-white';
     $matcher['attributes']['data-foo'] = 'bar';
 
     $this->assertHTML($matcher, $icon);

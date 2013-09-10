@@ -17,7 +17,7 @@ class DropdownButtonTest extends BootstrapperWrapper
 
   private function matcher($class = 'normal', $right = false, $dropup = false, $split = false)
   {
-    $class = $class == 'normal' ? null : ' btn-'.$class;
+    $class = $class == 'normal' ? ' btn-default' : ' btn-'.$class;
     $right = $right ? 'pull-right ' : null;
     $dropup = $dropup ? ' dropup' : null;
 

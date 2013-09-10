@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Patrick Rose - <pjr0911025@googlemail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -37,8 +38,9 @@ class Form extends Facade
 
     /**
      * Adds extra roundind to text input fields
+     * PRose: .form-search removed in BS3
      */
-    const TYPE_SEARCH     = 'form-search';
+    const TYPE_SEARCH     = "form-search"; 
 
     /**
      * Display types
@@ -124,7 +126,7 @@ class Form extends Facade
                 case 'select':
                 case 'multiselect':
                     // select($name, $options = array(), $selected = null, $attributes = array())
-                    // Set defaults and attributes array and call function
+                    // Set defaults and attributes array and call functions
                     if (!isset($parameters[1])) $parameters[1] = array();
                     if (!isset($parameters[2])) $parameters[2] = null;
                     $attr_index = 3;
@@ -137,9 +139,15 @@ class Form extends Facade
                     $attr_index = 2;
                     break;
             }
-
+            if (in_array($function, $types))
+            {
+                $attributes = isset($parameters[$attr_index]) ? $parameters[$attr_index] : array('class' => '');
+                $attributes['class'] = isset($attributes['class']) ? $attributes['class'] . ' form-control' : 'form-control';
+                $parameters[$attr_index] = $attributes;
+            }
             $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'input-', 'span');
             $method = $function;
+            
         }
 
         if (method_exists('Bootstrapper\Form', $method)) {
@@ -174,7 +182,8 @@ class Form extends Facade
      */
     public static function search_open($action = null, $method = 'POST', $attributes = array(), $https = null)
     {
-        $attributes = Helpers::add_class($attributes, Form::TYPE_SEARCH);
+        //.form-search not in BS3
+        //$attributes = Helpers::add_class($attributes, Form::TYPE_SEARCH);
 
         return static::open(array_merge($attributes, array(
             'url' => $action,
@@ -464,23 +473,21 @@ class Form extends Facade
      */
     public static function control_group($label, $control, $group_class = '', $help = null)
     {
-        $class = 'control-group';
+        $class = 'form-group';
 
         if ($group_class !== '') {
             $class .= ' '.$group_class;
         }
 
         $html = '<div class="'.$class.'">';
-        $html .= static::add_attribute('class', 'control-label', $label);
-        $html .= '<div class="controls">';
-
+        $html .= $label;
         $html .= $control;
 
         if (isset($help)) {
             $html .= $help;
         }
 
-        $html .= '</div></div>';
+        $html .= '</div>';
 
         return $html;
     }
@@ -500,6 +507,8 @@ class Form extends Facade
      */
     public static function labelled_checkbox($name, $label, $value = 1, $checked = false, $attributes = array())
     {
+        //Force the value of checked
+        $attributes['checked'] = $checked ? "checked" : null;
         return '<label class="checkbox">'.static::checkbox($name, $value, $checked, $attributes).' '.$label.'</label>';
     }
 
@@ -518,7 +527,9 @@ class Form extends Facade
      */
     public static function inline_labelled_checkbox($name, $label, $value = 1, $checked = false, $attributes = array())
     {
-        return '<label class="checkbox inline">'.static::checkbox($name, $value, $checked, $attributes).' '.$label.'</label>';
+        //Force the value of checked
+        $attributes['checked'] = $checked ? "checked" : null;
+        return '<label class="checkbox-inline">'.static::checkbox($name, $value, $checked, $attributes).' ' .$label.'</label>';
     }
 
     /**
@@ -554,7 +565,7 @@ class Form extends Facade
      */
     public static function inline_labelled_radio($name, $label, $value = 1, $checked = false, $attributes = array())
     {
-        return '<label class="radio inline">'.static::radio($name, $value, $checked, $attributes).' '.$label.'</label>';
+        return '<label class="radio-inline">'.static::radio($name, $value, $checked, $attributes).' '.$label.'</label>';
     }
 
     /**
@@ -635,7 +646,7 @@ class Form extends Facade
         $buttons = func_get_args();
         if(sizeof($buttons) == 1) $buttons = $buttons[0];
 
-        $html  = '<div class="form-actions">';
+        $html  = '<div class="form-control">';
         $html .= is_array($buttons) ? implode(' ', $buttons) : $buttons;
         $html .= '</div>';
 

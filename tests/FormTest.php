@@ -9,19 +9,19 @@ class FormTest extends BootstrapperWrapper
         return array(
             array(
                 'search_open',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
                 ),
             array(
                 'search_open_secure',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
                 ),
             array(
                 'search_open_for_files',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar" enctype="multipart/form-data">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'search_open_secure_for_files',
-                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-search" data-foo="bar" enctype="multipart/form-data">'
+                '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
                 ),
             array(
                 'inline_open',
@@ -77,24 +77,24 @@ class FormTest extends BootstrapperWrapper
     /**
      * @dataProvider types
      */
-    public function testFormOpen($type, $exepcted)
+    public function testFormOpen($type, $expected)
     {
         $form = Form::$type('login', 'POST', $this->testAttributes);
-        $this->assertEquals($exepcted.'<input name="_token" type="hidden" value="foo">', $form);
+        $this->assertEquals($expected.'<input name="_token" type="hidden" value="foo">', $form);
     }
 
     public function testInlineHelp()
     {
-        $exepcted = '<span class="foo help-inline" data-foo="bar">foobar</span>';
+        $expected = '<span class="foo help-inline" data-foo="bar">foobar</span>';
         $html = Form::inline_help('foobar', $this->testAttributes);
-        $this->assertEquals($exepcted, $html);
+        $this->assertEquals($expected, $html);
     }
 
     public function testBlockHelp()
     {
-        $exepcted = '<p class="foo help-block" data-foo="bar">foobar</p>';
+        $expected = '<p class="foo help-block" data-foo="bar">foobar</p>';
         $html = Form::block_help('foobar', $this->testAttributes);
-        $this->assertEquals($exepcted, $html);
+        $this->assertEquals($expected, $html);
     }
 
     public function displaytypes()
@@ -120,19 +120,15 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'div',
-            'attributes' => array('class' => 'control-group'.$class),
+            'attributes' => array('class' => 'form-group'.$class),
             'child' => array(
                 'tag' => 'label',
-                'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
+                'attributes' => array('for' => 'inputfoo'),
                 'content' => 'foo',
             ),
             'descendant' => array(
-                'tag' => 'div',
-                'attributes' => array('class' => 'controls'),
-                'child' => array(
-                    'tag' => 'input',
-                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
-                )
+                'tag' => 'input',
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),                
             ),
         );
 
@@ -160,28 +156,22 @@ class FormTest extends BootstrapperWrapper
         // than back down to get the other elements. Odd but can't
         // figure out how to find 3 different child elements
         $matcher = array(
-            'tag' => 'div',
-            'attributes' => array('class' => 'controls'),
-            'child' => array(
-                'tag' => 'input',
-                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
-            ),
+            'tag' => 'label',
+            'attributes' => array('for' => 'inputfoo'),
+            'content' => 'foo',
             'parent' => array(
                 'tag' => 'div',
-                'attributes' => array('class' => 'control-group'.$class),
+                'attributes' => array('class' => 'form-group'.$class),
                 'child' => array(
-                    'tag' => 'label',
-                    'attributes' => array('class' => 'control-label', 'for' => 'inputfoo'),
-                    'content' => 'foo',
-                ),
+                    'tag' => 'input',
+                    'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
+                 ),
                 'descendant' => array(
-                    'tag' => 'div',
-                    'attributes' => array('class' => 'controls'),
-                    'child' => array(
-                        'tag' => 'input',
-                        'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo'),
-                    )
+                    'tag' => 'p',
+                    'attributes' => array('class'=>'help-block'),
+                    'content' => 'You foobared that!',
                 ),
+                
             ),
         );
 
@@ -234,7 +224,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo');
         $matcher = $this->getLablledMatcher('checkbox', 1);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -242,7 +232,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_checkbox('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('checkbox', 'bar', true);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -264,7 +254,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_radio('foo', 'foo');
         $matcher = $this->getLablledMatcher('radio', 1);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -272,7 +262,7 @@ class FormTest extends BootstrapperWrapper
     {
         $html = Form::inline_labelled_radio('foo', 'foo', 'bar', true, $this->testAttributes);
         $matcher = $this->getLablledMatcher('radio', 'bar', true);
-        $matcher['attributes']['class'] .= ' inline';
+        $matcher['attributes']['class'] .= '-inline';
         $this->assertHTML($matcher, $html);
     }
 
@@ -282,7 +272,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'select',
-            'attributes' => array('multiple' => 'multiple', 'name' => 'multiSelect'),
+            'attributes' => array('class' => 'form-control', 'multiple' => 'multiple', 'name' => 'multiSelect'),
             'children' => array(
                 'count' => 5,
                 'only' => array(
@@ -300,7 +290,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'select',
-            'attributes' => array('multiple' => 'multiple', 'name' => 'multiSelect'),
+            'attributes' => array('class' => 'form-control foo', 'multiple' => 'multiple', 'name' => 'multiSelect'),
             'children' => array(
                 'count' => 5,
                 'only' => array(
@@ -335,7 +325,7 @@ class FormTest extends BootstrapperWrapper
     public function testSearchBox()
     {
         $html = Form::search_box('foo', 'bar', $this->testAttributes);
-        $expected = '<input class="foo search-query" data-foo="bar" name="foo" type="text" value="bar">';
+        $expected = '<input class="foo search-query form-control" data-foo="bar" name="foo" type="text" value="bar">';
 
         $this->assertEquals($expected, $html);
     }
@@ -346,7 +336,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'div',
-            'attributes' => array('class' => 'form-actions'),
+            'attributes' => array('class' => 'form-control'),
             'child' => array(
                 'tag' => 'button',
                 'attributes' => array('class' => 'btn-primary btn', 'type' => 'submit'),

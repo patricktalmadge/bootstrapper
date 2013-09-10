@@ -100,6 +100,14 @@ class Button
      */
     public static function normal($value, $attributes = array(), $hasDropdown = false)
     {
+        if (!isset($attributes['class']))
+        {
+           $attributes = Helpers::add_class($attributes, 'btn-default');
+        }
+        elseif(strpos($attributes['class'], 'btn-') === false)
+        {
+            $attributes = Helpers::add_class($attributes, 'btn-default');
+        }
         return static::storeButton('normal', $value, $attributes, $hasDropdown);
     }
 
@@ -183,7 +191,7 @@ class Button
     public function deemphasize()
     {
         // Add class to attributes array
-        $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-link');
+        $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-link');        
 
         return $this;
     }
@@ -220,13 +228,11 @@ class Button
 
         if (count($type_found) > 0) {
             $function = $type_found[key($type_found)];
-
             // Set default attributes index
             $attr_index = $function != 'link' ? 1 : 2;
-
+        
             $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'btn-', 'disabled');
             if(in_array('disabled', $method_array)) $parameters[$attr_index]['disabled'] = 'disabled';
-
             return call_user_func_array('static::'.$function, $parameters);
         }
     }
