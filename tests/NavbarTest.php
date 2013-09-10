@@ -22,9 +22,9 @@ class NavbarTest extends BootstrapperWrapper
     {
       //Add collapse tags
       $matcher['child']['child'] = array(
-        'tag' => 'a',
+        'tag' => 'button',
         'attributes' => array(
-          'class' => 'btn btn-navbar navbar-toggle',
+          'class' => 'navbar-toggle',
           'data-toggle' => 'collapse',
           'data-target' => '.navbar-collapse'
         ),
