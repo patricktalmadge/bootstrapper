@@ -43,6 +43,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testOpenList()
   {
+    
     $open = MediaObject::open_list($this->testAttributes);
     $matcher = '<ul class="foo media-list" data-foo="bar">';
 
@@ -51,6 +52,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testCloseList()
   {
+    
     $close = MediaObject::close_list();
     $matcher = '</ul>';
 
@@ -59,6 +61,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testBaseMediaObject()
   {
+    
     $media = MediaObject::create('foo', 'bar', $this->testAttributes)->__toString();
     $matcher = $this->createMatcher();
 
@@ -67,6 +70,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testWithImage()
   {
+    
     $media = MediaObject::create('foo', null, $this->testAttributes)
       ->with_image('bar', 'alt', $this->testAttributes)->__toString();
     $matcher = $this->createMatcher('<img src="http://test/bar" class="foo media-object" data-foo="bar" alt="alt">');
@@ -76,6 +80,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testPullLeft()
   {
+    
     $media1 = MediaObject::create('foo', 'bar', $this->testAttributes)->pull_left()->__toString();
     $media2 = MediaObject::create('foo', 'bar', $this->testAttributes)->pull('left')->__toString();
     $matcher = $this->createMatcher();
@@ -86,6 +91,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testPullRight()
   {
+    
     $media1 = MediaObject::create('foo', 'bar', $this->testAttributes)->pull_right()->__toString();
     $media2 = MediaObject::create('foo', 'bar', $this->testAttributes)->pull('right')->__toString();
     $matcher = $this->createMatcher(null, 'right');
@@ -96,6 +102,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testPullWhatever()
   {
+    
     $media1 = MediaObject::create('foo', 'bar', $this->testAttributes)->pull_whatever()->__toString();
     $media2 = MediaObject::create('foo', 'bar', $this->testAttributes)->pull('whatever')->__toString();
     $matcher = $this->createMatcher();
@@ -106,6 +113,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testWithTitle()
   {
+    
     $media = MediaObject::create('foo', 'bar', $this->testAttributes)->with_title('<h1>foobar</h1>')->__toString();
     $matcher = $this->createMatcher(null, null, '<h1>foobar</h1>');
 
@@ -117,6 +125,7 @@ class MediaObjectTest extends BootstrapperWrapper
    */
   public function testMagicTitles($title, $expected)
   {
+    
     $media = MediaObject::create('foo', 'bar', $this->testAttributes)->$title('foobar', $this->testAttributes)->__toString();
     $matcher = $this->createMatcher(null, null, $expected);
 
@@ -125,6 +134,7 @@ class MediaObjectTest extends BootstrapperWrapper
 
   public function testNesting()
   {
+    
     $media = MediaObject::create('foo', 'bar', $this->testAttributes)
       ->nest(MediaObject::create('foo2', 'bar2')->with_h1('foobar'))
       ->__toString();

@@ -1,8 +1,5 @@
 <?php return array(
 
-  // The default icons prefix
-  'icons_prefix' => 'icon-',
-
   // The character to use as separator for the breadcrumbs
   'breadcrumbs_separator' => '/',
 

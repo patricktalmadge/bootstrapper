@@ -110,6 +110,7 @@ class Navbar
      */
     public function with_menus($menus, $attributes = array())
     {
+        $attributes = Helpers::add_class($attributes, 'navbar-nav');
         $this->menus[] = is_string($menus)
             ? $menus
             : array('attributes' => $attributes, 'items' => $menus);
@@ -167,25 +168,26 @@ class Navbar
         $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
 
         // Open navbar containers
-        $html  = '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
-        $html .= '<div class="navbar-inner"><div class="container">';
+        $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
+        $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
         if ($this->collapsible) {
             $html .= '
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </a>';
+            </button>';
         }
 
         // Add brand if one was given
         if($this->brand)
-            $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'brand'));
-
+            $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'navbar-brand'));
+       $html .= '</div>';
         if($this->collapsible)
-            $html .= '<div class="nav-collapse">';
+            $html .= '<div class="navbar-collapse collapse">';
 
         // Prints out menus
         if ($this->menus) {
@@ -202,7 +204,7 @@ class Navbar
             $html .= '</div>';
 
         // Close navbar containers
-        $html .= '</div></div></div>';
+        $html .= '</nav>';
 
         return $html;
     }

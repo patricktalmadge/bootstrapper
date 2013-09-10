@@ -11,6 +11,7 @@ use HtmlObject\Traits\Tag;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Patrick Rose - <pjr0911025@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -26,6 +27,11 @@ class Icon extends Tag
     protected $element = 'i';
 
     /**
+     * The prefix for icons
+     */
+    protected static $prefix = 'glyphicon-';
+
+    /**
      * Build a new icon
      *
      * @param array $attributes
@@ -35,19 +41,19 @@ class Icon extends Tag
         $this->attributes = $attributes;
     }
 
+    
+
     /**
      * Allows magic methods such as Icon::home([attributes]) or Icon::close_white()
      *
      * Sample Usage:
      * <code>
-     * <?php
      * Icon::plus();
      * // <i class="icon-plus"></i>
      * Icon::folder_open(array('class'=>'widget','data-foo'=>'bar'));
      * // <i class="widget icon-folder-open" data-foo="bar"></i>
      * Icon::circle_arrow_right_white();
      * // <i class="icon-circle-arrow-right icon-white"></i>
-     * ?>
      * </code>
      *
      * @param string $method     Name of missing method
@@ -62,9 +68,10 @@ class Icon extends Tag
         $white = in_array('white', $classes);
         if ($white) unset($classes[array_search('white', $classes)]);
 
+      
         // Concatenate icons
-        $classes = Helpers::getContainer('config')->get('bootstrapper::icons_prefix').implode('-', $classes);
-        if ($white) $classes .= ' ' .Helpers::getContainer('config')->get('bootstrapper::icons_prefix').'white';
+        $classes = static::$prefix.implode('-', $classes);
+        if ($white) $classes .= ' ' .static::$prefix.'white';
 
         $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;
 
@@ -82,10 +89,8 @@ class Icon extends Tag
      *
      * Sample Usage:
      * <code>
-     * <?php
      * Icon::make('folder-open',array('class'=>'widget'));
      * // <i class="widget icon-folder-open"></i>
-     * ?>
      * </code>
      *
      * @param string $icon       Name of the bootstrap icon class
