@@ -2,14 +2,26 @@
 
 Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=develop)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
-Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
+Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap 3 style markup.
 
 ## Installation
 
 Add the following to your `composer.json` file :
 
 ```json
-"patricktalmadge/bootstrapper": "dev-develop"
+"repositories": [
+    {
+        "type": "vcs",
+		"url": "https://github.com/patrickrose/bootstrapper"
+    }
+],
+```
+Then require the bootstrap3 branch:
+
+```json
+"require": {
+    "patricktalmadge/bootstrapper": "dev-bootstrap3",
+    },
 ```
 
 Then register Bootstrapper's service provider with Laravel :
