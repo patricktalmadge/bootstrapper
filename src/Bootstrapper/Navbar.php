@@ -167,7 +167,7 @@ class Navbar
         $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
 
         // Open navbar containers
-        $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).'>';
+        $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
         $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
