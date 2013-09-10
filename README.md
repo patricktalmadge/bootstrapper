@@ -4,23 +4,16 @@ Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bo
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap 3 style markup.
 
+**THIS USES BOOTSTRAP 3 - If your website breaks after installing then
+at the [migration guide](http://bootply.com/bootstrap-3-migration-guide)**
+
 ## Installation
 
 Add the following to your `composer.json` file :
 
 ```json
-"repositories": [
-    {
-        "type": "vcs",
-		"url": "https://github.com/patrickrose/bootstrapper"
-    }
-],
-```
-Then require the bootstrap3 branch:
-
-```json
 "require": {
-    "patricktalmadge/bootstrapper": "dev-bootstrap3",
+    "patricktalmadge/bootstrapper": "dev-master",
     },
 ```
 
