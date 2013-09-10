@@ -184,7 +184,7 @@ class Navbar
         // Add brand if one was given
         if($this->brand)
             $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'navbar-brand'));
-       $html .= '</div><div class="container">';
+       $html .= '</div>';
         if($this->collapsible)
             $html .= '<div class="navbar-collapse collapse">';
 
@@ -203,7 +203,7 @@ class Navbar
             $html .= '</div>';
 
         // Close navbar containers
-        $html .= '</div></div>';
+        $html .= '</div>';
 
         return $html;
     }

@@ -13,10 +13,6 @@ class NavbarTest extends BootstrapperWrapper
         'tag' => 'div',
         'attributes' => array('class' => 'navbar-header')
       ),
-      'descendant' => array(
-        'tag' => 'div',
-        'attributes' => array('class' => 'container'),
-      ),
     );
     if ($collapsible)
     {
@@ -26,7 +22,8 @@ class NavbarTest extends BootstrapperWrapper
         'attributes' => array(
           'class' => 'navbar-toggle',
           'data-toggle' => 'collapse',
-          'data-target' => '.navbar-collapse'
+          'data-target' => '.navbar-collapse',
+          'type' => 'button'          
         ),
         'children' => array(
           'count' => 3,
@@ -36,7 +33,7 @@ class NavbarTest extends BootstrapperWrapper
           ),
         ),
       );
-      $matcher['descendant']['child'] = array(
+      $matcher['descendant'] = array(
         'tag' => 'div',
         'attributes' => array('class' => "navbar-collapse collapse")
       );
@@ -121,7 +118,7 @@ class NavbarTest extends BootstrapperWrapper
     );
 
     $matcher = $this->getBasicMatcher();
-    $matcher['descendant']['child'] = array(
+    $matcher['descendant'] = array(
       'tag' => 'ul',
       'attributes' => array('class' => 'nav'),
       'children' => array(
@@ -144,7 +141,7 @@ class NavbarTest extends BootstrapperWrapper
     );
 
     $matcher = $this->getBasicMatcher();
-    $matcher['descendant']['child'] = array(
+    $matcher['descendant'] = array(
       'tag' => 'ul',
       'attributes' => array('class' => 'nav foo', 'data-foo' => 'bar'),
       'children' => array(
@@ -167,7 +164,7 @@ class NavbarTest extends BootstrapperWrapper
     );
 
     $matcher = $this->getBasicMatcher();
-    $matcher['descendant']['child'] = array(
+    $matcher['descendant'] = array(
       'tag' => 'ul',
       'attributes' => array('class' => 'nav'),
       'children' => array(
@@ -194,7 +191,7 @@ class NavbarTest extends BootstrapperWrapper
     );
 
     $matcher = $this->getBasicMatcher();
-    $matcher['descendant']['child'] = array(
+    $matcher['descendant'] = array(
       'tag' => 'ul',
       'attributes' => array('class' => 'nav'),
       'children' => array(
@@ -219,7 +216,7 @@ class NavbarTest extends BootstrapperWrapper
 
     $matcher = $this->getBasicMatcher(true);
 
-    $matcher['descendant']['child']['child'] = array(
+    $matcher['descendant']['child'] = array(
       'tag' => 'ul',
       'attributes' => array('class' => 'nav'),
       'children' => array(
