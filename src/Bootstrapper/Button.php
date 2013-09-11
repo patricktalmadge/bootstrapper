@@ -124,6 +124,10 @@ class Button
     public static function link($url, $value, $attributes = array(), $hasDropdown = false)
     {
         $attributes['href'] = Helpers::getContainer('url')->to($url);
+        if (!isset($attributes['class']) OR strpos($attributes['class'], 'btn-') === false)
+        {
+            $attributes = Helpers::add_class($attributes, 'btn-default');
+        }
 
         return static::storeButton('link', $value, $attributes, $hasDropdown);
     }
