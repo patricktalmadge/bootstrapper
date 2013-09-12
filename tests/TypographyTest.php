@@ -28,12 +28,13 @@ class TypographyTest extends BootstrapperWrapper
   public function classes()
   {
     return array(
-      array('muted', 'muted'),
+      array('muted', 'text-muted'),
       array('lead', 'lead'),
       array('warning', 'text-warning'),
-      array('error', 'text-error'),
+      array('danger', 'text-danger'),
       array('info', 'text-info'),
       array('success', 'text-success'),
+      array('primary', 'text-primary'),
     );
   }
 
