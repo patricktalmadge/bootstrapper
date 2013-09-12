@@ -8,7 +8,7 @@ class NavbarTest extends BootstrapperWrapper
   {
     $matcher = array(
       'tag' => 'nav',
-      'attributes' => array('class' => 'navbar-default navbar'),
+      'attributes' => array('class' => 'navbar '),
       'child' => array(
         'tag' => 'div',
         'attributes' => array('class' => 'navbar-header')
