@@ -9,6 +9,7 @@ namespace Bootstrapper;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -56,15 +57,30 @@ class Navbar
      *
      * @var constant
      */
-    protected $type        = Navbar::STATIC_BAR;
+    protected $type        = Navbar::DEFAULT_TYPE;
+
+    /**
+     * The current Navbar's style
+     *
+     * @var constant
+     */
+    protected $style        = Navbar::DEFAULT_BAR;
+
+    /**
+     * The Navbar styles
+     * @var constant
+     */
+    const DEFAULT_BAR = 'navbar-default';
+    const INVERSE_BAR = 'navbar-inverse';
 
     /**
      * The Navbar types
      * @var constant
      */
-    const STATIC_BAR = '';
-    const FIX_TOP    = 'navbar-fixed-top';
-    const FIX_BOTTOM = 'navbar-fixed-bottom';
+    const DEFAULT_TYPE     = null;
+    const FIX_TOP     = 'navbar-fixed-top';
+    const FIX_BOTTOM  = 'navbar-fixed-bottom';
+    const STATIC_TOP  = 'navbar-static-top';
 
     /**
      * Create a new Navbar instance.
@@ -74,8 +90,11 @@ class Navbar
      *
      * @return Navbar
      */
-    public static function create($attributes = array(), $type = Navbar::STATIC_BAR)
+    public static function create($attributes = array(), $type = Navbar::DEFAULT_TYPE)
     {
+        if(!isset($attributes['class']) or (isset($attributes['class']) and !stristr($attributes['class'], Navbar::INVERSE_BAR))){
+            $attributes = Helpers::add_class($attributes, Navbar::DEFAULT_BAR);
+        }
         // Fetch current instance
         $instance = new Navbar;
 
@@ -165,7 +184,8 @@ class Navbar
      */
     public function render()
     {
-        $attributes = Helpers::add_class($this->attributes, 'navbar '.$this->type);
+        $type = (!empty($this->type)) ? ' '.$this->type : '';
+        $attributes = Helpers::add_class($this->attributes, 'navbar'.$type);
 
         // Open navbar containers
         $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
@@ -218,13 +238,12 @@ class Navbar
      * @return Navbar
      */
     public static function __callStatic($method, $parameters)
-    {
-        if ($method == 'inverse') {
+    {        
+        if ($method == 'inverse'){
             $attributes = array_get($parameters, 0);
             $type       = array_get($parameters, 1);
-            $attributes = Helpers::add_class($attributes, 'navbar-inverse');
-
-            return static::create($attributes, $type);
+            $attributes = Helpers::add_class($attributes, Navbar::INVERSE_BAR);    
+            return static::create($attributes, $type);        
         } else return static::create();
     }
 }
