@@ -26,6 +26,9 @@ class NavbarTest extends BootstrapperWrapper
           'type' => 'button'          
         ),        
         'children' => array(
+          'tag' => 'span',
+          'attributes' => array('class' => 'sr-only'),
+          'content' => 'Toggle navigation',
           'count' => 3,
           'only' => array(
             'tag' => 'span',
@@ -33,11 +36,7 @@ class NavbarTest extends BootstrapperWrapper
           ),         
         ),
       );
-      $matcher['child']['child']['descendant'] = array(
-        'tag' => 'span',
-        'attributes' => array('class' => 'sr-only'),
-        'content' => 'Toggle navigation'
-      );
+      
       $matcher['descendant'] = array(
         'tag' => 'div',
         'attributes' => array('class' => "navbar-collapse collapse")
