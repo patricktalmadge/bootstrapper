@@ -8,7 +8,7 @@ class NavbarTest extends BootstrapperWrapper
   {
     $matcher = array(
       'tag' => 'nav',
-      'attributes' => array('class' => 'navbar ', 'role' => 'navigation'),
+      'attributes' => array('class' => 'navbar'),
       'child' => array(
         'tag' => 'div',
         'attributes' => array('class' => 'navbar-header')
@@ -20,11 +20,18 @@ class NavbarTest extends BootstrapperWrapper
       $matcher['child']['child'] = array(
         'tag' => 'button',
         'attributes' => array(
-          'class' => 'btn btn-navbar navbar-toggle',
+          'class' => 'navbar-toggle',
           'data-toggle' => 'collapse',
           'data-target' => '.navbar-collapse',
           'type' => 'button'          
         ),
+        'child' => array(
+            'tag' => 'span',
+            'attributes' => array(
+              'class' => 'sr-only'
+              ),
+            'content' => 'Toggle navigation',
+          ),
         'children' => array(
           'count' => 3,
           'only' => array(
