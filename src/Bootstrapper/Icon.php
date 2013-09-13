@@ -12,6 +12,7 @@ use HtmlObject\Traits\Tag;
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
  * @author     Patrick Rose - <pjr0911025@gmail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -72,6 +73,7 @@ class Icon extends Tag
         // Concatenate icons
         $classes = static::$prefix.implode('-', $classes);
         if ($white) $classes .= ' ' .static::$prefix.'white';
+        $classes = 'glyphicon '.$classes;
 
         $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;
 
