@@ -9,6 +9,7 @@ namespace Bootstrapper;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -22,11 +23,12 @@ class Typography
      * @var constant
      */
     const LEAD    = 'lead';
-    const MUTED   = 'muted';
+    const MUTED   = 'text-muted';
     const WARNING = 'text-warning';
-    const ERROR   = 'text-error';
     const INFO    = 'text-info';
     const SUCCESS = 'text-success';
+    const PRIMARY = 'text-primary';
+    const DANGER  = 'text-danger';
 
     /**
      * Create a new Typography.
@@ -92,7 +94,20 @@ class Typography
      */
     public static function error($message, $tag = 'p', $attributes = array())
     {
-        return static::createEmphasis(Typography::ERROR, $message, $tag, $attributes);
+        return static::createEmphasis(Typography::DANGER, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new danger text.
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function danger($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::DANGER, $message, $tag, $attributes);
     }
 
     /**
@@ -119,6 +134,19 @@ class Typography
     public static function success($message, $tag = 'p', $attributes = array())
     {
         return static::createEmphasis(Typography::SUCCESS, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new primary text.
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function primary($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::PRIMARY, $message, $tag, $attributes);
     }
 
     /**
