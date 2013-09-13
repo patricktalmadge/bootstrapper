@@ -41,11 +41,11 @@ class AlertTest extends BootstrapperWrapper
   public function classes()
   {
     return array(
-      array('danger'),
-      array('error'),
-      array('info'),
-      array('success'),
-      array('warning'),
+      array('danger', 'danger'),
+      array('error', 'danger'),
+      array('info', 'info'),
+      array('success', 'success'),
+      array('warning', 'warning'),
     );
   }
 
@@ -63,7 +63,7 @@ class AlertTest extends BootstrapperWrapper
   {
     $alert = Alert::error('foobar')->render();
 
-    $this->assertEquals('<div class="alert-error alert"><a href="#" class="close" data-dismiss="alert">&times;</a>foobar</div>', $alert);
+    $this->assertEquals('<div class="alert-danger alert"><a href="#" class="close" data-dismiss="alert">&times;</a>foobar</div>', $alert);
   }
 
   public function testCanCreateCustomAlertsWithoutClose()
@@ -106,9 +106,9 @@ class AlertTest extends BootstrapperWrapper
   /**
    * @dataProvider classes
    */
-  public function testCanUseStaticOpener($class)
+  public function testCanUseStaticOpener($type, $class)
   {
-    $alert = Alert::$class('foo', $this->testAttributes);
+    $alert = Alert::$type('foo', $this->testAttributes);
     $match = $this->createMatcher($class);
 
     $this->assertHTML($match, $alert);

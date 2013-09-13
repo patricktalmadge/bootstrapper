@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
  * @author     Patrick Rose - <pjr0911025@googlemail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -490,6 +491,21 @@ class Form extends Facade
         $html .= '</div>';
 
         return $html;
+    }
+
+    /**
+     * Create a form label element with BS 3 class.
+     *
+     * @param  string  $name
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
+     */
+    public static function label($name, $value = null, $options = array())
+    {
+        $options = Helpers::add_class($options, 'control-label');
+
+        return parent::label($name, $value, $options);
     }
 
     /**

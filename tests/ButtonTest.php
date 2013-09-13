@@ -168,7 +168,7 @@ class ButtonTest extends BootstrapperWrapper
     $matcher['child'] = $this->createIcon();
     $exact =
     '<button class="foo btn-info btn" data-foo="bar" type="button">'.
-      'foo <i class="glyphicon-folder-open"></i>'.
+      'foo <i class="glyphicon glyphicon-folder-open"></i>'.
     '</button>';
 
     $this->assertHTML($matcher, $button);
