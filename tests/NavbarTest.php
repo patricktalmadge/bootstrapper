@@ -25,10 +25,7 @@ class NavbarTest extends BootstrapperWrapper
           'data-target' => '.navbar-collapse',
           'type' => 'button'          
         ),        
-        'children' => array(
-          'tag' => 'span',
-          'attributes' => array('class' => 'sr-only'),
-          'content' => 'Toggle navigation',
+        'children' => array(          
           'count' => 3,
           'only' => array(
             'tag' => 'span',
