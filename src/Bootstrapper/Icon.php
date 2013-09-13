@@ -29,7 +29,7 @@ class Icon extends Tag
     /**
      * The prefix for icons
      */
-    protected static $prefix = 'glyphicon-';
+    protected static $prefix = 'glyphicon glyphicon-';
 
     /**
      * Build a new icon

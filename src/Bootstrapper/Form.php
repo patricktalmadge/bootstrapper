@@ -428,6 +428,20 @@ class Form extends Facade
     {
         return static::vertical_open_for_files($action, $method, $attributes, true);
     }
+    
+    /**
+     * Create a form label element with BS 3 class.
+     *
+     * @param  string  $name
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
+     */
+    public static function label($name, $value = null, $options = array())
+    {
+        $options = Helpers::add_class($options, 'control-label');
+        return parent::label($name, $value, $options);
+    }
 
     /**
      * Create a HTML span tag with the bootstrap help-inline class.

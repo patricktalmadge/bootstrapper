@@ -22,11 +22,12 @@ class Typography
      * @var constant
      */
     const LEAD    = 'lead';
-    const MUTED   = 'muted';
+    const MUTED   = 'text-muted';
     const WARNING = 'text-warning';
-    const ERROR   = 'text-error';
     const INFO    = 'text-info';
     const SUCCESS = 'text-success';
+    const DANGER  = 'text-danger';
+    const PRIMARY = 'text-primary';
 
     /**
      * Create a new Typography.
@@ -70,6 +71,32 @@ class Typography
     }
 
     /**
+     * Create a new primary text.
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function primary($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::PRIMARY, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new danger text.
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function danger($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::DANGER, $message, $tag, $attributes);
+    }
+
+    /**
      * Create a new warning text.
      *
      * @param string $message    Message in tag
@@ -80,19 +107,6 @@ class Typography
     public static function warning($message, $tag = 'p', $attributes = array())
     {
         return static::createEmphasis(Typography::WARNING, $message, $tag, $attributes);
-    }
-
-    /**
-     * Create a new error text.
-     *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
-     *
-     * @return string Typography HTML
-     */
-    public static function error($message, $tag = 'p', $attributes = array())
-    {
-        return static::createEmphasis(Typography::ERROR, $message, $tag, $attributes);
     }
 
     /**
