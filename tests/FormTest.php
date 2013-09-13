@@ -369,6 +369,17 @@ class FormTest extends BootstrapperWrapper
         );
     }
 
+    public function testLabel()
+    {
+        $html = Form::label('foo');        
+        $matcher = array(
+            'tag' => 'label', 
+            'attributes' => array('for' => 'foo', 'class' => 'control-label')
+        );
+        $this->assertHTML($matcher, $html);
+    }
+
+
     public function testPrepend()
     {
         $html = Form::prepend(Form::text('inputfoo'), '$');
