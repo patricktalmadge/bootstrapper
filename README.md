@@ -73,3 +73,10 @@ And then add the following to your template view file to include the Twitter Boo
 - [Bootstrapper documentation](http://bootstrapper.aws.af.cm)
 - [Twitter Bootstrap documentation](http://twitter.github.com/bootstrap)
 - [Twitter Bootstrap on Github](https://github.com/twitter/bootstrap)
+
+
+## Contributing
+
+Contributing is easy! Just fork the repo, make your changes then send a pull request
+on GitHub. If your PR is languishing in the queue and nothing is happening, then send
+Patrick an [email](mailto:pjr0911025@googlemail.com) or a [tweet](http://twitter.com/DrugCrazed)
