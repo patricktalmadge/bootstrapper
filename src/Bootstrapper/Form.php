@@ -719,9 +719,10 @@ class Form extends Facade
      */
     public static function append_buttons($control, $buttons)
     {
-        $value = is_array($buttons) ? implode('', $buttons) : $buttons;
+        $value = is_array($buttons) ? implode('</span><span class="input-group-btn">', $buttons) : $buttons;
+        $value = '<span class="input-group-btn">'.$value.'</span>';
 
-        return '<div class="input-append">'.$control.$value.'</div>';
+        return '<div class="input-group">'.$control.$value.'</div>';
     }
 
     /**
