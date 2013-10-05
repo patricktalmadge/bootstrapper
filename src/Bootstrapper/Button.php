@@ -9,6 +9,7 @@ namespace Bootstrapper;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -124,7 +125,16 @@ class Button
     public static function link($url, $value, $attributes = array(), $hasDropdown = false)
     {
         $attributes['href'] = Helpers::getContainer('url')->to($url);
-
+        
+        if (!isset($attributes['class']))
+        {
+           $attributes = Helpers::add_class($attributes, 'btn-default');
+        }
+        elseif(strpos($attributes['class'], 'btn-') === false)
+        {
+            $attributes = Helpers::add_class($attributes, 'btn-default');
+        }
+        
         return static::storeButton('link', $value, $attributes, $hasDropdown);
     }
 

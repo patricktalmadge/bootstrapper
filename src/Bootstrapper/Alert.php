@@ -12,6 +12,7 @@ use HtmlObject\Text;
  * @subpackage Twitter
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -25,7 +26,6 @@ class Alert extends Element
      * @var constant
      */
     const DANGER  = 'alert-danger';
-    const ERROR   = 'alert-error';
     const INFO    = 'alert-info';
     const SUCCESS = 'alert-success';
     const WARNING = 'alert-warning';
@@ -228,7 +228,7 @@ class Alert extends Element
      */
     public static function error($message, $attributes = array())
     {
-        return static::show(Alert::ERROR, $message, $attributes);
+        return static::show(Alert::DANGER, $message, $attributes);
     }
 
     /**

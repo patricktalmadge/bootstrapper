@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @author     Patrick Talmadge - <ptalmadge@gmail.com>
  * @author     Maxime Fabre - <ehtnam6@gmail.com>
  * @author     Patrick Rose - <pjr0911025@googlemail.com>
+ * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
  * @license    MIT License <http://www.opensource.org/licenses/mit>
  * @link       http://laravelbootstrapper.phpfogapp.com/
  *
@@ -493,6 +494,21 @@ class Form extends Facade
     }
 
     /**
+     * Create a form label element with BS 3 class.
+     *
+     * @param  string  $name
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
+     */
+    public static function label($name, $value = null, $options = array())
+    {
+        $options = Helpers::add_class($options, 'control-label');
+
+        return parent::label($name, $value, $options);
+    }
+
+    /**
      * Create a HTML checkbox input element with a label.
      * Uses the standard checkbox function.
      *
@@ -703,9 +719,10 @@ class Form extends Facade
      */
     public static function append_buttons($control, $buttons)
     {
-        $value = is_array($buttons) ? implode('', $buttons) : $buttons;
+        $value = is_array($buttons) ? implode('</span><span class="input-group-btn">', $buttons) : $buttons;
+        $value = '<span class="input-group-btn">'.$value.'</span>';
 
-        return '<div class="input-append">'.$control.$value.'</div>';
+        return '<div class="input-group">'.$control.$value.'</div>';
     }
 
     /**

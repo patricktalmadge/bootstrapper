@@ -369,6 +369,17 @@ class FormTest extends BootstrapperWrapper
         );
     }
 
+    public function testLabel()
+    {
+        $html = Form::label('foo');        
+        $matcher = array(
+            'tag' => 'label', 
+            'attributes' => array('for' => 'foo', 'class' => 'control-label')
+        );
+        $this->assertHTML($matcher, $html);
+    }
+
+
     public function testPrepend()
     {
         $html = Form::prepend(Form::text('inputfoo'), '$');
@@ -415,14 +426,21 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'div',
-            'attributes' => array('class' => 'input-append'),
+            'attributes' => array(
+		'class' => 'input-append'
+	    ),
             'child' => array(
                 'tag' => 'input',
-                'attributes' => array('class' => 'span2', 'type' => 'text', 'name' => 'appendedInputButton'),
+                'attributes' => array(
+		    'class' => 'form-control span2',
+		    'type' => 'text',
+		    'name' => 'appendedInputButton'),
             ),
             'descendant' => array(
                 'tag' => 'button',
-                'attributes' => array('class' => 'btn', 'type' => 'button'),
+                'attributes' => array(
+		    'class' => 'btn-default btn',
+		    'type' => 'button'),
                 'content' => 'Go!',
             ),
         );
@@ -436,18 +454,29 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'input',
-            'attributes' => array('class' => 'span2', 'type' => 'text', 'name' => 'appendedInputButton'),
+            'attributes' => array(
+		'class' => 'form-control span2',
+		'type' => 'text',
+		'name' => 'appendedInputButton'
+	    ),
             'parent' => array(
                 'tag' => 'div',
-                'attributes' => array('class' => 'input-append'),
+                'attributes' => array(
+		    'class' => 'input-append'
+		),
                 'child' => array(
                     'tag' => 'button',
-                    'attributes' => array('class' => 'btn', 'type' => 'button'),
+                    'attributes' => array(
+			'class' => 'btn-default btn',
+			'type' => 'button'),
                     'content' => 'Search',
                 ),
                 'descendant' => array(
                     'tag' => 'button',
-                    'attributes' => array('class' => 'btn', 'type' => 'button'),
+                    'attributes' => array(
+			'class' => 'btn',
+			'type' => 'button'
+		    ),
                     'content' => 'Options',
                 ),
             ),
