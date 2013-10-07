@@ -4,8 +4,9 @@ Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bo
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap 3 style markup.
 
-**THIS USES BOOTSTRAP 3 - If your website breaks after installing then
-check the [migration guide](http://bootply.com/bootstrap-3-migration-guide)**
+**THIS USES BOOTSTRAP 3 - If your website breaks after installing
+then check the
+[migration guide](http://bootply.com/bootstrap-3-migration-guide)**
 
 ## Installation
 
