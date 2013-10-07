@@ -10,67 +10,67 @@ class FormTest extends BootstrapperWrapper
             array(
                 'search_open',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
-                ),
+            ),
             array(
                 'search_open_secure',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
-                ),
+            ),
             array(
                 'search_open_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'search_open_secure_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'inline_open',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar">'
-                ),
+            ),
             array(
                 'inline_open_secure',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar">'
-                ),
+            ),
             array(
                 'inline_open_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'inline_open_secure_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'horizontal_open',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar">'
-                ),
+            ),
             array(
                 'horizontal_open_secure',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar">'
-                ),
+            ),
             array(
                 'horizontal_open_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'horizontal_open_secure_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'vertical_open',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
-                ),
+            ),
             array(
                 'vertical_open_secure',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
-                ),
+            ),
             array(
                 'vertical_open_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
-                ),
+            ),
             array(
                 'vertical_open_secure_for_files',
                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar" enctype="multipart/form-data">'
-                )
+            )
         );
     }
 
@@ -128,15 +128,15 @@ class FormTest extends BootstrapperWrapper
             ),
             'descendant' => array(
                 'tag' => 'input',
-                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),                
+                'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
             ),
         );
 
         $html = Form::control_group(
-                    Form::label('inputfoo', 'foo'),
-                    Form::text('inputfoo'),
-                    $displaytype
-                );
+            Form::label('inputfoo', 'foo'),
+            Form::text('inputfoo'),
+            $displaytype
+        );
 
         $this->assertHTML($matcher, $html);
     }
@@ -165,22 +165,22 @@ class FormTest extends BootstrapperWrapper
                 'child' => array(
                     'tag' => 'input',
                     'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
-                 ),
+                ),
                 'descendant' => array(
                     'tag' => 'p',
                     'attributes' => array('class'=>'help-block'),
                     'content' => 'You foobared that!',
                 ),
-                
+
             ),
         );
 
         $html = Form::control_group(
-                    Form::label('inputfoo', 'foo'),
-                    Form::text('inputfoo'),
-                    $displaytype,
-                    Form::block_help('You foobared that!')
-                );
+            Form::label('inputfoo', 'foo'),
+            Form::text('inputfoo'),
+            $displaytype,
+            Form::block_help('You foobared that!')
+        );
 
         $this->assertHTML($matcher, $html);
     }
@@ -371,9 +371,9 @@ class FormTest extends BootstrapperWrapper
 
     public function testLabel()
     {
-        $html = Form::label('foo');        
+        $html = Form::label('foo');
         $matcher = array(
-            'tag' => 'label', 
+            'tag' => 'label',
             'attributes' => array('for' => 'foo', 'class' => 'control-label')
         );
         $this->assertHTML($matcher, $html);
@@ -427,20 +427,20 @@ class FormTest extends BootstrapperWrapper
         $matcher = array(
             'tag' => 'div',
             'attributes' => array(
-		'class' => 'input-append'
-	    ),
+                'class' => 'input-append'
+            ),
             'child' => array(
                 'tag' => 'input',
                 'attributes' => array(
-		    'class' => 'form-control span2',
-		    'type' => 'text',
-		    'name' => 'appendedInputButton'),
+                    'class' => 'form-control span2',
+                    'type' => 'text',
+                    'name' => 'appendedInputButton'),
             ),
             'descendant' => array(
                 'tag' => 'button',
                 'attributes' => array(
-		    'class' => 'btn-default btn',
-		    'type' => 'button'),
+                    'class' => 'btn-default btn',
+                    'type' => 'button'),
                 'content' => 'Go!',
             ),
         );
@@ -455,30 +455,37 @@ class FormTest extends BootstrapperWrapper
         $matcher = array(
             'tag' => 'input',
             'attributes' => array(
-		'class' => 'form-control span2',
-		'type' => 'text',
-		'name' => 'appendedInputButton'
-	    ),
+                'class' => 'form-control span2',
+                'type' => 'text',
+                'name' => 'appendedInputButton'
+            ),
             'parent' => array(
                 'tag' => 'div',
                 'attributes' => array(
-		    'class' => 'input-append'
-		),
+                    'class' => 'input-append'
+                ),
                 'child' => array(
-                    'tag' => 'button',
+                    'tag' => 'span',
                     'attributes' => array(
-			'class' => 'btn-default btn',
-			'type' => 'button'),
-                    'content' => 'Search',
+                        'class' => 'input-group-btn'
+                    ),
+                    'child' => array(
+                        'tag' => 'button',
+                        'attributes' => array(
+                            'class' => 'btn-default btn',
+                            'type' => 'button'),
+                        'content' => 'Search',
+                    ),
                 ),
                 'descendant' => array(
                     'tag' => 'button',
                     'attributes' => array(
-			'class' => 'btn',
-			'type' => 'button'
-		    ),
+                        'class' => 'btn-default btn',
+                        'type' => 'button'
+                    ),
                     'content' => 'Options',
                 ),
+
             ),
         );
 
@@ -488,12 +495,12 @@ class FormTest extends BootstrapperWrapper
     private function createButtonMatcher($type)
     {
         return array(
-          'tag' => 'button',
-          'attributes' => array(
-            'type'     => $type,
-            'data-foo' => 'bar',
-            'class'    => 'foo btn'),
-          'content' => 'foo',
+            'tag' => 'button',
+            'attributes' => array(
+                'type'     => $type,
+                'data-foo' => 'bar',
+                'class'    => 'foo btn'),
+            'content' => 'foo',
         );
     }
 
@@ -604,21 +611,21 @@ class FormTest extends BootstrapperWrapper
     {
         $class = $this->createMagicClass($size);
 
-            $matcher = array(
-                'tag' => 'input',
-                'attributes' => array(
-                    'type'     => 'text',
-                    'data-foo' => 'bar',
-                    'name'     => 'foo',
-                    'value'    => 'hi',
-                    'class'    => 'foo '.$class,
-                ),
-            );
+        $matcher = array(
+            'tag' => 'input',
+            'attributes' => array(
+                'type'     => 'text',
+                'data-foo' => 'bar',
+                'name'     => 'foo',
+                'value'    => 'hi',
+                'class'    => 'foo '.$class,
+            ),
+        );
 
-            $m = $size.'_input';
+        $m = $size.'_input';
 
-            $html = Form::$m('text', 'foo', 'hi', $this->testAttributes);
-            $this->assertHTML($matcher, $html);
+        $html = Form::$m('text', 'foo', 'hi', $this->testAttributes);
+        $this->assertHTML($matcher, $html);
     }
 
     /**
