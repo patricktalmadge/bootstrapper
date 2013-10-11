@@ -14,7 +14,7 @@ Add the following to your `composer.json` file :
 
 ```json
 "require": {
-    "patricktalmadge/bootstrapper": "dev-master",
+    "patricktalmadge/bootstrapper": "dev-develop",
     },
 ```
 
