@@ -2,6 +2,10 @@
 
 Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=master)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
+**HEADS UP**
+
+This is the bundle version for Laravel 3. The latest version is on the [develop branch](https://github.com/patricktalmadge/bootstrapper/tree/develop).
+
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap style markup.
 
 ## Installation
