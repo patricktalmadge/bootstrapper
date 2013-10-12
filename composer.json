@@ -17,7 +17,7 @@
     }
   ],
   "require": {
-    "illuminate/container": "dev-master",
+    "illuminate/container": ">=3.0.0,<4.0.0",
     "meido/html": "1.1.x"
   },
   "autoload": {
