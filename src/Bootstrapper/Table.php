@@ -2,6 +2,7 @@
 namespace Bootstrapper;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Small helper class for creating tables with Bootstrap
@@ -231,6 +232,33 @@ class Table
         $thead .= '</tr>'.PHP_EOL.'</thead>'.PHP_EOL;
 
         return $thead;
+    }
+    
+    /**
+     * Generate sortable table headers links
+     * 
+     * @param string $column Header title
+     * @param string $title Custom header title
+     * @param array  $attributes An array of attributes
+     * @return string a link for sort table column
+     */
+    protected function sortLink($column, $title = null, $attributes = null)
+    {
+        //set column title
+        $title = ($title)?$title:$column;
+
+        $order = (Input::get('sort') == $column and Input::get('order') == 'desc')?'asc':'desc';
+
+        $oldInput               = Input::all(); //Catch old inputs like page number
+        $oldInput['order']      = $order;
+        $oldInput['sort']       = $column;
+
+        //set arrow
+        $arrow = '';
+        if(Input::get('sort') == $column)
+            $arrow ='<span class="glyphicon glyphicon-chevron-'.(($order == 'desc')?'up':'down').'"></span> ';
+
+        return '<a href="?'.http_build_query($oldInput).'"'.Helpers::getContainer('html')->attributes($attributes).'>'.$arrow.$title.'</a>';
     }
 
     /**
