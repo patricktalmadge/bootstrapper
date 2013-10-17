@@ -241,7 +241,7 @@ class Table
      */
     protected function body($content)
     {
-        if(!$content) return false;
+        if(!$content) return $this;
 
         $this->tbody = $content;
 
