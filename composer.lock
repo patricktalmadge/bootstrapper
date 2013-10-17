@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/html-object.git",
-                "reference": "6c38e388bd75fe49c927ec88c1261e57b2124ba7"
+                "reference": "c6a901b12285f9a5b4a3731565eef9580d55dbee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/6c38e388bd75fe49c927ec88c1261e57b2124ba7",
-                "reference": "6c38e388bd75fe49c927ec88c1261e57b2124ba7",
+                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/c6a901b12285f9a5b4a3731565eef9580d55dbee",
+                "reference": "c6a901b12285f9a5b4a3731565eef9580d55dbee",
                 "shasum": ""
             },
             "require": {
@@ -34,12 +34,12 @@
             ],
             "authors": [
                 {
-                    "name": "Maxime Fabre",
+                    "name": "Anahkiasen",
                     "email": "ehtnam6@gmail.com"
                 }
             ],
             "description": "A set of classes to create and manipulate HTML objects abstractions",
-            "time": "2013-08-20 12:47:19"
+            "time": "2013-10-16 23:04:59"
         },
         {
             "name": "anahkiasen/underscore-php",
@@ -91,12 +91,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
-                "reference": "24cf9881576efc4f31f227b9ec0a3880e157335f"
+                "reference": "f92b73370dca83568aefc5700ec33b50787d832d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cache/zipball/24cf9881576efc4f31f227b9ec0a3880e157335f",
-                "reference": "24cf9881576efc4f31f227b9ec0a3880e157335f",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/f92b73370dca83568aefc5700ec33b50787d832d",
+                "reference": "f92b73370dca83568aefc5700ec33b50787d832d",
                 "shasum": ""
             },
             "require": {
@@ -133,7 +133,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-02 21:50:28"
+            "time": "2013-10-12 18:58:19"
         },
         {
             "name": "illuminate/cookie",
@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
-                "reference": "1c540f7b60116114084cb9e8fd97d63c2298de60"
+                "reference": "3a4a9cf1539cbd57af6a78fd639154f4cc4560f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/1c540f7b60116114084cb9e8fd97d63c2298de60",
-                "reference": "1c540f7b60116114084cb9e8fd97d63c2298de60",
+                "url": "https://api.github.com/repos/illuminate/session/zipball/3a4a9cf1539cbd57af6a78fd639154f4cc4560f0",
+                "reference": "3a4a9cf1539cbd57af6a78fd639154f4cc4560f0",
                 "shasum": ""
             },
             "require": {
@@ -382,7 +382,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-08 21:46:57"
+            "time": "2013-10-12 18:58:19"
         },
         {
             "name": "illuminate/support",
@@ -577,16 +577,16 @@
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.12",
+            "version": "v1.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "bf556062f69380066dacd03b4bcc6727c5b8e97e"
+                "reference": "92376c92e7edc281a2ca4e3384f3da9237415db6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/bf556062f69380066dacd03b4bcc6727c5b8e97e",
-                "reference": "bf556062f69380066dacd03b4bcc6727c5b8e97e",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/92376c92e7edc281a2ca4e3384f3da9237415db6",
+                "reference": "92376c92e7edc281a2ca4e3384f3da9237415db6",
                 "shasum": ""
             },
             "require": {
@@ -616,7 +616,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "UTF-8 strings handling for PHP 5.3: portable, performant and extended",
+            "description": "Extensive, portable and performant handling of UTF-8 and grapheme clusters for PHP",
             "homepage": "https://github.com/nicolas-grekas/Patchwork-UTF8",
             "keywords": [
                 "i18n",
@@ -624,7 +624,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2013-10-04 09:47:08"
+            "time": "2013-10-12 09:48:20"
         },
         {
             "name": "symfony/http-foundation",
@@ -633,12 +633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "e2cef23b88161d35f179383803ba8d8ba9d2e7ae"
+                "reference": "9ef4a7e5276d16c57a2067ffee3685a527efeaf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/e2cef23b88161d35f179383803ba8d8ba9d2e7ae",
-                "reference": "e2cef23b88161d35f179383803ba8d8ba9d2e7ae",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/9ef4a7e5276d16c57a2067ffee3685a527efeaf1",
+                "reference": "9ef4a7e5276d16c57a2067ffee3685a527efeaf1",
                 "shasum": ""
             },
             "require": {
@@ -674,7 +674,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-07 10:30:10"
+            "time": "2013-10-17 11:48:11"
         },
         {
             "name": "symfony/process",
