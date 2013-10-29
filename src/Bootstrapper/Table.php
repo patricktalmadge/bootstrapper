@@ -282,7 +282,7 @@ class Table
      */
     public function render()
     {
-        if(!$this->tbody) return false;
+        if(!$this->tbody) return '';
 
         // Fetch ignored columns
         if (!$this->ignore) $this->ignore = Helpers::getContainer('config')->get('bootstrapper::table.ignore');
