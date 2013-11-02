@@ -66,7 +66,7 @@ class Progress
     protected static function bar($amount = 0, $style = null)
     {
         // Prepend bar style with 'bar-'
-        $style = $style ? ' progress-bar-b' . $style : null;
+        $style = $style ? ' progress-bar-' . $style : null;
         return '<div class="progress-bar' .$style. '" style="width: ' .$amount. '%;"></div>';
     }
 
