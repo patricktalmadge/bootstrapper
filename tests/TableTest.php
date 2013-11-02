@@ -133,6 +133,12 @@ class TableTest extends BootstrapperWrapper
     $this->assertHTML($matcher, $fullRow);
   }
 
+  public function testEmptyBody()
+  {
+    $body = Table::body(array())->__toString();
+    $this->assertSame('', $body);
+  }
+
   public function testBody()
   {
     $body = Table::body($this->body)->__toString();
