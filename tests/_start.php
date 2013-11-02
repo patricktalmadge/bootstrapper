@@ -3,101 +3,98 @@ ini_set('memory_limit', '1200M');
 
 abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
 {
-  protected $testAttributes = array(
-    'class'    => 'foo',
-    'data-foo' => 'bar',
-  );
+    protected $testAttributes = array(
+        'class'    => 'foo',
+        'data-foo' => 'bar',
+    );
 
-  protected function setUp()
-  {
-    if (!class_exists('URL')) {
-      Mockery::mock('alias:URL');
+    protected function setUp()
+    {
+        if (!class_exists('URL')) {
+            Mockery::mock('alias:URL');
+        }
+
+        HtmlObject\Image::$urlGenerator = static::getURL();
+        HtmlObject\Link::$urlGenerator  = static::getURL();
+
+        static::getURL();
+        static::getApp();
     }
 
-    HtmlObject\Image::$urlGenerator = static::getURL();
-    HtmlObject\Link::$urlGenerator  = static::getURL();
+    ////////////////////////////////////////////////////////////////////
+    //////////////////////////// ILLUMINATE ////////////////////////////
+    ////////////////////////////////////////////////////////////////////
 
-    static::getURL();
-    static::getApp();
-  }
+    private static function getApp()
+    {
+        $app = Mockery::mock('Illuminate\Container\Container');
+        $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
+        $app->shouldReceive('make')->with('html')->andReturn(static::getHTML());
+        $app->shouldReceive('make')->with('request')->andReturn(static::getRequest());
+        $app->shouldReceive('make')->with('form')->andReturn(static::getForm());
+        $app->shouldReceive('make')->with('config')->andReturn(static::getConfig());
 
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////////// ILLUMINATE ////////////////////////////
-  ////////////////////////////////////////////////////////////////////
+        Bootstrapper\Helpers::setContainer($app);
+    }
 
-  private static function getApp()
-  {
-    $app = Mockery::mock('Illuminate\Container\Container');
-    $app->shouldReceive('make')->with('url')->andReturn(static::getURL());
-    $app->shouldReceive('make')->with('html')->andReturn(static::getHTML());
-    $app->shouldReceive('make')->with('request')->andReturn(static::getRequest());
-    $app->shouldReceive('make')->with('form')->andReturn(static::getForm());
-    $app->shouldReceive('make')->with('config')->andReturn(static::getConfig());
+    private static function getRequest()
+    {
+        $request = Mockery::mock('Request');
+        $request->shouldReceive('url')->andReturn('http://test/');
 
-    Bootstrapper\Helpers::setContainer($app);
-  }
+        return $request;
+    }
 
-  private static function getRequest()
-  {
-    $request = Mockery::mock('Request');
-    $request->shouldReceive('url')->andReturn('http://test/');
+    public static function getHTML()
+    {
+        return new Illuminate\Html\HtmlBuilder(static::getURL());
+    }
 
-    return $request;
-  }
+    public static function getForm()
+    {
+        return new Illuminate\Html\FormBuilder(static::getHTML(), static::getUrl(), 'foo');
+    }
 
-  public static function getHTML()
-  {
-    return new Illuminate\Html\HtmlBuilder(static::getURL());
-  }
+    private static function getURL()
+    {
+        $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
+        $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
+            if ($to == '#' or starts_with($to, 'http://')) return $to;
+            return 'http' .($https ? 's' : null). '://test/'.$to;
+        });
+        $url->shouldReceive('action')->andReturnUsing(function($to, $foo = array(), $https = false) {
+            if ($to == '#' or starts_with($to, 'http://')) return $to;
+            return 'http' .($https ? 's' : null). '://test/'.$to;
+        });
+        $url->shouldReceive('asset')->andReturnUsing(function($to, $foo = array(), $https = false) {
+            if ($to == '#' or starts_with($to, 'http://')) return $to;
+            return 'http' .($https ? 's' : null). '://test/'.$to;
+        });
 
-  public static function getForm()
-  {
-    return new Illuminate\Html\FormBuilder(static::getHTML(), static::getUrl(), 'foo');
-  }
+        return $url;
+    }
 
-  private static function getURL()
-  {
-    $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
-    $url->shouldReceive('to')->andReturnUsing(function($to, $foo = array(), $https = false) {
-      if ($to == '#' or starts_with($to, 'http://')) return $to;
-      return 'http' .($https ? 's' : null). '://test/'.$to;
-    });
-    $url->shouldReceive('action')->andReturnUsing(function($to, $foo = array(), $https = false) {
-      if ($to == '#' or starts_with($to, 'http://')) return $to;
-      return 'http' .($https ? 's' : null). '://test/'.$to;
-    });
-    $url->shouldReceive('asset')->andReturnUsing(function($to, $foo = array(), $https = false) {
-      if ($to == '#' or starts_with($to, 'http://')) return $to;
-      return 'http' .($https ? 's' : null). '://test/'.$to;
-    });
+    private static function getConfig($ignore = array())
+    {
+        $config = Mockery::mock('Config');
+        $config->shouldReceive('get')->with('bootstrapper::icons_prefix')->andReturn('icon-');
+        $config->shouldReceive('get')->with('bootstrapper::breadcrumbs_separator')->andReturn('/');
+        $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
+        $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn($ignore);
 
-    return $url;
-  }
+        return $config;
+    }
 
-  private static function getConfig($ignore = array())
-  {
-    $config = Mockery::mock('Config');
-    $config->shouldReceive('get')->with('bootstrapper::icons_prefix')->andReturn('icon-');
-    $config->shouldReceive('get')->with('bootstrapper::breadcrumbs_separator')->andReturn('/');
-    $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
-    $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn($ignore);
+    ////////////////////////////////////////////////////////////////////
+    //////////////////////////// ASSERTIONS ////////////////////////////
+    ////////////////////////////////////////////////////////////////////
 
-    return $config;
-  }
-
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////////// ASSERTIONS ////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-  public function assertHTML($matcher, $input)
-  {
-    if (is_object($input)) $input = $input->render();
-
-    $this->assertTag(
-      $matcher,
-      $input,
-      "Failed asserting that the HTML matches the provided format :\n\t"
-        .$input."\n\t"
-        .json_encode($matcher));
-  }
+    public function assertHTML($matcher, $input)
+    {
+        if (is_object($input)) {
+            $input = $input->render();
+        }
+	
+        $this->assertTag($matcher, $input, "Failed asserting that the HTML matches the provided format :\n\t".$input."\n\t".json_encode($matcher));
+    }
 }

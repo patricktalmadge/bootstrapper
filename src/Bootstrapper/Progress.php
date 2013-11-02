@@ -21,10 +21,10 @@ class Progress
      * @var constant
      */
     const NORMAL  = '';
-    const DANGER  = 'progress-danger';
-    const INFO    = 'progress-info';
-    const SUCCESS = 'progress-success';
-    const WARNING = 'progress-warning';
+    const DANGER  = 'danger';
+    const INFO    = 'info';
+    const SUCCESS = 'success';
+    const WARNING = 'warning';
 
     /**
      * Adds a bar to the current progress bar
@@ -37,14 +37,19 @@ class Progress
      */
     protected static function show($amounts = 0, $type = Progress::NORMAL, $attributes = array())
     {
-        if(is_array($amounts)) $type = Progress::NORMAL;
-        $attributes = Helpers::add_class($attributes, 'progress '.$type);
+        $attributes = Helpers::add_class($attributes, 'progress');
 
         // Create the progress bar(s)
         $progress = '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
-            if(!is_array($amounts)) $amounts = array((int) $amounts => null);
-            foreach($amounts as $amount => $style)
-                $progress .= static::bar($amount, $style);
+        if(!is_array($amounts)) {
+            $amounts = array((int) $amounts => null);
+        }
+        foreach($amounts as $amount => $style) {
+            if (!$style) {
+                $style = $type;
+            }
+            $progress .= static::bar($amount, $style);
+        }
         $progress .= '</div>';
 
         return $progress;
@@ -61,9 +66,8 @@ class Progress
     protected static function bar($amount = 0, $style = null)
     {
         // Prepend bar style with 'bar-'
-        $style = $style ? ' bar-'.$style : null;
-
-        return '<div class="bar' .$style. '" style="width: ' .$amount. '%;"></div>';
+        $style = $style ? ' progress-bar-b' . $style : null;
+        return '<div class="progress-bar' .$style. '" style="width: ' .$amount. '%;"></div>';
     }
 
     /**
@@ -156,7 +160,7 @@ class Progress
      * @param array  $parameters Method parameters
      *
      * @return mixed
-    */
+     */
     public static function __callStatic($method, $parameters)
     {
         $method_array = explode('_', strtolower($method));
