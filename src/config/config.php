@@ -2,6 +2,9 @@
 
   // The character to use as separator for the breadcrumbs
   'breadcrumbs_separator' => '/',
+  
+  // The library used for icons
+  'icon_library' => 'glyphicon',
 
   // Options relatives to the Table class
   'table' => array(
