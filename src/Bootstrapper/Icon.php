@@ -28,11 +28,6 @@ class Icon extends Tag
     protected $element = 'i';
 
     /**
-     * The prefix for icons
-     */
-    protected static $prefix = 'glyphicon-';
-
-    /**
      * Build a new icon
      *
      * @param array $attributes
@@ -64,16 +59,19 @@ class Icon extends Tag
      */
     public static function __callStatic($method, $parameters)
     {
-        // Explode method name
+        // Get the library
+		$library = Helpers::getContainer('config')->get('bootstrapper::icon_library');
+		$prefix = $library.'-';
+		
+		// Explode method name
         $classes = explode('_', strtolower($method));
         $white = in_array('white', $classes);
         if ($white) unset($classes[array_search('white', $classes)]);
-
       
         // Concatenate icons
-        $classes = static::$prefix.implode('-', $classes);
-        if ($white) $classes .= ' ' .static::$prefix.'white';
-        $classes = 'glyphicon '.$classes;
+        $classes = $prefix.implode('-', $classes);
+        if ($white) $classes .= ' ' .$prefix.'white';
+        $classes = $library.' '.$classes;
 
         $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;
 
