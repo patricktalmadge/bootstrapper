@@ -44,6 +44,14 @@ class Navbar
      * @var boolean
      */
     protected $collapsible = false;
+    
+    /**
+     * Whether the current Navbar should have an navbar-inner and container
+     *
+     * @var boolean
+     */
+    protected $container = true;
+
 
     /**
      * All menus or elements of the current Navbar
@@ -166,6 +174,18 @@ class Navbar
 
         return $this;
     }
+    
+    /**
+     * Activates navbar-inner and container on the current Navbar
+     *
+     * @return Navbar
+     */
+    public function container()
+    {
+        $this->container = true;
+
+        return $this;
+    }
 
     /**
      * Prints out the current Navbar in case it doesn't do it automatically
@@ -189,6 +209,14 @@ class Navbar
 
         // Open navbar containers
         $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
+		
+	   // container and navbar-inner if ased for
+	   if ($this->container) {
+            $html .= '
+            <div class="navbar-inner"><div class="container">';
+       }
+		
+		// Start the header
         $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
@@ -222,6 +250,11 @@ class Navbar
 
         if($this->collapsible)
             $html .= '</div>';
+        
+        if ($this->container) {
+            $html .= '
+            </div></div>';
+        }
 
         // Close navbar containers
         $html .= '</nav>';
