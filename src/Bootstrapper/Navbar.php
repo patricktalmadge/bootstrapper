@@ -50,8 +50,7 @@ class Navbar
      *
      * @var boolean
      */
-    protected $container = true;
-
+    protected $container = false;
 
     /**
      * All menus or elements of the current Navbar
@@ -211,12 +210,11 @@ class Navbar
         $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
 		
 	   // container and navbar-inner if ased for
-	   if ($this->container) {
-            $html .= '
-            <div class="navbar-inner"><div class="container">';
+	if ($this->container) {
+            $html .= '<div class="navbar-inner"><div class="container">';
        }
 		
-		// Start the header
+	// Start the header
         $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
