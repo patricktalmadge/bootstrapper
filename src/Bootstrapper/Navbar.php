@@ -189,7 +189,7 @@ class Navbar
 
         // Open navbar containers
         $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
-        $html .= '<div class="navbar-header">';
+        $html .= '<div class="container"><div class="navbar-header">';
 
         // Collapsible button if asked for
         if ($this->collapsible) {
@@ -224,7 +224,7 @@ class Navbar
             $html .= '</div>';
 
         // Close navbar containers
-        $html .= '</nav>';
+        $html .= '</div></nav>';
 
         return $html;
     }
