@@ -72,7 +72,7 @@ And then add the following to your template view file to include the Twitter Boo
 ## Documentation
 
 - [Bootstrapper documentation](http://bootstrapper.aws.af.cm)
-- [Twitter Bootstrap documentation](http://twitter.github.com/bootstrap)
+- [Twitter Bootstrap documentation](http://getbootstrap.com/)
 - [Twitter Bootstrap on Github](https://github.com/twitter/bootstrap)
 
 
