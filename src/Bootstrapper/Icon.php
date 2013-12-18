@@ -30,7 +30,7 @@ class Icon extends Tag
     /**
      * The prefix for icons
      */
-    protected static $prefix = 'glyphicon-';
+    protected static $prefix = Helpers::getContainer('config')->get('bootstrapper::icon_prefix');
 
     /**
      * Build a new icon

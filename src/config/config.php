@@ -13,4 +13,7 @@
     // Example : ['bordered', 'striped', 'hover']
     'classes' => array(),
   ),
+
+  'icon_prefix' => "glyphicon",
+    
 );
