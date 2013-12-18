@@ -14,6 +14,7 @@
     'classes' => array(),
   ),
 
-  'icon_prefix' => "glyphicon",
+    // The prefix you want to use for your icons. The closing dash is required
+  'icon_prefix' => "glyphicon-",
     
 );

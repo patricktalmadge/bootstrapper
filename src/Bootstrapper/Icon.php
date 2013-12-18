@@ -64,7 +64,7 @@ class Icon extends Tag
 
       
         // Concatenate icons
-        $classes = Helpers::getContainer('config')->get('bootstrapper::icon_prefix').implode('-', $classes);
+        $classes = Helpers::getContainer('config')->get('bootstrapper::icon_prefix') . implode('-', $classes);
         if ($white) $classes .= ' ' .Helpers::getContainer('config')->get('bootstrapper::icon_prefix').'white';
         $classes = 'glyphicon '.$classes;
 
