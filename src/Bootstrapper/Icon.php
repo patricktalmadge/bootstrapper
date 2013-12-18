@@ -27,12 +27,7 @@ class Icon extends Tag
      */
     protected $element = 'i';
 
-    /**
-     * The prefix for icons
-     */
-    protected static $prefix = 'glyphicon-';
-
-    /**
+   /**
      * Build a new icon
      *
      * @param array $attributes
@@ -41,9 +36,7 @@ class Icon extends Tag
     {
         $this->attributes = $attributes;
     }
-
     
-
     /**
      * Allows magic methods such as Icon::home([attributes]) or Icon::close_white()
      *
@@ -71,8 +64,8 @@ class Icon extends Tag
 
       
         // Concatenate icons
-        $classes = static::$prefix.implode('-', $classes);
-        if ($white) $classes .= ' ' .static::$prefix.'white';
+        $classes = Helpers::getContainer('config')->get('bootstrapper::icon_prefix') . implode('-', $classes);
+        if ($white) $classes .= ' ' .Helpers::getContainer('config')->get('bootstrapper::icon_prefix').'white';
         $classes = 'glyphicon '.$classes;
 
         $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;

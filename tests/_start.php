@@ -81,6 +81,7 @@ abstract class BootstrapperWrapper extends PHPUnit_Framework_TestCase
         $config->shouldReceive('get')->with('bootstrapper::breadcrumbs_separator')->andReturn('/');
         $config->shouldReceive('get')->with('bootstrapper::table.classes')->andReturn(array('striped', 'foo', 'hover'));
         $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn($ignore);
+	$config->shouldReceive('get')->with('bootstrapper::icon_prefix')->andReturn("glyphicon-");
 
         return $config;
     }
