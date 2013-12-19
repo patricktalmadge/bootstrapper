@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e4064f33535b9587f77a064c06113dda",
+    "hash": "5cd9acb6c78740ea9da3f8cda5e27138",
     "packages": [
         {
             "name": "anahkiasen/html-object",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/html-object.git",
-                "reference": "c6a901b12285f9a5b4a3731565eef9580d55dbee"
+                "reference": "2c6cdc6368d19ac42357f7ae17bd99652a1916e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/c6a901b12285f9a5b4a3731565eef9580d55dbee",
-                "reference": "c6a901b12285f9a5b4a3731565eef9580d55dbee",
+                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/2c6cdc6368d19ac42357f7ae17bd99652a1916e4",
+                "reference": "2c6cdc6368d19ac42357f7ae17bd99652a1916e4",
                 "shasum": ""
             },
             "require": {
@@ -39,7 +39,7 @@
                 }
             ],
             "description": "A set of classes to create and manipulate HTML objects abstractions",
-            "time": "2013-10-16 23:04:59"
+            "time": "2013-11-19 15:20:02"
         },
         {
             "name": "anahkiasen/underscore-php",
@@ -47,12 +47,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/underscore-php.git",
-                "reference": "049a491701a2ee1c15f82f4c502bbe87671d1619"
+                "reference": "735759486fa1128420d601065dc6f7af07d6b8cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/049a491701a2ee1c15f82f4c502bbe87671d1619",
-                "reference": "049a491701a2ee1c15f82f4c502bbe87671d1619",
+                "url": "https://api.github.com/repos/Anahkiasen/underscore-php/zipball/735759486fa1128420d601065dc6f7af07d6b8cb",
+                "reference": "735759486fa1128420d601065dc6f7af07d6b8cb",
                 "shasum": ""
             },
             "require": {
@@ -82,32 +82,33 @@
                 "laravel",
                 "toolkit"
             ],
-            "time": "2013-07-15 09:18:39"
+            "time": "2013-12-14 14:27:47"
         },
         {
             "name": "illuminate/cache",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Cache",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
-                "reference": "f92b73370dca83568aefc5700ec33b50787d832d"
+                "reference": "275e6f7207a373bdb5fd7986ac1df7694736ac72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cache/zipball/f92b73370dca83568aefc5700ec33b50787d832d",
-                "reference": "f92b73370dca83568aefc5700ec33b50787d832d",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/275e6f7207a373bdb5fd7986ac1df7694736ac72",
+                "reference": "275e6f7207a373bdb5fd7986ac1df7694736ac72",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "4.1.x",
+                "illuminate/support": "4.1.*",
+                "nesbot/carbon": "1.*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "illuminate/database": "4.1.x",
-                "illuminate/encryption": "4.1.x",
-                "illuminate/filesystem": "4.1.x",
-                "illuminate/redis": "4.1.x",
+                "illuminate/database": "4.1.*",
+                "illuminate/encryption": "4.1.*",
+                "illuminate/filesystem": "4.1.*",
+                "illuminate/redis": "4.1.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -133,28 +134,29 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-12 18:58:19"
+            "time": "2013-11-26 20:30:56"
         },
         {
             "name": "illuminate/cookie",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Cookie",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cookie.git",
-                "reference": "defcbcd5881e2e8d208ab862647ac33ee2346949"
+                "reference": "a3b3342a61d29a556480da7229ec3661e2643129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cookie/zipball/defcbcd5881e2e8d208ab862647ac33ee2346949",
-                "reference": "defcbcd5881e2e8d208ab862647ac33ee2346949",
+                "url": "https://api.github.com/repos/illuminate/cookie/zipball/a3b3342a61d29a556480da7229ec3661e2643129",
+                "reference": "a3b3342a61d29a556480da7229ec3661e2643129",
                 "shasum": ""
             },
             "require": {
                 "illuminate/encryption": "4.1.x",
                 "illuminate/support": "4.1.x",
                 "php": ">=5.3.0",
-                "symfony/http-foundation": "2.4.*"
+                "symfony/http-foundation": "2.4.*",
+                "symfony/http-kernel": "2.4.x"
             },
             "require-dev": {
                 "mockery/mockery": "0.7.2",
@@ -183,21 +185,21 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-08 21:46:57"
+            "time": "2013-10-29 16:05:01"
         },
         {
             "name": "illuminate/encryption",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Encryption",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/encryption.git",
-                "reference": "0e2e1a1dacecc80c267098a2255fecfdc2124800"
+                "reference": "bc76637530c138eb46aada994c63d85ab5d64225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/encryption/zipball/0e2e1a1dacecc80c267098a2255fecfdc2124800",
-                "reference": "0e2e1a1dacecc80c267098a2255fecfdc2124800",
+                "url": "https://api.github.com/repos/illuminate/encryption/zipball/bc76637530c138eb46aada994c63d85ab5d64225",
+                "reference": "bc76637530c138eb46aada994c63d85ab5d64225",
                 "shasum": ""
             },
             "require": {
@@ -230,21 +232,21 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-09-19 20:05:08"
+            "time": "2013-11-20 23:29:36"
         },
         {
             "name": "illuminate/html",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Html",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/html.git",
-                "reference": "dff713dd62aaf0064d2f5c2eac38dc9d0ba43e0d"
+                "reference": "ada31f214b25c480a339eeb1d7c25b467d8b0e25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/html/zipball/dff713dd62aaf0064d2f5c2eac38dc9d0ba43e0d",
-                "reference": "dff713dd62aaf0064d2f5c2eac38dc9d0ba43e0d",
+                "url": "https://api.github.com/repos/illuminate/html/zipball/ada31f214b25c480a339eeb1d7c25b467d8b0e25",
+                "reference": "ada31f214b25c480a339eeb1d7c25b467d8b0e25",
                 "shasum": ""
             },
             "require": {
@@ -280,27 +282,28 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-02 16:12:26"
+            "time": "2013-11-20 23:29:36"
         },
         {
             "name": "illuminate/http",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Http",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "939d0dc0d7551d8345fdc460707230a849134b72"
+                "reference": "10fe361d91c32e5f2f60f9bb756bb287f8c369d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/939d0dc0d7551d8345fdc460707230a849134b72",
-                "reference": "939d0dc0d7551d8345fdc460707230a849134b72",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/10fe361d91c32e5f2f60f9bb756bb287f8c369d2",
+                "reference": "10fe361d91c32e5f2f60f9bb756bb287f8c369d2",
                 "shasum": ""
             },
             "require": {
                 "illuminate/session": "4.1.x",
                 "illuminate/support": "4.1.x",
-                "symfony/http-foundation": "2.4.*"
+                "symfony/http-foundation": "2.4.*",
+                "symfony/http-kernel": "2.4.*"
             },
             "require-dev": {
                 "mockery/mockery": "0.7.2",
@@ -329,34 +332,36 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-08 21:46:57"
+            "time": "2013-11-20 23:29:36"
         },
         {
             "name": "illuminate/session",
-            "version": "dev-master",
+            "version": "4.1.x-dev",
             "target-dir": "Illuminate/Session",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
-                "reference": "3a4a9cf1539cbd57af6a78fd639154f4cc4560f0"
+                "reference": "57b71c16f7389625b622ec0c08aec68f9ae9ce94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/3a4a9cf1539cbd57af6a78fd639154f4cc4560f0",
-                "reference": "3a4a9cf1539cbd57af6a78fd639154f4cc4560f0",
+                "url": "https://api.github.com/repos/illuminate/session/zipball/57b71c16f7389625b622ec0c08aec68f9ae9ce94",
+                "reference": "57b71c16f7389625b622ec0c08aec68f9ae9ce94",
                 "shasum": ""
             },
             "require": {
-                "illuminate/cache": "4.1.x",
-                "illuminate/cookie": "4.1.x",
-                "illuminate/encryption": "4.1.x",
-                "illuminate/support": "4.1.x",
+                "illuminate/cache": "4.1.*",
+                "illuminate/cookie": "4.1.*",
+                "illuminate/encryption": "4.1.*",
+                "illuminate/support": "4.1.*",
+                "nesbot/carbon": "1.*",
                 "php": ">=5.3.0",
+                "symfony/finder": "2.4.*",
                 "symfony/http-foundation": "2.4.*"
             },
             "require-dev": {
-                "illuminate/console": "4.1.x",
-                "mockery/mockery": ">=0.7.2",
+                "illuminate/console": "4.1.*",
+                "mockery/mockery": "0.8.0",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -382,7 +387,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-12 18:58:19"
+            "time": "2013-12-06 17:50:34"
         },
         {
             "name": "illuminate/support",
@@ -391,12 +396,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "33df9bdf3d9b38353097d2e6cfdfc4ebfe9900c1"
+                "reference": "5625c8d61171f57da3495d2163370b03c0cfa94a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/33df9bdf3d9b38353097d2e6cfdfc4ebfe9900c1",
-                "reference": "33df9bdf3d9b38353097d2e6cfdfc4ebfe9900c1",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/5625c8d61171f57da3495d2163370b03c0cfa94a",
+                "reference": "5625c8d61171f57da3495d2163370b03c0cfa94a",
                 "shasum": ""
             },
             "require": {
@@ -433,127 +438,33 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-03 21:32:36"
+            "time": "2013-12-12 13:21:25"
         },
         {
-            "name": "jasonlewis/basset",
-            "version": "dev-master",
+            "name": "nesbot/carbon",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jasonlewis/basset.git",
-                "reference": "d1e7d7c8c448a1cca2538d38289af3b34fc3e18c"
+                "url": "https://github.com/briannesbitt/Carbon.git",
+                "reference": "03ede52a1f360441b5826cb8a798e0d0a919731f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jasonlewis/basset/zipball/d1e7d7c8c448a1cca2538d38289af3b34fc3e18c",
-                "reference": "d1e7d7c8c448a1cca2538d38289af3b34fc3e18c",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/03ede52a1f360441b5826cb8a798e0d0a919731f",
+                "reference": "03ede52a1f360441b5826cb8a798e0d0a919731f",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": "1.1.*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "illuminate/config": "4.0.*",
-                "illuminate/console": "4.0.*",
-                "illuminate/filesystem": "4.0.*",
-                "illuminate/log": "4.0.*",
-                "illuminate/routing": "4.0.*",
-                "illuminate/support": "4.0.*",
-                "mockery/mockery": ">=0.7.2",
-                "symfony/process": "2.3.*"
-            },
-            "suggest": {
-                "aws/aws-sdk-php": "Deploy static assets directly to your S3 buckets.",
-                "rackspace/php-cloudfiles": "Deploy static assets directly to your Cloud Files container."
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
-                    "Basset": "src/"
-                },
-                "classmap": [
-                    "tests/Cases/FilterTestCase.php"
-                ],
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Jason Lewis",
-                    "email": "jason.lewis1991@gmail.com",
-                    "homepage": "http://jasonlewis.me",
-                    "role": "Creator"
+                    "Carbon": "src"
                 }
-            ],
-            "description": "A better asset management package for Laravel.",
-            "keywords": [
-                "assets",
-                "basset",
-                "laravel"
-            ],
-            "time": "2013-06-14 06:13:15"
-        },
-        {
-            "name": "kriswallsmith/assetic",
-            "version": "1.1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "1d671c54f147ece319642132330927672b6190a7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/1d671c54f147ece319642132330927672b6190a7",
-                "reference": "1d671c54f147ece319642132330927672b6190a7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.1",
-                "symfony/process": "~2.1"
-            },
-            "require-dev": {
-                "cssmin/cssmin": "*",
-                "joliclic/javascript-packer": "*",
-                "kamicane/packager": "*",
-                "leafo/lessphp": "*",
-                "leafo/scssphp": "*",
-                "leafo/scssphp-compass": "*",
-                "mrclay/minify": "*",
-                "phpunit/phpunit": "~3.7",
-                "ptachoire/cssembed": "*",
-                "twig/twig": "~1.6"
-            },
-            "suggest": {
-                "leafo/lessphp": "Assetic provides the integration with the lessphp LESS compiler",
-                "leafo/scssphp": "Assetic provides the integration with the scssphp SCSS compiler",
-                "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin",
-                "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
-                "twig/twig": "Assetic provides the integration with the Twig templating engine"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Assetic": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -561,32 +472,32 @@
             ],
             "authors": [
                 {
-                    "name": "Kris Wallsmith",
-                    "email": "kris.wallsmith@gmail.com",
-                    "homepage": "http://kriswallsmith.net/"
+                    "name": "Brian Nesbitt",
+                    "email": "brian@nesbot.com",
+                    "homepage": "http://nesbot.com"
                 }
             ],
-            "description": "Asset Management for PHP",
-            "homepage": "https://github.com/kriswallsmith/assetic",
+            "description": "A simple API extension for DateTime.",
+            "homepage": "https://github.com/briannesbitt/Carbon",
             "keywords": [
-                "assets",
-                "compression",
-                "minification"
+                "date",
+                "datetime",
+                "time"
             ],
-            "time": "2013-09-03 12:44:05"
+            "time": "2013-12-05 04:13:29"
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.13",
+            "version": "v1.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "92376c92e7edc281a2ca4e3384f3da9237415db6"
+                "reference": "bc719e850b57791c1024d06f9fe7d474348e7ba6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/92376c92e7edc281a2ca4e3384f3da9237415db6",
-                "reference": "92376c92e7edc281a2ca4e3384f3da9237415db6",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/bc719e850b57791c1024d06f9fe7d474348e7ba6",
+                "reference": "bc719e850b57791c1024d06f9fe7d474348e7ba6",
                 "shasum": ""
             },
             "require": {
@@ -624,21 +535,220 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2013-10-12 09:48:20"
+            "time": "2013-12-07 12:20:20"
+        },
+        {
+            "name": "psr/log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "5144da9525d24346bf009ff28f10cbaa1f0f166e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/5144da9525d24346bf009ff28f10cbaa1f0f166e",
+                "reference": "5144da9525d24346bf009ff28f10cbaa1f0f166e",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2013-12-05 15:25:07"
+        },
+        {
+            "name": "symfony/debug",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Debug",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Debug.git",
+                "reference": "a1dd7dc6d7862dc1593e528fa870e44a31015d5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/a1dd7dc6d7862dc1593e528fa870e44a31015d5f",
+                "reference": "a1dd7dc6d7862dc1593e528fa870e44a31015d5f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/http-foundation": "~2.1",
+                "symfony/http-kernel": "~2.1"
+            },
+            "suggest": {
+                "symfony/http-foundation": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Debug\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Debug Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-12-16 10:52:16"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "81c64d4567f7cf1a983f71f4a5b4d338165aa6e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/81c64d4567f7cf1a983f71f4a5b4d338165aa6e4",
+                "reference": "81c64d4567f7cf1a983f71f4a5b4d338165aa6e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": "~2.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-12-03 14:52:29"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "2.4.x-dev",
+            "target-dir": "Symfony/Component/Finder",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Finder.git",
+                "reference": "72356bf0646b11af1bae666c28a639bd8ede459f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/72356bf0646b11af1bae666c28a639bd8ede459f",
+                "reference": "72356bf0646b11af1bae666c28a639bd8ede459f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Finder\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-11-26 16:40:27"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "dev-master",
+            "version": "2.4.x-dev",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "9ef4a7e5276d16c57a2067ffee3685a527efeaf1"
+                "reference": "381245ba3e507a3e9c5b4c2cbf344a312fb6081d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/9ef4a7e5276d16c57a2067ffee3685a527efeaf1",
-                "reference": "9ef4a7e5276d16c57a2067ffee3685a527efeaf1",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/381245ba3e507a3e9c5b4c2cbf344a312fb6081d",
+                "reference": "381245ba3e507a3e9c5b4c2cbf344a312fb6081d",
                 "shasum": ""
             },
             "require": {
@@ -674,25 +784,49 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-17 11:48:11"
+            "time": "2013-11-28 10:27:26"
         },
         {
-            "name": "symfony/process",
-            "version": "dev-master",
-            "target-dir": "Symfony/Component/Process",
+            "name": "symfony/http-kernel",
+            "version": "2.4.x-dev",
+            "target-dir": "Symfony/Component/HttpKernel",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Process.git",
-                "reference": "27b0fc645a557b2fc7bc7735cfb05505de9351be"
+                "url": "https://github.com/symfony/HttpKernel.git",
+                "reference": "59472b6815cd11ea7e467e6e34700a1fba5d79d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/27b0fc645a557b2fc7bc7735cfb05505de9351be",
-                "reference": "27b0fc645a557b2fc7bc7735cfb05505de9351be",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/59472b6815cd11ea7e467e6e34700a1fba5d79d5",
+                "reference": "59472b6815cd11ea7e467e6e34700a1fba5d79d5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "psr/log": "~1.0",
+                "symfony/debug": "~2.3",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/http-foundation": "~2.4"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "~2.2",
+                "symfony/class-loader": "~2.1",
+                "symfony/config": "~2.0",
+                "symfony/console": "~2.2",
+                "symfony/dependency-injection": "~2.0",
+                "symfony/finder": "~2.0",
+                "symfony/process": "~2.0",
+                "symfony/routing": "~2.2",
+                "symfony/stopwatch": "~2.2",
+                "symfony/templating": "~2.2"
+            },
+            "suggest": {
+                "symfony/browser-kit": "",
+                "symfony/class-loader": "",
+                "symfony/config": "",
+                "symfony/console": "",
+                "symfony/dependency-injection": "",
+                "symfony/finder": ""
             },
             "type": "library",
             "extra": {
@@ -702,7 +836,7 @@
             },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Process\\": ""
+                    "Symfony\\Component\\HttpKernel\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -719,9 +853,9 @@
                     "homepage": "http://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Process Component",
+            "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-10 05:53:18"
+            "time": "2013-12-12 16:06:47"
         }
     ],
     "packages-dev": [
@@ -731,12 +865,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "1e1e189dabda8bf47de0a64371987e7a80db581f"
+                "reference": "fd9f745e335f8a0e68ef34f44f0560a54e44ef84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/1e1e189dabda8bf47de0a64371987e7a80db581f",
-                "reference": "1e1e189dabda8bf47de0a64371987e7a80db581f",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/fd9f745e335f8a0e68ef34f44f0560a54e44ef84",
+                "reference": "fd9f745e335f8a0e68ef34f44f0560a54e44ef84",
                 "shasum": ""
             },
             "require": {
@@ -777,7 +911,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2013-10-02 19:52:52"
+            "time": "2013-11-26 20:36:44"
         }
     ],
     "aliases": [
@@ -787,7 +921,6 @@
     "stability-flags": {
         "anahkiasen/html-object": 20,
         "anahkiasen/underscore-php": 20,
-        "jasonlewis/basset": 20,
         "mockery/mockery": 20
     },
     "platform": {

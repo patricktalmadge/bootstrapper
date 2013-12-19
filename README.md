@@ -14,8 +14,8 @@ Add the following to your `composer.json` file :
 
 ```json
 "require": {
-    "patricktalmadge/bootstrapper": "dev-develop",
-    },
+"patricktalmadge/bootstrapper": "dev-develop",
+},
 ```
 
 Then register Bootstrapper's service provider with Laravel :
@@ -52,21 +52,23 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 'Typography'     => 'Bootstrapper\\Typography',
 ```
 
-## Using the included Bootstrap assets
+## Including Bootstrap
 
-As there is no **Asset** class in Laravel 4, Bootstrapper uses the famous [Basset](http://jasonlewis.me/code/basset) package to manage its assets. In order to use the Bootstrap version included with Bootstrapper, you first need to add Basset's Service Provider and facade to your app file. For this refer to Basset's installation instructions.
+**This package used to use Basset, which is now no longer being actively developed. If you used to use Basset for Bootstrapper alone then you'll need to delete any references to Basset and follow this new guide.**
 
-Once this is done, publish the package assets to your public folder.
-
-```shell
-php artisan asset:publish patricktalmadge/bootstrapper
-```
-
-And then add the following to your template view file to include the Twitter Bootstrap CSS and Javascript.
+Include the Bootstrap files just like any other css and js files! Download Bootstrap and JQuery from the [Bootstrap site](http://getbootstrap.com), place them in your public folder and then include them like so:
 
 ```php
-{{ Basset::show('bootstrapper.css') }}
-{{ Basset::show('bootstrapper.js') }}
+{{ HTML::style('path/to/bootstrap.css') }}
+{{ HTML::script('path/to/jquery.js') }}
+{{ HTML::script('path/to/bootstrap.js') }}
+```
+
+Feel free to use a CDN, but bear in mind that you may get unexpected functionality if the version you use isn't the version Bootstrapper currently supports (but open an issue to let us know!).
+
+```html
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script >
 ```
 
 ## Documentation
@@ -79,5 +81,5 @@ And then add the following to your template view file to include the Twitter Boo
 ## Contributing
 
 Contributing is easy! Just fork the repo, make your changes then send a pull request
-on GitHub. If your PR is languishing in the queue and nothing is happening, then send
+on GitHub. If your PR is languishing in the queue and nothing seems to be happening, then send
 Patrick an [email](mailto:pjr0911025@googlemail.com) or a [tweet](http://twitter.com/DrugCrazed)
