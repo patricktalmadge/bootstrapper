@@ -2,6 +2,8 @@
 
 Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=develop)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
+Current supported Bootstrap version: 3.0.3
+
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap 3 style markup.
 
 **THIS USES BOOTSTRAP 3 - If your website breaks after installing
