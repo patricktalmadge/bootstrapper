@@ -216,6 +216,11 @@ class Carousel
         // Render main wrapper
         $this->attributes['id'] = substr($this->hash, 1);
         $html = '<div'.Helpers::getContainer('html')->attributes($this->attributes).'>';
+	$html .= "<ol class='carousel-indicators'>";
+	for ($i = 0; $i < count($this->items); $i++) {
+	    $html .= "<li data-slide-to='" . $i . "'></li>";
+	}
+	$html .= "</ol>";
 
             // Render items
             $html .= '<div class="carousel-inner">';
