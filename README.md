@@ -43,6 +43,7 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 'Image'          => 'Bootstrapper\\Image',
 'Label'          => 'Bootstrapper\\Label',
 'MediaObject'    => 'Bootstrapper\\MediaObject',
+'Modal'          => 'Bootstrapper\\Modal',
 'Navbar'         => 'Bootstrapper\\Navbar',
 'Navigation'     => 'Bootstrapper\\Navigation',
 'Paginator'      => 'Bootstrapper\\Paginator',
