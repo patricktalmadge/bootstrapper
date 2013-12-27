@@ -96,8 +96,8 @@ class Carousel
         $navigation = null;
 
         if (sizeof($this->items) > 1) {
-            $navigation  = Helpers::getContainer('html')->link($this->hash, $this->prev, array('class' => 'carousel-control left',  'data-slide' => 'prev'));
-            $navigation .= Helpers::getContainer('html')->link($this->hash, $this->next, array('class' => 'carousel-control right', 'data-slide' => 'next'));
+            $navigation  = '<a href="' . $this->hash . '" class="carousel-control left" data-slide="prev">' . $this->prev . '</a>';
+            $navigation .= '<a href="' . $this->hash . '" class="carousel-control right" data-slide="next">' . $this->next . '</a>';
         }
 
         return $navigation;
@@ -147,7 +147,7 @@ class Carousel
      * @param  string   $prev The new text
      * @return Carousel
      */
-    public function prev($next)
+    public function prev($prev)
     {
         $this->prev = $prev;
 
@@ -224,9 +224,9 @@ class Carousel
 
         // Render items
         $html .= '<div class="carousel-inner">';
-            foreach ($this->items as $key => $item) {
-                $html .= $this->createItem($item, $key);
-            }
+        foreach ($this->items as $key => $item) {
+            $html .= $this->createItem($item, $key);
+        }
         $html .= '</div>';
 
         // Render navigation
