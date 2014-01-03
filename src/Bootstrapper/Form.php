@@ -474,7 +474,7 @@ class Form extends Facade
      */
     public static function control_group($label, $control, $group_class = '', $help = null)
     {
-        $class = 'control-group';
+        $class = 'form-group';
 
         if ($group_class !== '') {
             $class .= ' '.$group_class;
