@@ -120,7 +120,7 @@ class FormTest extends BootstrapperWrapper
 
         $matcher = array(
             'tag' => 'div',
-            'attributes' => array('class' => 'form-group'.$class),
+            'attributes' => array('class' => 'control-group'.$class),
             'child' => array(
                 'tag' => 'label',
                 'attributes' => array('for' => 'inputfoo'),
@@ -161,7 +161,7 @@ class FormTest extends BootstrapperWrapper
             'content' => 'foo',
             'parent' => array(
                 'tag' => 'div',
-                'attributes' => array('class' => 'form-group'.$class),
+                'attributes' => array('class' => 'control-group'.$class),
                 'child' => array(
                     'tag' => 'input',
                     'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
