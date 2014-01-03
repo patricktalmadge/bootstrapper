@@ -147,7 +147,7 @@ class Form extends Facade
                 $attributes['class'] = isset($attributes['class']) ? $attributes['class'] . ' form-control' : 'form-control';
                 $parameters[$attr_index] = $attributes;
             }
-            $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'input-', 'col-md-');
+            $parameters = Helpers::set_multi_class_attributes($function, $method_array, $parameters, $attr_index, 'input-', 'col-xs-');
             $method = $function;
             
         }
