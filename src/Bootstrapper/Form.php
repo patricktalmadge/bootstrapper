@@ -47,9 +47,9 @@ class Form extends Facade
      * Display types
      */
     const NORMAL  = '';
-    const WARNING = 'warning';
-    const ERROR   = 'error';
-    const SUCCESS = 'success';
+    const WARNING = 'has-warning';
+    const ERROR   = 'has-error';
+    const SUCCESS = 'has-success';
 
     /**
      * Redirect calls to Form facade
