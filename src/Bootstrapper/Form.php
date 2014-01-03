@@ -103,7 +103,8 @@ class Form extends Facade
         //$sizes = array('mini' , 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'span1', 'span2', 'span3', 'span4', 'span5', 'span6', 'span7', 'span8', 'span9', 'span10', 'span11', 'span12');
         $types = array('input', 'text', 'password', 'uneditable', 'select', 'multiselect', 'file', 'textarea', 'date', 'number', 'url', 'tel', 'email', 'search');
 
-        $method_array = str_replace('span', 'col-md-', explode('_', strtolower($method)));
+    //Replace span with col-xs for BS3 - means that calls like Form::span2_text() output correctly
+        $method_array = str_replace('span', 'col-xs-', explode('_', strtolower($method)));
         $type_found = array_intersect($method_array, $types);
 
         if (count($type_found) > 0) {
