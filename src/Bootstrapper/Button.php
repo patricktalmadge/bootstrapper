@@ -69,6 +69,8 @@ class Button
     {
         $attributes['type'] = 'submit';
 
+        $attributes = Helpers::add_class($attributes, 'btn-default');
+
         return static::storeButton('normal', $value, $attributes, $hasDropdown);
     }
 
@@ -85,6 +87,8 @@ class Button
     public static function reset($value, $attributes = array(), $hasDropdown = false)
     {
         $attributes['type'] = 'reset';
+
+        $attributes = Helpers::add_class($attributes, 'btn-default');
 
         return static::storeButton('normal', $value, $attributes, $hasDropdown);
     }

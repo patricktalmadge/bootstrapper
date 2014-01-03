@@ -499,7 +499,7 @@ class FormTest extends BootstrapperWrapper
             'attributes' => array(
                 'type'     => $type,
                 'data-foo' => 'bar',
-                'class'    => 'foo btn'),
+                'class'    => 'foo btn btn-default'),
             'content' => 'foo',
         );
     }
