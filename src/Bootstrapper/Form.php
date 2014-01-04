@@ -679,7 +679,7 @@ class Form extends Facade
      */
     public static function prepend($control, $value)
     {
-        return '<div class="input-prepend"><span class="add-on">'.$value.'</span>'.$control.'</div>';
+        return '<div class="input-group"><span class="input-group-addon">'.$value.'</span>'.$control.'</div>';
     }
 
     /**
@@ -692,7 +692,7 @@ class Form extends Facade
      */
     public static function append($control, $value)
     {
-        return '<div class="input-append">'.$control.'<span class="add-on">'.$value.'</span></div>';
+        return '<div class="input-group">'.$control.'<span class="input-group-addon">'.$value.'</span></div>';
     }
 
     /**
@@ -706,7 +706,7 @@ class Form extends Facade
      */
     public static function prepend_append($control, $pre_value, $post_value)
     {
-        return '<div class="input-prepend input-append"><span class="add-on">'.$pre_value.'</span>'.$control.'<span class="add-on">'.$post_value.'</span></div>';
+        return '<div class="input-group"><span class="input-group-addon">'.$pre_value.'</span>'.$control.'<span class="input-group-addon">'.$post_value.'</span></div>';
     }
 
     /**
@@ -722,7 +722,25 @@ class Form extends Facade
         $value = is_array($buttons) ? implode('</span><span class="input-group-btn">', $buttons) : $buttons;
         $value = '<span class="input-group-btn">'.$value.'</span>';
 
-        return '<div class="input-append">'.$control.$value.'</div>';
+        return '<div class="input-group">'.$control.$value.'</div>';
+    }
+
+    
+
+    /**
+     * Create an input control with a series of appended buttons.
+     *
+     * @param string $control control to append buttons to
+     * @param mixed  $buttons html or array of html buttons
+     *
+     * @return string
+     */
+    public static function prepend_buttons($control, $buttons)
+    {
+        $value = is_array($buttons) ? implode('</span><span class="input-group-btn">', $buttons) : $buttons;
+        $value = '<span class="input-group-btn">'.$value.'</span>';
+
+        return '<div class="input-group">'.$value.$control.'</div>';
     }
 
     /**
