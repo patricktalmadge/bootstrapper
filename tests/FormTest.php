@@ -432,7 +432,7 @@ class FormTest extends BootstrapperWrapper
             'child' => array(
                 'tag' => 'input',
                 'attributes' => array(
-                    'class' => 'form-control col-xs-2',
+                    'class' => 'form-control span2',
                     'type' => 'text',
                     'name' => 'appendedInputButton'),
             ),
@@ -455,7 +455,7 @@ class FormTest extends BootstrapperWrapper
         $matcher = array(
             'tag' => 'input',
             'attributes' => array(
-                'class' => 'form-control col-xs-2',
+                'class' => 'form-control span2',
                 'type' => 'text',
                 'name' => 'appendedInputButton'
             ),
@@ -549,7 +549,7 @@ class FormTest extends BootstrapperWrapper
 
     private function createMagicClass($size)
     {
-        $class = str_replace('span', 'col-xs-', $size);
+        $class = $size;
         if (!stristr($size, 'span')) {
             $class = 'input-'.$size;
         }
