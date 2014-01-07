@@ -47,13 +47,11 @@ class DropdownButtonTest extends BootstrapperWrapper
   {
     return array(
       array('normal'),
-      array('custom'),
       array('primary'),
       array('danger'),
       array('warning'),
       array('success'),
       array('info'),
-      array('inverse'),
     );
   }
 
@@ -113,6 +111,7 @@ class DropdownButtonTest extends BootstrapperWrapper
   public function testCallStatic($class)
   {
     $dropdown = DropdownButton::$class('foo', $this->links, $this->testAttributes)->render();
+    $class = $class == 'normal' ? 'normal' : $class . ' btn-default';
     $matcher = $this->matcher($class);
 
     $this->assertEquals($matcher, $dropdown);
