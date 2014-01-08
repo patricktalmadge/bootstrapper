@@ -48,4 +48,15 @@ class ImageTest extends BootstrapperWrapper
     $this->assertHTML($this->createMatcher($class), $image);
   }
 
+  /**
+   * @dataProvider classes
+   */
+  public function testResponsive($class)
+  {
+
+    $image = Image::$class($this->url, 'foo', $this->testAttributes)->responsive();
+
+    $this->assertHTML($this->createMatcher($class . ' img-responsive'), $image);
+  }
+
 }
