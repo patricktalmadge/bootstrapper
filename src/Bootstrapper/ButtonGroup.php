@@ -18,76 +18,39 @@ use Illuminate\Support\Facades\HTML;
  */
 class ButtonGroup
 {
-    /**
-     * Puts the ButtonGroup in a checkbox mode.
-     *
-     * @var string
-     */
-    const TOGGLE_CHECKBOX = 'checkbox';
 
-    /**
-     * Puts the ButtonGroup in a radio button mode. Allowing only
-     * one button to be selected at a time.
-     *
-     * @var string
-     */
-    const TOGGLE_RADIO = 'radio';
+  const PRIMARY = 'btn-primary';
 
-    /**
-     * Opens a vertical button group
-     *
-     * @param boolean $toggle     Whether the button group should be togglable
-     * @param array   $attributes An array of attributes
-     *
-     * @return string An opening <div> tag
-     */
-    public static function vertical_open($toggle = null, $attributes = array())
-    {
-        $attributes = Helpers::add_class($attributes, 'btn-group-vertical');
-
-        return static::open($toggle, $attributes);
+  private static function makeContents($contents = array(), $type) {
+    $string = '';
+    foreach($contents as $button) {
+      $class = "btn " . $button[0];
+      $content = $button[1];
+      $attributes = isset($button[2]) ? $button[2] : array();
+      $attributes = Helpers::add_class($attributes, $type, 'type');
+      $string .= "<label class='" . $class . "'>";
+      $string .= "<input ". Helpers::getContainer('html')->attributes($attributes) . ">" . $content;
+      $string .= "</label>";
     }
+    return $string;
+  }
 
-    /**
-     * Alias for open so both horizontal_open and open can be used.
-     *
-     * @param boolean $toggle     Whether the button group should be togglable
-     * @param array   $attributes An array of attributes
-     *
-     * @return string An opening <div> tag
-     */
-    public static function horizontal_open($toggle = null, $attributes = array())
-    {
-        return static::open($toggle, $attributes);
-    }
+  private static function make($type, $contents = array(), $attributes = array()) {
+    $attributes = Helpers::add_class($attributes, 'buttons', 'data-toggle');
+    $attributes = Helpers::add_class($attributes, 'btn-group');
+    $string = "<div " . Helpers::getContainer('html')->attributes($attributes) .  ">";
+    $string .= static::makeContents($contents, $type);
+    $string .= "</div>";
+    return $string;
+  }
 
-    /**
-     * Opens a new ButtonGroup section.
-     *
-     * @param string $toggle     Whether the button group should be togglable
-     * @param array  $attributes An array of attributes
-     *
-     * @return string An opening <div> tag
-     */
-    public static function open($toggle = null, $attributes = array())
-    {
-        $validToggles = array(ButtonGroup::TOGGLE_CHECKBOX, ButtonGroup::TOGGLE_RADIO);
-        if (isset($toggle) && in_array($toggle, $validToggles)) {
-            $attributes['data-toggle'] = 'buttons-'.$toggle;
-        }
+  public static function radio($contents = array(), $attributes = array()) {
+    return static::make('radio', $contents, $attributes);
+  }
 
-        $attributes = Helpers::add_class($attributes, 'btn-group');
+  public static function checkbox($contents = array(), $attributes = array()) {
+    return static::make('checkbox', $contents, $attributes);
+  }
 
-        return '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
-    }
 
-    /**
-     * Closes the ButtonGroup section.
-     *
-     * @return string
-     */
-    public static function close()
-    {
-        return '</div>';
-    }
 }
