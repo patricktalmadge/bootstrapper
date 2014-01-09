@@ -15,11 +15,6 @@ class BreadcrumbTest extends BootstrapperWrapper
       'count' => 3,
       'only' => array(
         'tag' => 'li',
-        'descendant' => array(
-          'tag' => 'span',
-          'attributes' => array('class' => 'divider'),
-          'content' => '/',
-        ),
       ),
     ),
     'attributes' => array(

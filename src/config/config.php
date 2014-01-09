@@ -1,8 +1,5 @@
 <?php return array(
 
-  // The character to use as separator for the breadcrumbs
-  'breadcrumbs_separator' => '/',
-
   // Options relatives to the Table class
   'table' => array(
 

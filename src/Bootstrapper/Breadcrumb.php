@@ -54,12 +54,9 @@ class Breadcrumb
     protected static function renderItem($content, $active = false)
     {
         $item = Element::li($content);
-        $separator = Helpers::getContainer('config')->get('bootstrapper::breadcrumbs_separator');
-        $separator = Element::span($separator)->addClass('divider');
 
         // If the link is not active it's the last one, don't append separator
-        if (!$active) $item->nest($separator);
-        else $item->addClass('active');
+        if($active) $item->addClass('active');
         return $item;
     }
 }
