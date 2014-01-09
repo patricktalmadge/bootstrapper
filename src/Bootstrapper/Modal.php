@@ -73,7 +73,7 @@ class Modal {
         $this->attributes = Helpers::add_class($this->attributes, 'modal');
         $this->attributes = Helpers::add_class($this->attributes, "true", 'aria-hidden');
         // Open the modal
-        $string = "<div" . Helpers::getContainer('html')->attributes($this->attributes) . "><div class='modal-content'><div class='modal-dialog'>";
+        $string = "<div" . Helpers::getContainer('html')->attributes($this->attributes) . "><div class='modal-dialog'><div class='modal-content'>";
         // Add the header
         $string .= '<div class="modal-header">';
         $string .= '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>';

@@ -16,12 +16,12 @@ class ModalTest extends BootstrapperWrapper
       'child' => array(
         'tag' => 'div',
         'attributes' => array(
-          'class' => 'modal-content'
+          'class' => 'modal-dialog'
         ),
         'child' => array(
           'tag' => 'div',
           'attributes' => array(
-            'class' => 'modal-dialog'
+            'class' => 'modal-content'
           ),
           'child' => array(
             'tag' => 'div',
