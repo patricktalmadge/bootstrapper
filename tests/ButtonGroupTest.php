@@ -36,6 +36,17 @@ class ButtonGroupTest extends BootstrapperWrapper
     );
   }
 
+  public function classes() {
+    return array(
+      array(ButtonGroup::NORMAL),
+      array(ButtonGroup::PRIMARY),
+      array(ButtonGroup::SUCCESS),
+      array(ButtonGroup::INFO),
+      array(ButtonGroup::DANGER),
+      array(ButtonGroup::LINK),
+    );
+  }
+
   /**
    * @dataProvider types
    */
@@ -47,6 +58,21 @@ class ButtonGroupTest extends BootstrapperWrapper
     ), $this->testAttributes);
 
     $matcher = $this->getMatcher('btn-primary', $type);
+
+    $this->assertHTML($matcher, $html);
+  }
+
+  /**
+   * @dataProvider classes
+   */
+  public function testClasses($class) {
+    $html = ButtonGroup::radio(array(
+      array($class, 'Option 1'),
+      array($class, 'Option 2'),
+      array($class, 'Option 3'),
+    ), $this->testAttributes);
+
+    $matcher = $this->getMatcher($class, 'radio');
 
     $this->assertHTML($matcher, $html);
   }

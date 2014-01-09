@@ -19,7 +19,12 @@ use Illuminate\Support\Facades\HTML;
 class ButtonGroup
 {
 
+  const NORMAL = 'btn-default';
   const PRIMARY = 'btn-primary';
+  const SUCCESS = 'btn-success';
+  const INFO = 'btn-info';
+  const DANGER = 'btn-danger';
+  const LINK = 'btn-link';
 
   private static function makeContents($contents = array(), $type) {
     $string = '';
