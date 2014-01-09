@@ -91,7 +91,7 @@ class Modal {
             $string .= $this->footer;
             $string .= "</div>";
         }
-        return $string . "</div>";
+        return $string . "</div></div></div>";
     }
 
     public function __toString() {
