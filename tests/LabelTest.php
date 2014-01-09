@@ -22,11 +22,10 @@ class LabelTest extends BootstrapperWrapper
   {
     return array(
       array('normal'),
-      array('important'),
-      array('info'),
-      array('inverse'),
+      array('primary'),
       array('success'),
-      array('warning'),
+      array('info'),
+      array('danger'),
     );
   }
 
