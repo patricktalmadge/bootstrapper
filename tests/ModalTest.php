@@ -11,7 +11,8 @@ class ModalTest extends BootstrapperWrapper
       'attributes' => array(
         'class' => 'foo modal',
         'aria-labelledby' => "bar",
-        'aria-hidden' => "true"
+        'aria-hidden' => "true",
+	'id' => 'bar'
       ),
       'child' => array(
         'tag' => 'div',

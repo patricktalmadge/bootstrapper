@@ -67,10 +67,13 @@ class Button
    */
   public static function submit($value, $attributes = array(), $hasDropdown = false)
   {
+    $types = array('default', 'primary', 'info', 'success',
+		   'warning', 'danger', 'link', 'icon');
     $attributes['type'] = 'submit';
 
-    $attributes = Helpers::add_class($attributes, 'btn-default');
-
+    if (!Helpers::has_class($attributes, $types, 'btn-')) {
+      $attributes = Helpers::add_class($attributes, 'btn-default');
+    }
     return static::storeButton('normal', $value, $attributes, $hasDropdown);
   }
 
@@ -86,9 +89,13 @@ class Button
    */
   public static function reset($value, $attributes = array(), $hasDropdown = false)
   {
+    $types = array('default', 'primary', 'info', 'success',
+		   'warning', 'danger', 'link', 'icon');
     $attributes['type'] = 'reset';
 
-    $attributes = Helpers::add_class($attributes, 'btn-default');
+    if (!Helpers::has_class($attributes, $types, 'btn-')) {
+      $attributes = Helpers::add_class($attributes, 'btn-default');
+    }
 
     return static::storeButton('normal', $value, $attributes, $hasDropdown);
   }
@@ -105,8 +112,9 @@ class Button
    */
   public static function normal($value, $attributes = array(), $hasDropdown = false)
   {
-    $types = array('default', 'primary', 'info', 'success', 'warning', 'danger', 'link', 'icon', 'custom');
-    if(!Helpers::has_class($attributes, $types)) {
+    $types = array('default', 'primary', 'info', 'success',
+		   'warning', 'danger', 'link', 'icon');
+    if(!Helpers::has_class($attributes, $types, 'btn-')) {
       $attributes = Helpers::add_class($attributes, 'btn-default');
     }
     return static::storeButton('normal', $value, $attributes, $hasDropdown);
@@ -124,17 +132,13 @@ class Button
    */
   public static function link($url, $value, $attributes = array(), $hasDropdown = false)
   {
+    $types = array('default', 'primary', 'info', 'success',
+		   'warning', 'danger', 'link', 'icon');
     $attributes['href'] = Helpers::getContainer('url')->to($url);
 
-    if (!isset($attributes['class']))
-      {
-      $attributes = Helpers::add_class($attributes, 'btn-default');
+    if (!Helpers::has_class($attributes, $types, 'btn')) {
+      $attributes = Helpers::add_class($attributes, 'btn-link');
     }
-    elseif(strpos($attributes['class'], 'btn-') === false)
-    {
-      $attributes = Helpers::add_class($attributes, 'btn-default');
-    }
-
     return static::storeButton('link', $value, $attributes, $hasDropdown);
   }
 

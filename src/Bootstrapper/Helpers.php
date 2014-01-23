@@ -130,17 +130,16 @@ class Helpers
    *
    * @return boolean
    */
-  public static function has_class($attributes, $classes) {
+  public static function has_class($attributes, $classes, $prefix = '') {
     // Make sure the class attribute exists
     if (!isset($attributes)) $attributes = array();
     if (!isset($attributes['class'])) $attributes['class'] = '';
-
     foreach ($classes as $class) {
-      if (strpos($attributes['class'], $class) === true) {
-        return true;
+      if (!(strpos($attributes['class'], $prefix . $class) === false)) {
+	return true;
       }
     }
-
+    
     return false;
 
   }

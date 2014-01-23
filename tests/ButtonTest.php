@@ -174,7 +174,7 @@ class ButtonTest extends BootstrapperWrapper
     $matcher = $this->createMatcher('info');
     $matcher['child'] = $this->createIcon();
     $exact =
-    '<button class="foo btn-info btn-default btn" data-foo="bar" type="button">'.
+    '<button class="foo btn-info btn" data-foo="bar" type="button">'.
       'foo <i class="glyphicon glyphicon-folder-open"></i>'.
     '</button>';
 
@@ -187,7 +187,7 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::info('foo', $this->testAttributes, true)->__toString();
     $matcher = $this->createMatcher('info');
     $exact =
-      '<button class="foo btn-info btn-default btn dropdown-toggle" data-foo="bar" type="button" data-toggle="dropdown">'.
+      '<button class="foo btn-info btn dropdown-toggle" data-foo="bar" type="button" data-toggle="dropdown">'.
         'foo <span class="caret"></span>'.
       '</button>';
 
@@ -198,7 +198,7 @@ class ButtonTest extends BootstrapperWrapper
   public function testMultipleButtons()
   {
     $buttons = Button::info('foo').Button::success('foo');
-    $matcher = '<button class="btn-info btn-default btn" type="button">foo</button><button class="btn-success btn-default btn" type="button">foo</button>';
+    $matcher = '<button class="btn-info btn" type="button">foo</button><button class="btn-success btn" type="button">foo</button>';
 
     $this->assertEquals($matcher, $buttons);
   }
