@@ -140,7 +140,9 @@ class Table
     }
 
     /**
-     * Dynamically set a column's content
+     * Dynamically set a column's content. Column's name is applied as a class.
+     * If the column's name contains '__noreplace__', it is replaced by ''.
+     * OTHERWISE every occurence of '_' is replaced by ' '.
      *
      * @param string $column  The column's name and classes
      * @param mixed  $content Its content
@@ -152,7 +154,9 @@ class Table
         $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
 
         // If we're not replacing something, we're creating, assume classes
-        if (!in_array($column, $columns)) {
+        if (strpos($column, '__noreplace__') !== FALSE) {
+            $column = str_replace('__noreplace__', '', $column);
+        } elseif (!in_array($column, $columns)) {
             $column = str_replace('_', ' ', $column);
         }
 
