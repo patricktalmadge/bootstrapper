@@ -51,7 +51,6 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 'Tabbable'       => 'Bootstrapper\\Tabbable',
 'Table'          => 'Bootstrapper\\Table',
 'Thumbnail'      => 'Bootstrapper\\Thumbnail',
-'Typeahead'      => 'Bootstrapper\\Typeahead',
 'Typography'     => 'Bootstrapper\\Typography',
 ```
 
