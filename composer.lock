@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "76d61dc182cbde15a5dba1f65d009585",
+    "hash": "cfeceebe888569ce057f1317cc88e611",
     "packages": [
         {
             "name": "anahkiasen/html-object",
-            "version": "dev-master",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/html-object.git",
-                "reference": "76195fe1893437aa58569a3e7fbbe40972978432"
+                "reference": "71eb5bd920e845aaea0d7face6e73aa9a63d6bde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/76195fe1893437aa58569a3e7fbbe40972978432",
-                "reference": "76195fe1893437aa58569a3e7fbbe40972978432",
+                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/71eb5bd920e845aaea0d7face6e73aa9a63d6bde",
+                "reference": "71eb5bd920e845aaea0d7face6e73aa9a63d6bde",
                 "shasum": ""
             },
             "require": {
@@ -26,10 +26,7 @@
             "autoload": {
                 "psr-0": {
                     "HtmlObject": "src"
-                },
-                "classmap": [
-                    "tests"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -42,11 +39,11 @@
                 }
             ],
             "description": "A set of classes to create and manipulate HTML objects abstractions",
-            "time": "2014-01-14 22:09:08"
+            "time": "2014-01-14 11:42:36"
         },
         {
             "name": "anahkiasen/underscore-php",
-            "version": "dev-master",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Anahkiasen/underscore-php.git",
@@ -935,8 +932,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "anahkiasen/html-object": 20,
-        "anahkiasen/underscore-php": 20,
         "mockery/mockery": 20
     },
     "platform": {
