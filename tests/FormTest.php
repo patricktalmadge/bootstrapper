@@ -837,4 +837,82 @@ class FormTest extends BootstrapperWrapper
     $expected = '<article type="bar">';
     $this->assertEquals($expected, $html);
   }
+
+  public function testCreateControlGroupWithOffsets() {
+    $matcher = array(
+      'tag' => 'div',
+      'attributes' => array('class' => 'form-group'),
+      'child' => array(
+        'tag' => 'div',
+        'attributes' => array('class' => 'col-sm-2'),
+        'child' => array(
+          'tag' => 'label',
+          'attributes' => array('for' => 'inputfoo'),
+          'content' => 'foo',
+        ),
+      ),
+      'descendant' => array(
+        'tag' => 'div',
+        'attributes' => array('class' => 'col-sm-10'),
+        'child' => array(
+          'tag' => 'input',
+          'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
+        ),
+      ),
+    );
+
+    $html = Form::control_group(
+      Form::label('inputfoo', 'foo'),
+      Form::text('inputfoo'),
+      null,
+      null,
+      2
+    );
+
+    $this->assertHTML($matcher, $html);
+  }
+
+  public function testCreateFullControlGroupWithOffsets() {
+    $matcher = array(
+      'tag' => 'div',
+      'attributes' => array('class' => 'col-sm-2'),
+      'child' => array(
+        'tag' => 'label',
+        'attributes' => array('for' => 'inputfoo'),
+        'content' => 'foo',
+      ),
+      'parent' => array(
+        'tag' => 'div',
+        'attributes' => array('class' => 'form-group'),
+        'child' => array(
+          'tag' => 'div',
+          'attributes' => array('class' => 'col-sm-10'),
+          'child' => array(
+            'tag' => 'input',
+            'attributes' => array('type' => 'text', 'name' => 'inputfoo', 'id' => 'inputfoo', 'class' => 'form-control'),
+          ),
+        ),
+        'descendant' => array(
+          'tag' => 'div',
+          'attributes' => array('class' => 'col-sm-10'),
+          'child' => array(
+            'tag' => 'p',
+            'attributes' => array('class'=>'help-block'),
+            'content' => 'You foobared that!',
+          ),
+        ),
+      ),
+    );
+
+    $html = Form::control_group(
+      Form::label('inputfoo', 'foo'),
+      Form::text('inputfoo'),
+      null,
+      Form::block_help('You foobared that!'),
+      2
+    );
+
+    $this->assertHTML($matcher, $html);
+  }
+
 }
