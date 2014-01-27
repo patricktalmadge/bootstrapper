@@ -28,6 +28,7 @@ class ButtonTest extends BootstrapperWrapper
     $link = $this->createMatcher($class);
     $link['tag'] = 'a';
     $link['attributes']['href'] = '#';
+    $link['attributes']['class'] = 'foo btn-' . $class;
 
     unset($link['attributes']['type']);
 
@@ -127,6 +128,12 @@ class ButtonTest extends BootstrapperWrapper
     $matcher = $this->createLink($class);
 
     $this->assertHTML($matcher, $button);
+  }
+
+  public function testLinkWithWarning() {
+    $button = Button::warning_link('#', 'foo', $this->testAttributes)->__toString();
+    $this->assertEquals('<a class="foo btn-warning btn" data-foo="bar" href="#">foo</a>', $button);
+
   }
 
   /**
