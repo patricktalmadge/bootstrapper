@@ -63,7 +63,7 @@ class ButtonTest extends BootstrapperWrapper
 
   public function testDeemphasizeLink()
   {
-    $button = Button::Link('#', 'foo', $this->testAttributes)->deemphasize();
+    $button = Button::link('#', 'foo', $this->testAttributes)->deemphasize();
     $matcher = $this->createMatcher('link');
     $matcher['tag'] = 'a';
     $matcher['attributes']['href'] = '#';
@@ -121,7 +121,7 @@ class ButtonTest extends BootstrapperWrapper
    */
   public function testLink($class)
   {
-    if($class == 'normal') $class = 'link';
+    if($class == 'normal') $class = 'default';
     $method = $class.'_link';
 
     $button = Button::$method('#', 'foo', $this->testAttributes)->__toString();
