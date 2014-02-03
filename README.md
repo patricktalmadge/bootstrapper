@@ -76,7 +76,7 @@ Feel free to use a CDN, but bear in mind that you may get unexpected functionali
 
 ## Documentation
 
-- [Bootstrapper documentation](http://bootstrapper.aws.af.cm)
+- [Bootstrapper documentation](http://bootstrapper.eu1.frbit.net/)
 - [Twitter Bootstrap documentation](http://getbootstrap.com/)
 - [Twitter Bootstrap on Github](https://github.com/twitter/bootstrap)
 
