@@ -136,12 +136,35 @@ class Helpers
     if (!isset($attributes['class'])) $attributes['class'] = '';
     foreach ($classes as $class) {
       if (!(strpos($attributes['class'], $prefix . $class) === false)) {
-	return true;
+        return true;
       }
     }
-    
+
     return false;
 
+  }
+
+  /**
+   * Returns the latest version of Bootstrap's CSS
+   *
+   * @return string The link for the latest version of Bootstrap
+   */
+  public static function get_CSS() {
+    $currentVersion = Helpers::getContainer('config')->get('bootstrapper::bootstrap_version');
+    
+    return "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/$currentVersion/css/bootstrap.min.css'><link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/$currentVersion/css/bootstrap-theme.min.css'>";
+  }
+
+  /**
+   * Returns the latest version of Bootstrap's (and JQuery's) JS
+   *
+   * @return string The link for the latest version of Bootstrap
+   */
+  public static function get_JS() {
+    $bootstrapVersion = Helpers::getContainer('config')->get('bootstrapper::bootstrap_version');
+    $jQueryVersion = Helpers::getContainer('config')->get('bootstrapper::jquery_version');
+    
+    return "<script src='http://code.jquery.com/jquery-$jQueryVersion.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/$bootstrapVersion/js/bootstrap.min.js'></script>";
   }
 
 }
