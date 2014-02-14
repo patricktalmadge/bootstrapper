@@ -14,7 +14,7 @@
     // The prefix you want to use for your icons. The closing dash is required
     'icon_prefix' => "glyphicon-",
 
-    'bootstrap_version' => '3.1.0',
+    'bootstrap_version' => '3.1.1',
 
     'jquery_version' => '2.1.0',
 
