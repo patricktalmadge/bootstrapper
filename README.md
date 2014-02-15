@@ -75,6 +75,22 @@ Feel free to use a CDN, but bear in mind that you may get unexpected functionali
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 ```
 
+If you want to get the latest Bootstrap that Bootstrapper supports,
+then use the helper function:
+
+```php
+Bootstrapper\Helpers::get_CSS()
+Bootstrapper\Helpers::get_JS()
+```
+
+If you want to stick at a certain version then use
+
+```
+artisan config:publish patricktalmadge/bootstrapper
+```
+
+And update the config file in app/config/packages.
+
 ## Documentation
 
 - [Bootstrapper documentation](http://bootstrapper.eu1.frbit.net/)
