@@ -47,6 +47,7 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 'Navbar'         => 'Bootstrapper\\Navbar',
 'Navigation'     => 'Bootstrapper\\Navigation',
 'Paginator'      => 'Bootstrapper\\Paginator',
+'Panel'          => 'Bootstrapper\\Panel',
 'Progress'       => 'Bootstrapper\\Progress',
 'Tabbable'       => 'Bootstrapper\\Tabbable',
 'Table'          => 'Bootstrapper\\Table',
