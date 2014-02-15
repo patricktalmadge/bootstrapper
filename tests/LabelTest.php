@@ -1,4 +1,6 @@
 <?php
+include_once '_start.php';
+
 use Bootstrapper\Label;
 
 class LabelTest extends BootstrapperWrapper

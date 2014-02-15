@@ -1,4 +1,6 @@
 <?php
+include_once '_start.php';
+
 use Bootstrapper\MediaObject;
 
 class MediaObjectTest extends BootstrapperWrapper

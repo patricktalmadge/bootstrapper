@@ -1,5 +1,5 @@
 <?php
-include '_start.php';
+include_once '_start.php';
 
 use Bootstrapper\Alert;
 
@@ -41,12 +41,11 @@ class AlertTest extends BootstrapperWrapper
   public function classes()
   {
     return array(
-      array('normal'),
-      array('custom'),
-      array('error'),
-      array('info'),
-      array('success'),
-      array('warning'),
+      array('danger', 'danger'),
+      array('error', 'danger'),
+      array('info', 'info'),
+      array('success', 'success'),
+      array('warning', 'warning'),
     );
   }
 
