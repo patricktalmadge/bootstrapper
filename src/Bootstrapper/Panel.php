@@ -16,6 +16,7 @@ class Panel {
 
   public static function __callStatic($method, $parameters) {
     $method = $method != 'normal'? $method : 'default';
+    $parameters = $parameters ? $parameters : array(array());
     $parameters = Helpers::add_class($parameters[0], 'panel panel-' . $method);
     return new static($parameters);
   }
