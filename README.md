@@ -30,6 +30,7 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 
 ```php
 'Alert'          => 'Bootstrapper\\Alert',
+'Accordion'      => 'Bootstrapper\\Accordion',
 'Badge'          => 'Bootstrapper\\Badge',
 'Breadcrumb'     => 'Bootstrapper\\Breadcrumb',
 'Button'         => 'Bootstrapper\\Button',
