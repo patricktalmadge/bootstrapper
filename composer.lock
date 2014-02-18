@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cookie.git",
-                "reference": "a608c7d61d80278cb547480c2457397e0aab5072"
+                "reference": "50490510c5150b5e8babed6c0118d7823d3fc366"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cookie/zipball/a608c7d61d80278cb547480c2457397e0aab5072",
-                "reference": "a608c7d61d80278cb547480c2457397e0aab5072",
+                "url": "https://api.github.com/repos/illuminate/cookie/zipball/50490510c5150b5e8babed6c0118d7823d3fc366",
+                "reference": "50490510c5150b5e8babed6c0118d7823d3fc366",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
                 "symfony/http-kernel": "2.4.*"
             },
             "require-dev": {
-                "mockery/mockery": "0.7.2",
+                "mockery/mockery": "0.9.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -188,7 +188,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-01-18 16:39:57"
+            "time": "2014-02-15 09:27:21"
         },
         {
             "name": "illuminate/encryption",
@@ -244,12 +244,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/html.git",
-                "reference": "81f32c1a8944c8319cd4a2251a958975ef3323ed"
+                "reference": "44dbd0cae1a24fa97e18ccf0ba258392ea7fadc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/html/zipball/81f32c1a8944c8319cd4a2251a958975ef3323ed",
-                "reference": "81f32c1a8944c8319cd4a2251a958975ef3323ed",
+                "url": "https://api.github.com/repos/illuminate/html/zipball/44dbd0cae1a24fa97e18ccf0ba258392ea7fadc9",
+                "reference": "44dbd0cae1a24fa97e18ccf0ba258392ea7fadc9",
                 "shasum": ""
             },
             "require": {
@@ -259,7 +259,7 @@
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "mockery/mockery": "0.7.2",
+                "mockery/mockery": "0.9.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -285,7 +285,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-01-28 19:48:55"
+            "time": "2014-02-15 09:27:21"
         },
         {
             "name": "illuminate/http",
@@ -294,12 +294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "e6e03dd17185c9d3b784729cb20011f4a6f1d277"
+                "reference": "a2bbc3b7399ddaa9af0d70e36209fc95e74d9e0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/e6e03dd17185c9d3b784729cb20011f4a6f1d277",
-                "reference": "e6e03dd17185c9d3b784729cb20011f4a6f1d277",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/a2bbc3b7399ddaa9af0d70e36209fc95e74d9e0f",
+                "reference": "a2bbc3b7399ddaa9af0d70e36209fc95e74d9e0f",
                 "shasum": ""
             },
             "require": {
@@ -309,7 +309,7 @@
                 "symfony/http-kernel": "2.4.*"
             },
             "require-dev": {
-                "mockery/mockery": "0.7.2",
+                "mockery/mockery": "0.9.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -335,7 +335,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-01-31 14:28:12"
+            "time": "2014-02-17 03:11:14"
         },
         {
             "name": "illuminate/session",
@@ -344,12 +344,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
-                "reference": "d5fec8918d6e388f37a665b2c0e7d451cf8f2a37"
+                "reference": "8cbd3cb0a08d1b2ea02c207a93d6f89a56dea7a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/d5fec8918d6e388f37a665b2c0e7d451cf8f2a37",
-                "reference": "d5fec8918d6e388f37a665b2c0e7d451cf8f2a37",
+                "url": "https://api.github.com/repos/illuminate/session/zipball/8cbd3cb0a08d1b2ea02c207a93d6f89a56dea7a7",
+                "reference": "8cbd3cb0a08d1b2ea02c207a93d6f89a56dea7a7",
                 "shasum": ""
             },
             "require": {
@@ -364,7 +364,7 @@
             },
             "require-dev": {
                 "illuminate/console": "4.1.*",
-                "mockery/mockery": "0.8.0",
+                "mockery/mockery": "0.9.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -390,7 +390,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-02-03 00:38:44"
+            "time": "2014-02-15 09:27:21"
         },
         {
             "name": "illuminate/support",
@@ -399,19 +399,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "97d5d512929aef9782606448d913d26d73f83097"
+                "reference": "229ad546efb43cd1a6c14ca40e4ff44a468b16eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/97d5d512929aef9782606448d913d26d73f83097",
-                "reference": "97d5d512929aef9782606448d913d26d73f83097",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/229ad546efb43cd1a6c14ca40e4ff44a468b16eb",
+                "reference": "229ad546efb43cd1a6c14ca40e4ff44a468b16eb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "mockery/mockery": "0.7.2",
+                "mockery/mockery": "0.9.*",
                 "patchwork/utf8": "1.1.*",
                 "phpunit/phpunit": "3.7.*"
             },
@@ -441,7 +441,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-02-04 12:33:11"
+            "time": "2014-02-15 09:27:21"
         },
         {
             "name": "nesbot/carbon",
@@ -590,12 +590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "429b394c16e1af02f33aac4be1babff1d13c79de"
+                "reference": "cb1965864a27a74685860bfe4babca593100f503"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/429b394c16e1af02f33aac4be1babff1d13c79de",
-                "reference": "429b394c16e1af02f33aac4be1babff1d13c79de",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/cb1965864a27a74685860bfe4babca593100f503",
+                "reference": "cb1965864a27a74685860bfe4babca593100f503",
                 "shasum": ""
             },
             "require": {
@@ -627,7 +627,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -636,7 +638,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-04 11:21:37"
+            "time": "2014-02-11 13:52:21"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -645,12 +647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "8f680ceb1eaec6f5f2404bea5c1c2af516a68494"
+                "reference": "8b345992d9e850798f46a6c68804ac9e4965e91a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/8f680ceb1eaec6f5f2404bea5c1c2af516a68494",
-                "reference": "8f680ceb1eaec6f5f2404bea5c1c2af516a68494",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/8b345992d9e850798f46a6c68804ac9e4965e91a",
+                "reference": "8b345992d9e850798f46a6c68804ac9e4965e91a",
                 "shasum": ""
             },
             "require": {
@@ -683,7 +685,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -692,7 +696,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-04 11:21:37"
+            "time": "2014-02-11 13:52:21"
         },
         {
             "name": "symfony/finder",
@@ -748,12 +752,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "4bd82e35304e4087706469525c5cb61d125f4c03"
+                "reference": "cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/4bd82e35304e4087706469525c5cb61d125f4c03",
-                "reference": "4bd82e35304e4087706469525c5cb61d125f4c03",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129",
+                "reference": "cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129",
                 "shasum": ""
             },
             "require": {
@@ -780,7 +784,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -789,7 +795,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-03 17:15:33"
+            "time": "2014-02-11 15:39:28"
         },
         {
             "name": "symfony/http-kernel",
@@ -798,12 +804,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "3934f25e23f0a507a7f7ca6611b1022794620ab3"
+                "reference": "1e1a8e4f1040d744086e9bdaa979f015789b4af6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/3934f25e23f0a507a7f7ca6611b1022794620ab3",
-                "reference": "3934f25e23f0a507a7f7ca6611b1022794620ab3",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/1e1a8e4f1040d744086e9bdaa979f015789b4af6",
+                "reference": "1e1a8e4f1040d744086e9bdaa979f015789b4af6",
                 "shasum": ""
             },
             "require": {
@@ -851,7 +857,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -860,7 +868,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-04 10:54:30"
+            "time": "2014-02-12 21:00:41"
         }
     ],
     "packages-dev": [
@@ -870,12 +878,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "0fd49fd3f6c984409802004b1dd7b55d0f35ce4a"
+                "reference": "619f304b0ebc52489f11b47e88c3c17f95bf9958"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/0fd49fd3f6c984409802004b1dd7b55d0f35ce4a",
-                "reference": "0fd49fd3f6c984409802004b1dd7b55d0f35ce4a",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/619f304b0ebc52489f11b47e88c3c17f95bf9958",
+                "reference": "619f304b0ebc52489f11b47e88c3c17f95bf9958",
                 "shasum": ""
             },
             "require": {
@@ -884,6 +892,7 @@
             },
             "require-dev": {
                 "hamcrest/hamcrest-php": "~1.1",
+                "phpunit/phpunit": "4.0.*",
                 "satooshi/php-coveralls": "dev-master"
             },
             "type": "library",
@@ -927,7 +936,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-02-05 21:30:08"
+            "time": "2014-02-17 21:56:53"
         }
     ],
     "aliases": [
