@@ -207,6 +207,8 @@ class Button
   {
     // Add class to attributes array
     $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-link');
+    // Remove class 'btn-default' to attributes array    
+    $this->currentButton['attributes'] = Helpers::remove_class($this->currentButton['attributes'], 'btn-default');
 
     return $this;
   }

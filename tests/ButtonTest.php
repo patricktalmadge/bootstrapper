@@ -68,10 +68,13 @@ class ButtonTest extends BootstrapperWrapper
     $button = Button::link('#', 'foo', $this->testAttributes)->deemphasize();
     $matcher = $this->createMatcher('link');
     $matcher['tag'] = 'a';
+    $matcher['attributes']['class'] .= ' btn-link';
     $matcher['attributes']['href'] = '#';
     unset($matcher['attributes']['type']);
+    $exact = '<a class="foo btn-link btn" data-foo="bar" href="#">foo</a>';
 
     $this->assertHTML($matcher, $button);
+    $this->assertEquals($exact, $button);
   }
 
   // Data providers  ----------------------------------------------- /

@@ -68,6 +68,25 @@ class Helpers
 
     return $array;
   }
+  
+  /**
+   * Function removes the given value to an array.
+   * Mainly used for removing classes.
+   *
+   * @param array  $array Array object to be removed to
+   * @param string $value String value
+   * @param string $key   Array key to use
+   *
+   * @return array
+   */
+  public static function remove_class($array, $value, $key = 'class')
+  {
+    if (isset($array[$key])) {
+      $array[$key] = implode(' ', array_diff(explode(' ', $array[$key]), (array) $value));
+    }
+
+    return $array;
+  }
 
   /**
    * Function to create a random string of a differing length used for creating IDs
