@@ -38,7 +38,7 @@ class Accordion {
       $panelAttributes = isset($content[2]) ? $content[2] : array();
       $panelAttributes = Helpers::add_class($panelAttributes, 'panel panel-default');
       
-      $bodyAttributes = array('class' => 'panel-collapse collapse panel-body',
+      $bodyAttributes = array('class' => 'panel-collapse collapse',
 			      'id' => "$name-$count");		      
       $bodyAttributes = $count == $this->opened ? Helpers::add_class($bodyAttributes, 'in') : $bodyAttributes;
       
@@ -52,8 +52,10 @@ class Accordion {
       $string .= "</div>";
       
 
-      $string .= "<div" .  Helpers::getContainer('html')->attributes($bodyAttributes) . ">";      
+      $string .= "<div" .  Helpers::getContainer('html')->attributes($bodyAttributes) . ">";  
+      $string .= "<div class='panel-body'>"; 
       $string .= $body;
+      $string .= "</div>";
       $string .= "</div>";
       $string .= "</div>";
       $count += 1;
