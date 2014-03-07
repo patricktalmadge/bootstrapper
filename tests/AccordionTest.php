@@ -46,9 +46,15 @@ class AccordionTest extends BootstrapperWrapper
           'tag' => 'div',
           'attributes' => array(
             'id' => 'test-1',
-            'class' => 'panel-collapse collapse panel-body'
+            'class' => 'panel-collapse collapse'
           ),
-          'content' => "Contents of first"
+	  'child' => array(
+	    'tag' => 'div',
+	    'attributes' => array(
+	      'class' => 'panel-body'
+	    ),
+            'content' => "Contents of first"
+	  )
         )
       ),
       'descendant' => array(
@@ -82,9 +88,15 @@ class AccordionTest extends BootstrapperWrapper
           'tag' => 'div',
           'attributes' => array(
             'id' => 'test-2',
-            'class' => 'panel-collapse collapse panel-body'
+            'class' => 'panel-collapse collapse'
+	    ),
+	  'child' => array(
+	    'tag' => 'div',
+	    'attributes' => array(
+	      'class' => 'panel-body'
+	    ),
+	    'content' => "Contents of second"
           ),
-          'content' => "Contents of second"
         )
       )
     );
