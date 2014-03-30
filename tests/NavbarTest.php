@@ -236,4 +236,20 @@ class NavbarTest extends BootstrapperWrapper
 
         $this->assertHtml($matcher, $navbar);
     }
+
+    public function testWeCanPassHTMLToTheBrand() {
+        $navbar = Navbar::create()->with_brand('<div>Bootstrapper</div>', '#', false);
+        $matcher = $this->getBasicMatcher();
+        $matcher['child']['child']['child'] = array(
+            'tag' => 'a',
+            'attributes' => array('class' => 'navbar-brand', 'href' => '#'),
+            'child' => array(
+                'tag' => 'div',
+                'content' => 'Bootstrapper'
+            )
+        );
+
+        $this->assertHTML($matcher, $navbar);
+
+    }
 }

@@ -28,7 +28,8 @@
     "illuminate/support": "~4"
   },
   "require-dev": {
-    "mockery/mockery": "dev-master"
+    "mockery/mockery": "dev-master",
+    "phpunit/phpunit": "dev-master"
   },
   "autoload": {
     "psr-0": {

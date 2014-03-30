@@ -145,11 +145,12 @@ class Navbar
      *
      * @return Navbar
      */
-    public function with_brand($brand, $brand_url)
+    public function with_brand($brand, $brand_url, $escape_string = true)
     {
         $this->brand = array(
             'name' => $brand,
             'url'  => $brand_url,
+            'escape' => $escape_string
         );
 
         return $this;
@@ -203,9 +204,17 @@ class Navbar
         }
 
         // Add brand if one was given
-        if($this->brand)
-            $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'navbar-brand'));
-       $html .= '</div>';
+        if($this->brand) {
+            $brand = $this->brand;
+            if ($brand['escape']) {
+                $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'navbar-brand'));
+                $html .= '</div>';
+            } else {
+                $url = $brand['url'];
+                $text = $brand['name'];
+                $html .= "<a href='$url' class='navbar-brand'>$text</a>";
+            }
+        }
         if($this->collapsible)
             $html .= '<div class="navbar-collapse collapse">';
 
