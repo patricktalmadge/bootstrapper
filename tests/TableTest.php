@@ -220,7 +220,9 @@ class TableTest extends BootstrapperWrapper
 
   public function testNoReplaceMagicMethod() {
 
-    $this->markTestSkipped('Need to write method to test this');
+      // I am unsure as to the purpose of this...
+      $table = Table::table()->body(array(array()))->__noreplace__foo_bar("Baz");
+      $this->assertEquals('<tbody><tr><td class="column-foo_bar">Baz</td></tr></tbody>', $table->render(), "Just checking!");
 
   }
 }
