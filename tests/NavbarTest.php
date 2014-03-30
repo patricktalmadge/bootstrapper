@@ -111,7 +111,6 @@ class NavbarTest extends BootstrapperWrapper
 
     public function testCollapse()
     {
-        $this->markTestSkipped('Test works so far, but needed improvement because i dont know how to check against 4 span childrens with different classes and contents');
         $navbar = Navbar::create()->collapsible();
         $matcher = $this->getBasicMatcher(true);
 
@@ -215,7 +214,6 @@ class NavbarTest extends BootstrapperWrapper
 
     public function testCollapsibleMenu()
     {
-        $this->markTestSkipped('Test works so far, but needed improvement because i dont know how to check against 4 span childrens with different classes and contents');
         $navbar = Navbar::create()->with_menus(
             Navigation::links(array(
                 array('foo', '#'),
