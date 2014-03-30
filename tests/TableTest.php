@@ -199,12 +199,15 @@ class TableTest extends BootstrapperWrapper
 
   public function testAlwaysIgnore()
   {
-    $this->markTestSkipped('Working on config dummy');
+      $app = Mockery::mock('Illuminate\Container\Container');
+      $config = Mockery::mock('Config');
+      $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn(array('foo', 'bar'));
+      $app->shouldReceive('make')->with('config')->andReturn($config);
+      \Bootstrapper\Helpers::setContainer($app);
+      $body = Table::body($this->body)->__toString();
+      $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
-    $body = Table::body($this->body)->__toString();
-    $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
-
-    $this->assertEquals($matcher, $body);
+      $this->assertEquals($matcher, $body);
   }
 
   public function testAlwaysIgnoreOverridesManuallyIgnore()

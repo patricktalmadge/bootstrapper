@@ -290,7 +290,6 @@ class Table
 
         // Fetch ignored columns
         if (!$this->ignore) $this->ignore = Helpers::getContainer('config')->get('bootstrapper::table.ignore');
-
         // Fetch variables
         $content = $this->tbody;
 
