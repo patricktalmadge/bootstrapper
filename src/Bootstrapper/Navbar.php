@@ -193,8 +193,7 @@ class Navbar
         $html .= '<div class="container">';
 		
 		// --- Header ---
-		if ($this->collapsible || $this->brand)
-			$html .= '<div class="navbar-header">';
+        $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
         if ($this->collapsible) {
@@ -219,13 +218,11 @@ class Navbar
             }
         }
 		
-		if ($this->collapsible || $this->brand)
-			$html .= '</div>';
+        $html .= '</div>';
 		/// --- Header ---
 		
 		// --- Content ---
-        if($this->collapsible)
-            $html .= '<div class="navbar-collapse collapse">';
+        $html .= '<div class="navbar-collapse collapse">';
 
         // Prints out menus
         if ($this->menus) {
@@ -238,8 +235,7 @@ class Navbar
             }
         }
 
-        if($this->collapsible)
-            $html .= '</div>';
+        $html .= '</div>';
 		// --- Content ---
 
         // Close navbar containers
