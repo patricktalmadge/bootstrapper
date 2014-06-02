@@ -79,14 +79,14 @@ class Tabbable
      */
     const PLACEMENT_ABOVE = 'tabs-above';
     const PLACEMENT_BELOW = 'tabs-below';
-    const PLACEMENT_LEFT  = 'tabs-left';
+    const PLACEMENT_LEFT = 'tabs-left';
     const PLACEMENT_RIGHT = 'tabs-right';
 
 
     /**
      * Generate a Bootstrap tabbable object.
      *
-     * @param array $menu       Tab items
+     * @param array $menu Tab items
      * @param array $attributes Attributes for the tabs
      *
      * @return string
@@ -97,7 +97,7 @@ class Tabbable
         $instance = new Tabbable;
 
         // Save given parameters
-        $instance->menu       = $menu;
+        $instance->menu = $menu;
         $instance->attributes = $attributes;
 
         return $instance;
@@ -216,10 +216,15 @@ class Tabbable
             $this->content_attributes['class'] .= ' tab-content';
         }
 
-        $content = '<div '.Helpers::getContainer('html')->attributes($this->content_attributes).'>'. implode('', $content).'</div>';
+        $content = '<div ' . Helpers::getContainer('html')->attributes($this->content_attributes) . '>' . implode(
+                '',
+                $content
+            ) . '</div>';
 
-        $html = '<div class="tabbable '.$this->placement.'"'.Helpers::getContainer('html')->attributes($this->attributes).'>';
-        $html .= $this->placement === self::PLACEMENT_BELOW ? $content.$tabs : $tabs.$content;
+        $html = '<div class="tabbable ' . $this->placement . '"' . Helpers::getContainer('html')->attributes(
+                $this->attributes
+            ) . '>';
+        $html .= $this->placement === self::PLACEMENT_BELOW ? $content . $tabs : $tabs . $content;
         $html .= '</div>';
 
         return $html;
@@ -228,9 +233,9 @@ class Tabbable
     /**
      * Normalizes the items list and correct urls if any are set.
      *
-     * @param array $items  Tab items
+     * @param array $items Tab items
      * @param array &$panes array of panes
-     * @param int   &$i     index
+     * @param int &$i index
      *
      * @return array
      */
@@ -239,7 +244,9 @@ class Tabbable
         $id = Helpers::rand_string(5);
         $tabs = array();
 
-        if (!is_array($items)) return false;
+        if (!is_array($items)) {
+            return false;
+        }
 
         foreach ($items as $key => $tab) {
             $url = '#';
@@ -251,7 +258,7 @@ class Tabbable
                     $tab['url'] = '';
                 }
 
-                $tabId = 'tab_'.$id.'_'.$i;
+                $tabId = 'tab_' . $id . '_' . $i;
 
                 //if not disabled set toggle and url
                 if (!isset($tab['disabled']) || !$tab['disabled']) {
@@ -264,7 +271,7 @@ class Tabbable
                     $class .= ' active';
                 }
 
-                $panes[] = '<div class="'.$class.'" id="'.$tabId.'">'.$tab['url'].'</div>';
+                $panes[] = '<div class="' . $class . '" id="' . $tabId . '">' . $tab['url'] . '</div>';
 
                 $tab['url'] = $url;
                 $i++;
@@ -279,8 +286,8 @@ class Tabbable
      * Checks call to see if we can create a tabbable from a magic call (for you wizards).
      * tabs_above, tabs_left, pills, lists, etc...
      *
-     * @param string $method     Method name
-     * @param array  $parameters Method parameters
+     * @param string $method Method name
+     * @param array $parameters Method parameters
      *
      * @return mixed
      */
@@ -310,21 +317,21 @@ class Tabbable
             $inst = static::create($menu, $attributes);
 
             //Set placement
-            if (count($placement_found) > 0 ) {
+            if (count($placement_found) > 0) {
                 $placement = $placement_found[key($placement_found)];
-                $inst->placement('tabs-'.$placement);
+                $inst->placement('tabs-' . $placement);
             }
 
             //Set Style
-            if (count($style_found) > 0 ) {
+            if (count($style_found) > 0) {
                 $style = $style_found[key($style_found)];
 
-               // Hack to get around dynamic list call
+                // Hack to get around dynamic list call
                 if ($style === 'lists') {
                     $style = 'list';
                 }
 
-                $inst->style('nav-'.$style);
+                $inst->style('nav-' . $style);
             }
 
             return $inst;

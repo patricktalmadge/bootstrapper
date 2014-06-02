@@ -20,33 +20,39 @@ class Navigation
      * Menu types
      * @var constant
      */
-    const TYPE_UNSTYLED    = '';
-    const TYPE_LIST        = 'nav-list';
-    const TYPE_PILLS       = 'nav-pills';
-    const TYPE_TABS        = 'nav-tabs';
+    const TYPE_UNSTYLED = '';
+    const TYPE_LIST = 'nav-list';
+    const TYPE_PILLS = 'nav-pills';
+    const TYPE_TABS = 'nav-tabs';
 
-    const HEADER           = '-HEADER-';
-    const DIVIDER          = '---';
+    const HEADER = '-HEADER-';
+    const DIVIDER = '---';
     const VERTICAL_DIVIDER = '|||';
 
     /**
      * Generates a nav menu and any dropdown if the $list array contains any dropdown objects.
      *
-     * @param array  $list       Menu items
-     * @param string $type       Menu Type
-     * @param bool   $stacked    Should menu be stacked
-     * @param array  $attributes attributes to apply the nav
-     * @param bool   $autoroute  Autoroute links
+     * @param array $list Menu items
+     * @param string $type Menu Type
+     * @param bool $stacked Should menu be stacked
+     * @param array $attributes attributes to apply the nav
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
-    public static function menu($list, $type = Navigation::TYPE_UNSTYLED, $stacked = false, $attributes = array(), $autoroute = true, $isDropdown = false)
-    {
+    public static function menu(
+        $list,
+        $type = Navigation::TYPE_UNSTYLED,
+        $stacked = false,
+        $attributes = array(),
+        $autoroute = true,
+        $isDropdown = false
+    ) {
         $html = '';
 
         if (isset($type)) {
-            $type = $type != '' ? ' '.$type : '';
-            $attributes = Helpers::add_class($attributes, 'nav'.$type);
+            $type = $type != '' ? ' ' . $type : '';
+            $attributes = Helpers::add_class($attributes, 'nav' . $type);
         }
 
         if ($type !== Navigation::TYPE_LIST && $stacked) {
@@ -72,20 +78,22 @@ class Navigation
             if ($item['label'] === Navigation::VERTICAL_DIVIDER) {
                 $html .= '<li class="divider-vertical"></li>';
 
-            // Set normal divider
+                // Set normal divider
             } elseif ($item['label'] === Navigation::DIVIDER) {
                 $html .= '<li class="divider"></li>';
 
-            // Set Header if Label Equals HEADER const
+                // Set Header if Label Equals HEADER const
             } elseif ($item['label'] === Navigation::HEADER) {
                 $iconStr = "";
                 if ($icon !== null) {
-                    $iconStr = Icon::$icon().' ';
+                    $iconStr = Icon::$icon() . ' ';
                 }
 
-                $html .= '<li class="nav-header">'.$iconStr.Helpers::getContainer('html')->entities($item['url']).'</li>';
+                $html .= '<li class="nav-header">' . $iconStr . Helpers::getContainer('html')->entities(
+                        $item['url']
+                    ) . '</li>';
 
-            // Set dropdown style
+                // Set dropdown style
             } elseif (isset($item['items'])) {
                 $dropClass = 'dropdown';
                 $att = array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown');
@@ -97,31 +105,37 @@ class Navigation
                     $extraCaret = '';
                 }
 
-                $html .= '<li class="'.$dropClass.' '.static::getClasses($item, false, $autoroute).'">';
-                $html .= static::linkItem($item['url'], $item['label'].$extraCaret, $att, false, $icon);
+                $html .= '<li class="' . $dropClass . ' ' . static::getClasses($item, false, $autoroute) . '">';
+                $html .= static::linkItem($item['url'], $item['label'] . $extraCaret, $att, false, $icon);
                 $html .= static::dropdown($item['items'], array(), $autoroute);
                 $html .= '</li>';
 
-            // Must be basic link
+                // Must be basic link
             } else {
                 if (!isset($item['attributes'])) {
                     $item['attributes'] = array();
                 }
 
-                $html .= '<li '.static::getClasses($item, true, $autoroute).'>'.static::linkItem($item['url'], $item['label'], $item['attributes'], true, $icon).'</li>';
+                $html .= '<li ' . static::getClasses($item, true, $autoroute) . '>' . static::linkItem(
+                        $item['url'],
+                        $item['label'],
+                        $item['attributes'],
+                        true,
+                        $icon
+                    ) . '</li>';
             }
         }
 
-        return '<ul'.Helpers::getContainer('html')->attributes($attributes).'>'.$html.'</ul>';
+        return '<ul' . Helpers::getContainer('html')->attributes($attributes) . '>' . $html . '</ul>';
     }
 
     /**
      * Creates a Bootstrap plan unstyled menu.
      *
-     * @param array $list       Menu items
-     * @param bool  $stacked    Should it be stacked
+     * @param array $list Menu items
+     * @param bool $stacked Should it be stacked
      * @param array $attributes attributes to apply the nav
-     * @param bool  $autoroute  Autoroute links
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
@@ -133,10 +147,10 @@ class Navigation
     /**
      * Creates a Bootstrap Tabs menu.
      *
-     * @param array $list       Menu items
-     * @param bool  $stacked    Should it be stacked
+     * @param array $list Menu items
+     * @param bool $stacked Should it be stacked
      * @param array $attributes attributes to apply the nav
-     * @param bool  $autoroute  Autoroute links
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
@@ -148,10 +162,10 @@ class Navigation
     /**
      * Creates a Bootstrap Pills menu.
      *
-     * @param array $list       Menu items
-     * @param bool  $stacked    Should it be stacked
+     * @param array $list Menu items
+     * @param bool $stacked Should it be stacked
      * @param array $attributes attributes to apply the nav
-     * @param bool  $autoroute  Autoroute links
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
@@ -163,10 +177,10 @@ class Navigation
     /**
      * Creates a Bootstrap Lists menu.
      *
-     * @param array $list       Menu items
-     * @param bool  $stacked    Should it be stacked
+     * @param array $list Menu items
+     * @param bool $stacked Should it be stacked
      * @param array $attributes attributes to apply the nav
-     * @param bool  $autoroute  Autoroute links
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
@@ -178,9 +192,9 @@ class Navigation
     /**
      * Creates a Bootstrap Dropdown menu.
      *
-     * @param array $list       Menu items
+     * @param array $list Menu items
      * @param array $attributes attributes to apply the nav
-     * @param bool  $autoroute  Autoroute links
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
@@ -194,16 +208,18 @@ class Navigation
     /**
      * Creates the class element for the menu item.
      *
-     * @param array $item       item array
-     * @param bool  $with_class with class
-     * @param bool  $autoroute  Autoroute links
+     * @param array $item item array
+     * @param bool $with_class with class
+     * @param bool $autoroute Autoroute links
      *
      * @return string
      */
     protected static function getClasses($item, $with_class = true, $autoroute = true)
     {
         $class = '';
-        if ((isset($item['active']) && $item['active']) || ($autoroute && Helpers::getContainer('request')->url() == $item['url'])) {
+        if ((isset($item['active']) && $item['active']) || ($autoroute && Helpers::getContainer('request')->url(
+                ) == $item['url'])
+        ) {
             $class = 'active';
         }
 
@@ -212,10 +228,10 @@ class Navigation
             $class .= 'disabled';
         }
 
-        $class .= isset($item['align']) ? ' '.$item['align'] : '';
+        $class .= isset($item['align']) ? ' ' . $item['align'] : '';
 
         if (strlen($class) > 0 && $with_class) {
-            $class = 'class="'.$class.'"';
+            $class = 'class="' . $class . '"';
         }
 
         return $class;
@@ -224,11 +240,11 @@ class Navigation
     /**
      * Generates a link without doing a getting the full url from Laravel
      *
-     * @param string $url        Url for the link
-     * @param string $title      Title for thel ink
-     * @param array  $attributes Attributes to apply to the link
-     * @param bool   $encode     Encode title
-     * @param string $icon       Icon for the link
+     * @param string $url Url for the link
+     * @param string $title Title for thel ink
+     * @param array $attributes Attributes to apply to the link
+     * @param bool $encode Encode title
+     * @param string $icon Icon for the link
      *
      * @return string
      */
@@ -239,25 +255,42 @@ class Navigation
         }
 
         if (isset($icon)) {
-            $title = Icon::$icon().' '.$title;
+            $title = Icon::$icon() . ' ' . $title;
         }
 
-        return '<a href="'.$url.'"'.Helpers::getContainer('html')->attributes($attributes).'>'.$title.'</a>';
+        return '<a href="' . $url . '"' . Helpers::getContainer('html')->attributes(
+            $attributes
+        ) . '>' . $title . '</a>';
     }
 
-        /**
+    /**
      * A simple clean way to create a single link array.
      *
-     * @param string $label    Link name
-     * @param bool   $active   Set current tab as active
-     * @param bool   $disabled Disabled the current tab
-     * @param array  $items    Array of for dropdown items
+     * @param string $label Link name
+     * @param bool $active Set current tab as active
+     * @param bool $disabled Disabled the current tab
+     * @param array $items Array of for dropdown items
      *
      * @return mixed
      */
-    public static function link($label, $url, $active = false, $disabled = false, $items = null, $icon = null, $visible = true)
-    {
-        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items, 'icon' => $icon, 'visible' => $visible);
+    public static function link(
+        $label,
+        $url,
+        $active = false,
+        $disabled = false,
+        $items = null,
+        $icon = null,
+        $visible = true
+    ) {
+        return array(
+            'label' => $label,
+            'url' => $url,
+            'active' => $active,
+            'disabled' => $disabled,
+            'items' => $items,
+            'icon' => $icon,
+            'visible' => $visible
+        );
     }
 
     /**

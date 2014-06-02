@@ -74,8 +74,8 @@ class DropdownButton
      * Checks call to see if we can create a button from a magic call (for you wizards).
      * normal, mini_primary, large_warning, danger, etc...
      *
-     * @param string $method     Name of missing method
-     * @param array  $parameters array of parameters passed to missing method
+     * @param string $method Name of missing method
+     * @param array $parameters array of parameters passed to missing method
      *
      * @return mixed
      */
@@ -88,16 +88,22 @@ class DropdownButton
 
         // Get the dropdown's links
         $links = array_get($parameters, 1, array());
-        if(!is_array($links)) throw new \InvalidArgumentException('The dropdown\'s links should be an array');
+        if (!is_array($links)) {
+            throw new \InvalidArgumentException('The dropdown\'s links should be an array');
+        }
 
         // Get the dropdown's attributes
         $attributes = array_get($parameters, 2, array());
-        if(!is_array($attributes)) throw new \InvalidArgumentException('Attributes should be an array');
+        if (!is_array($attributes)) {
+            throw new \InvalidArgumentException('Attributes should be an array');
+        }
 
         // Filter the classes given and concatenate them
         $type = '';
         foreach ($method_array as $class) {
-            if ($class != 'normal') $type .= ' btn-'.$class;
+            if ($class != 'normal') {
+                $type .= ' btn-' . $class;
+            }
         }
 
         // Create the new dropdown
@@ -109,10 +115,10 @@ class DropdownButton
     /**
      * Creates a new button dropdown
      *
-     * @param string $label      Label Text
-     * @param array  $links      dropdown links
-     * @param array  $attributes Attributes to apply the dropdown itself
-     * @param string $type       Type of dropdown
+     * @param string $label Label Text
+     * @param array $links dropdown links
+     * @param array $attributes Attributes to apply the dropdown itself
+     * @param string $type Type of dropdown
      */
     public function __construct($label, $links, $attributes, $type = null)
     {
@@ -129,7 +135,7 @@ class DropdownButton
      * Dynamically set an attribute
      *
      * @param string $attribute Attributes to apply the dropdown itself
-     * @param string $value     Value of dropdown
+     * @param string $value Value of dropdown
      *
      * @return object dropdownbutton instance
      */
@@ -161,19 +167,21 @@ class DropdownButton
             : array();
 
         // Dropup
-        if ($this->dropup) $this->attributes['class'] .= ' dropup';
+        if ($this->dropup) {
+            $this->attributes['class'] .= ' dropup';
+        }
 
-        $html = '<div'.Helpers::getContainer('html')->attributes($this->attributes).'>';
+        $html = '<div' . Helpers::getContainer('html')->attributes($this->attributes) . '>';
 
-            //If split is false make this button dropdown
-            $html .= Form::button($this->label, array('class' => $this->type), !$this->split);
+        //If split is false make this button dropdown
+        $html .= Form::button($this->label, array('class' => $this->type), !$this->split);
 
-            //Add split button if needed
-            if ($this->split) {
-                $html .= Form::button('', array('class' => $this->type), true);
-            }
+        //Add split button if needed
+        if ($this->split) {
+            $html .= Form::button('', array('class' => $this->type), true);
+        }
 
-            $html .= Navigation::dropdown($this->links, $listAttributes, $this->autoroute);
+        $html .= Navigation::dropdown($this->links, $listAttributes, $this->autoroute);
         $html .= '</div>';
 
         return $html;

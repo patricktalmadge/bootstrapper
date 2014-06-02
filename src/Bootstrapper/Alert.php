@@ -25,8 +25,8 @@ class Alert extends Element
      *
      * @var constant
      */
-    const DANGER  = 'alert-danger';
-    const INFO    = 'alert-info';
+    const DANGER = 'alert-danger';
+    const INFO = 'alert-info';
     const SUCCESS = 'alert-success';
     const WARNING = 'alert-warning';
 
@@ -72,24 +72,32 @@ class Alert extends Element
         $this->addClass('alert');
 
         // Block alert
-        if ($this->isBlock) $this->addClass('alert-block');
+        if ($this->isBlock) {
+            $this->addClass('alert-block');
+        }
 
         // Add close icon if necessary
         if ($this->isCloseable) {
-            $close = Helpers::getContainer('html')->link('#', '&times;', array('class' => 'close', 'data-dismiss' => 'alert'));
+            $close = Helpers::getContainer('html')->link(
+                '#',
+                '&times;',
+                array('class' => 'close', 'data-dismiss' => 'alert')
+            );
             $this->nest($close);
         }
 
         $this->nest(new Text($this->message));
 
-        return '<'.$this->element.Helpers::getContainer('html')->attributes($this->attributes).'>'.$this->getContent().$this->close();
+        return '<' . $this->element . Helpers::getContainer('html')->attributes(
+            $this->attributes
+        ) . '>' . $this->getContent() . $this->close();
     }
 
     /**
      * Check to see if we're calling an informative alert
      *
-     * @param string $method     The function called
-     * @param array  $parameters Its parameters
+     * @param string $method The function called
+     * @param array $parameters Its parameters
      *
      * @return Alert
      */
@@ -110,10 +118,10 @@ class Alert extends Element
             unset($method[$block]);
         }
 
-        $type       = 'alert-'.implode('-', $method);
-        $message    = array_get($parameters, 0);
+        $type = 'alert-' . implode('-', $method);
+        $message = array_get($parameters, 0);
         $attributes = array_get($parameters, 1);
-        $instance   = Alert::show($type, $message, $attributes);
+        $instance = Alert::show($type, $message, $attributes);
 
         $instance->open(!$closable);
         $instance->block($blockType);
@@ -161,10 +169,10 @@ class Alert extends Element
     /**
      * Create a new Alert.
      *
-     * @param string $type         Type of alert
-     * @param string $message      Message in alert
-     * @param bool   $enable_close Is Alert closable
-     * @param array  $attributes   Parent div attributes
+     * @param string $type Type of alert
+     * @param string $message Message in alert
+     * @param bool $enable_close Is Alert closable
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
@@ -182,8 +190,8 @@ class Alert extends Element
     /**
      * Create a new Success Alert.
      *
-     * @param string $message    Message in alert
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in alert
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
@@ -195,8 +203,8 @@ class Alert extends Element
     /**
      * Create a new Info Alert.
      *
-     * @param string $message    Message in alert
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in alert
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
@@ -208,8 +216,8 @@ class Alert extends Element
     /**
      * Create a new Warning Alert.
      *
-     * @param string $message    Message in alert
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in alert
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
@@ -221,8 +229,8 @@ class Alert extends Element
     /**
      * Create a new Error Alert.
      *
-     * @param string $message    Message in alert
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in alert
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
@@ -234,8 +242,8 @@ class Alert extends Element
     /**
      * Create a new Danger Alert.
      *
-     * @param string $message    Message in alert
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in alert
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
@@ -248,15 +256,15 @@ class Alert extends Element
      * Create a new custom Alert.
      * This assumes you have created the appropriate css class for the alert type.
      *
-     * @param string $type       Type of alert
-     * @param string $message    Message in alert
-     * @param array  $attributes Parent div attributes
+     * @param string $type Type of alert
+     * @param string $message Message in alert
+     * @param array $attributes Parent div attributes
      *
      * @return string Alert HTML
      */
     public static function custom($type, $message, $attributes = array())
     {
-        $type = 'alert-'.(string) $type;
+        $type = 'alert-' . (string)$type;
 
         return static::show($type, $message, $attributes);
     }

@@ -22,14 +22,14 @@ class Paginator extends LaravelPaginator
      * Paginator types
      * @var constant
      */
-    const ALIGN_LEFT   = '';
+    const ALIGN_LEFT = '';
     const ALIGN_CENTER = ' pagination-centered';
-    const ALIGN_RIGHT  = ' pagination-right';
+    const ALIGN_RIGHT = ' pagination-right';
 
     const SIZE_DEFAULT = '';
-    const SIZE_LARGE   = ' pagination-large';
-    const SIZE_SMALL   = ' pagination-small';
-    const SIZE_MINI    = ' pagination-mini';
+    const SIZE_LARGE = ' pagination-large';
+    const SIZE_SMALL = ' pagination-small';
+    const SIZE_MINI = ' pagination-mini';
 
     protected $pager_aligned = false;
 
@@ -51,7 +51,7 @@ class Paginator extends LaravelPaginator
     {
         $this->pager_aligned = $align;
 
-        return '<ul class="pager">'.$this->previous().$this->next().'</ul>';
+        return '<ul class="pager">' . $this->previous() . $this->next() . '</ul>';
     }
 
     /**
@@ -75,14 +75,16 @@ class Paginator extends LaravelPaginator
      *      echo $paginator->links(5);
      * </code>
      *
-     * @param int    $adjacent  Number of adjacent items
+     * @param int $adjacent Number of adjacent items
      * @param string $alignment Alignment of pagination
      *
      * @return string
      */
     public function links($adjacent = 3, $alignment = self::ALIGN_LEFT, $size = self::SIZE_DEFAULT)
     {
-        if ($this->last <= 1) return '';
+        if ($this->last <= 1) {
+            return '';
+        }
 
         // The hard-coded seven is to account for all of the constant elements in a
         // sliding range, such as the current page, the two ellipses, and the two
@@ -97,21 +99,21 @@ class Paginator extends LaravelPaginator
             $links = $this->slider($adjacent);
         }
 
-        $content = $this->previous().' '.$links.' '.$this->next();
+        $content = $this->previous() . ' ' . $links . ' ' . $this->next();
 
 
-        $attributes = array("class" => "pagination".$alignment.$size);
+        $attributes = array("class" => "pagination" . $alignment . $size);
 
-        return '<div'.Helpers::getContainer('html')->attributes($attributes).'><ul>'.$content.'</ul></div>';
+        return '<div' . Helpers::getContainer('html')->attributes($attributes) . '><ul>' . $content . '</ul></div>';
     }
 
 
     /**
      * Create a chronological pagination element, such as a "previous" or "next" link.
      *
-     * @param string  $element  Pagination element
-     * @param int     $page     Curent page
-     * @param string  $text     Text for current element
+     * @param string $element Pagination element
+     * @param int $page Curent page
+     * @param string $text Text for current element
      * @param Closure $disabled function to determine if disabled or not
      *
      * @return string
@@ -131,12 +133,17 @@ class Paginator extends LaravelPaginator
         if ($disabled($this->page, $this->last)) {
             $class .= " disabled";
 
-            return '<li'.Helpers::getContainer('html')->attributes(compact("class")).'><a href="#">'.Helpers::getContainer('html')->entities($text).'</a></li>';
+            return '<li' . Helpers::getContainer('html')->attributes(
+                compact("class")
+            ) . '><a href="#">' . Helpers::getContainer('html')->entities($text) . '</a></li>';
         } else {
-            return '<li'.Helpers::getContainer('html')->attributes(compact("class")).'>'.$this->link($page, $text, null).'</li>';
+            return '<li' . Helpers::getContainer('html')->attributes(compact("class")) . '>' . $this->link(
+                $page,
+                $text,
+                null
+            ) . '</li>';
         }
     }
-
 
 
     /**
@@ -145,7 +152,7 @@ class Paginator extends LaravelPaginator
      * For the current page, an HTML span element will be generated instead of a link.
      *
      * @param int $start starting position
-     * @param int $end   ending position
+     * @param int $end ending position
      *
      * @return string
      */
@@ -159,9 +166,11 @@ class Paginator extends LaravelPaginator
         // will be assigned the "current" CSS class for convenient styling.
         for ($page = $start; $page <= $end; $page++) {
             if ($this->page == $page) {
-                $pages[] = '<li class="active"><a href="#">'.Helpers::getContainer('html')->entities($page).'</a></li>';
+                $pages[] = '<li class="active"><a href="#">' . Helpers::getContainer('html')->entities(
+                        $page
+                    ) . '</a></li>';
             } else {
-                $pages[] = '<li>'.$this->link($page, $page, null).'</li>';
+                $pages[] = '<li>' . $this->link($page, $page, null) . '</li>';
             }
         }
 

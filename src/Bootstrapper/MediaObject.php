@@ -67,16 +67,18 @@ class MediaObject
     /**
      * Statically creates a new MediaObject instance
      *
-     * @param  string      $content    Its content
-     * @param  string      $media      Its media
-     * @param  array       $attributes The media object's attributes
+     * @param  string $content Its content
+     * @param  string $media Its media
+     * @param  array $attributes The media object's attributes
      * @return MediaObject
      */
     public static function create($content, $media = null, $attributes = array())
     {
         static::$object = new static($content);
-        if($media) static::$object->with_image($media);
-        if($attributes) static::$object->attributes = $attributes;
+        if ($media) {
+            static::$object->with_image($media);
+        }
+        if ($attributes) static::$object->attributes = $attributes;
 
         return static::$object;
     }
@@ -84,7 +86,7 @@ class MediaObject
     /**
      * Opens a Media Object list
      *
-     * @param  array  $attributes An array of attributes
+     * @param  array $attributes An array of attributes
      * @return string An opening tag
      */
     public static function open_list($attributes = array())
@@ -92,7 +94,7 @@ class MediaObject
         static::$listed = true;
         $attributes = Helpers::add_class($attributes, 'media-list');
 
-        return '<ul'.Helpers::getContainer('html')->attributes($attributes).'>';
+        return '<ul' . Helpers::getContainer('html')->attributes($attributes) . '>';
     }
 
     /**
@@ -111,7 +113,7 @@ class MediaObject
      * Creates a new MediaObject instance
      *
      * @param string $content Its content
-     * @param string $media   Its media
+     * @param string $media Its media
      */
     public function __construct($content, $media = null)
     {
@@ -121,8 +123,8 @@ class MediaObject
     /**
      * Magic methods for MediaObject
      *
-     * @param  string      $method     The method called
-     * @param  array       $parameters Its parameters
+     * @param  string $method The method called
+     * @param  array $parameters Its parameters
      * @return MediaObject
      */
     public function __call($method, $parameters)
@@ -137,11 +139,13 @@ class MediaObject
 
         // Add an heading to the media object
         if (starts_with($method, 'with_h')) {
-            $heading    = substr($method, -1);
-            $title      = array_get($parameters, 0);
+            $heading = substr($method, -1);
+            $title = array_get($parameters, 0);
             $attributes = array_get($parameters, 1, array());
             $attributes = Helpers::add_class($attributes, 'media-heading');
-            $title      = '<h'.$heading.Helpers::getContainer('html')->attributes($attributes).'>'.$title.'</h'.$heading.'>';
+            $title = '<h' . $heading . Helpers::getContainer('html')->attributes(
+                    $attributes
+                ) . '>' . $title . '</h' . $heading . '>';
 
             return $this->with_title($title);
         }
@@ -150,16 +154,16 @@ class MediaObject
     /**
      * Add a media to the MediaObject
      *
-     * @param  string      $image      The path to the image
-     * @param  string      $alt        Its alt attribute
-     * @param  array       $attributes An array of supplementary attributes
+     * @param  string $image The path to the image
+     * @param  string $alt Its alt attribute
+     * @param  array $attributes An array of supplementary attributes
      * @return MediaObject
      */
     public function with_image($image, $alt = null, $attributes = array())
     {
         if (!$alt) $alt = $image;
 
-        $attributes  = Helpers::add_class($attributes, 'media-object');
+        $attributes = Helpers::add_class($attributes, 'media-object');
         $this->media = Helpers::getContainer('html')->image($image, $alt, $attributes);
 
         return $this;
@@ -168,7 +172,7 @@ class MediaObject
     /**
      * Add a raw title to the MediaObject
      *
-     * @param  string      $title The text of the title
+     * @param  string $title The text of the title
      * @return MediaObject
      */
     public function with_title($title)
@@ -181,7 +185,7 @@ class MediaObject
     /**
      * Pull the media to a side
      *
-     * @param  string      $side Left or right
+     * @param  string $side Left or right
      * @return MediaObject
      */
     public function pull($side)
@@ -218,33 +222,33 @@ class MediaObject
 
         // Open the media object
         $attributes = Helpers::add_class($this->attributes, 'media');
-        $html = '<' .$children.Helpers::getContainer('html')->attributes($attributes). '>';
+        $html = '<' . $children . Helpers::getContainer('html')->attributes($attributes) . '>';
 
-            // Add the media itself
-            $html .= '<a class="pull-' .$this->pull. '">';
-                $html .= $this->media;
-            $html .= '</a>';
+        // Add the media itself
+        $html .= '<a class="pull-' . $this->pull . '">';
+        $html .= $this->media;
+        $html .= '</a>';
 
-            // Add the title and body
-            $html .= '<div class="media-body">';
-                if($this->title) $html .= $this->title;
-                $html .= $this->content;
+        // Add the title and body
+        $html .= '<div class="media-body">';
+        if ($this->title) $html .= $this->title;
+        $html .= $this->content;
 
-                // Render nested media objects (always as divs)
-                if ($this->nested) {
-                    $listed = static::$listed;
-                    static::$listed = false;
-                    foreach ($this->nested as $mediaObject) {
-                        $html .= $mediaObject;
-                    }
-                    static::$listed = $listed;
-                }
+        // Render nested media objects (always as divs)
+        if ($this->nested) {
+            $listed = static::$listed;
+            static::$listed = false;
+            foreach ($this->nested as $mediaObject) {
+                $html .= $mediaObject;
+            }
+            static::$listed = $listed;
+        }
 
-            // Close body
-            $html .= '</div>';
+        // Close body
+        $html .= '</div>';
 
         // Close object
-        $html .='</' .$children. '>';
+        $html .= '</' . $children . '>';
 
         return $html;
     }

@@ -11,21 +11,25 @@ class ProgressTest extends BootstrapperWrapper
     {
         $class = 'foo';
 
-        if($striped) $class .= ' progress-striped';
-        if($active) $class .= ' active';
-        $type = ($type != 'normal') ? ' progress-bar-'.$type : '';
+        if ($striped) {
+            $class .= ' progress-striped';
+        }
+        if ($active) {
+            $class .= ' active';
+        }
+        $type = ($type != 'normal') ? ' progress-bar-' . $type : '';
 
         return array(
             'tag' => 'div',
             'attributes' => array(
-                'class'    => $class . ' progress',
+                'class' => $class . ' progress',
                 'data-foo' => 'bar',
             ),
             'child' => array(
                 'tag' => 'div',
                 'attributes' => array(
                     'class' => 'progress-bar' . $type,
-                    'style' => 'width: ' .$width. '%;'
+                    'style' => 'width: ' . $width . '%;'
                 ),
             ),
         );
@@ -97,12 +101,13 @@ class ProgressTest extends BootstrapperWrapper
     public function testAutomatic()
     {
         $classes = array(
-            0   => 'danger',
-            20  => 'danger',
-            40  => 'warning',
-            60  => 'info',
-            80  => 'success',
-            100 => 'success');
+            0 => 'danger',
+            20 => 'danger',
+            40 => 'warning',
+            60 => 'info',
+            80 => 'success',
+            100 => 'success'
+        );
 
         for ($i = 0; $i <= 100; $i = $i + 20) {
             $progress = Progress::automatic($i, $this->testAttributes);

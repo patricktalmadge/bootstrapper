@@ -17,66 +17,69 @@ namespace Bootstrapper;
 class Image
 {
 
-  /**
-   * The alt text of the image
-   */
-  private $alt = '';
+    /**
+     * The alt text of the image
+     */
+    private $alt = '';
 
-  /**
-   * The attributes of the image
-   */
-  private $attributes = array();
+    /**
+     * The attributes of the image
+     */
+    private $attributes = array();
 
-  /**
-   * The location of the image
-   */
-  private $url = '';
-  
-  /**
-   * Catch-all method
-   */
-  public static function __callStatic($method, $parameters)
-  {
-    $url        = array_get($parameters, 0);
-    $alt        = array_get($parameters, 1);
-    $attributes = array_get($parameters, 2);
+    /**
+     * The location of the image
+     */
+    private $url = '';
 
-    return new static($method, $url, $alt, $attributes);
-  }
+    /**
+     * Catch-all method
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        $url = array_get($parameters, 0);
+        $alt = array_get($parameters, 1);
+        $attributes = array_get($parameters, 2);
 
-  /**
-   * Creates a Bootstrap image
-   *
-   * @param string $type       The image type
-   * @param string $url        An url
-   * @param string $alt        An alt text
-   * @param array  $attributes An array of attributes
-   *
-   * @return string An img tag
-   */
-  public function __construct($type, $url, $alt, $attributes)
-  {
-    $attributes = Helpers::add_class($attributes, 'img-'.$type);
+        return new static($method, $url, $alt, $attributes);
+    }
 
-    $this->attributes = $attributes;
-    $this->url = $url;
-    $this->alt = $alt;
+    /**
+     * Creates a Bootstrap image
+     *
+     * @param string $type The image type
+     * @param string $url An url
+     * @param string $alt An alt text
+     * @param array $attributes An array of attributes
+     *
+     * @return string An img tag
+     */
+    public function __construct($type, $url, $alt, $attributes)
+    {
+        $attributes = Helpers::add_class($attributes, 'img-' . $type);
 
-    return $this;
-    
-  }
+        $this->attributes = $attributes;
+        $this->url = $url;
+        $this->alt = $alt;
 
-  public function render() {
-    return Helpers::getContainer('html')->image($this->url, $this->alt, $this->attributes);
-  }
+        return $this;
 
-  public function __toString() {
-    return $this->render();
-  }
+    }
 
-  public function responsive() {
-    $this->attributes = Helpers::add_class($this->attributes, 'img-responsive');
-    
-    return $this;
-  }
+    public function render()
+    {
+        return Helpers::getContainer('html')->image($this->url, $this->alt, $this->attributes);
+    }
+
+    public function __toString()
+    {
+        return $this->render();
+    }
+
+    public function responsive()
+    {
+        $this->attributes = Helpers::add_class($this->attributes, 'img-responsive');
+
+        return $this;
+    }
 }

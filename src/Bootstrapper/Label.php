@@ -29,14 +29,14 @@ class Label extends ClassableElement
     /**
      * Create a custom label (this is here for backward compatibility)
      *
-     * @param string $type       The label type
-     * @param string $message    The content
-     * @param array  $attributes The attributes
+     * @param string $type The label type
+     * @param string $message The content
+     * @param array $attributes The attributes
      *
      * @return Label
      */
     public static function custom($type, $message, $attributes)
-    {    
+    {
         return static::$type($message, $attributes);
     }
 }

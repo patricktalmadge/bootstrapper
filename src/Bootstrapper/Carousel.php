@@ -27,12 +27,12 @@ class Carousel
      * @var array
      */
     protected $schema = array(
-        'key'        => 'id',
-        'alt'        => 'alt_text',
+        'key' => 'id',
+        'alt' => 'alt_text',
         'attributes' => 'attributes',
-        'caption'    => 'caption',
-        'label'      => 'label',
-        'image'      => 'image',
+        'caption' => 'caption',
+        'label' => 'label',
+        'image' => 'image',
     );
 
     /**
@@ -74,7 +74,7 @@ class Carousel
     /**
      * Create a Bootstrap carousel. Returns the HTML for the carousel.
      *
-     * @param array $items      An array of carousel items
+     * @param array $items An array of carousel items
      * @param array $attributes Attributes to apply the carousel itself
      *
      * @return Carousel
@@ -96,7 +96,7 @@ class Carousel
         $navigation = null;
 
         if (sizeof($this->items) > 1) {
-            $navigation  = '<a href="' . $this->hash . '" class="carousel-control left" data-slide="prev">' . $this->prev . '</a>';
+            $navigation = '<a href="' . $this->hash . '" class="carousel-control left" data-slide="prev">' . $this->prev . '</a>';
             $navigation .= '<a href="' . $this->hash . '" class="carousel-control right" data-slide="next">' . $this->next . '</a>';
         }
 
@@ -106,7 +106,7 @@ class Carousel
     /**
      * Creates a new Carousel instance
      *
-     * @param array $items      The items to use as pictures
+     * @param array $items The items to use as pictures
      * @param array $attributes Its attributes
      */
     public function __construct($items, $attributes = array())
@@ -118,14 +118,14 @@ class Carousel
         $this->active = key($items);
 
         // Calculate the Carousel ID
-        $this->hash = '#'.array_get($attributes, 'id', 'carousel_'.Helpers::rand_string(5));
+        $this->hash = '#' . array_get($attributes, 'id', 'carousel_' . Helpers::rand_string(5));
     }
 
     /**
      * Magic methods for the Carousel class
      *
-     * @param  string   $method     The method
-     * @param  array    $parameters Its parameters
+     * @param  string $method The method
+     * @param  array $parameters Its parameters
      * @return Carousel
      */
     public function __call($method, $parameters)
@@ -144,7 +144,7 @@ class Carousel
     /**
      * Changes the text for the prev link
      *
-     * @param  string   $prev The new text
+     * @param  string $prev The new text
      * @return Carousel
      */
     public function prev($prev)
@@ -157,7 +157,7 @@ class Carousel
     /**
      * Changes the text for the next link
      *
-     * @param  string   $next The new text
+     * @param  string $next The new text
      * @return Carousel
      */
     public function next($next)
@@ -170,7 +170,7 @@ class Carousel
     /**
      * Set which element will be the active one
      *
-     * @param  integer  $key A key
+     * @param  integer $key A key
      * @return Carousel
      */
     public function active($key)
@@ -183,12 +183,12 @@ class Carousel
     /**
      * Set the current Carousel's #id
      *
-     * @param  string   $id The new id
+     * @param  string $id The new id
      * @return Carousel
      */
     public function id($id)
     {
-        $this->hash = '#'.$id;
+        $this->hash = '#' . $id;
 
         return $this;
     }
@@ -196,12 +196,12 @@ class Carousel
     /**
      * Use a custom object schema for the images passed
      *
-     * @param  array    $schema A schema array
+     * @param  array $schema A schema array
      * @return Carousel
      */
     public function with_schema($schema)
     {
-        $this->schema = (array) array_merge($this->schema, $schema);
+        $this->schema = (array)array_merge($this->schema, $schema);
 
         return $this;
     }
@@ -215,7 +215,7 @@ class Carousel
     {
         // Render main wrapper
         $this->attributes['id'] = substr($this->hash, 1);
-        $html = '<div'.Helpers::getContainer('html')->attributes($this->attributes).'>';
+        $html = '<div' . Helpers::getContainer('html')->attributes($this->attributes) . '>';
         $html .= "<ol class='carousel-indicators'>";
         for ($i = 0; $i < count($this->items); $i++) {
             $html .= "<li data-slide-to='" . $i . "' data-target='" . $this->hash . "'></li>";
@@ -248,26 +248,28 @@ class Carousel
     /**
      * Create a carousel item. Returns a HTML element for one slide.
      *
-     * @param  array  $item A carousel item to render
-     * @param  bool   $key  A fallback key as the item's position in the array
+     * @param  array $item A carousel item to render
+     * @param  bool $key A fallback key as the item's position in the array
      * @return string
      */
     protected function createItem($item, $key)
     {
         // Gather necessary variables
-        $key        = $this->getFromItem($item, 'key', $key);
-        $altText    = $this->getFromItem($item, 'alt');
+        $key = $this->getFromItem($item, 'key', $key);
+        $altText = $this->getFromItem($item, 'alt');
         $attributes = $this->getFromItem($item, 'attributes', array());
-        $caption    = $this->getFromItem($item, 'caption');
-        $label      = $this->getFromItem($item, 'label');
-        $image      = $this->getFromItem($item, 'image');
+        $caption = $this->getFromItem($item, 'caption');
+        $label = $this->getFromItem($item, 'label');
+        $image = $this->getFromItem($item, 'image');
 
         // If we were given an array of image paths instead of arrays
-        if (!$image and is_string($item)) $image = $item;
+        if (!$image and is_string($item)) {
+            $image = $item;
+        }
 
         // Build HTML
         $active = $this->active == $key ? ' active' : null;
-        $html = '<div class="item'.$active.'">';
+        $html = '<div class="item' . $active . '">';
 
         // Render the image
         $html .= Helpers::getContainer('html')->image($image, $altText, $attributes);
@@ -275,8 +277,8 @@ class Carousel
         // If we have a caption, render it
         if ($caption or $label) {
             $html .= '<div class="carousel-caption">';
-            if ($label)   $html .= '<h4>'.$label.'</h4>';
-            if ($caption) $html .= '<p>'.$caption.'</p>';
+            if ($label) $html .= '<h4>' . $label . '</h4>';
+            if ($caption) $html .= '<p>' . $caption . '</p>';
             $html .= '</div>';
         }
 
@@ -288,8 +290,8 @@ class Carousel
     /**
      * Get a piece of data from an item
      *
-     * @param  mixed  $item     The item
-     * @param  string $key      The key to fetch
+     * @param  mixed $item The item
+     * @param  string $key The key to fetch
      * @param  string $fallback A fallback to use
      * @return string A data from the item
      */
@@ -298,7 +300,7 @@ class Carousel
         $key = $this->schema[$key];
 
         if (is_object($item)) {
-            return $item->$key ?: $fallback;
+            return $item->$key ? : $fallback;
         } else {
             return array_get($item, $key, $fallback);
         }

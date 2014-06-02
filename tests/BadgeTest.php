@@ -5,51 +5,51 @@ use Bootstrapper\Badge;
 
 class BadgeTest extends BootstrapperWrapper
 {
-  // Matchers ------------------------------------------------------ /
+    // Matchers ------------------------------------------------------ /
 
-  private function createMatcher($class)
-  {
-    $class = ($class == 'normal') ? null : ' ' .$class;
+    private function createMatcher($class)
+    {
+        $class = ($class == 'normal') ? null : ' ' . $class;
 
-    return array(
-      'tag' => 'span',
-      'attributes' => array('class' => 'badge'.$class),
-      'content' => 'foo',
-    );
-  }
+        return array(
+            'tag' => 'span',
+            'attributes' => array('class' => 'badge' . $class),
+            'content' => 'foo',
+        );
+    }
 
-  // Data providers  ----------------------------------------------- /
+    // Data providers  ----------------------------------------------- /
 
-  public function classes()
-  {
-    return array(
-      array('normal'),
-      array('important'),
-      array('info'),
-      array('inverse'),
-      array('success'),
-      array('warning'),
-    );
-  }
+    public function classes()
+    {
+        return array(
+            array('normal'),
+            array('important'),
+            array('info'),
+            array('inverse'),
+            array('success'),
+            array('warning'),
+        );
+    }
 
-  // Tests --------------------------------------------------------- /
+    // Tests --------------------------------------------------------- /
 
-  public function testCustom()
-  {
-    $badge = Badge::custom('success', 'foo', array('class' => 'bar'));
-    $match = $this->createMatcher('success');
+    public function testCustom()
+    {
+        $badge = Badge::custom('success', 'foo', array('class' => 'bar'));
+        $match = $this->createMatcher('success');
 
-    $this->assertHTML($match, $badge);
-  }
+        $this->assertHTML($match, $badge);
+    }
 
-  /**
-   * @dataProvider classes
-   */
-  public function testStatic($class)
-  {
-    $badge = Badge::$class('foo', array('class' => 'bar'));
-    $match = $this->createMatcher($class);
+    /**
+     * @dataProvider classes
+     */
+    public function testStatic($class)
+    {
+        $badge = Badge::$class('foo', array('class' => 'bar'));
+        $match = $this->createMatcher($class);
 
-    $this->assertHTML($match, $badge);
-  }
+        $this->assertHTML($match, $badge);
+    }
 }

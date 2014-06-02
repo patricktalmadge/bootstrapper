@@ -20,18 +20,18 @@ class Progress
      * Progress bar types
      * @var constant
      */
-    const NORMAL  = '';
-    const DANGER  = 'danger';
-    const INFO    = 'info';
+    const NORMAL = '';
+    const DANGER = 'danger';
+    const INFO = 'info';
     const SUCCESS = 'success';
     const WARNING = 'warning';
 
     /**
      * Adds a bar to the current progress bar
      *
-     * @param integer $amounts    A progress amount
-     * @param string  $type       Type of progress bar
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amounts A progress amount
+     * @param string $type Type of progress bar
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -40,11 +40,11 @@ class Progress
         $attributes = Helpers::add_class($attributes, 'progress');
 
         // Create the progress bar(s)
-        $progress = '<div'.Helpers::getContainer('html')->attributes($attributes).'>';
-        if(!is_array($amounts)) {
-            $amounts = array((int) $amounts => null);
+        $progress = '<div' . Helpers::getContainer('html')->attributes($attributes) . '>';
+        if (!is_array($amounts)) {
+            $amounts = array((int)$amounts => null);
         }
-        foreach($amounts as $amount => $style) {
+        foreach ($amounts as $amount => $style) {
             if (!$style) {
                 $style = $type;
             }
@@ -59,7 +59,7 @@ class Progress
      * Adds a bar to the current progress bar
      *
      * @param integer $amount A progress amount
-     * @param string  $style  A class to use to style the bar
+     * @param string $style A class to use to style the bar
      *
      * @return string
      */
@@ -67,14 +67,15 @@ class Progress
     {
         // Prepend bar style with 'bar-'
         $style = $style ? ' progress-bar-' . $style : null;
-        return '<div class="progress-bar' .$style. '" style="width: ' .$amount. '%;"></div>';
+
+        return '<div class="progress-bar' . $style . '" style="width: ' . $amount . '%;"></div>';
     }
 
     /**
      * Create a new Normal Progress Bar.
      *
-     * @param integer $amount     Amount filled
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amount Amount filled
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -86,8 +87,8 @@ class Progress
     /**
      * Create a new Success Progress Bar.
      *
-     * @param integer $amount     Amount filled
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amount Amount filled
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -99,8 +100,8 @@ class Progress
     /**
      * Create a new Info Progress Bar.
      *
-     * @param integer $amount     Amount filled
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amount Amount filled
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -112,8 +113,8 @@ class Progress
     /**
      * Create a new Warning Progress Bar.
      *
-     * @param integer $amount     Amount filled
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amount Amount filled
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -125,8 +126,8 @@ class Progress
     /**
      * Create a new Danger Progress Bar.
      *
-     * @param integer $amount     Amount filled
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amount Amount filled
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -139,8 +140,8 @@ class Progress
      * Automatically computes the progress bar's class according to the amount
      * Thus 0 giving it a danger class and 100 giving it a success class
      *
-     * @param integer $amount     Amount filled
-     * @param array   $attributes array of attributes for progress bar
+     * @param integer $amount Amount filled
+     * @param array $attributes array of attributes for progress bar
      *
      * @return string
      */
@@ -156,8 +157,8 @@ class Progress
      * Checks call to see if we can create a progress bar from a magic call (for you wizards).
      * normal_striped_active, info_striped, etc...
      *
-     * @param string $method     Method name
-     * @param array  $parameters Method parameters
+     * @param string $method Method name
+     * @param array $parameters Method parameters
      *
      * @return mixed
      */
@@ -177,7 +178,9 @@ class Progress
                 if (is_array($parameters[1])) {
                     $attributes = $parameters[1];
                 } else {
-                    throw new \InvalidArgumentException("Tabbable attributes parameter should be an array of attributes");
+                    throw new \InvalidArgumentException(
+                        "Tabbable attributes parameter should be an array of attributes"
+                    );
                 }
             }
 

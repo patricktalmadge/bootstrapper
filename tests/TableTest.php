@@ -7,222 +7,232 @@ use Bootstrapper\Table;
 class TableTest extends BootstrapperWrapper
 {
 
-  // Matchers ------------------------------------------------------ /
+    // Matchers ------------------------------------------------------ /
 
-  private $matcher = array(
-    'tag' => 'table',
-    'attributes' => array(
-      'data-foo' => 'bar',
-      'class' => 'foo table'
-    ),
-  );
-
-  private function matchFull($header = false)
-  {
-    return array(
-      'tag' => 'tr',
-      'attributes' => array(
-        'class' => 'foo full-row',
-        'data-foo' => 'bar',
-      ),
-      'child' => array(
-        'tag' => $header ? 'th' : 'td',
-        'attributes' => array('colspan' => 4),
-        'content' => 'foo',
-      ),
+    private $matcher = array(
+        'tag' => 'table',
+        'attributes' => array(
+            'data-foo' => 'bar',
+            'class' => 'foo table'
+        ),
     );
-  }
 
-  private $body = array(array('foo' => 'foo', 'bar' => 'bar', 'kal' => 'kal'));
+    private function matchFull($header = false)
+    {
+        return array(
+            'tag' => 'tr',
+            'attributes' => array(
+                'class' => 'foo full-row',
+                'data-foo' => 'bar',
+            ),
+            'child' => array(
+                'tag' => $header ? 'th' : 'td',
+                'attributes' => array('colspan' => 4),
+                'content' => 'foo',
+            ),
+        );
+    }
 
-  public function setUp()
-  {
-    parent::setUp();
+    private $body = array(array('foo' => 'foo', 'bar' => 'bar', 'kal' => 'kal'));
 
-    Table::open();
-  }
+    public function setUp()
+    {
+        parent::setUp();
 
-  public function tearDown()
-  {
-    parent::tearDown();
+        Table::open();
+    }
 
-    Table::close();
-  }
+    public function tearDown()
+    {
+        parent::tearDown();
 
-  // Tests --------------------------------------------------------- /
+        Table::close();
+    }
 
-  public function testOpen()
-  {
-    $table = Table::open($this->testAttributes);
+    // Tests --------------------------------------------------------- /
 
-    $this->assertHTML($this->matcher, $table);
-  }
+    public function testOpen()
+    {
+        $table = Table::open($this->testAttributes);
 
-  public function testDefaultOpen()
-  {
-    $table = Table::open();
+        $this->assertHTML($this->matcher, $table);
+    }
 
-    $this->assertEquals('<table class="table-striped table-hover table">', $table);
-  }
+    public function testDefaultOpen()
+    {
+        $table = Table::open();
 
-  public function testStaticOpen()
-  {
-    $table = Table::bordered_condensed_foobar_open($this->testAttributes);
-    $matcher = $this->matcher;
-    $matcher['attributes']['class'] = 'foo table-bordered table-condensed table';
+        $this->assertEquals('<table class="table-striped table-hover table">', $table);
+    }
 
-    $this->assertHTML($matcher, $table);
-  }
+    public function testStaticOpen()
+    {
+        $table = Table::bordered_condensed_foobar_open($this->testAttributes);
+        $matcher = $this->matcher;
+        $matcher['attributes']['class'] = 'foo table-bordered table-condensed table';
 
-  public function testClose()
-  {
-    $close = Table::close();
+        $this->assertHTML($matcher, $table);
+    }
 
-    $this->assertEquals('</table>', $close);
-  }
+    public function testClose()
+    {
+        $close = Table::close();
 
-  public function testHeadersSimple()
-  {
-    $headers = Table::headers('foo', 'bar', 'tel', 'sub');
-    $headers = str_replace(PHP_EOL, null, $headers);
+        $this->assertEquals('</table>', $close);
+    }
 
-    $matcher =
-    '<thead>'.
-              '<tr>' .
-              '<th>foo</th>'.
-              '<th>bar</th>'.
-              '<th>tel</th>'.
-              '<th>sub</th>'.
-              '</tr>' .
-              '</thead>';
+    public function testHeadersSimple()
+    {
+        $headers = Table::headers('foo', 'bar', 'tel', 'sub');
+        $headers = str_replace(PHP_EOL, null, $headers);
 
-    $this->assertEquals($matcher, $headers);
-  }
+        $matcher =
+            '<thead>' .
+            '<tr>' .
+            '<th>foo</th>' .
+            '<th>bar</th>' .
+            '<th>tel</th>' .
+            '<th>sub</th>' .
+            '</tr>' .
+            '</thead>';
 
-  public function testHeadersComplex()
-  {
-    $headers = Table::headers(array(
-      'foo' => $this->testAttributes,
-      'bar' => $this->testAttributes));
-    $headers = str_replace(PHP_EOL, null, $headers);
+        $this->assertEquals($matcher, $headers);
+    }
 
-    $matcher =
-    '<thead>'.
-              '<tr>'.
-              '<th class="foo" data-foo="bar">foo</th>'.
-              '<th class="foo" data-foo="bar">bar</th>'.
-              '</tr>'.
-              '</thead>';
+    public function testHeadersComplex()
+    {
+        $headers = Table::headers(
+            array(
+                'foo' => $this->testAttributes,
+                'bar' => $this->testAttributes
+            )
+        );
+        $headers = str_replace(PHP_EOL, null, $headers);
 
-    $this->assertEquals($matcher, $headers);
-  }
+        $matcher =
+            '<thead>' .
+            '<tr>' .
+            '<th class="foo" data-foo="bar">foo</th>' .
+            '<th class="foo" data-foo="bar">bar</th>' .
+            '</tr>' .
+            '</thead>';
 
-  public function testFullRow()
-  {
-    Table::headers('foo', 'foo', 'foo', 'foo');
-    $fullRow = Table::full_row('foo', $this->testAttributes);
-    $matcher = $this->matchFull();
+        $this->assertEquals($matcher, $headers);
+    }
 
-    $this->assertHTML($matcher, $fullRow);
-  }
+    public function testFullRow()
+    {
+        Table::headers('foo', 'foo', 'foo', 'foo');
+        $fullRow = Table::full_row('foo', $this->testAttributes);
+        $matcher = $this->matchFull();
 
-  public function testFullHeader()
-  {
-    Table::headers('foo', 'foo', 'foo', 'foo');
-    $fullRow = Table::full_header('foo', $this->testAttributes);
-    $matcher = $this->matchFull(true);
+        $this->assertHTML($matcher, $fullRow);
+    }
 
-    $this->assertHTML($matcher, $fullRow);
-  }
+    public function testFullHeader()
+    {
+        Table::headers('foo', 'foo', 'foo', 'foo');
+        $fullRow = Table::full_header('foo', $this->testAttributes);
+        $matcher = $this->matchFull(true);
 
-  public function testEmptyBody()
-  {
-    $body = Table::body(array())->__toString();
-    $this->assertSame('', $body);
-  }
+        $this->assertHTML($matcher, $fullRow);
+    }
 
-  public function testBody()
-  {
-    $body = Table::body($this->body)->__toString();
-    $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-bar">bar</td><td class="column-kal">kal</td></tr></tbody>';
+    public function testEmptyBody()
+    {
+        $body = Table::body(array())->__toString();
+        $this->assertSame('', $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testBody()
+    {
+        $body = Table::body($this->body)->__toString();
+        $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-bar">bar</td><td class="column-kal">kal</td></tr></tbody>';
 
-  public function testIgnore()
-  {
-    $body = Table::body($this->body)->ignore('foo', 'bar')->__toString();
-    $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testIgnore()
+    {
+        $body = Table::body($this->body)->ignore('foo', 'bar')->__toString();
+        $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
-  public function testOrder()
-  {
-    $body = Table::body($this->body)->order('kal', 'bar', 'foo')->__toString();
-    $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td><td class="column-foo">foo</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testOrder()
+    {
+        $body = Table::body($this->body)->order('kal', 'bar', 'foo')->__toString();
+        $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td><td class="column-foo">foo</td></tr></tbody>';
 
-  public function testOrderIgnore()
-  {
-    $body = Table::body($this->body)->ignore('foo')->order('kal')->__toString();
-    $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testOrderIgnore()
+    {
+        $body = Table::body($this->body)->ignore('foo')->order('kal')->__toString();
+        $matcher = '<tbody><tr><td class="column-kal">kal</td><td class="column-bar">bar</td></tr></tbody>';
 
-  public function testDynamicColumn()
-  {
-    $body = Table::body(array(array('foo' => 'bar')))->fur('var')->__toString();
-    $matcher = '<tbody><tr><td class="column-foo">bar</td><td class="column-fur">var</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testDynamicColumn()
+    {
+        $body = Table::body(array(array('foo' => 'bar')))->fur('var')->__toString();
+        $matcher = '<tbody><tr><td class="column-foo">bar</td><td class="column-fur">var</td></tr></tbody>';
 
-  public function testReplaceColumns()
-  {
-    $body = Table::body(array(array('foo' => 'foo')))->foo('bar')->__toString();
-    $matcher = '<tbody><tr><td class="column-foo">bar</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testReplaceColumns()
+    {
+        $body = Table::body(array(array('foo' => 'foo')))->foo('bar')->__toString();
+        $matcher = '<tbody><tr><td class="column-foo">bar</td></tr></tbody>';
 
-  public function testUnderscoreReplacement()
-  {
-    $body = Table::body(array(array('foo_bar' => 'foo')))->foo_bar('bar')->bar_foo('foo')->__toString();
-    $matcher = '<tbody><tr><td class="column-foo_bar">bar</td><td class="column-bar foo">foo</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testUnderscoreReplacement()
+    {
+        $body = Table::body(array(array('foo_bar' => 'foo')))->foo_bar('bar')->bar_foo('foo')->__toString();
+        $matcher = '<tbody><tr><td class="column-foo_bar">bar</td><td class="column-bar foo">foo</td></tr></tbody>';
 
-  public function testAlwaysIgnore()
-  {
-      $app = Mockery::mock('Illuminate\Container\Container');
-      $config = Mockery::mock('Config');
-      $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn(array('foo', 'bar'));
-      $app->shouldReceive('make')->with('config')->andReturn($config);
-      \Bootstrapper\Helpers::setContainer($app);
-      $body = Table::body($this->body)->__toString();
-      $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-      $this->assertEquals($matcher, $body);
-  }
+    public function testAlwaysIgnore()
+    {
+        $app = Mockery::mock('Illuminate\Container\Container');
+        $config = Mockery::mock('Config');
+        $config->shouldReceive('get')->with('bootstrapper::table.ignore')->andReturn(array('foo', 'bar'));
+        $app->shouldReceive('make')->with('config')->andReturn($config);
+        \Bootstrapper\Helpers::setContainer($app);
+        $body = Table::body($this->body)->__toString();
+        $matcher = '<tbody><tr><td class="column-kal">kal</td></tr></tbody>';
 
-  public function testAlwaysIgnoreOverridesManuallyIgnore()
-  {
-    $body = Table::body($this->body)->ignore('bar')->__toString();
-    $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
+        $this->assertEquals($matcher, $body);
+    }
 
-    $this->assertEquals($matcher, $body);
-  }
+    public function testAlwaysIgnoreOverridesManuallyIgnore()
+    {
+        $body = Table::body($this->body)->ignore('bar')->__toString();
+        $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
 
-  public function testNoReplaceMagicMethod() {
+        $this->assertEquals($matcher, $body);
+    }
 
-      // I am unsure as to the purpose of this...
-      $table = Table::table()->body(array(array()))->__noreplace__foo_bar("Baz");
-      $this->assertEquals('<tbody><tr><td class="column-foo_bar">Baz</td></tr></tbody>', $table->render(), "Just checking!");
+    public function testNoReplaceMagicMethod()
+    {
 
-  }
+        // I am unsure as to the purpose of this...
+        $table = Table::table()->body(array(array()))->__noreplace__foo_bar("Baz");
+        $this->assertEquals(
+            '<tbody><tr><td class="column-foo_bar">Baz</td></tr></tbody>',
+            $table->render(),
+            "Just checking!"
+        );
+
+    }
+
+
 }

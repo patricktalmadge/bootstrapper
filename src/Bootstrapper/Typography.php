@@ -22,20 +22,20 @@ class Typography
      * Typography types
      * @var constant
      */
-    const LEAD    = 'lead';
-    const MUTED   = 'text-muted';
+    const LEAD = 'lead';
+    const MUTED = 'text-muted';
     const WARNING = 'text-warning';
-    const INFO    = 'text-info';
+    const INFO = 'text-info';
     const SUCCESS = 'text-success';
     const PRIMARY = 'text-primary';
-    const DANGER  = 'text-danger';
+    const DANGER = 'text-danger';
 
     /**
      * Create a new Typography.
      *
-     * @param string $type       Type of Typography
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $type Type of Typography
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -43,7 +43,7 @@ class Typography
     {
         $attributes = Helpers::add_class($attributes, $type);
 
-        return '<'.$tag.Helpers::getContainer('html')->attributes($attributes).'>'.$message.'</'.$tag.'>';
+        return '<' . $tag . Helpers::getContainer('html')->attributes($attributes) . '>' . $message . '</' . $tag . '>';
     }
 
     /* Create a new lead text.
@@ -61,8 +61,8 @@ class Typography
     /**
      * Create a new muted text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -74,8 +74,8 @@ class Typography
     /**
      * Create a new warning text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -87,8 +87,8 @@ class Typography
     /**
      * Create a new error text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -100,8 +100,8 @@ class Typography
     /**
      * Create a new danger text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -113,8 +113,8 @@ class Typography
     /**
      * Create a new info text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -126,8 +126,8 @@ class Typography
     /**
      * Create a new success text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -139,8 +139,8 @@ class Typography
     /**
      * Create a new primary text.
      *
-     * @param string $message    Message in tag
-     * @param array  $attributes Parent div attributes
+     * @param string $message Message in tag
+     * @param array $attributes Parent div attributes
      *
      * @return string Typography HTML
      */
@@ -152,7 +152,7 @@ class Typography
     /**
      * Creates a definition list
      *
-     * @param array $list       An array [term => description]
+     * @param array $list An array [term => description]
      * @param array $attributes An array of attributes
      *
      * @return string A formatted <dl> list
@@ -168,17 +168,17 @@ class Typography
 
         // Write each entry
         foreach ($list as $term => $description) {
-            $dl .= '<dt>'.Helpers::getContainer('html')->entities($term).'</dt>';
-            $dl .= '<dd>'.Helpers::getContainer('html')->entities($description).'</dd>';
+            $dl .= '<dt>' . Helpers::getContainer('html')->entities($term) . '</dt>';
+            $dl .= '<dd>' . Helpers::getContainer('html')->entities($description) . '</dd>';
         }
 
-        return '<dl'.Helpers::getContainer('html')->attributes($attributes).'>'.$dl.'</dl>';
+        return '<dl' . Helpers::getContainer('html')->attributes($attributes) . '>' . $dl . '</dl>';
     }
 
     /**
      * Creates an horizontal definition list
      *
-     * @param array $list       An array [term => description]
+     * @param array $list An array [term => description]
      * @param array $attributes An array of attributes
      *
      * @return string A formatted <dl> list

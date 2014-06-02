@@ -5,50 +5,50 @@ use Bootstrapper\Label;
 
 class LabelTest extends BootstrapperWrapper
 {
-  // Matchers ------------------------------------------------------ /
+    // Matchers ------------------------------------------------------ /
 
-  private function createMatcher($class)
-  {
-    $class = ($class == 'normal') ? ' label-default' : ' label-'.$class;
+    private function createMatcher($class)
+    {
+        $class = ($class == 'normal') ? ' label-default' : ' label-' . $class;
 
-    return array(
-      'tag' => 'span',
-      'attributes' => array('class' => 'foo label'.$class),
-      'content' => 'foo',
-    );
-  }
+        return array(
+            'tag' => 'span',
+            'attributes' => array('class' => 'foo label' . $class),
+            'content' => 'foo',
+        );
+    }
 
-  // Data providers ------------------------------------------------ /
+    // Data providers ------------------------------------------------ /
 
-  public function classes()
-  {
-    return array(
-      array('normal'),
-      array('primary'),
-      array('success'),
-      array('info'),
-      array('danger'),
-    );
-  }
+    public function classes()
+    {
+        return array(
+            array('normal'),
+            array('primary'),
+            array('success'),
+            array('info'),
+            array('danger'),
+        );
+    }
 
-  // Tests --------------------------------------------------------- /
+    // Tests --------------------------------------------------------- /
 
-  public function testCustom()
-  {
-    $label = Label::custom('success', 'foo', $this->testAttributes);
-    $match = $this->createMatcher('success');
+    public function testCustom()
+    {
+        $label = Label::custom('success', 'foo', $this->testAttributes);
+        $match = $this->createMatcher('success');
 
-    $this->assertHTML($match, $label);
-  }
+        $this->assertHTML($match, $label);
+    }
 
-  /**
-   * @dataProvider classes
-   */
-  public function testStatic($class)
-  {
-    $label = Label::$class('foo', $this->testAttributes);
-    $match = $this->createMatcher($class);
+    /**
+     * @dataProvider classes
+     */
+    public function testStatic($class)
+    {
+        $label = Label::$class('foo', $this->testAttributes);
+        $match = $this->createMatcher($class);
 
-    $this->assertHTML($match, $label);
-  }
+        $this->assertHTML($match, $label);
+    }
 }

@@ -11,7 +11,7 @@ class NavbarTest extends BootstrapperWrapper
         $type = ($inverse) ? 'navbar-inverse' : 'navbar-default';
         $matcher = array(
             'tag' => 'nav',
-            'attributes' => array('class' => $type.' navbar'),
+            'attributes' => array('class' => $type . ' navbar'),
             'child' => array(
                 'tag' => 'div',
                 'attributes' => array('class' => 'container'),
@@ -21,8 +21,7 @@ class NavbarTest extends BootstrapperWrapper
                 ),
             ),
         );
-        if ($collapsible)
-            {
+        if ($collapsible) {
             //Add collapse tags
             $matcher['child']['child']['child'] = array(
                 'tag' => 'button',
@@ -120,10 +119,12 @@ class NavbarTest extends BootstrapperWrapper
     public function testMenu()
     {
         $navbar = Navbar::create()->with_menus(
-            Navigation::links(array(
-                array('foo', '#'),
-                array('bar', '#')
-            ))
+            Navigation::links(
+                array(
+                    array('foo', '#'),
+                    array('bar', '#')
+                )
+            )
         );
 
         $matcher = $this->getBasicMatcher();
@@ -142,10 +143,12 @@ class NavbarTest extends BootstrapperWrapper
     public function testMenuAttributes()
     {
         $navbar = Navbar::create()->with_menus(
-            Navigation::links(array(
-                array('foo', '#'),
-                array('bar', '#')
-            )),
+            Navigation::links(
+                array(
+                    array('foo', '#'),
+                    array('bar', '#')
+                )
+            ),
             array('class' => 'foo', 'data-foo' => 'bar')
         );
 
@@ -165,11 +168,13 @@ class NavbarTest extends BootstrapperWrapper
     public function testNotVisibleMenu()
     {
         $navbar = Navbar::create()->with_menus(
-            Navigation::links(array(
-                array('foo', '#', false, false, null, null, true),
-                array('bar', '#'),
-                array('baz', '#', false, false, null, null, false)
-            ))
+            Navigation::links(
+                array(
+                    array('foo', '#', false, false, null, null, true),
+                    array('bar', '#'),
+                    array('baz', '#', false, false, null, null, false)
+                )
+            )
         );
 
         $matcher = $this->getBasicMatcher();
@@ -187,16 +192,18 @@ class NavbarTest extends BootstrapperWrapper
 
     public function testClosureNotVisibleMenu()
     {
-        $visible = function($item) {
+        $visible = function ($item) {
             return $item['label'] === 'bar';
         };
 
         $navbar = Navbar::create()->with_menus(
-            Navigation::links(array(
-                array('foo', '#'),
-                array('bar', '#', false, false, null, null, $visible),
-                array('baz', '#', false, false, null, null, $visible)
-            ))
+            Navigation::links(
+                array(
+                    array('foo', '#'),
+                    array('bar', '#', false, false, null, null, $visible),
+                    array('baz', '#', false, false, null, null, $visible)
+                )
+            )
         );
 
         $matcher = $this->getBasicMatcher();
@@ -215,10 +222,12 @@ class NavbarTest extends BootstrapperWrapper
     public function testCollapsibleMenu()
     {
         $navbar = Navbar::create()->with_menus(
-            Navigation::links(array(
-                array('foo', '#'),
-                array('bar', '#')
-            ))
+            Navigation::links(
+                array(
+                    array('foo', '#'),
+                    array('bar', '#')
+                )
+            )
         )->collapsible();
 
         $matcher = $this->getBasicMatcher(true);
@@ -235,7 +244,8 @@ class NavbarTest extends BootstrapperWrapper
         $this->assertHtml($matcher, $navbar);
     }
 
-    public function testWeCanPassHTMLToTheBrand() {
+    public function testWeCanPassHTMLToTheBrand()
+    {
         $navbar = Navbar::create()->with_brand('<div>Bootstrapper</div>', '#', false);
         $matcher = $this->getBasicMatcher();
         $matcher['child']['child']['child'] = array(

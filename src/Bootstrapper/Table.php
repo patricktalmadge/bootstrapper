@@ -76,21 +76,23 @@ class Table
      * Checks call to see if we can create a table from a magic call (for you wizards).
      * hover_striped, bordered_condensed, etc.
      *
-     * @param string $method     Method name
-     * @param array  $parameters Method parameters
+     * @param string $method Method name
+     * @param array $parameters Method parameters
      *
      * @return mixed
-    */
+     */
     public static function __callStatic($method, $parameters)
     {
         // Opening a table
         if (str_contains($method, 'open') or $method == 'open') {
-            $method  = strtolower($method);
+            $method = strtolower($method);
             $classes = explode('_', $method);
-            $method  = array_pop($classes);
+            $method = array_pop($classes);
 
             // Fallback to default type if defined
-            if(sizeof($classes) == 0) $classes = Helpers::getContainer('config')->get('bootstrapper::table.classes');
+            if (sizeof($classes) == 0) {
+                $classes = Helpers::getContainer('config')->get('bootstrapper::table.classes');
+            }
 
             // Filter table classes
             $classes = array_intersect($classes, static::$classes);
@@ -103,7 +105,7 @@ class Table
         }
 
         // Set default function
-        if(!$method) $method = 'table';
+        if (!$method) $method = 'table';
 
         // Use cases
         switch ($method) {
@@ -122,8 +124,8 @@ class Table
     /**
      * Pass a method to the Table instance
      *
-     * @param  string $method     The method to call
-     * @param  array  $parameters Its parameters
+     * @param  string $method The method to call
+     * @param  array $parameters Its parameters
      * @return Table  A Table instance
      */
     public function __call($method, $parameters)
@@ -144,8 +146,8 @@ class Table
      * If the column's name contains '__noreplace__', it is replaced by ''.
      * OTHERWISE every occurence of '_' is replaced by ' '.
      *
-     * @param string $column  The column's name and classes
-     * @param mixed  $content Its content
+     * @param string $column The column's name and classes
+     * @param mixed $content Its content
      */
     public function __set($column, $content)
     {
@@ -154,7 +156,7 @@ class Table
         $columns = array_keys(is_object($columns) ? $columns->attributes : $columns);
 
         // If we're not replacing something, we're creating, assume classes
-        if (strpos($column, '__noreplace__') !== FALSE) {
+        if (strpos($column, '__noreplace__') !== false) {
             $column = str_replace('__noreplace__', '', $column);
         } elseif (!in_array($column, $columns)) {
             $column = str_replace('_', ' ', $column);
@@ -166,7 +168,7 @@ class Table
 
     public static function table()
     {
-        return static::$table ?: new static;
+        return static::$table ? : new static;
     }
 
     //////////////////////////////////////////////////////////////////
@@ -196,12 +198,12 @@ class Table
     /**
      * Creates a table opening tag
      *
-     * @param  array  $attributes An array of attributes
+     * @param  array $attributes An array of attributes
      * @return string A table opening tag
      */
     protected function open()
     {
-        return '<table'.Helpers::getContainer('html')->attributes($this->attributes).'>';
+        return '<table' . Helpers::getContainer('html')->attributes($this->attributes) . '>';
     }
 
     /**
@@ -212,10 +214,10 @@ class Table
     protected function headers()
     {
         $headers = func_get_args();
-        if(sizeof($headers) == 1 and is_array($headers[0])) $headers = $headers[0];
+        if (sizeof($headers) == 1 and is_array($headers[0])) $headers = $headers[0];
 
         // Open headers
-        $thead = '<thead>'.PHP_EOL.'<tr>'.PHP_EOL;
+        $thead = '<thead>' . PHP_EOL . '<tr>' . PHP_EOL;
 
         // Store the number of columns in this table
         $this->numberColumns = sizeof($headers);
@@ -229,10 +231,12 @@ class Table
                 $attributes = array();
             }
 
-            $thead .= '<th'.Helpers::getContainer('html')->attributes($attributes).'>' .$header. '</th>'.PHP_EOL;
+            $thead .= '<th' . Helpers::getContainer('html')->attributes(
+                    $attributes
+                ) . '>' . $header . '</th>' . PHP_EOL;
         }
 
-        $thead .= '</tr>'.PHP_EOL.'</thead>'.PHP_EOL;
+        $thead .= '</tr>' . PHP_EOL . '</thead>' . PHP_EOL;
 
         return $thead;
     }
@@ -245,7 +249,7 @@ class Table
      */
     protected function body($content)
     {
-        if(!$content) return $this;
+        if (!$content) return $this;
 
         $this->tbody = $content;
 
@@ -286,7 +290,7 @@ class Table
      */
     public function render()
     {
-        if(!$this->tbody) return '';
+        if (!$this->tbody) return '';
 
         // Fetch ignored columns
         if (!$this->ignore) $this->ignore = Helpers::getContainer('config')->get('bootstrapper::table.ignore');
@@ -301,7 +305,7 @@ class Table
 
             $html .= '<tr>';
             $columnCount = 0;
-            if(method_exists($row, 'toArray')) $data =  $row->toArray();
+            if (method_exists($row, 'toArray')) $data = $row->toArray();
             else $data = is_object($row) ? $row->attributes : $row;
 
             // Reorder columns if necessary
@@ -311,7 +315,7 @@ class Table
 
             // Read the data row with ignored keys
             foreach ($data as $column => $value) {
-                if(in_array($column, (array) $this->ignore)) continue;
+                if (in_array($column, (array)$this->ignore)) continue;
 
                 // Check for replacing columns
                 $replace = array_get($this->columns, $column);
@@ -325,35 +329,35 @@ class Table
             }
 
             // Add supplementary columns
-            if($this->columns)
+            if ($this->columns)
                 foreach ($this->columns as $class => $column) {
 
-                // Check for replacing columns
-                if(array_key_exists($class, $data)) continue;
+                    // Check for replacing columns
+                    if (array_key_exists($class, $data)) continue;
 
-                // Calculate closures
-                if(is_callable($column)) $column = $column($row);
+                    // Calculate closures
+                    if (is_callable($column)) $column = $column($row);
 
-                // Parse and decode content
-                $column = static::replace_keywords($column, $data);
-                $column = Helpers::getContainer('html')->decode($column);
+                    // Parse and decode content
+                    $column = static::replace_keywords($column, $data);
+                    $column = Helpers::getContainer('html')->decode($column);
 
-                // Wrap content in a <td> tag if necessary
-                $columnCount++;
-                $html .= static::appendColumn($class, $column);
-            }
+                    // Wrap content in a <td> tag if necessary
+                    $columnCount++;
+                    $html .= static::appendColumn($class, $column);
+                }
             $html .= '</tr>';
 
             // Save new number of columns
-            if($columnCount > $this->numberColumns) $this->numberColumns = $columnCount;
+            if ($columnCount > $this->numberColumns) $this->numberColumns = $columnCount;
         }
 
         $html .= '</tbody>';
 
         // Empty data from this body
-        $this->ignore  = array();
+        $this->ignore = array();
         $this->columns = array();
-        $this->tbody   = null;
+        $this->tbody = null;
 
         return $html;
     }
@@ -361,8 +365,8 @@ class Table
     /**
      * Render a full_row with <th> tags
      *
-     * @param string $content    The content to display
-     * @param array  $attributes An array of attributes
+     * @param string $content The content to display
+     * @param array $attributes An array of attributes
      *
      * @return string A table opening tag
      */
@@ -374,9 +378,9 @@ class Table
     /**
      * Creates a table-wide row to display content
      *
-     * @param string $content    The content to display
-     * @param array  $attributes The rows's attributes
-     * @param bool   $asHeaders  Draw row as header
+     * @param string $content The content to display
+     * @param array $attributes The rows's attributes
+     * @param bool $asHeaders Draw row as header
      *
      * @return string A single-column row spanning all table
      */
@@ -387,8 +391,8 @@ class Table
         $tag = $asHeaders ? 'th' : 'td';
 
         return
-        '<tr' .Helpers::getContainer('html')->attributes($attributes). '>
-            <' .$tag. ' colspan="' .$this->numberColumns. '">' .$content. '</' .$tag. '>
+            '<tr' . Helpers::getContainer('html')->attributes($attributes) . '>
+            <' . $tag . ' colspan="' . $this->numberColumns . '">' . $content . '</' . $tag . '>
         </tr>';
     }
 
@@ -409,7 +413,7 @@ class Table
     /**
      * Wrap a supplementary column in a column if it isn't
      *
-     * @param  string $name  The column's name
+     * @param  string $name The column's name
      * @param  string $value Its value
      * @return string A <td> tag
      */
@@ -417,14 +421,14 @@ class Table
     {
         return Str::startsWith($value, '<td')
             ? $value
-            : '<td class="column-'.$name.'">' .$value. '</td>';
+            : '<td class="column-' . $name . '">' . $value . '</td>';
     }
 
     /**
      * Replace keywords with data in a string
      *
      * @param string $string A string with Laravel patterns (:key)
-     * @param array  $data   An array of data to fetch from
+     * @param array $data An array of data to fetch from
      *
      * @return string The modified string
      */
@@ -435,8 +439,8 @@ class Table
 
         // Replace patterns with data
         foreach ($matches[0] as $key => $replace) {
-            $with   = array_get($matches, '1.'.$key);
-            $with   = array_get($data, $with);
+            $with = array_get($matches, '1.' . $key);
+            $with = array_get($data, $with);
             $string = str_replace($replace, $with, $string);
         }
 

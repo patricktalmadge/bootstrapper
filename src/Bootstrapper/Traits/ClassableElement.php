@@ -39,16 +39,16 @@ abstract class ClassableElement extends Element
     public static function __callStatic($method, $parameters)
     {
         // Get Label type
-        $type = ($method == 'normal') ? static::$baseClass . '-default' : static::$baseClass.'-'.(string) $method;
+        $type = ($method == 'normal') ? static::$baseClass . '-default' : static::$baseClass . '-' . (string)$method;
 
 
         // Get content and attributes
-        
-        $content    = isset($parameters[0]) ? $parameters[0] : null;
+
+        $content = isset($parameters[0]) ? $parameters[0] : null;
         $attributes = isset($parameters[1]) ? $parameters[1] : array();
 
         $element = new static(static::$defaultElement, $content, $attributes);
-        $element->addClass(static::$baseClass. ' ' .$type);
+        $element->addClass(static::$baseClass . ' ' . $type);
 
         return $element;
     }

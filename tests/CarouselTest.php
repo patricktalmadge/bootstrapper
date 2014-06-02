@@ -61,12 +61,10 @@ class CarouselTest extends BootstrapperWrapper
                     'class' => 'carousel-control right',
                     'data-slide' => 'next',
                 ),
-                'child' => array(
-
-                )
+                'child' => array()
             )
         );
-	
+
         $matcherIndicator = array(
             'tag' => 'ol',
             'attributes' => array(
@@ -78,7 +76,7 @@ class CarouselTest extends BootstrapperWrapper
                     'data-slide-to' => '0'
                 )
             ),
-	    'descendant' => array(
+            'descendant' => array(
                 'tag' => 'li',
                 'attributes' => array(
                     'data-slide-to' => '1'
@@ -86,9 +84,9 @@ class CarouselTest extends BootstrapperWrapper
             ),
         );
 
-        $this->assertHTML($matcherLeft,      $html);
-        $this->assertHTML($matcherRight,     $html);
-	$this->assertHTML($matcherIndicator, $html);
+        $this->assertHTML($matcherLeft, $html);
+        $this->assertHTML($matcherRight, $html);
+        $this->assertHTML($matcherIndicator, $html);
     }
 
     // Tests --------------------------------------------------------- /
@@ -106,18 +104,45 @@ class CarouselTest extends BootstrapperWrapper
 
     public function testCarouselComplex()
     {
-        $carousel = Carousel::create(array(
-            array('image' => 'foo', 'alt_text' => 'bar', 'caption' => 'caption', 'label' => 'label', 'attributes' => $this->testAttributes),
-            array('image' => 'foo', 'alt_text' => 'bar', 'caption' => 'caption', 'label' => 'label', 'attributes' => $this->testAttributes),
-            array('image' => 'foo', 'alt_text' => 'bar', 'caption' => 'caption', 'label' => 'label', 'attributes' => $this->testAttributes),
-            array('image' => 'foo', 'alt_text' => 'bar', 'caption' => 'caption', 'label' => 'label', 'attributes' => $this->testAttributes),
-        ), $this->testAttributes);
+        $carousel = Carousel::create(
+            array(
+                array(
+                    'image' => 'foo',
+                    'alt_text' => 'bar',
+                    'caption' => 'caption',
+                    'label' => 'label',
+                    'attributes' => $this->testAttributes
+                ),
+                array(
+                    'image' => 'foo',
+                    'alt_text' => 'bar',
+                    'caption' => 'caption',
+                    'label' => 'label',
+                    'attributes' => $this->testAttributes
+                ),
+                array(
+                    'image' => 'foo',
+                    'alt_text' => 'bar',
+                    'caption' => 'caption',
+                    'label' => 'label',
+                    'attributes' => $this->testAttributes
+                ),
+                array(
+                    'image' => 'foo',
+                    'alt_text' => 'bar',
+                    'caption' => 'caption',
+                    'label' => 'label',
+                    'attributes' => $this->testAttributes
+                ),
+            ),
+            $this->testAttributes
+        );
 
         // Matcher for the slides
         $matcherSlide = $this->innerItem;
         $matcherSlide['child']['children']['only']['child']['attributes'] = array(
-            'alt'      => 'bar',
-            'class'    => 'foo',
+            'alt' => 'bar',
+            'class' => 'foo',
             'data-foo' => 'bar',
         );
 
@@ -131,7 +156,7 @@ class CarouselTest extends BootstrapperWrapper
                 'child' => array(
                     'tag' => 'div',
                     'attributes' => array('class' => 'carousel-caption'),
-                    'child'      => array('tag' => 'h4', 'content' => 'label'),
+                    'child' => array('tag' => 'h4', 'content' => 'label'),
                     'descendant' => array('tag' => 'p', 'content' => 'caption'),
                 )
             )
