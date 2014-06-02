@@ -28,13 +28,13 @@
     "illuminate/support": "4.1.*"
   },
   "require-dev": {
-    "mockery/mockery": "dev-master",
-    "phpunit/phpunit": "dev-master"
+    "mockery/mockery": "*",
+    "phpunit/phpunit": "*"
   },
   "autoload": {
     "psr-0": {
       "Bootstrapper": "src"
     }
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }
