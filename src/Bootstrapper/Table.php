@@ -68,6 +68,12 @@ class Table
      */
     protected $attributes = array();
 
+    /**
+     * The only things to return
+     * @var array|false
+     */
+    private $only = false;
+
     //////////////////////////////////////////////////////////////////
     ////////////////////////// STATIC FUNCTIONS //////////////////////
     //////////////////////////////////////////////////////////////////
@@ -273,6 +279,18 @@ class Table
         return $this;
     }
 
+    protected function only()
+    {
+        $only = func_get_args();
+        if (sizeof($only) == 1 and is_array($only)) {
+            $only = $only[0];
+        }
+
+        $this->only = $only;
+
+        return $this;
+    }
+
     /**
      * Iterate the columns in a certain order in the body to come
      */
@@ -317,6 +335,12 @@ class Table
             foreach ($data as $column => $value) {
                 if (in_array($column, (array)$this->ignore)) continue;
 
+                if ($this->only) {
+                    if (!in_array($column, (array)$this->only)) {
+                        continue;
+                    }
+                }
+
                 // Check for replacing columns
                 $replace = array_get($this->columns, $column);
                 if ($replace) {
@@ -357,6 +381,7 @@ class Table
         // Empty data from this body
         $this->ignore = array();
         $this->columns = array();
+        $this->only = array();
         $this->tbody = null;
 
         return $html;
@@ -446,4 +471,6 @@ class Table
 
         return $string;
     }
+
+
 }

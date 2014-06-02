@@ -234,5 +234,28 @@ class TableTest extends BootstrapperWrapper
 
     }
 
+    public function testWeCanOnlyGetCertainThings()
+    {
+        $body = Table::body($this->body)->only('foo')->render();
+        $matcher = '<tbody><tr><td class="column-foo">foo</td></tr></tbody>';
+
+        $this->assertEquals($matcher, $body);
+    }
+
+    public function testWeCanOnlyGetCertainThingsWithMultipleParams()
+    {
+        $body = Table::body($this->body)->only('foo', 'kal')->render();
+        $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
+
+        $this->assertEquals($matcher, $body);
+    }
+
+    public function testWeCanOnlyGetCertainThingsWithAnArray()
+    {
+        $body = Table::body($this->body)->only(array('foo', 'kal'))->render();
+        $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
+
+        $this->assertEquals($matcher, $body);      
+    }
 
 }
