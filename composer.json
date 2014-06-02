@@ -24,8 +24,8 @@
     "php": ">=5.3.0",
     "anahkiasen/html-object": "~1",
     "anahkiasen/underscore-php": "~1",
-    "illuminate/html": "4.1.*",
-    "illuminate/support": "4.1.*"
+    "illuminate/html": "~4.1",
+    "illuminate/support": "~4.1"
   },
   "require-dev": {
     "mockery/mockery": "*",

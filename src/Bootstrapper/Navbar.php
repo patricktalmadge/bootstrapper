@@ -190,7 +190,10 @@ class Navbar
 
         // Open navbar containers
         $html  = '<nav'.Helpers::getContainer('html')->attributes($attributes).' role="navigation">';
-        $html .= '<div class="container"><div class="navbar-header">';
+        $html .= '<div class="container">';
+		
+		// --- Header ---
+        $html .= '<div class="navbar-header">';
 
         // Collapsible button if asked for
         if ($this->collapsible) {
@@ -208,15 +211,18 @@ class Navbar
             $brand = $this->brand;
             if ($brand['escape']) {
                 $html .= Helpers::getContainer('html')->link($this->brand['url'], $this->brand['name'], array('class' => 'navbar-brand'));
-                $html .= '</div>';
             } else {
                 $url = $brand['url'];
                 $text = $brand['name'];
                 $html .= "<a href='$url' class='navbar-brand'>$text</a>";
             }
         }
-        if($this->collapsible)
-            $html .= '<div class="navbar-collapse collapse">';
+		
+        $html .= '</div>';
+		/// --- Header ---
+		
+		// --- Content ---
+        $html .= '<div class="navbar-collapse collapse">';
 
         // Prints out menus
         if ($this->menus) {
@@ -229,8 +235,8 @@ class Navbar
             }
         }
 
-        if($this->collapsible)
-            $html .= '</div>';
+        $html .= '</div>';
+		// --- Content ---
 
         // Close navbar containers
         $html .= '</div></nav>';
