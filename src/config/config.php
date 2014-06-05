@@ -11,6 +11,9 @@
         'classes' => array(),
     ),
 
+    // The base class to use for your icons.
+    'icon_class' => 'glyphicon',
+
     // The prefix you want to use for your icons. The closing dash is required
     'icon_prefix' => "glyphicon-",
 
