@@ -2,7 +2,7 @@
 
 Latest stable version: [![Latest Stable Version](https://poser.pugx.org/patricktalmadge/bootstrapper/v/stable.svg)](https://packagist.org/packages/patricktalmadge/bootstrapper)
 
-Travis status : [![Build Status](https://secure.travis-ci.org/patricktalmadge/bootstrapper.png?branch=develop)](https://travis-ci.org/patricktalmadge/bootstrapper)
+Travis status : [![Build Status](https://travis-ci.org/patricktalmadge/bootstrapper.svg?branch=develop)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
 Current supported Bootstrap version: 3.1.1
 
