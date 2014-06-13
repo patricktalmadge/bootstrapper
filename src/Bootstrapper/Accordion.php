@@ -1,66 +1,112 @@
-<?php namespace Bootstrapper;
+<?php
 
+namespace Bootstrapper;
+
+    /**
+     * Accordion Class
+     * Creates Bootstrap 3 compliant accordions
+     * @package Bootstrapper
+     * @author Patrick Rose
+     */
+/**
+ * Class Accordion
+ * @package Bootstrapper
+ */
 class Accordion
 {
 
-    protected $name;
+    /**
+     * @var string Name of the accordion. Used as the id
+     */
+    public $name;
 
-    protected $attributes;
+    /**
+     * @var array Any attributes
+     */
+    public $attributes;
 
-    protected $contents = array();
+    /**
+     * @var array The contents of the accordion
+     */
+    public $contents = [];
 
-    protected $opened = 0;
+    private $open = 0;
 
-    public function __construct($name, $attributes)
+    /**
+     * @param string $name Name of the accordion. Used as the id
+     * @param array $attributes Any attributes
+     */
+    public function __construct($name, $attributes = [])
     {
         $this->name = $name;
         $this->attributes = $attributes;
     }
 
-    public static function create($name, $attributes = array())
+    /**
+     * @param $name string Name of the accordion. Used as the id
+     * @param array $attributes Any attributes
+     * @return \Bootstrapper\Accordion
+     */
+    public function create($name, $attributes = [])
     {
-        return new static($name, $attributes);
+        return new Accordion($name, $attributes);
     }
 
-    public function withContents($contents, $opened = 0)
+    /**
+     * @param array $contents The contents to add
+     * @return $this
+     */
+    public function addContents(array $contents)
     {
-        $this->contents = $contents;
-        $this->opened = $opened;
+        if (array_key_exists("header", $contents)) {
+            array_push($this->contents, $contents);
+        } else {
+            foreach ($contents as $item) {
+                $this->contents[] = $item;
+            }
+        }
 
         return $this;
     }
 
+    public function render()
+    {
+        return $this->__toString();
+    }
+
     public function __toString()
     {
+
         $name = $this->name;
-        $attributes = Helpers::add_class($this->attributes, 'panel-group');
-        $attributes = Helpers::add_class($attributes, $name, 'id');
+        $attributes = new Attributes($this->attributes, ['class' => 'panel-group', 'id' => $this->name]);
 
-        $string = "<div" . Helpers::getContainer('html')->attributes($attributes) . ">";
+        $string = "<div {$attributes}>";
         $count = 1;
-        foreach ($this->contents as $content) {
-            $heading = $content[0];
-            $body = $content[1];
-            $panelAttributes = isset($content[2]) ? $content[2] : array();
-            $panelAttributes = Helpers::add_class($panelAttributes, 'panel panel-default');
+        foreach ($this->contents as $item) {
 
-            $bodyAttributes = array(
-                'class' => 'panel-collapse collapse',
-                'id' => "$name-$count"
-            );
-            $bodyAttributes = $count == $this->opened ? Helpers::add_class($bodyAttributes, 'in') : $bodyAttributes;
+            $heading = $item['header'];
+            $body = $item['contents'];
+            $attributes = array_key_exists('attributes', $item) ? $item['attributes'] : [];
 
-            $string .= "<div" . Helpers::getContainer('html')->attributes($panelAttributes) . ">";
+            $attributes = new Attributes($attributes, ['class' => 'panel panel-default']);
+
+            $string .= "<div {$attributes}>";
             $string .= "<div class='panel-heading'>";
             $string .= "<h4 class='panel-title'>";
-            $string .= "<a class='accordion-toggle' data-toggle='collapse' data-parent='#$name' href='#$name-$count'>";
+            $string .= "<a class='accordion-toggle' data-toggle='collapse' data-parent='#{$name}' href='#{$name}-{$count}'>";
             $string .= $heading;
             $string .= "</a>";
             $string .= "</h4>";
             $string .= "</div>";
 
+            $bodyAttributes = ['class'=>'panel-collapse collapse', 'id'=>"{$name}-{$count}"];
+            if ($count == $this->open) {
+                $bodyAttributes['class'] .= ' in';
+            }
 
-            $string .= "<div" . Helpers::getContainer('html')->attributes($bodyAttributes) . ">";
+            $bodyAttributes = new Attributes($bodyAttributes);
+
+            $string .= "<div {$bodyAttributes}>";
             $string .= "<div class='panel-body'>";
             $string .= $body;
             $string .= "</div>";
@@ -73,11 +119,10 @@ class Accordion
         return $string;
     }
 
-    public function render()
+    public function open($number)
     {
-        return $this->__toString();
+        $this->open = $number;
+
+        return $this;
     }
-
 }
-
-?>

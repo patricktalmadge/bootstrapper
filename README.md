@@ -18,7 +18,7 @@ Add the following to your `composer.json` file :
 
 ```json
 "require": {
-"patricktalmadge/bootstrapper": "dev-develop",
+    "patricktalmadge/bootstrapper": "~5",
 },
 ```
 
@@ -60,8 +60,6 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 
 ## Including Bootstrap
 
-**This package used to use Basset, which is now no longer being actively developed. If you used to use Basset for Bootstrapper alone then you'll need to delete any references to Basset and follow this new guide.**
-
 Include the Bootstrap files just like any other css and js files! Download Bootstrap and JQuery from the [Bootstrap site](http://getbootstrap.com), place them in your public folder and then include them like so:
 
 ```php
@@ -74,8 +72,8 @@ Feel free to use a CDN, but bear in mind that you may get unexpected functionali
 
 ```html
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 ```
 
 If you want to get the latest Bootstrap that Bootstrapper supports,
