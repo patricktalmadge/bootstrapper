@@ -27,7 +27,7 @@ class Icon extends Tag
      */
     protected $element = 'i';
 
-    /**
+   /**
      * Build a new icon
      *
      * @param array $attributes
@@ -36,7 +36,7 @@ class Icon extends Tag
     {
         $this->attributes = $attributes;
     }
-
+    
     /**
      * Allows magic methods such as Icon::home([attributes]) or Icon::close_white()
      *
@@ -50,8 +50,8 @@ class Icon extends Tag
      * // <i class="icon-circle-arrow-right icon-white"></i>
      * </code>
      *
-     * @param string $method Name of missing method
-     * @param array $parameters array of parameters passed to missing method
+     * @param string $method     Name of missing method
+     * @param array  $parameters array of parameters passed to missing method
      *
      * @return string
      */
@@ -60,17 +60,13 @@ class Icon extends Tag
         // Explode method name
         $classes = explode('_', strtolower($method));
         $white = in_array('white', $classes);
-        if ($white) {
-            unset($classes[array_search('white', $classes)]);
-        }
+        if ($white) unset($classes[array_search('white', $classes)]);
 
-
+      
         // Concatenate icons
         $classes = Helpers::getContainer('config')->get('bootstrapper::icon_prefix') . implode('-', $classes);
-        if ($white) {
-            $classes .= ' ' . Helpers::getContainer('config')->get('bootstrapper::icon_prefix') . 'white';
-        }
-        $classes = 'glyphicon ' . $classes;
+        if ($white) $classes .= ' ' .Helpers::getContainer('config')->get('bootstrapper::icon_prefix').'white';
+        $classes = Helpers::getContainer('config')->get('bootstrapper::icon_class') . ' ' . $classes;
 
         $attributes = isset($parameters[0]) ? $parameters[0] : $parameters;
 
@@ -92,8 +88,8 @@ class Icon extends Tag
      * // <i class="widget icon-folder-open"></i>
      * </code>
      *
-     * @param string $icon Name of the bootstrap icon class
-     * @param array $attributes Attributes to apply the icon itself
+     * @param string $icon       Name of the bootstrap icon class
+     * @param array  $attributes Attributes to apply the icon itself
      *
      * @return string
      */

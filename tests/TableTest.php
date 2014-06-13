@@ -255,7 +255,7 @@ class TableTest extends BootstrapperWrapper
         $body = Table::body($this->body)->only(array('foo', 'kal'))->render();
         $matcher = '<tbody><tr><td class="column-foo">foo</td><td class="column-kal">kal</td></tr></tbody>';
 
-        $this->assertEquals($matcher, $body);      
+        $this->assertEquals($matcher, $body);
     }
 
 }
