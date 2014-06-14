@@ -42,7 +42,7 @@ class AlertSpec extends ObjectBehavior
 
     function it_can_be_given_attributes()
     {
-        $this->withAttributes(['foo' => 'bar'])->shouldBe("<div class='alert' foo='bar'></div>");
+        $this->withAttributes(['foo' => 'bar'])->render()->shouldBe("<div class='alert' foo='bar'></div>");
     }
 }
 ?>

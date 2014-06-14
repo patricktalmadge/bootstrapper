@@ -14,6 +14,7 @@ class Alert
     private $contents;
     private $isBlock = false;
     private $isCloseable = false;
+    private $attributes = [];
 
     private function setType($type)
     {
@@ -24,7 +25,7 @@ class Alert
 
     public function render()
     {
-        $attributes = new Attributes(['class' => "alert {$this->type}"]);
+        $attributes = new Attributes($this->attributes, ['class' => "alert {$this->type}"]);
 
         if ($this->isBlock) {
             $attributes['class'] = trim($attributes['class']) . ' alert-block';
@@ -74,6 +75,13 @@ class Alert
     public function close()
     {
         $this->isCloseable = true;
+
+        return $this;
+    }
+
+    public function withAttributes($attributes)
+    {
+        $this->attributes = $attributes;
 
         return $this;
     }
