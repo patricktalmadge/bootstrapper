@@ -38,4 +38,12 @@ class AttributesSpec extends ObjectBehavior
         $this['foo'] = 'baz';
         $this->__toString()->shouldBe("foo='baz'");
     }
+
+    function it_can_be_constructed_and_overwrite_defaults()
+    {
+        $this->beConstructedWith(['foo' => 'bar'], ['foo' => 'baz']);
+
+        $this->__toString()->shouldBe("foo='bar'");
+    }
+
 }
