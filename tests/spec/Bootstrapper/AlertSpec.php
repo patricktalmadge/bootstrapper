@@ -39,5 +39,10 @@ class AlertSpec extends ObjectBehavior
     {
         $this->close()->render()->shouldBe("<div class='alert alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button></div>");
     }
+
+    function it_can_be_given_attributes()
+    {
+        $this->withAttributes(['foo' => 'bar'])->shouldBe("<div class='alert' foo='bar'></div>");
+    }
 }
 ?>
