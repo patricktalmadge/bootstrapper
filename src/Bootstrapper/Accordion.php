@@ -99,7 +99,7 @@ class Accordion
             $string .= "</h4>";
             $string .= "</div>";
 
-            $bodyAttributes = ['class'=>'panel-collapse collapse', 'id'=>"{$name}-{$count}"];
+            $bodyAttributes = ['class' => 'panel-collapse collapse', 'id' => "{$name}-{$count}"];
             if ($count == $this->open) {
                 $bodyAttributes['class'] .= ' in';
             }

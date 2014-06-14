@@ -10,10 +10,11 @@ class Breadcrumb
     public function render()
     {
         $string = "<ol class='breadcrumb'>";
-        foreach($this->links as $text => $link) {
+        foreach ($this->links as $text => $link) {
             $string .= $this->renderLink($text, $link);
         }
         $string .= "</ol>";
+
         return $string;
     }
 
@@ -36,6 +37,7 @@ class Breadcrumb
             $string .= $link;
         }
         $string .= "</li>";
+
         return $string;
     }
 }
