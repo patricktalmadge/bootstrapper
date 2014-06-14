@@ -51,7 +51,7 @@ class AttributesSpec extends ObjectBehavior
         $value = "A<'>J";
         $this['foo'] = $value;
 
-        $this->__toString()->shouldBe(htmlentities($value));
+        $this->__toString()->shouldBe("foo='A&lt;\'&gt;J'");
     }
 
 }
