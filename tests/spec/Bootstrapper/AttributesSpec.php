@@ -46,4 +46,12 @@ class AttributesSpec extends ObjectBehavior
         $this->__toString()->shouldBe("foo='bar'");
     }
 
+    function it_escapes_the_values()
+    {
+        $value = "A<'>J";
+        $this['foo'] = $value;
+
+        $this->__toString()->shouldBe(htmlentities($value));
+    }
+
 }
