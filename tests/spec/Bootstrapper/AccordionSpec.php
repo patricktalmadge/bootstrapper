@@ -8,126 +8,75 @@ use Prophecy\Argument;
 class AccordionSpec extends ObjectBehavior
 {
 
-    function let()
-    {
-        $this->beConstructedWith('foo');
-    }
-
     function it_is_initializable()
     {
         $this->shouldHaveType('Bootstrapper\Accordion');
     }
 
-    function it_can_create_a_new_accordion()
+    function it_can_be_named()
     {
-        $accordion = $this->create('foo');
-
-        $accordion->shouldHaveType('Bootstrapper\Accordion');
-        $accordion->name->shouldBe('foo');
+        $this->named('foo')->render()->shouldBe("<div class='panel-group' id='foo'></div>");
     }
 
-    function it_can_be_created_with_attributes()
+    function it_throws_an_exception_if_there_is_no_name()
     {
-        $accordion = $this->create('foo', ['bar' => 'baz']);
-
-        $accordion->attributes->shouldBe(['bar' => 'baz']);
+        $this->shouldThrow("Bootstrapper\\Exceptions\\AccordionException")->duringRender();
     }
 
-    function it_can_have_contents_added()
+    function it_can_have_contents()
     {
-        $accordion = $this->addContents(['header' => 'bar', 'contents' => 'baz']);
-        $accordion->contents->shouldBe(
+        $this->named('foo')->withContents(
             [
-                ['header' => 'bar', 'contents' => 'baz']
+                [
+                    'title' => 'foo',
+                    'contents' => 'bar'
+                ]
             ]
-        );
-    }
-
-    function it_can_have_multiple_contents_added()
-    {
-        $accordion = $this->addContents(
-            [
-                ['header' => 'bar', 'contents' => 'baz'],
-                ['header' => 'jar', 'contents' => 'jaz']
-            ]
-        );
-        $accordion->contents->shouldBe(
-            [
-                ['header' => 'bar', 'contents' => 'baz'],
-                ['header' => 'jar', 'contents' => 'jaz']
-            ]
-        );
-    }
-
-    function it_can_have_contents_added_several_times()
-    {
-
-        $accordion = $this->addContents(
-            ['header' => 'bar', 'contents' => 'baz']
-        )->addContents(
-            ['header' => 'jar', 'contents' => 'jaz']
-        );
-
-        $accordion->contents->shouldBe(
-            [
-                ['header' => 'bar', 'contents' => 'baz'],
-                ['header' => 'jar', 'contents' => 'jaz']
-            ]
-        );
-    }
-
-    function it_can_be_rendered()
-    {
-        $accordion = $this->addContents(
-            ['header' => 'bar', 'contents' => 'baz']
-        );
-
-        $accordion->render()->shouldBe(
-            "<div class='panel-group' id='foo'><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' data-toggle='collapse' data-parent='#foo' href='#foo-1'>bar</a></h4></div><div class='panel-collapse collapse' id='foo-1'><div class='panel-body'>baz</div></div></div></div>"
-        );
-    }
-
-    function it_renders_correctly_if_it_has_multiple_contents()
-    {
-        $accordion = $this->addContents(
-            ['header' => 'bar', 'contents' => 'baz']
-        )->addContents(
-            ['header' => 'jar', 'contents' => 'jaz']
-        );
-
-        $accordion->render()->shouldBe(
-            "<div class='panel-group' id='foo'><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' data-toggle='collapse' data-parent='#foo' href='#foo-1'>bar</a></h4></div><div class='panel-collapse collapse' id='foo-1'><div class='panel-body'>baz</div></div></div><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' data-toggle='collapse' data-parent='#foo' href='#foo-2'>jar</a></h4></div><div class='panel-collapse collapse' id='foo-2'><div class='panel-body'>jaz</div></div></div></div>"
-        );
-    }
-
-    function it_renders_corrently_if_we_have_attributes()
-    {
-        $this->create('foo',['bar'=>'baz'])->render()->shouldBe("<div class='panel-group' id='foo' bar='baz'></div>");
-    }
-
-    function it_can_add_attributes_to_each_panel()
-    {
-        $this->addContents(
-            ['header' => 'bar', 'contents' => 'baz', 'attributes' => ['test' => 'yay']]
         )->render()->shouldBe(
-            "<div class='panel-group' id='foo'><div class='panel panel-default' test='yay'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' data-toggle='collapse' data-parent='#foo' href='#foo-1'>bar</a></h4></div><div class='panel-collapse collapse' id='foo-1'><div class='panel-body'>baz</div></div></div></div>"
+            "<div class='panel-group' id='foo'><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#foo' href='#foo-0'>foo</a></h4></div><div id='foo-0' class='panel-collapse collapse'><div class='panel-body'>bar</div></div></div></div>"
         );
     }
 
-    function it_can_open_one_panel()
+    function it_can_be_given_attributes()
     {
+        $this->named('foo')->withAttributes(
+            [
+                'bar' => 'baz',
+            ]
+        )->render()->shouldBe("<div class='panel-group' id='foo' bar='baz'></div>");
+    }
 
-        $accordion = $this->addContents(
-            ['header' => 'bar', 'contents' => 'baz']
-        )->addContents(
-            ['header' => 'jar', 'contents' => 'jaz']
-        )->open(1)->render()->shouldBe(
-            "<div class='panel-group' id='foo'><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' data-toggle='collapse' data-parent='#foo' href='#foo-1'>bar</a></h4></div><div class='panel-collapse collapse in' id='foo-1'><div class='panel-body'>baz</div></div></div><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a class='accordion-toggle' data-toggle='collapse' data-parent='#foo' href='#foo-2'>jar</a></h4></div><div class='panel-collapse collapse' id='foo-2'><div class='panel-body'>jaz</div></div></div></div>"
+    function it_can_give_attributes_to_the_contents()
+    {
+        $this->named('foo')->withContents(
+            [
+                [
+                    'title' => 'foo',
+                    'contents' => 'bar',
+                    'attributes' => ['foo' => 'bar']
+                ]
+            ]
+        )->render()->shouldBe(
+            "<div class='panel-group' id='foo'><div class='panel panel-default' foo='bar'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#foo' href='#foo-0'>foo</a></h4></div><div id='foo-0' class='panel-collapse collapse'><div class='panel-body'>bar</div></div></div></div>"
         );
+    }
 
-
+    function it_can_open_one_item()
+    {
+        $this->named('foo')->withContents(
+            [
+                [
+                    'title' => 'foo',
+                    'contents' => 'bar'
+                ],
+                [
+                    'title' => 'goo',
+                    'contents' => 'gar'
+                ]
+            ]
+        )->open(0)->render()->shouldBe(
+            "<div class='panel-group' id='foo'><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#foo' href='#foo-0'>foo</a></h4></div><div id='foo-0' class='panel-collapse collapse in'><div class='panel-body'>bar</div></div></div><div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title'><a data-toggle='collapse' data-parent='#foo' href='#foo-1'>goo</a></h4></div><div id='foo-1' class='panel-collapse collapse'><div class='panel-body'>gar</div></div></div></div>"
+        );
     }
 
 }
-
-?>
