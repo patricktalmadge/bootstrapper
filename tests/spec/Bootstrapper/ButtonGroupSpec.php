@@ -71,4 +71,14 @@ class ButtonGroupSpec extends ObjectBehavior
             "<div class='button-group' data-toggle='buttons'><label class='btn btn-default'><input type='radio'>foo</label><label class='btn btn-danger'><input type='radio'>bar</label></div>"
         );
     }
+
+    function it_can_be_sized()
+    {
+        $sizes = ['large' => 'btn-group-lg', 'small' => 'btn-group-sm', 'extraSmall' => 'btn-group-xs'];
+
+        foreach ($sizes as $size => $class) {
+            $this->$size()->render()->shouldBe("<div class='button-group {$class}' data-toggle='buttons'></div>");
+        }
+
+    }
 }
