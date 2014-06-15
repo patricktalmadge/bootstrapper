@@ -13,6 +13,9 @@ class Button
     const LINK = 'btn-link';
 
     private $type = 'btn-default';
+    private $block = false;
+    private $attributes = [];
+    private $value = '';
 
     public function setType($type)
     {
@@ -21,9 +24,13 @@ class Button
 
     public function render()
     {
-        $attributes = new Attributes(['type' => 'button', 'class' => "btn {$this->type}"]);
+        $attributes = new Attributes($this->attributes, ['type' => 'button', 'class' => "btn {$this->type}"]);
 
-        return "<button {$attributes}></button>";
+        if ($this->block) {
+            $attributes['class'] .= ' btn-block';
+        }
+
+        return "<button {$attributes}>{$this->value}</button>";
     }
 
     public function primary()
@@ -71,5 +78,33 @@ class Button
     public function __toString()
     {
         return $this->render();
+    }
+
+    public function block()
+    {
+        $this->block = true;
+
+        return $this;
+    }
+
+    public function submit()
+    {
+        $this->attributes['type'] = 'submit';
+
+        return $this;
+    }
+
+    public function reset()
+    {
+        $this->attributes['type'] = 'reset';
+
+        return $this;
+    }
+
+    public function withValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
     }
 }
