@@ -19,9 +19,9 @@ class ButtonSpec extends ObjectBehavior
 
     function it_can_be_given_a_type()
     {
-        $types = ['primary','success','info','warning','danger','link'];
+        $types = ['primary', 'success', 'info', 'warning', 'danger', 'link'];
 
-        foreach($types as $type) {
+        foreach ($types as $type) {
             $this->$type()->render()->shouldBe("<button type='button' class='btn btn-{$type}'></button>");
         }
     }
@@ -44,6 +44,26 @@ class ButtonSpec extends ObjectBehavior
     function it_can_be_given_a_value()
     {
         $this->withValue('foo')->render()->shouldBe("<button type='button' class='btn btn-default'>foo</button>");
+    }
+
+    function it_can_be_given_an_icon()
+    {
+        $this->withIcon('bar')->render()->shouldBe(
+            "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-bar'></span></button>"
+        );
+
+        $this->withValue('foo')->withIcon('bar')->render()->shouldBe(
+            "<button type='button' class='btn btn-default'>foo <span class='glyphicon glyphicon-bar'></span></button>"
+        );
+    }
+
+    function it_can_be_sized()
+    {
+        $sizes = ['large' => 'btn-lg', 'small' => 'btn-sm', 'extraSmall' => 'btn-xs'];
+
+        foreach ($sizes as $size => $class) {
+            $this->$size()->render()->shouldBe("<button type='button' class='btn btn-default {$class}'></button>");
+        }
     }
 
 }
