@@ -43,7 +43,10 @@ class Carousel
             throw new CarouselException("You haven't named the carousel");
         }
 
-        $attributes = new Attributes($this->attributes, ['id' => $this->name, 'class' => 'carousel slide', 'data-ride' => 'carousel']);
+        $attributes = new Attributes(
+            $this->attributes,
+            ['id' => $this->name, 'class' => 'carousel slide', 'data-ride' => 'carousel']
+        );
 
         $string = "<div {$attributes}>";
         $string .= $this->renderIndicators();
@@ -57,7 +60,7 @@ class Carousel
     private function renderIndicators()
     {
         $string = "<ol class='carousel-indicators'>";
-        for($i = 0; $i < count($this->contents); $i++) {
+        for ($i = 0; $i < count($this->contents); $i++) {
             $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}'></li>";
         }
         $string .= "</ol>";
@@ -68,7 +71,7 @@ class Carousel
     private function renderItems()
     {
         $string = "<div class='carousel-inner'>";
-        foreach($this->contents as $item) {
+        foreach ($this->contents as $item) {
             $string .= "<div class='item'>";
             $string .= "<img src='{$item['image']}' alt='{$item['alt']}'>";
             $string .= "<div class='carousel-caption'>{$item['caption']}</div>";

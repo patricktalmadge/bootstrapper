@@ -34,8 +34,8 @@ class Accordion
 
         $string = "<div {$attributes}>";
         $count = 0;
-        foreach($this->contents as $item) {
-            $itemAttributes = array_key_exists('attributes', $item) ? $item['attributes']: [];
+        foreach ($this->contents as $item) {
+            $itemAttributes = array_key_exists('attributes', $item) ? $item['attributes'] : [];
 
             $itemAttributes = new Attributes($itemAttributes, ['class' => 'panel panel-default']);
 
