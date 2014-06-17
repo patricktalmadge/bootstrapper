@@ -506,7 +506,7 @@ class Form extends Facade
      */
     public static function block_help($value, $attributes = array())
     {
-        $attributes = Helpers::add_class($attributes, 'help-block');
+        $attributes = Helpers::add_class($attributes, 'inline-help');
 
         return '<p' . Helpers::getContainer('html')->attributes($attributes) . '>' . $value . '</p>';
     }
