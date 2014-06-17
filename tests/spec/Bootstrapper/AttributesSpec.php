@@ -54,4 +54,11 @@ class AttributesSpec extends ObjectBehavior
         $this->__toString()->shouldBe("foo='A&lt;\'&gt;J'");
     }
 
+    function it_can_handle_no_keys()
+    {
+        $this->beConstructedWith(['foo']);
+
+        $this->__toString()->shouldBe('foo');
+    }
+
 }
