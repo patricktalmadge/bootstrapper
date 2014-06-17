@@ -87,7 +87,7 @@ class FormTest extends BootstrapperWrapper
 
     public function testInlineHelp()
     {
-        $expected = '<span class="foo help-inline" data-foo="bar">foobar</span>';
+        $expected = '<span class="foo block-help" data-foo="bar">foobar</span>';
         $html = Form::inline_help('foobar', $this->testAttributes);
         $this->assertEquals($expected, $html);
     }
