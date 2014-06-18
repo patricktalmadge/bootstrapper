@@ -491,7 +491,7 @@ class Form extends Facade
      */
     public static function inline_help($value, $attributes = array())
     {
-        $attributes = Helpers::add_class($attributes, 'help-inline');
+        $attributes = Helpers::add_class($attributes, 'help-block');
 
         return '<span' . Helpers::getContainer('html')->attributes($attributes) . '>' . $value . '</span>';
     }
@@ -506,7 +506,7 @@ class Form extends Facade
      */
     public static function block_help($value, $attributes = array())
     {
-        $attributes = Helpers::add_class($attributes, 'inline-help');
+        $attributes = Helpers::add_class($attributes, 'help-block');
 
         return '<p' . Helpers::getContainer('html')->attributes($attributes) . '>' . $value . '</p>';
     }
@@ -533,11 +533,22 @@ class Form extends Facade
         }
 
         $html = '<div class="' . $class . '">';
-        $html .= isset($label_size) ? "<div class='col-sm-$label_size'>" . $label . "</div>" : $label;
-        $html .= isset($label_size) ? "<div class='col-sm-" . (12 - $label_size) . "'>" . $control . "</div>" : $control;
+        if (isset($label_size)) {
+            $html .= "<div class='col-sm-{$label_size}'>{$label}</div>";
+            $control_size = 12 - $label_size;
+            $html .= "<div class='col-sm-{$control_size}'>";
+            $html .= $control;
+            if (isset($help)) {
+                $html .= "<span class='help-block'>{$help}</span>";
+            }
+            $html .= "</div>";
+        } else {
+            $html .= $label;
+            $html .= $control;
 
-        if (isset($help)) {
-            $html .= isset($label_size) ? "<div class='col-sm-" . (12 - $label_size) . "'>" . $help . "</div>" : $help;
+            if (isset($help)) {
+                $html .= $help;
+            }
         }
 
         $html .= '</div>';

@@ -87,7 +87,7 @@ class FormTest extends BootstrapperWrapper
 
     public function testInlineHelp()
     {
-        $expected = '<span class="foo block-help" data-foo="bar">foobar</span>';
+        $expected = '<span class="foo help-block" data-foo="bar">foobar</span>';
         $html = Form::inline_help('foobar', $this->testAttributes);
         $this->assertEquals($expected, $html);
     }
@@ -179,7 +179,7 @@ class FormTest extends BootstrapperWrapper
                     ),
                 ),
                 'descendant' => array(
-                    'tag' => 'p',
+                    'tag' => 'span',
                     'attributes' => array('class' => 'help-block'),
                     'content' => 'You foobared that!',
                 ),
@@ -191,7 +191,7 @@ class FormTest extends BootstrapperWrapper
             Form::label('inputfoo', 'foo'),
             Form::text('inputfoo'),
             $displaytype,
-            Form::block_help('You foobared that!')
+            Form::inline_help('You foobared that!')
         );
 
         $this->assertHTML($matcher, $html);
@@ -933,13 +933,11 @@ class FormTest extends BootstrapperWrapper
                             'class' => 'form-control'
                         ),
                     ),
-                ),
-                'descendant' => array(
-                    'tag' => 'div',
-                    'attributes' => array('class' => 'col-sm-10'),
-                    'child' => array(
-                        'tag' => 'p',
-                        'attributes' => array('class' => 'help-block'),
+                    'descendant' => array(
+                        'tag' => 'span',
+                        'attributes' => array(
+                            'class' => 'help-block'
+                        ),
                         'content' => 'You foobared that!',
                     ),
                 ),
