@@ -32,7 +32,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Bootstrapper\\": "src"
+      "Bootstrapper\\": "src\\Bootstrapper"
     }
   },
   "minimum-stability": "stable"

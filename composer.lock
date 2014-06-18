@@ -1,23 +1,24 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "e88f48bb519e17ddec17bcd2947406df",
+    "hash": "8aa09dc200db3f55d8686c8ad6fe9d7a",
     "packages": [
         {
             "name": "illuminate/cache",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Cache",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
-                "reference": "c880250716f0ac3df716f21f797c477936fdcb3f"
+                "reference": "065f2cb1a464a3273bfe049ea9f22ca225250ef6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cache/zipball/c880250716f0ac3df716f21f797c477936fdcb3f",
-                "reference": "c880250716f0ac3df716f21f797c477936fdcb3f",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/065f2cb1a464a3273bfe049ea9f22ca225250ef6",
+                "reference": "065f2cb1a464a3273bfe049ea9f22ca225250ef6",
                 "shasum": ""
             },
             "require": {
@@ -54,21 +55,21 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-06-01 22:46:36"
+            "time": "2014-06-12 08:37:50"
         },
         {
             "name": "illuminate/config",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Config",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/config.git",
-                "reference": "cd99d3dc2ca192b7b4003b5f6b31a4b1dd3c8167"
+                "reference": "33396894a35428074e8c41583bf308a7c019610a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/config/zipball/cd99d3dc2ca192b7b4003b5f6b31a4b1dd3c8167",
-                "reference": "cd99d3dc2ca192b7b4003b5f6b31a4b1dd3c8167",
+                "url": "https://api.github.com/repos/illuminate/config/zipball/33396894a35428074e8c41583bf308a7c019610a",
+                "reference": "33396894a35428074e8c41583bf308a7c019610a",
                 "shasum": ""
             },
             "require": {
@@ -99,11 +100,11 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-05-23 16:40:19"
+            "time": "2014-06-08 19:09:40"
         },
         {
             "name": "illuminate/cookie",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Cookie",
             "source": {
                 "type": "git",
@@ -150,7 +151,7 @@
         },
         {
             "name": "illuminate/encryption",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Encryption",
             "source": {
                 "type": "git",
@@ -195,7 +196,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Filesystem",
             "source": {
                 "type": "git",
@@ -240,7 +241,7 @@
         },
         {
             "name": "illuminate/html",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Html",
             "source": {
                 "type": "git",
@@ -286,7 +287,7 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Http",
             "source": {
                 "type": "git",
@@ -333,17 +334,17 @@
         },
         {
             "name": "illuminate/session",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Session",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/session.git",
-                "reference": "5cef0aa6e15b7866a3300a24e10e4d770d9f17c6"
+                "reference": "f1d2498721cc5d5b17f9fdde1e24ca71fbb4e47e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/session/zipball/5cef0aa6e15b7866a3300a24e10e4d770d9f17c6",
-                "reference": "5cef0aa6e15b7866a3300a24e10e4d770d9f17c6",
+                "url": "https://api.github.com/repos/illuminate/session/zipball/f1d2498721cc5d5b17f9fdde1e24ca71fbb4e47e",
+                "reference": "f1d2498721cc5d5b17f9fdde1e24ca71fbb4e47e",
                 "shasum": ""
             },
             "require": {
@@ -382,21 +383,21 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-06-08 06:15:49"
+            "time": "2014-06-14 17:15:05"
         },
         {
             "name": "illuminate/support",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "71975fd0c0f73033e108a7058be9dae2d32545a7"
+                "reference": "976bdc0f42e9efd3dfa2e0eba11aba48a97113ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/71975fd0c0f73033e108a7058be9dae2d32545a7",
-                "reference": "71975fd0c0f73033e108a7058be9dae2d32545a7",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/976bdc0f42e9efd3dfa2e0eba11aba48a97113ac",
+                "reference": "976bdc0f42e9efd3dfa2e0eba11aba48a97113ac",
                 "shasum": ""
             },
             "require": {
@@ -432,7 +433,7 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-06-03 16:57:35"
+            "time": "2014-06-13 20:42:27"
         },
         {
             "name": "nesbot/carbon",
@@ -1212,17 +1213,11 @@
             "time": "2014-05-16 14:25:18"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "platform": {
         "php": ">=5.4.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
