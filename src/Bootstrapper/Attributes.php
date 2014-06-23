@@ -26,6 +26,9 @@ class Attributes implements \ArrayAccess
     {
         $string = "";
         foreach ($this->attributes as $param => $value) {
+            if($value == '') {
+                continue;
+            }
             if (is_string($param)) {
                 $value = str_replace("'", "\'", $value);
                 $value = htmlentities(trim($value));

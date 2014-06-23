@@ -61,4 +61,11 @@ class AttributesSpec extends ObjectBehavior
         $this->__toString()->shouldBe('foo');
     }
 
+    function it_can_handle_an_empty_value()
+    {
+        $this->beConstructedWith(['foo' => '']);
+
+        $this->__toString()->shouldBe('');
+    }
+
 }
