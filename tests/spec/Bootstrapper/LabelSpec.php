@@ -31,4 +31,9 @@ class LabelSpec extends ObjectBehavior
         }
     }
 
+    function it_can_be_created_in_one_go()
+    {
+        $this->create('foo', 'bar')->render()->shouldBe("<span class='label bar'>foo</span>");
+    }
+
 }
