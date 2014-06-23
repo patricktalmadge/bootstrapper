@@ -26,11 +26,11 @@ class Label
         return $this;
     }
 
-    public function primary()
+    public function primary($contents = '')
     {
         $this->setType(self::LABEL_PRIMARY);
 
-        return $this;
+        return $this->withContents($contents);
     }
 
     public function setType($type)
@@ -38,32 +38,32 @@ class Label
         $this->type = $type;
     }
 
-    public function success()
+    public function success($contents = '')
     {
         $this->setType(self::LABEL_SUCCESS);
 
-        return $this;
+        return $this->withContents($contents);
     }
 
-    public function info()
+    public function info($contents = '')
     {
         $this->setType(self::LABEL_INFO);
 
-        return $this;
+        return $this->withContents($contents);
     }
 
-    public function warning()
+    public function warning($contents = '')
     {
         $this->setType(self::LABEL_WARNING);
 
-        return $this;
+        return $this->withContents($contents);
     }
 
-    public function danger()
+    public function danger($contents = '')
     {
         $this->setType(self::LABEL_DANGER);
 
-        return $this;
+        return $this->withContents($contents);
     }
 
     public function __toString()
