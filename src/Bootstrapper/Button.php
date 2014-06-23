@@ -154,4 +154,11 @@ class Button
 
         return $this;
     }
+
+    public function withAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
 }
