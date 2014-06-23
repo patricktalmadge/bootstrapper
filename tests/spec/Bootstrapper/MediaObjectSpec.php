@@ -81,4 +81,6 @@ class MediaObjectSpec extends ObjectBehavior
             "<ul class='media-list'><li class='media'><a href='link' class='pull-left'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li><li class='media'><a href='link' class='pull-right'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li></ul>"
         );
     }
+
+    function it_can_handle_an_object_without_some
 }
