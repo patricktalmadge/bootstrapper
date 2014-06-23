@@ -100,10 +100,6 @@ class FormTest extends BootstrapperWrapper
                  'inline_model',
                  '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar">'
              ),
-             array(
-                 'search_model',
-                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
-             ),
          );
      }
 
