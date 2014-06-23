@@ -93,4 +93,10 @@ class MediaObjectSpec extends ObjectBehavior
             "<div class='media'><div class='pull-left'><img class='media-object' src='image'></div><div class='media-body'>body</div></div>"
         );
     }
+
+    function it_hates_you_if_you_dont_pass_in_an_image_or_body()
+    {
+        $this->withContents(['image' => 'image'])->shouldThrow('Bootstrapper\\Exceptions\\MediaObjectException')->duringRender();
+        $this->withContents(['body' => 'body'])->shouldThrow('Bootstrapper\\Exceptions\\MediaObjectException')->duringRender();
+    }
 }
