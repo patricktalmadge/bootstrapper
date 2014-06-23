@@ -52,6 +52,33 @@ class MediaObjectSpec extends ObjectBehavior
                     'heading' => 'heading',
                     'body' => 'body'
                 ]
-        ])->render()->shouldBe("<ul class='media-list'><li class='media'><a href='link' class='pull-left'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li><li class='media'><a href='link' class='pull-left'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li></ul>");
+            ]
+        )->render()->shouldBe(
+            "<ul class='media-list'><li class='media'><a href='link' class='pull-left'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li><li class='media'><a href='link' class='pull-left'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li></ul>"
+        );
+    }
+
+    function it_can_place_the_image_on_the_left_or_right()
+    {
+        $this->withContents(
+            [
+                [
+                    'image' => 'image',
+                    'link' => 'link',
+                    'heading' => 'heading',
+                    'body' => 'body',
+                    'position' => 'left'
+                ],
+                [
+                    'image' => 'image',
+                    'link' => 'link',
+                    'heading' => 'heading',
+                    'body' => 'body',
+                    'position' => 'right'
+                ]
+            ]
+        )->render()->shouldBe(
+            "<ul class='media-list'><li class='media'><a href='link' class='pull-left'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li><li class='media'><a href='link' class='pull-right'><img class='media-object' src='image' alt='heading'></a><div class='media-body'><h4 class='media-heading'>heading</h4>body</div></li></ul>"
+        );
     }
 }
