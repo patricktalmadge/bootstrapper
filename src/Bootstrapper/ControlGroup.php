@@ -57,7 +57,7 @@ class ControlGroup
 
     public function withLabel($label, $labelSize = 2)
     {
-        if($labelSize < 1 || $labelSize > 11) {
+        if ($labelSize < 1 || $labelSize > 11) {
             throw new ControlGroupException('That label size is incorrect - it must be between 1 and 12');
         }
 

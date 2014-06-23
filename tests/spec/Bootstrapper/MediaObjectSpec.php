@@ -82,5 +82,15 @@ class MediaObjectSpec extends ObjectBehavior
         );
     }
 
-    function it_can_handle_an_object_without_some
+    function it_can_handle_an_object_without_some_fields()
+    {
+        $this->withContents(
+            [
+                'image' => 'image',
+                'body' => 'body'
+            ]
+        )->render()->shouldBe(
+            "<div class='media'><div class='pull-left'><img class='media-object' src='image'></div><div class='media-body'>body</div></div>"
+        );
+    }
 }

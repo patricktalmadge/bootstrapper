@@ -12,13 +12,14 @@ class MediaObject
 
     public function render()
     {
-        if($this->list) {
+        if ($this->list) {
             return $this->renderList();
         }
 
         if (!$this->contents) {
             throw new MediaObjectException("You need to give the object some contents");
         }
+
         return $this->renderItem($this->contents, 'div');
     }
 
@@ -42,7 +43,7 @@ class MediaObject
     private function renderList()
     {
         $string = "<ul class='media-list'>";
-        foreach($this->contents as $item) {
+        foreach ($this->contents as $item) {
             $string .= $this->renderItem($item, 'li');
         }
         $string .= "</ul>";
@@ -52,7 +53,67 @@ class MediaObject
 
     private function renderItem($contents, $tag)
     {
-        $position = isset($contents['position']) && $contents['position'] == 'right' ? 'pull-right' : 'pull-left';
-        return "<{$tag} class='media'><a href='{$contents['link']}' class='{$position}'><img class='media-object' src='{$contents['image']}' alt='{$contents['heading']}'></a><div class='media-body'><h4 class='media-heading'>{$contents['heading']}</h4>{$contents['body']}</div></{$tag}>";
+        $position = $this->getPosition($contents);
+        $heading = $this->getHeading($contents);
+        $image = $this->getImage($contents, $heading);
+        $link = $this->getLink($contents, $image, $position);
+        $body = $this->getBody($contents);
+
+        $string = "<{$tag} class='media'>";
+        $string .= $link;
+        $string .= "<div class='media-body'>";
+
+        if ($heading) {
+            $string .= "<h4 class='media-heading'>{$heading}</h4>";
+        }
+
+        $string .= $body;
+        $string .= "</div></{$tag}>";
+
+        return $string;
+    }
+
+    private function getPosition($contents)
+    {
+        if (isset($contents['position']) && $contents['position'] == 'right') {
+            return 'pull-right';
+        }
+
+        return 'pull-left';
+
+    }
+
+    private function getImage($contents, $alt)
+    {
+        if (!isset($contents['image'])) {
+            throw new MediaObjectException("You must pass in an image to each object");
+        }
+        $image = $contents['image'];
+
+        $attributes = new Attributes(['class' => 'media-object', 'src' => $image, 'alt' => $alt]);
+        return "<img {$attributes}>";
+    }
+
+    private function getHeading($contents)
+    {
+        return isset($contents['heading']) ? $contents['heading'] : '';
+    }
+
+    private function getLink($contents, $image, $position)
+    {
+        if (isset($contents['link'])) {
+            return "<a href='{$contents['link']}' class='{$position}'>{$image}</a>";
+        }
+
+        return "<div class='{$position}'>{$image}</div>";
+    }
+
+    private function getBody($contents)
+    {
+        if (isset($contents['body'])) {
+            return $contents['body'];
+        }
+
+        throw new MediaObjectException('You must pass in the body to each object');
     }
 }

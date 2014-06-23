@@ -26,7 +26,7 @@ class Attributes implements \ArrayAccess
     {
         $string = "";
         foreach ($this->attributes as $param => $value) {
-            if($value == '') {
+            if ($value == '') {
                 continue;
             }
             if (is_string($param)) {

@@ -17,7 +17,7 @@ class Image
 
     public function render()
     {
-        if(!$this->src) {
+        if (!$this->src) {
             throw new ImageException("You must specify the source");
         }
 

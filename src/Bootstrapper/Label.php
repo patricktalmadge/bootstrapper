@@ -74,6 +74,7 @@ class Label
     public function create($contents, $type = self::LABEL_DEFAULT)
     {
         $this->setType($type);
+
         return $this->withContents($contents);
     }
 }

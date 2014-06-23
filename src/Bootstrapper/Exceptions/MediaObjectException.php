@@ -4,6 +4,7 @@ namespace Bootstrapper\Exceptions;
 
 use Exception;
 
-class MediaObjectException extends Exception{
+class MediaObjectException extends Exception
+{
 
 } 
