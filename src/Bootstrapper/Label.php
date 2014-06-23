@@ -10,6 +10,7 @@ class Label
     const LABEL_INFO = 'label-info';
     const LABEL_WARNING = 'label-warning';
     const LABEL_DANGER = 'label-danger';
+    const LABEL_DEFAULT = 'label-default';
     private $type = 'label-default';
     private $contents;
 
@@ -68,5 +69,11 @@ class Label
     public function __toString()
     {
         return $this->render();
+    }
+
+    public function create($contents, $type = self::LABEL_DEFAULT)
+    {
+        $this->setType($type);
+        return $this->withContents($contents);
     }
 }
