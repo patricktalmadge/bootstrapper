@@ -29,7 +29,6 @@ class LabelSpec extends ObjectBehavior
         foreach ($types as $type) {
             $this->$type()->render()->shouldBe("<span class='label label-{$type}'></span>");
         }
-
     }
 
 }
