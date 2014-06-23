@@ -85,6 +85,37 @@ class FormTest extends BootstrapperWrapper
         $this->assertEquals($expected . '<input name="_token" type="hidden" value="foo">', $form);
     }
 
+     public function modelTypes()
+     {
+         return array(
+             array(
+                 'vertical_model',
+                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
+             ),
+             array(
+                 'horizontal_model',
+                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-horizontal" data-foo="bar">'
+             ),
+             array(
+                 'inline_model',
+                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo form-inline" data-foo="bar">'
+             ),
+             array(
+                 'search_model',
+                 '<form method="POST" action="http://test/login" accept-charset="UTF-8" class="foo" data-foo="bar">'
+             ),
+         );
+     }
+
+    /**
+     * @dataProvider modelTypes
+     */
+    public function testFormModel($type, $expected)
+    {
+        $form = Form::$type(new Foo(), 'login', 'POST', $this->testAttributes);
+        $this->assertEquals($expected . '<input name="_token" type="hidden" value="foo">', $form);
+    }
+
     public function testInlineHelp()
     {
         $expected = '<span class="foo help-block" data-foo="bar">foobar</span>';
@@ -956,3 +987,5 @@ class FormTest extends BootstrapperWrapper
     }
 
 }
+
+class Foo{};

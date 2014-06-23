@@ -335,6 +335,12 @@ class Form extends Facade
         return static::inline_open_for_files($action, $method, $attributes, true);
     }
 
+    public static function inline_model($model, $action = null, $method = 'POST', $attributes = array())
+    {
+        $attributes = Helpers::add_class($attributes, Form::TYPE_INLINE);
+        return static::model($model, array_merge($attributes, array('method' => $method, 'url' => $action)));
+    }
+
     /**
      * Open a HTML form styled for a horizontal form.
      *
@@ -384,12 +390,8 @@ class Form extends Facade
      *
      * @return string
      */
-    public static function horizontal_open_for_files(
-        $action = null,
-        $method = 'POST',
-        $attributes = array(),
-        $https = null
-    ) {
+    public static function horizontal_open_for_files($action = null, $method = 'POST', $attributes = array(), $https = null)
+    {
         $attributes['enctype'] = 'multipart/form-data';
 
         return static::horizontal_open($action, $method, $attributes, $https);
@@ -407,6 +409,12 @@ class Form extends Facade
     public static function horizontal_open_secure_for_files($action = null, $method = 'POST', $attributes = array())
     {
         return static::horizontal_open_for_files($action, $method, $attributes, true);
+    }
+
+    public static function horizontal_model($model, $action = null, $method = 'POST', $attributes = array())
+    {
+        $attributes = Helpers::add_class($attributes, Form::TYPE_HORIZONTAL);
+        return static::model($model, array_merge($attributes, array('method' => $method, 'url' => $action)));
     }
 
     /**
@@ -461,7 +469,8 @@ class Form extends Facade
         $method = 'POST',
         $attributes = array(),
         $https = null
-    ) {
+    )
+    {
         $attributes['enctype'] = 'multipart/form-data';
 
         return static::vertical_open($action, $method, $attributes, $https);
@@ -479,6 +488,11 @@ class Form extends Facade
     public static function vertical_open_secure_for_files($action = null, $method = 'POST', $attributes = array())
     {
         return static::vertical_open_for_files($action, $method, $attributes, true);
+    }
+
+    public static function vertical_model($model, $action = null, $method = 'POST', $attributes = array())
+    {
+        return static::model($model, array_merge($attributes, array('method' => $method, 'url' => $action)));
     }
 
     /**
