@@ -161,4 +161,11 @@ class Button
 
         return $this;
     }
+
+    public function addAttributes($attributes)
+    {
+        $this->attributes = array_merge($attributes, $this->attributes);
+
+        return $this;
+    }
 }

@@ -71,4 +71,9 @@ class ButtonSpec extends ObjectBehavior
         $this->withAttributes(['data-foo' => 'bar'])->render()->shouldBe("<button type='button' class='btn btn-default' data-foo='bar'></button>");
     }
 
+    function it_can_have_attributes_added()
+    {
+        $this->withAttributes(['data-foo' => 'bar'])->addAttributes(['data-baz' => 'goo'])->render()->shouldBe("<button type='button' class='btn btn-default' data-baz='goo' data-foo='bar'></button>");
+    }
+
 }
