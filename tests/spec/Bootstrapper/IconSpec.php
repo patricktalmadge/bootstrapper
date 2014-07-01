@@ -38,7 +38,7 @@ class IconSpec extends ObjectBehavior
     {
         $types = ['foo', 'bar', 'baz'];
 
-        foreach($types as $type) {
+        foreach ($types as $type) {
             $this->$type()->shouldReturn("<span class='glyphicon glyphicon-$type'></span>");
         }
     }

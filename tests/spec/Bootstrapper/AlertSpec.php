@@ -20,7 +20,7 @@ class AlertSpec extends ObjectBehavior
     function it_can_be_given_a_type()
     {
         $types = ['info', 'success', 'warning', 'danger'];
-        foreach($types as $type) {
+        foreach ($types as $type) {
             $this->$type()->render()->shouldBe("<div class='alert alert-{$type}'></div>");
         }
     }
@@ -37,7 +37,9 @@ class AlertSpec extends ObjectBehavior
 
     function it_can_become_closeable()
     {
-        $this->close()->render()->shouldBe("<div class='alert alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button></div>");
+        $this->close()->render()->shouldBe(
+            "<div class='alert alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button></div>"
+        );
     }
 
     function it_can_be_given_attributes()
@@ -45,4 +47,5 @@ class AlertSpec extends ObjectBehavior
         $this->withAttributes(['foo' => 'bar'])->render()->shouldBe("<div class='alert' foo='bar'></div>");
     }
 }
+
 ?>

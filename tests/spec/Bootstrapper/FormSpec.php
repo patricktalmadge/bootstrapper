@@ -116,4 +116,6 @@ class FormSpec extends ObjectBehavior
     }
 }
 
-class Foo{}
+class Foo
+{
+}

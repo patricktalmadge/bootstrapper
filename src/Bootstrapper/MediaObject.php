@@ -91,6 +91,7 @@ class MediaObject
         $image = $contents['image'];
 
         $attributes = new Attributes(['class' => 'media-object', 'src' => $image, 'alt' => $alt]);
+
         return "<img {$attributes}>";
     }
 

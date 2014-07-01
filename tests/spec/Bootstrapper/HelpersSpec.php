@@ -25,17 +25,23 @@ class HelpersSpec extends ObjectBehavior
 
     function it_can_generate_a_css_tag_for_us()
     {
-        $this->css()->shouldBe("<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'><link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css'>");
+        $this->css()->shouldBe(
+            "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'><link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css'>"
+        );
     }
 
     function it_can_give_us_just_the_css_without_the_theme()
     {
-        $this->css(false)->shouldBe("<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>");
+        $this->css(false)->shouldBe(
+            "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'>"
+        );
     }
 
     function it_can_give_us_the_script_tags()
     {
-        $this->js()->shouldBe("<script src='http://code.jquery.com/jquery-2.1.0.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>");
+        $this->js()->shouldBe(
+            "<script src='http://code.jquery.com/jquery-2.1.0.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>"
+        );
     }
 
     function it_listens_to_the_config_file()
@@ -46,8 +52,12 @@ class HelpersSpec extends ObjectBehavior
         $config->shouldReceive('get')->with('Bootstrapper::bootstrapVersion')->andReturn("3.2.1");
 
         $this->beConstructedWith($config);
-        $this->css()->shouldBe("<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.2.1/css/bootstrap.min.css'><link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.2.1/css/bootstrap-theme.min.css'>");
-        $this->js()->shouldBe("<script src='http://code.jquery.com/jquery-2.1.1.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/3.2.1/js/bootstrap.min.js'></script>");
+        $this->css()->shouldBe(
+            "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.2.1/css/bootstrap.min.css'><link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.2.1/css/bootstrap-theme.min.css'>"
+        );
+        $this->js()->shouldBe(
+            "<script src='http://code.jquery.com/jquery-2.1.1.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/3.2.1/js/bootstrap.min.js'></script>"
+        );
     }
 
 }

@@ -22,7 +22,7 @@ class Navbar
 
     public function render()
     {
-        $attributes = new Attributes($this->attributes, ['class'=>'navbar navbar-default', 'role'=>'navigation']);
+        $attributes = new Attributes($this->attributes, ['class' => 'navbar navbar-default', 'role' => 'navigation']);
 
         $string = "<nav {$attributes}><div class='container-fluid'>";
         $string .= $this->renderHeader();

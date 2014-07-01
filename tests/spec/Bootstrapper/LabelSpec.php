@@ -24,7 +24,7 @@ class LabelSpec extends ObjectBehavior
 
     function it_can_be_given_a_type()
     {
-        $types = ['primary','success','info','warning','danger'];
+        $types = ['primary', 'success', 'info', 'warning', 'danger'];
 
         foreach ($types as $type) {
             $this->$type()->render()->shouldBe("<span class='label label-{$type}'></span>");

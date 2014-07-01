@@ -29,7 +29,9 @@ class ImageSpec extends ObjectBehavior
 
     function it_can_be_given_attributes()
     {
-        $this->withSource('foo')->withAttributes(['data-foo' => 'bar'])->render()->shouldBe("<img src='foo' data-foo='bar'>");
+        $this->withSource('foo')->withAttributes(['data-foo' => 'bar'])->render()->shouldBe(
+            "<img src='foo' data-foo='bar'>"
+        );
     }
 
     function it_can_be_made_responsive()

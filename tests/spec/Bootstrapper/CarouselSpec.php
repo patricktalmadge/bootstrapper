@@ -45,7 +45,8 @@ class CarouselSpec extends ObjectBehavior
         );
     }
 
-    function it_can_be_given_attributes() {
+    function it_can_be_given_attributes()
+    {
         $this->named('foo')->withAttributes(['foo' => 'bar'])->render()->shouldBe(
             "<div id='foo' class='carousel slide' data-ride='carousel' foo='bar'><ol class='carousel-indicators'></ol><div class='carousel-inner'></div><a class='left carousel-control' href='#foo' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#foo' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a></div>"
         );;

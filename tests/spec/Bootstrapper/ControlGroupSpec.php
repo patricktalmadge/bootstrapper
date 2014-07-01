@@ -59,12 +59,16 @@ class ControlGroupSpec extends ObjectBehavior
 
     function it_places_the_help_block_in_the_correct_place()
     {
-        $this->withLabel('bar')->withHelp('foo')->render()->shouldBe("<div class='form-group'><div class='col-sm-2'>bar</div><div class='col-sm-10'>foo</div></div>");
+        $this->withLabel('bar')->withHelp('foo')->render()->shouldBe(
+            "<div class='form-group'><div class='col-sm-2'>bar</div><div class='col-sm-10'>foo</div></div>"
+        );
     }
 
     function it_can_be_generated_in_one_go()
     {
-        $this->generate('<div>label</div>', '<div>control</div>', '<div>help</div>')->render()->shouldBe("<div class='form-group'><div class='col-sm-2'><div>label</div></div><div class='col-sm-10'><div>control</div><div>help</div></div></div>");
+        $this->generate('<div>label</div>', '<div>control</div>', '<div>help</div>')->render()->shouldBe(
+            "<div class='form-group'><div class='col-sm-2'><div>label</div></div><div class='col-sm-10'><div>control</div><div>help</div></div></div>"
+        );
     }
 
     function it_squawks_if_the_label_size_is_silly()
