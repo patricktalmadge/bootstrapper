@@ -2,9 +2,8 @@
 
 namespace Bootstrapper;
 
-class Breadcrumb
+class Breadcrumb extends RenderedObject
 {
-
     private $links = [];
 
     public function render()
@@ -39,10 +38,5 @@ class Breadcrumb
         $string .= "</li>";
 
         return $string;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 }

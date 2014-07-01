@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class InputGroup
+class InputGroup extends RenderedObject
 {
 
     const LARGE = 'input-group-lg';
@@ -47,11 +47,6 @@ class InputGroup
         $string .= "</span>";
 
         return $string;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 
 

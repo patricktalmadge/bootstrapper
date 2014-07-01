@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class ButtonGroup
+class ButtonGroup extends RenderedObject
 {
 
     private $contents = [];
@@ -29,11 +29,6 @@ class ButtonGroup
         $string .= "</div>";
 
         return $string;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 
     public function withContents($contents)

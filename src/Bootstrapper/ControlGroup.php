@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 use Bootstrapper\Exceptions\ControlGroupException;
 
-class ControlGroup
+class ControlGroup extends RenderedObject
 {
 
     private $attributes = [];
@@ -77,10 +77,5 @@ class ControlGroup
     public function generate($label, $control, $help = null, $labelSize = 2)
     {
         return $this->withLabel($label, $labelSize)->withContents($control)->withHelp($help);
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 }

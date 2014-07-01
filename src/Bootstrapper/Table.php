@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class Table
+class Table extends RenderedObject
 {
 
     const TABLE_STRIPED = 'table-striped';
@@ -25,11 +25,6 @@ class Table
         $string .= '</table>';
 
         return $string;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 
     public function setType($type)

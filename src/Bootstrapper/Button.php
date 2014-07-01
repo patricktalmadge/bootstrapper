@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class Button
+class Button extends RenderedObject
 {
 
     const PRIMARY = 'btn-primary';

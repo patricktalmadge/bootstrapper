@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class Label
+class Label extends RenderedObject
 {
 
     const LABEL_PRIMARY = 'label-primary';
@@ -64,11 +64,6 @@ class Label
         $this->setType(self::LABEL_DANGER);
 
         return $this->withContents($contents);
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 
     public function create($contents, $type = self::LABEL_DEFAULT)

@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 use Illuminate\Config\Repository;
 
-class Icon
+class Icon extends RenderedObject
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class Badge
+class Badge extends RenderedObject
 {
 
     private $contents;
@@ -40,10 +40,5 @@ class Badge
         $this->attributes = $attributes;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 }

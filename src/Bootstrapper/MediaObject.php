@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 use Bootstrapper\Exceptions\MediaObjectException;
 
-class MediaObject
+class MediaObject extends RenderedObject
 {
 
     private $contents = [];

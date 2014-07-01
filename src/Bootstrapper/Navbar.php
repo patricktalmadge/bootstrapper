@@ -5,7 +5,7 @@ namespace Bootstrapper;
 
 use Illuminate\Routing\UrlGenerator;
 
-class Navbar
+class Navbar extends RenderedObject
 {
 
     private $brand;
@@ -49,12 +49,6 @@ class Navbar
 
         return $string;
     }
-
-    public function __toString()
-    {
-        return $this->render();
-    }
-
 
     public function withBrand($brand, $link = null)
     {

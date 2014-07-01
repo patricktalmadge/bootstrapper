@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 use Bootstrapper\Exceptions\ModalException;
 
-class Modal
+class Modal extends RenderedObject
 {
 
     private $attributes = [];

@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class DropdownButton
+class DropdownButton extends RenderedObject
 {
     const DIVIDER = "<li class='divider'></li>";
     const PRIMARY = 'btn-primary';
@@ -157,10 +157,5 @@ class DropdownButton
         }
 
         return $string;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 }

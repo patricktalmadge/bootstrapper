@@ -79,4 +79,9 @@ class AccordionSpec extends ObjectBehavior
         );
     }
 
+    function it_can_be_stringified()
+    {
+        $this->named('bar')->__toString()->shouldBe($this->render());
+    }
+
 }

@@ -2,7 +2,7 @@
 
 namespace Bootstrapper;
 
-class Alert
+class Alert extends RenderedObject
 {
 
     const INFO = 'alert-info';
@@ -84,10 +84,5 @@ class Alert
         $this->attributes = $attributes;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 }

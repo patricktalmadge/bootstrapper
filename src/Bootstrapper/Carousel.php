@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 use Bootstrapper\Exceptions\CarouselException;
 
-class Carousel
+class Carousel extends RenderedObject
 {
 
     private $name;
@@ -30,11 +30,6 @@ class Carousel
         $this->contents = $contents;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 
     public function render()

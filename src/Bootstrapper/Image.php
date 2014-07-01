@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 use Bootstrapper\Exceptions\ImageException;
 
-class Image
+class Image extends RenderedObject
 {
 
     const IMAGE_RESPONSIVE = 'img-responsive';

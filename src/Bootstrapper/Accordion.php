@@ -10,7 +10,7 @@ use Bootstrapper\Exceptions\AccordionException;
  * @package Bootstrapper
  * @author Patrick Rose
  */
-class Accordion
+class Accordion extends RenderedObject
 {
 
     private $name;
@@ -83,10 +83,5 @@ class Accordion
         $this->opened = $integer;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
     }
 }
