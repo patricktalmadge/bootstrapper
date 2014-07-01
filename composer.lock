@@ -1,24 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
-        "This file is @generated automatically"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8aa09dc200db3f55d8686c8ad6fe9d7a",
+    "hash": "98935f751d7a2897b75be8899ef855fb",
     "packages": [
         {
             "name": "illuminate/cache",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Cache",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/cache.git",
-                "reference": "065f2cb1a464a3273bfe049ea9f22ca225250ef6"
+                "reference": "b558bb87f507d30f5f9fda04d6623f548f7bdde8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/cache/zipball/065f2cb1a464a3273bfe049ea9f22ca225250ef6",
-                "reference": "065f2cb1a464a3273bfe049ea9f22ca225250ef6",
+                "url": "https://api.github.com/repos/illuminate/cache/zipball/b558bb87f507d30f5f9fda04d6623f548f7bdde8",
+                "reference": "b558bb87f507d30f5f9fda04d6623f548f7bdde8",
                 "shasum": ""
             },
             "require": {
@@ -55,11 +54,11 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-06-12 08:37:50"
+            "time": "2014-06-21 14:34:52"
         },
         {
             "name": "illuminate/config",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Config",
             "source": {
                 "type": "git",
@@ -103,8 +102,51 @@
             "time": "2014-06-08 19:09:40"
         },
         {
+            "name": "illuminate/container",
+            "version": "v4.2.6",
+            "target-dir": "Illuminate/Container",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/container.git",
+                "reference": "226ce5097ef587ef9e0b45ecd0858720c690e850"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/226ce5097ef587ef9e0b45ecd0858720c690e850",
+                "reference": "226ce5097ef587ef9e0b45ecd0858720c690e850",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Illuminate\\Container": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com",
+                    "homepage": "https://github.com/taylorotwell",
+                    "role": "Creator of Laravel"
+                }
+            ],
+            "time": "2014-06-24 22:00:11"
+        },
+        {
             "name": "illuminate/cookie",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Cookie",
             "source": {
                 "type": "git",
@@ -151,7 +193,7 @@
         },
         {
             "name": "illuminate/encryption",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Encryption",
             "source": {
                 "type": "git",
@@ -196,7 +238,7 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Filesystem",
             "source": {
                 "type": "git",
@@ -241,7 +283,7 @@
         },
         {
             "name": "illuminate/html",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Html",
             "source": {
                 "type": "git",
@@ -287,17 +329,17 @@
         },
         {
             "name": "illuminate/http",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Http",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/http.git",
-                "reference": "09d84c5f683830c89bf397d97fa9af0e2cb67b6a"
+                "reference": "a474d4210de9dfdb451438daacc7ded1c3e6e367"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/http/zipball/09d84c5f683830c89bf397d97fa9af0e2cb67b6a",
-                "reference": "09d84c5f683830c89bf397d97fa9af0e2cb67b6a",
+                "url": "https://api.github.com/repos/illuminate/http/zipball/a474d4210de9dfdb451438daacc7ded1c3e6e367",
+                "reference": "a474d4210de9dfdb451438daacc7ded1c3e6e367",
                 "shasum": ""
             },
             "require": {
@@ -330,11 +372,65 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-05-30 14:05:07"
+            "time": "2014-06-27 20:40:32"
+        },
+        {
+            "name": "illuminate/routing",
+            "version": "v4.2.6",
+            "target-dir": "Illuminate/Routing",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/routing.git",
+                "reference": "12b59d8852fe14988417d3e2e3fbf5e2ce689dc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/routing/zipball/12b59d8852fe14988417d3e2e3fbf5e2ce689dc1",
+                "reference": "12b59d8852fe14988417d3e2e3fbf5e2ce689dc1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "4.2.*",
+                "illuminate/http": "4.2.*",
+                "illuminate/session": "4.2.*",
+                "illuminate/support": "4.2.*",
+                "php": ">=5.4.0",
+                "symfony/http-foundation": "2.5.*",
+                "symfony/http-kernel": "2.5.*",
+                "symfony/routing": "2.5.*"
+            },
+            "require-dev": {
+                "illuminate/console": "4.2.*",
+                "illuminate/filesystem": "4.2.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Illuminate\\Routing": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com",
+                    "homepage": "https://github.com/taylorotwell",
+                    "role": "Creator of Laravel"
+                }
+            ],
+            "time": "2014-06-27 18:40:40"
         },
         {
             "name": "illuminate/session",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Session",
             "source": {
                 "type": "git",
@@ -387,17 +483,17 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v4.2.4",
+            "version": "v4.2.6",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "976bdc0f42e9efd3dfa2e0eba11aba48a97113ac"
+                "reference": "d59811c8d3e0b7c2b9ffd2c480e698b3352472d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/976bdc0f42e9efd3dfa2e0eba11aba48a97113ac",
-                "reference": "976bdc0f42e9efd3dfa2e0eba11aba48a97113ac",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/d59811c8d3e0b7c2b9ffd2c480e698b3352472d0",
+                "reference": "d59811c8d3e0b7c2b9ffd2c480e698b3352472d0",
                 "shasum": ""
             },
             "require": {
@@ -433,7 +529,7 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-06-13 20:42:27"
+            "time": "2014-06-29 00:06:59"
         },
         {
             "name": "nesbot/carbon",
@@ -811,6 +907,74 @@
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
             "time": "2014-05-31 18:45:50"
+        },
+        {
+            "name": "symfony/routing",
+            "version": "v2.5.0",
+            "target-dir": "Symfony/Component/Routing",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Routing.git",
+                "reference": "99b4e8e2978e6a08c086fd771cc0aa66c9e80a56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/99b4e8e2978e6a08c086fd771cc0aa66c9e80a56",
+                "reference": "99b4e8e2978e6a08c086fd771cc0aa66c9e80a56",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.0",
+                "psr/log": "~1.0",
+                "symfony/config": "~2.2",
+                "symfony/expression-language": "~2.4",
+                "symfony/yaml": "~2.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation loader",
+                "symfony/config": "For using the all-in-one router or any loader",
+                "symfony/expression-language": "For using expression matching",
+                "symfony/yaml": "For using the YAML loader"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Routing\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Routing Component",
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "router",
+                "routing",
+                "uri",
+                "url"
+            ],
+            "time": "2014-04-23 14:08:54"
         },
         {
             "name": "symfony/security-core",
@@ -1213,11 +1377,17 @@
             "time": "2014-05-16 14:25:18"
         }
     ],
-    "aliases": [],
+    "aliases": [
+
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.4.0"
     },
-    "platform-dev": []
+    "platform-dev": [
+
+    ]
 }
