@@ -28,7 +28,11 @@ class Navigation extends RenderedObject
         $attributes = new Attributes($this->attributes, ['class' => "nav {$this->type}"]);
         $string = "<ul {$attributes}>";
         foreach ($this->links as $link) {
-            $string .= $this->renderLink($link);
+            if (isset($link['link'])) {
+                $string .= $this->renderLink($link);
+            } else {
+                $string .= $this->renderDropdown($link);
+            }
         }
 
         $string .= "</ul>";
@@ -71,7 +75,7 @@ class Navigation extends RenderedObject
     private function renderLink($link)
     {
         $string = '';
-        if ($this->autoroute && $this->url->current() == $link['link']) {
+        if ($this->itemShouldBeActive($link)) {
             $string .= '<li class=\'active\'>';
         } else {
             $string .= '<li>';
@@ -88,8 +92,44 @@ class Navigation extends RenderedObject
         return $this;
     }
 
-    public function grouped($argument1)
+    private function renderDropdown($link)
     {
-        // TODO: write logic here
+        if($this->dropdownShouldBeActive($link)) {
+            $string = '<li class=\'dropdown active\'>';
+            // Prevent active state being added to any other links
+            $this->autoroute(false);
+        } else {
+            $string = '<li class=\'dropdown\'>';
+        }
+        $string .= "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>{$link[0]} <span class='caret'></span></a>";
+        $string .= '<ul class=\'dropdown-menu\' role=\'menu\'>';
+        foreach ($link[1] as $item) {
+            $string .= $this->renderLink($item);
+        }
+        $string .= '</ul>';
+        $string .= '</li>';
+
+        return $string;
+    }
+
+    private function dropdownShouldBeActive($dropdown)
+    {
+        if($this->autoroute) {
+            foreach ($dropdown[1] as $item) {
+                if($this->itemShouldBeActive($item)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $link
+     * @return bool
+     */
+    private function itemShouldBeActive($link)
+    {
+        return $this->autoroute && $this->url->current() == $link['link'];
     }
 }
