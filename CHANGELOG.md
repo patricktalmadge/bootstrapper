@@ -10,7 +10,7 @@ Bootstrapper
 * Update to use PSR-4
 * Remove Form::append* etc in favour of an InputGroup class
 * Remove Form::control_group in favour of a ControlGroup class
-* Remove Thumbnail
+* Remove Thumbnail (since it is Bootstrap 2.*)
 
 4.0.0
 =====
