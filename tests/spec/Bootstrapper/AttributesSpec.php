@@ -68,4 +68,11 @@ class AttributesSpec extends ObjectBehavior
         $this->__toString()->shouldBe('');
     }
 
+    function it_concatenates_classes()
+    {
+        $this->beConstructedWith(['class' => 'foo'], ['class' => 'bar']);
+
+        $this->__toString()->shouldBe("class='bar foo'");
+    }
+
 }

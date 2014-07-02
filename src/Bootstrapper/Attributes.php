@@ -20,6 +20,9 @@ class Attributes implements \ArrayAccess
     public function __construct($attributes, $defaults = [])
     {
         $this->attributes = array_merge($defaults, $attributes);
+        if (isset($attributes['class']) && isset($defaults['class'])) {
+            $this->attributes['class'] = "{$defaults['class']} {$attributes['class']}";
+        }
     }
 
     public function __toString()
