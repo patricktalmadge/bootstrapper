@@ -18,6 +18,8 @@ class Navigation extends RenderedObject
      */
     private $url;
     private $autoroute = true;
+    private $justified = false;
+    private $stacked = false;
 
     public function __construct(UrlGenerator $urlGenerator)
     {
@@ -27,6 +29,12 @@ class Navigation extends RenderedObject
     public function render()
     {
         $attributes = new Attributes($this->attributes, ['class' => "nav {$this->type}"]);
+        if ($this->justified) {
+            $attributes['class'] .= ' nav-justified';
+        }
+        if ($this->stacked) {
+            $attributes['class'] .= ' nav-stacked';
+        }
         $string = "<ul {$attributes}>";
         foreach ($this->links as $link) {
             if (isset($link['link'])) {
@@ -78,6 +86,8 @@ class Navigation extends RenderedObject
         $string = '';
         if ($this->itemShouldBeActive($link)) {
             $string .= '<li class=\'active\'>';
+        } elseif (isset($link['disabled']) && $link['disabled']) {
+            $string .= '<li class=\'disabled\'>';
         } else {
             $string .= '<li>';
         }
@@ -137,6 +147,20 @@ class Navigation extends RenderedObject
     public function navbar()
     {
         $this->type = self::NAVIGATION_NAVBAR;
+
+        return $this;
+    }
+
+    public function justified()
+    {
+        $this->justified = true;
+
+        return $this;
+    }
+
+    public function stacked()
+    {
+        $this->stacked = true;
 
         return $this;
     }
