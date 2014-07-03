@@ -4,6 +4,8 @@ namespace Bootstrapper;
 
 class Tabbable extends RenderedObject
 {
+    const PILL = 'pill';
+    const TAB = 'tab';
 
     /**
      * @var Navigation
@@ -11,6 +13,8 @@ class Tabbable extends RenderedObject
     private $links;
     private $contents = [];
     private $active = 0;
+    private $type = 'tab';
+    private $fade = false;
 
     public function __construct(Navigation $links)
     {
@@ -25,18 +29,20 @@ class Tabbable extends RenderedObject
         return $string;
     }
 
-    public function tabs()
+    public function tabs($contents = [])
     {
         $this->links->tabs();
+        $this->type = self::TAB;
 
-        return $this;
+        return $this->withContents($contents);
     }
 
-    public function pills()
+    public function pills($contents = [])
     {
         $this->links->pills();
+        $this->type = self::PILL;
 
-        return $this;
+        return $this->withContents($contents);
     }
 
     public function withContents($contents)
@@ -61,7 +67,7 @@ class Tabbable extends RenderedObject
             $links[] = [
                 'link' => '#' . Helpers::slug($link['title']),
                 'title' => $link['title'],
-                'linkAttributes' => ['role' => 'tab', 'data-toggle' => 'tab'],
+                'linkAttributes' => ['role' => 'tab', 'data-toggle' => $this->type],
                 'active' => $count == $this->active
             ];
             $count += 1;
@@ -89,9 +95,11 @@ class Tabbable extends RenderedObject
         $count = 0;
         foreach ($this->contents as $item) {
             $attributes = new Attributes(['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]);
+            if ($this->fade) {
+                $attributes['class'] .= ' fade';
+            }
             if ($this->active == $count) {
-                $attributes['class'] .=
-                    ' active';
+                $attributes['class'] .= $this->fade ? ' in active' : ' active';
             }
             $tabs[] = [
                 'content' => $item['content'],
@@ -101,5 +109,19 @@ class Tabbable extends RenderedObject
         }
 
         return $tabs;
+    }
+
+    public function active($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function fade()
+    {
+        $this->fade = true;
+
+        return $this;
     }
 }
