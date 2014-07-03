@@ -8,6 +8,10 @@ use Illuminate\Routing\UrlGenerator;
 class Navbar extends RenderedObject
 {
 
+    const NAVBAR_INVERSE = 'navbar-inverse';
+    const NAVBAR_STATIC = 'navbar-static-top';
+    const NAVBAR_TOP = 'navbar-fixed-top';
+    const NAVBAR_BOTTOM = 'navbar-fixed-bottom';
     private $brand;
     /**
      * @var UrlGenerator
@@ -15,6 +19,8 @@ class Navbar extends RenderedObject
     private $url;
     private $attributes = [];
     private $content = [];
+    private $type = 'navbar-default';
+    private $position;
 
     public function __construct(UrlGenerator $url)
     {
@@ -23,7 +29,7 @@ class Navbar extends RenderedObject
 
     public function render()
     {
-        $attributes = new Attributes($this->attributes, ['class' => 'navbar navbar-default', 'role' => 'navigation']);
+        $attributes = new Attributes($this->attributes, ['class' => "navbar {$this->type} {$this->position}", 'role' => 'navigation']);
 
         $string = "<nav {$attributes}><div class='container-fluid'>";
         $string .= $this->renderHeader();
@@ -82,6 +88,44 @@ class Navbar extends RenderedObject
     public function withContent($content)
     {
         $this->content[] = $content;
+
+        return $this;
+    }
+
+    public function inverse()
+    {
+        $this->setType(self::NAVBAR_INVERSE);
+
+        return $this;
+    }
+
+    public function staticTop()
+    {
+        $this->setPosition(self::NAVBAR_STATIC);
+
+        return $this;
+    }
+
+    public  function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    public  function setPosition($position)
+    {
+        $this->position = $position;
+    }
+
+    public function top()
+    {
+        $this->setPosition(self::NAVBAR_TOP);
+
+        return $this;
+    }
+
+    public function bottom()
+    {
+        $this->setPosition(self::NAVBAR_BOTTOM);
 
         return $this;
     }

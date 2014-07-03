@@ -3,20 +3,19 @@
 namespace spec\Bootstrapper;
 
 use Bootstrapper\Navigation;
+use Illuminate\Routing\UrlGenerator;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Prophecy\Prophet;
 
 class NavbarSpec extends ObjectBehavior
 {
 
-    function let()
+    function let(UrlGenerator $generator)
     {
-        $url = Mockery::mock('Illuminate\\Routing\\UrlGenerator');
-        $url->shouldReceive('to')->with('/')->andReturn('http://localhost');
+        $generator->to('/')->willReturn('http://localhost');
 
-        $this->beConstructedWith($url);
+        $this->beConstructedWith($generator);
     }
 
     function it_is_initializable()
@@ -68,4 +67,20 @@ class NavbarSpec extends ObjectBehavior
             "<nav class='navbar navbar-default' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'>foo</div></div></nav>"
         );
     }
+
+    function it_can_be_inverted()
+    {
+        $this->inverse()->render()->shouldBe(
+            "<nav class='navbar navbar-inverse' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'></div></div></nav>"
+        );
+    }
+
+    function it_can_be_given_a_type()
+    {
+        $types = ['staticTop' => 'navbar-static-top', 'top' => 'navbar-fixed-top', 'bottom' => 'navbar-fixed-bottom'];
+        foreach ($types as $type => $class) {
+            $this->$type()->render()->shouldBe(
+                "<nav class='navbar navbar-default {$class}' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'></div></div></nav>"
+            );
+        }    }
 }
