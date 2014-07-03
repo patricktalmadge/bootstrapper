@@ -196,4 +196,42 @@ class NavigationSpec extends ObjectBehavior
             "<ul class='nav nav-tabs'><li class='disabled'><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
         );
     }
+
+    function it_allows_you_to_declare_a_link_as_active()
+    {
+        $this->links(
+            [
+                [
+                    'link' => 'foo',
+                    'title' => 'bar',
+                    'active' => true
+                ],
+                [
+                    'link' => 'goo',
+                    'title' => 'gar',
+                ],
+            ]
+        )->render()->shouldBe(
+            "<ul class='nav nav-tabs'><li class='active'><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
+        );
+    }
+
+    function it_allows_you_to_give_attributes_to_the_links()
+    {
+        $this->links(
+            [
+                [
+                    'link' => 'foo',
+                    'title' => 'bar',
+                    'linkAttributes' => ['data-foo' => 'bar', 'class' => 'baz']
+                ],
+                [
+                    'link' => 'goo',
+                    'title' => 'gar',
+                ],
+            ]
+        )->render()->shouldBe(
+            "<ul class='nav nav-tabs'><li><a href='foo' data-foo='bar' class='baz'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
+        );
+    }
 }

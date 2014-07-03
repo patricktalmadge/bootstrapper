@@ -25,7 +25,8 @@
         "illuminate/html": "~4.2",
         "illuminate/support": "~4.2",
         "illuminate/config": "~4.2",
-        "illuminate/routing": "~4.2"
+        "illuminate/routing": "~4.2",
+        "twbs/bootstrap": "~3.2"
     },
     "require-dev": {
         "mockery/mockery": "*",

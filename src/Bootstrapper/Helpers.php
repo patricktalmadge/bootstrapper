@@ -17,6 +17,11 @@ class Helpers
         $this->config = $config;
     }
 
+    public static function slug($string)
+    {
+        return preg_replace('/[^A-Za-z0-9-]+/', '-', strtolower($string));
+    }
+
     public function css($helper = true)
     {
         $bootstrap = $this->config->get('Bootstrapper::bootstrapVersion');

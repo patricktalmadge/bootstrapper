@@ -91,7 +91,9 @@ class Navigation extends RenderedObject
         } else {
             $string .= '<li>';
         }
-        $string .= "<a href='{$link['link']}'>{$link['title']}</a></li>";
+        $linkAttributes = isset($link['linkAttributes']) ? $link['linkAttributes'] : [];
+        $linkAttributes = new Attributes($linkAttributes, ['href' => $link['link']]);
+        $string .= "<a {$linkAttributes}>{$link['title']}</a></li>";
 
         return $string;
     }
@@ -141,7 +143,9 @@ class Navigation extends RenderedObject
      */
     private function itemShouldBeActive($link)
     {
-        return $this->autoroute && $this->url->current() == $link['link'];
+        $auto = $this->autoroute && $this->url->current() == $link['link'];
+        $manual = isset($link['active']) && $link['active'];
+        return $auto || $manual;
     }
 
     public function navbar()

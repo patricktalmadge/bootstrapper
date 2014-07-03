@@ -2,11 +2,104 @@
 
 namespace Bootstrapper;
 
-class Tabbable
+class Tabbable extends RenderedObject
 {
+
+    /**
+     * @var Navigation
+     */
+    private $links;
+    private $contents = [];
+    private $active = 0;
+
+    public function __construct(Navigation $links)
+    {
+        $this->links = $links->autoroute(false)->withAttributes(['role' => 'tablist']);
+    }
 
     public function render()
     {
-        // TODO: write logic here
+        $string = $this->renderNavigation();
+        $string .= $this->renderContents();
+
+        return $string;
+    }
+
+    public function tabs()
+    {
+        $this->links->tabs();
+
+        return $this;
+    }
+
+    public function pills()
+    {
+        $this->links->pills();
+
+        return $this;
+    }
+
+    public function withContents($contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    private function renderNavigation()
+    {
+        $this->links->links($this->createNavigationLinks());
+
+        return $this->links->render();
+    }
+
+    private function createNavigationLinks()
+    {
+        $links = [];
+        $count = 0;
+        foreach ($this->contents as $link) {
+            $links[] = [
+                'link' => '#' . Helpers::slug($link['title']),
+                'title' => $link['title'],
+                'linkAttributes' => ['role' => 'tab', 'data-toggle' => 'tab'],
+                'active' => $count == $this->active
+            ];
+            $count += 1;
+        }
+        return $links;
+    }
+
+    private function renderContents()
+    {
+        $tabs = $this->createContentTabs();
+
+        $string = '<div class=\'tab-content\'>';
+        foreach ($tabs as $tab) {
+            $string .= "<div {$tab['attributes']}>{$tab['content']}</div>";
+        }
+
+        $string .= '</div>';
+
+        return $string;
+    }
+
+    private function createContentTabs()
+    {
+        $tabs = [];
+        $count = 0;
+        foreach ($this->contents as $item) {
+            $attributes = new Attributes(['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]);
+            if ($this->active == $count) {
+                $attributes['class'] .=
+                    ' active';
+            }
+            $tabs[] = [
+                'content' => $item['content'],
+                'attributes' => $attributes
+            ];
+            $count += 1;
+        }
+
+        return $tabs;
     }
 }
