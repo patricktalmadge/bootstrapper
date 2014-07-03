@@ -21,7 +21,7 @@ class Attributes implements \ArrayAccess
     {
         $this->attributes = array_merge($defaults, $attributes);
         if (isset($attributes['class']) && isset($defaults['class'])) {
-            $this->attributes['class'] = "{$defaults['class']} {$attributes['class']}";
+            $this->attributes['class'] = trim("{$defaults['class']} {$attributes['class']}");
         }
     }
 
