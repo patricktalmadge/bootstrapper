@@ -23,10 +23,10 @@ class Panel extends RenderedObject
         if ($this->header) {
             $string .= $this->renderHeader();
         }
-        if($this->body) {
+        if ($this->body) {
             $string .= $this->renderBody();
         }
-        if($this->footer) {
+        if ($this->footer) {
             $string .= $this->renderFooter();
         }
         $string .= "</div>";

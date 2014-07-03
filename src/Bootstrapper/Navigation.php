@@ -9,6 +9,7 @@ class Navigation extends RenderedObject
 
     const NAVIGATION_PILLS = 'nav-pills';
     const NAVIGATION_TABS = 'nav-tabs';
+    const NAVIGATION_NAVBAR = 'nav-navbar';
     private $attributes = [];
     private $type = 'nav-tabs';
     private $links = [];
@@ -94,7 +95,7 @@ class Navigation extends RenderedObject
 
     private function renderDropdown($link)
     {
-        if($this->dropdownShouldBeActive($link)) {
+        if ($this->dropdownShouldBeActive($link)) {
             $string = '<li class=\'dropdown active\'>';
             // Prevent active state being added to any other links
             $this->autoroute(false);
@@ -114,9 +115,9 @@ class Navigation extends RenderedObject
 
     private function dropdownShouldBeActive($dropdown)
     {
-        if($this->autoroute) {
+        if ($this->autoroute) {
             foreach ($dropdown[1] as $item) {
-                if($this->itemShouldBeActive($item)) {
+                if ($this->itemShouldBeActive($item)) {
                     return true;
                 }
             }
@@ -131,5 +132,12 @@ class Navigation extends RenderedObject
     private function itemShouldBeActive($link)
     {
         return $this->autoroute && $this->url->current() == $link['link'];
+    }
+
+    public function navbar()
+    {
+        $this->type = self::NAVIGATION_NAVBAR;
+
+        return $this;
     }
 }

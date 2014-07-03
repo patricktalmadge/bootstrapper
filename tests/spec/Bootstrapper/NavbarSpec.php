@@ -2,9 +2,11 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Navigation;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Prophecy\Prophet;
 
 class NavbarSpec extends ObjectBehavior
 {
@@ -50,5 +52,20 @@ class NavbarSpec extends ObjectBehavior
         );
     }
 
-    // TODO: Sort out menus etc
+    function it_can_have_strings_added_to_it()
+    {
+        $this->withContent('foo')->render()->shouldBe(
+            "<nav class='navbar navbar-default' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'>foo</div></div></nav>"
+        );
+    }
+
+    function it_can_have_navigation_added(Navigation $navigation)
+    {
+        $navigation->navbar()->shouldBeCalledTimes(1);
+        $navigation->__toString()->shouldBeCalledTimes(1)->willReturn('foo');
+
+        $this->withContent($navigation)->render()->shouldBe(
+            "<nav class='navbar navbar-default' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'>foo</div></div></nav>"
+        );
+    }
 }

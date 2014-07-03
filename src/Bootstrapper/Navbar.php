@@ -14,6 +14,7 @@ class Navbar extends RenderedObject
      */
     private $url;
     private $attributes = [];
+    private $content = [];
 
     public function __construct(UrlGenerator $url)
     {
@@ -34,7 +35,17 @@ class Navbar extends RenderedObject
 
     private function renderContent()
     {
-        return "<div class='navbar-collapse collapse'></div>";
+        $string = "<div class='navbar-collapse collapse'>";
+        foreach ($this->content as $item) {
+            if (is_a($item, 'Bootstrapper\\Navigation')) {
+                $item->navbar();
+            }
+            $string .= $item;
+        }
+
+        $string .= "</div>";
+
+        return $string;
     }
 
     private function renderHeader()
@@ -64,6 +75,13 @@ class Navbar extends RenderedObject
     public function withAttributes($attributes)
     {
         $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    public function withContent($content)
+    {
+        $this->content[] = $content;
 
         return $this;
     }

@@ -40,6 +40,11 @@ class NavigationSpec extends ObjectBehavior
         $this->pills()->render()->shouldBe("<ul class='nav nav-pills'></ul>");
     }
 
+    function it_can_be_made_into_a_navbar()
+    {
+        $this->navbar()->render()->shouldBe("<ul class='nav nav-navbar'></ul>");
+    }
+
     function it_can_be_given_contents()
     {
         $this->links(

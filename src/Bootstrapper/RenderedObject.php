@@ -2,7 +2,8 @@
 namespace Bootstrapper;
 
 
-abstract class RenderedObject {
+abstract class RenderedObject
+{
 
     public function __toString()
     {
