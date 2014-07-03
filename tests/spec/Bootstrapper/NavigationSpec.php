@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use Illuminate\Routing\UrlGenerator;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -9,12 +10,11 @@ use Prophecy\Argument;
 class NavigationSpec extends ObjectBehavior
 {
 
-    function let()
+    function let(UrlGenerator $url)
     {
-        $mock = Mockery::mock('Illuminate\Routing\UrlGenerator');
-        $mock->shouldReceive('current')->andReturn('link');
+        $url->current()->willReturn('link');
 
-        $this->beConstructedWith($mock);
+        $this->beConstructedWith($url);
     }
 
     function it_is_initializable()
