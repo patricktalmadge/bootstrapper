@@ -7,4 +7,4 @@ before_install:
   - composer install --dev
 
 script:
-  - vendor/bin/phpspec
+  - vendor/bin/phpspec run
