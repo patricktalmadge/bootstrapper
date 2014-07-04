@@ -63,7 +63,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerButtonGroup()
     {
-        $this->app->bind('buttonGroup', function () {
+        $this->app->bind('buttongroup', function () {
             return new ButtonGroup;
         });
     }
@@ -84,14 +84,14 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerControlGroup()
     {
-        $this->app->bind('controlGroup', function () {
+        $this->app->bind('controlgroup', function () {
             return new ControlGroup;
         });
     }
 
     public function registerDropdownButton()
     {
-        $this->app->bind('dropdownButton', function () {
+        $this->app->bind('dropdownbutton', function () {
             return new DropdownButton;
         });
     }
@@ -121,7 +121,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerInputGroup()
     {
-        $this->app->bind('inputGroup', function () {
+        $this->app->bind('inputgroup', function () {
             return new InputGroup;
         });
     }
@@ -135,7 +135,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerMediaObject()
     {
-        $this->app->bind('mediaObject', function () {
+        $this->app->bind('mediaobject', function () {
             return new MediaObject;
         });
     }
@@ -170,7 +170,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerProgressBar()
     {
-        $this->app->bind('progressBar', function () {
+        $this->app->bind('progressbar', function () {
             return new ProgressBar;
         });
     }
