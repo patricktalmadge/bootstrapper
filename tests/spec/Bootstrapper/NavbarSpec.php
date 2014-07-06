@@ -82,5 +82,13 @@ class NavbarSpec extends ObjectBehavior
             $this->$type()->render()->shouldBe(
                 "<nav class='navbar navbar-default {$class}' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'></div></div></nav>"
             );
-        }    }
+        }
+    }
+
+    function it_has_a_shortcut_method()
+    {
+        $this->create('foo', ['data-foo' => 'bar'])->render()->shouldBe(
+            "<nav class='navbar navbar-default foo' role='navigation' data-foo='bar'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><div class='navbar-collapse collapse'></div></div></nav>"
+        );
+    }
 }

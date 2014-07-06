@@ -129,4 +129,11 @@ class Navbar extends RenderedObject
 
         return $this;
     }
+
+    public function create($position, $attributes = [])
+    {
+        $this->setPosition($position);
+
+        return $this->withAttributes($attributes);
+    }
 }
