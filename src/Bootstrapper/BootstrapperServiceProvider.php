@@ -21,6 +21,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->registerIcon();
         $this->registerImage();
         $this->registerInputGroup();
+	$this->registerHelpers()
         $this->registerLabel();
         $this->registerMediaObject();
         $this->registerModal();
@@ -98,7 +99,7 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerFormBuilder()
     {
-        $this->app->bindShared('form', function ($app) {
+        $this->app->bindShared('bootstrapper::form', function ($app) {
             $form = new Form($app['html'], $app['url'], $app['session.store']->getToken());
 
             return $form->setSessionStore($app['session.store']);
@@ -130,6 +131,13 @@ class BootstrapperServiceProvider extends ServiceProvider
     {
         $this->app->bind('label', function () {
             return new Label;
+        });
+    }
+
+    public function registerHelpers()
+    {
+        $this->app->bind('bootstrapper::helpers', function ($app) {
+	    return new Helpers($app['config']);
         });
     }
 

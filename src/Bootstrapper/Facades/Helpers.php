@@ -5,13 +5,10 @@ namespace Bootstrapper\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-
-class Form extends Facade 
-{
+class Helpers extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'bootstrapper::form';
+        return 'bootstrapper::helpers';
     }
-
 }
