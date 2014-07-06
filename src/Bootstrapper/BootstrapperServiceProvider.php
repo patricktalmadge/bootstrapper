@@ -32,6 +32,9 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->registerTabbable();
         $this->registerTable();
         $this->registerThumbnail();
+
+        $this->package('patricktalmadge/bootstrapper');
+        $this->app['config']->package('patricktalmadge/bootstrapper', __DIR__ . '/../config');
     }
 
     private function registerAccordion()

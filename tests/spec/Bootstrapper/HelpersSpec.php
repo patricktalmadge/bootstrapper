@@ -12,8 +12,8 @@ class HelpersSpec extends ObjectBehavior
     {
         $config = Mockery::mock('Illuminate\Config\Repository');
 
-        $config->shouldReceive('get')->with('Bootstrapper::jqueryVersion')->andReturn("2.1.0");
-        $config->shouldReceive('get')->with('Bootstrapper::bootstrapVersion')->andReturn("3.1.1");
+        $config->shouldReceive('get')->with('bootstrapper::jqueryVersion')->andReturn("2.1.0");
+        $config->shouldReceive('get')->with('bootstrapper::bootstrapVersion')->andReturn("3.1.1");
 
         $this->beConstructedWith($config);
     }
