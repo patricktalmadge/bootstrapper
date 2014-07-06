@@ -21,7 +21,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->registerIcon();
         $this->registerImage();
         $this->registerInputGroup();
-	$this->registerHelpers()
+        $this->registerHelpers();
         $this->registerLabel();
         $this->registerMediaObject();
         $this->registerModal();
@@ -36,14 +36,14 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     private function registerAccordion()
     {
-        $this->app->bind('accordion', function() {
+        $this->app->bind('accordion', function () {
             return new Accordion();
         });
     }
 
     private function registerAlert()
     {
-        $this->app->bind('alert', function() {
+        $this->app->bind('alert', function () {
             return new Alert();
         });
     }
@@ -137,7 +137,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     public function registerHelpers()
     {
         $this->app->bind('bootstrapper::helpers', function ($app) {
-	    return new Helpers($app['config']);
+            return new Helpers($app['config']);
         });
     }
 
