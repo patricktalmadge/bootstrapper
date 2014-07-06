@@ -234,4 +234,28 @@ class NavigationSpec extends ObjectBehavior
             "<ul class='nav nav-tabs'><li><a href='foo' data-foo='bar' class='baz'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
         );
     }
+
+    function it_lets_you_add_attributes_using_the_shortcut_methods()
+    {
+
+        $types = ['pills', 'tabs'];
+        $attributes = ['class' => 'foo', 'data-bar' => 'baz'];
+
+        foreach ($types as $type) {
+            $this->$type(
+                [
+                    [
+                        'link' => 'foo',
+                        'title' => 'bar',
+                    ],
+                    [
+                        'link' => 'goo',
+                        'title' => 'gar',
+                    ],
+                ], $attributes
+            )->render()->shouldBe(
+                "<ul class='nav nav-{$type} foo' data-bar='baz'><li><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
+            );
+        }
+    }
 }

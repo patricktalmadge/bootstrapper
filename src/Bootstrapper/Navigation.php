@@ -56,11 +56,15 @@ class Navigation extends RenderedObject
         return $this;
     }
 
-    public function pills($links = [])
+    public function pills($links = [], $attributes = [])
     {
         $this->type = self::NAVIGATION_PILLS;
 
-        return $this->links($links);
+        if (!$attributes) {
+            $attributes = $this->attributes;
+        }
+
+        return $this->links($links)->withAttributes($attributes);
     }
 
     public function links($links)
@@ -70,11 +74,14 @@ class Navigation extends RenderedObject
         return $this;
     }
 
-    public function tabs($links = [])
+    public function tabs($links = [], $attributes = [])
     {
         $this->type = self::NAVIGATION_TABS;
+        if (!$attributes) {
+            $attributes = $this->attributes;
+        }
 
-        return $this->links($links);
+        return $this->links($links)->withAttributes($attributes);
     }
 
     /**
