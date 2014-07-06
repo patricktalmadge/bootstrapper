@@ -48,8 +48,8 @@ class HelpersSpec extends ObjectBehavior
     {
         $config = Mockery::mock('Illuminate\Config\Repository');
 
-        $config->shouldReceive('get')->with('Bootstrapper::jqueryVersion')->andReturn("2.1.1");
-        $config->shouldReceive('get')->with('Bootstrapper::bootstrapVersion')->andReturn("3.2.1");
+        $config->shouldReceive('get')->with('bootstrapper::jqueryVersion')->andReturn("2.1.1");
+        $config->shouldReceive('get')->with('bootstrapper::bootstrapVersion')->andReturn("3.2.1");
 
         $this->beConstructedWith($config);
         $this->css()->shouldBe(
