@@ -31,7 +31,7 @@ class Navbar extends RenderedObject
     {
         $attributes = new Attributes($this->attributes, ['class' => "navbar {$this->type} {$this->position}", 'role' => 'navigation']);
 
-        $string = "<nav {$attributes}><div class='container-fluid'>";
+        $string = "<nav {$attributes}><div class='container'>";
         $string .= $this->renderHeader();
         $string .= $this->renderContent();
         $string .= "</div></nav>";
