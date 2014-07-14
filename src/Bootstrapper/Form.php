@@ -13,6 +13,7 @@ class Form extends FormBuilder
     const FORM_WARNING = 'has-warning';
     const FORM_ERROR = 'has-error';
     const INPUT_LARGE = 'input-lg';
+    const FORM_CONTROL = 'form-control';
 
     function inline($attributes = [])
     {
@@ -80,4 +81,110 @@ class Form extends FormBuilder
 
         return $this->model($model, $attributes);
     }
+
+    public function select($name, $list = array(), $selected = null, $options = array())
+    {
+        $options['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::select($name, $list, $selected, $options);
+    }
+
+    public function textarea($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::textarea($name, $value, $attributes);
+    }
+
+    public function password($name, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::password($name, $attributes);
+    }
+
+    public function text($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::text($name, $value, $attributes);
+    }
+
+    public function email($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::email($name, $value, $attributes);
+    }
+
+    public function datetime($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('datetime',$name, $value, $attributes);
+    }
+
+    public function datetimelocal($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('datetime',$name, $value, $attributes);
+    }
+
+    public function date($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('date',$name, $value, $attributes);
+    }
+
+    public function month($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('month',$name, $value, $attributes);
+    }
+
+    public function week($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('week',$name, $value, $attributes);
+    }
+
+    public function number($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('number',$name, $value, $attributes);
+    }
+
+    public function url($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('url',$name, $value, $attributes);
+    }
+
+    public function search($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('search',$name, $value, $attributes);
+    }
+
+    public function tel($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('tel',$name, $value, $attributes);
+    }
+
+    public function color($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('color',$name, $value, $attributes);
+    }
+
 }
