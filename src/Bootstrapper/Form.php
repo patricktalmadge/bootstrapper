@@ -152,6 +152,13 @@ class Form extends FormBuilder
         return parent::input('week',$name, $value, $attributes);
     }
 
+    public function time($name, $value = null, $attributes = array())
+    {
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+
+        return parent::input('time',$name, $value, $attributes);
+    }
+
     public function number($name, $value = null, $attributes = array())
     {
         $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;

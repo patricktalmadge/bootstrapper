@@ -121,7 +121,7 @@ class FormSpec extends ObjectBehavior
             'text',
             'email',
             'datetime',
-            'datetime-local',
+            'datetimelocal',
             'date',
             'month',
             'time',
