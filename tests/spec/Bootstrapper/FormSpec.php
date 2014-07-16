@@ -118,29 +118,30 @@ class FormSpec extends ObjectBehavior
     function it_can_show_input()
     {
         $types = [
-            'text',
-            'email',
-            'datetime',
-            'datetimelocal',
-            'date',
-            'month',
-            'time',
-            'week',
-            'number',
-            'url',
-            'search',
-            'tel',
-            'color'
+            'text' => 'text',
+            'email' => 'email',
+            'datetime' => 'datetime',
+            'datetimelocal' => 'datetime-local',
+            'date' => 'date',
+            'month' => 'month',
+            'time' => 'time',
+            'week' => 'week',
+            'number' => 'number',
+            'url' => 'url',
+            'search' => 'search',
+            'tel' => 'tel',
+            'color' => 'color'
         ];
-        foreach ($types as $type) {
-            $this->$type('foo','bar',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="' . $type . '" value="bar">');
+        foreach ($types as $type => $expected) {
+            $this->$type('foo','bar',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="' . $expected . '" value="bar">');
         }
     }
 
     function it_can_show_password()
     {
-        $this->password('foo',['class' => 'foo'])->shouldBe('<input class="form-control foo" name="foo" type="password" value="">');
+        $this->password('foo',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="password" value="">');
     }
+
 }
 
 class Foo
