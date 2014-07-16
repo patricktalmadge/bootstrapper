@@ -128,7 +128,7 @@ class Form extends FormBuilder
     {
         $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
 
-        return parent::input('datetime',$name, $value, $attributes);
+        return parent::input('datetimelocal',$name, $value, $attributes);
     }
 
     public function date($name, $value = null, $attributes = array())

@@ -133,13 +133,13 @@ class FormSpec extends ObjectBehavior
             'color'
         ];
         foreach ($types as $type) {
-            $this->$type('foo','foo',['class' => 'foo'])->shouldBe("<input class='form-control foo' name='foo' value='foo' id='foo' type='{$type}'>");
+            $this->$type('foo','bar',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="' . $type . '" value="bar">');
         }
     }
 
     function it_can_show_password()
     {
-        $this->password('foo',['class' => 'foo'])->shouldBe('<input class="form-control foo" name="foo" type="password" value="" id="foo">');
+        $this->password('foo',['class' => 'foo'])->shouldBe('<input class="form-control foo" name="foo" type="password" value="">');
     }
 }
 
