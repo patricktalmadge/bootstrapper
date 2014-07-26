@@ -114,6 +114,35 @@ class FormSpec extends ObjectBehavior
             $this->$type(new Foo())->shouldBe($expected);
         }
     }
+
+    function it_can_show_input()
+    {
+        $types = [
+            'text' => 'text',
+            'email' => 'email',
+            'datetime' => 'datetime',
+            'datetimelocal' => 'datetime-local',
+            'date' => 'date',
+            'month' => 'month',
+            'time' => 'time',
+            'week' => 'week',
+            'number' => 'number',
+            'url' => 'url',
+            'search' => 'search',
+            'tel' => 'tel',
+            'color' => 'color'
+        ];
+        foreach ($types as $type => $expected) {
+            $this->$type('foo','bar',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="' . $expected . '" value="bar">');
+            $this->$type('foo','bar')->shouldBe('<input class="form-control" name="foo" type="' . $expected . '" value="bar">');
+        }
+    }
+
+    function it_can_show_password()
+    {
+        $this->password('foo',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="password" value="">');
+    }
+
 }
 
 class Foo
