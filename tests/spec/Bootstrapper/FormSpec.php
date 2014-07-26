@@ -134,6 +134,7 @@ class FormSpec extends ObjectBehavior
         ];
         foreach ($types as $type => $expected) {
             $this->$type('foo','bar',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="' . $expected . '" value="bar">');
+            $this->$type('foo','bar')->shouldBe('<input class="form-control" name="foo" type="' . $expected . '" value="bar">');
         }
     }
 
