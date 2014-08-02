@@ -9,6 +9,7 @@ class Table extends RenderedObject
     const TABLE_BORDERED = 'table-bordered';
     const TABLE_HOVER = 'table-hover';
     const TABLE_CONDENSED = 'table-condensed';
+
     private $type;
     private $contents;
 

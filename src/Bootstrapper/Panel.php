@@ -10,6 +10,7 @@ class Panel extends RenderedObject
     const INFO = 'panel-info';
     const WARNING = 'panel-warning';
     const DANGER = 'panel-danger';
+
     private $attributes = [];
     private $type = 'panel-default';
     private $header;

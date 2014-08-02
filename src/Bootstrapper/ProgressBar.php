@@ -9,6 +9,7 @@ class ProgressBar extends RenderedObject
     const PROGRESS_BAR_INFO = 'progress-bar-info';
     const PROGRESS_BAR_WARNING = 'progress-bar-warning';
     const PROGRESS_BAR_DANGER = 'progress-bar-danger';
+
     private $value = 0;
     private $visible = false;
     private $type = '';

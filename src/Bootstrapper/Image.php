@@ -11,6 +11,7 @@ class Image extends RenderedObject
     const IMAGE_ROUNDED = 'img-rounded';
     const IMAGE_CIRCLE = 'img-circle';
     const IMAGE_THUMBNAIL = 'img-thumbnail';
+
     private $src;
     private $alt = '';
     private $attributes = [];

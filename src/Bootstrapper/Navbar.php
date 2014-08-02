@@ -12,6 +12,7 @@ class Navbar extends RenderedObject
     const NAVBAR_STATIC = 'navbar-static-top';
     const NAVBAR_TOP = 'navbar-fixed-top';
     const NAVBAR_BOTTOM = 'navbar-fixed-bottom';
+
     private $brand;
     /**
      * @var UrlGenerator
@@ -31,17 +32,17 @@ class Navbar extends RenderedObject
     {
         $attributes = new Attributes($this->attributes, ['class' => "navbar {$this->type} {$this->position}", 'role' => 'navigation']);
 
-        $string = "<nav {$attributes}><div class='container'>";
+        $string = "<div {$attributes}><div class='container'>";
         $string .= $this->renderHeader();
         $string .= $this->renderContent();
-        $string .= "</div></nav>";
+        $string .= "</div></div>";
 
         return $string;
     }
 
     private function renderContent()
     {
-        $string = "<div class='navbar-collapse collapse'>";
+        $string = "<nav class='navbar-collapse collapse'>";
         foreach ($this->content as $item) {
             if (is_a($item, 'Bootstrapper\\Navigation')) {
                 $item->navbar();
@@ -49,7 +50,7 @@ class Navbar extends RenderedObject
             $string .= $item;
         }
 
-        $string .= "</div>";
+        $string .= "</nav>";
 
         return $string;
     }

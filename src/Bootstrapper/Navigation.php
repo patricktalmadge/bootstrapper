@@ -10,6 +10,7 @@ class Navigation extends RenderedObject
     const NAVIGATION_PILLS = 'nav-pills';
     const NAVIGATION_TABS = 'nav-tabs';
     const NAVIGATION_NAVBAR = 'navbar-nav';
+
     private $attributes = [];
     private $type = 'nav-tabs';
     private $links = [];

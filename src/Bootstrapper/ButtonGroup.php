@@ -7,6 +7,7 @@ class ButtonGroup extends RenderedObject
 
     private $contents = [];
     private $buttonType = 'radio';
+    private $size;
 
     const LARGE = 'btn-group-lg';
     const SMALL = 'btn-group-sm';
@@ -18,7 +19,6 @@ class ButtonGroup extends RenderedObject
     const INFO = 'btn-info';
     const WARNING = 'btn-warning';
     const DANGER = 'btn-danger';
-    private $size;
 
     public function render()
     {
