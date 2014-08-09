@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Thumbnail extends Facade 
+class Thumbnail extends BootstrapperFacade 
 {
 
     protected static function getFacadeAccessor()

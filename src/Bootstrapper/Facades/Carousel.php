@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Carousel extends Facade 
+class Carousel extends BootstrapperFacade 
 {
 
     protected static function getFacadeAccessor()

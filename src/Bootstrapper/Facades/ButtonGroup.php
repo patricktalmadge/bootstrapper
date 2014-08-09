@@ -3,10 +3,7 @@
 
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class ButtonGroup extends Facade 
+class ButtonGroup extends BootstrapperFacade 
 {
     const LARGE = 'btn-group-lg';
     const SMALL = 'btn-group-sm';

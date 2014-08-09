@@ -2,9 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-class Alert extends Facade
+class Alert extends BootstrapperFacade
 {
     const INFO = 'alert-info';
     const SUCCESS = 'alert-success';

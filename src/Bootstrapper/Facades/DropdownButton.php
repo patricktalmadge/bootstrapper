@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class DropdownButton extends Facade 
+class DropdownButton extends BootstrapperFacade 
 {
     const DIVIDER = "<li class='divider'></li>";
     const PRIMARY = 'btn-primary';

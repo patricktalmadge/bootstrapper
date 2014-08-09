@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Navigation extends Facade 
+class Navigation extends BootstrapperFacade 
 {
 
     const NAVIGATION_PILLS = 'nav-pills';

@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Tabbable extends Facade 
+class Tabbable extends BootstrapperFacade 
 {
     const PILL = 'pill';
     const TAB = 'tab';

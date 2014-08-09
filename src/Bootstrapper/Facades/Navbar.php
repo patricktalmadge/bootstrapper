@@ -2,10 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Navbar extends Facade 
+class Navbar extends BootstrapperFacade 
 {
     const NAVBAR_INVERSE = 'navbar-inverse';
     const NAVBAR_STATIC = 'navbar-static-top';

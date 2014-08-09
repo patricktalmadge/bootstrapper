@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Breadcrumb extends Facade 
+class Breadcrumb extends BootstrapperFacade 
 {
 
     protected static function getFacadeAccessor()

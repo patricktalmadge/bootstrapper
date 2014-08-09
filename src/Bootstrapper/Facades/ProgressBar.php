@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class ProgressBar extends Facade 
+class ProgressBar extends BootstrapperFacade 
 {
 
     const PROGRESS_BAR_SUCCESS = 'progress-bar-success';

@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Panel extends Facade 
+class Panel extends BootstrapperFacade 
 {
 
     const PRIMARY = 'panel-primary';

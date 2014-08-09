@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Form extends Facade 
+class Form extends BootstrapperFacade 
 {
     const FORM_HORIZONTAL = 'form-horizontal';
     const FORM_INLINE = 'form-inline';

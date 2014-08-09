@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class MediaObject extends Facade 
+class MediaObject extends BootstrapperFacade 
 {
 
     protected static function getFacadeAccessor()

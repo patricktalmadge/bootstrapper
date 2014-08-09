@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class ControlGroup extends Facade 
+class ControlGroup extends BootstrapperFacade 
 {
 
     protected static function getFacadeAccessor()

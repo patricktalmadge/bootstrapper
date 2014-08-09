@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Modal extends Facade 
+class Modal extends BootstrapperFacade 
 {
 
     protected static function getFacadeAccessor()

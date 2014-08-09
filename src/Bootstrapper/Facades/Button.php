@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Button extends Facade 
+class Button extends BootstrapperFacade 
 {
     const PRIMARY = 'btn-primary';
     const SUCCESS = 'btn-success';

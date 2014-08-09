@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Table extends Facade 
+class Table extends BootstrapperFacade 
 {
 
     const TABLE_STRIPED = 'table-striped';

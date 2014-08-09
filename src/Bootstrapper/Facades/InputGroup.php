@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class InputGroup extends Facade 
+class InputGroup extends BootstrapperFacade 
 {
 
     const LARGE = 'input-group-lg';

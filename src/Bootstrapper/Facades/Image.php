@@ -1,12 +1,8 @@
 <?php
 
-
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-
-class Image extends Facade 
+class Image extends BootstrapperFacade 
 {
 
     const IMAGE_RESPONSIVE = 'img-responsive';
