@@ -46,6 +46,14 @@ class AlertSpec extends ObjectBehavior
     {
         $this->withAttributes(['foo' => 'bar'])->render()->shouldBe("<div class='alert' foo='bar'></div>");
     }
+
+    function it_allows_you_to_use_a_shortcut()
+    {
+        $types = ['info', 'success', 'warning', 'danger'];
+        foreach ($types as $type) {
+            $this->$type($type)->render()->shouldBe("<div class='alert alert-{$type}'>{$type}</div>");
+        }
+    }
 }
 
 ?>

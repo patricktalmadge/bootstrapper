@@ -38,24 +38,24 @@ class Alert extends RenderedObject
         return "<div {$attributes}>{$this->contents}</div>";
     }
 
-    public function info()
+    public function info($contents = '')
     {
-        return $this->setType(Alert::INFO);
+        return $this->setType(self::INFO)->withContents($contents);
     }
 
-    public function success()
+    public function success($contents = '')
     {
-        return $this->setType(Alert::SUCCESS);
+        return $this->setType(self::SUCCESS)->withContents($contents);
     }
 
-    public function warning()
+    public function warning($contents = '')
     {
-        return $this->setType(Alert::WARNING);
+        return $this->setType(self::WARNING)->withContents($contents);
     }
 
-    public function danger()
+    public function danger($contents = '')
     {
-        return $this->setType(Alert::DANGER);
+        return $this->setType(self::DANGER)->withContents($contents);
     }
 
     public function withContents($contents)
