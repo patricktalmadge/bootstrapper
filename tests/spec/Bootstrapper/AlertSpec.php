@@ -30,11 +30,6 @@ class AlertSpec extends ObjectBehavior
         $this->withContents("Test")->render()->shouldBe("<div class='alert'>Test</div>");
     }
 
-    function it_can_be_made_a_block_alert()
-    {
-        $this->block()->render()->shouldBe("<div class='alert alert-block'></div>");
-    }
-
     function it_can_become_closeable()
     {
         $this->close()->render()->shouldBe(
