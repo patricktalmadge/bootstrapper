@@ -52,46 +52,46 @@ class Button extends RenderedObject
         return "<button {$attributes}>{$this->value}</button>";
     }
 
-    public function primary()
+    public function primary($contents = '')
     {
         $this->setType(Button::PRIMARY);
 
-        return $this;
+        return $this->withValue($contents);
     }
 
-    public function success()
+    public function success($contents = '')
     {
         $this->setType(Button::SUCCESS);
 
-        return $this;
+        return $this->withValue($contents);
     }
 
-    public function info()
+    public function info($contents = '')
     {
         $this->setType(Button::INFO);
 
-        return $this;
+        return $this->withValue($contents);
     }
 
-    public function warning()
+    public function warning($contents = '')
     {
         $this->setType(Button::WARNING);
 
-        return $this;
+        return $this->withValue($contents);
     }
 
-    public function danger()
+    public function danger($contents = '')
     {
         $this->setType(Button::DANGER);
 
-        return $this;
+        return $this->withValue($contents);
     }
 
-    public function link()
+    public function link($contents = '')
     {
         $this->setType(Button::LINK);
 
-        return $this;
+        return $this->withValue($contents);
     }
 
     public function __toString()

@@ -80,4 +80,13 @@ class ButtonSpec extends ObjectBehavior
         );
     }
 
+    function it_allows_you_to_use_a_shortcut_method()
+    {
+        $types = ['primary', 'success', 'info', 'warning', 'danger', 'link'];
+
+        foreach ($types as $type) {
+            $this->$type($type)->render()->shouldBe("<button type='button' class='btn btn-{$type}'>{$type}</button>");
+        }
+    }
+
 }
