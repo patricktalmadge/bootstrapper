@@ -12,8 +12,8 @@ class Alert extends RenderedObject
 
     private $type;
     private $contents;
-    private $isCloseable = false;
     private $attributes = [];
+    private $closer;
 
     private function setType($type)
     {
@@ -26,9 +26,9 @@ class Alert extends RenderedObject
     {
         $attributes = new Attributes($this->attributes, ['class' => "alert {$this->type}"]);
 
-        if ($this->isCloseable) {
+        if ($this->closer) {
             $attributes['class'] = trim($attributes['class']) . ' alert-dismissable';
-            $this->contents = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>{$this->contents}";
+            $this->contents = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>{$this->closer}</button>{$this->contents}";
         }
 
         return "<div {$attributes}>{$this->contents}</div>";
@@ -61,9 +61,9 @@ class Alert extends RenderedObject
         return $this;
     }
 
-    public function close()
+    public function close($closer = '&times;')
     {
-        $this->isCloseable = true;
+        $this->closer = $closer;
 
         return $this;
     }

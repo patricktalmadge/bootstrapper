@@ -49,6 +49,20 @@ class AlertSpec extends ObjectBehavior
             $this->$type($type)->render()->shouldBe("<div class='alert alert-{$type}'>{$type}</div>");
         }
     }
+
+    function it_allows_you_to_override_the_close_icon()
+    {
+        $closers = ['x', '<i class="fa fa-times"></i>'];
+
+        foreach ($closers as $closer)
+        {
+            // Force an empty contents since we append with the close icon and this fails the tests
+            $this->withContents('');
+            $this->close($closer)->render()->shouldBe(
+                "<div class='alert alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>{$closer}</button></div>"
+            );
+        }
+    }
 }
 
 ?>
