@@ -75,4 +75,11 @@ class AttributesSpec extends ObjectBehavior
         $this->__toString()->shouldBe("class='bar foo'");
     }
 
+    function it_can_add_classes()
+    {
+        $this->beConstructedWith(['class' => 'bar']);
+
+        $this->addClass('foo')->__toString()->shouldBe("class='bar foo'");
+    }
+
 }

@@ -106,4 +106,11 @@ class Attributes implements \ArrayAccess
     {
         unset($this->attributes[$offset]);
     }
+
+    public function addClass($class)
+    {
+        $this->attributes['class'] = isset($this->attributes['class']) ? $this->attributes['class'] . " {$class}" : $class;
+
+        return $this;
+    }
 }

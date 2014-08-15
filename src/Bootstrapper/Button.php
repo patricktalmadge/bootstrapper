@@ -64,7 +64,6 @@ class Button extends RenderedObject
             {
                 $this->value = $this->value ? "{$this->icon} {$this->value}" : $this->icon;
             }
-
         }
 
         if ($this->disabled)
@@ -229,5 +228,15 @@ class Button extends RenderedObject
         $this->url = $url;
 
         return $this;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function getValue()
+    {
+        return $this->value;
     }
 }

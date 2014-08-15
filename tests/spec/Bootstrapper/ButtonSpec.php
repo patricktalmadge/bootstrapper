@@ -136,4 +136,12 @@ class ButtonSpec extends ObjectBehavior
         $this->asLinkTo('foo')->render()->shouldBe("<a class='btn btn-default' href='foo'></a>");
     }
 
+    function it_has_get_methods()
+    {
+        $this->danger('Foo');
+
+        $this->getType()->shouldBe('btn-danger');
+        $this->getValue()->shouldBe('Foo');
+    }
+
 }
