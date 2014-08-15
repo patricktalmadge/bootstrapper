@@ -19,10 +19,18 @@ class ButtonSpec extends ObjectBehavior
 
     function it_can_be_given_a_type()
     {
-        $types = ['primary', 'success', 'info', 'warning', 'danger', 'link'];
+        $types = ['primary', 'success', 'info', 'warning', 'danger', 'link', 'normal'];
 
         foreach ($types as $type) {
-            $this->$type()->render()->shouldBe("<button type='button' class='btn btn-{$type}'></button>");
+            if ($type == 'normal')
+            {
+                $class = 'default';
+            }
+            else
+            {
+                $class = $type;
+            }
+            $this->$type()->render()->shouldBe("<button type='button' class='btn btn-{$class}'></button>");
         }
     }
 
@@ -82,11 +90,24 @@ class ButtonSpec extends ObjectBehavior
 
     function it_allows_you_to_use_a_shortcut_method()
     {
-        $types = ['primary', 'success', 'info', 'warning', 'danger', 'link'];
+        $types = ['primary', 'success', 'info', 'warning', 'danger', 'link', 'normal'];
 
         foreach ($types as $type) {
-            $this->$type($type)->render()->shouldBe("<button type='button' class='btn btn-{$type}'>{$type}</button>");
+            if ($type == 'normal')
+            {
+                $class = 'default';
+            }
+            else
+            {
+                $class = $type;
+            }
+            $this->$type($type)->render()->shouldBe("<button type='button' class='btn btn-{$class}'>{$type}</button>");
         }
+    }
+
+    function it_can_be_disabled()
+    {
+        $this->disable()->render()->shouldBe("<button type='button' class='btn btn-default' disabled='disabled'></button>");
     }
 
 }

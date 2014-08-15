@@ -5,6 +5,7 @@ namespace Bootstrapper;
 class Button extends RenderedObject
 {
 
+    const NORMAL = 'btn-default';
     const PRIMARY = 'btn-primary';
     const SUCCESS = 'btn-success';
     const INFO = 'btn-info';
@@ -21,6 +22,7 @@ class Button extends RenderedObject
     private $value = '';
     private $icon;
     private $size;
+    private $disabled;
 
     public function setType($type)
     {
@@ -49,47 +51,59 @@ class Button extends RenderedObject
             $this->value .= $this->value ? " {$icon}" : $icon;
         }
 
+        if ($this->disabled)
+        {
+            $attributes['disabled'] = 'disabled';
+        }
+
         return "<button {$attributes}>{$this->value}</button>";
+    }
+
+    public function normal($contents = '')
+    {
+        $this->setType(self::NORMAL);
+
+        return $this->withValue($contents);
     }
 
     public function primary($contents = '')
     {
-        $this->setType(Button::PRIMARY);
+        $this->setType(self::PRIMARY);
 
         return $this->withValue($contents);
     }
 
     public function success($contents = '')
     {
-        $this->setType(Button::SUCCESS);
+        $this->setType(self::SUCCESS);
 
         return $this->withValue($contents);
     }
 
     public function info($contents = '')
     {
-        $this->setType(Button::INFO);
+        $this->setType(self::INFO);
 
         return $this->withValue($contents);
     }
 
     public function warning($contents = '')
     {
-        $this->setType(Button::WARNING);
+        $this->setType(self::WARNING);
 
         return $this->withValue($contents);
     }
 
     public function danger($contents = '')
     {
-        $this->setType(Button::DANGER);
+        $this->setType(self::DANGER);
 
         return $this->withValue($contents);
     }
 
     public function link($contents = '')
     {
-        $this->setType(Button::LINK);
+        $this->setType(self::LINK);
 
         return $this->withValue($contents);
     }
@@ -136,21 +150,21 @@ class Button extends RenderedObject
 
     public function large()
     {
-        $this->setSize(Button::LARGE);
+        $this->setSize(self::LARGE);
 
         return $this;
     }
 
     public function small()
     {
-        $this->setSize(Button::SMALL);
+        $this->setSize(self::SMALL);
 
         return $this;
     }
 
     public function extraSmall()
     {
-        $this->setSize(Button::EXTRA_SMALL);
+        $this->setSize(self::EXTRA_SMALL);
 
         return $this;
     }
@@ -165,6 +179,13 @@ class Button extends RenderedObject
     public function addAttributes($attributes)
     {
         $this->attributes = array_merge($attributes, $this->attributes);
+
+        return $this;
+    }
+
+    public function disable()
+    {
+        $this->disabled = true;
 
         return $this;
     }
