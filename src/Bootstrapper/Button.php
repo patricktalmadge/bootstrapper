@@ -24,6 +24,7 @@ class Button extends RenderedObject
     private $size;
     private $disabled;
     private $appendIcon;
+    private $url;
 
     public function setType($type)
     {
@@ -64,7 +65,14 @@ class Button extends RenderedObject
             $attributes['disabled'] = 'disabled';
         }
 
-        return "<button {$attributes}>{$this->value}</button>";
+        if ($this->url)
+        {
+            $attributes['href'] = $this->url;
+        }
+
+        $tag = $this->url ? 'a' : 'button';
+
+        return "<{$tag} {$attributes}>{$this->value}</{$tag}>";
     }
 
     public function normal($contents = '')
@@ -207,5 +215,12 @@ class Button extends RenderedObject
     public function prependIcon($icon)
     {
         return $this->withIcon($icon, false);
+    }
+
+    public function asLinkTo($url)
+    {
+        $this->url = $url;
+
+        return $this;
     }
 }

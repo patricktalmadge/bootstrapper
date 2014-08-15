@@ -131,4 +131,9 @@ class ButtonSpec extends ObjectBehavior
         $this->disable()->render()->shouldBe("<button type='button' class='btn btn-default' disabled='disabled'></button>");
     }
 
+    function it_can_create_an_a_tag()
+    {
+        $this->asLinkTo('foo')->render()->shouldBe("<a type='button' class='btn btn-default' href='foo'></a>");
+    }
+
 }
