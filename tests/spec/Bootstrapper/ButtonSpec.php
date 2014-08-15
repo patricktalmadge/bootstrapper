@@ -2,8 +2,12 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Icon;
+use Mockery;
+use Mockery\Mock;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Prophecy\Promise\ReturnPromise;
 
 class ButtonSpec extends ObjectBehavior
 {
@@ -56,11 +60,14 @@ class ButtonSpec extends ObjectBehavior
 
     function it_can_be_given_an_icon()
     {
-        $this->withIcon('bar')->render()->shouldBe(
+        $icon = Mockery::mock('Bootstrapper\\Icon');
+        $icon->shouldReceive('bar')->andReturn("<span class='glyphicon glyphicon-bar'></span>");
+
+        $this->withIcon($icon->bar())->render()->shouldBe(
             "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-bar'></span></button>"
         );
 
-        $this->withValue('foo')->withIcon('bar')->render()->shouldBe(
+        $this->withValue('foo')->withIcon($icon->bar())->render()->shouldBe(
             "<button type='button' class='btn btn-default'>foo <span class='glyphicon glyphicon-bar'></span></button>"
         );
     }

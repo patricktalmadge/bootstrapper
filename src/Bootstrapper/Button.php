@@ -47,8 +47,7 @@ class Button extends RenderedObject
         }
 
         if ($this->icon) {
-            $icon = "<span class='glyphicon glyphicon-{$this->icon}'></span>";
-            $this->value .= $this->value ? " {$icon}" : $icon;
+            $this->value .= $this->value ? " {$this->icon}" : $this->icon;
         }
 
         if ($this->disabled)
