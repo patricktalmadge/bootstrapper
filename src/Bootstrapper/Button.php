@@ -23,6 +23,7 @@ class Button extends RenderedObject
     private $icon;
     private $size;
     private $disabled;
+    private $appendIcon;
 
     public function setType($type)
     {
@@ -47,7 +48,15 @@ class Button extends RenderedObject
         }
 
         if ($this->icon) {
-            $this->value .= $this->value ? " {$this->icon}" : $this->icon;
+            if ($this->appendIcon)
+            {
+                $this->value .= $this->value ? " {$this->icon}" : $this->icon;
+            }
+            else
+            {
+                $this->value = $this->value ? "{$this->icon} {$this->value}" : $this->icon;
+            }
+
         }
 
         if ($this->disabled)
@@ -140,13 +149,6 @@ class Button extends RenderedObject
         return $this;
     }
 
-    public function withIcon($icon)
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     public function large()
     {
         $this->setSize(self::LARGE);
@@ -187,5 +189,23 @@ class Button extends RenderedObject
         $this->disabled = true;
 
         return $this;
+    }
+
+    public function withIcon($icon, $append = true)
+    {
+        $this->icon = $icon;
+        $this->appendIcon = $append;
+
+        return $this;
+    }
+
+    public function appendIcon($icon)
+    {
+        return $this->withIcon($icon, true);
+    }
+
+    public function prependIcon($icon)
+    {
+        return $this->withIcon($icon, false);
     }
 }

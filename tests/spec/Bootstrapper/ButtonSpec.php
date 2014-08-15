@@ -58,17 +58,31 @@ class ButtonSpec extends ObjectBehavior
         $this->withValue('foo')->render()->shouldBe("<button type='button' class='btn btn-default'>foo</button>");
     }
 
+    function it_can_append_an_icon()
+    {
+        $icon = Mockery::mock('Bootstrapper\\Icon');
+        $icon->shouldReceive('bar')->andReturn("<span class='glyphicon glyphicon-bar'></span>");
+
+        $this->appendIcon($icon->bar())->render()->shouldBe(
+            "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-bar'></span></button>"
+        );
+
+        $this->withValue('foo')->appendIcon($icon->bar())->render()->shouldBe(
+            "<button type='button' class='btn btn-default'>foo <span class='glyphicon glyphicon-bar'></span></button>"
+        );
+    }
+
     function it_can_be_given_an_icon()
     {
         $icon = Mockery::mock('Bootstrapper\\Icon');
         $icon->shouldReceive('bar')->andReturn("<span class='glyphicon glyphicon-bar'></span>");
 
-        $this->withIcon($icon->bar())->render()->shouldBe(
+        $this->prependIcon($icon->bar())->render()->shouldBe(
             "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-bar'></span></button>"
         );
 
-        $this->withValue('foo')->withIcon($icon->bar())->render()->shouldBe(
-            "<button type='button' class='btn btn-default'>foo <span class='glyphicon glyphicon-bar'></span></button>"
+        $this->withValue('foo')->prependIcon($icon->bar())->render()->shouldBe(
+            "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-bar'></span> foo</button>"
         );
     }
 
