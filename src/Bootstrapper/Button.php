@@ -38,7 +38,14 @@ class Button extends RenderedObject
 
     public function render()
     {
-        $attributes = new Attributes($this->attributes, ['type' => 'button', 'class' => "btn {$this->type}"]);
+        $defaults = ['type' => 'button', 'class' => "btn {$this->type}"];
+
+        if ($this->url)
+        {
+            unset($defaults['type']);
+        }
+
+        $attributes = new Attributes($this->attributes, $defaults);
 
         if ($this->size) {
             $attributes['class'] .= " {$this->size}";
