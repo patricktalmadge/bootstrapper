@@ -59,4 +59,22 @@ class ButtonGroupSpec extends ObjectBehavior
                 $buttonRight
         ])->render()->shouldBe("<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger'><input type='checkbox'>Left</label><label class='btn btn-danger'><input type='checkbox'>Middle</label><label class='btn btn-danger'><input type='checkbox'>Right</label></div>");
     }
+
+    function it_can_be_made_a_radio()
+    {
+        $buttonLeft = new Button();
+        $buttonLeft->danger('Left');
+
+        $buttonMiddle = new Button();
+        $buttonMiddle->danger('Middle');
+
+        $buttonRight = new Button();
+        $buttonRight->danger('Right');
+
+        $this->radio([
+                $buttonLeft,
+                $buttonMiddle,
+                $buttonRight
+            ])->render()->shouldBe("<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger'><input type='radio'>Left</label><label class='btn btn-danger'><input type='radio'>Middle</label><label class='btn btn-danger'><input type='radio'>Right</label></div>");
+    }
 }
