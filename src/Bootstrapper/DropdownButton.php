@@ -144,8 +144,9 @@ class DropdownButton extends RenderedObject
             $splitAttributes['class'] = str_replace(' dropdown-toggle', '', $splitAttributes['class']);
             $string .= "<button {$splitAttributes}></button>";
             $string .= "<button {$attributes}><span class='caret'></span></button>";
-        } else {
-            $string .= "<button {$attributes}>{$this->label}<span class='caret'></span></button>";
+        } else
+        {
+            $string .= "<button {$attributes}>{$this->label} <span class='caret'></span></button>";
         }
         $string .= "<ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'>";
         $string .= $this->renderItems();

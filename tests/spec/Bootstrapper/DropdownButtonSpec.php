@@ -15,14 +15,14 @@ class DropdownButtonSpec extends ObjectBehavior
     function it_can_be_rendered()
     {
         $this->render()->shouldBe(
-            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
         );
     }
 
     function it_can_be_given_a_label()
     {
         $this->labelled('foo')->render()->shouldBe(
-            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'>foo<span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'>foo <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
         );
     }
 
@@ -41,7 +41,7 @@ class DropdownButtonSpec extends ObjectBehavior
 
             ]
         )->render()->shouldBe(
-            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'><li><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul></div>"
+            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'><li><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul></div>"
         );
     }
 
@@ -61,7 +61,7 @@ class DropdownButtonSpec extends ObjectBehavior
 
             ]
         )->render()->shouldBe(
-            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'><li><a href='foo'>bar</a></li><li class='divider'></li><li><a href='goo'>gar</a></li></ul></div>"
+            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'><li><a href='foo'>bar</a></li><li class='divider'></li><li><a href='goo'>gar</a></li></ul></div>"
         );
     }
 
@@ -71,7 +71,7 @@ class DropdownButtonSpec extends ObjectBehavior
         foreach ($types as $type) {
             $class = $type === 'normal' ? 'default' : $type;
             $this->$type()->render()->shouldBe(
-                "<div class='btn-group'><button class='btn btn-{$class} dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+                "<div class='btn-group'><button class='btn btn-{$class} dropdown-toggle' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
             );
         }
     }
@@ -82,7 +82,7 @@ class DropdownButtonSpec extends ObjectBehavior
 
         foreach ($sizes as $size => $class) {
             $this->$size()->render()->shouldBe(
-                "<div class='btn-group'><button class='btn btn-default dropdown-toggle {$class}' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+                "<div class='btn-group'><button class='btn btn-default dropdown-toggle {$class}' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
             );
         }
     }
@@ -113,7 +113,7 @@ class DropdownButtonSpec extends ObjectBehavior
     function it_can_be_made_to_dropup()
     {
         $this->dropup()->render()->shouldBe(
-            "<div class='btn-group dropup'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+            "<div class='btn-group dropup'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
         );
     }
 
@@ -123,7 +123,7 @@ class DropdownButtonSpec extends ObjectBehavior
         foreach ($types as $type) {
             $class = $type === 'normal' ? 'default' : $type;
             $this->$type($type)->render()->shouldBe(
-                "<div class='btn-group'><button class='btn btn-{$class} dropdown-toggle' data-toggle='dropdown' type='button'>$type<span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+                "<div class='btn-group'><button class='btn btn-{$class} dropdown-toggle' data-toggle='dropdown' type='button'>$type <span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
             );
         }
     }
