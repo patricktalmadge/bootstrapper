@@ -5,10 +5,13 @@ namespace Bootstrapper;
 class DropdownButton extends RenderedObject
 {
     const DIVIDER = "<li class='divider'></li>";
+
     const PRIMARY = 'btn-primary';
     const DANGER = 'btn-danger';
     const WARNING = 'btn-warning';
     const SUCCESS = 'btn-success';
+    const NORMAL = 'btn-default';
+
     const INFO = 'btn-info';
     const LARGE = 'btn-lg';
     const SMALL = 'btn-sm';
@@ -59,39 +62,46 @@ class DropdownButton extends RenderedObject
         return $this;
     }
 
-    public function primary()
+    public function normal($label = '')
+    {
+        $this->setType(self::NORMAL);
+
+        return $this->labelled($label);
+    }
+
+    public function primary($label = '')
     {
         $this->setType(DropdownButton::PRIMARY);
 
-        return $this;
+        return $this->labelled($label);
     }
 
-    public function danger()
+    public function danger($label = '')
     {
         $this->setType(DropdownButton::DANGER);
 
-        return $this;
+        return $this->labelled($label);
     }
 
-    public function warning()
+    public function warning($label = '')
     {
         $this->setType(DropdownButton::WARNING);
 
-        return $this;
+        return $this->labelled($label);
     }
 
-    public function success()
+    public function success($label = '')
     {
         $this->setType(DropdownButton::SUCCESS);
 
-        return $this;
+        return $this->labelled($label);
     }
 
-    public function info()
+    public function info($label = '')
     {
         $this->setType(DropdownButton::INFO);
 
-        return $this;
+        return $this->labelled($label);
     }
 
     public function large()

@@ -67,10 +67,11 @@ class DropdownButtonSpec extends ObjectBehavior
 
     function it_can_be_given_a_type()
     {
-        $types = ['primary', 'danger', 'warning', 'success', 'info'];
+        $types = ['primary', 'danger', 'warning', 'success', 'info', 'normal'];
         foreach ($types as $type) {
+            $class = $type === 'normal' ? 'default' : $type;
             $this->$type()->render()->shouldBe(
-                "<div class='btn-group'><button class='btn btn-{$type} dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+                "<div class='btn-group'><button class='btn btn-{$class} dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
             );
         }
     }
@@ -114,5 +115,16 @@ class DropdownButtonSpec extends ObjectBehavior
         $this->dropup()->render()->shouldBe(
             "<div class='btn-group dropup'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
         );
+    }
+
+    function it_has_shortcut_methods()
+    {
+        $types = ['primary', 'danger', 'warning', 'success', 'info', 'normal'];
+        foreach ($types as $type) {
+            $class = $type === 'normal' ? 'default' : $type;
+            $this->$type($type)->render()->shouldBe(
+                "<div class='btn-group'><button class='btn btn-{$class} dropdown-toggle' data-toggle='dropdown' type='button'>$type<span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+            );
+        }
     }
 }
