@@ -10,6 +10,7 @@ class Carousel extends RenderedObject
     private $name;
     private $contents = [];
     private $attributes = [];
+    private $active = 0;
 
     public function named($name)
     {
@@ -56,7 +57,14 @@ class Carousel extends RenderedObject
     {
         $string = "<ol class='carousel-indicators'>";
         for ($i = 0; $i < count($this->contents); $i++) {
-            $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}'></li>";
+            if ($i == $this->active)
+            {
+                $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}' class='active'></li>";
+            }
+            else
+            {
+                $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}'></li>";
+            }
         }
         $string .= "</ol>";
 
@@ -66,11 +74,19 @@ class Carousel extends RenderedObject
     private function renderItems()
     {
         $string = "<div class='carousel-inner'>";
+        $count = 0;
         foreach ($this->contents as $item) {
-            $string .= "<div class='item'>";
+            if ($count == $this->active) {
+                $string .= "<div class='item active'>";
+            } else {
+                $string .= "<div class='item'>";
+            }
             $string .= "<img src='{$item['image']}' alt='{$item['alt']}'>";
-            $string .= "<div class='carousel-caption'>{$item['caption']}</div>";
+            if (isset($item['caption'])) {
+                $string .= "<div class='carousel-caption'>{$item['caption']}</div>";
+            }
             $string .= "</div>";
+            $count++;
         }
         $string .= "</div>";
 

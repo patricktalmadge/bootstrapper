@@ -41,7 +41,7 @@ class CarouselSpec extends ObjectBehavior
                 ]
             ]
         )->render()->shouldBe(
-            "<div id='foo' class='carousel slide' data-ride='carousel'><ol class='carousel-indicators'><li data-target='#foo' data-slide-to='0'></li><li data-target='#foo' data-slide-to='1'></li></ol><div class='carousel-inner'><div class='item'><img src='foo' alt='foo'><div class='carousel-caption'>foo</div></div><div class='item'><img src='bar' alt='bar'><div class='carousel-caption'>bar</div></div></div><a class='left carousel-control' href='#foo' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#foo' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a></div>"
+            "<div id='foo' class='carousel slide' data-ride='carousel'><ol class='carousel-indicators'><li data-target='#foo' data-slide-to='0' class='active'></li><li data-target='#foo' data-slide-to='1'></li></ol><div class='carousel-inner'><div class='item active'><img src='foo' alt='foo'><div class='carousel-caption'>foo</div></div><div class='item'><img src='bar' alt='bar'><div class='carousel-caption'>bar</div></div></div><a class='left carousel-control' href='#foo' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#foo' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a></div>"
         );
     }
 
@@ -49,6 +49,26 @@ class CarouselSpec extends ObjectBehavior
     {
         $this->named('foo')->withAttributes(['foo' => 'bar'])->render()->shouldBe(
             "<div id='foo' class='carousel slide' data-ride='carousel' foo='bar'><ol class='carousel-indicators'></ol><div class='carousel-inner'></div><a class='left carousel-control' href='#foo' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#foo' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a></div>"
-        );;
+        );
     }
+
+    function it_allows_you_to_skip_the_caption()
+    {
+        $this->named('foo')->withContents(
+            [
+                [
+                    'image' => 'foo',
+                    'alt' => 'foo'
+                ],
+                [
+                    'image' => 'bar',
+                    'alt' => 'bar'
+                ]
+            ]
+        )->render()->shouldBe(
+            "<div id='foo' class='carousel slide' data-ride='carousel'><ol class='carousel-indicators'><li data-target='#foo' data-slide-to='0' class='active'></li><li data-target='#foo' data-slide-to='1'></li></ol><div class='carousel-inner'><div class='item active'><img src='foo' alt='foo'></div><div class='item'><img src='bar' alt='bar'></div></div><a class='left carousel-control' href='#foo' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#foo' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a></div>"
+        );
+
+    }
+
 }
