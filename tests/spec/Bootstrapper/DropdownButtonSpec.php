@@ -92,7 +92,14 @@ class DropdownButtonSpec extends ObjectBehavior
         $this->split()->render()->shouldBe(
             "<div class='btn-group'><button class='btn btn-default' type='button'></button><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
         );
+
+        $this->labelled('foo')->split()->render()->shouldBe(
+            "<div class='btn-group'><button class='btn btn-default' type='button'>foo</button><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'><span class='caret'></span></button><ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'></ul></div>"
+        );
         // Check that types and stuff still work
+
+        // Resets object
+        $this->labelled('');
 
         $sizes = ['large' => 'btn-lg', 'small' => 'btn-sm', 'extraSmall' => 'btn-xs'];
 

@@ -142,7 +142,7 @@ class DropdownButton extends RenderedObject
         if ($this->split) {
             $splitAttributes = new Attributes(['class' => $attributes['class'], 'type' => 'button']);
             $splitAttributes['class'] = str_replace(' dropdown-toggle', '', $splitAttributes['class']);
-            $string .= "<button {$splitAttributes}></button>";
+            $string .= "<button {$splitAttributes}>{$this->label}</button>";
             $string .= "<button {$attributes}><span class='caret'></span></button>";
         } else
         {
