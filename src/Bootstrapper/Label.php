@@ -73,4 +73,11 @@ class Label extends RenderedObject
 
         return $this->withContents($contents);
     }
+
+    public function normal($contents = '')
+    {
+        $this->setType(self::LABEL_DEFAULT);
+
+        return $this->withContents($contents);
+    }
 }
