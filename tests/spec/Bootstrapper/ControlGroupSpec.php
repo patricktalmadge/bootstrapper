@@ -2,11 +2,17 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Form;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class ControlGroupSpec extends ObjectBehavior
 {
+    function let(Form $form)
+    {
+        $this->beConstructedWith($form);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType('Bootstrapper\ControlGroup');
@@ -31,10 +37,27 @@ class ControlGroupSpec extends ObjectBehavior
         );
     }
 
-    function it_can_be_given_contents_as_an_array()
+    function it_can_be_given_contents_as_an_array(Form $form)
     {
-        $this->withContents(['<div>one</div>', '<div>two</div>'])->render()->shouldBe(
-            "<div class='form-group'><div>one</div><div>two</div></div>"
+        $form->label('first', 'First')->willReturn('label1');
+        $form->checkbox('first', 'First')->willReturn('checkbox1');
+
+        $form->label('second', 'Second')->willReturn('label2');
+        $form->checkbox('second', 'Second')->willReturn('checkbox2');
+
+        $this->withContents(
+            [
+                [
+                    'label' => ['first', 'First'],
+                    'input' => ['type' => 'checkbox', 'first', 'First']
+                ],
+                [
+                    'label' => ['second', 'Second'],
+                    'input' => ['type' => 'checkbox', 'second', 'Second']
+                ]
+            ]
+        )->render()->shouldBe(
+            "<div class='form-group'>label1 checkbox1<br />label2 checkbox2<br /></div>"
         );
     }
 

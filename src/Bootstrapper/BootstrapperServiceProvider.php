@@ -88,8 +88,8 @@ class BootstrapperServiceProvider extends ServiceProvider
 
     public function registerControlGroup()
     {
-        $this->app->bind('controlgroup', function () {
-            return new ControlGroup;
+        $this->app->bind('controlgroup', function ($app) {
+            return new ControlGroup($app['bootstrapper::form']);
         });
     }
 

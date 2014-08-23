@@ -12,6 +12,15 @@ class ControlGroup extends RenderedObject
     private $label;
     private $labelSize;
     private $help;
+    /**
+     * @var Form
+     */
+    private $formBuilder;
+
+    public function __construct(Form $formBuilder)
+    {
+        $this->formBuilder = $formBuilder;
+    }
 
     public function render()
     {
@@ -25,9 +34,13 @@ class ControlGroup extends RenderedObject
             $string .= "<div class='col-sm-{$contentSize}'>";
         }
 
-
-        foreach ($this->contents as $item) {
-            $string .= $item;
+        if (is_array($this->contents))
+        {
+            $string .= $this->renderArrayContents();
+        }
+        else
+        {
+            $string .=  $this->contents;
         }
 
         $string .= $this->help;
@@ -50,7 +63,7 @@ class ControlGroup extends RenderedObject
 
     public function withContents($contents)
     {
-        $this->contents = (array)$contents;
+        $this->contents = $contents;
 
         return $this;
     }
@@ -77,5 +90,24 @@ class ControlGroup extends RenderedObject
     public function generate($label, $control, $help = null, $labelSize = 2)
     {
         return $this->withLabel($label, $labelSize)->withContents($control)->withHelp($help);
+    }
+
+    private function renderArrayContents()
+    {
+        $string = '';
+        foreach($this->contents as $item)
+        {
+            if(isset($item['label']))
+            {
+                $string .= call_user_func_array([$this->formBuilder, 'label'], $item['label']) . ' ';
+            }
+            $input_args = $item['input'];
+            $type = $input_args['type'];
+            unset($input_args['type']);
+            $string .= call_user_func_array([$this->formBuilder, $type], $input_args);
+            $string .= '<br />';
+        }
+
+        return $string;
     }
 }
