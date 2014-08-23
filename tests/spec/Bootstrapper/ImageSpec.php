@@ -53,4 +53,18 @@ class ImageSpec extends ObjectBehavior
     {
         $this->withSource('foo')->thumbnail()->render()->shouldBe("<img src='foo' class='img-thumbnail'>");
     }
+
+    function it_has_shortcut_methods()
+    {
+        $types = ['rounded', 'thumbnail', 'circle'];
+
+        foreach($types as $type)
+        {
+            // Clears out everything
+            $this->withAttributes([]);
+            $this->withSource('');
+            $this->withAlt('');
+            $this->$type('foo', 'bar')->render()->shouldBe("<img src='foo' alt='bar' class='img-{$type}'>");
+        }
+    }
 }

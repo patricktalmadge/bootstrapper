@@ -55,29 +55,57 @@ class Image extends RenderedObject
         return $this;
     }
 
-    public function rounded()
+    public function rounded($src = null, $alt = null)
     {
         $this->addClass(self::IMAGE_ROUNDED);
 
-        return $this;
+        if (!isset($src))
+        {
+            $src = $this->src;
+        }
+        if (!isset($alt))
+        {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
     }
 
-    public function circle()
+    public function circle($src = null, $alt = null)
     {
         $this->addClass(self::IMAGE_CIRCLE);
 
-        return $this;
+        if (!isset($src))
+        {
+            $src = $this->src;
+        }
+        if (!isset($alt))
+        {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
     }
 
-    public function thumbnail()
+    public function thumbnail($src = null, $alt = null)
     {
         $this->addClass(self::IMAGE_THUMBNAIL);
 
-        return $this;
+        if (!isset($src))
+        {
+            $src = $this->src;
+        }
+        if (!isset($alt))
+        {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
     }
 
     public function addClass($class)
     {
         $this->attributes['class'] = isset($this->attributes['class']) ? $this->attributes['class'] . " {$class}" : $class;
     }
+
 }
