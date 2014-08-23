@@ -15,7 +15,7 @@ abstract class RenderedObject extends Facade
         catch (\Exception $e)
         {
             $class = get_class($e);
-            return "<p class='bg-warning'>An exception of type <code>{$class}</code> was thrown with the message: <code>{$e->getMessage()}</code>";
+            return "<div><p class='bg-warning text-warning'>An exception of type <code>{$class}</code> was thrown with the message: <code>{$e->getMessage()}</code></div>";
         }
     }
 
