@@ -143,6 +143,12 @@ class FormSpec extends ObjectBehavior
         $this->password('foo',['class' => 'baz'])->shouldBe('<input class="form-control baz" name="foo" type="password" value="">');
     }
 
+    function it_overrides_the_label_method()
+    {
+        $this->label('foo')->shouldBe('<label for="foo" class="control-label">Foo</label>');
+        $this->label('foo', 'bar')->shouldBe('<label for="foo" class="control-label">bar</label>');
+    }
+
 }
 
 class Foo

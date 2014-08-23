@@ -2,7 +2,9 @@
 
 namespace Bootstrapper\Facades;
 
-class Form extends BootstrapperFacade 
+use Illuminate\Support\Facades\Facade;
+
+class Form extends Facade
 {
     const FORM_HORIZONTAL = 'form-horizontal';
     const FORM_INLINE = 'form-inline';

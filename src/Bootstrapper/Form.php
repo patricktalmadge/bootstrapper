@@ -14,6 +14,14 @@ class Form extends FormBuilder
     const FORM_ERROR = 'has-error';
     const INPUT_LARGE = 'input-lg';
     const FORM_CONTROL = 'form-control';
+    const LABEL = 'control-label';
+
+    public function label($name, $value = null, $options = array())
+    {
+        $options['class'] = isset($options['class']) ? self::LABEL . ' ' . $options['class'] : self::LABEL;
+
+        return parent::label($name, $value, $options);
+    }
 
     function inline($attributes = [])
     {
