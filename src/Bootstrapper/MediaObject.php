@@ -111,10 +111,18 @@ class MediaObject extends RenderedObject
 
     private function getBody($contents)
     {
-        if (isset($contents['body'])) {
-            return $contents['body'];
+        if (!isset($contents['body'])) {
+            throw new MediaObjectException('You must pass in the body to each object');
         }
 
-        throw new MediaObjectException('You must pass in the body to each object');
+        $string = $contents['body'];
+
+        if (isset($contents['nest']))
+        {
+            $object = new MediaObject();
+            $string.= $object->withContents($contents['nest']);
+        }
+
+        return $string;
     }
 }

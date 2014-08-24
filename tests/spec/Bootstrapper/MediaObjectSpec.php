@@ -103,4 +103,19 @@ class MediaObjectSpec extends ObjectBehavior
             'Bootstrapper\\Exceptions\\MediaObjectException'
         )->duringRender();
     }
+
+    function it_supports_nesting()
+    {
+        $this->withContents(
+            [
+                'image' => 'image',
+                'body' => 'body',
+                'nest' => [
+                    'image' => 'image',
+                    'body' => 'body'
+                ]
+            ])->render()->shouldBe(
+            "<div class='media'><div class='pull-left'><img class='media-object' src='image'></div><div class='media-body'>body<div class='media'><div class='pull-left'><img class='media-object' src='image'></div><div class='media-body'>body</div></div></div></div>"
+        );
+    }
 }
