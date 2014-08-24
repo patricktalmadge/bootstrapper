@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Navigation;
 use Illuminate\Routing\UrlGenerator;
 use Mockery;
 use PhpSpec\ObjectBehavior;
@@ -257,5 +258,46 @@ class NavigationSpec extends ObjectBehavior
                 "<ul class='nav nav-{$type} foo' data-bar='baz'><li><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
             );
         }
+    }
+
+    function it_lets_you_use_the_dividers()
+    {
+        $this->links(
+            [
+                [
+                    'link' => 'foo',
+                    'title' => 'bar',
+                ],
+                Navigation::NAVIGATION_DIVIDER,
+                [
+                    'link' => 'goo',
+                    'title' => 'gar',
+                ],
+            ]
+        )->render()->shouldBe(
+            "<ul class='nav nav-tabs'><li><a href='foo'>bar</a></li><li class='divider'></li><li><a href='goo'>gar</a></li></ul>"
+        );
+    }
+
+    function it_lets_you_use_the_dividers_inside_a_dropdown()
+    {
+        $this->links([
+                [
+                    'dropdown',
+                    [
+                        [
+                            'link' => '#',
+                            'title' => 'bar',
+                        ],
+                        Navigation::NAVIGATION_DIVIDER,
+                        [
+                            'link' => '#',
+                            'title' => 'gar',
+                        ],
+                    ]
+                ]
+            ])->render()->shouldBe(
+            "<ul class='nav nav-tabs'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li><a href='#'>bar</a></li><li class='divider'></li><li><a href='#'>gar</a></li></ul></li></ul>"
+        );
     }
 }

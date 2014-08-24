@@ -10,6 +10,7 @@ class Navigation extends RenderedObject
     const NAVIGATION_PILLS = 'nav-pills';
     const NAVIGATION_TABS = 'nav-tabs';
     const NAVIGATION_NAVBAR = 'navbar-nav';
+    const NAVIGATION_DIVIDER = 'divider';
 
     private $attributes = [];
     private $type = 'nav-tabs';
@@ -38,7 +39,9 @@ class Navigation extends RenderedObject
         }
         $string = "<ul {$attributes}>";
         foreach ($this->links as $link) {
-            if (isset($link['link'])) {
+            if (!is_array($link)) {
+                $string .= $this->renderSeperator($link);
+            } elseif (isset($link['link'])) {
                 $string .= $this->renderLink($link);
             } else {
                 $string .= $this->renderDropdown($link);
@@ -125,7 +128,7 @@ class Navigation extends RenderedObject
         $string .= "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>{$link[0]} <span class='caret'></span></a>";
         $string .= '<ul class=\'dropdown-menu\' role=\'menu\'>';
         foreach ($link[1] as $item) {
-            $string .= $this->renderLink($item);
+            $string .= is_array($item) ? $this->renderLink($item) : $this->renderSeperator($item);
         }
         $string .= '</ul>';
         $string .= '</li>';
@@ -151,6 +154,10 @@ class Navigation extends RenderedObject
      */
     private function itemShouldBeActive($link)
     {
+        if (is_string($link))
+        {
+            return false;
+        }
         $auto = $this->autoroute && $this->url->current() == $link['link'];
         $manual = isset($link['active']) && $link['active'];
         return $auto || $manual;
@@ -175,5 +182,10 @@ class Navigation extends RenderedObject
         $this->stacked = true;
 
         return $this;
+    }
+
+    private function renderSeperator($link)
+    {
+        return "<li class='{$link}'></li>";
     }
 }
