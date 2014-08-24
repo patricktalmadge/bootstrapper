@@ -88,7 +88,7 @@ class Modal extends RenderedObject
         return $this;
     }
 
-    public function withButton($button = null)
+    public function withButton(Button $button = null)
     {
         if ($button) {
             $this->button = $button;
