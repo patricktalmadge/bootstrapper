@@ -163,4 +163,28 @@ class TabbableSpec extends ObjectBehavior
             "<ul class='nav nav-tabs' role='tablist'><li class='active'><a href='#first' role='tab' data-toggle='tab'>First</a></li><li><a href='#second' role='tab' data-toggle='tab'>Second</a></li><li><a href='#third' role='tab' data-toggle='tab'>Third</a></li></ul><div class='tab-content'><div class='tab-pane fade in active' id='first'>foo</div><div class='tab-pane fade' id='second'>foo</div><div class='tab-pane fade' id='third'>foo</div></div>"
         );
     }
+
+    function it_allows_you_to_add_attributes_to_the_tabs()
+    {
+        $this->withContents(
+            [
+                [
+                    'title' => 'First',
+                    'content' => 'foo',
+                    'attributes' => ['data-foo' => 'bar']
+                ],
+                [
+                    'title' => 'Second',
+                    'content' => 'foo',
+                    'attributes' => ['id' => 'foo']
+                ],
+                [
+                    'title' => 'Third',
+                    'content' => 'foo'
+                ]
+            ]
+        )->render()->shouldBe(
+            "<ul class='nav nav-tabs' role='tablist'><li class='active'><a href='#first' role='tab' data-toggle='tab'>First</a></li><li><a href='#second' role='tab' data-toggle='tab'>Second</a></li><li><a href='#third' role='tab' data-toggle='tab'>Third</a></li></ul><div class='tab-content'><div class='tab-pane active' id='first' data-foo='bar'>foo</div><div class='tab-pane' id='foo'>foo</div><div class='tab-pane' id='third'>foo</div></div>"
+        );
+    }
 }

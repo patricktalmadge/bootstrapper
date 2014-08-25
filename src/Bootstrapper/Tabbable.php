@@ -94,7 +94,8 @@ class Tabbable extends RenderedObject
         $tabs = [];
         $count = 0;
         foreach ($this->contents as $item) {
-            $attributes = new Attributes(['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]);
+            $itemAttributes = isset($item['attributes']) ? $item['attributes'] : [];
+            $attributes = new Attributes($itemAttributes, ['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]);
             if ($this->fade) {
                 $attributes['class'] .= ' fade';
             }
