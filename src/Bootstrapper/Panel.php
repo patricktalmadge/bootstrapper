@@ -10,6 +10,7 @@ class Panel extends RenderedObject
     const INFO = 'panel-info';
     const WARNING = 'panel-warning';
     const DANGER = 'panel-danger';
+    const NORMAL = 'panel-default';
 
     private $attributes = [];
     private $type = 'panel-default';
@@ -120,5 +121,12 @@ class Panel extends RenderedObject
     private function renderFooter()
     {
         return "<div class='panel-footer'>{$this->footer}</div>";
+    }
+
+    public function normal()
+    {
+        $this->setType(self::NORMAL);
+
+        return $this;
     }
 }

@@ -10,6 +10,7 @@ class Panel extends BootstrapperFacade
     const INFO = 'panel-info';
     const WARNING = 'panel-warning';
     const DANGER = 'panel-danger';
+    const NORMAL = 'panel-default';
 
     protected static function getFacadeAccessor()
     {

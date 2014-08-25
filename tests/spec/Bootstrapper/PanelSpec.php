@@ -24,10 +24,11 @@ class PanelSpec extends ObjectBehavior
 
     function it_can_be_given_a_type()
     {
-        $types = ['primary', 'success', 'info', 'warning', 'danger'];
+        $types = ['primary', 'success', 'info', 'warning', 'danger', 'normal'];
 
         foreach ($types as $type) {
-            $this->$type()->render()->shouldBe("<div class='panel panel-{$type}'></div>");
+            $class = $type == 'normal' ? 'default' : $type;
+            $this->$type()->render()->shouldBe("<div class='panel panel-{$class}'></div>");
         }
     }
 
