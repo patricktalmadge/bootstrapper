@@ -9,12 +9,14 @@ class ProgressBar extends RenderedObject
     const PROGRESS_BAR_INFO = 'progress-bar-info';
     const PROGRESS_BAR_WARNING = 'progress-bar-warning';
     const PROGRESS_BAR_DANGER = 'progress-bar-danger';
+    const PROGRESS_BAR_NORMAL = 'progress-bar-default';
 
     private $value = 0;
     private $visible = false;
     private $type = '';
     private $striped = false;
     private $animated = false;
+    private $visibleString;
 
     public function render()
     {
@@ -27,11 +29,16 @@ class ProgressBar extends RenderedObject
             $attributes['class'] .= ' active';
         }
         $string .= "<div {$attributes}>";
-        $string .= $this->visible ? "{$this->value}%" : "<span class='sr-only'>{$this->value}% complete</span>";
+        $string .= $this->visible ? sprintf($this->visibleString, $this->value) : "<span class='sr-only'>{$this->value}% complete</span>";
         $string .= "</div>";
         $string .= "</div>";
 
         return $string;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     public function value($value)
@@ -41,44 +48,47 @@ class ProgressBar extends RenderedObject
         return $this;
     }
 
-    public function visible()
+    public function visible($string = '%s%%')
     {
         $this->visible = true;
+        $this->visibleString = $string;
 
         return $this;
     }
 
-    public function success()
+    public function success($value = 0)
     {
         $this->setType(self::PROGRESS_BAR_SUCCESS);
 
-        return $this;
+        return $this->value($value);
     }
 
-    public  function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    public function info()
+    public function info($value = 0)
     {
         $this->setType(self::PROGRESS_BAR_INFO);
 
-        return $this;
+        return $this->value($value);
     }
 
-    public function warning()
+    public function warning($value = 0)
     {
         $this->setType(self::PROGRESS_BAR_WARNING);
 
-        return $this;
+        return $this->value($value);
     }
 
-    public function danger()
+    public function danger($value = 0)
     {
         $this->setType(self::PROGRESS_BAR_DANGER);
 
-        return $this;
+        return $this->value($value);
+    }
+
+    public function normal($value = 0)
+    {
+        $this->setType(self::PROGRESS_BAR_NORMAL);
+
+        return $this->value($value);
     }
 
     public function striped()
@@ -113,7 +123,14 @@ class ProgressBar extends RenderedObject
             $exploded = explode('=', $attribute);
             $method = $exploded[0];
             $vars = isset($exploded[1]) ? $exploded[1] : null;
-            $bar->$method($vars);
+            if (isset($vars))
+            {
+                $bar->$method($vars);
+            }
+            else
+            {
+                $bar->$method();
+            }
         }
         // Now to remove the outer divs
         $string = $bar->render();
