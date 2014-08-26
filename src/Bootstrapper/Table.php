@@ -15,6 +15,11 @@ class Table extends RenderedObject
     private $ignores = [];
     private $callbacks = [];
 
+    /**
+     * @var bool|array
+     */
+    private $only = false;
+
     public function render()
     {
         $attributes = new Attributes(['class' => "table {$this->type}"]);
@@ -104,6 +109,10 @@ class Table extends RenderedObject
                 if (in_array($key, $this->ignores)) {
                     continue;
                 }
+                if ($this->only && !in_array($key, $this->only))
+                {
+                    continue;
+                }
                 if (!in_array($key, $headers)) {
                     $headers[] = $key;
                 }
@@ -147,6 +156,13 @@ class Table extends RenderedObject
     public function callback($index, \Closure $function)
     {
         $this->callbacks[$index] = $function;
+
+        return $this;
+    }
+
+    public function only(array $only)
+    {
+        $this->only = $only;
 
         return $this;
     }

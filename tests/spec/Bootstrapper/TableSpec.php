@@ -71,4 +71,11 @@ class TableSpec extends ObjectBehavior
                 "<table class='table'><thead><tr><th>foo</th><th>Edit</th></tr></thead><tbody><tr><td>Foo = 0</td><td><div>Edit 0</div></td></tr><tr><td>Foo = 2</td><td><div>Edit 2</div></td></tr></tbody></table>"
             );
     }
+
+    function it_allows_you_to_only_return_certain_things()
+    {
+        $this->withContents([['foo' => 'bar', 'baz' => 'bar'], ['foo' => 'gar', 'baz' => 'gar']])->only(['foo'])->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>gar</td></tr></tbody></table>"
+        );
+    }
 }
