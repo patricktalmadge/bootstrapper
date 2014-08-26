@@ -53,4 +53,22 @@ class TableSpec extends ObjectBehavior
             "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>baz</td></tr></tbody></table>"
         );
     }
+
+    function it_allows_you_to_ignore_attributes()
+    {
+        $this->withContents([['foo' => 'bar', 'baz' => 'bar'], ['foo' => 'gar', 'baz' => 'gar']])->ignore(['baz'])->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>gar</td></tr></tbody></table>"
+        );
+    }
+
+    function it_allows_you_to_use_callbacks()
+    {
+        $this->withContents([['foo' => 0], ['foo' => 2]])
+            ->callback('foo', function($field, $row) { return 'Foo = ' . $field;})
+            ->callback('Edit', function ($field, $row) { return "<div>Edit {$row['foo']}</div>";})
+            ->render()
+            ->shouldBe(
+                "<table class='table'><thead><tr><th>foo</th><th>Edit</th></tr></thead><tbody><tr><td>Foo = 0</td><td><div>Edit 0</div></td></tr><tr><td>Foo = 2</td><td><div>Edit 2</div></td></tr></tbody></table>"
+            );
+    }
 }

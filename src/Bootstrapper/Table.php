@@ -12,6 +12,8 @@ class Table extends RenderedObject
 
     private $type;
     private $contents;
+    private $ignores = [];
+    private $callbacks = [];
 
     public function render()
     {
@@ -99,9 +101,20 @@ class Table extends RenderedObject
                 $item = $item->getAttributes();
             }
             foreach (array_keys($item) as $key) {
+                if (in_array($key, $this->ignores)) {
+                    continue;
+                }
                 if (!in_array($key, $headers)) {
                     $headers[] = $key;
                 }
+            }
+        }
+        foreach (array_keys($this->callbacks) as $key) {
+            if (in_array($key, $this->ignores)) {
+                continue;
+            }
+            if (!in_array($key, $headers)) {
+                $headers[] = $key;
             }
         }
 
@@ -113,6 +126,9 @@ class Table extends RenderedObject
         $string = '<tr>';
         foreach ($headers as $heading) {
             $value = isset($item[$heading]) ? $item[$heading] : '';
+            if (isset($this->callbacks[$heading])) {
+                $value = $this->callbacks[$heading]($value, $item);
+            }
             $string .= "<td>{$value}</td>";
         }
         $string .= '</tr>';
@@ -120,4 +136,18 @@ class Table extends RenderedObject
         return $string;
     }
 
+
+    public function ignore(array $ignores)
+    {
+        $this->ignores = $ignores;
+
+        return $this;
+    }
+
+    public function callback($index, \Closure $function)
+    {
+        $this->callbacks[$index] = $function;
+
+        return $this;
+    }
 }
