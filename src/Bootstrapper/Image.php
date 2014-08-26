@@ -1,68 +1,111 @@
 <?php
+
 namespace Bootstrapper;
 
-use \HTML;
+use Bootstrapper\Exceptions\ImageException;
 
-/**
- * Image class for wrapping images with Bootstrap classes
- *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
- */
-class Image
+class Image extends RenderedObject
 {
-    /**
-     * Creates an image with rounded corners
-     *
-     * @param string $url        An url
-     * @param string $alt        An alt text
-     * @param array  $attributes An array of attributes
-     *
-     * @return string An img tag
-     */
-    public static function rounded($url, $alt = '', $attributes = array())
-    {
-        $attributes = Helpers::add_class($attributes, 'img-'.__FUNCTION__);
 
-        return HTML::image($url, $alt, $attributes);
+    const IMAGE_RESPONSIVE = 'img-responsive';
+    const IMAGE_ROUNDED = 'img-rounded';
+    const IMAGE_CIRCLE = 'img-circle';
+    const IMAGE_THUMBNAIL = 'img-thumbnail';
+
+    private $src;
+    private $alt = '';
+    private $attributes = [];
+
+    public function render()
+    {
+        if (!$this->src) {
+            throw new ImageException("You must specify the source");
+        }
+
+        $attributes = new Attributes($this->attributes, ['src' => $this->src, 'alt' => $this->alt]);
+
+        return "<img {$attributes}>";
     }
 
-    /**
-     * Creates an image masked with a circle
-     *
-     * @param string $url        An url
-     * @param string $alt        An alt text
-     * @param array  $attributes An array of attributes
-     *
-     * @return string An img tag
-     */
-    public static function circle($url, $alt = '', $attributes = array())
+    public function withSource($source)
     {
-        $attributes = Helpers::add_class($attributes, 'img-'.__FUNCTION__);
+        $this->src = $source;
 
-        return HTML::image($url, $alt, $attributes);
+        return $this;
     }
 
-    /**
-     * Creates an image with polaroid borders
-     *
-     * @param string $url        An url
-     * @param string $alt        An alt text
-     * @param array  $attributes An array of attributes
-     *
-     * @return string An img tag
-     */
-    public static function polaroid($url, $alt = '', $attributes = array())
+    public function withAlt($alt)
     {
-        $attributes = Helpers::add_class($attributes, 'img-'.__FUNCTION__);
+        $this->alt = $alt;
 
-        return HTML::image($url, $alt, $attributes);
+        return $this;
     }
+
+    public function withAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    public function responsive()
+    {
+        $this->addClass(self::IMAGE_RESPONSIVE);
+
+        return $this;
+    }
+
+    public function rounded($src = null, $alt = null)
+    {
+        $this->addClass(self::IMAGE_ROUNDED);
+
+        if (!isset($src))
+        {
+            $src = $this->src;
+        }
+        if (!isset($alt))
+        {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
+    }
+
+    public function circle($src = null, $alt = null)
+    {
+        $this->addClass(self::IMAGE_CIRCLE);
+
+        if (!isset($src))
+        {
+            $src = $this->src;
+        }
+        if (!isset($alt))
+        {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
+    }
+
+    public function thumbnail($src = null, $alt = null)
+    {
+        $this->addClass(self::IMAGE_THUMBNAIL);
+
+        if (!isset($src))
+        {
+            $src = $this->src;
+        }
+        if (!isset($alt))
+        {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
+    }
+
+    public function addClass($class)
+    {
+        $this->attributes['class'] = isset($this->attributes['class']) ? $this->attributes['class'] . " {$class}" : $class;
+    }
+
 }

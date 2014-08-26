@@ -1,14 +1,10 @@
 language: php
 
 php:
-  - 5.3
   - 5.4
 
 before_install:
-  - cd ~/builds
-  - git clone git://github.com/laravel/laravel.git
-  - mv ./patricktalmadge/bootstrapper ./laravel/bundles/bootstrapper
-  - echo "<?php return array('bootstrapper' => array('auto' => true));" > ./laravel/application/bundles.php
-  - cd ./laravel
+  - composer install --dev
 
-script: "php artisan test bootstrapper"
+script:
+  - vendor/bin/phpspec run

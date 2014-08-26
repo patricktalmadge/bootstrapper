@@ -1,251 +1,128 @@
 <?php
+
 namespace Bootstrapper;
 
-use \HTML;
+use Bootstrapper\Exceptions\MediaObjectException;
 
-/**
- * Media object helper class
- *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
- */
-class MediaObject
+class MediaObject extends RenderedObject
 {
-    /**
-     * The current MediaObject instance
-     * @var MediaObject
-     */
-    public static $object;
 
-    /**
-     * Whether the MediaObjects should be rendered as a list
-     * @var boolean
-     */
-    private static $listed = false;
+    private $contents = [];
+    private $list;
 
-    /**
-     * An array of nested Media objects
-     * @var array
-     */
-    public $nested = array();
-
-    /**
-     * The body of the media object
-     * @var string
-     */
-    private $content = null;
-
-    /**
-     * The title of the media object
-     * @var string
-     */
-    private $title = null;
-
-    /**
-     * The media of the media object
-     * @var string
-     */
-    private $media = null;
-
-    /**
-     * The media object's attributes
-     * @var array
-     */
-    private $attributes = array();
-
-    /**
-     * Which side the media will be
-     * @var string
-     */
-    private $pull = 'left';
-
-    /**
-     * Statically creates a new MediaObject instance
-     *
-     * @param  string      $content    Its content
-     * @param  string      $media      Its media
-     * @param  array       $attributes The media object's attributes
-     * @return MediaObject
-     */
-    public static function create($content, $media = null, $attributes = array())
+    public function render()
     {
-        static::$object = new static($content);
-        if($media) static::$object->with_image($media);
-        if($attributes) static::$object->attributes = $attributes;
-
-        return static::$object;
-    }
-
-    /**
-     * Opens a Media Object list
-     *
-     * @param  array  $attributes An array of attributes
-     * @return string An opening tag
-     */
-    public static function open_list($attributes = array())
-    {
-        static::$listed = true;
-        $attributes = Helpers::add_class($attributes, 'media-list');
-
-        return '<ul'.HTML::attributes($attributes).'>';
-    }
-
-    /**
-     * Closes an existing Media Objects list
-     *
-     * @return string A closing tag
-     */
-    public static function close_list()
-    {
-        static::$listed = false;
-
-        return '</ul>';
-    }
-
-    /**
-     * Creates a new MediaObject instance
-     *
-     * @param string $content Its content
-     * @param string $media   Its media
-     */
-    public function __construct($content, $media = null)
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * Magic methods for MediaObject
-     *
-     * @param  string      $method     The method called
-     * @param  array       $parameters Its parameters
-     * @return MediaObject
-     */
-    public function __call($method, $parameters)
-    {
-        // Pull the media to a side
-        if (starts_with($method, 'pull_')) {
-            $side = explode('_', $method);
-            $side = array_get($side, 1);
-
-            return $this->pull($side);
+        if ($this->list) {
+            return $this->renderList();
         }
 
-        // Add an heading to the media object
-        if (starts_with($method, 'with_h')) {
-            $heading    = substr($method, -1);
-            $title      = array_get($parameters, 0);
-            $attributes = array_get($parameters, 1, array());
-            $attributes = Helpers::add_class($attributes, 'media-heading');
-            $title      = '<h'.$heading.HTML::attributes($attributes).'>'.$title.'</h'.$heading.'>';
-
-            return $this->with_title($title);
-        }
-    }
-
-    /**
-     * Add a media to the MediaObject
-     *
-     * @param  string      $image      The path to the image
-     * @param  string      $alt        Its alt attribute
-     * @param  array       $attributes An array of supplementary attributes
-     * @return MediaObject
-     */
-    public function with_image($image, $alt = null, $attributes = array())
-    {
-        $attributes = Helpers::add_class($attributes, 'media-object');
-        $this->media = HTML::image($image, null, $attributes);
-
-        return $this;
-    }
-
-    /**
-     * Add a raw title to the MediaObject
-     *
-     * @param  string      $title The text of the title
-     * @return MediaObject
-     */
-    public function with_title($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Pull the media to a side
-     *
-     * @param  string      $side Left or right
-     * @return MediaObject
-     */
-    public function pull($side)
-    {
-        if (in_array($side, array('left', 'right'))) {
-            $this->pull = $side;
+        if (!$this->contents) {
+            throw new MediaObjectException("You need to give the object some contents");
         }
 
+        return $this->renderItem($this->contents, 'div');
+    }
+
+    public function withContents($contents)
+    {
+        $this->contents = $contents;
+
+        // Check if it's an array of arrays
+        $this->list = !(isset($contents['image']));
+
         return $this;
     }
 
-    /**
-     * Nests a new instance of MediaObject into the existing one
-     *
-     * @param  MediaObject $mediaObject The new MediaObject to nest
-     * @return MediaObject
-     */
-    public function nest(MediaObject $mediaObject)
+    public function asList()
     {
-        $this->nested[] = $mediaObject;
+        $this->list = true;
 
         return $this;
     }
 
-    /**
-     * Prints out the MediaObject in memory
-     *
-     * @return string The HTML markup for the media object
-     */
-    public function __toString()
+    private function renderList()
     {
-        // Whether objects should be printed as list elements or divs
-        $children = static::$listed ? 'li' : 'div';
+        $string = "<ul class='media-list'>";
+        foreach ($this->contents as $item) {
+            $string .= $this->renderItem($item, 'li');
+        }
+        $string .= "</ul>";
 
-        // Open the media object
-        $attributes = Helpers::add_class($this->attributes, 'media');
-        $html = '<' .$children.HTML::attributes($attributes). '>';
+        return $string;
+    }
 
-            // Add the media itself
-            $html .= '<a class="pull-' .$this->pull. '">';
-                $html .= $this->media;
-            $html .= '</a>';
+    private function renderItem($contents, $tag)
+    {
+        $position = $this->getPosition($contents);
+        $heading = $this->getHeading($contents);
+        $image = $this->getImage($contents, $heading);
+        $link = $this->getLink($contents, $image, $position);
+        $body = $this->getBody($contents);
 
-            // Add the title and body
-            $html .= '<div class="media-body">';
-                if($this->title) $html .= $this->title;
-                $html .= $this->content;
+        $string = "<{$tag} class='media'>";
+        $string .= $link;
+        $string .= "<div class='media-body'>";
 
-                // Render nested media objects (always as divs)
-                if ($this->nested) {
-                    $listed = static::$listed;
-                    static::$listed = false;
-                    foreach ($this->nested as $mediaObject) {
-                        $html .= $mediaObject;
-                    }
-                    static::$listed = $listed;
-                }
+        if ($heading) {
+            $string .= "<h4 class='media-heading'>{$heading}</h4>";
+        }
 
-            // Close body
-            $html .= '</div>';
+        $string .= $body;
+        $string .= "</div></{$tag}>";
 
-        // Close object
-        $html .='</' .$children. '>';
+        return $string;
+    }
 
-        return $html;
+    private function getPosition($contents)
+    {
+        if (isset($contents['position']) && $contents['position'] == 'right') {
+            return 'pull-right';
+        }
+
+        return 'pull-left';
+
+    }
+
+    private function getImage($contents, $alt)
+    {
+        if (!isset($contents['image'])) {
+            throw new MediaObjectException("You must pass in an image to each object");
+        }
+        $image = $contents['image'];
+
+        $attributes = new Attributes(['class' => 'media-object', 'src' => $image, 'alt' => $alt]);
+
+        return "<img {$attributes}>";
+    }
+
+    private function getHeading($contents)
+    {
+        return isset($contents['heading']) ? $contents['heading'] : '';
+    }
+
+    private function getLink($contents, $image, $position)
+    {
+        if (isset($contents['link'])) {
+            return "<a href='{$contents['link']}' class='{$position}'>{$image}</a>";
+        }
+
+        return "<div class='{$position}'>{$image}</div>";
+    }
+
+    private function getBody($contents)
+    {
+        if (!isset($contents['body'])) {
+            throw new MediaObjectException('You must pass in the body to each object');
+        }
+
+        $string = $contents['body'];
+
+        if (isset($contents['nest']))
+        {
+            $object = new MediaObject();
+            $string.= $object->withContents($contents['nest']);
+        }
+
+        return $string;
     }
 }
