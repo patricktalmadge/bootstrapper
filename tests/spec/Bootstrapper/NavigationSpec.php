@@ -300,4 +300,26 @@ class NavigationSpec extends ObjectBehavior
             "<ul class='nav nav-tabs'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li><a href='#'>bar</a></li><li class='divider'></li><li><a href='#'>gar</a></li></ul></li></ul>"
         );
     }
+
+    function it_allows_you_to_use_a_callback_not_render_a_link()
+    {
+        $this->links(
+            [
+                [
+                    'link' => 'foo',
+                    'title' => 'bar',
+                ],
+                [
+                    'link' => 'goo',
+                    'title' => 'gar',
+                    'callback' => function()
+                    {
+                        return false;
+                    }
+                ],
+            ]
+        )->render()->shouldBe(
+            "<ul class='nav nav-tabs'><li><a href='foo'>bar</a></li></ul>"
+        );
+    }
 }

@@ -95,6 +95,17 @@ class Navigation extends RenderedObject
     private function renderLink($link)
     {
         $string = '';
+
+        if (isset($link['callback']))
+        {
+            $callback = $link['callback'];
+
+            if ($callback() === false)
+            {
+                return $string;
+            }
+        }
+
         if ($this->itemShouldBeActive($link)) {
             $string .= '<li class=\'active\'>';
         } elseif (isset($link['disabled']) && $link['disabled']) {
