@@ -30,19 +30,12 @@ class ControlGroup extends RenderedObject
 
         if ($this->label)
         {
-            if ($this->labelSize)
-            {
-                $this->controlSize = $this->controlSize ? : 12 - $this->labelSize;
-                
-                $this->label = preg_replace('/class="(.*)"/i', sprintf('class="col-sm-%s ${1}"', $this->labelSize), $this->label);
-            }
-            
-            $string .= $this->label;
+            $string .= $this->renderLabel();
         }
-        
+
         if ($this->controlSize)
         {
-            $string .= sprintf('<div class="col-sm-%s">', $this->controlSize);
+            $string .= $this->createControlDiv();
         }
 
         if (is_array($this->contents))
@@ -73,13 +66,13 @@ class ControlGroup extends RenderedObject
         return $this;
     }
 
-    public function withContents($contents, $controlSize)
+    public function withContents($contents, $controlSize = null)
     {
         if ($controlSize && ($controlSize < 1 || $controlSize > 12))
         {
             throw new ControlGroupException('That content size is incorrect - it must be between 1 and 12');
         }
-        
+
         $this->contents = $contents;
         $this->controlSize = $controlSize;
 
@@ -88,7 +81,7 @@ class ControlGroup extends RenderedObject
 
     public function withLabel($label, $labelSize = null)
     {
-        if ($labelSize && ($labelSize < 1 || $labelSize > 12))
+        if (isset($labelSize) && ($labelSize < 1 || $labelSize > 11))
         {
             throw new ControlGroupException('That label size is incorrect - it must be between 1 and 12');
         }
@@ -112,7 +105,7 @@ class ControlGroup extends RenderedObject
         {
             throw new ControlGroupException('That label size + control size must be between 1 and 12');
         }
-        
+
         return $this->withLabel($label, $labelSize)->withContents($control, $controlSize)->withHelp($help);
     }
 
@@ -133,5 +126,34 @@ class ControlGroup extends RenderedObject
         }
 
         return $string;
+    }
+
+    /**
+     * @return string
+     */
+    public function renderLabel()
+    {
+        $string = '';
+
+        if ($this->labelSize) {
+            $this->controlSize = $this->controlSize ?: 12 - $this->labelSize;
+
+            $this->label = preg_replace(
+                "/class=('|\")(.*)('|\")/i",
+                sprintf('class=${1}${2} col-sm-%s${3}', $this->labelSize),
+                $this->label
+            );
+        }
+
+        $string .= $this->label;
+        return $string;
+    }
+
+    /**
+     * @return string
+     */
+    public function createControlDiv()
+    {
+        return sprintf("<div class='col-sm-%s'>", $this->controlSize);
     }
 }

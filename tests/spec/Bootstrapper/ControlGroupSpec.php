@@ -20,20 +20,20 @@ class ControlGroupSpec extends ObjectBehavior
 
     function it_can_be_rendered()
     {
-        $this->render()->shouldBe('<div class="form-group"></div>');
+        $this->render()->shouldBe("<div class='form-group'></div>");
     }
 
     function it_can_be_given_attributes()
     {
         $this->withAttributes(['data-foo' => 'bar'])->render()->shouldBe(
-            '<div class="form-group" data-foo="bar"></div>'
+            "<div class='form-group' data-foo='bar'></div>"
         );
     }
 
     function it_can_be_given_contents()
     {
         $this->withContents('<div>contents</div>')->render()->shouldBe(
-            '<div class="form-group"><div>contents</div></div>'
+            "<div class='form-group'><div>contents</div></div>"
         );
     }
 
@@ -57,40 +57,40 @@ class ControlGroupSpec extends ObjectBehavior
                 ]
             ]
         )->render()->shouldBe(
-            '<div class="form-group">label1 checkbox1<br />label2 checkbox2<br /></div>'
+            "<div class='form-group'>label1 checkbox1<br />label2 checkbox2<br /></div>"
         );
     }
 
     function it_can_be_given_a_label()
     {
         $this->withLabel('foo')->render()->shouldBe(
-            '<div class="form-group">foo</div>'
+            "<div class='form-group'>foo</div>"
         );
     }
 
     function it_can_be_given_a_label_with_a_size()
     {
         $this->withLabel('foo', 4)->render()->shouldBe(
-            '<div class="form-group">foo<div class="col-sm-8"></div></div>'
+            "<div class='form-group'>foo<div class='col-sm-8'></div></div>"
         );
     }
 
     function it_can_be_given_a_help_block()
     {
-        $this->withHelp('foo')->render()->shouldBe('<div class="form-group">foo</div>');
+        $this->withHelp('foo')->render()->shouldBe("<div class='form-group'>foo</div>");
     }
 
     function it_places_the_help_block_in_the_correct_place()
     {
         $this->withLabel('bar')->withHelp('foo')->render()->shouldBe(
-            '<div class="form-group">barfoo</div>'
+            "<div class='form-group'>barfoo</div>"
         );
     }
 
     function it_can_be_generated_in_one_go()
     {
         $this->generate('<div>label</div>', '<div>control</div>', '<div>help</div>')->render()->shouldBe(
-            '<div class="form-group"><div>label</div><div>control</div><div>help</div></div>'
+            "<div class='form-group'><div>label</div><div>control</div><div>help</div></div>"
         );
     }
 
@@ -101,4 +101,16 @@ class ControlGroupSpec extends ObjectBehavior
         $this->shouldThrow('Bootstrapper\\Exceptions\\ControlGroupException')->duringWithLabel('', -0);
         $this->shouldThrow('Bootstrapper\\Exceptions\\ControlGroupException')->duringWithLabel('', 12);
     }
+
+    function it_handles_labels_correctly()
+    {
+        $mock = \Mockery::mock('Bootstrapper\\Form');
+
+        $mock->shouldReceive('label')->with('foo')->andReturn('<label for="foo" class="control-label">Foo</label>');
+
+        $this->withLabel($mock->label('foo'), 4)->render()->shouldBe(
+            "<div class='form-group'><label for=\"foo\" class=\"control-label col-sm-4\">Foo</label><div class='col-sm-8'></div></div>"
+        );
+    }
+
 }
