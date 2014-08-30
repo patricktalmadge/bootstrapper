@@ -90,11 +90,11 @@ class Form extends FormBuilder
         return $this->model($model, $attributes);
     }
 
-    public function select($name, $list = array(), $selected = null, $options = array())
+    public function select($name, $list = array(), $selected = null, $attributes = array())
     {
-        $options['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
 
-        return parent::select($name, $list, $selected, $options);
+        return parent::select($name, $list, $selected, $attributes);
     }
 
     public function textarea($name, $value = null, $attributes = array())
