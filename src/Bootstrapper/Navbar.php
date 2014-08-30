@@ -22,6 +22,7 @@ class Navbar extends RenderedObject
     private $content = [];
     private $type = 'navbar-default';
     private $position;
+    private $fluid = false;
 
     public function __construct(UrlGenerator $url)
     {
@@ -32,7 +33,8 @@ class Navbar extends RenderedObject
     {
         $attributes = new Attributes($this->attributes, ['class' => "navbar {$this->type} {$this->position}", 'role' => 'navigation']);
 
-        $string = "<div {$attributes}><div class='container'>";
+        $string = "<div {$attributes}>";
+        $string .= $this->fluid ? "<div class='container-fluid'>" : "<div class='container'>";
         $string .= $this->renderHeader();
         $string .= $this->renderContent();
         $string .= "</div></div>";
@@ -136,5 +138,12 @@ class Navbar extends RenderedObject
         $this->setPosition($position);
 
         return $this->withAttributes($attributes);
+    }
+
+    public function fluid()
+    {
+        $this->fluid = true;
+
+        return $this;
     }
 }

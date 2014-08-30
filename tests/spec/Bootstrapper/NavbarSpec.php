@@ -91,4 +91,11 @@ class NavbarSpec extends ObjectBehavior
             "<div class='navbar navbar-default foo' role='navigation' data-foo='bar'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><nav class='navbar-collapse collapse'></nav></div></div>"
         );
     }
+
+    function it_allows_you_to_create_a_fluid_container()
+    {
+        $this->fluid()->render()->shouldBe(
+            "<div class='navbar navbar-default' role='navigation'><div class='container-fluid'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><nav class='navbar-collapse collapse'></nav></div></div>"
+        );
+    }
 }
