@@ -9,6 +9,7 @@ class ControlGroup extends RenderedObject
 
     private $attributes = [];
     private $contents = [];
+    private $controlSize;
     private $label;
     private $labelSize;
     private $help;
@@ -27,11 +28,21 @@ class ControlGroup extends RenderedObject
         $attributes = new Attributes($this->attributes, ['class' => 'form-group']);
         $string = "<div {$attributes}>";
 
-        if ($this->label) {
-            $contentSize = 12 - $this->labelSize;
-
-            $string .= "<div class='col-sm-{$this->labelSize}'>{$this->label}</div>";
-            $string .= "<div class='col-sm-{$contentSize}'>";
+        if ($this->label)
+        {
+            if ($this->labelSize)
+            {
+                $this->controlSize = $this->controlSize ? : 12 - $this->labelSize;
+                
+                $this->label = preg_replace('/class="(.*)"/i', sprintf('class="col-sm-%s ${1}"', $this->labelSize), $this->label);
+            }
+            
+            $string .= $this->label;
+        }
+        
+        if ($this->controlSize)
+        {
+            $string .= sprintf('<div class="col-sm-%s">', $this->controlSize);
         }
 
         if (is_array($this->contents))
@@ -45,7 +56,8 @@ class ControlGroup extends RenderedObject
 
         $string .= $this->help;
 
-        if ($this->label) {
+        if ($this->controlSize)
+        {
             $string .= "</div>";
         }
 
@@ -61,16 +73,23 @@ class ControlGroup extends RenderedObject
         return $this;
     }
 
-    public function withContents($contents)
+    public function withContents($contents, $controlSize)
     {
+        if ($controlSize && ($controlSize < 1 || $controlSize > 12))
+        {
+            throw new ControlGroupException('That content size is incorrect - it must be between 1 and 12');
+        }
+        
         $this->contents = $contents;
+        $this->controlSize = $controlSize;
 
         return $this;
     }
 
-    public function withLabel($label, $labelSize = 2)
+    public function withLabel($label, $labelSize = null)
     {
-        if ($labelSize < 1 || $labelSize > 11) {
+        if ($labelSize && ($labelSize < 1 || $labelSize > 12))
+        {
             throw new ControlGroupException('That label size is incorrect - it must be between 1 and 12');
         }
 
@@ -87,9 +106,14 @@ class ControlGroup extends RenderedObject
         return $this;
     }
 
-    public function generate($label, $control, $help = null, $labelSize = 2)
+    public function generate($label, $control, $help = null, $labelSize = null, $controlSize = null)
     {
-        return $this->withLabel($label, $labelSize)->withContents($control)->withHelp($help);
+        if (($labelSize && $controlSize) && ($labelSize + $controlSize < 1 || $labelSize + $controlSize > 12))
+        {
+            throw new ControlGroupException('That label size + control size must be between 1 and 12');
+        }
+        
+        return $this->withLabel($label, $labelSize)->withContents($control, $controlSize)->withHelp($help);
     }
 
     private function renderArrayContents()
