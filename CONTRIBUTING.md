@@ -6,7 +6,7 @@ First, I'd like to say: thankyou! Projects like this one live-and-die based on
 the support they receive from others, and the fact that you're even
 *considering* supporting ``bootstrapper`` is incredibly generous of you.
 
-This document lays out guidelines and advice for contributing to ``hyper``. If
+This document lays out guidelines and advice for contributing to ``bootstrapper``. If
 you're thinking of contributing, start by reading this thoroughly and getting a
 feel for how contributing to the project works. If you've still got questions
 after reading this, you should go ahead and contact Patrick (on
