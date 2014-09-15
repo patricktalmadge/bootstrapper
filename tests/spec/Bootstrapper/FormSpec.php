@@ -149,6 +149,11 @@ class FormSpec extends ObjectBehavior
         $this->label('foo', 'bar')->shouldBe('<label for="foo" class="control-label">bar</label>');
     }
 
+    function it_overrides_the_submit_method()
+    {
+        $this->submit('foo')->shouldBe('<input class="btn btn-default" type="submit" value="foo">');
+    }
+
 }
 
 class Foo

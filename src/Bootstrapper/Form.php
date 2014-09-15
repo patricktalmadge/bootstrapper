@@ -16,6 +16,12 @@ class Form extends FormBuilder
     const FORM_CONTROL = 'form-control';
     const LABEL = 'control-label';
 
+    public function submit($value = null, $options = array())
+    {
+        $options['class'] = isset($options['class']) ? 'btn ' .  Button::NORMAL . ' ' . $options['class'] : 'btn ' .  Button::NORMAL;
+        return parent::submit($value, $options);
+    }
+
     public function label($name, $value = null, $options = array())
     {
         $options['class'] = isset($options['class']) ? self::LABEL . ' ' . $options['class'] : self::LABEL;
