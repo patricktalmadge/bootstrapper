@@ -116,7 +116,8 @@ class ButtonGroup extends RenderedObject
                 {
                     $class = $item->getType();
                     $value = $item->getValue();
-                    $contents .= "<label class='btn {$class}'><input type='{$this->type}'>{$value}</label>";
+                    $attributes = new Attributes($item->getAttributes(), ['type' => $this->type]);
+                    $contents .= "<label class='btn {$class}'><input {$attributes}>{$value}</label>";
                 }
                 else
                 {
@@ -127,6 +128,5 @@ class ButtonGroup extends RenderedObject
 
         return $contents;
     }
-
 
 }

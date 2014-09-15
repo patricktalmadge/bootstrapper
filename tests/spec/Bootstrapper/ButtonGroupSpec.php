@@ -77,4 +77,40 @@ class ButtonGroupSpec extends ObjectBehavior
                 $buttonRight
             ])->render()->shouldBe("<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger'><input type='radio'>Left</label><label class='btn btn-danger'><input type='radio'>Middle</label><label class='btn btn-danger'><input type='radio'>Right</label></div>");
     }
+
+    function it_can_be_made_a_radio_with_attributes()
+    {
+        $buttonLeft = new Button();
+        $buttonLeft->danger('Left')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonMiddle = new Button();
+        $buttonMiddle->danger('Middle')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonRight = new Button();
+        $buttonRight->danger('Right');
+
+        $this->radio([
+                $buttonLeft,
+                $buttonMiddle,
+                $buttonRight
+            ])->render()->shouldBe("<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger'><input type='radio' data-foo='bar'>Left</label><label class='btn btn-danger'><input type='radio' data-foo='bar'>Middle</label><label class='btn btn-danger'><input type='radio'>Right</label></div>");
+    }
+
+    function it_can_be_made_a_checkbox_with_attributes()
+    {
+        $buttonLeft = new Button();
+        $buttonLeft->danger('Left')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonMiddle = new Button();
+        $buttonMiddle->danger('Middle')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonRight = new Button();
+        $buttonRight->danger('Right');
+
+        $this->checkbox([
+                $buttonLeft,
+                $buttonMiddle,
+                $buttonRight
+            ])->render()->shouldBe("<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger'><input type='checkbox' data-foo='bar'>Left</label><label class='btn btn-danger'><input type='checkbox' data-foo='bar'>Middle</label><label class='btn btn-danger'><input type='checkbox'>Right</label></div>");
+    }
 }

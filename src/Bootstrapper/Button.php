@@ -239,4 +239,9 @@ class Button extends RenderedObject
     {
         return $this->value;
     }
+
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
 }

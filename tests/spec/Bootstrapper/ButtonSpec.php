@@ -138,10 +138,11 @@ class ButtonSpec extends ObjectBehavior
 
     function it_has_get_methods()
     {
-        $this->danger('Foo');
+        $this->danger('Foo')->withAttributes(['data-foo' => 'bar']);
 
         $this->getType()->shouldBe('btn-danger');
         $this->getValue()->shouldBe('Foo');
+        $this->getAttributes()->shouldBe(['data-foo' => 'bar']);
     }
 
 }
