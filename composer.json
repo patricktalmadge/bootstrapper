@@ -22,10 +22,10 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/html": "~4.2",
-        "illuminate/support": "~4.2",
-        "illuminate/config": "~4.2",
-        "illuminate/routing": "~4.2",
+        "illuminate/html": "5.0.x-dev",
+        "illuminate/support": "5.0.x-dev",
+        "illuminate/config": "5.0.x-dev",
+        "illuminate/routing": "5.0.x-dev",
         "twbs/bootstrap": "~3.2"
     },
     "require-dev": {
@@ -37,5 +37,5 @@
             "Bootstrapper\\": "src\\Bootstrapper"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
