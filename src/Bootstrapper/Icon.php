@@ -20,7 +20,9 @@ class Icon
     public function create($icon)
     {
         $baseClass = $this->config->get('bootstrapper::icon_prefix');
-
+        $icon = str_replace('_', '-', $icon);
+        $icon = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/', "-$1", $icon));
+        
         return "<span class='{$baseClass} {$baseClass}-{$icon}'></span>";
     }
 
