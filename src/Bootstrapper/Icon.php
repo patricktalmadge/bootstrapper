@@ -20,8 +20,7 @@ class Icon
     public function create($icon)
     {
         $baseClass = $this->config->get('bootstrapper::icon_prefix');
-        $icon = str_replace('_', '-', $icon);
-        $icon = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/', "-$1", $icon));
+        $icon = $this->__normaliseIconString($icon);
         
         return "<span class='{$baseClass} {$baseClass}-{$icon}'></span>";
     }
@@ -29,5 +28,14 @@ class Icon
     public function __call($method, $parameters)
     {
         return $this->create($method);
+    }
+    
+    private function __normaliseIconString($icon)
+    {
+        // replace underscores with minus sign
+        // and transform from camelCaseString to camel-case-string
+        $icon = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/', "-$1", str_replace('_', '-', $icon)));
+        
+        return $icon;
     }
 }
