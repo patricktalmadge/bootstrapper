@@ -42,4 +42,14 @@ class IconSpec extends ObjectBehavior
             $this->$type()->shouldReturn("<span class='glyphicon glyphicon-$type'></span>");
         }
     }
+    
+    function it_can_create_an_icon_from_camel_case()
+    {
+        $this->create('fooBar')->shouldReturn("<span class='glyphicon glyphicon-foo-bar'></span>");
+    }
+    
+    function it_can_create_an_icon_from_underscore()
+    {
+        $this->create('foo_bar')->shouldReturn("<span class='glyphicon glyphicon-foo-bar'></span>");
+    }
 }
