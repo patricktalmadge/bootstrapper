@@ -3,24 +3,18 @@
 namespace Bootstrapper;
 
 class Alert extends RenderedObject
-{
-
-    const INFO = 'alert-info';
-    const SUCCESS = 'alert-success';
-    const WARNING = 'alert-warning';
-    const DANGER = 'alert-danger';
+{    
+    private $types = [
+        'info'      => 'alert-info',
+        'success'   => 'alert-success',
+        'warning'   => 'alert-warning',
+        'danger'    => 'alert-danger'
+    ];
 
     private $type;
     private $contents;
     private $attributes = [];
     private $closer;
-
-    private function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function render()
     {
@@ -33,31 +27,23 @@ class Alert extends RenderedObject
 
         return "<div {$attributes}>{$this->contents}</div>";
     }
-
-    public function info($contents = '')
+    
+    public function message($contents = '')
     {
-        return $this->setType(self::INFO)->withContents($contents);
-    }
-
-    public function success($contents = '')
-    {
-        return $this->setType(self::SUCCESS)->withContents($contents);
-    }
-
-    public function warning($contents = '')
-    {
-        return $this->setType(self::WARNING)->withContents($contents);
-    }
-
-    public function danger($contents = '')
-    {
-        return $this->setType(self::DANGER)->withContents($contents);
+        return $this->withContents($contents);
     }
 
     public function withContents($contents)
     {
         $this->contents = $contents;
 
+        return $this;
+    }
+    
+    public function type($type = 'info')
+    {
+        $this->type = $this->types[$type] ? : $type;
+    
         return $this;
     }
 
@@ -74,4 +60,13 @@ class Alert extends RenderedObject
 
         return $this;
     }
+    
+    public function __call($type, $parameters)
+    {
+        $message = isset($parameters[0]) ? $parameters[0] : '';
+        $this->message($message)->type($type);
+
+        return $this;
+    }
+    
 }
