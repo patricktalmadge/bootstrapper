@@ -15,7 +15,7 @@ class Attributes implements \ArrayAccess
     /**
      * @var array
      */
-    private $attributes;
+    protected $attributes;
 
     public function __construct($attributes, $defaults = [])
     {

@@ -12,16 +12,16 @@ class Navigation extends RenderedObject
     const NAVIGATION_NAVBAR = 'navbar-nav';
     const NAVIGATION_DIVIDER = 'divider';
 
-    private $attributes = [];
-    private $type = 'nav-tabs';
-    private $links = [];
+    protected $attributes = [];
+    protected $type = 'nav-tabs';
+    protected $links = [];
     /**
      * @var UrlGenerator
      */
-    private $url;
-    private $autoroute = true;
-    private $justified = false;
-    private $stacked = false;
+    protected $url;
+    protected $autoroute = true;
+    protected $justified = false;
+    protected $stacked = false;
 
     public function __construct(UrlGenerator $urlGenerator)
     {
@@ -92,7 +92,7 @@ class Navigation extends RenderedObject
      * @param $link
      * @return string
      */
-    private function renderLink($link)
+    protected function renderLink($link)
     {
         $string = '';
 
@@ -127,7 +127,7 @@ class Navigation extends RenderedObject
         return $this;
     }
 
-    private function renderDropdown($link)
+    protected function renderDropdown($link)
     {
         if ($this->dropdownShouldBeActive($link)) {
             $string = '<li class=\'dropdown active\'>';
@@ -147,7 +147,7 @@ class Navigation extends RenderedObject
         return $string;
     }
 
-    private function dropdownShouldBeActive($dropdown)
+    protected function dropdownShouldBeActive($dropdown)
     {
         if ($this->autoroute) {
             foreach ($dropdown[1] as $item) {
@@ -188,7 +188,7 @@ class Navigation extends RenderedObject
      * @param $link
      * @return bool
      */
-    private function itemShouldBeActive($link)
+    protected function itemShouldBeActive($link)
     {
         if (is_string($link))
         {
@@ -220,7 +220,7 @@ class Navigation extends RenderedObject
         return $this;
     }
 
-    private function renderSeperator($link)
+    protected function renderSeperator($link)
     {
         return "<li class='{$link}'></li>";
     }

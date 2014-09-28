@@ -12,9 +12,9 @@ class Image extends RenderedObject
     const IMAGE_CIRCLE = 'img-circle';
     const IMAGE_THUMBNAIL = 'img-thumbnail';
 
-    private $src;
-    private $alt = '';
-    private $attributes = [];
+    protected $src;
+    protected $alt = '';
+    protected $attributes = [];
 
     public function render()
     {

@@ -7,8 +7,8 @@ use Bootstrapper\Exceptions\MediaObjectException;
 class MediaObject extends RenderedObject
 {
 
-    private $contents = [];
-    private $list;
+    protected $contents = [];
+    protected $list;
 
     public function render()
     {
@@ -40,7 +40,7 @@ class MediaObject extends RenderedObject
         return $this;
     }
 
-    private function renderList()
+    protected function renderList()
     {
         $string = "<ul class='media-list'>";
         foreach ($this->contents as $item) {
@@ -51,7 +51,7 @@ class MediaObject extends RenderedObject
         return $string;
     }
 
-    private function renderItem($contents, $tag)
+    protected function renderItem($contents, $tag)
     {
         $position = $this->getPosition($contents);
         $heading = $this->getHeading($contents);
@@ -73,7 +73,7 @@ class MediaObject extends RenderedObject
         return $string;
     }
 
-    private function getPosition($contents)
+    protected function getPosition($contents)
     {
         if (isset($contents['position']) && $contents['position'] == 'right') {
             return 'pull-right';
@@ -83,7 +83,7 @@ class MediaObject extends RenderedObject
 
     }
 
-    private function getImage($contents, $alt)
+    protected function getImage($contents, $alt)
     {
         if (!isset($contents['image'])) {
             throw new MediaObjectException("You must pass in an image to each object");
@@ -95,12 +95,12 @@ class MediaObject extends RenderedObject
         return "<img {$attributes}>";
     }
 
-    private function getHeading($contents)
+    protected function getHeading($contents)
     {
         return isset($contents['heading']) ? $contents['heading'] : '';
     }
 
-    private function getLink($contents, $image, $position)
+    protected function getLink($contents, $image, $position)
     {
         if (isset($contents['link'])) {
             return "<a href='{$contents['link']}' class='{$position}'>{$image}</a>";
@@ -109,7 +109,7 @@ class MediaObject extends RenderedObject
         return "<div class='{$position}'>{$image}</div>";
     }
 
-    private function getBody($contents)
+    protected function getBody($contents)
     {
         if (!isset($contents['body'])) {
             throw new MediaObjectException('You must pass in the body to each object');

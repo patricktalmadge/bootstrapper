@@ -5,12 +5,12 @@ namespace Bootstrapper;
 class Badge extends RenderedObject
 {
 
-    private $contents;
+    protected $contents;
 
     /**
      * @var
      */
-    private $attributes;
+    protected $attributes;
 
     public function render()
     {

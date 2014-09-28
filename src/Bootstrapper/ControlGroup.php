@@ -7,16 +7,16 @@ use Bootstrapper\Exceptions\ControlGroupException;
 class ControlGroup extends RenderedObject
 {
 
-    private $attributes = [];
-    private $contents = [];
-    private $controlSize;
-    private $label;
-    private $labelSize;
-    private $help;
+    protected $attributes = [];
+    protected $contents = [];
+    protected $controlSize;
+    protected $label;
+    protected $labelSize;
+    protected $help;
     /**
      * @var Form
      */
-    private $formBuilder;
+    protected $formBuilder;
 
     public function __construct(Form $formBuilder)
     {
@@ -109,7 +109,7 @@ class ControlGroup extends RenderedObject
         return $this->withLabel($label, $labelSize)->withContents($control, $controlSize)->withHelp($help);
     }
 
-    private function renderArrayContents()
+    protected function renderArrayContents()
     {
         $string = '';
         foreach($this->contents as $item)

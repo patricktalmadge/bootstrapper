@@ -10,12 +10,12 @@ class Alert extends RenderedObject
     const WARNING = 'alert-warning';
     const DANGER = 'alert-danger';
 
-    private $type;
-    private $contents;
-    private $attributes = [];
-    private $closer;
+    protected $type;
+    protected $contents;
+    protected $attributes = [];
+    protected $closer;
 
-    private function setType($type)
+    public function setType($type)
     {
         $this->type = $type;
 

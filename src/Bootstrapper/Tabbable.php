@@ -10,11 +10,11 @@ class Tabbable extends RenderedObject
     /**
      * @var Navigation
      */
-    private $links;
-    private $contents = [];
-    private $active = 0;
-    private $type = 'tab';
-    private $fade = false;
+    protected $links;
+    protected $contents = [];
+    protected $active = 0;
+    protected $type = 'tab';
+    protected $fade = false;
 
     public function __construct(Navigation $links)
     {
@@ -52,14 +52,14 @@ class Tabbable extends RenderedObject
         return $this;
     }
 
-    private function renderNavigation()
+    protected function renderNavigation()
     {
         $this->links->links($this->createNavigationLinks());
 
         return $this->links->render();
     }
 
-    private function createNavigationLinks()
+    protected function createNavigationLinks()
     {
         $links = [];
         $count = 0;
@@ -75,7 +75,7 @@ class Tabbable extends RenderedObject
         return $links;
     }
 
-    private function renderContents()
+    protected function renderContents()
     {
         $tabs = $this->createContentTabs();
 
@@ -89,7 +89,7 @@ class Tabbable extends RenderedObject
         return $string;
     }
 
-    private function createContentTabs()
+    protected function createContentTabs()
     {
         $tabs = [];
         $count = 0;

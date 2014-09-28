@@ -4,7 +4,7 @@ namespace Bootstrapper;
 
 class Breadcrumb extends RenderedObject
 {
-    private $links = [];
+    protected $links = [];
 
     public function render()
     {
@@ -25,7 +25,7 @@ class Breadcrumb extends RenderedObject
         return $this;
     }
 
-    private function renderLink($text, $link)
+    protected function renderLink($text, $link)
     {
         $string = "";
         if (is_string($text)) {

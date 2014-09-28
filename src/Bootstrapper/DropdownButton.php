@@ -17,12 +17,12 @@ class DropdownButton extends RenderedObject
     const SMALL = 'btn-sm';
     const EXTRA_SMALL = 'btn-xs';
 
-    private $label;
-    private $contents = [];
-    private $type = 'btn-default';
-    private $size;
-    private $split = false;
-    private $dropup = false;
+    protected $label;
+    protected $contents = [];
+    protected $type = 'btn-default';
+    protected $size;
+    protected $split = false;
+    protected $dropup = false;
 
     public function labelled($label)
     {
@@ -156,7 +156,7 @@ class DropdownButton extends RenderedObject
         return $string;
     }
 
-    private function renderItems()
+    protected function renderItems()
     {
         $string = "";
         foreach ($this->contents as $item) {

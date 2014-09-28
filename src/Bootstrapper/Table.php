@@ -10,15 +10,15 @@ class Table extends RenderedObject
     const TABLE_HOVER = 'table-hover';
     const TABLE_CONDENSED = 'table-condensed';
 
-    private $type;
-    private $contents;
-    private $ignores = [];
-    private $callbacks = [];
+    protected $type;
+    protected $contents;
+    protected $ignores = [];
+    protected $callbacks = [];
 
     /**
      * @var bool|array
      */
-    private $only = false;
+    protected $only = false;
 
     public function render()
     {

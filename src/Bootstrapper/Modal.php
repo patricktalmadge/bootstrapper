@@ -7,12 +7,12 @@ use Bootstrapper\Exceptions\ModalException;
 class Modal extends RenderedObject
 {
 
-    private $attributes = [];
-    private $title;
-    private $body;
-    private $footer;
-    private $name;
-    private $button;
+    protected $attributes = [];
+    protected $title;
+    protected $body;
+    protected $footer;
+    protected $name;
+    protected $button;
 
     public function render()
     {
@@ -46,7 +46,7 @@ class Modal extends RenderedObject
         return $this;
     }
 
-    private function renderHeader()
+    protected function renderHeader()
     {
         $title = '';
         if ($this->title) {
@@ -63,12 +63,12 @@ class Modal extends RenderedObject
         return $this;
     }
 
-    private function renderBody()
+    protected function renderBody()
     {
         return $this->body ? "<div class='modal-body'>{$this->body}</div>" : '';
     }
 
-    private function renderFooter()
+    protected function renderFooter()
     {
         return $this->footer ? "<div class='modal-footer'>{$this->footer}</div>" : '';
     }
@@ -101,7 +101,7 @@ class Modal extends RenderedObject
         return $this;
     }
 
-    private function renderButton(Attributes $attributes)
+    protected function renderButton(Attributes $attributes)
     {
         if (!$this->button) {
             return '';

@@ -11,12 +11,12 @@ class ProgressBar extends RenderedObject
     const PROGRESS_BAR_DANGER = 'progress-bar-danger';
     const PROGRESS_BAR_NORMAL = 'progress-bar-default';
 
-    private $value = 0;
-    private $visible = false;
-    private $type = '';
-    private $striped = false;
-    private $animated = false;
-    private $visibleString;
+    protected $value = 0;
+    protected $visible = false;
+    protected $type = '';
+    protected $striped = false;
+    protected $animated = false;
+    protected $visibleString;
 
     public function render()
     {
@@ -116,7 +116,7 @@ class ProgressBar extends RenderedObject
         return $string;
     }
 
-    private function generateFromArray($attributes)
+    protected function generateFromArray($attributes)
     {
         $bar = new static;
         foreach($attributes as $attribute) {

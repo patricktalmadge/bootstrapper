@@ -13,16 +13,16 @@ class Navbar extends RenderedObject
     const NAVBAR_TOP = 'navbar-fixed-top';
     const NAVBAR_BOTTOM = 'navbar-fixed-bottom';
 
-    private $brand;
+    protected $brand;
     /**
      * @var UrlGenerator
      */
-    private $url;
-    private $attributes = [];
-    private $content = [];
-    private $type = 'navbar-default';
-    private $position;
-    private $fluid = false;
+    protected $url;
+    protected $attributes = [];
+    protected $content = [];
+    protected $type = 'navbar-default';
+    protected $position;
+    protected $fluid = false;
 
     public function __construct(UrlGenerator $url)
     {
@@ -42,7 +42,7 @@ class Navbar extends RenderedObject
         return $string;
     }
 
-    private function renderContent()
+    protected function renderContent()
     {
         $string = "<nav class='navbar-collapse collapse'>";
         foreach ($this->content as $item) {
@@ -57,7 +57,7 @@ class Navbar extends RenderedObject
         return $string;
     }
 
-    private function renderHeader()
+    protected function renderHeader()
     {
         $string = "<div class='navbar-header'>";
         // Add the collapse button

@@ -12,8 +12,8 @@ class Label extends RenderedObject
     const LABEL_DANGER = 'label-danger';
     const LABEL_DEFAULT = 'label-default';
 
-    private $type = 'label-default';
-    private $contents;
+    protected $type = 'label-default';
+    protected $contents;
 
     public function render()
     {

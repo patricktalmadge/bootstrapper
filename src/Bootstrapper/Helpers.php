@@ -10,7 +10,7 @@ class Helpers
     /**
      * @var \Illuminate\Config\Repository
      */
-    private $config;
+    protected $config;
 
     public function __construct(Repository $config)
     {

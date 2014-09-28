@@ -7,10 +7,10 @@ use Bootstrapper\Exceptions\CarouselException;
 class Carousel extends RenderedObject
 {
 
-    private $name;
-    private $contents = [];
-    private $attributes = [];
-    private $active = 0;
+    protected $name;
+    protected $contents = [];
+    protected $attributes = [];
+    protected $active = 0;
 
     public function named($name)
     {
@@ -53,7 +53,7 @@ class Carousel extends RenderedObject
         return $string;
     }
 
-    private function renderIndicators()
+    protected function renderIndicators()
     {
         $string = "<ol class='carousel-indicators'>";
         for ($i = 0; $i < count($this->contents); $i++) {
@@ -71,7 +71,7 @@ class Carousel extends RenderedObject
         return $string;
     }
 
-    private function renderItems()
+    protected function renderItems()
     {
         $string = "<div class='carousel-inner'>";
         $count = 0;
@@ -93,7 +93,7 @@ class Carousel extends RenderedObject
         return $string;
     }
 
-    private function renderControls()
+    protected function renderControls()
     {
         return "<a class='left carousel-control' href='#{$this->name}' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#{$this->name}' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a>";
     }

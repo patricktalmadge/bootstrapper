@@ -16,15 +16,15 @@ class Button extends RenderedObject
     const SMALL = 'btn-sm';
     const EXTRA_SMALL = 'btn-xs';
 
-    private $type = 'btn-default';
-    private $block = false;
-    private $attributes = [];
-    private $value = '';
-    private $icon;
-    private $size;
-    private $disabled;
-    private $appendIcon;
-    private $url;
+    protected $type = 'btn-default';
+    protected $block = false;
+    protected $attributes = [];
+    protected $value = '';
+    protected $icon;
+    protected $size;
+    protected $disabled;
+    protected $appendIcon;
+    protected $url;
 
     public function setType($type)
     {

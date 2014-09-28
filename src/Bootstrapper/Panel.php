@@ -12,11 +12,11 @@ class Panel extends RenderedObject
     const DANGER = 'panel-danger';
     const NORMAL = 'panel-default';
 
-    private $attributes = [];
-    private $type = 'panel-default';
-    private $header;
-    private $body;
-    private $footer;
+    protected $attributes = [];
+    protected $type = 'panel-default';
+    protected $header;
+    protected $body;
+    protected $footer;
 
     public function render()
     {
@@ -90,7 +90,7 @@ class Panel extends RenderedObject
         return $this;
     }
 
-    private function renderHeader()
+    protected function renderHeader()
     {
         $string = "<div class='panel-heading'>";
         $string .= "<h3 class='panel-title'>{$this->header}</h3>";
@@ -106,7 +106,7 @@ class Panel extends RenderedObject
         return $this;
     }
 
-    private function renderBody()
+    protected function renderBody()
     {
         return "<div class='panel-body'>{$this->body}</div>";
     }
@@ -118,7 +118,7 @@ class Panel extends RenderedObject
         return $this;
     }
 
-    private function renderFooter()
+    protected function renderFooter()
     {
         return "<div class='panel-footer'>{$this->footer}</div>";
     }

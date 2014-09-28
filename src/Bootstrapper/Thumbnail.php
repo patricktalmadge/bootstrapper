@@ -7,8 +7,8 @@ use Bootstrapper\Exceptions\ThumbnailException;
 class Thumbnail extends RenderedObject
 {
 
-    private $image;
-    private $caption;
+    protected $image;
+    protected $caption;
 
     public function render()
     {
@@ -39,13 +39,13 @@ class Thumbnail extends RenderedObject
         return $this;
     }
 
-    private function renderImage()
+    protected function renderImage()
     {
         $attributes = new Attributes($this->image['attributes'], ['src' => $this->image['image']]);
         return "<img {$attributes}>";
     }
 
-    private function renderCaption()
+    protected function renderCaption()
     {
         $string = '<div class=\'caption\'>';
         $string .= $this->caption;

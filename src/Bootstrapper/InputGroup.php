@@ -8,11 +8,11 @@ class InputGroup extends RenderedObject
     const LARGE = 'input-group-lg';
     const SMALL = 'input-group-sm';
 
-    private $size = '';
-    private $append;
-    private $prepend;
-    private $contents;
-    private $attributes = [];
+    protected $size = '';
+    protected $append;
+    protected $prepend;
+    protected $contents;
+    protected $attributes = [];
 
     public function render()
     {
@@ -35,7 +35,7 @@ class InputGroup extends RenderedObject
         return $string;
     }
 
-    private function renderAddon(array $addon)
+    protected function renderAddon(array $addon)
     {
         $string = "";
         if ($addon['isButton']) {

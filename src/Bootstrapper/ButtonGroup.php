@@ -5,10 +5,10 @@ namespace Bootstrapper;
 class ButtonGroup extends RenderedObject
 {
 
-    private $contents = [];
-    private $type = 'button';
-    private $vertical = false;
-    private $size;
+    protected $contents = [];
+    protected $type = 'button';
+    protected $vertical = false;
+    protected $size;
 
     const LARGE = 'btn-group-lg';
     const SMALL = 'btn-group-sm';

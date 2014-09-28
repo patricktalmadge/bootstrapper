@@ -13,10 +13,10 @@ use Bootstrapper\Exceptions\AccordionException;
 class Accordion extends RenderedObject
 {
 
-    private $name;
-    private $contents = [];
-    private $attributes = [];
-    private $opened = -1;
+    protected $name;
+    protected $contents = [];
+    protected $attributes = [];
+    protected $opened = -1;
 
     public function named($name)
     {

@@ -10,7 +10,7 @@ class Icon
     /**
      * @var \Illuminate\Config\Repository
      */
-    private $config;
+    protected $config;
 
     public function __construct(Repository $config)
     {
