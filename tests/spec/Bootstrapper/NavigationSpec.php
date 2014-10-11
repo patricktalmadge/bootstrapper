@@ -161,7 +161,7 @@ class NavigationSpec extends ObjectBehavior
                 ]
             ]
         ])->render()->shouldBe(
-            "<ul class='nav nav-tabs'><li class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li><a href='link'>bar</a></li><li><a href='goo'>gar</a></li></ul></li></ul>"
+            "<ul class='nav nav-tabs'><li class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li class='active'><a href='link'>bar</a></li><li><a href='goo'>gar</a></li></ul></li></ul>"
         );
     }
 

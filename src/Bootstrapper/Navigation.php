@@ -30,7 +30,10 @@ class Navigation extends RenderedObject
 
     public function render()
     {
-        $attributes = new Attributes($this->attributes, ['class' => "nav {$this->type}"]);
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => "nav {$this->type}"]
+        );
         if ($this->justified) {
             $attributes['class'] .= ' nav-justified';
         }
@@ -96,12 +99,10 @@ class Navigation extends RenderedObject
     {
         $string = '';
 
-        if (isset($link['callback']))
-        {
+        if (isset($link['callback'])) {
             $callback = $link['callback'];
 
-            if ($callback() === false)
-            {
+            if ($callback() === false) {
                 return $string;
             }
         }
@@ -114,7 +115,10 @@ class Navigation extends RenderedObject
             $string .= '<li>';
         }
         $linkAttributes = isset($link['linkAttributes']) ? $link['linkAttributes'] : [];
-        $linkAttributes = new Attributes($linkAttributes, ['href' => $link['link']]);
+        $linkAttributes = new Attributes(
+            $linkAttributes,
+            ['href' => $link['link']]
+        );
         $string .= "<a {$linkAttributes}>{$link['title']}</a></li>";
 
         return $string;
@@ -131,15 +135,15 @@ class Navigation extends RenderedObject
     {
         if ($this->dropdownShouldBeActive($link)) {
             $string = '<li class=\'dropdown active\'>';
-            // Prevent active state being added to any other links
-            $this->autoroute(false);
         } else {
             $string = '<li class=\'dropdown\'>';
         }
         $string .= "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>{$link[0]} <span class='caret'></span></a>";
         $string .= '<ul class=\'dropdown-menu\' role=\'menu\'>';
         foreach ($link[1] as $item) {
-            $string .= is_array($item) ? $this->renderLink($item) : $this->renderSeperator($item);
+            $string .= is_array($item) ? $this->renderLink(
+                $item
+            ) : $this->renderSeperator($item);
         }
         $string .= '</ul>';
         $string .= '</li>';
@@ -158,26 +162,27 @@ class Navigation extends RenderedObject
         }
         return false;
     }
-    
+
     /**
      * checks whether an item should be activated or not.
      * If the item is not to be activated via URL::current(), it checks
      * if the item is a dropdown and returns true if any of the children
      * of items have target === URL::crrent()
      *
-     * @param array $item       item array
-     *
+     * @param array $item item array
      * @return boolean
-     */    
+     */
     protected static function shouldActivate($item)
     {
-        if(\URL::current() == $item['url'])
+        if (\URL::current() == $item['url']) {
             return true;
+        }
 
-        if(isset($item['items']) and is_array($item['items'])) {
-            foreach($item['items'] as $i) {
-                if(static::shouldActivate($i) === true)
+        if (isset($item['items']) and is_array($item['items'])) {
+            foreach ($item['items'] as $i) {
+                if (static::shouldActivate($i) === true) {
                     return true;
+                }
             }
         }
 
@@ -190,8 +195,7 @@ class Navigation extends RenderedObject
      */
     protected function itemShouldBeActive($link)
     {
-        if (is_string($link))
-        {
+        if (is_string($link)) {
             return false;
         }
         $auto = $this->autoroute && $this->url->current() == $link['link'];
