@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Navigation extends BootstrapperFacade 
+class Navigation extends BootstrapperFacade
 {
 
     const NAVIGATION_PILLS = 'nav-pills';

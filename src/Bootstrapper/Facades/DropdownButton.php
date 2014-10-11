@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class DropdownButton extends BootstrapperFacade 
+class DropdownButton extends BootstrapperFacade
 {
     const DIVIDER = "<li class='divider'></li>";
     const PRIMARY = 'btn-primary';

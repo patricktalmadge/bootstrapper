@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class ProgressBar extends BootstrapperFacade 
+class ProgressBar extends BootstrapperFacade
 {
 
     const PROGRESS_BAR_SUCCESS = 'progress-bar-success';

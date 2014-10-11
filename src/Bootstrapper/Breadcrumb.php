@@ -2,10 +2,23 @@
 
 namespace Bootstrapper;
 
+/**
+ * Creates Bootstrap 3 compliant Breadcrumbs
+ *
+ * @package Bootstrapper
+ */
 class Breadcrumb extends RenderedObject
 {
+    /**
+     * @var array The links of the breadcrumb
+     */
     protected $links = [];
 
+    /**
+     * Renders the breadcrumb
+     *
+     * @return string
+     */
     public function render()
     {
         $string = "<ol class='breadcrumb'>";
@@ -17,7 +30,17 @@ class Breadcrumb extends RenderedObject
         return $string;
     }
 
-    public function withLinks($links)
+    /**
+     * Set the links for the breadcrumbs. Expects an array of the following:
+     * <ul>
+     * <li>An array, with keys <code>link</code> and <code>text</code></li>
+     * <li>A string for the active link
+     * </ul>
+     *
+     * @param $links array
+     * @return $this
+     */
+    public function withLinks(array $links)
     {
 
         $this->links = $links;
@@ -25,6 +48,13 @@ class Breadcrumb extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the link
+     *
+     * @param $text
+     * @param $link
+     * @return string
+     */
     protected function renderLink($text, $link)
     {
         $string = "";

@@ -3,6 +3,7 @@
 namespace Bootstrapper\Exceptions;
 
 
-class ThumbnailException extends \Exception{
+class ThumbnailException extends \Exception
+{
 
 } 

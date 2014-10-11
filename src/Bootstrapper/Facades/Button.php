@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Button extends BootstrapperFacade 
+class Button extends BootstrapperFacade
 {
     const PRIMARY = 'btn-primary';
     const SUCCESS = 'btn-success';

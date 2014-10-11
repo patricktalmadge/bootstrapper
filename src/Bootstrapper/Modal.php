@@ -4,16 +4,50 @@ namespace Bootstrapper;
 
 use Bootstrapper\Exceptions\ModalException;
 
+/**
+ * Creates Bootstrap 3 compliant modal
+ *
+ * @package Bootstrapper
+ */
 class Modal extends RenderedObject
 {
 
+    /**
+     * @var array The attributes
+     */
     protected $attributes = [];
+
+    /**
+     * @var string The title of the modal
+     */
     protected $title;
+
+    /**
+     * @var string The body of the modal
+     */
     protected $body;
+
+    /**
+     * @var string The footer of the modal
+     */
     protected $footer;
+
+    /**
+     * @var string The name of the modal
+     */
     protected $name;
+
+    /**
+     * @var string The button of the modal
+     */
     protected $button;
 
+    /**
+     * Renders the modal
+     *
+     * @return string
+     * @throws ModalException if the id has not been set
+     */
     public function render()
     {
         $attributes = new Attributes($this->attributes, ['class' => 'modal']);
@@ -31,14 +65,25 @@ class Modal extends RenderedObject
         return $string;
     }
 
-    public function withAttributes($attributes)
+    /**
+     * Sets the attributes
+     *
+     * @param array $attributes The new attributes of the modal
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
     {
         $this->attributes = $attributes;
 
         return $this;
     }
 
-
+    /**
+     * Sets the title of the modal
+     *
+     * @param string $title
+     * @return $this
+     */
     public function withTitle($title)
     {
         $this->title = $title;
@@ -46,6 +91,11 @@ class Modal extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the header of the modal
+     *
+     * @return string
+     */
     protected function renderHeader()
     {
         $title = '';
@@ -56,6 +106,12 @@ class Modal extends RenderedObject
         return "<div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>{$title}</div>";
     }
 
+    /**
+     * Sets the body of the modal
+     *
+     * @param string $body The new body of the modal
+     * @return $this
+     */
     public function withBody($body)
     {
         $this->body = $body;
@@ -63,16 +119,30 @@ class Modal extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the body
+     *
+     * @return string
+     */
     protected function renderBody()
     {
         return $this->body ? "<div class='modal-body'>{$this->body}</div>" : '';
     }
 
+    /**
+     * Renders the footer
+     *
+     * @return string
+     */
     protected function renderFooter()
     {
         return $this->footer ? "<div class='modal-footer'>{$this->footer}</div>" : '';
     }
 
+    /**
+     * @param $footer
+     * @return $this
+     */
     public function withFooter($footer)
     {
         $this->footer = $footer;
@@ -80,6 +150,12 @@ class Modal extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the name of the modal
+     *
+     * @param string $name The name of the modal
+     * @return $this
+     */
     public function named($name)
     {
         $this->name = $name;
@@ -88,6 +164,12 @@ class Modal extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the button
+     *
+     * @param Button $button The button to open the modal with
+     * @return $this
+     */
     public function withButton(Button $button = null)
     {
         if ($button) {
@@ -101,6 +183,13 @@ class Modal extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the button
+     *
+     * @param Attributes $attributes The attributes of the modal
+     * @return string
+     * @throws ModalException if the id hasn't been set
+     */
     protected function renderButton(Attributes $attributes)
     {
         if (!$this->button) {
@@ -108,10 +197,14 @@ class Modal extends RenderedObject
         }
 
         if (!isset($attributes['id'])) {
-            throw new ModalException("You must give the modal an id either using withAttributes() or named()");
+            throw new ModalException(
+                "You must give the modal an id either using withAttributes() or named()"
+            );
         }
 
-        $this->button->addAttributes(['data-toggle' => 'modal', 'data-target' => "#{$attributes['id']}"])->render();
+        $this->button->addAttributes(
+            ['data-toggle' => 'modal', 'data-target' => "#{$attributes['id']}"]
+        )->render();
 
         return $this->button->render();
     }

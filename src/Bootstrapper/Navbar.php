@@ -31,7 +31,13 @@ class Navbar extends RenderedObject
 
     public function render()
     {
-        $attributes = new Attributes($this->attributes, ['class' => "navbar {$this->type} {$this->position}", 'role' => 'navigation']);
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'class' => "navbar {$this->type} {$this->position}",
+                'role' => 'navigation'
+            ]
+        );
 
         $string = "<div {$attributes}>";
         $string .= $this->fluid ? "<div class='container-fluid'>" : "<div class='container'>";
@@ -109,12 +115,12 @@ class Navbar extends RenderedObject
         return $this;
     }
 
-    public  function setType($type)
+    public function setType($type)
     {
         $this->type = $type;
     }
 
-    public  function setPosition($position)
+    public function setPosition($position)
     {
         $this->position = $position;
     }

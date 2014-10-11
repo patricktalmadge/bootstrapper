@@ -4,35 +4,63 @@ namespace Bootstrapper;
 
 use Illuminate\Config\Repository;
 
+/**
+ * Helper class
+ *
+ * @package Bootstrapper
+ */
 class Helpers
 {
 
     /**
+     * The config repository
+     *
      * @var \Illuminate\Config\Repository
      */
     protected $config;
 
+
+    /**
+     * @param \Illuminate\Config\Repository $config
+     */
     public function __construct(Repository $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * Slugifies a string
+     *
+     * @param string $string
+     * @return mixed
+     */
     public static function slug($string)
     {
         return preg_replace('/[^A-Za-z0-9-]+/', '-', strtolower($string));
     }
 
-    public function css($helper = true)
+    /**
+     * Outputs a link to the Bootstrap CDN
+     *
+     * @param bool $withTheme Gets the bootstrap theme as well
+     * @return string
+     */
+    public function css($withTheme = true)
     {
-        $bootstrap = $this->config->get('bootstrapper::bootstrapVersion');
-        $string = "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/css/bootstrap.min.css'>";
-        if ($helper) {
-            $string .= "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/css/bootstrap-theme.min.css'>";
+        $version = $this->config->get('bootstrapper::bootstrapVersion');
+        $string = "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap.min.css'>";
+        if ($withTheme) {
+            $string .= "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap-theme.min.css'>";
         }
 
         return $string;
     }
 
+    /**
+     * Outputs a link to the Jquery and Bootstrap CDN
+     *
+     * @return string
+     */
     public function js()
     {
         $jquery = $this->config->get('bootstrapper::jqueryVersion');

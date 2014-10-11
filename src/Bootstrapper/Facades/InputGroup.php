@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class InputGroup extends BootstrapperFacade 
+class InputGroup extends BootstrapperFacade
 {
 
     const LARGE = 'input-group-lg';

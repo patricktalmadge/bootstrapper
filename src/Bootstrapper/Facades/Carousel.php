@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Carousel extends BootstrapperFacade 
+class Carousel extends BootstrapperFacade
 {
 
     protected static function getFacadeAccessor()

@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Navbar extends BootstrapperFacade 
+class Navbar extends BootstrapperFacade
 {
     const NAVBAR_INVERSE = 'navbar-inverse';
     const NAVBAR_STATIC = 'navbar-static-top';

@@ -7,17 +7,36 @@ use Bootstrapper\Exceptions\AccordionException;
 /**
  * Accordion Class
  * Creates Bootstrap 3 compliant accordions
+ *
  * @package Bootstrapper
- * @author Patrick Rose
+ * @author  Patrick Rose
  */
 class Accordion extends RenderedObject
 {
 
+    /**
+     * @var String name of the object (used when creating the links)
+     */
     protected $name;
+    /**
+     * @var array The contents of the accordion
+     */
     protected $contents = [];
+    /**
+     * @var array Attributes of the accordion
+     */
     protected $attributes = [];
+    /**
+     * @var int Which panel (if any) should be opened
+     */
     protected $opened = -1;
 
+    /**
+     * Name the accordion
+     *
+     * @param $name The name of the accordion
+     * @return $this
+     */
     public function named($name)
     {
         $this->name = $name;
@@ -25,19 +44,80 @@ class Accordion extends RenderedObject
         return $this;
     }
 
+    /**
+     * Add the contents for the accordion. Should be an array of arrays
+     * <strong>Expected Keys</strong>:
+     * <ul>
+     * <li>title</li>
+     * <li>contents</li>
+     * <li>attributes (optional)</li>
+     * </ul>
+     *
+     * @param array $contents
+     * @return $this
+     */
+    public function withContents(array $contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    /**
+     * Set the attributes of the accordion
+     *
+     * @param $attributes array The attributes to use
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+
+    /**
+     * Sets which panel should be opened. Numbering begins from 0.
+     *
+     * @param $integer int
+     * @return $this
+     */
+    public function open($integer)
+    {
+        $this->opened = $integer;
+
+        return $this;
+    }
+
+    /**
+     * Renders the accordion
+     *
+     * @return string
+     * @throws AccordionException Thrown if the accordion has not been named
+     */
     public function render()
     {
         if (!$this->name) {
             throw new AccordionException("You have not named this accordion");
         }
-        $attributes = new Attributes($this->attributes, ['class' => 'panel-group', 'id' => $this->name]);
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => 'panel-group', 'id' => $this->name]
+        );
 
         $string = "<div {$attributes}>";
         $count = 0;
         foreach ($this->contents as $item) {
-            $itemAttributes = array_key_exists('attributes', $item) ? $item['attributes'] : [];
+            $itemAttributes = array_key_exists(
+                'attributes',
+                $item
+            ) ? $item['attributes'] : [];
 
-            $itemAttributes = new Attributes($itemAttributes, ['class' => 'panel panel-default']);
+            $itemAttributes = new Attributes(
+                $itemAttributes,
+                ['class' => 'panel panel-default']
+            );
 
             $string .= "<div {$itemAttributes}>";
             $string .= "<div class='panel-heading'>";
@@ -46,10 +126,15 @@ class Accordion extends RenderedObject
             $string .= "</h4>";
             $string .= "</div>";
 
-            $bodyAttributes = new Attributes(['id' => "{$this->name}-{$count}", 'class' => 'panel-collapse collapse']);
+            $bodyAttributes = new Attributes(
+                [
+                    'id' => "{$this->name}-{$count}",
+                    'class' => 'panel-collapse collapse'
+                ]
+            );
 
             if ($this->opened == $count) {
-                $bodyAttributes['class'] .= ' in';
+                $bodyAttributes->addClass('in');
             }
 
             $string .= "<div {$bodyAttributes}>";
@@ -63,25 +148,4 @@ class Accordion extends RenderedObject
         return $string;
     }
 
-    public function withContents(array $contents)
-    {
-        $this->contents = $contents;
-
-        return $this;
-    }
-
-    public function withAttributes($attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
-    }
-
-
-    public function open($integer)
-    {
-        $this->opened = $integer;
-
-        return $this;
-    }
 }

@@ -18,7 +18,9 @@ class Tabbable extends RenderedObject
 
     public function __construct(Navigation $links)
     {
-        $this->links = $links->autoroute(false)->withAttributes(['role' => 'tablist']);
+        $this->links = $links->autoroute(false)->withAttributes(
+            ['role' => 'tablist']
+        );
     }
 
     public function render()
@@ -67,7 +69,10 @@ class Tabbable extends RenderedObject
             $links[] = [
                 'link' => '#' . Helpers::slug($link['title']),
                 'title' => $link['title'],
-                'linkAttributes' => ['role' => 'tab', 'data-toggle' => $this->type],
+                'linkAttributes' => [
+                    'role' => 'tab',
+                    'data-toggle' => $this->type
+                ],
                 'active' => $count == $this->active
             ];
             $count += 1;
@@ -95,7 +100,10 @@ class Tabbable extends RenderedObject
         $count = 0;
         foreach ($this->contents as $item) {
             $itemAttributes = isset($item['attributes']) ? $item['attributes'] : [];
-            $attributes = new Attributes($itemAttributes, ['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]);
+            $attributes = new Attributes(
+                $itemAttributes,
+                ['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]
+            );
             if ($this->fade) {
                 $attributes['class'] .= ' fade';
             }

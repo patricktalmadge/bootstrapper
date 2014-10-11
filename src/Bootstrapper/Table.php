@@ -109,8 +109,7 @@ class Table extends RenderedObject
                 if (in_array($key, $this->ignores)) {
                     continue;
                 }
-                if ($this->only && !in_array($key, $this->only))
-                {
+                if ($this->only && !in_array($key, $this->only)) {
                     continue;
                 }
                 if (!in_array($key, $headers)) {

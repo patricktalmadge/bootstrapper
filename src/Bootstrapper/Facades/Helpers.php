@@ -2,7 +2,8 @@
 
 namespace Bootstrapper\Facades;
 
-class Helpers extends BootstrapperFacade {
+class Helpers extends BootstrapperFacade
+{
 
     protected static function getFacadeAccessor()
     {

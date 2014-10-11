@@ -21,15 +21,28 @@ class ProgressBar extends RenderedObject
     public function render()
     {
         $string = "<div class='progress'>";
-        $attributes = new Attributes(['class' => $this->type], ['class'=>'progress-bar', 'role'=>'progressbar', 'aria-valuenow'=>"{$this->value}", 'aria-valuemin'=>'0', 'aria-valuemax'=>'100', 'style'=>$this->value ? "width: {$this->value}%" : '']);
-        if($this->striped) {
+        $attributes = new Attributes(
+            ['class' => $this->type],
+            [
+                'class' => 'progress-bar',
+                'role' => 'progressbar',
+                'aria-valuenow' => "{$this->value}",
+                'aria-valuemin' => '0',
+                'aria-valuemax' => '100',
+                'style' => $this->value ? "width: {$this->value}%" : ''
+            ]
+        );
+        if ($this->striped) {
             $attributes['class'] .= ' progress-bar-striped';
         }
-        if($this->animated) {
+        if ($this->animated) {
             $attributes['class'] .= ' active';
         }
         $string .= "<div {$attributes}>";
-        $string .= $this->visible ? sprintf($this->visibleString, $this->value) : "<span class='sr-only'>{$this->value}% complete</span>";
+        $string .= $this->visible ? sprintf(
+            $this->visibleString,
+            $this->value
+        ) : "<span class='sr-only'>{$this->value}% complete</span>";
         $string .= "</div>";
         $string .= "</div>";
 
@@ -108,7 +121,7 @@ class ProgressBar extends RenderedObject
     public function stack($items)
     {
         $string = '<div class=\'progress\'>';
-        foreach($items as $progressBar) {
+        foreach ($items as $progressBar) {
             $string .= $this->generateFromArray($progressBar);
         }
         $string .= '</div>';
@@ -119,16 +132,13 @@ class ProgressBar extends RenderedObject
     protected function generateFromArray($attributes)
     {
         $bar = new static;
-        foreach($attributes as $attribute) {
+        foreach ($attributes as $attribute) {
             $exploded = explode('=', $attribute);
             $method = $exploded[0];
             $vars = isset($exploded[1]) ? $exploded[1] : null;
-            if (isset($vars))
-            {
+            if (isset($vars)) {
                 $bar->$method($vars);
-            }
-            else
-            {
+            } else {
                 $bar->$method();
             }
         }

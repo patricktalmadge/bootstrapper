@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class MediaObject extends BootstrapperFacade 
+class MediaObject extends BootstrapperFacade
 {
 
     protected static function getFacadeAccessor()

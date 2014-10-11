@@ -12,7 +12,7 @@ class Thumbnail extends RenderedObject
 
     public function render()
     {
-        if(!isset($this->image['image'])) {
+        if (!isset($this->image['image'])) {
             throw new ThumbnailException('You must specify the image');
         }
         $string = '<div class=\'thumbnail\'>';
@@ -41,7 +41,10 @@ class Thumbnail extends RenderedObject
 
     protected function renderImage()
     {
-        $attributes = new Attributes($this->image['attributes'], ['src' => $this->image['image']]);
+        $attributes = new Attributes(
+            $this->image['attributes'],
+            ['src' => $this->image['image']]
+        );
         return "<img {$attributes}>";
     }
 

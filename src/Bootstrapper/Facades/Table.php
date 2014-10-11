@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Table extends BootstrapperFacade 
+class Table extends BootstrapperFacade
 {
 
     const TABLE_STRIPED = 'table-striped';

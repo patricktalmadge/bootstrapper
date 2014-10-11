@@ -8,14 +8,12 @@ abstract class RenderedObject extends Facade
 
     public function __toString()
     {
-        try
-        {
+        try {
             return $this->render();
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $class = get_class($e);
-            return "<div><p class='bg-warning text-warning'>An exception of type <code>{$class}</code> was thrown with the message: <code>{$e->getMessage()}</code></div>";
+            return "<div><p class='bg-warning text-warning'>An exception of type <code>{$class}</code> was thrown with the message: <code>{$e->getMessage(
+            )}</code></div>";
         }
     }
 

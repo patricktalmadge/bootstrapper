@@ -6,6 +6,7 @@ use Bootstrapper\Exceptions\ControlGroupException;
 
 /**
  * Creates Bootstrap 3 compliant control groups (for forms)
+ *
  * @package Bootstrapper
  */
 class ControlGroup extends RenderedObject
@@ -47,7 +48,7 @@ class ControlGroup extends RenderedObject
     protected $formBuilder;
 
     /**
-     * @param Form $formBuilder An instance of the Bootstrapper formbuiler
+     * @param Form An $formBuilder instance of the Bootstrapper formbuiler
      */
     public function __construct(Form $formBuilder)
     {
@@ -95,7 +96,7 @@ class ControlGroup extends RenderedObject
     /**
      * Set the attributes of the control group
      *
-     * @param $attributes array The attributes array
+     * @param array $attributes The attributes array
      * @return $this
      */
     public function withAttributes(array $attributes)
@@ -108,11 +109,11 @@ class ControlGroup extends RenderedObject
     /**
      * Adds the contents to the control group
      *
-     * @param $contents string The contents of the control group
-     * @param $controlSize null|int The size of the form control
+     * @param string $contents    The contents of the control group
+     * @param null   $controlSize |int The size of the form control
      * @return $this
-     * @throws ControlGroupException If $controlSize is set and not between 1
-     * and 12
+     * @throws ControlGroupException If is $controlSize set and not between 1
+     *                            and 12
      */
     public function withContents($contents, $controlSize = null)
     {
@@ -131,11 +132,11 @@ class ControlGroup extends RenderedObject
     /**
      * Sets the label of the control group
      *
-     * @param $label string The label
-     * @param $labelSize null|int The size of the label
+     * @param string $label     The label
+     * @param null   $labelSize |int The size of the label
      * @return $this
-     * @throws ControlGroupException If $labelSize is set and not between 1
-     * and 12
+     * @throws ControlGroupException If is $labelSize set and not between 1
+     *                          and 12
      */
     public function withLabel($label, $labelSize = null)
     {
@@ -154,7 +155,7 @@ class ControlGroup extends RenderedObject
     /**
      * Adds a help block
      *
-     * @param $help string The help information
+     * @param string $help The help information
      * @return $this
      */
     public function withHelp($help)
@@ -167,11 +168,11 @@ class ControlGroup extends RenderedObject
     /**
      * Generates a full control group with a label, control and help block
      *
-     * @param $label string The label
-     * @param $control string The form control
-     * @param $help string The help text
-     * @param $labelSize int The size of the label
-     * @param $controlSize int The size of the form control
+     * @param string $label       The label
+     * @param string $control     The form control
+     * @param string $help        The help text
+     * @param int    $labelSize   The size of the label
+     * @param int    $controlSize The size of the form control
      * @return $this
      * @throws ControlGroupException if the sizes are invalid
      */
@@ -260,8 +261,8 @@ class ControlGroup extends RenderedObject
     /**
      * Checks if both the label size and control size are invalid
      *
-     * @param $labelSize int The size of the label
-     * @param $controlSize int The size of the control group
+     * @param int $labelSize   The size of the label
+     * @param int $controlSize The size of the control group
      * @return bool
      */
     protected function sizesAreInvalid($labelSize = null, $controlSize = null)
@@ -294,9 +295,9 @@ class ControlGroup extends RenderedObject
     /**
      * Checks if the size is invalid
      *
-     * @param $size int The size
+     * @param int The $size size
      * @return bool True if the size is below 1 or greater than 11,
-     * false otherwise
+     *            false otherwise
      */
     protected function sizeIsInvalid($size)
     {

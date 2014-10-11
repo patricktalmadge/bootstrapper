@@ -2,7 +2,8 @@
 
 namespace Bootstrapper\Facades;
 
-class Accordion extends BootstrapperFacade {
+class Accordion extends BootstrapperFacade
+{
 
     protected static function getFacadeAccessor()
     {

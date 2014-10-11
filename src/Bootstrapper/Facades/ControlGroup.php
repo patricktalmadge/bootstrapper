@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class ControlGroup extends BootstrapperFacade 
+class ControlGroup extends BootstrapperFacade
 {
 
     protected static function getFacadeAccessor()

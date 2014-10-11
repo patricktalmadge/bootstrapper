@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Tabbable extends BootstrapperFacade 
+class Tabbable extends BootstrapperFacade
 {
     const PILL = 'pill';
     const TAB = 'tab';

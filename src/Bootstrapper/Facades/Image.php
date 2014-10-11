@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Image extends BootstrapperFacade 
+class Image extends BootstrapperFacade
 {
 
     const IMAGE_RESPONSIVE = 'img-responsive';

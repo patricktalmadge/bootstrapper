@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Panel extends BootstrapperFacade 
+class Panel extends BootstrapperFacade
 {
 
     const PRIMARY = 'panel-primary';

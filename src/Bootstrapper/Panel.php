@@ -20,7 +20,10 @@ class Panel extends RenderedObject
 
     public function render()
     {
-        $attributes = new Attributes($this->attributes, ['class' => "panel {$this->type}"]);
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => "panel {$this->type}"]
+        );
         $string = "<div {$attributes}>";
         if ($this->header) {
             $string .= $this->renderHeader();

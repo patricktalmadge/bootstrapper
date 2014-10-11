@@ -2,27 +2,44 @@
 
 namespace Bootstrapper;
 
+/**
+ * Creates Bootstrap 3 compliant Badges
+ *
+ * @package Bootstrapper
+ */
 class Badge extends RenderedObject
 {
 
+    /**
+     * @var string The contents of the badge
+     */
     protected $contents;
 
     /**
-     * @var
+     * @var array The attributes of the badge
      */
-    protected $attributes;
+    protected $attributes = [];
 
+    /**
+     * Renders the badge
+     *
+     * @return string
+     */
     public function render()
     {
-        $this->attributes['class'] = "badge {$this->attributes['class']}";
-
-        $attributes = new Attributes($this->attributes);
+        $attributes = new Attributes($this->attributes, ['class' => 'badge']);
 
         $string = "<span {$attributes}>{$this->contents}</span>";
 
         return $string;
     }
 
+    /**
+     * Adds contents to the badge
+     *
+     * @param $contents
+     * @return $this
+     */
     public function withContents($contents)
     {
         $this->contents = $contents;
@@ -31,12 +48,14 @@ class Badge extends RenderedObject
     }
 
 
-    public function withAttributes($attributes)
+    /**
+     * Adds attributes to the badge
+     *
+     * @param $attributes array
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
     {
-        if (!array_key_exists('class', $attributes)) {
-            $attributes['class'] = "";
-        }
-
         $this->attributes = $attributes;
 
         return $this;

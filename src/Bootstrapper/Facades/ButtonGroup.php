@@ -3,7 +3,7 @@
 
 namespace Bootstrapper\Facades;
 
-class ButtonGroup extends BootstrapperFacade 
+class ButtonGroup extends BootstrapperFacade
 {
     const LARGE = 'btn-group-lg';
     const SMALL = 'btn-group-sm';

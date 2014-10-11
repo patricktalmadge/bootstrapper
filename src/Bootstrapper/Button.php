@@ -4,6 +4,7 @@ namespace Bootstrapper;
 
 /**
  * Creates a Bootstrap 3 compliant Button
+ *
  * @package Bootstrapper
  */
 class Button extends RenderedObject
@@ -112,7 +113,8 @@ class Button extends RenderedObject
     /**
      * Sets the type of the button
      *
-     * @param $type string The new type of the button. Assumes that the btn- prefix is there
+     * @param $type string The new type of the button. Assumes that the btn-
+     *              prefix is there
      */
     public function setType($type)
     {
@@ -122,7 +124,8 @@ class Button extends RenderedObject
     /**
      * Sets the size of the button
      *
-     * @param $size string The new size of the button. Assumes that the btn- prefix is there
+     * @param $size string The new size of the button. Assumes that the btn-
+     *              prefix is there
      */
     public function setSize($size)
     {
@@ -139,8 +142,7 @@ class Button extends RenderedObject
         // Set up sensible defaults
         $defaults = ['type' => 'button', 'class' => "btn {$this->type}"];
 
-        if ($this->url)
-        {
+        if ($this->url) {
             // An <a> tag should not have a type attribute
             unset($defaults['type']);
         }
@@ -160,13 +162,11 @@ class Button extends RenderedObject
         $value = $this->icon ? $this->getValueWithIcon() : $this->value;
 
         // Set disabled and url
-        if ($this->disabled)
-        {
+        if ($this->disabled) {
             $attributes['disabled'] = 'disabled';
         }
 
-        if ($this->url)
-        {
+        if ($this->url) {
             $attributes['href'] = $this->url;
         }
 
@@ -179,7 +179,8 @@ class Button extends RenderedObject
     /**
      * Creates a button with class .btn-default and the given contents
      *
-     * @param string $contents The contents of the button The contents of the button
+     * @param string $contents The contents of the button The contents of the
+     *                         button
      * @return Button
      */
     public function normal($contents = '')
@@ -192,7 +193,8 @@ class Button extends RenderedObject
     /**
      * Creates an button with class .btn-primary and the given contents
      *
-     * @param string $contents The contents of the button The contents of the button
+     * @param string $contents The contents of the button The contents of the
+     *                         button
      * @return Button
      */
     public function primary($contents = '')
@@ -205,7 +207,8 @@ class Button extends RenderedObject
     /**
      * Creates an button with class .btn-success and the given contents
      *
-     * @param string $contents The contents of the button The contents of the button
+     * @param string $contents The contents of the button The contents of the
+     *                         button
      * @return Button
      */
     public function success($contents = '')
@@ -392,8 +395,9 @@ class Button extends RenderedObject
     /**
      * Adds an icon to the button
      *
-     * @param $icon string The icon to add
-     * @param bool $append Whether the icon should be added after the text or before
+     * @param      $icon   string The icon to add
+     * @param bool $append Whether the icon should be added after the text or
+     *                     before
      * @return $this
      */
     public function withIcon($icon, $append = true)
@@ -475,12 +479,9 @@ class Button extends RenderedObject
      */
     protected function getValueWithIcon()
     {
-        if ($this->appendIcon)
-        {
+        if ($this->appendIcon) {
             return $this->value ? "{$this->value} {$this->icon}" : $this->icon;
-        }
-        else
-        {
+        } else {
             return $this->value ? "{$this->icon} {$this->value}" : $this->icon;
         }
     }

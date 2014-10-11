@@ -2,7 +2,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Breadcrumb extends BootstrapperFacade 
+class Breadcrumb extends BootstrapperFacade
 {
 
     protected static function getFacadeAccessor()

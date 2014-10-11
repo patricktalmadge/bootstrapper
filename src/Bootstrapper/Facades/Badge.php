@@ -3,7 +3,7 @@
 
 namespace Bootstrapper\Facades;
 
-class Badge extends BootstrapperFacade 
+class Badge extends BootstrapperFacade
 {
 
     protected static function getFacadeAccessor()
