@@ -2,22 +2,74 @@
 
 namespace Bootstrapper;
 
+/**
+ * Creates Bootstrap 3 compliant panels
+ *
+ * @package Bootstrapper
+ */
 class Panel extends RenderedObject
 {
 
+    /**
+     * Constant for primary panels
+     */
     const PRIMARY = 'panel-primary';
+
+    /**
+     * Constant for success panels
+     */
     const SUCCESS = 'panel-success';
+
+    /**
+     * Constant for info panels
+     */
     const INFO = 'panel-info';
+
+    /**
+     * Constant for warning panels
+     */
     const WARNING = 'panel-warning';
+
+    /**
+     * Constant for danger panels
+     */
     const DANGER = 'panel-danger';
+
+    /**
+     * Constant for default panels
+     */
     const NORMAL = 'panel-default';
 
+    /**
+     * @var array The attributes of the navigation object
+     */
     protected $attributes = [];
-    protected $type = 'panel-default';
+
+    /**
+     * @var string The type of the panel
+     */
+    protected $type = self::NORMAL;
+
+    /**
+     * @var string The header of the panel
+     */
     protected $header;
+
+    /**
+     * @var string The body of the panel
+     */
     protected $body;
+
+    /**
+     * @var string The footer of the panel
+     */
     protected $footer;
 
+    /**
+     * Renders the panel
+     *
+     * @return string
+     */
     public function render()
     {
         $attributes = new Attributes(
@@ -25,67 +77,116 @@ class Panel extends RenderedObject
             ['class' => "panel {$this->type}"]
         );
         $string = "<div {$attributes}>";
+
         if ($this->header) {
             $string .= $this->renderHeader();
         }
+
         if ($this->body) {
             $string .= $this->renderBody();
         }
+
         if ($this->footer) {
             $string .= $this->renderFooter();
         }
+
         $string .= "</div>";
 
         return $string;
     }
 
-    public function withAttributes($attributes)
+    /**
+     * Sets the attributes of the panel
+     *
+     * @param array $attributes The attributes
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
     {
         $this->attributes = $attributes;
 
         return $this;
     }
 
+    /**
+     * Creates a primary panel
+     * 
+     * @return $this
+     */
     public function primary()
     {
-        $this->setType(Panel::PRIMARY);
+        $this->setType(self::PRIMARY);
 
         return $this;
     }
 
+    /**
+     * Creates a success panel
+     *
+     * @return $this
+     */
     public function success()
     {
-        $this->setType(Panel::SUCCESS);
+        $this->setType(self::SUCCESS);
 
         return $this;
     }
 
+    /**
+     * Creates an info panel
+     *
+     * @return $this
+     */
     public function info()
     {
-        $this->setType(Panel::INFO);
+        $this->setType(self::INFO);
 
         return $this;
     }
 
+    /**
+     * Creates an warning panel
+     *
+     * @return $this
+     */
     public function warning()
     {
-        $this->setType(Panel::WARNING);
+        $this->setType(self::WARNING);
 
         return $this;
     }
 
+    /**
+     * Creates an danger panel
+     *
+     * @return $this
+     */
     public function danger()
     {
-        $this->setType(Panel::DANGER);
+        $this->setType(self::DANGER);
 
         return $this;
     }
 
+    /**
+     * Sets the type of the panel
+     *
+     * @param string $type The new type. Assume the panel- prefix
+     * @return $this
+     */
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
     }
 
+    /**
+     * Sets the header of the panel
+     *
+     * @param string $header The header
+     * @return $this
+     */
     public function withHeader($header)
     {
         $this->header = $header;
@@ -93,6 +194,11 @@ class Panel extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the header
+     *
+     * @return string
+     */
     protected function renderHeader()
     {
         $string = "<div class='panel-heading'>";
@@ -102,6 +208,12 @@ class Panel extends RenderedObject
         return $string;
     }
 
+    /**
+     * Sets the body of the panel
+     *
+     * @param string $body The body
+     * @return $this
+     */
     public function withBody($body)
     {
         $this->body = $body;
@@ -109,11 +221,22 @@ class Panel extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the body
+     *
+     * @return string
+     */
     protected function renderBody()
     {
         return "<div class='panel-body'>{$this->body}</div>";
     }
 
+    /**
+     * Sets the footer
+     *
+     * @param string $footer The new footer
+     * @return $this
+     */
     public function withFooter($footer)
     {
         $this->footer = $footer;
@@ -121,11 +244,21 @@ class Panel extends RenderedObject
         return $this;
     }
 
+    /**
+     * Renders the footer
+     *
+     * @return string
+     */
     protected function renderFooter()
     {
         return "<div class='panel-footer'>{$this->footer}</div>";
     }
 
+    /**
+     * Creates a normal panel
+     *
+     * @return $this
+     */
     public function normal()
     {
         $this->setType(self::NORMAL);

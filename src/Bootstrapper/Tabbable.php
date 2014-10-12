@@ -2,20 +2,58 @@
 
 namespace Bootstrapper;
 
+/**
+ * Creates Bootstrap 3 compliant tab elements
+ *
+ * @package Bootstrapper
+ */
 class Tabbable extends RenderedObject
 {
+
+    /**
+     * Constant for pill tabs
+     */
     const PILL = 'pill';
+
+    /**
+     * Constant for tab tabs
+     */
     const TAB = 'tab';
 
     /**
-     * @var Navigation
+     * @var Navigation The navigation array
      */
     protected $links;
+
+    /**
+     * @var array The contents of the navigation. Should be an array of
+     * arrays, with the following inner keys:
+     *            <ul>
+     *            <li>title - the title of the content</li>
+     *            <li>content - the actual content</li>
+     *            <li>attributes (optional) - any attributes</li>
+     *            </ul>
+     */
     protected $contents = [];
+
+    /**
+     * @var int Which tab should be open first
+     */
     protected $active = 0;
-    protected $type = 'tab';
+
+    /**
+     * @var string The type
+     */
+    protected $type = self::TAB;
+
+    /**
+     * @var bool Whether we should fade in or not
+     */
     protected $fade = false;
 
+    /**
+     * @param Navigation $links A navigation object
+     */
     public function __construct(Navigation $links)
     {
         $this->links = $links->autoroute(false)->withAttributes(
@@ -23,6 +61,11 @@ class Tabbable extends RenderedObject
         );
     }
 
+    /**
+     * Renders the tabbable object
+     *
+     * @return string
+     */
     public function render()
     {
         $string = $this->renderNavigation();
@@ -31,6 +74,13 @@ class Tabbable extends RenderedObject
         return $string;
     }
 
+    /**
+     * Creates content with a tabbed navigation
+     *
+     * @param array $contents The content
+     * @return $this
+     * @see Bootstrapper\Navigation::$contents
+     */
     public function tabs($contents = [])
     {
         $this->links->tabs();
@@ -39,6 +89,13 @@ class Tabbable extends RenderedObject
         return $this->withContents($contents);
     }
 
+    /**
+     * Creates content with a pill navigation
+     *
+     * @param array $contents
+     * @return $this
+     * @see Bootstrapper\Navigation::$contents
+     */
     public function pills($contents = [])
     {
         $this->links->pills();
@@ -47,13 +104,25 @@ class Tabbable extends RenderedObject
         return $this->withContents($contents);
     }
 
-    public function withContents($contents)
+    /**
+     * Sets the contents
+     *
+     * @param array $contents An array of arrays
+     * @return $this
+     * @see Bootstrapper\Navigation::$contents
+     */
+    public function withContents(array $contents)
     {
         $this->contents = $contents;
 
         return $this;
     }
 
+    /**
+     * Render the navigation links
+     *
+     * @return string
+     */
     protected function renderNavigation()
     {
         $this->links->links($this->createNavigationLinks());
@@ -61,6 +130,11 @@ class Tabbable extends RenderedObject
         return $this->links->render();
     }
 
+    /**
+     * Creates the navigation links
+     *
+     * @return array
+     */
     protected function createNavigationLinks()
     {
         $links = [];
@@ -80,6 +154,11 @@ class Tabbable extends RenderedObject
         return $links;
     }
 
+    /**
+     * Renders the contents
+     *
+     * @return string
+     */
     protected function renderContents()
     {
         $tabs = $this->createContentTabs();
@@ -94,32 +173,51 @@ class Tabbable extends RenderedObject
         return $string;
     }
 
+    /**
+     * Creates the content tabs
+     *
+     * @return array
+     */
     protected function createContentTabs()
     {
         $tabs = [];
         $count = 0;
+
         foreach ($this->contents as $item) {
-            $itemAttributes = isset($item['attributes']) ? $item['attributes'] : [];
+            $itemAttributes = isset($item['attributes']) ?
+                $item['attributes'] :
+                [];
+
             $attributes = new Attributes(
                 $itemAttributes,
                 ['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]
             );
+
             if ($this->fade) {
-                $attributes['class'] .= ' fade';
+                $attributes->addClass('fade');
             }
+
             if ($this->active == $count) {
-                $attributes['class'] .= $this->fade ? ' in active' : ' active';
+                $attributes->addClass($this->fade ? 'in active' : 'active');
             }
+
             $tabs[] = [
                 'content' => $item['content'],
                 'attributes' => $attributes
             ];
+
             $count += 1;
         }
 
         return $tabs;
     }
 
+    /**
+     * Sets which tab should be active
+     *
+     * @param int $active
+     * @return $this
+     */
     public function active($active)
     {
         $this->active = $active;
@@ -127,6 +225,11 @@ class Tabbable extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the tabbable objects to fade in
+     *
+     * @return $this
+     */
     public function fade()
     {
         $this->fade = true;

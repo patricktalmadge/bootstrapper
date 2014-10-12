@@ -5,30 +5,82 @@ namespace Bootstrapper;
 
 use Illuminate\Routing\UrlGenerator;
 
+/**
+ * Creates Bootstrap 3 compliant navbars
+ *
+ * @package Bootstrapper
+ */
 class Navbar extends RenderedObject
 {
 
+    /**
+     * Constant for inverse navbars
+     */
     const NAVBAR_INVERSE = 'navbar-inverse';
+
+    /**
+     * Constant for static navbars
+     */
     const NAVBAR_STATIC = 'navbar-static-top';
+
+    /**
+     * Constant for navbars that are stuck to the top
+     */
     const NAVBAR_TOP = 'navbar-fixed-top';
+
+    /**
+     * Constant for navbars fixed to the bottom
+     */
     const NAVBAR_BOTTOM = 'navbar-fixed-bottom';
 
-    protected $brand;
     /**
-     * @var UrlGenerator
+     * @var string The brand of the navbar
+     */
+    protected $brand;
+
+    /**
+     * @var UrlGenerator A Laravel URL generator
      */
     protected $url;
+
+    /**
+     * @var array The attributes of the navbar
+     */
     protected $attributes = [];
+
+    /**
+     * @var array The content of the array
+     */
     protected $content = [];
+
+    /**
+     * @var string The type of the navbar
+     */
     protected $type = 'navbar-default';
+
+    /**
+     * @var string The position of the navbar
+     */
     protected $position;
+
+    /**
+     * @var bool Whether the content is fluid or not
+     */
     protected $fluid = false;
 
+    /**
+     * @param UrlGenerator $url A Laravel URL generator
+     */
     public function __construct(UrlGenerator $url)
     {
         $this->url = $url;
     }
 
+    /**
+     * Renders the navbar
+     *
+     * @return string
+     */
     public function render()
     {
         $attributes = new Attributes(
@@ -40,7 +92,9 @@ class Navbar extends RenderedObject
         );
 
         $string = "<div {$attributes}>";
-        $string .= $this->fluid ? "<div class='container-fluid'>" : "<div class='container'>";
+        $string .= $this->fluid ?
+            "<div class='container-fluid'>" :
+            "<div class='container'>";
         $string .= $this->renderHeader();
         $string .= $this->renderContent();
         $string .= "</div></div>";
@@ -48,9 +102,15 @@ class Navbar extends RenderedObject
         return $string;
     }
 
+    /**
+     * Renders the inner content
+     *
+     * @return string
+     */
     protected function renderContent()
     {
         $string = "<nav class='navbar-collapse collapse'>";
+
         foreach ($this->content as $item) {
             if (is_a($item, 'Bootstrapper\\Navigation')) {
                 $item->navbar();
@@ -63,6 +123,11 @@ class Navbar extends RenderedObject
         return $string;
     }
 
+    /**
+     * Renders the header
+     *
+     * @return string
+     */
     protected function renderHeader()
     {
         $string = "<div class='navbar-header'>";
@@ -76,6 +141,14 @@ class Navbar extends RenderedObject
         return $string;
     }
 
+    /**
+     * Sets the brand of the navbar
+     *
+     * @param string      $brand The brand
+     * @param null|string $link  The link. If not set we default to linking to
+     *                           '/' using the UrlGenerator
+     * @return $this
+     */
     public function withBrand($brand, $link = null)
     {
         if (!isset($link)) {
@@ -87,6 +160,12 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Adds attributes to the navbar
+     *
+     * @param $attributes array The attributes of the array
+     * @return $this
+     */
     public function withAttributes($attributes)
     {
         $this->attributes = $attributes;
@@ -94,6 +173,14 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Adds some content to the navbar
+     *
+     * @param mixed $content Anything that can become a string! If you pass in a
+     *                       Bootstrapper\Navigation object we'll make sure
+     *                       it's a navbar on render.
+     * @return $this
+     */
     public function withContent($content)
     {
         $this->content[] = $content;
@@ -101,6 +188,11 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the navbar to be inverse
+     *
+     * @return $this
+     */
     public function inverse()
     {
         $this->setType(self::NAVBAR_INVERSE);
@@ -108,6 +200,11 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the position to top
+     *
+     * @return $this
+     */
     public function staticTop()
     {
         $this->setPosition(self::NAVBAR_STATIC);
@@ -115,16 +212,39 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the type of the navbar
+     *
+     * @param string $type The type of the navbar. Assumes that the navbar-
+     *                     prefix is there
+     * @return $this
+     */
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
     }
 
+    /**
+     * Sets the position of the navbar
+     *
+     * @param string $position The position of the navbar. Assumes that the
+     *                         navbar- prefix is there
+     * @return $this
+     */
     public function setPosition($position)
     {
         $this->position = $position;
+
+        return $this;
     }
 
+    /**
+     * Sets the position of the navbar to the top
+     *
+     * @return $this
+     */
     public function top()
     {
         $this->setPosition(self::NAVBAR_TOP);
@@ -132,6 +252,11 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets the position of the navbar to the bottom
+     *
+     * @return $this
+     */
     public function bottom()
     {
         $this->setPosition(self::NAVBAR_BOTTOM);
@@ -139,6 +264,13 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Creates a navbar with a position and attributes
+     *
+     * @param string $position   The position of the navbar
+     * @param array  $attributes The attributes of the navbar
+     * @return $this
+     */
     public function create($position, $attributes = [])
     {
         $this->setPosition($position);
@@ -146,6 +278,11 @@ class Navbar extends RenderedObject
         return $this->withAttributes($attributes);
     }
 
+    /**
+     * Sets the navbar to be fluid
+     *
+     * @return $this
+     */
     public function fluid()
     {
         $this->fluid = true;
