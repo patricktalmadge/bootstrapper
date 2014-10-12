@@ -322,4 +322,22 @@ class NavigationSpec extends ObjectBehavior
             "<ul class='nav nav-tabs'><li><a href='foo'>bar</a></li></ul>"
         );
     }
+
+    function it_is_sensible_if_you_forget_to_return_in_a_callback()
+    {
+
+        $this->links(
+            [
+                [
+                    'link' => 'foo',
+                    'title' => 'bar',
+                    'callback' => function()
+                    {
+                    }
+                ],
+            ]
+        )->render()->shouldBe(
+            "<ul class='nav nav-tabs'><li><a href='foo'>bar</a></li></ul>"
+        );
+    }
 }
