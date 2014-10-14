@@ -1,252 +1,308 @@
 <?php
+
 namespace Bootstrapper;
 
 /**
- * DropdownButton for creating Twitter Bootstrap style Dropdown Buttons.
+ * Creates Bootstrap 3 compliant Dropdown Buttons
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class DropdownButton
+class DropdownButton extends RenderedObject
 {
     /**
-     * The current dropdown instance
-     * @var DropdownButton
+     * Divider constant
      */
-    protected static $dropdown = null;
+    const DIVIDER = "<li class='divider'></li>";
 
     /**
-     * The main button's class
+     * Constant for primary buttons
+     */
+    const PRIMARY = 'btn-primary';
+
+    /**
+     * Constant for danger buttons
+     */
+    const DANGER = 'btn-danger';
+
+    /**
+     * Constant for warning buttons
+     */
+    const WARNING = 'btn-warning';
+
+    /**
+     * Constant for success buttons
+     */
+    const SUCCESS = 'btn-success';
+
+    /**
+     * Constant for default buttons
+     */
+    const NORMAL = 'btn-default';
+
+    /**
+     * Constant for info buttons
+     */
+    const INFO = 'btn-info';
+
+    /**
+     * Constant for large buttons
+     */
+    const LARGE = 'btn-lg';
+
+    /**
+     * Constant for small buttons
+     */
+    const SMALL = 'btn-sm';
+
+    /**
+     * Constant for extra small buttons
+     */
+    const EXTRA_SMALL = 'btn-xs';
+
+    /**
+     * @var string The label for this button
+     */
+    protected $label;
+
+    /**
+     * @var array The contents of the dropdown button
+     */
+    protected $contents = [];
+    /**
      * @var string
      */
-    protected $type = null;
-
+    protected $type = 'btn-default';
     /**
-     * The main button's label
-     * @var string
+     * @var
      */
-    protected $label = null;
-
+    protected $size;
     /**
-     * The dropdown's links
-     * @var array
-     */
-    protected $links = array();
-
-    /**
-     * The dropdown's attributes
-     * @var array
-     */
-    protected $attributes = array();
-
-    /**
-     * Whether the dropdown should align right
-     * @var boolean
-     */
-    protected $pullRight = false;
-
-    /**
-     * Whether button should be a split button or not
-     * @var boolean
+     * @var bool
      */
     protected $split = false;
-
     /**
-     * Whether the dropdown's links should come up or down
-     * @var boolean
+     * @var bool
      */
     protected $dropup = false;
 
     /**
-     * Whether links should be automatically routed or not
-     * @var boolean
+     * @param $label
+     * @return $this
      */
-    protected $autoroute = true;
-
-    /**
-     * Checks call to see if we can create a button from a magic call (for you wizards).
-     * normal, mini_primary, large_warning, danger, etc...
-     *
-     * @param string $method Name of missing method
-     * @param array $parameters array of parameters passed to missing method
-     *
-     * @return mixed
-     */
-    public static function __callStatic($method, $parameters)
-    {
-        $method_array = explode('_', strtolower($method));
-
-        // Get the dropdown's button text
-        $label = array_get($parameters, 0, null);
-
-        // Get the dropdown's links
-        $links = array_get($parameters, 1, array());
-        if (!is_array($links)) {
-            throw new \InvalidArgumentException('The dropdown\'s links should be an array');
-        }
-
-        // Get the dropdown's attributes
-        $attributes = array_get($parameters, 2, array());
-        if (!is_array($attributes)) {
-            throw new \InvalidArgumentException('Attributes should be an array');
-        }
-
-        // Filter the classes given and concatenate them
-        $type = '';
-        foreach ($method_array as $class) {
-            if ($class != 'normal') {
-                $type .= ' btn-' . $class;
-            }
-        }
-
-        // Create the new dropdown
-        static::$dropdown = new static($label, $links, $attributes, $type);
-
-        return static::$dropdown;
-    }
-
-    /**
-     * Creates a new button dropdown
-     *
-     * @param string $label Label Text
-     * @param array $links dropdown links
-     * @param array $attributes Attributes to apply the dropdown itself
-     * @param string $type Type of dropdown
-     */
-    public function __construct($label, $links, $attributes, $type = null)
+    public function labelled($label)
     {
         $this->label = $label;
 
-        $this->links = $links;
-
-        $this->attributes = $attributes;
-
-        $this->type .= $type;
+        return $this;
     }
 
     /**
-     * Dynamically set an attribute
-     *
-     * @param string $attribute Attributes to apply the dropdown itself
-     * @param string $value Value of dropdown
-     *
-     * @return object dropdownbutton instance
+     * @param $contents
+     * @return $this
      */
-    public function __call($attribute, $value)
+    public function withContents($contents)
     {
-        // Replace underscores
-        $attribute = str_replace('_', '-', $attribute);
-
-        // Get value and set it
-        $value = array_get($value, 0, 'true');
-        $this->attributes[$attribute] = $value;
+        $this->contents = $contents;
 
         return $this;
     }
 
     /**
-     * Outputs the current Dropdown in instance
+     * @param $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @param $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * @return $this
+     */
+    public function split()
+    {
+        $this->split = true;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function dropup()
+    {
+        $this->dropup = true;
+
+        return $this;
+    }
+
+    /**
+     * @param string $label
+     * @return DropdownButton
+     */
+    public function normal($label = '')
+    {
+        $this->setType(self::NORMAL);
+
+        return $this->labelled($label);
+    }
+
+    /**
+     * @param string $label
+     * @return DropdownButton
+     */
+    public function primary($label = '')
+    {
+        $this->setType(DropdownButton::PRIMARY);
+
+        return $this->labelled($label);
+    }
+
+    /**
+     * @param string $label
+     * @return DropdownButton
+     */
+    public function danger($label = '')
+    {
+        $this->setType(DropdownButton::DANGER);
+
+        return $this->labelled($label);
+    }
+
+    /**
+     * @param string $label
+     * @return DropdownButton
+     */
+    public function warning($label = '')
+    {
+        $this->setType(DropdownButton::WARNING);
+
+        return $this->labelled($label);
+    }
+
+    /**
+     * @param string $label
+     * @return DropdownButton
+     */
+    public function success($label = '')
+    {
+        $this->setType(DropdownButton::SUCCESS);
+
+        return $this->labelled($label);
+    }
+
+    /**
+     * @param string $label
+     * @return DropdownButton
+     */
+    public function info($label = '')
+    {
+        $this->setType(DropdownButton::INFO);
+
+        return $this->labelled($label);
+    }
+
+    /**
+     * @return $this
+     */
+    public function large()
+    {
+        $this->setSize(DropdownButton::LARGE);
+
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    public function small()
+    {
+        $this->setSize(DropdownButton::SMALL);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function extraSmall()
+    {
+        $this->setSize(DropdownButton::EXTRA_SMALL);
+
+        return $this;
+    }
+
+    /**
+     * Renders the dropdown button
      *
-     * @return string A Dropdown menu
+     * @return string
      */
     public function render()
     {
-        // Base class
-        $this->attributes = Helpers::add_class($this->attributes, 'btn-group');
-
-        // Pull right
-        $listAttributes = $this->pullRight
-            ? array('class' => 'pull-right')
-            : array();
-
-        // Dropup
         if ($this->dropup) {
-            $this->attributes['class'] .= ' dropup';
+            $string = "<div class='btn-group dropup'>";
+        } else {
+            $string = "<div class='btn-group'>";
+        }
+        $attributes = new Attributes(
+            [
+                'class' => "btn {$this->type} dropdown-toggle",
+                'data-toggle' => 'dropdown',
+                'type' => 'button'
+            ]
+        );
+
+        if ($this->size) {
+            $attributes->addClass($this->size);
         }
 
-        $html = '<div' . Helpers::getContainer('html')->attributes($this->attributes) . '>';
-
-        //If split is false make this button dropdown
-        $html .= Form::button($this->label, array('class' => $this->type), !$this->split);
-
-        //Add split button if needed
         if ($this->split) {
-            $html .= Form::button('', array('class' => $this->type), true);
+            $splitAttributes = new Attributes(
+                ['class' => $attributes['class'], 'type' => 'button']
+            );
+            $splitAttributes['class'] = str_replace(
+                ' dropdown-toggle',
+                '',
+                $splitAttributes['class']
+            );
+            $string .= "<button {$splitAttributes}>{$this->label}</button>";
+            $string .= "<button {$attributes}><span class='caret'></span></button>";
+        } else {
+            $string .= "<button {$attributes}>{$this->label} <span class='caret'></span></button>";
         }
 
-        $html .= Navigation::dropdown($this->links, $listAttributes, $this->autoroute);
-        $html .= '</div>';
+        $string .= "<ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'>";
+        $string .= $this->renderItems();
+        $string .= "</ul>";
+        $string .= "</div>";
 
-        return $html;
-    }
-
-    public function __toString()
-    {
-        return $this->render();
-    }
-
-    // Public methods ---------------------------------------------- /
-
-    /**
-     * Pull the dropdown's links to the right
-     *
-     * @param boolean $pullRight Pull menu to the right
-     *
-     * @return object dropdownbutton instance
-     */
-    public function pull_right($pullRight = true)
-    {
-        $this->pullRight = $pullRight;
-
-        return $this;
+        return $string;
     }
 
     /**
-     * Drop the menu up or down
+     * Render the inner items
      *
-     * @param boolean $dropup Make menu go up
-     *
-     * @return object dropdownbutton instance
+     * @return string
      */
-    public function dropup($dropup = true)
+    protected function renderItems()
     {
-        $this->dropup = $dropup;
+        $string = '';
+        foreach ($this->contents as $item) {
+            if (is_array($item)) {
+                $string .= "<li><a href='{$item['url']}'>{$item['label']}</a></li>";
+            } else {
+                $string .= $item;
+            }
+        }
 
-        return $this;
-    }
-
-    /**
-     * Make button a split dropdown button
-     *
-     * @param boolean $split Make split button
-     *
-     * @return object dropdownbutton instance
-     */
-    public function split($split = true)
-    {
-        $this->split = $split;
-
-        return $this;
-    }
-
-    /**
-     * Auto route links or not
-     *
-     * @param boolean $autoroute Should auto route links
-     *
-     * @return object dropdownbutton instance
-     */
-    public function autoroute($autoroute = true)
-    {
-        $this->autoroute = $autoroute;
-
-        return $this;
+        return $string;
     }
 }

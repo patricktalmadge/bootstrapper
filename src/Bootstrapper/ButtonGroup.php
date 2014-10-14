@@ -1,65 +1,249 @@
 <?php
+
 namespace Bootstrapper;
 
 /**
- * ButtonGroup for creating Twitter Bootstrap style Buttons groups.
+ * Creates Bootstrap 3 compliant Button Groups
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class ButtonGroup
+class ButtonGroup extends RenderedObject
 {
 
-    const NORMAL = 'btn-default';
-    const PRIMARY = 'btn-primary';
-    const SUCCESS = 'btn-success';
-    const INFO = 'btn-info';
-    const DANGER = 'btn-danger';
-    const LINK = 'btn-link';
+    /**
+     * @var array The contents of the button group
+     */
+    protected $contents = [];
 
-    private static function makeContents($contents = array(), $type)
+    /**
+     * @var string The type of the button
+     */
+    protected $type = 'button';
+
+    /**
+     * @var bool Whether the dropdown should be vertical or not
+     */
+    protected $vertical = false;
+
+    /**
+     * @var The size of the button
+     */
+    protected $size;
+
+    /**
+     * Constant for large button groups
+     */
+    const LARGE = 'btn-group-lg';
+
+    /**
+     * Constant for small button groups
+     */
+    const SMALL = 'btn-group-sm';
+
+    /**
+     * Constant for extra small button groups
+     */
+    const EXTRA_SMALL = 'btn-group-xs';
+
+    /**
+     * Constant for normal buttons
+     */
+    const NORMAL = 'btn-default';
+
+    /**
+     * Constant for primary buttons
+     */
+    const PRIMARY = 'btn-primary';
+
+    /**
+     * Constant for success buttons
+     */
+    const SUCCESS = 'btn-success';
+
+    /**
+     * Constant for info buttons
+     */
+    const INFO = 'btn-info';
+
+    /**
+     * Constant for warning buttons
+     */
+    const WARNING = 'btn-warning';
+
+    /**
+     * Constant for danger buttons
+     */
+    const DANGER = 'btn-danger';
+
+    /**
+     * Constant for radio buttons
+     */
+    const RADIO = 'radio';
+
+    /**
+     * Constant for checkbox buttons
+     */
+    const CHECKBOX = 'checkbox';
+
+    /**
+     * Renders the button group
+     *
+     * @return string
+     */
+    public function render()
     {
-        $string = '';
-        foreach ($contents as $button) {
-            $class = "btn " . $button[0];
-            $content = $button[1];
-            $attributes = isset($button[2]) ? $button[2] : array();
-            $attributes = Helpers::add_class($attributes, $type, 'type');
-            $string .= "<label class='" . $class . "'>";
-            $string .= "<input " . Helpers::getContainer('html')->attributes($attributes) . ">" . $content;
-            $string .= "</label>";
+        $attributes = new Attributes(
+            [
+                'class' => $this->vertical ? 'btn-group-vertical' : 'btn-group',
+                'data-toggle' => 'buttons'
+            ]
+        );
+
+        if ($this->size) {
+            $attributes->addClass($this->size);
         }
 
-        return $string;
+        $contents = $this->renderContents();
+
+        return "<div {$attributes}>{$contents}</div>";
     }
 
-    private static function make($type, $contents = array(), $attributes = array())
+    /**
+     * Sets the size of the button group
+     *
+     * @param $size
+     */
+    public function setSize($size)
     {
-        $attributes = Helpers::add_class($attributes, 'buttons', 'data-toggle');
-        $attributes = Helpers::add_class($attributes, 'btn-group');
-        $string = "<div " . Helpers::getContainer('html')->attributes($attributes) . ">";
-        $string .= static::makeContents($contents, $type);
-        $string .= "</div>";
-
-        return $string;
+        $this->size = $size;
     }
 
-    public static function radio($contents = array(), $attributes = array())
+    /**
+     * Sets the button group to be large
+     *
+     * @return $this
+     */
+    public function large()
     {
-        return static::make('radio', $contents, $attributes);
+        $this->setSize(self::LARGE);
+
+        return $this;
     }
 
-    public static function checkbox($contents = array(), $attributes = array())
+    /**
+     * Sets the button group to be small
+     *
+     * @return $this
+     */
+    public function small()
     {
-        return static::make('checkbox', $contents, $attributes);
+        $this->setSize(self::SMALL);
+
+        return $this;
     }
 
+    /**
+     * Sets the button group to be extra small
+     *
+     * @return $this
+     */
+    public function extraSmall()
+    {
+        $this->setSize(self::EXTRA_SMALL);
+
+        return $this;
+    }
+
+    /**
+     * Sets the button group to be radio
+     *
+     * @param array $contents
+     * @return $this
+     */
+    public function radio(array $contents)
+    {
+        return $this->asType(self::RADIO)->withContents($contents);
+    }
+
+    /**
+     * Sets the button group to be a checkbox
+     *
+     * @param array $contents
+     * @return $this
+     */
+    public function checkbox(array $contents)
+    {
+        return $this->asType(self::CHECKBOX)->withContents($contents);
+    }
+
+    /**
+     * Sets the contents of the button group
+     *
+     * @param array $contents
+     * @return $this
+     */
+    public function withContents(array $contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    /**
+     * Sets the button group to be vertical
+     *
+     * @return $this
+     */
+    public function vertical()
+    {
+        $this->vertical = true;
+
+        return $this;
+    }
+
+    /**
+     * Sets the type of the button group
+     *
+     * @param $type
+     * @return $this
+     */
+    public function asType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Renders the contents of the button group
+     *
+     * @return string
+     */
+    public function renderContents()
+    {
+        $contents = '';
+
+        if ($this->type == 'button') {
+            foreach ($this->contents as $item) {
+                $contents .= $item;
+            }
+        } else {
+            foreach ($this->contents as $item) {
+                if ($item instanceof Button) {
+                    $class = $item->getType();
+                    $value = $item->getValue();
+                    $attributes = new Attributes(
+                        $item->getAttributes(),
+                        ['type' => $this->type]
+                    );
+                    $contents .= "<label class='btn {$class}'><input {$attributes}>{$value}</label>";
+                } else {
+                    $contents .= $item;
+                }
+            }
+        }
+
+        return $contents;
+    }
 
 }

@@ -1,42 +1,178 @@
 <?php
+
 namespace Bootstrapper;
 
-use Bootstrapper\Traits\ClassableElement;
-
 /**
- * Label for creating Twitter Bootstrap style Labels.
+ * Creates bootstrap 3 compliant labels
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @author     Patrick Rose - <pjr0911025@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Label extends ClassableElement
+class Label extends RenderedObject
 {
-    /**
-     * The base class
-     *
-     * @var string
-     */
-    protected static $baseClass = 'label';
 
     /**
-     * Create a custom label (this is here for backward compatibility)
-     *
-     * @param string $type The label type
-     * @param string $message The content
-     * @param array $attributes The attributes
-     *
-     * @return Label
+     * Constant for primary labels
      */
-    public static function custom($type, $message, $attributes)
+    const LABEL_PRIMARY = 'label-primary';
+
+    /**
+     * Constant for success labels
+     */
+    const LABEL_SUCCESS = 'label-success';
+
+    /**
+     * Constant for info labels
+     */
+    const LABEL_INFO = 'label-info';
+
+    /**
+     * Constant for warning labels
+     */
+    const LABEL_WARNING = 'label-warning';
+
+    /**
+     * Constant for danger labels
+     */
+    const LABEL_DANGER = 'label-danger';
+
+    /**
+     * Constant for default labels
+     */
+    const LABEL_DEFAULT = 'label-default';
+
+    /**
+     * @var string The type of the label
+     */
+    protected $type = 'label-default';
+
+    /**
+     * @var string The contents of the label
+     */
+    protected $contents;
+
+    /**
+     * @return string Renders the label
+     */
+    public function render()
     {
-        return static::$type($message, $attributes);
+        return "<span class='label {$this->type}'>{$this->contents}</span>";
+    }
+
+    /**
+     * Sets the contents of the label
+     *
+     * @param string $contents The new contents of the label
+     * @return $this
+     */
+    public function withContents($contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    /**
+     * Sets the type of the label. Assumes that the label- prefix is already set
+     *
+     * @param string $type The new type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Creates a primary label
+     *
+     * @param string $contents The contents of the label
+     * @return $this
+     */
+    public function primary($contents = '')
+    {
+        $this->setType(self::LABEL_PRIMARY);
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates a success label
+     *
+     * @param string $contents The contents of the label
+     * @return $this
+     */
+    public function success($contents = '')
+    {
+        $this->setType(self::LABEL_SUCCESS);
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates an info label
+     *
+     * @param string $contents The contents of the label
+     * @return $this
+     */
+    public function info($contents = '')
+    {
+        $this->setType(self::LABEL_INFO);
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates a warning label
+     *
+     * @param string $contents The contents of the label
+     * @return $this
+     */
+    public function warning($contents = '')
+    {
+        $this->setType(self::LABEL_WARNING);
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates a danger label
+     *
+     * @param string $contents The contents of the label
+     * @return $this
+     */
+    public function danger($contents = '')
+    {
+        $this->setType(self::LABEL_DANGER);
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates a label
+     *
+     * @param string $contents The contents of the label
+     * @param string $type     The type to use
+     * @return $this
+     */
+    public function create($contents, $type = self::LABEL_DEFAULT)
+    {
+        $this->setType($type);
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates a normal label
+     *
+     * @param string $contents The contents of the label
+     * @return $this
+     */
+    public function normal($contents = '')
+    {
+        $this->setType(self::LABEL_DEFAULT);
+
+        return $this->withContents($contents);
     }
 }

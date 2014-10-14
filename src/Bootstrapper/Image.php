@@ -1,85 +1,203 @@
 <?php
+
 namespace Bootstrapper;
 
+use Bootstrapper\Exceptions\ImageException;
+
 /**
- * Image class for wrapping images with Bootstrap classes
+ * Creates Bootstrap 3 compliant images
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Image
+class Image extends RenderedObject
 {
 
     /**
-     * The alt text of the image
+     * Constant for responsive image
      */
-    private $alt = '';
+    const IMAGE_RESPONSIVE = 'img-responsive';
 
     /**
-     * The attributes of the image
+     * Constant for rounded images
      */
-    private $attributes = array();
+    const IMAGE_ROUNDED = 'img-rounded';
 
     /**
-     * The location of the image
+     * Constant for circle image
      */
-    private $url = '';
+    const IMAGE_CIRCLE = 'img-circle';
 
     /**
-     * Catch-all method
+     * Constant for thumbnail image
      */
-    public static function __callStatic($method, $parameters)
+    const IMAGE_THUMBNAIL = 'img-thumbnail';
+
+    /**
+     * @var string The image source
+     */
+    protected $src;
+
+    /**
+     * @var string The alt text for the image
+     */
+    protected $alt = '';
+    /**
+     * @var array
+     */
+    protected $attributes = [];
+
+    /**
+     * Renders the image
+     *
+     * @return string
+     * @throws ImageException If the image source is not set
+     */
+    public function render()
     {
-        $url = array_get($parameters, 0);
-        $alt = array_get($parameters, 1);
-        $attributes = array_get($parameters, 2);
+        if (!$this->src) {
+            throw new ImageException("You must specify the source");
+        }
 
-        return new static($method, $url, $alt, $attributes);
+        $attributes = new Attributes(
+            $this->attributes,
+            ['src' => $this->src, 'alt' => $this->alt]
+        );
+
+        return "<img {$attributes}>";
     }
 
     /**
-     * Creates a Bootstrap image
+     * Sets the source of the image
      *
-     * @param string $type The image type
-     * @param string $url An url
-     * @param string $alt An alt text
-     * @param array $attributes An array of attributes
-     *
-     * @return string An img tag
+     * @param string $source The source of the image
+     * @return $this
      */
-    public function __construct($type, $url, $alt, $attributes)
+    public function withSource($source)
     {
-        $attributes = Helpers::add_class($attributes, 'img-' . $type);
+        $this->src = $source;
 
-        $this->attributes = $attributes;
-        $this->url = $url;
+        return $this;
+    }
+
+    /**
+     * Sets the alt text of the image
+     *
+     * @param string $alt The alt text of the image
+     * @return $this
+     */
+    public function withAlt($alt)
+    {
         $this->alt = $alt;
 
         return $this;
-
     }
 
-    public function render()
+    /**
+     * Sets the attributes of the image
+     *
+     * @param array $attributes
+     * @return $this
+     */
+    public function withAttributes($attributes)
     {
-        return Helpers::getContainer('html')->image($this->url, $this->alt, $this->attributes);
-    }
-
-    public function __toString()
-    {
-        return $this->render();
-    }
-
-    public function responsive()
-    {
-        $this->attributes = Helpers::add_class($this->attributes, 'img-responsive');
+        $this->attributes = $attributes;
 
         return $this;
     }
+
+    /**
+     * Sets the image to be responsive
+     *
+     * @return $this
+     */
+    public function responsive()
+    {
+        $this->addClass(self::IMAGE_RESPONSIVE);
+
+        return $this;
+    }
+
+    /**
+     * Creates a rounded image
+     *
+     * @param null|string $src The source of the image. Pass null to use the
+     *                         previous value of the source
+     * @param null|string $alt The alt text of the image. Pass null to use
+     *                         the previous value
+     * @return $this
+     */
+    public function rounded($src = null, $alt = null)
+    {
+        $this->addClass(self::IMAGE_ROUNDED);
+
+        if (!isset($src)) {
+            $src = $this->src;
+        }
+        if (!isset($alt)) {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
+    }
+
+    /**
+     * Creates a circle image
+     *
+     * @param null|string $src The source of the image. Pass null to use the
+     *                         previous value of the source
+     * @param null|string $alt The alt text of the image. Pass null to use
+     *                         the previous value
+     * @return $this
+     */
+    public function circle($src = null, $alt = null)
+    {
+        $this->addClass(self::IMAGE_CIRCLE);
+
+        if (!isset($src)) {
+            $src = $this->src;
+        }
+        if (!isset($alt)) {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
+    }
+
+    /**
+     * Creates a thumbnail image
+     *
+     * @param null|string $src The source of the image. Pass null to use the
+     *                         previous value of the source
+     * @param null|string $alt The alt text of the image. Pass null to use
+     *                         the previous value
+     * @return $this
+     */
+    public function thumbnail($src = null, $alt = null)
+    {
+        $this->addClass(self::IMAGE_THUMBNAIL);
+
+        if (!isset($src)) {
+            $src = $this->src;
+        }
+        if (!isset($alt)) {
+            $alt = $this->alt;
+        }
+
+        return $this->withSource($src)->withAlt($alt);
+    }
+
+    /**
+     * Adds a class to the attributes
+     *
+     * @param string $class The class we need to add to the image
+     * @internal Normally we'd use the Attributes object but we don't have
+     * access to it at this point :-(
+     */
+    public function addClass($class)
+    {
+        $this->attributes['class'] = isset($this->attributes['class']) ?
+            $this->attributes['class'] . " {$class}" :
+            $class;
+    }
+
 }

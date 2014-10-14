@@ -1,277 +1,292 @@
 <?php
+
 namespace Bootstrapper;
 
+
+use Illuminate\Routing\UrlGenerator;
+
 /**
- * Navbar for creating Twitter Bootstrap style Navbar.
+ * Creates Bootstrap 3 compliant navbars
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Navbar
+class Navbar extends RenderedObject
 {
-    /**
-     * The current Navbar's attributes
-     *
-     * @var array
-     */
-    protected $attributes = array();
 
     /**
-     * Whether the current Navbar should use automatic routing
-     *
-     * @var boolean
+     * Constant for inverse navbars
      */
-    protected $autoroute = true;
+    const NAVBAR_INVERSE = 'navbar-inverse';
 
     /**
-     * Contains the current Navbar's brand (if there is one)
-     *
-     * @var array
+     * Constant for static navbars
      */
-    protected $brand = array();
+    const NAVBAR_STATIC = 'navbar-static-top';
 
     /**
-     * Whether the current Navbar should be collapsible or not
-     *
-     * @var boolean
+     * Constant for navbars that are stuck to the top
      */
-    protected $collapsible = false;
+    const NAVBAR_TOP = 'navbar-fixed-top';
 
     /**
-     * All menus or elements of the current Navbar
-     *
-     * @var array
+     * Constant for navbars fixed to the bottom
      */
-    protected $menus = array();
+    const NAVBAR_BOTTOM = 'navbar-fixed-bottom';
 
     /**
-     * The current Navbar's type
-     *
-     * @var constant
+     * @var string The brand of the navbar
      */
-    protected $type = Navbar::DEFAULT_TYPE;
+    protected $brand;
 
     /**
-     * The current Navbar's style
-     *
-     * @var constant
+     * @var UrlGenerator A Laravel URL generator
      */
-    protected $style = Navbar::DEFAULT_BAR;
+    protected $url;
 
     /**
-     * The Navbar styles
-     * @var constant
+     * @var array The attributes of the navbar
      */
-    const DEFAULT_BAR = 'navbar-default';
-    const INVERSE_BAR = 'navbar-inverse';
+    protected $attributes = [];
 
     /**
-     * The Navbar types
-     * @var constant
+     * @var array The content of the array
      */
-    const DEFAULT_TYPE = null;
-    const FIX_TOP = 'navbar-fixed-top';
-    const FIX_BOTTOM = 'navbar-fixed-bottom';
-    const STATIC_TOP = 'navbar-static-top';
+    protected $content = [];
 
     /**
-     * Create a new Navbar instance.
-     *
-     * @param array $attributes An array of attributes for the current navbar
-     * @param const $type The type of Navbar to create
-     *
-     * @return Navbar
+     * @var string The type of the navbar
      */
-    public static function create($attributes = array(), $type = Navbar::DEFAULT_TYPE)
+    protected $type = 'navbar-default';
+
+    /**
+     * @var string The position of the navbar
+     */
+    protected $position;
+
+    /**
+     * @var bool Whether the content is fluid or not
+     */
+    protected $fluid = false;
+
+    /**
+     * @param UrlGenerator $url A Laravel URL generator
+     */
+    public function __construct(UrlGenerator $url)
     {
-        if (!isset($attributes['class']) or (isset($attributes['class']) and !stristr(
-                    $attributes['class'],
-                    Navbar::INVERSE_BAR
-                ))
-        ) {
-            $attributes = Helpers::add_class($attributes, Navbar::DEFAULT_BAR);
-        }
-        // Fetch current instance
-        $instance = new Navbar;
-
-        // Save given parameters
-        $instance->attributes = $attributes;
-        $instance->type = $type;
-
-        return $instance;
+        $this->url = $url;
     }
 
     /**
-     * Set the autoroute to true or false
+     * Renders the navbar
      *
-     * @param boolean $autoroute The new autoroute value
-     *
-     * @return Navbar
-     */
-    public function autoroute($autoroute)
-    {
-        $this->autoroute = $autoroute;
-
-        return $this;
-    }
-
-    /**
-     * Add menus or strings to the current Navbar
-     *
-     * @param mixed $menus An array of items or a string
-     * @param array $attributes An array of attributes to use
-     *
-     * @return Navbar
-     */
-    public function with_menus($menus, $attributes = array())
-    {
-        $attributes = Helpers::add_class($attributes, 'navbar-nav');
-        $this->menus[] = is_string($menus)
-            ? $menus
-            : array('attributes' => $attributes, 'items' => $menus);
-
-        return $this;
-    }
-
-    /**
-     * Add a brand to the current Navbar
-     *
-     * @param string $brand The brand name
-     * @param string $brand_url The brand URL
-     *
-     * @return Navbar
-     */
-    public function with_brand($brand, $brand_url, $escape_string = true)
-    {
-        $this->brand = array(
-            'name' => $brand,
-            'url' => $brand_url,
-            'escape' => $escape_string
-        );
-
-        return $this;
-    }
-
-    /**
-     * Activates collapsible on the current Navbar
-     *
-     * @return Navbar
-     */
-    public function collapsible()
-    {
-        $this->collapsible = true;
-
-        return $this;
-    }
-
-    /**
-     * Prints out the current Navbar in case it doesn't do it automatically
-     *
-     * @return string A Navbar
-     */
-    public function __toString()
-    {
-        return $this->render();
-    }
-
-    /**
-     * Writes the current Navbar
-     *
-     * @return string A Bootstrap navbar
+     * @return string
      */
     public function render()
     {
-        $type = (!empty($this->type)) ? ' ' . $this->type : '';
-        $attributes = Helpers::add_class($this->attributes, 'navbar' . $type);
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'class' => "navbar {$this->type} {$this->position}",
+                'role' => 'navigation'
+            ]
+        );
 
-        // Open navbar containers
-        $html = '<nav' . Helpers::getContainer('html')->attributes($attributes) . ' role="navigation">';
-        $html .= '<div class="container">';
+        $string = "<div {$attributes}>";
+        $string .= $this->fluid ?
+            "<div class='container-fluid'>" :
+            "<div class='container'>";
+        $string .= $this->renderHeader();
+        $string .= $this->renderContent();
+        $string .= "</div></div>";
 
-        // --- Header ---
-        $html .= '<div class="navbar-header">';
-
-        // Collapsible button if asked for
-        if ($this->collapsible) {
-            $html .= '
-            <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>';
-        }
-
-        // Add brand if one was given
-        if ($this->brand) {
-            $brand = $this->brand;
-            if ($brand['escape']) {
-                $html .= Helpers::getContainer('html')->link(
-                    $this->brand['url'],
-                    $this->brand['name'],
-                    array('class' => 'navbar-brand')
-                );
-            } else {
-                $url = $brand['url'];
-                $text = $brand['name'];
-                $html .= "<a href='$url' class='navbar-brand'>$text</a>";
-            }
-        }
-
-        $html .= '</div>';
-        /// --- Header ---
-
-        // --- Content ---
-        $html .= '<div class="navbar-collapse collapse">';
-
-        // Prints out menus
-        if ($this->menus) {
-            foreach ($this->menus as $menu) {
-                if (is_string($menu)) {
-                    $html .= $menu;
-                } // If is string add to html
-                else {
-                    $attr = array_get($menu, 'attributes', array());
-                    $html .= Navigation::unstyled($menu['items'], false, $attr, $this->autoroute);
-                }
-            }
-        }
-
-        $html .= '</div>';
-        // --- Content ---
-
-        // Close navbar containers
-        $html .= '</div></nav>';
-
-        return $html;
+        return $string;
     }
 
     /**
-     * Allows creation of inverted navbar
+     * Renders the inner content
      *
-     * @param string $method The method to call
-     * @param array $parameters An array of parameters
-     *
-     * @return Navbar
+     * @return string
      */
-    public static function __callStatic($method, $parameters)
+    protected function renderContent()
     {
-        if ($method == 'inverse') {
-            $attributes = array_get($parameters, 0);
-            $type = array_get($parameters, 1);
-            $attributes = Helpers::add_class($attributes, Navbar::INVERSE_BAR);
+        $string = "<nav class='navbar-collapse collapse'>";
 
-            return static::create($attributes, $type);
-        } else {
-            return static::create();
+        foreach ($this->content as $item) {
+            if (is_a($item, 'Bootstrapper\\Navigation')) {
+                $item->navbar();
+            }
+            $string .= $item;
         }
+
+        $string .= "</nav>";
+
+        return $string;
     }
-}            
+
+    /**
+     * Renders the header
+     *
+     * @return string
+     */
+    protected function renderHeader()
+    {
+        $string = "<div class='navbar-header'>";
+        // Add the collapse button
+        $string .= "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button>";
+        if ($this->brand) {
+            $string .= "<a class='navbar-brand' href='{$this->brand['link']}'>{$this->brand['brand']}</a>";
+        }
+        $string .= "</div>";
+
+        return $string;
+    }
+
+    /**
+     * Sets the brand of the navbar
+     *
+     * @param string      $brand The brand
+     * @param null|string $link  The link. If not set we default to linking to
+     *                           '/' using the UrlGenerator
+     * @return $this
+     */
+    public function withBrand($brand, $link = null)
+    {
+        if (!isset($link)) {
+            $link = $this->url->to('/');
+        }
+
+        $this->brand = compact('brand', 'link');
+
+        return $this;
+    }
+
+    /**
+     * Adds attributes to the navbar
+     *
+     * @param $attributes array The attributes of the array
+     * @return $this
+     */
+    public function withAttributes($attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Adds some content to the navbar
+     *
+     * @param mixed $content Anything that can become a string! If you pass in a
+     *                       Bootstrapper\Navigation object we'll make sure
+     *                       it's a navbar on render.
+     * @return $this
+     */
+    public function withContent($content)
+    {
+        $this->content[] = $content;
+
+        return $this;
+    }
+
+    /**
+     * Sets the navbar to be inverse
+     *
+     * @return $this
+     */
+    public function inverse()
+    {
+        $this->setType(self::NAVBAR_INVERSE);
+
+        return $this;
+    }
+
+    /**
+     * Sets the position to top
+     *
+     * @return $this
+     */
+    public function staticTop()
+    {
+        $this->setPosition(self::NAVBAR_STATIC);
+
+        return $this;
+    }
+
+    /**
+     * Sets the type of the navbar
+     *
+     * @param string $type The type of the navbar. Assumes that the navbar-
+     *                     prefix is there
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Sets the position of the navbar
+     *
+     * @param string $position The position of the navbar. Assumes that the
+     *                         navbar- prefix is there
+     * @return $this
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Sets the position of the navbar to the top
+     *
+     * @return $this
+     */
+    public function top()
+    {
+        $this->setPosition(self::NAVBAR_TOP);
+
+        return $this;
+    }
+
+    /**
+     * Sets the position of the navbar to the bottom
+     *
+     * @return $this
+     */
+    public function bottom()
+    {
+        $this->setPosition(self::NAVBAR_BOTTOM);
+
+        return $this;
+    }
+
+    /**
+     * Creates a navbar with a position and attributes
+     *
+     * @param string $position   The position of the navbar
+     * @param array  $attributes The attributes of the navbar
+     * @return $this
+     */
+    public function create($position, $attributes = [])
+    {
+        $this->setPosition($position);
+
+        return $this->withAttributes($attributes);
+    }
+
+    /**
+     * Sets the navbar to be fluid
+     *
+     * @return $this
+     */
+    public function fluid()
+    {
+        $this->fluid = true;
+
+        return $this;
+    }
+}

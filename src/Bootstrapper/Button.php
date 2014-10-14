@@ -1,339 +1,488 @@
 <?php
+
 namespace Bootstrapper;
 
 /**
- * Button methods for creating Twitter Bootstrap buttons.
+ * Creates a Bootstrap 3 compliant Button
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Button
+class Button extends RenderedObject
 {
-    /**
-     * The current instance of Button being used
-     * @var Button
-     */
-    protected static $instance = null;
 
     /**
-     * The current button in memory
-     * @var array
+     * Constant for default buttons
      */
-    protected $currentButton = array();
+    const NORMAL = 'btn-default';
 
     /**
-     * Stores the current button for future output
-     *
-     * @param string $type A button type
-     * @param string $value Its text value
-     * @param array $attributes An array of attributes
-     * @param boolean $hasDropdown Whether the button has a dropdown
-     *
-     * @return object Button instance
+     * Constant for primary buttons
      */
-    protected static function storeButton($type, $value, $attributes, $hasDropdown)
+    const PRIMARY = 'btn-primary';
+
+    /**
+     * Constant for success buttons
+     */
+    const SUCCESS = 'btn-success';
+
+    /**
+     * Constant for info buttons
+     */
+    const INFO = 'btn-info';
+
+    /**
+     * Constant for warning buttons
+     */
+    const WARNING = 'btn-warning';
+
+    /**
+     * Constant for danger buttons
+     */
+    const DANGER = 'btn-danger';
+
+    /**
+     * Constant for button links
+     */
+    const LINK = 'btn-link';
+
+    /**
+     * Constant for large buttons
+     */
+    const LARGE = 'btn-lg';
+
+    /**
+     * Constant for small buttons
+     */
+    const SMALL = 'btn-sm';
+
+    /**
+     * Constant for extra small buttons
+     */
+    const EXTRA_SMALL = 'btn-xs';
+
+    /**
+     * Constant for block buttons
+     */
+    const BLOCK = 'btn-block';
+
+    /**
+     * @var string The type of the button
+     */
+    protected $type = 'btn-default';
+
+    /**
+     * @var bool Whether the button is a block button or not
+     */
+    protected $block = false;
+
+    /**
+     * @var array The attributes of the button
+     */
+    protected $attributes = [];
+
+    /**
+     * @var string The contents of the button
+     */
+    protected $value = '';
+
+    /**
+     * @var string The icon, if one should be used
+     */
+    protected $icon;
+
+    /**
+     * @var string The size of the button
+     */
+    protected $size;
+
+    /**
+     * @var bool Whether the button should be disabled
+     */
+    protected $disabled;
+
+    /**
+     * @var bool True if the icon should be after the text
+     */
+    protected $appendIcon;
+
+    /**
+     * @var string The url to link to if this is link button
+     */
+    protected $url;
+
+    /**
+     * Sets the type of the button
+     *
+     * @param $type string The new type of the button. Assumes that the btn-
+     *              prefix is there
+     */
+    public function setType($type)
     {
-        // If we don't have an instance stored, create a new one
-        $currentInstance = self::$instance ? : new Button;
-
-        // Define new button
-        $currentInstance->currentButton = array(
-            'type' => $type,
-            'value' => $value,
-            'attributes' => $attributes,
-            'hasDropdown' => $hasDropdown,
-        );
-
-        return $currentInstance;
+        $this->type = $type;
     }
 
     /**
-     * Create a HTML submit input element.
-     * Overriding the default input submit button from Laravel\Form
+     * Sets the size of the button
      *
-     * @param string $value Text value of button
-     * @param array $attributes array of attributes
-     * @param bool $hasDropdown Whether the button has a dropdown
-     *
-     * @return object Button instance
+     * @param $size string The new size of the button. Assumes that the btn-
+     *              prefix is there
      */
-    public static function submit($value, $attributes = array(), $hasDropdown = false)
+    public function setSize($size)
     {
-        $types = array(
-            'default',
-            'primary',
-            'info',
-            'success',
-            'warning',
-            'danger',
-            'link',
-            'icon'
-        );
-        $attributes['type'] = 'submit';
-
-        if (!Helpers::has_class($attributes, $types, 'btn-')) {
-            $attributes = Helpers::add_class($attributes, 'btn-default');
-        }
-
-        return static::storeButton('normal', $value, $attributes, $hasDropdown);
+        $this->size = $size;
     }
 
     /**
-     * Create a HTML reset input element.
-     * Overriding the default input reset button from Laravel\Form
+     * Renders the button
      *
-     * @param string $value Text value of button
-     * @param array $attributes array of attributes
-     * @param bool $hasDropdown Whether the button has a dropdown
-     *
-     * @return object Button instance
-     */
-    public static function reset($value, $attributes = array(), $hasDropdown = false)
-    {
-        $types = array(
-            'default',
-            'primary',
-            'info',
-            'success',
-            'warning',
-            'danger',
-            'link',
-            'icon'
-        );
-        $attributes['type'] = 'reset';
-
-        if (!Helpers::has_class($attributes, $types, 'btn-')) {
-            $attributes = Helpers::add_class($attributes, 'btn-default');
-        }
-
-        return static::storeButton('normal', $value, $attributes, $hasDropdown);
-    }
-
-    /**
-     * Create a HTML button element.
-     * Overriding the default button to add the correct class from Laravel\Form
-     *
-     * @param string $value Text value of button
-     * @param array $attributes array of attributes
-     * @param bool $hasDropdown Whether the button has a dropdown
-     *
-     * @return object Button instance
-     */
-    public static function normal($value, $attributes = array(), $hasDropdown = false)
-    {
-        $types = array(
-            'default',
-            'primary',
-            'info',
-            'success',
-            'warning',
-            'danger',
-            'link',
-            'icon'
-        );
-        if (!Helpers::has_class($attributes, $types, 'btn-')) {
-            $attributes = Helpers::add_class($attributes, 'btn-default');
-        }
-
-        return static::storeButton('normal', $value, $attributes, $hasDropdown);
-    }
-
-    /**
-     * Create a HTML anchor tag styled like a button element.
-     *
-     * @param string $url Url of the link
-     * @param string $value Text value of button
-     * @param array $attributes array of attributes
-     * @param bool $hasDropdown Whether the button has a dropdown
-     *
-     * @return object Button instance
-     */
-    public static function link($url, $value, $attributes = array(), $hasDropdown = false)
-    {
-        $types = array(
-            'btn-default',
-            'btn-primary',
-            'btn-info',
-            'btn-success',
-            'btn-warning',
-            'btn-danger',
-            'btn-link',
-            'btn-icon'
-        );
-        $attributes['href'] = Helpers::getContainer('url')->to($url);
-
-        if (!Helpers::has_class($attributes, $types)) {
-            $attributes = Helpers::add_class($attributes, 'btn-default');
-        }
-
-        return static::storeButton('link', $value, $attributes, $hasDropdown);
-    }
-
-    /**
-     * Adds an icon to the next button
-     *
-     * @param string $icon The name of the icon to call
-     * @param array $attributes Attributes to pass to the generated icon
-     * @param boolean $prependIcon Whether we should prepend the icon, or append it
-     *
-     * @return object Button instance
-     */
-    public function with_icon($icon, $attributes = array(), $prependIcon = true)
-    {
-        // Call Icon to create the icon
-        $icon = Icon::make($icon, $attributes);
-
-        // If there was no text, just use the icon, else put a space between
-        $value = $this->currentButton['value'];
-        if (empty($value)) {
-            $value = $icon;
-        }
-        else {
-            $value = $prependIcon
-                ? $icon . ' ' . $value
-                : $value . ' ' . $icon;
-        }
-
-        // Store modified value
-        $this->currentButton['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Alias for with_icon
-     *
-     * @param string $icon The name of the icon to call
-     * @param array $attributes Attributes to pass to the generated icon
-     *
-     * @return object Button instance
-     */
-    public function prepend_with_icon($icon, $attributes = array())
-    {
-        return $this->with_icon($icon, $attributes);
-    }
-
-    /**
-     * Alias for with_icon with $prependIcon to false
-     *
-     * @param string $icon The name of the icon to call
-     * @param array $attributes Attributes to pass to the generated icon
-     *
-     * @return object Button instance
-     */
-    public function append_with_icon($icon, $attributes = array())
-    {
-        return $this->with_icon($icon, $attributes, false);
-    }
-
-    /**
-     * Add class to deemphasize the button to look more like an anchor tag
-     *
-     * @return object Button instance
-     */
-    public function deemphasize()
-    {
-        // Add class to attributes array
-        $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-link');
-        // Remove class 'btn-default' to attributes array
-        $this->currentButton['attributes'] = Helpers::remove_class($this->currentButton['attributes'], 'btn-default');
-
-        return $this;
-    }
-
-    /**
-     * Add class to make button block
-     *
-     * @return object Button instance
-     */
-    public function block()
-    {
-        // Add class to attributes array
-        $this->currentButton['attributes'] = Helpers::add_class($this->currentButton['attributes'], 'btn-block');
-
-        return $this;
-    }
-
-    /**
-     * Checks call to see if we can create a button from a magic call (for you wizards).
-     * success_button, mini_primary_button, large_warning_submit, danger_reset, etc...
-     *
-     * @param string $method Name of missing method
-     * @param array $parameters array of parameters passed to missing method
-     *
-     * @return mixed
-     */
-    public static function __callStatic($method, $parameters)
-    {
-        $method_array = explode('_', strtolower($method));
-
-        $btn_types = array('normal', 'submit', 'reset', 'link');
-        $type_found = array_intersect($method_array, $btn_types);
-        if (!$type_found) $type_found = (array)'normal';
-
-        if (count($type_found) > 0) {
-            $function = $type_found[key($type_found)];
-            // Set default attributes index
-            $attr_index = $function != 'link' ? 1 : 2;
-
-            $parameters = Helpers::set_multi_class_attributes(
-                $function,
-                $method_array,
-                $parameters,
-                $attr_index,
-                'btn-',
-                'disabled'
-            );
-            if (in_array('disabled', $method_array)) $parameters[$attr_index]['disabled'] = 'disabled';
-
-            return call_user_func_array('static::' . $function, $parameters);
-        }
-    }
-
-    /**
-     * Prints the current button in memory
-     *
-     * @return string A button
+     * @return string as a string
      */
     public function render()
     {
-        // Gather variables
-        extract($this->currentButton);
+        // Set up sensible defaults
+        $defaults = ['type' => 'button', 'class' => "btn {$this->type}"];
 
-        // Add btn to classes and fallback type
-        if (!isset($attributes['type'])) $attributes['type'] = 'button';
-        $attributes = Helpers::add_class($attributes, 'btn');
-
-        // Modify output if we have a dropdown
-        $caret = null;
-        if ($hasDropdown) {
-            $attributes = Helpers::add_class($attributes, 'dropdown-toggle');
-            $caret = ' <span class="caret"></span>';
-            $attributes['data-toggle'] = 'dropdown';
+        if ($this->url) {
+            // An <a> tag should not have a type attribute
+            unset($defaults['type']);
         }
 
-        // Write output according to tag
-        $tag = 'button';
-        if ($type === 'link') {
-            $tag = 'a';
-            unset($attributes['type']);
+        $attributes = new Attributes($this->attributes, $defaults);
+
+        // Add size and block status if needed
+        if ($this->size) {
+            $attributes->addClass($this->size);
         }
 
-        return '<' . $tag . Helpers::getContainer('html')->attributes(
-            $attributes
-        ) . '>' . (string)$value . $caret . '</' . $tag . '>';
+        if ($this->block) {
+            $attributes->addClass(self::BLOCK);
+        }
+
+        // Add the icon if needed
+        $value = $this->icon ? $this->getValueWithIcon() : $this->value;
+
+        // Set disabled and url
+        if ($this->disabled) {
+            $attributes['disabled'] = 'disabled';
+        }
+
+        if ($this->url) {
+            $attributes['href'] = $this->url;
+        }
+
+        // Create the right tag
+        $tag = $this->url ? 'a' : 'button';
+
+        return "<{$tag} {$attributes}>{$value}</{$tag}>";
     }
 
-    public function __toString()
+    /**
+     * Creates a button with class .btn-default and the given contents
+     *
+     * @param string $contents The contents of the button The contents of the
+     *                         button
+     * @return Button
+     */
+    public function normal($contents = '')
     {
-        return $this->render();
+        $this->setType(self::NORMAL);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Creates an button with class .btn-primary and the given contents
+     *
+     * @param string $contents The contents of the button The contents of the
+     *                         button
+     * @return Button
+     */
+    public function primary($contents = '')
+    {
+        $this->setType(self::PRIMARY);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Creates an button with class .btn-success and the given contents
+     *
+     * @param string $contents The contents of the button The contents of the
+     *                         button
+     * @return Button
+     */
+    public function success($contents = '')
+    {
+        $this->setType(self::SUCCESS);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Creates an button with class .btn-info and the given contents
+     *
+     * @param string $contents The contents of the button
+     * @return Button
+     */
+    public function info($contents = '')
+    {
+        $this->setType(self::INFO);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Creates an button with class .btn-warning and the given contents
+     *
+     * @param string $contents The contents of the button
+     * @return Button
+     */
+    public function warning($contents = '')
+    {
+        $this->setType(self::WARNING);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Creates an button with class .btn-danger and the given contents
+     *
+     * @param string $contents The contents of the button
+     * @return Button
+     */
+    public function danger($contents = '')
+    {
+        $this->setType(self::DANGER);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Creates an button with class .btn-link and the given contents
+     *
+     * @param string $contents The contents of the button
+     * @return Button
+     */
+    public function link($contents = '')
+    {
+        $this->setType(self::LINK);
+
+        return $this->withValue($contents);
+    }
+
+    /**
+     * Sets the button to be a block button
+     *
+     * @return $this
+     */
+    public function block()
+    {
+        $this->block = true;
+
+        return $this;
+    }
+
+    /**
+     * Makes the button a submit button
+     *
+     * @return $this
+     */
+    public function submit()
+    {
+        $this->attributes['type'] = 'submit';
+
+        return $this;
+    }
+
+    /**
+     * Makes the button a reset button
+     *
+     * @return $this
+     */
+    public function reset()
+    {
+        $this->attributes['type'] = 'reset';
+
+        return $this;
+    }
+
+    /**
+     * Sets the value of the button
+     *
+     * @param $value string The new value of the button
+     * @return $this
+     */
+    public function withValue($value = '')
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Sets the button to be a large button
+     *
+     * @return $this
+     */
+    public function large()
+    {
+        $this->setSize(self::LARGE);
+
+        return $this;
+    }
+
+    /**
+     * Sets the button to be a small button
+     *
+     * @return $this
+     */
+    public function small()
+    {
+        $this->setSize(self::SMALL);
+
+        return $this;
+    }
+
+    /**
+     * Sets the button to be an extra small button
+     *
+     * @return $this
+     */
+    public function extraSmall()
+    {
+        $this->setSize(self::EXTRA_SMALL);
+
+        return $this;
+    }
+
+    /**
+     * Sets the attributes of the button
+     *
+     * @param $attributes array An array of attributes to add
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
+    {
+        $this->attributes = array_merge($attributes, $this->attributes);
+
+        return $this;
+    }
+
+    /**
+     * More descriptive version of withAttributes
+     *
+     * @see withAttributes
+     * @param array $attributes The attributes to add
+     * @return $this
+     */
+    public function addAttributes(array $attributes)
+    {
+        return $this->withAttributes($attributes);
+    }
+
+    /**
+     * Disables the button
+     *
+     * @return $this
+     */
+    public function disable()
+    {
+        $this->disabled = true;
+
+        return $this;
+    }
+
+    /**
+     * Adds an icon to the button
+     *
+     * @param      $icon   string The icon to add
+     * @param bool $append Whether the icon should be added after the text or
+     *                     before
+     * @return $this
+     */
+    public function withIcon($icon, $append = true)
+    {
+        $this->icon = $icon;
+        $this->appendIcon = $append;
+
+        return $this;
+    }
+
+    /**
+     * Descriptive version of withIcon(). Adds the icon after the text
+     *
+     * @see withIcon
+     * @param $icon string The icon to add
+     * @return $this
+     */
+    public function appendIcon($icon)
+    {
+        return $this->withIcon($icon, true);
+    }
+
+    /**
+     * Descriptive version of withIcon(). Adds the icon before the text
+     *
+     * @param $icon string The icon to add
+     * @return $this
+     */
+    public function prependIcon($icon)
+    {
+        return $this->withIcon($icon, false);
+    }
+
+    /**
+     * Adds a url to the button, making it a link. This will generate an <a> tag
+     *
+     * @param $url string The url to link to
+     * @return $this
+     */
+    public function asLinkTo($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get the type of the button
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Get the value of the button. Does not return the value with the icon
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Gets the value with the icon
+     *
+     * @return string The new value
+     */
+    protected function getValueWithIcon()
+    {
+        if ($this->appendIcon) {
+            return $this->value ? "{$this->value} {$this->icon}" : $this->icon;
+        } else {
+            return $this->value ? "{$this->icon} {$this->value}" : $this->icon;
+        }
     }
 }

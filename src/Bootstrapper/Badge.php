@@ -1,54 +1,63 @@
 <?php
+
 namespace Bootstrapper;
 
-use Bootstrapper\Traits\ClassableElement;
-
 /**
- * Badge for creating Twitter Bootstrap style Badges.
+ * Creates Bootstrap 3 compliant Badges
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @author     Patrick Rose - <pjr0911025@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Badge extends ClassableElement
+class Badge extends RenderedObject
 {
-    /**
-     * The base class
-     *
-     * @var string
-     */
-    protected static $baseClass = 'badge';
 
     /**
-     * Create a custom label (this is here for backward compatibility)
-     *
-     * @param string $type The badge type
-     * @param string $message The content
-     * @param array $attributes The attributes
-     *
-     * @return Badge
+     * @var string The contents of the badge
      */
-    public static function custom($type, $message, $attributes)
+    protected $contents;
+
+    /**
+     * @var array The attributes of the badge
+     */
+    protected $attributes = [];
+
+    /**
+     * Renders the badge
+     *
+     * @return string
+     */
+    public function render()
     {
-        return static::$type($message, $attributes);
+        $attributes = new Attributes($this->attributes, ['class' => 'badge']);
+
+        $string = "<span {$attributes}>{$this->contents}</span>";
+
+        return $string;
     }
 
     /**
-     * Bootstrap no longer has specific badge classes, so we seperate
-     * them.
+     * Adds contents to the badge
+     *
+     * @param $contents
+     * @return $this
      */
-    public static function __callStatic($method, $parameters)
+    public function withContents($contents)
     {
-        $parameters[1] = isset($parameters[1]) ? $parameters[1] : array();
-        $badge = parent::$method($parameters[0], $parameters[1]);
+        $this->contents = $contents;
 
-        return str_replace('badge-', null, str_replace('default', null, $badge));
+        return $this;
+    }
+
+
+    /**
+     * Adds attributes to the badge
+     *
+     * @param $attributes array
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
     }
 }

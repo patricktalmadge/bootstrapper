@@ -1,67 +1,72 @@
 <?php
+
 namespace Bootstrapper;
 
-use HtmlObject\Element;
-use HtmlObject\Lists;
-
 /**
- * Breadcrumb for creating Twitter Bootstrap style breadcrumbs.
+ * Creates Bootstrap 3 compliant Breadcrumbs
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Breadcrumb
+class Breadcrumb extends RenderedObject
 {
     /**
-     * Creates the a new Breadcrumb.
-     *
-     * @param array $links An array of breadcrumbs links
-     * @param array $attributes Attributes to apply the breadcrumbs wrapper
-     *
-     * @return string A breadcrumbs-styled unordered list
+     * @var array The links of the breadcrumb
      */
-    public static function create($links, $attributes = array())
-    {
-        // If no links given, cancel
-        if (empty($links)) {
-            return false;
-        }
-
-        // Render each link
-        $listItems = array();
-        foreach ($links as $label => $url) {
-            $listItems[] = (is_string($label) or is_array($url))
-                ? static::renderItem(Helpers::getContainer('html')->link($url, $label))
-                : static::renderItem($url, true);
-        }
-
-        return Lists::ul($listItems, $attributes)->addClass('breadcrumb');
-    }
+    protected $links = [];
 
     /**
-     * Renders a breadcrumb item
-     *
-     * @param string $content The item content
-     * @param boolean $active Whether the item is active or not
+     * Renders the breadcrumb
      *
      * @return string
      */
-    protected static function renderItem($content, $active = false)
+    public function render()
     {
-        $item = Element::li($content);
-
-        // If the link is not active it's the last one, don't append separator
-        if ($active) {
-            $item->addClass('active');
+        $string = "<ol class='breadcrumb'>";
+        foreach ($this->links as $text => $link) {
+            $string .= $this->renderLink($text, $link);
         }
+        $string .= "</ol>";
 
-        return $item;
+        return $string;
+    }
+
+    /**
+     * Set the links for the breadcrumbs. Expects an array of the following:
+     * <ul>
+     * <li>An array, with keys <code>link</code> and <code>text</code></li>
+     * <li>A string for the active link
+     * </ul>
+     *
+     * @param $links array
+     * @return $this
+     */
+    public function withLinks(array $links)
+    {
+
+        $this->links = $links;
+
+        return $this;
+    }
+
+    /**
+     * Renders the link
+     *
+     * @param $text
+     * @param $link
+     * @return string
+     */
+    protected function renderLink($text, $link)
+    {
+        $string = "";
+        if (is_string($text)) {
+            $string .= "<li>";
+            $string .= "<a href='{$link}'>{$text}</a>";
+        } else {
+            $string .= "<li class='active'>";
+            $string .= $link;
+        }
+        $string .= "</li>";
+
+        return $string;
     }
 }

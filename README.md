@@ -4,13 +4,9 @@ Latest stable version: [![Latest Stable Version](https://poser.pugx.org/patrickt
 
 Travis status : [![Build Status](https://travis-ci.org/patricktalmadge/bootstrapper.svg?branch=develop)](https://travis-ci.org/patricktalmadge/bootstrapper)
 
-Current supported Bootstrap version: 3.1.1
+Current supported Bootstrap version: 3.2.0
 
 Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap 3 style markup.
-
-**THIS USES BOOTSTRAP 3 - If your website breaks after installing
-then check the
-[migration guide](http://bootply.com/bootstrap-3-migration-guide)**
 
 ## Installation
 
@@ -18,7 +14,7 @@ Add the following to your `composer.json` file :
 
 ```json
 "require": {
-"patricktalmadge/bootstrapper": "dev-develop",
+    "patricktalmadge/bootstrapper": "~5",
 },
 ```
 
@@ -31,36 +27,33 @@ Then register Bootstrapper's service provider with Laravel :
 You can then (if you want to) add the following aliases to your `aliases` array in your `config/app.php` file.
 
 ```php
-'Alert'          => 'Bootstrapper\\Alert',
-'Accordion'      => 'Bootstrapper\\Accordion',
-'Badge'          => 'Bootstrapper\\Badge',
-'Breadcrumb'     => 'Bootstrapper\\Breadcrumb',
-'Button'         => 'Bootstrapper\\Button',
-'ButtonGroup'    => 'Bootstrapper\\ButtonGroup',
-'ButtonToolbar'  => 'Bootstrapper\\ButtonToolbar',
-'Carousel'       => 'Bootstrapper\\Carousel',
-'DropdownButton' => 'Bootstrapper\\DropdownButton',
-'Form'           => 'Bootstrapper\\Form',
-'Helpers'        => 'Bootstrapper\\Helpers',
-'Icon'           => 'Bootstrapper\\Icon',
-'Image'          => 'Bootstrapper\\Image',
-'Label'          => 'Bootstrapper\\Label',
-'MediaObject'    => 'Bootstrapper\\MediaObject',
-'Modal'          => 'Bootstrapper\\Modal',
-'Navbar'         => 'Bootstrapper\\Navbar',
-'Navigation'     => 'Bootstrapper\\Navigation',
-'Paginator'      => 'Bootstrapper\\Paginator',
-'Panel'          => 'Bootstrapper\\Panel',
-'Progress'       => 'Bootstrapper\\Progress',
-'Tabbable'       => 'Bootstrapper\\Tabbable',
-'Table'          => 'Bootstrapper\\Table',
-'Thumbnail'      => 'Bootstrapper\\Thumbnail',
-'Typography'     => 'Bootstrapper\\Typography',
+'Accordion' => 'Bootstrapper\Facades\Accordion',
+'Alert' => 'Bootstrapper\Facades\Alert',
+'Badge' => 'Bootstrapper\Facades\Badge',
+'Breadcrumb' => 'Bootstrapper\Facades\Breadcrumb',
+'Button' => 'Bootstrapper\Facades\Button',
+'ButtonGroup' => 'Bootstrapper\Facades\ButtonGroup',
+'Carousel' => 'Bootstrapper\Facades\Carousel',
+'ControlGroup' => 'Bootstrapper\Facades\ControlGroup',
+'DropdownButton' => 'Bootstrapper\Facades\DropdownButton',
+'Form' => 'Bootstrapper\Facades\Form',
+'Helpers' => 'Bootstrapper\Facades\Helpers',
+'Icon' => 'Bootstrapper\Facades\Icon',
+'InputGroup' => 'Bootstrapper\Facades\InputGroup',
+'Image' => 'Bootstrapper\Facades\Image',
+'Label' => 'Bootstrapper\Facades\Label',
+'MediaObject' => 'Bootstrapper\Facades\MediaObject',
+'Modal' => 'Bootstrapper\Facades\Modal',
+'Navbar' => 'Bootstrapper\Facades\Navbar',
+'Navigation' => 'Bootstrapper\Facades\Navigation',
+'Panel' => 'Bootstrapper\Facades\Panel',
+'ProgressBar' => 'Bootstrapper\Facades\ProgressBar',
+'Tabbable' => 'Bootstrapper\Facades\Tabbable',
+'Table' => 'Bootstrapper\Facades\Table',
+'Thumbnail' => 'Bootstrapper\Facades\Thumbnail',
 ```
 
 ## Including Bootstrap
-
-**This package used to use Basset, which is now no longer being actively developed. If you used to use Basset for Bootstrapper alone then you'll need to delete any references to Basset and follow this new guide.**
 
 Include the Bootstrap files just like any other css and js files! Download Bootstrap and JQuery from the [Bootstrap site](http://getbootstrap.com), place them in your public folder and then include them like so:
 
@@ -74,17 +67,20 @@ Feel free to use a CDN, but bear in mind that you may get unexpected functionali
 
 ```html
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 ```
 
 If you want to get the latest Bootstrap that Bootstrapper supports,
 then use the helper function:
 
 ```php
-Bootstrapper\Helpers::get_CSS()
-Bootstrapper\Helpers::get_JS()
+Helpers::css()
+Helpers::js()
 ```
+
+We also have Twitter Bootstrap as a dependency, so you can grab the files from
+your vendor directory.
 
 If you want to stick at a certain version then use
 

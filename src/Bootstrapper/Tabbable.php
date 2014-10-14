@@ -1,342 +1,239 @@
 <?php
+
 namespace Bootstrapper;
 
 /**
- * Tabbable for creating Twitter Bootstrap. Bootstrap JS is required.
+ * Creates Bootstrap 3 compliant tab elements
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Tabbable
+class Tabbable extends RenderedObject
 {
+
     /**
-     * All menu or elements of the current Tabbable
-     *
-     * @var array
+     * Constant for pill tabs
      */
-    protected $menu = array();
+    const PILL = 'pill';
 
     /**
-     * The placement of the current Tabble item
-     *
-     * @var enum
+     * Constant for tab tabs
      */
-    protected $placement = Tabbable::PLACEMENT_ABOVE;
+    const TAB = 'tab';
 
     /**
-     * The style of the current Tabble item
-     *
-     * @var enum
+     * @var Navigation The navigation array
      */
-    protected $style = Navigation::TYPE_TABS;
+    protected $links;
 
     /**
-     * Whether the current Tabble item should stacked or not
-     *
-     * @var boolean
+     * @var array The contents of the navigation. Should be an array of
+     * arrays, with the following inner keys:
+     *            <ul>
+     *            <li>title - the title of the content</li>
+     *            <li>content - the actual content</li>
+     *            <li>attributes (optional) - any attributes</li>
+     *            </ul>
      */
-    protected $stacked = false;
+    protected $contents = [];
 
     /**
-     * The current Tabbable's attributes
-     *
-     * @var array
+     * @var int Which tab should be open first
      */
-    protected $attributes = array();
+    protected $active = 0;
 
     /**
-     * Set the current Tabbables menu attributes
-     *
-     * @var array
+     * @var string The type
      */
-    protected $menu_attributes = array();
-
+    protected $type = self::TAB;
 
     /**
-     * Set the current Tabbables content attributes
-     *
-     * @var array
+     * @var bool Whether we should fade in or not
      */
-    protected $content_attributes = array();
+    protected $fade = false;
 
     /**
-     * Whether the current Tabble item should use automatic routing
-     *
-     * @var boolean
+     * @param Navigation $links A navigation object
      */
-    protected $autoroute = true;
+    public function __construct(Navigation $links)
+    {
+        $this->links = $links->autoroute(false)->withAttributes(
+            ['role' => 'tablist']
+        );
+    }
 
     /**
-     * Tabs placements
-     * @var constant
-     */
-    const PLACEMENT_ABOVE = 'tabs-above';
-    const PLACEMENT_BELOW = 'tabs-below';
-    const PLACEMENT_LEFT = 'tabs-left';
-    const PLACEMENT_RIGHT = 'tabs-right';
-
-
-    /**
-     * Generate a Bootstrap tabbable object.
-     *
-     * @param array $menu Tab items
-     * @param array $attributes Attributes for the tabs
+     * Renders the tabbable object
      *
      * @return string
      */
-    public static function create($menu, $attributes = array())
-    {
-        // Fetch current instance
-        $instance = new Tabbable;
-
-        // Save given parameters
-        $instance->menu = $menu;
-        $instance->attributes = $attributes;
-
-        return $instance;
-    }
-
-    /**
-     * Set the placement to Tabbable enum
-     *
-     * @param string $placement The new placement value
-     *
-     * @return Tabbable
-     */
-    public function placement($placement)
-    {
-        $this->placement = $placement;
-
-        return $this;
-    }
-
-    /**
-     * Set the menu style to Navigation enum
-     *
-     * @param string $style The new menu style value
-     *
-     * @return Tabbable
-     */
-    public function style($style)
-    {
-        $this->style = $style;
-
-        return $this;
-    }
-
-    /**
-     * Set the stacked value to true or false
-     *
-     * @param boolean $stacked The new stacked value
-     *
-     * @return Tabbable
-     */
-    public function stacked($stacked = true)
-    {
-        $this->stacked = $stacked;
-
-        return $this;
-    }
-
-    /**
-     * Add menus or strings to the current Tabbable
-     *
-     * @param array $attributes An array of attributes to use
-     *
-     * @return Tabbable
-     */
-    public function menu_attributes($attributes = array())
-    {
-        $this->menu_attributes = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Add attributes to the content of the current Tabbable
-     *
-     * @param array $attributes An array of attributes to use
-     *
-     * @return Tabbable
-     */
-    public function content_attributes($attributes)
-    {
-        $this->content_attributes = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Set the autoroute to true or false
-     *
-     * @param boolean $autoroute The new autoroute value
-     *
-     * @return Tabbable
-     */
-    public function autoroute($autoroute)
-    {
-        $this->autoroute = $autoroute;
-
-        return $this;
-    }
-
-    /**
-     * Prints out the current Tabbable in case it doesn't do it automatically
-     *
-     * @return string A Tabbable
-     */
-    public function __toString()
-    {
-        return $this->render();
-    }
-
-    /**
-     * Writes the current Tabbable
-     *
-     * @return string A Bootstrap Tabbable
-     */
     public function render()
     {
-        $content = array();
-        $list = static::normalize($this->menu, $content);
+        $string = $this->renderNavigation();
+        $string .= $this->renderContents();
 
-        $tabs = Navigation::menu($list, $this->style, $this->stacked, $this->menu_attributes, $this->autoroute);
-
-        // Tab content container
-        if (!isset($this->content_attributes['class'])) {
-            $this->content_attributes['class'] = 'tab-content';
-        } else {
-            $this->content_attributes['class'] .= ' tab-content';
-        }
-
-        $content = '<div ' . Helpers::getContainer('html')->attributes($this->content_attributes) . '>' . implode(
-                '',
-                $content
-            ) . '</div>';
-
-        $html = '<div class="tabbable ' . $this->placement . '"' . Helpers::getContainer('html')->attributes(
-                $this->attributes
-            ) . '>';
-        $html .= $this->placement === self::PLACEMENT_BELOW ? $content . $tabs : $tabs . $content;
-        $html .= '</div>';
-
-        return $html;
+        return $string;
     }
 
     /**
-     * Normalizes the items list and correct urls if any are set.
+     * Creates content with a tabbed navigation
      *
-     * @param array $items Tab items
-     * @param array &$panes array of panes
-     * @param int &$i index
+     * @param array $contents The content
+     * @return $this
+     * @see Bootstrapper\Navigation::$contents
+     */
+    public function tabs($contents = [])
+    {
+        $this->links->tabs();
+        $this->type = self::TAB;
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Creates content with a pill navigation
+     *
+     * @param array $contents
+     * @return $this
+     * @see Bootstrapper\Navigation::$contents
+     */
+    public function pills($contents = [])
+    {
+        $this->links->pills();
+        $this->type = self::PILL;
+
+        return $this->withContents($contents);
+    }
+
+    /**
+     * Sets the contents
+     *
+     * @param array $contents An array of arrays
+     * @return $this
+     * @see Bootstrapper\Navigation::$contents
+     */
+    public function withContents(array $contents)
+    {
+        $this->contents = $contents;
+
+        return $this;
+    }
+
+    /**
+     * Render the navigation links
+     *
+     * @return string
+     */
+    protected function renderNavigation()
+    {
+        $this->links->links($this->createNavigationLinks());
+
+        return $this->links->render();
+    }
+
+    /**
+     * Creates the navigation links
      *
      * @return array
      */
-    protected static function normalize($items, &$panes, &$i = 0)
+    protected function createNavigationLinks()
     {
-        $id = Helpers::rand_string(5);
-        $tabs = array();
+        $links = [];
+        $count = 0;
+        foreach ($this->contents as $link) {
+            $links[] = [
+                'link' => '#' . Helpers::slug($link['title']),
+                'title' => $link['title'],
+                'linkAttributes' => [
+                    'role' => 'tab',
+                    'data-toggle' => $this->type
+                ],
+                'active' => $count == $this->active
+            ];
+            $count += 1;
+        }
+        return $links;
+    }
 
-        if (!is_array($items)) {
-            return false;
+    /**
+     * Renders the contents
+     *
+     * @return string
+     */
+    protected function renderContents()
+    {
+        $tabs = $this->createContentTabs();
+
+        $string = '<div class=\'tab-content\'>';
+        foreach ($tabs as $tab) {
+            $string .= "<div {$tab['attributes']}>{$tab['content']}</div>";
         }
 
-        foreach ($items as $key => $tab) {
-            $url = '#';
-            if (isset($tab['items'])) {
+        $string .= '</div>';
 
-                $tab['items'] = static::normalize($tab['items'], $panes, $i);
-            } else {
-                if (!isset($tab['url'])) {
-                    $tab['url'] = '';
-                }
+        return $string;
+    }
 
-                $tabId = 'tab_' . $id . '_' . $i;
+    /**
+     * Creates the content tabs
+     *
+     * @return array
+     */
+    protected function createContentTabs()
+    {
+        $tabs = [];
+        $count = 0;
 
-                //if not disabled set toggle and url
-                if (!isset($tab['disabled']) || !$tab['disabled']) {
-                    $tab['attributes'] = array('data-toggle' => 'tab');
-                    $url .= $tabId;
-                }
+        foreach ($this->contents as $item) {
+            $itemAttributes = isset($item['attributes']) ?
+                $item['attributes'] :
+                [];
 
-                $class = 'tab-pane';
-                if (isset($tab['active']) && $tab['active']) {
-                    $class .= ' active';
-                }
+            $attributes = new Attributes(
+                $itemAttributes,
+                ['class' => 'tab-pane', 'id' => Helpers::slug($item['title'])]
+            );
 
-                $panes[] = '<div class="' . $class . '" id="' . $tabId . '">' . $tab['url'] . '</div>';
-
-                $tab['url'] = $url;
-                $i++;
+            if ($this->fade) {
+                $attributes->addClass('fade');
             }
-            $tabs[] = $tab;
+
+            if ($this->active == $count) {
+                $attributes->addClass($this->fade ? 'in active' : 'active');
+            }
+
+            $tabs[] = [
+                'content' => $item['content'],
+                'attributes' => $attributes
+            ];
+
+            $count += 1;
         }
 
         return $tabs;
     }
 
     /**
-     * Checks call to see if we can create a tabbable from a magic call (for you wizards).
-     * tabs_above, tabs_left, pills, lists, etc...
+     * Sets which tab should be active
      *
-     * @param string $method Method name
-     * @param array $parameters Method parameters
-     *
-     * @return mixed
+     * @param int $active
+     * @return $this
      */
-    public static function __callStatic($method, $parameters)
+    public function active($active)
     {
-        $method_array = explode('_', strtolower($method));
+        $this->active = $active;
 
-        $list_styles = array('tabs', 'pills', 'lists');
-        $style_found = array_intersect($method_array, $list_styles);
+        return $this;
+    }
 
-        // Check for placment
-        $list_placement = array('above', 'below', 'left', 'right');
-        $placement_found = array_intersect($method_array, $list_placement);
+    /**
+     * Sets the tabbable objects to fade in
+     *
+     * @return $this
+     */
+    public function fade()
+    {
+        $this->fade = true;
 
-        if (count($style_found) > 0) {
-            // Check list parameters
-            $menu = array_get($parameters, 0);
-            if (!(isset($menu) && is_array($menu))) {
-                throw new \Exception("Tabbable requires an array of menu items");
-            }
-
-            $attributes = array_get($parameters, 1);
-            if (isset($attributes) && !is_array($attributes)) {
-                throw new \Exception("Tabbable attributes parameter should be an array of attributes");
-            }
-
-            $inst = static::create($menu, $attributes);
-
-            //Set placement
-            if (count($placement_found) > 0) {
-                $placement = $placement_found[key($placement_found)];
-                $inst->placement('tabs-' . $placement);
-            }
-
-            //Set Style
-            if (count($style_found) > 0) {
-                $style = $style_found[key($style_found)];
-
-                // Hack to get around dynamic list call
-                if ($style === 'lists') {
-                    $style = 'list';
-                }
-
-                $inst->style('nav-' . $style);
-            }
-
-            return $inst;
-        }
-
-        throw new \Exception("Method [$method] does not exist.");
+        return $this;
     }
 }

@@ -1,308 +1,169 @@
 <?php
+
 namespace Bootstrapper;
 
+use Bootstrapper\Exceptions\CarouselException;
+
 /**
- * Carousel for creating Twitter Bootstrap style Carousels.
+ * Creates Bootstrap 3 compliant carousels
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Carousel
+class Carousel extends RenderedObject
 {
-    /**
-     * The current Carousel instance
-     * @var Carousel
-     */
-    protected static $carousel;
 
     /**
-     * How data will be fetched from each object/entry
-     * @var array
+     * @var string The name of the carousel
      */
-    protected $schema = array(
-        'key' => 'id',
-        'alt' => 'alt_text',
-        'attributes' => 'attributes',
-        'caption' => 'caption',
-        'label' => 'label',
-        'image' => 'image',
-    );
+    protected $name;
 
     /**
-     * The carousel's items
-     * @var array
+     * @var array The contents of the carousel. Should be an array of arrays,
+     * with the inner arrays having the following keys:
+     * <dl><dt>image</dt><dd>A path to the image</dd> <dt>alt</dt><dd>The alt
+     * text for the image</dd> <dt>caption (optional)</dt><dd>The caption for
+     * that slide</dd></dl>
+
      */
-    protected $items = array();
+    protected $contents = [];
 
     /**
-     * The carousel's attributes
-     * @var array
+     * @var array The attributes of the carousel
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
-     * The previous button content
-     * @var string
+     * @var int Which slide should be active at the beginning
      */
-    protected $prev = '&lsaquo;';
+    protected $active = 0;
 
     /**
-     * The next button content
-     * @var string
-     */
-    protected $next = '&rsaquo;';
-
-    /**
-     * The current carousel's hash
-     * @var string
-     */
-    protected $hash = null;
-
-    /**
-     * The current active element in the carousel
-     * @var integer
-     */
-    protected $active = null;
-
-    /**
-     * Create a Bootstrap carousel. Returns the HTML for the carousel.
+     * Names the carousel
      *
-     * @param array $items An array of carousel items
-     * @param array $attributes Attributes to apply the carousel itself
-     *
-     * @return Carousel
+     * @param string $name The name of the carousel
+     * @return $this
      */
-    public static function create($items, $attributes = array())
+    public function named($name)
     {
-        static::$carousel = new static($items, $attributes);
-
-        return static::$carousel;
-    }
-
-    /**
-     * Renders a Carousel navigation for custom carousels
-     *
-     * @return string A Carousel navigation
-     */
-    public function navigation()
-    {
-        $navigation = null;
-
-        if (sizeof($this->items) > 1) {
-            $navigation = '<a href="' . $this->hash . '" class="carousel-control left" data-slide="prev">' . $this->prev . '</a>';
-            $navigation .= '<a href="' . $this->hash . '" class="carousel-control right" data-slide="next">' . $this->next . '</a>';
-        }
-
-        return $navigation;
-    }
-
-    /**
-     * Creates a new Carousel instance
-     *
-     * @param array $items The items to use as pictures
-     * @param array $attributes Its attributes
-     */
-    public function __construct($items, $attributes = array())
-    {
-        $this->items = $items;
-        $this->attributes = Helpers::add_class($attributes, 'carousel slide');
-
-        // Set default active item
-        $this->active = key($items);
-
-        // Calculate the Carousel ID
-        $this->hash = '#' . array_get($attributes, 'id', 'carousel_' . Helpers::rand_string(5));
-    }
-
-    /**
-     * Magic methods for the Carousel class
-     *
-     * @param  string $method The method
-     * @param  array $parameters Its parameters
-     * @return Carousel
-     */
-    public function __call($method, $parameters)
-    {
-        // Dynamic schema editing
-        // Example : ->as_label('name') and $item->name/$item['name'] will be used as label
-        if (starts_with($method, 'as_')) {
-            $as = substr($method, 3);
-            $use = array_get($parameters, 0);
-            $this->schema[$as] = $use;
-        }
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Changes the text for the prev link
+     * Sets the attributes of the carousel
      *
-     * @param  string $prev The new text
-     * @return Carousel
+     * @param array $attributes The new attributes
+     * @return $this
      */
-    public function prev($prev)
+    public function withAttributes(array $attributes)
     {
-        $this->prev = $prev;
+        $this->attributes = $attributes;
 
         return $this;
     }
 
     /**
-     * Changes the text for the next link
+     * Sets the contents of the carousel
      *
-     * @param  string $next The new text
-     * @return Carousel
+     * @param array $contents The new contents. Should be an array of arrays,
+     *                        with the inner keys being "image", "alt" and
+     *                        (optionally) "caption"
+     * @return $this
      */
-    public function next($next)
+    public function withContents(array $contents)
     {
-        $this->next = $next;
+        $this->contents = $contents;
 
         return $this;
     }
 
     /**
-     * Set which element will be the active one
+     * Renders the carousel
      *
-     * @param  integer $key A key
-     * @return Carousel
-     */
-    public function active($key)
-    {
-        $this->active = $key;
-
-        return $this;
-    }
-
-    /**
-     * Set the current Carousel's #id
-     *
-     * @param  string $id The new id
-     * @return Carousel
-     */
-    public function id($id)
-    {
-        $this->hash = '#' . $id;
-
-        return $this;
-    }
-
-    /**
-     * Use a custom object schema for the images passed
-     *
-     * @param  array $schema A schema array
-     * @return Carousel
-     */
-    public function with_schema($schema)
-    {
-        $this->schema = (array)array_merge($this->schema, $schema);
-
-        return $this;
-    }
-
-    /**
-     * Prints out the current Carousel instance
-     *
-     * @return string A carousel
+     * @return string
+     * @throws \Bootstrapper\Exceptions\CarouselException Thrown if the
+     * carousel has not been named
      */
     public function render()
     {
-        // Render main wrapper
-        $this->attributes['id'] = substr($this->hash, 1);
-        $html = '<div' . Helpers::getContainer('html')->attributes($this->attributes) . '>';
-        $html .= "<ol class='carousel-indicators'>";
-        for ($i = 0; $i < count($this->items); $i++) {
-            $html .= "<li data-slide-to='" . $i . "' data-target='" . $this->hash . "'></li>";
+        if (!$this->name) {
+            throw new CarouselException("You haven't named the carousel");
         }
-        $html .= "</ol>";
 
-        // Render items
-        $html .= '<div class="carousel-inner">';
-        foreach ($this->items as $key => $item) {
-            $html .= $this->createItem($item, $key);
-        }
-        $html .= '</div>';
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'id' => $this->name,
+                'class' => 'carousel slide',
+                'data-ride' => 'carousel'
+            ]
+        );
 
-        // Render navigation
-        $html .= $this->navigation($this->hash, $this->prev, $this->next);
-        $html .= '</div>';
+        $string = "<div {$attributes}>";
+        $string .= $this->renderIndicators();
+        $string .= $this->renderItems();
+        $string .= $this->renderControls();
+        $string .= "</div>";
 
-        return $html;
+        return $string;
     }
-
-    public function __toString()
-    {
-        return $this->render();
-    }
-
-    //////////////////////////////////////////////////////////////////
-    ///////////////////////////// HELPERS ////////////////////////////
-    //////////////////////////////////////////////////////////////////
 
     /**
-     * Create a carousel item. Returns a HTML element for one slide.
+     * Renders the indicators
      *
-     * @param  array $item A carousel item to render
-     * @param  bool $key A fallback key as the item's position in the array
      * @return string
      */
-    protected function createItem($item, $key)
+    protected function renderIndicators()
     {
-        // Gather necessary variables
-        $key = $this->getFromItem($item, 'key', $key);
-        $altText = $this->getFromItem($item, 'alt');
-        $attributes = $this->getFromItem($item, 'attributes', array());
-        $caption = $this->getFromItem($item, 'caption');
-        $label = $this->getFromItem($item, 'label');
-        $image = $this->getFromItem($item, 'image');
-
-        // If we were given an array of image paths instead of arrays
-        if (!$image and is_string($item)) {
-            $image = $item;
+        $string = "<ol class='carousel-indicators'>";
+        for ($i = 0; $i < count($this->contents); $i++) {
+            if ($i == $this->active) {
+                $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}' class='active'></li>";
+            } else {
+                $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}'></li>";
+            }
         }
+        $string .= "</ol>";
 
-        // Build HTML
-        $active = $this->active == $key ? ' active' : null;
-        $html = '<div class="item' . $active . '">';
-
-        // Render the image
-        $html .= Helpers::getContainer('html')->image($image, $altText, $attributes);
-
-        // If we have a caption, render it
-        if ($caption or $label) {
-            $html .= '<div class="carousel-caption">';
-            if ($label) $html .= '<h4>' . $label . '</h4>';
-            if ($caption) $html .= '<p>' . $caption . '</p>';
-            $html .= '</div>';
-        }
-
-        $html .= '</div>';
-
-        return $html;
+        return $string;
     }
 
     /**
-     * Get a piece of data from an item
+     * Renders the items of the carousel
      *
-     * @param  mixed $item The item
-     * @param  string $key The key to fetch
-     * @param  string $fallback A fallback to use
-     * @return string A data from the item
+     * @return string
      */
-    protected function getFromItem($item, $key, $fallback = null)
+    protected function renderItems()
     {
-        $key = $this->schema[$key];
-
-        if (is_object($item)) {
-            return $item->$key ? : $fallback;
-        } else {
-            return array_get($item, $key, $fallback);
+        $string = "<div class='carousel-inner'>";
+        $count = 0;
+        foreach ($this->contents as $item) {
+            if ($count == $this->active) {
+                $string .= "<div class='item active'>";
+            } else {
+                $string .= "<div class='item'>";
+            }
+            $string .= "<img src='{$item['image']}' alt='{$item['alt']}'>";
+            if (isset($item['caption'])) {
+                $string .= "<div class='carousel-caption'>{$item['caption']}</div>";
+            }
+            $string .= "</div>";
+            $count++;
         }
+        $string .= "</div>";
+
+        return $string;
     }
+
+    /**
+     * Renders the controls of the carousel
+     *
+     * @return string
+     */
+    protected function renderControls()
+    {
+        return "<a class='left carousel-control' href='#{$this->name}' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#{$this->name}' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a>";
+    }
+
 }

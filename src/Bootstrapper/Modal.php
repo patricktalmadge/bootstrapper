@@ -1,124 +1,211 @@
-<?php namespace Bootstrapper;
+<?php
+
+namespace Bootstrapper;
+
+use Bootstrapper\Exceptions\ModalException;
 
 /**
- * Class for creating Twitter Bootstrap Modals.
+ * Creates Bootstrap 3 compliant modal
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @author     Patrick Rose - <pjr0911025@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
  */
-class Modal
+class Modal extends RenderedObject
 {
 
-    protected $attributes;
+    /**
+     * @var array The attributes
+     */
+    protected $attributes = [];
 
-    protected $header;
+    /**
+     * @var string The title of the modal
+     */
+    protected $title;
 
+    /**
+     * @var string The body of the modal
+     */
     protected $body;
 
+    /**
+     * @var string The footer of the modal
+     */
     protected $footer;
 
-    public static function create($label, $attributes = null)
-    {
-        $attributes = Helpers::add_class($attributes, $label, "aria-labelledby");
-        $attributes = Helpers::add_class($attributes, $label, "id");
+    /**
+     * @var string The name of the modal
+     */
+    protected $name;
 
-        return new static($attributes);
-    }
+    /**
+     * @var string The button of the modal
+     */
+    protected $button;
 
-    public static function withHeader($headerText, $label, $attributes = null)
-    {
-        $attributes = Helpers::add_class($attributes, $label, "id");
-        $attributes = Helpers::add_class($attributes, $label, "aria-labelledby");
-        $modal = new static($attributes, $headerText);
-
-        return $modal;
-    }
-
-    public static function withBody($bodyText, $label, $attributes = null)
-    {
-        $attributes = Helpers::add_class($attributes, $label, "aria-labelledby");
-        $attributes = Helpers::add_class($attributes, $label, "id");
-
-        return new static($attributes, null, $bodyText);
-    }
-
-    public static function withFooter($footerText, $label, $attributes = null)
-    {
-        $attributes = Helpers::add_class($attributes, $label, "aria-labelledby");
-        $attributes = Helpers::add_class($attributes, $label, "id");
-
-        return new static($attributes, null, null, $footerText);
-    }
-
-    public function __construct($attributes, $header = null, $body = null, $footer = null)
-    {
-        $this->attributes = $attributes;
-        $this->header = $header;
-        $this->body = $body;
-        $this->footer = $footer;
-    }
-
-    public function header($headerText)
-    {
-        $this->header = $headerText;
-
-        return $this;
-    }
-
-    public function body($bodyText)
-    {
-        $this->body = $bodyText;
-
-        return $this;
-    }
-
-    public function footer($footerText)
-    {
-        $this->footer = $footerText;
-
-        return $this;
-    }
-
+    /**
+     * Renders the modal
+     *
+     * @return string
+     * @throws ModalException if the id has not been set
+     */
     public function render()
     {
-        $this->attributes = Helpers::add_class($this->attributes, 'modal');
-        $this->attributes = Helpers::add_class($this->attributes, "true", 'aria-hidden');
-        // Open the modal
-        $string = "<div" . Helpers::getContainer('html')->attributes(
-                $this->attributes
-            ) . "><div class='modal-dialog'><div class='modal-content'>";
-        // Add the header
-        $string .= '<div class="modal-header">';
-        $string .= '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>';
-        if ($this->header) {
-            $string .= "<h3>" . $this->header . "</h3>";
-        }
-        $string .= "</div>";
-        if ($this->body) {
-            $string .= "<div class='modal-body'>";
-            $string .= $this->body;
-            $string .= "</div>";
-        }
-        if ($this->footer) {
-            $string .= "<div class='modal-footer'>";
-            $string .= $this->footer;
-            $string .= "</div>";
-        }
+        $attributes = new Attributes($this->attributes, ['class' => 'modal']);
 
-        return $string . "</div></div></div>";
+        $string = $this->renderButton($attributes);
+
+        $string .= "<div {$attributes}><div class='modal-dialog'><div class='modal-content'>";
+
+        $string .= $this->renderHeader();
+        $string .= $this->renderBody();
+        $string .= $this->renderFooter();
+
+        $string .= "</div></div></div>";
+
+        return $string;
     }
 
-    public function __toString()
+    /**
+     * Sets the attributes
+     *
+     * @param array $attributes The new attributes of the modal
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
     {
-        return $this->render();
+        $this->attributes = $attributes;
+
+        return $this;
     }
 
+    /**
+     * Sets the title of the modal
+     *
+     * @param string $title
+     * @return $this
+     */
+    public function withTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Renders the header of the modal
+     *
+     * @return string
+     */
+    protected function renderHeader()
+    {
+        $title = '';
+        if ($this->title) {
+            $title .= "<h4 class='modal-title'>{$this->title}</h4>";
+        }
+
+        return "<div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>{$title}</div>";
+    }
+
+    /**
+     * Sets the body of the modal
+     *
+     * @param string $body The new body of the modal
+     * @return $this
+     */
+    public function withBody($body)
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    /**
+     * Renders the body
+     *
+     * @return string
+     */
+    protected function renderBody()
+    {
+        return $this->body ? "<div class='modal-body'>{$this->body}</div>" : '';
+    }
+
+    /**
+     * Renders the footer
+     *
+     * @return string
+     */
+    protected function renderFooter()
+    {
+        return $this->footer ? "<div class='modal-footer'>{$this->footer}</div>" : '';
+    }
+
+    /**
+     * @param $footer
+     * @return $this
+     */
+    public function withFooter($footer)
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * Sets the name of the modal
+     *
+     * @param string $name The name of the modal
+     * @return $this
+     */
+    public function named($name)
+    {
+        $this->name = $name;
+        $this->attributes['id'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Sets the button
+     *
+     * @param Button $button The button to open the modal with
+     * @return $this
+     */
+    public function withButton(Button $button = null)
+    {
+        if ($button) {
+            $this->button = $button;
+        } else {
+            $button = new Button();
+
+            $this->button = $button->withValue('Open Modal');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Renders the button
+     *
+     * @param Attributes $attributes The attributes of the modal
+     * @return string
+     * @throws ModalException if the id hasn't been set
+     */
+    protected function renderButton(Attributes $attributes)
+    {
+        if (!$this->button) {
+            return '';
+        }
+
+        if (!isset($attributes['id'])) {
+            throw new ModalException(
+                "You must give the modal an id either using withAttributes() or named()"
+            );
+        }
+
+        $this->button->addAttributes(
+            ['data-toggle' => 'modal', 'data-target' => "#{$attributes['id']}"]
+        )->render();
+
+        return $this->button->render();
+    }
 }

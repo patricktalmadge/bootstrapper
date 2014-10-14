@@ -1,271 +1,171 @@
 <?php
+
 namespace Bootstrapper;
 
-use HtmlObject\Element;
-use HtmlObject\Text;
-
 /**
- * Alert for creating Twitter Bootstrap style alerts.
+ * Creates Bootstrap 3 compliant alert boxes
  *
- * @category   HTML/UI
- * @package    Boostrapper
- * @subpackage Twitter
- * @author     Patrick Talmadge - <ptalmadge@gmail.com>
- * @author     Maxime Fabre - <ehtnam6@gmail.com>
- * @author     Marvin Schröder - <marvinschroeder85@gmail.com>
- * @license    MIT License <http://www.opensource.org/licenses/mit>
- * @link       http://laravelbootstrapper.phpfogapp.com/
- *
- * @see        http://twitter.github.com/bootstrap/
+ * @package Bootstrapper
+ * @author  Patrick Rose
  */
-class Alert extends Element
+class Alert extends RenderedObject
 {
+
     /**
-     * Alert styles
-     *
-     * @var constant
+     * Constant for info alerts
      */
-    const DANGER = 'alert-danger';
     const INFO = 'alert-info';
+
+    /**
+     * Constant for success alerts
+     */
     const SUCCESS = 'alert-success';
+
+    /**
+     * Constant for warning alerts
+     */
     const WARNING = 'alert-warning';
 
     /**
-     * The type of the alert
-     *
-     * @var enum
+     * Constant for danger alerts
      */
-    protected $type = Alert::SUCCESS;
+    const DANGER = 'alert-danger';
 
     /**
-     * The message of the alert
-     *
-     * @var string
+     * @var string The type of the alert
      */
-    protected $message = null;
+    protected $type;
 
     /**
-     * Whether the current alert is closeable
-     *
-     * @var boolean
+     * @var string The contents of the alert
      */
-    protected $isCloseable = true;
+    protected $contents;
 
     /**
-     * Whether the current alert is block or not.
-     *
-     * @var boolean
+     * @var array The attributes of the alert
      */
-    protected $isBlock = false;
-
-    //////////////////////////////////////////////////////////////////
-    ////////////////////////// CORE METHODS //////////////////////////
-    //////////////////////////////////////////////////////////////////
+    protected $attributes = [];
 
     /**
-     * Writes the current Alert
+     * @var string What should we use to generate a close tag
+     */
+    protected $closer;
+
+    /**
+     * Sets the type of the alert. The alert prefix is not assumed.
      *
-     * @return string A Bootstrap Alert
+     * @param $type string
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Renders the alert
+     *
+     * @return string
      */
     public function render()
     {
-        $this->addClass('alert');
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => "alert {$this->type}"]
+        );
 
-        // Block alert
-        if ($this->isBlock) {
-            $this->addClass('alert-block');
+        if ($this->closer) {
+            $attributes['class'] = trim(
+                    $attributes['class']
+                ) . ' alert-dismissable';
+            $this->contents = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>{$this->closer}</button>{$this->contents}";
         }
 
-        // Add close icon if necessary
-        if ($this->isCloseable) {
-            $close = Helpers::getContainer('html')->link(
-                '#',
-                '&times;',
-                array('class' => 'close', 'data-dismiss' => 'alert')
-            );
-            $this->nest($close);
-        }
-
-        $this->nest(new Text($this->message));
-
-        return '<' . $this->element . Helpers::getContainer('html')->attributes(
-            $this->attributes
-        ) . '>' . $this->getContent() . $this->close();
+        return "<div {$attributes}>{$this->contents}</div>";
     }
 
     /**
-     * Check to see if we're calling an informative alert
+     * Creates an info alert box
      *
-     * @param string $method The function called
-     * @param array $parameters Its parameters
-     *
-     * @return Alert
+     * @param string $contents
+     * @return $this
      */
-    public static function __callStatic($method, $parameters)
+    public function info($contents = '')
     {
-        // Extract real method and type of alert
-        $method = explode('_', $method);
-
-        // Search for "open_type" method
-        $open = array_search('open', $method);
-        if ($closable = ($open !== false)) {
-            unset($method[$open]);
-        }
-
-        // Search for "block_type" method
-        $block = array_search('block', $method);
-        if ($blockType = ($block !== false)) {
-            unset($method[$block]);
-        }
-
-        $type = 'alert-' . implode('-', $method);
-        $message = array_get($parameters, 0);
-        $attributes = array_get($parameters, 1);
-        $instance = Alert::show($type, $message, $attributes);
-
-        $instance->open(!$closable);
-        $instance->block($blockType);
-
-        return $instance;
+        return $this->setType(self::INFO)->withContents($contents);
     }
 
-    //////////////////////////////////////////////////////////////////
-    ///////////////////////// PUBLIC METHODS /////////////////////////
-    //////////////////////////////////////////////////////////////////
+    /**
+     * Creates a success alert box
+     *
+     * @param string $contents
+     * @return $this
+     */
+    public function success($contents = '')
+    {
+        return $this->setType(self::SUCCESS)->withContents($contents);
+    }
 
     /**
-     * Force the alert to be open
+     * Creates a warning alert box
      *
-     * @param bool $closeable If the alert should be closeable or not
-     *
-     * @return Alert
+     * @param string $contents
+     * @return $this
      */
-    public function open($closeable = false)
+    public function warning($contents = '')
     {
-        $this->isCloseable = $closeable;
+        return $this->setType(self::WARNING)->withContents($contents);
+    }
+
+    /**
+     * Creates a danger alert box
+     *
+     * @param string $contents
+     * @return $this
+     */
+    public function danger($contents = '')
+    {
+        return $this->setType(self::DANGER)->withContents($contents);
+    }
+
+    /**
+     * Sets the contents of the alert box
+     *
+     * @param $contents
+     * @return $this
+     */
+    public function withContents($contents)
+    {
+        $this->contents = $contents;
 
         return $this;
     }
 
-
     /**
-     * Make the alert block
+     * Adds a close button with the given text
      *
-     * @param bool $block If the alert should be block or not
-     *
-     * @return Alert
+     * @param string $closer
+     * @return $this
      */
-    public function block($block = true)
+    public function close($closer = '&times;')
     {
-        $this->isBlock = $block;
+        $this->closer = $closer;
 
         return $this;
     }
 
-    //////////////////////////////////////////////////////////////////
-    /////////////////////////// ALERT TYPES //////////////////////////
-    //////////////////////////////////////////////////////////////////
-
     /**
-     * Create a new Alert.
+     * Sets the attributes of the alert
      *
-     * @param string $type Type of alert
-     * @param string $message Message in alert
-     * @param bool $enable_close Is Alert closable
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
+     * @param $attributes
+     * @return $this
      */
-    protected static function show($type, $message, $attributes = array())
+    public function withAttributes($attributes)
     {
-        $instance = new static('div', null, $attributes);
+        $this->attributes = $attributes;
 
-        // Save given parameters
-        $instance->addClass($type);
-        $instance->message = $message;
-
-        return $instance;
-    }
-
-    /**
-     * Create a new Success Alert.
-     *
-     * @param string $message Message in alert
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
-     */
-    public static function success($message, $attributes = array())
-    {
-        return static::show(Alert::SUCCESS, $message, $attributes);
-    }
-
-    /**
-     * Create a new Info Alert.
-     *
-     * @param string $message Message in alert
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
-     */
-    public static function info($message, $attributes = array())
-    {
-        return static::show(Alert::INFO, $message, $attributes);
-    }
-
-    /**
-     * Create a new Warning Alert.
-     *
-     * @param string $message Message in alert
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
-     */
-    public static function warning($message, $attributes = array())
-    {
-        return static::show(Alert::WARNING, $message, $attributes);
-    }
-
-    /**
-     * Create a new Error Alert.
-     *
-     * @param string $message Message in alert
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
-     */
-    public static function error($message, $attributes = array())
-    {
-        return static::show(Alert::DANGER, $message, $attributes);
-    }
-
-    /**
-     * Create a new Danger Alert.
-     *
-     * @param string $message Message in alert
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
-     */
-    public static function danger($message, $attributes = array())
-    {
-        return static::show(Alert::DANGER, $message, $attributes);
-    }
-
-    /**
-     * Create a new custom Alert.
-     * This assumes you have created the appropriate css class for the alert type.
-     *
-     * @param string $type Type of alert
-     * @param string $message Message in alert
-     * @param array $attributes Parent div attributes
-     *
-     * @return string Alert HTML
-     */
-    public static function custom($type, $message, $attributes = array())
-    {
-        $type = 'alert-' . (string)$type;
-
-        return static::show($type, $message, $attributes);
+        return $this;
     }
 }
