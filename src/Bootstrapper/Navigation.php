@@ -82,6 +82,11 @@ class Navigation extends RenderedObject
     protected $stacked = false;
 
     /**
+     * @var bool Whether the navigation links float right or not
+     */
+    protected $right = false;
+
+    /**
      * @param UrlGenerator $urlGenerator
      */
     public function __construct(UrlGenerator $urlGenerator)
@@ -107,6 +112,10 @@ class Navigation extends RenderedObject
 
         if ($this->stacked) {
             $attributes->addClass('nav-stacked');
+        }
+
+        if ($this->right) {
+            $attributes->addClass('navbar-right');
         }
 
         $string = "<ul {$attributes}>";
@@ -366,6 +375,18 @@ class Navigation extends RenderedObject
     public function stacked()
     {
         $this->stacked = true;
+
+        return $this;
+    }
+
+    /**
+     * Makes the navigation links float right
+     *
+     * @return $this
+     */
+    public function right()
+    {
+        $this->right = true;
 
         return $this;
     }
