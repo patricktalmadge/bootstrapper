@@ -32,8 +32,12 @@ class TabbableSpec extends ObjectBehavior
 
     function it_can_be_made_into_tabs_or_pills()
     {
-        $this->tabs()->render()->shouldBe("<ul class='nav nav-tabs' role='tablist'></ul><div class='tab-content'></div>");
-        $this->pills()->render()->shouldBe("<ul class='nav nav-pills' role='tablist'></ul><div class='tab-content'></div>");
+        $this->tabs()->render()->shouldBe(
+            "<ul class='nav nav-tabs' role='tablist'></ul><div class='tab-content'></div>"
+        );
+        $this->pills()->render()->shouldBe(
+            "<ul class='nav nav-pills' role='tablist'></ul><div class='tab-content'></div>"
+        );
     }
 
     function it_can_be_given_contents()

@@ -99,7 +99,7 @@ class Accordion extends RenderedObject
     public function render()
     {
         if (!$this->name) {
-            throw new AccordionException("You have not named this accordion");
+            $this->name = Helpers::generateId($this);
         }
         $attributes = new Attributes(
             $this->attributes,

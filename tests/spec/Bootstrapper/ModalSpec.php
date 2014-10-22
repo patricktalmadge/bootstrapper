@@ -64,14 +64,18 @@ class ModalSpec extends ObjectBehavior
 
     function it_squawks_if_you_have_a_button_but_no_id()
     {
-        $this->withButton()->shouldThrow('Bootstrapper\\Exceptions\\ModalException')->duringRender();
+        $this->withButton()->shouldThrow(
+            'Bootstrapper\\Exceptions\\ModalException'
+        )->duringRender();
     }
 
     function it_allows_you_to_customise_the_button()
     {
         $button = new Button();
 
-        $this->named('foo')->withButton($button->primary()->withValue('open'))->render()->shouldBe(
+        $this->named('foo')->withButton(
+            $button->primary()->withValue('open')
+        )->render()->shouldBe(
             "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#foo'>open</button><div class='modal' id='foo'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button></div></div></div></div>"
         );
     }

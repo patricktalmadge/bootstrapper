@@ -4,13 +4,33 @@ namespace Bootstrapper\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Facade for Bootstrapper classes. Have to use this because Laravel is a bit
+ * too clever for our liking and gives us the same instance each time. This
+ * is not helpful when we're using something like this and we have several
+ * instances of the object in use.
+ *
+ * @package Bootstrapper\Facades
+ */
 class BootstrapperFacade extends Facade
 {
+    /**
+     * @var array A cache of the various instances
+     */
     public static $instances = [];
 
+    /**
+     * Calls a static method
+     *
+     * @param string $method The method
+     * @param array  $args   The arguments
+     * @return mixed A Bootstrapper object
+     */
     public static function __callStatic($method, $args)
     {
-        $instance = clone static::getInstance(static::getFacadeAccessor());
+        $facadeAccessor = static::getFacadeAccessor();
+
+        $instance = clone static::getInstance($facadeAccessor);
 
         switch (count($args)) {
             case 0:
@@ -38,6 +58,12 @@ class BootstrapperFacade extends Facade
         }
     }
 
+    /**
+     * Get an instance out of the IoC, or the cached instance
+     *
+     * @param string $facade The facade accessor
+     * @return mixed The Bootstrapper object
+     */
     private static function getInstance($facade)
     {
         if (!isset(static::$instances[$facade])) {

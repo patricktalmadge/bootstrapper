@@ -19,7 +19,9 @@ class PanelSpec extends ObjectBehavior
 
     function it_can_be_given_attributes()
     {
-        $this->withAttributes(['data-foo' => 'bar'])->render("<div class='panel panel-default' data-foo='bar'></div>");
+        $this->withAttributes(['data-foo' => 'bar'])->render(
+            "<div class='panel panel-default' data-foo='bar'></div>"
+        );
     }
 
     function it_can_be_given_a_type()
@@ -28,22 +30,30 @@ class PanelSpec extends ObjectBehavior
 
         foreach ($types as $type) {
             $class = $type == 'normal' ? 'default' : $type;
-            $this->$type()->render()->shouldBe("<div class='panel panel-{$class}'></div>");
+            $this->$type()->render()->shouldBe(
+                "<div class='panel panel-{$class}'></div>"
+            );
         }
     }
 
     function it_can_be_given_a_header()
     {
-        $this->withHeader('foo')->render()->shouldBe("<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>foo</h3></div></div>");
+        $this->withHeader('foo')->render()->shouldBe(
+            "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>foo</h3></div></div>"
+        );
     }
 
     function it_can_be_given_a_body()
     {
-        $this->withBody('foo')->render()->shouldBe("<div class='panel panel-default'><div class='panel-body'>foo</div></div>");
+        $this->withBody('foo')->render()->shouldBe(
+            "<div class='panel panel-default'><div class='panel-body'>foo</div></div>"
+        );
     }
 
     function it_can_be_given_a_footer()
     {
-        $this->withFooter('foo')->render()->shouldBe("<div class='panel panel-default'><div class='panel-footer'>foo</div></div>");
+        $this->withFooter('foo')->render()->shouldBe(
+            "<div class='panel panel-default'><div class='panel-footer'>foo</div></div>"
+        );
     }
 }

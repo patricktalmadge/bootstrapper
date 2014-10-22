@@ -11,7 +11,9 @@ class IconSpec extends ObjectBehavior
     function let()
     {
         $mock = Mockery::mock('Illuminate\\Config\\Repository');
-        $mock->shouldReceive('get')->with('bootstrapper::icon_prefix')->andReturn('glyphicon');
+        $mock->shouldReceive('get')->with(
+            'bootstrapper::icon_prefix'
+        )->andReturn('glyphicon');
         $this->beConstructedWith($mock);
     }
 
@@ -22,13 +24,17 @@ class IconSpec extends ObjectBehavior
 
     function it_can_create_an_icon()
     {
-        $this->create('foo')->shouldReturn("<span class='glyphicon glyphicon-foo'></span>");
+        $this->create('foo')->shouldReturn(
+            "<span class='glyphicon glyphicon-foo'></span>"
+        );
     }
 
     function it_listens_to_the_config_file()
     {
         $mock = Mockery::mock('Illuminate\\Config\\Repository');
-        $mock->shouldReceive('get')->with('bootstrapper::icon_prefix')->andReturn('bar');
+        $mock->shouldReceive('get')->with(
+            'bootstrapper::icon_prefix'
+        )->andReturn('bar');
         $this->beConstructedWith($mock);
 
         $this->create('foo')->shouldReturn("<span class='bar bar-foo'></span>");
@@ -39,17 +45,23 @@ class IconSpec extends ObjectBehavior
         $types = ['foo', 'bar', 'baz'];
 
         foreach ($types as $type) {
-            $this->$type()->shouldReturn("<span class='glyphicon glyphicon-$type'></span>");
+            $this->$type()->shouldReturn(
+                "<span class='glyphicon glyphicon-$type'></span>"
+            );
         }
     }
-    
+
     function it_can_create_an_icon_from_camel_case()
     {
-        $this->create('fooBar')->shouldReturn("<span class='glyphicon glyphicon-foo-bar'></span>");
+        $this->create('fooBar')->shouldReturn(
+            "<span class='glyphicon glyphicon-foo-bar'></span>"
+        );
     }
-    
+
     function it_can_create_an_icon_from_underscore()
     {
-        $this->create('foo_bar')->shouldReturn("<span class='glyphicon glyphicon-foo-bar'></span>");
+        $this->create('foo_bar')->shouldReturn(
+            "<span class='glyphicon glyphicon-foo-bar'></span>"
+        );
     }
 }

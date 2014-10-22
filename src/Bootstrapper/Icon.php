@@ -35,7 +35,7 @@ class Icon
     {
         $baseClass = $this->config->get('bootstrapper::icon_prefix');
         $icon = $this->__normaliseIconString($icon);
-        
+
         return "<span class='{$baseClass} {$baseClass}-{$icon}'></span>";
     }
 
@@ -43,7 +43,7 @@ class Icon
      * Magic method to create icons. Meaning the $icon->test is the same as
      * $icon->create('test')
      *
-     * @param $method The icon name
+     * @param $method     The icon name
      * @param $parameters The parameters. Not used
      * @return string
      */
@@ -51,13 +51,19 @@ class Icon
     {
         return $this->create($method);
     }
-    
+
     private function __normaliseIconString($icon)
     {
         // replace underscores with minus sign
         // and transform from camelCaseString to camel-case-string
-        $icon = strtolower(preg_replace('/(?<=\\w)(?=[A-Z])/', "-$1", str_replace('_', '-', $icon)));
-        
+        $icon = strtolower(
+            preg_replace(
+                '/(?<=\\w)(?=[A-Z])/',
+                "-$1",
+                str_replace('_', '-', $icon)
+            )
+        );
+
         return $icon;
     }
 }

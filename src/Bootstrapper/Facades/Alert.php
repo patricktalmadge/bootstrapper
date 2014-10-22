@@ -2,6 +2,12 @@
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for Bootstrapper Alerts
+ *
+ * @package Bootstrapper\Facades
+ * @see     Bootstrapper\Alert
+ */
 class Alert extends BootstrapperFacade
 {
     const INFO = 'alert-info';

@@ -77,7 +77,9 @@ class ControlGroupSpec extends ObjectBehavior
 
     function it_can_be_given_a_help_block()
     {
-        $this->withHelp('foo')->render()->shouldBe("<div class='form-group'>foo</div>");
+        $this->withHelp('foo')->render()->shouldBe(
+            "<div class='form-group'>foo</div>"
+        );
     }
 
     function it_places_the_help_block_in_the_correct_place()
@@ -89,24 +91,38 @@ class ControlGroupSpec extends ObjectBehavior
 
     function it_can_be_generated_in_one_go()
     {
-        $this->generate('<div>label</div>', '<div>control</div>', '<div>help</div>')->render()->shouldBe(
+        $this->generate(
+            '<div>label</div>',
+            '<div>control</div>',
+            '<div>help</div>'
+        )->render()->shouldBe(
             "<div class='form-group'><div>label</div><div>control</div><div>help</div></div>"
         );
     }
 
     function it_squawks_if_the_label_size_is_silly()
     {
-        $this->shouldThrow('Bootstrapper\\Exceptions\\ControlGroupException')->duringWithLabel('', 13);
-        $this->shouldThrow('Bootstrapper\\Exceptions\\ControlGroupException')->duringWithLabel('', -1);
-        $this->shouldThrow('Bootstrapper\\Exceptions\\ControlGroupException')->duringWithLabel('', -0);
-        $this->shouldThrow('Bootstrapper\\Exceptions\\ControlGroupException')->duringWithLabel('', 12);
+        $this->shouldThrow(
+            'Bootstrapper\\Exceptions\\ControlGroupException'
+        )->duringWithLabel('', 13);
+        $this->shouldThrow(
+            'Bootstrapper\\Exceptions\\ControlGroupException'
+        )->duringWithLabel('', -1);
+        $this->shouldThrow(
+            'Bootstrapper\\Exceptions\\ControlGroupException'
+        )->duringWithLabel('', -0);
+        $this->shouldThrow(
+            'Bootstrapper\\Exceptions\\ControlGroupException'
+        )->duringWithLabel('', 12);
     }
 
     function it_handles_labels_correctly()
     {
         $mock = \Mockery::mock('Bootstrapper\\Form');
 
-        $mock->shouldReceive('label')->with('foo')->andReturn('<label for="foo" class="control-label">Foo</label>');
+        $mock->shouldReceive('label')->with('foo')->andReturn(
+            '<label for="foo" class="control-label">Foo</label>'
+        );
 
         $this->withLabel($mock->label('foo'), 4)->render()->shouldBe(
             "<div class='form-group'><label for=\"foo\" class=\"control-label col-sm-4\">Foo</label><div class='col-sm-8'></div></div>"

@@ -76,17 +76,14 @@ class Helpers
     {
         $class = get_class($caller);
 
-        if (isset(self::$counts[$class]))
-        {
+        if (isset(self::$counts[$class])) {
             $count = self::$counts[$class];
             self::$counts[$class] += 1;
-        }
-        else
-        {
+        } else {
             $count = 1;
             self::$counts[$class] = 2;
         }
 
-        return self::slug(' ' . $class . ' ' . $count);
+        return self::slug(implode(' ', [$count, $class, $count]));
     }
 }

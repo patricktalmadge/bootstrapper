@@ -19,7 +19,9 @@ class LabelSpec extends ObjectBehavior
 
     function it_can_be_given_contents()
     {
-        $this->withContents('foo')->render()->shouldBe("<span class='label label-default'>foo</span>");
+        $this->withContents('foo')->render()->shouldBe(
+            "<span class='label label-default'>foo</span>"
+        );
     }
 
     function it_can_be_given_a_type()
@@ -28,13 +30,17 @@ class LabelSpec extends ObjectBehavior
 
         foreach ($types as $type) {
             $class = $type === 'normal' ? 'default' : $type;
-            $this->$type()->render()->shouldBe("<span class='label label-{$class}'></span>");
+            $this->$type()->render()->shouldBe(
+                "<span class='label label-{$class}'></span>"
+            );
         }
     }
 
     function it_can_be_created_in_one_go()
     {
-        $this->create('foo', 'bar')->render()->shouldBe("<span class='label bar'>foo</span>");
+        $this->create('foo', 'bar')->render()->shouldBe(
+            "<span class='label bar'>foo</span>"
+        );
     }
 
     function it_has_shortcut_methods()
@@ -43,7 +49,9 @@ class LabelSpec extends ObjectBehavior
 
         foreach ($types as $type) {
             $class = $type === 'normal' ? 'default' : $type;
-            $this->$type($type)->render()->shouldBe("<span class='label label-{$class}'>{$type}</span>");
+            $this->$type($type)->render()->shouldBe(
+                "<span class='label label-{$class}'>{$type}</span>"
+            );
         }
     }
 

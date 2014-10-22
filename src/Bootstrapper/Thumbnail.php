@@ -46,8 +46,8 @@ class Thumbnail extends RenderedObject
     /**
      * Sets the image for the thumbnail
      *
-     * @param string $image The image source
-     * @param array $attributes The attributes
+     * @param string $image      The image source
+     * @param array  $attributes The attributes
      * @return $this
      */
     public function image($image, $attributes = [])

@@ -159,8 +159,8 @@ class InputGroup extends RenderedObject
     /**
      * Appends something to the input
      *
-     * @param string     $append The value to append
-     * @param bool $isButton Whether the value is a button
+     * @param string $append   The value to append
+     * @param bool   $isButton Whether the value is a button
      * @return $this
      */
     public function append($append, $isButton = false)

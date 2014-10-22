@@ -21,13 +21,17 @@ class AlertSpec extends ObjectBehavior
     {
         $types = ['info', 'success', 'warning', 'danger'];
         foreach ($types as $type) {
-            $this->$type()->render()->shouldBe("<div class='alert alert-{$type}'></div>");
+            $this->$type()->render()->shouldBe(
+                "<div class='alert alert-{$type}'></div>"
+            );
         }
     }
 
     function it_can_be_given_contents()
     {
-        $this->withContents("Test")->render()->shouldBe("<div class='alert'>Test</div>");
+        $this->withContents("Test")->render()->shouldBe(
+            "<div class='alert'>Test</div>"
+        );
     }
 
     function it_can_become_closeable()
@@ -39,14 +43,18 @@ class AlertSpec extends ObjectBehavior
 
     function it_can_be_given_attributes()
     {
-        $this->withAttributes(['foo' => 'bar'])->render()->shouldBe("<div class='alert' foo='bar'></div>");
+        $this->withAttributes(['foo' => 'bar'])->render()->shouldBe(
+            "<div class='alert' foo='bar'></div>"
+        );
     }
 
     function it_allows_you_to_use_a_shortcut()
     {
         $types = ['info', 'success', 'warning', 'danger'];
         foreach ($types as $type) {
-            $this->$type($type)->render()->shouldBe("<div class='alert alert-{$type}'>{$type}</div>");
+            $this->$type($type)->render()->shouldBe(
+                "<div class='alert alert-{$type}'>{$type}</div>"
+            );
         }
     }
 
@@ -54,8 +62,7 @@ class AlertSpec extends ObjectBehavior
     {
         $closers = ['x', '<i class="fa fa-times"></i>'];
 
-        foreach ($closers as $closer)
-        {
+        foreach ($closers as $closer) {
             // Force an empty contents since we append with the close icon and this fails the tests
             $this->withContents('');
             $this->close($closer)->render()->shouldBe(

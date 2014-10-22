@@ -110,7 +110,7 @@ class Panel extends RenderedObject
 
     /**
      * Creates a primary panel
-     * 
+     *
      * @return $this
      */
     public function primary()

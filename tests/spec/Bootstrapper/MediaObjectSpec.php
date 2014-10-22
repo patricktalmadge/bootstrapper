@@ -14,7 +14,9 @@ class MediaObjectSpec extends ObjectBehavior
 
     function it_cant_be_rendered_without_contents()
     {
-        $this->shouldThrow('Bootstrapper\\Exceptions\\MediaObjectException')->duringRender();
+        $this->shouldThrow(
+            'Bootstrapper\\Exceptions\\MediaObjectException'
+        )->duringRender();
     }
 
     function it_can_be_given_contents()
@@ -114,7 +116,8 @@ class MediaObjectSpec extends ObjectBehavior
                     'image' => 'image',
                     'body' => 'body'
                 ]
-            ])->render()->shouldBe(
+            ]
+        )->render()->shouldBe(
             "<div class='media'><div class='pull-left'><img class='media-object' src='image'></div><div class='media-body'>body<div class='media'><div class='pull-left'><img class='media-object' src='image'></div><div class='media-body'>body</div></div></div></div>"
         );
     }

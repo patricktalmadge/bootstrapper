@@ -191,7 +191,7 @@ class Image extends RenderedObject
      *
      * @param string $class The class we need to add to the image
      * @internal Normally we'd use the Attributes object but we don't have
-     * access to it at this point :-(
+     *                      access to it at this point :-(
      */
     public function addClass($class)
     {

@@ -78,7 +78,11 @@ class DropdownButtonSpec extends ObjectBehavior
 
     function it_can_be_given_a_size()
     {
-        $sizes = ['large' => 'btn-lg', 'small' => 'btn-sm', 'extraSmall' => 'btn-xs'];
+        $sizes = [
+            'large' => 'btn-lg',
+            'small' => 'btn-sm',
+            'extraSmall' => 'btn-xs'
+        ];
 
         foreach ($sizes as $size => $class) {
             $this->$size()->render()->shouldBe(
@@ -101,7 +105,11 @@ class DropdownButtonSpec extends ObjectBehavior
         // Resets object
         $this->labelled('');
 
-        $sizes = ['large' => 'btn-lg', 'small' => 'btn-sm', 'extraSmall' => 'btn-xs'];
+        $sizes = [
+            'large' => 'btn-lg',
+            'small' => 'btn-sm',
+            'extraSmall' => 'btn-xs'
+        ];
 
         foreach ($sizes as $size => $class) {
             $this->$size()->split()->render()->shouldBe(

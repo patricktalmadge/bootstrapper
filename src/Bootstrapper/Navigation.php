@@ -55,7 +55,6 @@ class Navigation extends RenderedObject
      * <li>callback - A callback. If it return a result that is EXACTLY
      * equal to false then the link won't be shown</li>
      * </ul>
-     *
      * To create a dropdown, the inner array should instead be [$title, $links],
      * where $links is an array of arrays for links
      */

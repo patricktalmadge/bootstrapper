@@ -123,7 +123,8 @@ class ProgressBar extends RenderedObject
     /**
      * Sets the value of the progress bar
      *
-     * @param int $value The value of the progress bar The value of the progress bar
+     * @param int $value The value of the progress bar The value of the
+     *                   progress bar
      * @return $this
      */
     public function value($value)
@@ -151,7 +152,7 @@ class ProgressBar extends RenderedObject
 
     /**
      * Creates a success progress bar
-     * 
+     *
      * @param int $value The value of the progress bar
      * @return $this
      */
