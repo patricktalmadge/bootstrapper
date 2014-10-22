@@ -117,7 +117,8 @@ class Carousel extends RenderedObject
     protected function renderIndicators()
     {
         $string = "<ol class='carousel-indicators'>";
-        for ($i = 0; $i < count($this->contents); $i++) {
+        $count = count($this->contents);
+        for ($i = 0; $i < $count; $i++) {
             if ($i == $this->active) {
                 $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}' class='active'></li>";
             } else {
