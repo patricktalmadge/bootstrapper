@@ -11,6 +11,9 @@ use Illuminate\Config\Repository;
  */
 class Helpers
 {
+    private static $counts = [
+
+    ];
 
     /**
      * The config repository
@@ -67,5 +70,23 @@ class Helpers
         $bootstrap = $this->config->get('bootstrapper::bootstrapVersion');
 
         return "<script src='http://code.jquery.com/jquery-{$jquery}.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
+    }
+
+    public static function generateId(RenderedObject $caller)
+    {
+        $class = get_class($caller);
+
+        if (isset(self::$counts[$class]))
+        {
+            $count = self::$counts[$class];
+            self::$counts[$class] += 1;
+        }
+        else
+        {
+            $count = 1;
+            self::$counts[$class] = 2;
+        }
+
+        return self::slug(' ' . $class . ' ' . $count);
     }
 }

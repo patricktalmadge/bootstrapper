@@ -15,12 +15,16 @@ class AccordionSpec extends ObjectBehavior
 
     function it_can_be_named()
     {
-        $this->named('foo')->render()->shouldBe("<div class='panel-group' id='foo'></div>");
+        $this->named('foo')->render()->shouldBe(
+            "<div class='panel-group' id='foo'></div>"
+        );
     }
 
-    function it_throws_an_exception_if_there_is_no_name()
+    function it_does_not_throw_if_there_is_no_name()
     {
-        $this->shouldThrow("Bootstrapper\\Exceptions\\AccordionException")->duringRender();
+        $this->render()->shouldBe(
+            "<div class='panel-group' id='1-bootstrapper-accordion-1'></div>"
+        );
     }
 
     function it_can_have_contents()
@@ -43,7 +47,9 @@ class AccordionSpec extends ObjectBehavior
             [
                 'bar' => 'baz',
             ]
-        )->render()->shouldBe("<div class='panel-group' id='foo' bar='baz'></div>");
+        )->render()->shouldBe(
+            "<div class='panel-group' id='foo' bar='baz'></div>"
+        );
     }
 
     function it_can_give_attributes_to_the_contents()

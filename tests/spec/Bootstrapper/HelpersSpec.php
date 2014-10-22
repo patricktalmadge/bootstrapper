@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\RenderedObject;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -12,8 +13,12 @@ class HelpersSpec extends ObjectBehavior
     {
         $config = Mockery::mock('Illuminate\Config\Repository');
 
-        $config->shouldReceive('get')->with('bootstrapper::jqueryVersion')->andReturn("2.1.0");
-        $config->shouldReceive('get')->with('bootstrapper::bootstrapVersion')->andReturn("3.1.1");
+        $config->shouldReceive('get')->with(
+            'bootstrapper::jqueryVersion'
+        )->andReturn("2.1.0");
+        $config->shouldReceive('get')->with(
+            'bootstrapper::bootstrapVersion'
+        )->andReturn("3.1.1");
 
         $this->beConstructedWith($config);
     }
@@ -48,8 +53,12 @@ class HelpersSpec extends ObjectBehavior
     {
         $config = Mockery::mock('Illuminate\Config\Repository');
 
-        $config->shouldReceive('get')->with('bootstrapper::jqueryVersion')->andReturn("2.1.1");
-        $config->shouldReceive('get')->with('bootstrapper::bootstrapVersion')->andReturn("3.2.1");
+        $config->shouldReceive('get')->with(
+            'bootstrapper::jqueryVersion'
+        )->andReturn("2.1.1");
+        $config->shouldReceive('get')->with(
+            'bootstrapper::bootstrapVersion'
+        )->andReturn("3.2.1");
 
         $this->beConstructedWith($config);
         $this->css()->shouldBe(
@@ -60,4 +69,34 @@ class HelpersSpec extends ObjectBehavior
         );
     }
 
+    function it_generates_a_sensible_id_for_an_object()
+    {
+        $this->generateId(new FooRenderedObject())->shouldReturn
+        (
+            '1-spec-bootstrapper-foorenderedobject-1'
+        );
+        $this->generateId(new FooRenderedObject())->shouldReturn(
+            '2-spec-bootstrapper-foorenderedobject-2'
+        );
+
+        $this->generateId(new BarRenderedObject())->shouldReturn
+        (
+            '1-spec-bootstrapper-barrenderedobject-1'
+        );
+    }
+
+}
+
+class FooRenderedObject extends RenderedObject
+{
+    public function render()
+    {
+    }
+}
+
+class BarRenderedObject extends RenderedObject
+{
+    public function render()
+    {
+    }
 }
