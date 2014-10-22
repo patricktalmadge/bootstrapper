@@ -151,7 +151,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->app->bind(
             'icon',
             function ($app) {
-                return new Icon($app->make('config'));
+                return new Icon($app['config']);
             }
         );
     }
