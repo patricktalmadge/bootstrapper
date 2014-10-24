@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for InputGroup class
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\InputGroup
+ * @see     Bootstrapper\InputGroup
  */
 class InputGroup extends BootstrapperFacade
 {
@@ -19,7 +19,6 @@ class InputGroup extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

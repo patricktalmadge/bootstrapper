@@ -9,7 +9,7 @@ namespace Bootstrapper\Exceptions;
  * Exceptions thrown by the Carousel Class
  *
  * @package Bootstrapper\Exceptions
- * @see Bootstrapper\Carousel
+ * @see     Bootstrapper\Carousel
  */
 class CarouselException extends \Exception
 {

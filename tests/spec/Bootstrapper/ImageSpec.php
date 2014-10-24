@@ -67,18 +67,24 @@ class ImageSpec extends ObjectBehavior
         );
     }
 
-    function it_has_shortcut_methods()
+    function it_allows_you_to_use_rounded_as_a_shortcut_method()
     {
-        $types = ['rounded', 'thumbnail', 'circle'];
+        $this->rounded('foo', 'bar')->render()->shouldBe(
+            "<img src='foo' alt='bar' class='img-rounded'>"
+        );
+    }
 
-        foreach ($types as $type) {
-            // Clears out everything
-            $this->withAttributes([]);
-            $this->withSource('');
-            $this->withAlt('');
-            $this->$type('foo', 'bar')->render()->shouldBe(
-                "<img src='foo' alt='bar' class='img-{$type}'>"
-            );
-        }
+    function it_allows_you_to_use_thumbnail_as_a_shortcut_method()
+    {
+        $this->thumbnail('foo', 'bar')->render()->shouldBe(
+            "<img src='foo' alt='bar' class='img-thumbnail'>"
+        );
+    }
+
+    function it_allows_you_to_use_circle_as_a_shortcut_method()
+    {
+        $this->circle('foo', 'bar')->render()->shouldBe(
+            "<img src='foo' alt='bar' class='img-circle'>"
+        );
     }
 }

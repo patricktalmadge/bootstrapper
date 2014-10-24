@@ -11,7 +11,7 @@ use Exception;
  * ModalException for use in Modals
  *
  * @package Bootstrapper\Exceptions
- * @see Bootstrapper\Modal
+ * @see     Bootstrapper\Modal
  */
 class ModalException extends Exception
 {

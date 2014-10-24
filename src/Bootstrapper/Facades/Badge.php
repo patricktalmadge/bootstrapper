@@ -16,7 +16,6 @@ class Badge extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

@@ -29,11 +29,6 @@ class Carousel extends RenderedObject
     protected $contents = [];
 
     /**
-     * @var array The attributes of the carousel
-     */
-    protected $attributes = [];
-
-    /**
      * @var int Which slide should be active at the beginning
      */
     protected $active = 0;
@@ -47,19 +42,6 @@ class Carousel extends RenderedObject
     public function named($name)
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes of the carousel
-     *
-     * @param array $attributes The new attributes
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

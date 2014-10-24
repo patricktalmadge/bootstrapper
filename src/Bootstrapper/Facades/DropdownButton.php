@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for DropdownButton class
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\DropdownButton
+ * @see     Bootstrapper\DropdownButton
  */
 class DropdownButton extends BootstrapperFacade
 {
@@ -25,7 +25,6 @@ class DropdownButton extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

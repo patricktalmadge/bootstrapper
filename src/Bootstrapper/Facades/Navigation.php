@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for the Navigation class
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\Navigation
+ * @see     Bootstrapper\Navigation
  */
 class Navigation extends BootstrapperFacade
 {
@@ -21,7 +21,6 @@ class Navigation extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

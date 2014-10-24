@@ -60,7 +60,14 @@ class Label extends RenderedObject
      */
     public function render()
     {
-        return "<span class='label {$this->type}'>{$this->contents}</span>";
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'class' => "label {$this->type}"
+            ]
+        );
+
+        return "<span {$attributes}>{$this->contents}</span>";
     }
 
     /**

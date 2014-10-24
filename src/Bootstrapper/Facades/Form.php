@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * Facade for Form
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\Form
+ * @see     Bootstrapper\Form
  */
 class Form extends Facade
 {
@@ -24,7 +24,6 @@ class Form extends Facade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

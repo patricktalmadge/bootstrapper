@@ -47,11 +47,6 @@ class Navbar extends RenderedObject
     protected $url;
 
     /**
-     * @var array The attributes of the navbar
-     */
-    protected $attributes = [];
-
-    /**
      * @var array The content of the array
      */
     protected $content = [];
@@ -161,19 +156,6 @@ class Navbar extends RenderedObject
         }
 
         $this->brand = compact('brand', 'link');
-
-        return $this;
-    }
-
-    /**
-     * Adds attributes to the navbar
-     *
-     * @param $attributes array The attributes of the array
-     * @return $this
-     */
-    public function withAttributes($attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

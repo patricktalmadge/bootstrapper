@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for ProgressBar
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\ProgressBar
+ * @see     Bootstrapper\ProgressBar
  */
 class ProgressBar extends BootstrapperFacade
 {
@@ -22,7 +22,6 @@ class ProgressBar extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

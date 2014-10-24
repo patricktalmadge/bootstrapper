@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for ButtonGroup
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\ButtonGroup
+ * @see     Bootstrapper\ButtonGroup
  */
 class ButtonGroup extends BootstrapperFacade
 {
@@ -26,7 +26,6 @@ class ButtonGroup extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

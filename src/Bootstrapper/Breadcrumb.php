@@ -24,7 +24,12 @@ class Breadcrumb extends RenderedObject
      */
     public function render()
     {
-        $string = "<ol class='breadcrumb'>";
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => 'breadcrumb']
+        );
+
+        $string = "<ol {$attributes}>";
         foreach ($this->links as $text => $link) {
             $string .= $this->renderLink($text, $link);
         }
