@@ -1,14 +1,16 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: patrick
- * Date: 15/06/14
- * Time: 11:48
+ * Exceptions for Accordions
  */
 
 namespace Bootstrapper\Exceptions;
 
-
+/**
+ * Exceptions for Accordion class
+ *
+ * @package Bootstrapper\Exceptions
+ * @see Bootstrapper\Accordion
+ */
 class AccordionException extends \Exception
 {
 

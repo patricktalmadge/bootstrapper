@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Media Object class
+ */
 
 namespace Bootstrapper;
 
@@ -23,6 +26,8 @@ class MediaObject extends RenderedObject
     protected $list;
 
     /**
+     * Renders the media object
+     *
      * @return string
      * @throws MediaObjectException if there is no contents
      */

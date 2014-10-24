@@ -1,12 +1,27 @@
 <?php
+/**
+ * Bootstrapper Service Provider
+ */
 
 namespace Bootstrapper;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Service provider for Laravel
+ *
+ * @package Bootstrapper
+ */
 class BootstrapperServiceProvider extends ServiceProvider
 {
-    public function register()
+
+    /**
+     * {@inheritdoc}
+     */
+    /**
+     * Registers the  class into the IoC
+     */
+    private function register()
     {
         $this->registerAccordion();
         $this->registerAlert();
@@ -40,6 +55,9 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * Registers the Accordion class in the IoC
+     */
     private function registerAccordion()
     {
         $this->app->bind(
@@ -50,6 +68,9 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * Registers the Alert class in the IoC
+     */
     private function registerAlert()
     {
         $this->app->bind(
@@ -60,7 +81,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerBadge()
+    /**
+     * Registers the Badge class into the IoC
+     */
+    private function registerBadge()
     {
         $this->app->bind(
             'badge',
@@ -70,7 +94,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerBreadcrumb()
+    /**
+     * Registers the Breadcrumb class into the IoC
+     */
+    private function registerBreadcrumb()
     {
         $this->app->bind(
             'breadcrumb',
@@ -80,7 +107,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerButtonGroup()
+    /**
+     * Registers the ButtonGroup class into the IoC
+     */
+    private function registerButtonGroup()
     {
         $this->app->bind(
             'buttongroup',
@@ -90,7 +120,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerButton()
+    /**
+     * Registers the Button class into the IoC
+     */
+    private function registerButton()
     {
         $this->app->bind(
             'button',
@@ -100,7 +133,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerCarousel()
+    /**
+     * Registers the Carousel class into the IoC
+     */
+    private function registerCarousel()
     {
         $this->app->bind(
             'carousel',
@@ -110,7 +146,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerControlGroup()
+    /**
+     * Registers the ControlGroup class into the IoC
+     */
+    private function registerControlGroup()
     {
         $this->app->bind(
             'controlgroup',
@@ -120,7 +159,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerDropdownButton()
+    /**
+     * Registers the DropdownButton class into the IoC
+     */
+    private function registerDropdownButton()
     {
         $this->app->bind(
             'dropdownbutton',
@@ -130,7 +172,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerFormBuilder()
+    /**
+     * Registers the FormBuilder class into the IoC
+     */
+    private function registerFormBuilder()
     {
         $this->app->bindShared(
             'bootstrapper::form',
@@ -146,7 +191,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerIcon()
+    /**
+     * Registers the Icon class into the IoC
+     */
+    private function registerIcon()
     {
         $this->app->bind(
             'icon',
@@ -156,7 +204,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerImage()
+    /**
+     * Registers the Image class into the IoC
+     */
+    private function registerImage()
     {
         $this->app->bind(
             'image',
@@ -166,7 +217,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerInputGroup()
+    /**
+     * Registers the InputGroup class into the IoC
+     */
+    private function registerInputGroup()
     {
         $this->app->bind(
             'inputgroup',
@@ -176,7 +230,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerLabel()
+    /**
+     * Registers the Label class into the IoC
+     */
+    private function registerLabel()
     {
         $this->app->bind(
             'label',
@@ -186,7 +243,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerHelpers()
+    /**
+     * Registers the Helpers class into the IoC
+     */
+    private function registerHelpers()
     {
         $this->app->bind(
             'bootstrapper::helpers',
@@ -196,7 +256,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerMediaObject()
+    /**
+     * Registers the MediaObject class into the IoC
+     */
+    private function registerMediaObject()
     {
         $this->app->bind(
             'mediaobject',
@@ -206,7 +269,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerModal()
+    /**
+     * Registers the Modal class into the IoC
+     */
+    private function registerModal()
     {
         $this->app->bind(
             'modal',
@@ -216,7 +282,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerNavbar()
+    /**
+     * Registers the Navbar class into the IoC
+     */
+    private function registerNavbar()
     {
         $this->app->bind(
             'navbar',
@@ -226,7 +295,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerNavigation()
+    /**
+     * Registers the Navigation class into the IoC
+     */
+    private function registerNavigation()
     {
         $this->app->bind(
             'navigation',
@@ -236,7 +308,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerPanel()
+    /**
+     * Registers the Panel class into the IoC
+     */
+    private function registerPanel()
     {
         $this->app->bind(
             'panel',
@@ -246,7 +321,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerProgressBar()
+    /**
+     * Registers the ProgressBar class into the IoC
+     */
+    private function registerProgressBar()
     {
         $this->app->bind(
             'progressbar',
@@ -256,7 +334,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerTabbable()
+    /**
+     * Registers the Tabbable class into the IoC
+     */
+    private function registerTabbable()
     {
         $this->app->bind(
             'tabbable',
@@ -266,7 +347,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerTable()
+    /**
+     * Registers the Table class into the IoC
+     */
+    private function registerTable()
     {
         $this->app->bind(
             'table',
@@ -276,7 +360,10 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerThumbnail()
+    /**
+     * Registers the Thumbnail class into the IoC
+     */
+    private function registerThumbnail()
     {
         $this->app->bind(
             'thumbnail',

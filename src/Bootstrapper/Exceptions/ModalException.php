@@ -1,6 +1,9 @@
 <?php
-namespace Bootstrapper\Exceptions;
+/**
+ * Bootstrapper Modal exceptions
+ */
 
+namespace Bootstrapper\Exceptions;
 
 use Exception;
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper DropdownButton class
+ */
 
 namespace Bootstrapper;
 
@@ -68,24 +71,30 @@ class DropdownButton extends RenderedObject
      * @var array The contents of the dropdown button
      */
     protected $contents = [];
+
     /**
-     * @var string
+     * @var string The type of the button
      */
     protected $type = 'btn-default';
+
     /**
-     * @var
+     * @var string The size of the button
      */
     protected $size;
+
     /**
-     * @var bool
+     * @var bool Whether the drop icon should be a seperate button
      */
     protected $split = false;
+
     /**
-     * @var bool
+     * @var bool Whether the button should drop up
      */
     protected $dropup = false;
 
     /**
+     * Set the label of the button
+     *
      * @param $label
      * @return $this
      */
@@ -97,10 +106,12 @@ class DropdownButton extends RenderedObject
     }
 
     /**
-     * @param $contents
+     * Set the contents of the button
+     *
+     * @param array $contents The contents of the dropdown button
      * @return $this
      */
-    public function withContents($contents)
+    public function withContents(array $contents)
     {
         $this->contents = $contents;
 
@@ -108,22 +119,34 @@ class DropdownButton extends RenderedObject
     }
 
     /**
-     * @param $type
+     * Sets the type of the button
+     *
+     * @param string $type The type of the button
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
     }
 
     /**
-     * @param $size
+     * Sets the size of the button
+     *
+     * @param string $size The size of the button
+     * @return $this
      */
     public function setSize($size)
     {
         $this->size = $size;
+
+        return $this;
     }
 
     /**
+     * Splits the button
+     *
      * @return $this
      */
     public function split()
@@ -134,6 +157,8 @@ class DropdownButton extends RenderedObject
     }
 
     /**
+     * Sets the button to drop up
+     * 
      * @return $this
      */
     public function dropup()
@@ -144,8 +169,10 @@ class DropdownButton extends RenderedObject
     }
 
     /**
-     * @param string $label
-     * @return DropdownButton
+     * Creates a normal dropdown button
+     * 
+     * @param string $label The label
+     * @return $this
      */
     public function normal($label = '')
     {
@@ -155,87 +182,103 @@ class DropdownButton extends RenderedObject
     }
 
     /**
-     * @param string $label
-     * @return DropdownButton
+     * Creates a primary dropdown button
+     *
+     * @param string $label The label
+     * @return $this
      */
     public function primary($label = '')
     {
-        $this->setType(DropdownButton::PRIMARY);
+        $this->setType(self::PRIMARY);
 
         return $this->labelled($label);
     }
 
     /**
-     * @param string $label
-     * @return DropdownButton
+     * Creates a danger dropdown button
+     *
+     * @param string $label The label
+     * @return $this
      */
     public function danger($label = '')
     {
-        $this->setType(DropdownButton::DANGER);
+        $this->setType(self::DANGER);
 
         return $this->labelled($label);
     }
 
     /**
-     * @param string $label
-     * @return DropdownButton
+     * Creates a warning dropdown button
+     *
+     * @param string $label The label
+     * @return $this
      */
     public function warning($label = '')
     {
-        $this->setType(DropdownButton::WARNING);
+        $this->setType(self::WARNING);
 
         return $this->labelled($label);
     }
 
     /**
-     * @param string $label
-     * @return DropdownButton
+     * Creates a success dropdown button
+     *
+     * @param string $label The label
+     * @return $this
      */
     public function success($label = '')
     {
-        $this->setType(DropdownButton::SUCCESS);
+        $this->setType(self::SUCCESS);
 
         return $this->labelled($label);
     }
 
     /**
-     * @param string $label
-     * @return DropdownButton
+     * Creates a info dropdown button
+     *
+     * @param string $label The label
+     * @return $this
      */
     public function info($label = '')
     {
-        $this->setType(DropdownButton::INFO);
+        $this->setType(self::INFO);
 
         return $this->labelled($label);
     }
 
     /**
+     * Sets the size to large
+     * 
      * @return $this
      */
     public function large()
     {
-        $this->setSize(DropdownButton::LARGE);
+        $this->setSize(self::LARGE);
 
         return $this;
     }
 
 
     /**
+     * Sets the size to small
+     * 
      * @return $this
      */
     public function small()
     {
-        $this->setSize(DropdownButton::SMALL);
+        $this->setSize(self::SMALL);
 
         return $this;
     }
 
     /**
+     * Sets the size to extra small
+     * 
      * @return $this
      */
     public function extraSmall()
     {
-        $this->setSize(DropdownButton::EXTRA_SMALL);
+        $this->setSize(self::EXTRA_SMALL);
 
         return $this;
     }

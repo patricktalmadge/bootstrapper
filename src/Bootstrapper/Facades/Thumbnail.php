@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Thumbnail facade
+ */
 
 namespace Bootstrapper\Facades;
 

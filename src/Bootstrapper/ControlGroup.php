@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper ControlGroup class
+ */
 
 namespace Bootstrapper;
 
@@ -48,6 +51,8 @@ class ControlGroup extends RenderedObject
     protected $formBuilder;
 
     /**
+     * Creates a new instance of the ControlGroup
+     *
      * @param Form $formBuilder An instance of the Bootstrapper form builder
      */
     public function __construct(Form $formBuilder)
@@ -295,7 +300,7 @@ class ControlGroup extends RenderedObject
     /**
      * Checks if the size is invalid
      *
-     * @param int The $size size
+     * @param int $size The size
      * @return bool True if the size is below 1 or greater than 11,
      *            false otherwise
      */

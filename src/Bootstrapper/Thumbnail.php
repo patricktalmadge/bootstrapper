@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Thumbnail class
+ */
 
 namespace Bootstrapper;
 
@@ -31,10 +34,12 @@ class Thumbnail extends RenderedObject
     public function render()
     {
         if (!isset($this->image['image'])) {
-            throw new ThumbnailException('You must specify the image');
+            throw ThumbnailException::imageNotSpecified();
         }
+
         $string = '<div class=\'thumbnail\'>';
         $string .= $this->renderImage();
+
         if ($this->caption) {
             $string .= $this->renderCaption();
         }

@@ -4,3 +4,4 @@
 /.travis.yml        export-ignore
 /phpspec.xml        export-ignore
 /CONTRIBUTING.md    export-ignore
+/docs               export-ignore

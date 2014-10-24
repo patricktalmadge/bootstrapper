@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Panel class
+ */
 
 namespace Bootstrapper;
 

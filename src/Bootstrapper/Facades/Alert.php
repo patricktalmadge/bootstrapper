@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Alert facade
+ */
 
 namespace Bootstrapper\Facades;
 
@@ -15,6 +18,11 @@ class Alert extends BootstrapperFacade
     const WARNING = 'alert-warning';
     const DANGER = 'alert-danger';
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'alert';

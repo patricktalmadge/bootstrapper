@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper label class
+ */
 
 namespace Bootstrapper;
 
@@ -51,7 +54,9 @@ class Label extends RenderedObject
     protected $contents;
 
     /**
-     * @return string Renders the label
+     * Renders the label
+     *
+     * @return string
      */
     public function render()
     {

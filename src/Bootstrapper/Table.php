@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Table class
+ */
 
 namespace Bootstrapper;
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper InputGroup class
+ */
 
 namespace Bootstrapper;
 

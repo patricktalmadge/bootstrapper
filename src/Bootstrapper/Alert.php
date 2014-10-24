@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Alert class
+ */
 
 namespace Bootstrapper;
 

@@ -1,9 +1,11 @@
 <?php
+/**
+ * Bootstrapper Accordion class
+ */
 
 namespace Bootstrapper;
 
 /**
- * Accordion Class
  * Creates Bootstrap 3 compliant accordions
  *
  * @package Bootstrapper

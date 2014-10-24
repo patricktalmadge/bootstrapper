@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Button Group class
+ */
 
 namespace Bootstrapper;
 

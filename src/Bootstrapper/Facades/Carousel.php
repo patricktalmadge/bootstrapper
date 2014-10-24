@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Carousel facade
+ */
 
 namespace Bootstrapper\Facades;
 

@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Bootstrapper.html">\Bootstrapper</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-573225458"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-573225458" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1868834357"></a>
+                                <a href="../namespaces/Bootstrapper.html" style="margin-left: 30px; padding-left: 0">Bootstrapper</a>
+            </div>
+            <div id="namespace-1868834357" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1228925943"></a>
+                                <a href="../namespaces/Bootstrapper.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
+            </div>
+            <div id="namespace-1228925943" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.AccordionException.html">AccordionException</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.CarouselException.html">CarouselException</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.ControlGroupException.html">ControlGroupException</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.ImageException.html">ImageException</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.MediaObjectException.html">MediaObjectException</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.ModalException.html">ModalException</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Exceptions.ThumbnailException.html">ThumbnailException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1029011573"></a>
+                                <a href="../namespaces/Bootstrapper.Facades.html" style="margin-left: 30px; padding-left: 0">Facades</a>
+            </div>
+            <div id="namespace-1029011573" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Accordion.html">Accordion</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Alert.html">Alert</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Badge.html">Badge</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.BootstrapperFacade.html">BootstrapperFacade</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Breadcrumb.html">Breadcrumb</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Button.html">Button</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.ButtonGroup.html">ButtonGroup</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Carousel.html">Carousel</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.ControlGroup.html">ControlGroup</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.DropdownButton.html">DropdownButton</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Form.html">Form</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Helpers.html">Helpers</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Icon.html">Icon</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.InputGroup.html">InputGroup</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.MediaObject.html">MediaObject</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Modal.html">Modal</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Navbar.html">Navbar</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Navigation.html">Navigation</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Panel.html">Panel</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.ProgressBar.html">ProgressBar</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Tabbable.html">Tabbable</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Table.html">Table</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Facades.Thumbnail.html">Thumbnail</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Bootstrapper.Accordion.html">Accordion</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Alert.html">Alert</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Attributes.html">Attributes</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Badge.html">Badge</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.BootstrapperServiceProvider.html">BootstrapperServiceProvider</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Breadcrumb.html">Breadcrumb</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Button.html">Button</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.ButtonGroup.html">ButtonGroup</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Carousel.html">Carousel</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.ControlGroup.html">ControlGroup</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.DropdownButton.html">DropdownButton</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Form.html">Form</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Helpers.html">Helpers</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Icon.html">Icon</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.InputGroup.html">InputGroup</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Label.html">Label</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.MediaObject.html">MediaObject</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Modal.html">Modal</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Navbar.html">Navbar</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Navigation.html">Navigation</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Panel.html">Panel</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.ProgressBar.html">ProgressBar</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.RenderedObject.html">RenderedObject</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Tabbable.html">Tabbable</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Table.html">Table</a></li>
+                                                    <li class="class"><a href="../classes/Bootstrapper.Thumbnail.html">Thumbnail</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Bootstrapper.html">\Bootstrapper</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Bootstrapper</small>Tabbable</h1>
+                    <p><em>Creates Bootstrap 3 compliant tab elements</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Bootstrapper.RenderedObject.html#method___toString" class="">__toString()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_render" class="">render()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_tabs" class="">tabs()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_pills" class="">pills()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_withContents" class="">withContents()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_active" class="">active()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_fade" class="">fade()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#constant_PILL" class="">PILL</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#constant_TAB" class="">TAB</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_renderNavigation" class="">renderNavigation()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_createNavigationLinks" class="">createNavigationLinks()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_renderContents" class="">renderContents()</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#method_createContentTabs" class="">createContentTabs()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#property_links" class="">$links</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#property_contents" class="">$contents</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#property_active" class="">$active</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#property_type" class="">$type</a><br />
+                                                                    <a href="../classes/Bootstrapper.Tabbable.html#property_fade" class="">$fade</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Bootstrapper.Tabbable.html"><div class="path-wrapper">Bootstrapper/Tabbable.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Bootstrapper</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Bootstrapper.RenderedObject.html">\Bootstrapper\RenderedObject</a></div>
+                                                                                                    <div class="namespace-wrapper">\Bootstrapper\Tabbable</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_PILL" name="constant_PILL" class="anchor"></a>
+            <article id="constant_PILL" class="constant">
+                <h3 class="">PILL</h3>
+                <pre class="signature">PILL</pre>
+                <p><em>Constant for pill tabs</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TAB" name="constant_TAB" class="anchor"></a>
+            <article id="constant_TAB" class="constant">
+                <h3 class="">TAB</h3>
+                <pre class="signature">TAB</pre>
+                <p><em>Constant for tab tabs</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_links" name="property_links" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$links</h3>
+                <pre class="signature">$links : \Bootstrapper\Navigation</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Bootstrapper.Navigation.html">\Bootstrapper\Navigation</a>
+                &mdash; The navigation array                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_contents" name="property_contents" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$contents</h3>
+                <pre class="signature">$contents : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; The contents of the navigation. Should be an array of
+arrays, with the following inner keys:
+           &lt;ul&gt;
+           &lt;li&gt;title - the title of the content&lt;/li&gt;
+           &lt;li&gt;content - the actual content&lt;/li&gt;
+           &lt;li&gt;attributes (optional) - any attributes&lt;/li&gt;
+           &lt;/ul&gt;                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_active" name="property_active" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$active</h3>
+                <pre class="signature">$active : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; Which tab should be open first                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_type" name="property_type" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$type</h3>
+                <pre class="signature">$type : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The type                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_fade" name="property_fade" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$fade</h3>
+                <pre class="signature">$fade : boolean</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                &mdash; Whether we should fade in or not                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___toString" name="method___toString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__toString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__toString() : string</pre>
+                <p><em>Calls the render method on the object. If an exception is thrown,
+it catches it and displays an error message</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Bootstrapper.RenderedObject.html"><div class="path-wrapper">\Bootstrapper\RenderedObject</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_render" name="method_render" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">render()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">render() : string</pre>
+                <p><em>Renders the tabbable object</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Bootstrapper\Navigation  <span class="argument">$links</span>) </pre>
+                <p><em>Creates a new Tabbable object</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Bootstrapper.Navigation.html">\Bootstrapper\Navigation</a></td>
+                                <td>$links </td>
+                                <td><p>A navigation object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_tabs" name="method_tabs" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">tabs()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">tabs(array  <span class="argument">$contents = array()</span>) : $this</pre>
+                <p><em>Creates content with a tabbed navigation</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$contents </td>
+                                <td><p>The content</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    $this
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pills" name="method_pills" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pills()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pills(array  <span class="argument">$contents = array()</span>) : $this</pre>
+                <p><em>Creates content with a pill navigation</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$contents </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    $this
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withContents" name="method_withContents" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withContents()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withContents(array  <span class="argument">$contents</span>) : $this</pre>
+                <p><em>Sets the contents</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$contents </td>
+                                <td><p>An array of arrays</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    $this
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_active" name="method_active" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">active()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">active(integer  <span class="argument">$active</span>) : $this</pre>
+                <p><em>Sets which tab should be active</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$active </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    $this
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fade" name="method_fade" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fade()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fade() : $this</pre>
+                <p><em>Sets the tabbable objects to fade in</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    $this
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderNavigation" name="method_renderNavigation" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderNavigation()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderNavigation() : string</pre>
+                <p><em>Render the navigation links</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createNavigationLinks" name="method_createNavigationLinks" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">createNavigationLinks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createNavigationLinks() : array</pre>
+                <p><em>Creates the navigation links</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderContents" name="method_renderContents" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderContents()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderContents() : string</pre>
+                <p><em>Renders the contents</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createContentTabs" name="method_createContentTabs" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">createContentTabs()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createContentTabs() : array</pre>
+                <p><em>Creates the content tabs</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Tabbable.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Bootstrapper/Tabbable.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Bootstrapper.html">\Bootstrapper</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on October 24th, 2014 at 16:40.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,16 @@
 <?php
+/**
+ * Bootstrapper Image facade
+ */
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for Image class
+ *
+ * @package Bootstrapper\Facades
+ * @see Bootstrapper\Image
+ */
 class Image extends BootstrapperFacade
 {
 
@@ -10,6 +19,11 @@ class Image extends BootstrapperFacade
     const IMAGE_CIRCLE = 'img-circle';
     const IMAGE_THUMBNAIL = 'img-thumbnail';
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'image';

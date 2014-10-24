@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Form class
+ */
 
 namespace Bootstrapper;
 
@@ -54,6 +57,9 @@ class Form extends FormBuilder
 
     /**
      * {@inheritdoc}
+     * @param string|null $value   The value of the submit button
+     * @param array       $options The options
+     * @return string
      */
     public function submit($value = null, $options = array())
     {
@@ -65,6 +71,11 @@ class Form extends FormBuilder
 
     /**
      * {@inheritdoc}
+     * @param string      $name    The name of the object this label will be
+     *                             attached to
+     * @param string|null $value   The text of the label
+     * @param array       $options The options of the label
+     * @return string
      */
     public function label($name, $value = null, $options = array())
     {
@@ -275,9 +286,10 @@ class Form extends FormBuilder
     }
 
     /**
-     * @param string $name
-     * @param null   $value
-     * @param array  $attributes
+     * {@inheritdoc}
+     * @param string      $name       The name of the text area
+     * @param string|null $value      The default value
+     * @param array       $attributes The attributes of the text area
      * @return string
      */
     public function textarea($name, $value = null, $attributes = array())
@@ -290,8 +302,9 @@ class Form extends FormBuilder
     }
 
     /**
-     * @param string $name
-     * @param array  $attributes
+     * {@inheritdoc}
+     * @param string $name       The name of the password input
+     * @param array  $attributes The attributes of the input
      * @return string
      */
     public function password($name, $attributes = array())
@@ -304,9 +317,10 @@ class Form extends FormBuilder
     }
 
     /**
-     * @param string $name
-     * @param null   $value
-     * @param array  $attributes
+     * {@inheritdoc}
+     * @param string      $name       The name of the text input
+     * @param string|null $value      The default value
+     * @param array       $attributes The attributes of the input
      * @return string
      */
     public function text($name, $value = null, $attributes = array())
@@ -319,9 +333,10 @@ class Form extends FormBuilder
     }
 
     /**
-     * @param string $name
-     * @param null   $value
-     * @param array  $attributes
+     * {@inheritdoc}
+     * @param string      $name       The name of the email input
+     * @param string|null $value      The default value of the input
+     * @param array       $attributes The attributes of the email input
      * @return string
      */
     public function email($name, $value = null, $attributes = array())

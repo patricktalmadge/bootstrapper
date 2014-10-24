@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper base class for objects
+ */
 namespace Bootstrapper;
 
 /**

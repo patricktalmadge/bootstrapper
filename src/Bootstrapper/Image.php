@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Image class
+ */
 
 namespace Bootstrapper;
 
@@ -41,8 +44,9 @@ class Image extends RenderedObject
      * @var string The alt text for the image
      */
     protected $alt = '';
+
     /**
-     * @var array
+     * @var array The attributes of the image
      */
     protected $attributes = [];
 

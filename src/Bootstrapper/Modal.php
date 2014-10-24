@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Modal class
+ */
 
 namespace Bootstrapper;
 
@@ -137,7 +140,9 @@ class Modal extends RenderedObject
     }
 
     /**
-     * @param $footer
+     * Set the footer of the modal
+     *
+     * @param string $footer The footer
      * @return $this
      */
     public function withFooter($footer)

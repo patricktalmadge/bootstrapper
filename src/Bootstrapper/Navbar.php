@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Navbar class
+ */
 
 namespace Bootstrapper;
 
@@ -69,6 +72,8 @@ class Navbar extends RenderedObject
     protected $fluid = false;
 
     /**
+     * Creates a new Navbar
+     *
      * @param UrlGenerator $url A Laravel URL generator
      */
     public function __construct(UrlGenerator $url)

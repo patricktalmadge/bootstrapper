@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Navigation class
+ */
 
 namespace Bootstrapper;
 
@@ -81,6 +84,8 @@ class Navigation extends RenderedObject
     protected $stacked = false;
 
     /**
+     * Creates a new instance of Navigation
+     *
      * @param UrlGenerator $urlGenerator
      */
     public function __construct(UrlGenerator $urlGenerator)

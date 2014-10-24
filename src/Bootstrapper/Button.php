@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Button class
+ */
 
 namespace Bootstrapper;
 
@@ -465,6 +468,8 @@ class Button extends RenderedObject
     }
 
     /**
+     * Gets the attributes of the button
+     *
      * @return array
      */
     public function getAttributes()

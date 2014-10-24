@@ -1,6 +1,13 @@
 Bootstrapper
 ------------
 
+5.2.0
+=====
+
+* Add docblocks
+* `withAttributes` is now a method on the `RenderedObject` class
+* `Helpers::generateId()` created, to generate unique ids per object
+
 5.0.0
 =====
 

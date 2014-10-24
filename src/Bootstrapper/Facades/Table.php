@@ -1,7 +1,16 @@
 <?php
+/**
+ * Bootstrapper Table facade
+ */
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for the Table class
+ *
+ * @package Bootstrapper\Facades
+ * @see Bootstrapper\Table
+ */
 class Table extends BootstrapperFacade
 {
 
@@ -10,6 +19,11 @@ class Table extends BootstrapperFacade
     const TABLE_HOVER = 'table-hover';
     const TABLE_CONDENSED = 'table-condensed';
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'table';

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Carousel class
+ */
 
 namespace Bootstrapper;
 

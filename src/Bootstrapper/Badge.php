@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Badge class
+ */
 
 namespace Bootstrapper;
 

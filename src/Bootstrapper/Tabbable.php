@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Tabbable class
+ */
 
 namespace Bootstrapper;
 
@@ -52,6 +55,8 @@ class Tabbable extends RenderedObject
     protected $fade = false;
 
     /**
+     * Creates a new Tabbable object
+     *
      * @param Navigation $links A navigation object
      */
     public function __construct(Navigation $links)

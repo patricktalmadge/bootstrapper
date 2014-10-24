@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Accordion facade
+ */
 
 namespace Bootstrapper\Facades;
 
@@ -11,6 +14,11 @@ namespace Bootstrapper\Facades;
 class Accordion extends BootstrapperFacade
 {
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'accordion';

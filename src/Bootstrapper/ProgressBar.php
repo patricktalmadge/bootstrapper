@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper ProgressBar class
+ */
 
 namespace Bootstrapper;
 

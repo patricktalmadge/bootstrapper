@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Breadcrumb class
+ */
 
 namespace Bootstrapper;
 

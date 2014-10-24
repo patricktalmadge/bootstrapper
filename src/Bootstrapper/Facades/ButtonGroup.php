@@ -1,8 +1,16 @@
 <?php
-
+/**
+ * Bootstrapper Button Group facade
+ */
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for ButtonGroup
+ *
+ * @package Bootstrapper\Facades
+ * @see Bootstrapper\ButtonGroup
+ */
 class ButtonGroup extends BootstrapperFacade
 {
     const LARGE = 'btn-group-lg';
@@ -16,6 +24,11 @@ class ButtonGroup extends BootstrapperFacade
     const WARNING = 'btn-warning';
     const DANGER = 'btn-danger';
 
+    /**
+     * {@inheritdoc}
+     *
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'buttongroup';
