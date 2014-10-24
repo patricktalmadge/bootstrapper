@@ -58,7 +58,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerAccordion()
     {
         $this->app->bind(
-            'accordion',
+            'bootstrapper::accordion',
             function () {
                 return new Accordion();
             }
@@ -71,7 +71,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerAlert()
     {
         $this->app->bind(
-            'alert',
+            'bootstrapper::alert',
             function () {
                 return new Alert();
             }
@@ -84,7 +84,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerBadge()
     {
         $this->app->bind(
-            'badge',
+            'bootstrapper::badge',
             function () {
                 return new Badge;
             }
@@ -97,7 +97,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerBreadcrumb()
     {
         $this->app->bind(
-            'breadcrumb',
+            'bootstrapper::breadcrumb',
             function () {
                 return new Breadcrumb;
             }
@@ -110,7 +110,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerButtonGroup()
     {
         $this->app->bind(
-            'buttongroup',
+            'bootstrapper::buttongroup',
             function () {
                 return new ButtonGroup;
             }
@@ -123,7 +123,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerButton()
     {
         $this->app->bind(
-            'button',
+            'bootstrapper::button',
             function () {
                 return new Button;
             }
@@ -136,7 +136,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerCarousel()
     {
         $this->app->bind(
-            'carousel',
+            'bootstrapper::carousel',
             function () {
                 return new Carousel;
             }
@@ -149,7 +149,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerControlGroup()
     {
         $this->app->bind(
-            'controlgroup',
+            'bootstrapper::controlgroup',
             function ($app) {
                 return new ControlGroup($app['bootstrapper::form']);
             }
@@ -162,7 +162,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerDropdownButton()
     {
         $this->app->bind(
-            'dropdownbutton',
+            'bootstrapper::dropdownbutton',
             function () {
                 return new DropdownButton;
             }
@@ -194,7 +194,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerIcon()
     {
         $this->app->bind(
-            'icon',
+            'bootstrapper::icon',
             function ($app) {
                 return new Icon($app['config']);
             }
@@ -207,7 +207,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerImage()
     {
         $this->app->bind(
-            'image',
+            'bootstrapper::image',
             function () {
                 return new Image;
             }
@@ -220,7 +220,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerInputGroup()
     {
         $this->app->bind(
-            'inputgroup',
+            'bootstrapper::inputgroup',
             function () {
                 return new InputGroup;
             }
@@ -233,7 +233,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerLabel()
     {
         $this->app->bind(
-            'label',
+            'bootstrapper::label',
             function () {
                 return new Label;
             }
@@ -259,7 +259,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerMediaObject()
     {
         $this->app->bind(
-            'mediaobject',
+            'bootstrapper::mediaobject',
             function () {
                 return new MediaObject;
             }
@@ -272,7 +272,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerModal()
     {
         $this->app->bind(
-            'modal',
+            'bootstrapper::modal',
             function () {
                 return new Modal;
             }
@@ -285,7 +285,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerNavbar()
     {
         $this->app->bind(
-            'navbar',
+            'bootstrapper::navbar',
             function ($app) {
                 return new Navbar($app['url']);
             }
@@ -298,7 +298,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerNavigation()
     {
         $this->app->bind(
-            'navigation',
+            'bootstrapper::navigation',
             function ($app) {
                 return new Navigation($app['url']);
             }
@@ -311,7 +311,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerPanel()
     {
         $this->app->bind(
-            'panel',
+            'bootstrapper::panel',
             function () {
                 return new Panel;
             }
@@ -324,7 +324,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerProgressBar()
     {
         $this->app->bind(
-            'progressbar',
+            'bootstrapper::progressbar',
             function () {
                 return new ProgressBar;
             }
@@ -337,7 +337,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerTabbable()
     {
         $this->app->bind(
-            'tabbable',
+            'bootstrapper::tabbable',
             function ($app) {
                 return new Tabbable($app['navigation']);
             }
@@ -350,7 +350,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerTable()
     {
         $this->app->bind(
-            'table',
+            'bootstrapper::table',
             function () {
                 return new Table;
             }
@@ -363,7 +363,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     private function registerThumbnail()
     {
         $this->app->bind(
-            'thumbnail',
+            'bootstrapper::thumbnail',
             function () {
                 return new Thumbnail;
             }
