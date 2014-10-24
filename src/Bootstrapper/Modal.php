@@ -2,8 +2,6 @@
 
 namespace Bootstrapper;
 
-use Bootstrapper\Exceptions\ModalException;
-
 /**
  * Creates Bootstrap 3 compliant modal
  *
@@ -46,7 +44,6 @@ class Modal extends RenderedObject
      * Renders the modal
      *
      * @return string
-     * @throws ModalException if the id has not been set
      */
     public function render()
     {
@@ -188,7 +185,6 @@ class Modal extends RenderedObject
      *
      * @param Attributes $attributes The attributes of the modal
      * @return string
-     * @throws ModalException if the id hasn't been set
      */
     protected function renderButton(Attributes $attributes)
     {
@@ -197,9 +193,7 @@ class Modal extends RenderedObject
         }
 
         if (!isset($attributes['id'])) {
-            throw new ModalException(
-                "You must give the modal an id either using withAttributes() or named()"
-            );
+            $attributes['id'] = Helpers::generateId($this);
         }
 
         $this->button->addAttributes(

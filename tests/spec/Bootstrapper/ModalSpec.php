@@ -62,11 +62,11 @@ class ModalSpec extends ObjectBehavior
         );
     }
 
-    function it_squawks_if_you_have_a_button_but_no_id()
+    function it_does_not_squawk_if_you_have_a_button_but_no_id()
     {
-        $this->withButton()->shouldThrow(
-            'Bootstrapper\\Exceptions\\ModalException'
-        )->duringRender();
+        $this->withButton()->render()->shouldBe(
+            "<button type='button' class='btn btn-default' data-toggle='modal' data-target='#1-bootstrapper-modal-1'>Open Modal</button><div class='modal' id='1-bootstrapper-modal-1'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button></div></div></div></div>"
+        );
     }
 
     function it_allows_you_to_customise_the_button()

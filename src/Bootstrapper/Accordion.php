@@ -2,8 +2,6 @@
 
 namespace Bootstrapper;
 
-use Bootstrapper\Exceptions\AccordionException;
-
 /**
  * Accordion Class
  * Creates Bootstrap 3 compliant accordions
@@ -94,7 +92,6 @@ class Accordion extends RenderedObject
      * Renders the accordion
      *
      * @return string
-     * @throws AccordionException Thrown if the accordion has not been named
      */
     public function render()
     {
