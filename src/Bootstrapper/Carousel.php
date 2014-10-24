@@ -2,8 +2,6 @@
 
 namespace Bootstrapper;
 
-use Bootstrapper\Exceptions\CarouselException;
-
 /**
  * Creates Bootstrap 3 compliant carousels
  *
@@ -82,13 +80,11 @@ class Carousel extends RenderedObject
      * Renders the carousel
      *
      * @return string
-     * @throws \Bootstrapper\Exceptions\CarouselException Thrown if the
-     * carousel has not been named
      */
     public function render()
     {
         if (!$this->name) {
-            throw new CarouselException("You haven't named the carousel");
+            $this->name = Helpers::generateId($this);
         }
 
         $attributes = new Attributes(
