@@ -48,7 +48,7 @@ class ControlGroup extends RenderedObject
     protected $formBuilder;
 
     /**
-     * @param Form An $formBuilder instance of the Bootstrapper formbuiler
+     * @param Form $formBuilder An instance of the Bootstrapper form builder
      */
     public function __construct(Form $formBuilder)
     {
