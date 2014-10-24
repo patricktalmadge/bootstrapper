@@ -79,11 +79,6 @@ class Button extends RenderedObject
     protected $block = false;
 
     /**
-     * @var array The attributes of the button
-     */
-    protected $attributes = [];
-
-    /**
      * @var string The contents of the button
      */
     protected $value = '';
@@ -354,19 +349,6 @@ class Button extends RenderedObject
     public function extraSmall()
     {
         $this->setSize(self::EXTRA_SMALL);
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes of the button
-     *
-     * @param $attributes array An array of attributes to add
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = array_merge($attributes, $this->attributes);
 
         return $this;
     }

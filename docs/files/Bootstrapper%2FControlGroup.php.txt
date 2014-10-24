@@ -16,11 +16,6 @@ class ControlGroup extends RenderedObject
 {
 
     /**
-     * @var array The attributes for control group
-     */
-    protected $attributes = [];
-
-    /**
      * @var array The contents of the control groups
      */
     protected $contents = [];
@@ -302,7 +297,7 @@ class ControlGroup extends RenderedObject
      *
      * @param int $size The size
      * @return bool True if the size is below 1 or greater than 11,
-     *            false otherwise
+     *                  false otherwise
      */
     protected function sizeIsInvalid($size)
     {

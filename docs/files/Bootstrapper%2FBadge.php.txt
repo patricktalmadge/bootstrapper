@@ -19,11 +19,6 @@ class Badge extends RenderedObject
     protected $contents;
 
     /**
-     * @var array The attributes of the badge
-     */
-    protected $attributes = [];
-
-    /**
      * Renders the badge
      *
      * @return string
@@ -46,20 +41,6 @@ class Badge extends RenderedObject
     public function withContents($contents)
     {
         $this->contents = $contents;
-
-        return $this;
-    }
-
-
-    /**
-     * Adds attributes to the badge
-     *
-     * @param $attributes array
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

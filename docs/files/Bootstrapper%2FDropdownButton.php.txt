@@ -158,7 +158,7 @@ class DropdownButton extends RenderedObject
 
     /**
      * Sets the button to drop up
-     * 
+     *
      * @return $this
      */
     public function dropup()
@@ -170,7 +170,7 @@ class DropdownButton extends RenderedObject
 
     /**
      * Creates a normal dropdown button
-     * 
+     *
      * @param string $label The label
      * @return $this
      */
@@ -248,7 +248,7 @@ class DropdownButton extends RenderedObject
 
     /**
      * Sets the size to large
-     * 
+     *
      * @return $this
      */
     public function large()
@@ -261,7 +261,7 @@ class DropdownButton extends RenderedObject
 
     /**
      * Sets the size to small
-     * 
+     *
      * @return $this
      */
     public function small()
@@ -273,7 +273,7 @@ class DropdownButton extends RenderedObject
 
     /**
      * Sets the size to extra small
-     * 
+     *
      * @return $this
      */
     public function extraSmall()
@@ -296,6 +296,7 @@ class DropdownButton extends RenderedObject
             $string = "<div class='btn-group'>";
         }
         $attributes = new Attributes(
+            $this->attributes,
             [
                 'class' => "btn {$this->type} dropdown-toggle",
                 'data-toggle' => 'dropdown',

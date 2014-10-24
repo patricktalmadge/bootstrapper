@@ -96,6 +96,7 @@ class ButtonGroup extends RenderedObject
     public function render()
     {
         $attributes = new Attributes(
+            $this->attributes,
             [
                 'class' => $this->vertical ? 'btn-group-vertical' : 'btn-group',
                 'data-toggle' => 'buttons'

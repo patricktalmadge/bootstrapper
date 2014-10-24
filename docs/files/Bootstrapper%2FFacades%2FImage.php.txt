@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for Image class
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\Image
+ * @see     Bootstrapper\Image
  */
 class Image extends BootstrapperFacade
 {
@@ -21,7 +21,6 @@ class Image extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

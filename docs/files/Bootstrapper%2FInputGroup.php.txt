@@ -44,11 +44,6 @@ class InputGroup extends RenderedObject
     protected $contents;
 
     /**
-     * @var array The attributes of the input group
-     */
-    protected $attributes = [];
-
-    /**
      * Renders the input group
      *
      * @return string
@@ -104,19 +99,6 @@ class InputGroup extends RenderedObject
     public function withContents($contents)
     {
         $this->contents = $contents;
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes
-     *
-     * @param array $attributes The new attributes of the input group
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

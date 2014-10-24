@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for the Label class
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\Label
+ * @see     Bootstrapper\Label
  */
 class Label extends BootstrapperFacade
 {
@@ -23,7 +23,6 @@ class Label extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

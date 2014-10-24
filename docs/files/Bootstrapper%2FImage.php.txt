@@ -46,11 +46,6 @@ class Image extends RenderedObject
     protected $alt = '';
 
     /**
-     * @var array The attributes of the image
-     */
-    protected $attributes = [];
-
-    /**
      * Renders the image
      *
      * @return string
@@ -92,19 +87,6 @@ class Image extends RenderedObject
     public function withAlt($alt)
     {
         $this->alt = $alt;
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes of the image
-     *
-     * @param array $attributes
-     * @return $this
-     */
-    public function withAttributes($attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

@@ -37,7 +37,12 @@ class Thumbnail extends RenderedObject
             throw ThumbnailException::imageNotSpecified();
         }
 
-        $string = '<div class=\'thumbnail\'>';
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => 'thumbnail']
+        );
+
+        $string = "<div {$attributes}>";
         $string .= $this->renderImage();
 
         if ($this->caption) {

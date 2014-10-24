@@ -9,7 +9,7 @@ namespace Bootstrapper\Facades;
  * Facade for the Table class
  *
  * @package Bootstrapper\Facades
- * @see Bootstrapper\Table
+ * @see     Bootstrapper\Table
  */
 class Table extends BootstrapperFacade
 {
@@ -21,7 +21,6 @@ class Table extends BootstrapperFacade
 
     /**
      * {@inheritdoc}
-     *
      * @return string
      */
     protected static function getFacadeAccessor()

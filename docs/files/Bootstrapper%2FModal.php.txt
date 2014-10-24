@@ -14,11 +14,6 @@ class Modal extends RenderedObject
 {
 
     /**
-     * @var array The attributes
-     */
-    protected $attributes = [];
-
-    /**
      * @var string The title of the modal
      */
     protected $title;
@@ -63,19 +58,6 @@ class Modal extends RenderedObject
         $string .= "</div></div></div>";
 
         return $string;
-    }
-
-    /**
-     * Sets the attributes
-     *
-     * @param array $attributes The new attributes of the modal
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**

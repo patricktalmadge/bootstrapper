@@ -136,7 +136,9 @@ class Attributes implements \ArrayAccess
      */
     public function addClass($class)
     {
-        $this->attributes['class'] = isset($this->attributes['class']) ? $this->attributes['class'] . " {$class}" : $class;
+        $this->attributes['class'] = isset($this->attributes['class']) ?
+            trim($this->attributes['class']) . " {$class}" :
+            $class;
 
         return $this;
     }

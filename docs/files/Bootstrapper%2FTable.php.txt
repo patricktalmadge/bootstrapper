@@ -65,7 +65,12 @@ class Table extends RenderedObject
      */
     public function render()
     {
-        $attributes = new Attributes(['class' => "table {$this->type}"]);
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'class' => "table {$this->type}"
+            ]
+        );
 
         $string = "<table {$attributes}>";
 

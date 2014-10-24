@@ -78,9 +78,9 @@ class ProgressBar extends RenderedObject
         $string = "<div class='progress'>";
 
         $attributes = new Attributes(
-            ['class' => $this->type],
+            $this->attributes,
             [
-                'class' => 'progress-bar',
+                'class' => "progress-bar {$this->type}",
                 'role' => 'progressbar',
                 'aria-valuenow' => "{$this->value}",
                 'aria-valuemin' => '0',
@@ -90,11 +90,11 @@ class ProgressBar extends RenderedObject
         );
 
         if ($this->striped) {
-            $attributes['class'] .= ' progress-bar-striped';
+            $attributes->addClass('progress-bar-striped');
         }
 
         if ($this->animated) {
-            $attributes['class'] .= ' active';
+            $attributes->addClass('active');
         }
 
         $string .= "<div {$attributes}>";

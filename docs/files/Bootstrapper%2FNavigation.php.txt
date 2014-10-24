@@ -36,11 +36,6 @@ class Navigation extends RenderedObject
     const NAVIGATION_DIVIDER = 'divider';
 
     /**
-     * @var array The attributes of the navigation element
-     */
-    protected $attributes = [];
-
-    /**
      * @var string The type
      */
     protected $type = 'nav-tabs';
@@ -128,19 +123,6 @@ class Navigation extends RenderedObject
         $string .= "</ul>";
 
         return $string;
-    }
-
-    /**
-     * Set the attributes of the navigation object
-     *
-     * @param array $attributes The attributes
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**

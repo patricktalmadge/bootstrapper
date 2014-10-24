@@ -44,11 +44,6 @@ class Panel extends RenderedObject
     const NORMAL = 'panel-default';
 
     /**
-     * @var array The attributes of the navigation object
-     */
-    protected $attributes = [];
-
-    /**
      * @var string The type of the panel
      */
     protected $type = self::NORMAL;
@@ -96,19 +91,6 @@ class Panel extends RenderedObject
         $string .= "</div>";
 
         return $string;
-    }
-
-    /**
-     * Sets the attributes of the panel
-     *
-     * @param array $attributes The attributes
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**
