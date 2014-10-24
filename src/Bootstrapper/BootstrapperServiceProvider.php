@@ -18,10 +18,7 @@ class BootstrapperServiceProvider extends ServiceProvider
     /**
      * {@inheritdoc}
      */
-    /**
-     * Registers the  class into the IoC
-     */
-    private function register()
+    public function register()
     {
         $this->registerAccordion();
         $this->registerAlert();
