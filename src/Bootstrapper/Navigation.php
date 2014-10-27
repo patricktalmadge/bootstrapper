@@ -120,13 +120,7 @@ class Navigation extends RenderedObject
         $string = "<ul {$attributes}>";
 
         foreach ($this->links as $link) {
-            if (!is_array($link)) {
-                $string .= $this->renderSeparator($link);
-            } elseif (isset($link['link'])) {
-                $string .= $this->renderLink($link);
-            } else {
-                $string .= $this->renderDropdown($link);
-            }
+            $string .= $this->renderItem($link);
         }
 
         $string .= "</ul>";
@@ -256,10 +250,7 @@ class Navigation extends RenderedObject
         $string .= '<ul class=\'dropdown-menu\' role=\'menu\'>';
 
         foreach ($link[1] as $item) {
-            // @todo Eerily similar to the check in the render method
-            $string .= is_array($item) ?
-                $this->renderLink($item) :
-                $this->renderSeparator($item);
+            $string .= $this->renderItem($item);
         }
 
         $string .= '</ul>';
@@ -326,6 +317,7 @@ class Navigation extends RenderedObject
         }
         $auto = $this->autoroute && $this->url->current() == $link['link'];
         $manual = isset($link['active']) && $link['active'];
+
         return $auto || $manual;
     }
 
@@ -386,5 +378,24 @@ class Navigation extends RenderedObject
     protected function renderSeparator($separator)
     {
         return "<li class='{$separator}'></li>";
+    }
+
+    /**
+     * Renders an item
+     *
+     * @param string|array $link The item to render
+     * @return string
+     */
+    private function renderItem($link)
+    {
+        if (!is_array($link)) {
+            $string = $this->renderSeparator($link);
+        } elseif (isset($link['link'])) {
+            $string = $this->renderLink($link);
+        } else {
+            $string = $this->renderDropdown($link);
+        }
+
+        return $string;
     }
 }
