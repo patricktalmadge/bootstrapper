@@ -183,6 +183,13 @@ class NavigationSpec extends ObjectBehavior
         );
     }
 
+    function it_can_be_right() # words are funny
+    {
+        $this->right()->render()->shouldBe(
+            "<ul class='nav nav-tabs navbar-right'></ul>"
+        );
+    }
+
     function it_allows_you_to_disable_a_link()
     {
         $this->links(
