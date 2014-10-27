@@ -23,7 +23,9 @@ class BreadcrumbSpec extends ObjectBehavior
             [
                 'foo' => 'bar'
             ]
-        )->render()->shouldBe("<ol class='breadcrumb'><li><a href='bar'>foo</a></li></ol>");
+        )->render()->shouldBe(
+            "<ol class='breadcrumb'><li><a href='bar'>foo</a></li></ol>"
+        );
     }
 
     function it_can_work_out_active_links()
@@ -32,6 +34,8 @@ class BreadcrumbSpec extends ObjectBehavior
             [
                 'foo'
             ]
-        )->render()->shouldBe("<ol class='breadcrumb'><li class='active'>foo</li></ol>");
+        )->render()->shouldBe(
+            "<ol class='breadcrumb'><li class='active'>foo</li></ol>"
+        );
     }
 }

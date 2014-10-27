@@ -1,10 +1,18 @@
 <?php
+/**
+ * Bootstrapper ControlGroup exceptions
+ */
 
 namespace Bootstrapper\Exceptions;
 
+use Exception;
 
-use PhpSpec\Exception\Exception;
-
+/**
+ * Exception for use in the ControlGroup Class
+ *
+ * @package Bootstrapper\Exceptions
+ * @see     Bootstrapper\ControlGroup
+ */
 class ControlGroupException extends Exception
 {
 

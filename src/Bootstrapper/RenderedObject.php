@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper base class for objects
+ */
 namespace Bootstrapper;
 
 /**
@@ -8,6 +11,11 @@ namespace Bootstrapper;
  */
 abstract class RenderedObject
 {
+
+    /**
+     * @var array
+     */
+    protected $attributes = [];
 
     /**
      * Calls the render method on the object. If an exception is thrown,
@@ -33,5 +41,18 @@ abstract class RenderedObject
      * @return string
      */
     public abstract function render();
+
+    /**
+     * Set the attributes of the object
+     *
+     * @param array $attributes The attributes to use
+     * @return $this
+     */
+    public function withAttributes(array $attributes)
+    {
+        $this->attributes = array_merge($attributes, $this->attributes);
+
+        return $this;
+    }
 
 } 

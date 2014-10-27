@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Media Object class
+ */
 
 namespace Bootstrapper;
 
@@ -23,6 +26,8 @@ class MediaObject extends RenderedObject
     protected $list;
 
     /**
+     * Renders the media object
+     *
      * @return string
      * @throws MediaObjectException if there is no contents
      */
@@ -76,7 +81,14 @@ class MediaObject extends RenderedObject
      */
     protected function renderList()
     {
-        $string = "<ul class='media-list'>";
+        $attributes = new Attributes(
+            $this->attributes,
+            ['class' => 'media-list']
+        );
+
+        $this->attributes = [];
+
+        $string = "<ul {$attributes}>";
         foreach ($this->contents as $item) {
             $string .= $this->renderItem($item, 'li');
         }
@@ -101,7 +113,9 @@ class MediaObject extends RenderedObject
         $link = $this->getLink($contents, $image, $position);
         $body = $this->getBody($contents);
 
-        $string = "<{$tag} class='media'>";
+        $attributes = new Attributes($this->attributes, ['class' => 'media']);
+
+        $string = "<{$tag} {$attributes}>";
         $string .= $link;
         $string .= "<div class='media-body'>";
 

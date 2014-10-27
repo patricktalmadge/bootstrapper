@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Navbar class
+ */
 
 namespace Bootstrapper;
 
@@ -44,11 +47,6 @@ class Navbar extends RenderedObject
     protected $url;
 
     /**
-     * @var array The attributes of the navbar
-     */
-    protected $attributes = [];
-
-    /**
      * @var array The content of the array
      */
     protected $content = [];
@@ -69,6 +67,8 @@ class Navbar extends RenderedObject
     protected $fluid = false;
 
     /**
+     * Creates a new Navbar
+     *
      * @param UrlGenerator $url A Laravel URL generator
      */
     public function __construct(UrlGenerator $url)
@@ -156,19 +156,6 @@ class Navbar extends RenderedObject
         }
 
         $this->brand = compact('brand', 'link');
-
-        return $this;
-    }
-
-    /**
-     * Adds attributes to the navbar
-     *
-     * @param $attributes array The attributes of the array
-     * @return $this
-     */
-    public function withAttributes($attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

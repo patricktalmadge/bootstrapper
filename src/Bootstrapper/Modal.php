@@ -1,8 +1,9 @@
 <?php
+/**
+ * Bootstrapper Modal class
+ */
 
 namespace Bootstrapper;
-
-use Bootstrapper\Exceptions\ModalException;
 
 /**
  * Creates Bootstrap 3 compliant modal
@@ -11,11 +12,6 @@ use Bootstrapper\Exceptions\ModalException;
  */
 class Modal extends RenderedObject
 {
-
-    /**
-     * @var array The attributes
-     */
-    protected $attributes = [];
 
     /**
      * @var string The title of the modal
@@ -46,7 +42,6 @@ class Modal extends RenderedObject
      * Renders the modal
      *
      * @return string
-     * @throws ModalException if the id has not been set
      */
     public function render()
     {
@@ -63,19 +58,6 @@ class Modal extends RenderedObject
         $string .= "</div></div></div>";
 
         return $string;
-    }
-
-    /**
-     * Sets the attributes
-     *
-     * @param array $attributes The new attributes of the modal
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**
@@ -140,7 +122,9 @@ class Modal extends RenderedObject
     }
 
     /**
-     * @param $footer
+     * Set the footer of the modal
+     *
+     * @param string $footer The footer
      * @return $this
      */
     public function withFooter($footer)
@@ -188,7 +172,6 @@ class Modal extends RenderedObject
      *
      * @param Attributes $attributes The attributes of the modal
      * @return string
-     * @throws ModalException if the id hasn't been set
      */
     protected function renderButton(Attributes $attributes)
     {
@@ -197,9 +180,7 @@ class Modal extends RenderedObject
         }
 
         if (!isset($attributes['id'])) {
-            throw new ModalException(
-                "You must give the modal an id either using withAttributes() or named()"
-            );
+            $attributes['id'] = Helpers::generateId($this);
         }
 
         $this->button->addAttributes(

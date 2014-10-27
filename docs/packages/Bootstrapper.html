@@ -1,0 +1,542 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » Bootstrapper</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Bootstrapper.html"><i class="icon-th"></i> Bootstrapper</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Bootstrapper.html"><i class="icon-folder-open"></i> Bootstrapper</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">83</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-map-marker"></i> Packages</li>
+<li>
+<a href="../packages/Bootstrapper.html" title="Bootstrapper"><i class="icon-folder-open"></i>Bootstrapper</a><ul class="nav nav-list nav-packages">
+<li>
+<a href="../packages/Bootstrapper.Exceptions.html" title="Exceptions"><i class="icon-folder-open"></i>Exceptions</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+<li>
+<a href="../packages/Bootstrapper.Facades.html" title="Facades"><i class="icon-folder-open"></i>Facades</a><ul class="nav nav-list nav-packages"></ul>
+</li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Classes" class="icon-custom icon-class"></i> Classes</li>
+<li><a href="#Navigation" title="Creates Bootstrap 3 compliant navigation">Navigation</a></li>
+<li><a href="#Breadcrumb" title="Creates Bootstrap 3 compliant Breadcrumbs">Breadcrumb</a></li>
+<li><a href="#Carousel" title="Creates Bootstrap 3 compliant carousels">Carousel</a></li>
+<li><a href="#BootstrapperServiceProvider" title="Service provider for Laravel">BootstrapperServiceProvider</a></li>
+<li><a href="#Form" title="Creates Bootstrap 3 compliant forms">Form</a></li>
+<li><a href="#Badge" title="Creates Bootstrap 3 compliant Badges">Badge</a></li>
+<li><a href="#Table" title="Creates Bootstrap 3 compliant tables">Table</a></li>
+<li><a href="#Navbar" title="Creates Bootstrap 3 compliant navbars">Navbar</a></li>
+<li><a href="#Accordion" title="Accordion Class
+Creates Bootstrap 3 compliant accordions">Accordion</a></li>
+<li><a href="#RenderedObject" title="Rendered Object abstract class">RenderedObject</a></li>
+<li><a href="#Helpers" title="Helper class">Helpers</a></li>
+<li><a href="#ButtonGroup" title="Creates Bootstrap 3 compliant Button Groups">ButtonGroup</a></li>
+<li><a href="#InputGroup" title="Creates Bootstrap 3 compliant input groups (for forms)">InputGroup</a></li>
+<li><a href="#ControlGroup" title="Creates Bootstrap 3 compliant control groups (for forms)">ControlGroup</a></li>
+<li><a href="#Panel" title="Creates Bootstrap 3 compliant panels">Panel</a></li>
+<li><a href="#DropdownButton" title="Creates Bootstrap 3 compliant Dropdown Buttons">DropdownButton</a></li>
+<li><a href="#Button" title="Creates a Bootstrap 3 compliant Button">Button</a></li>
+<li><a href="#Icon" title="Creates Bootstrap 3 compliant Icons">Icon</a></li>
+<li><a href="#Image" title="Creates Bootstrap 3 compliant images">Image</a></li>
+<li><a href="#Label" title="Creates bootstrap 3 compliant labels">Label</a></li>
+<li><a href="#MediaObject" title="Creates Bootstrap 3 compliant Media Objects">MediaObject</a></li>
+<li><a href="#Modal" title="Creates Bootstrap 3 compliant modal">Modal</a></li>
+<li><a href="#Tabbable" title="Creates Bootstrap 3 compliant tab elements">Tabbable</a></li>
+<li><a href="#Attributes" title="Simple attributes bag">Attributes</a></li>
+<li><a href="#Alert" title="Creates Bootstrap 3 compliant alert boxes">Alert</a></li>
+<li><a href="#Thumbnail" title="Creates Bootstrap 3 compliant Thumbnail">Thumbnail</a></li>
+<li><a href="#ProgressBar" title="Creates Bootstrap 3 compliant progress bars">ProgressBar</a></li>
+</ul>
+</div>
+<div class="span8 package-contents">
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/Bootstrapper.html">Bootstrapper</a></li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i title="Classes" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="Accordion" class="element ajax clickable class">
+<h1>Accordion<a href="../classes/Bootstrapper.Accordion.html">¶</a>
+</h1>
+<p class="short_description">Accordion Class
+Creates Bootstrap 3 compliant accordions</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Accordion.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Alert" class="element ajax clickable class">
+<h1>Alert<a href="../classes/Bootstrapper.Alert.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant alert boxes</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Alert.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Attributes" class="element ajax clickable class">
+<h1>Attributes<a href="../classes/Bootstrapper.Attributes.html">¶</a>
+</h1>
+<p class="short_description">Simple attributes bag</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Attributes.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Badge" class="element ajax clickable class">
+<h1>Badge<a href="../classes/Bootstrapper.Badge.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Badges</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Badge.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="BootstrapperServiceProvider" class="element ajax clickable class">
+<h1>BootstrapperServiceProvider<a href="../classes/Bootstrapper.BootstrapperServiceProvider.html">¶</a>
+</h1>
+<p class="short_description">Service provider for Laravel</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.BootstrapperServiceProvider.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Breadcrumb" class="element ajax clickable class">
+<h1>Breadcrumb<a href="../classes/Bootstrapper.Breadcrumb.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Breadcrumbs</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Breadcrumb.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Button" class="element ajax clickable class">
+<h1>Button<a href="../classes/Bootstrapper.Button.html">¶</a>
+</h1>
+<p class="short_description">Creates a Bootstrap 3 compliant Button</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Button.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ButtonGroup" class="element ajax clickable class">
+<h1>ButtonGroup<a href="../classes/Bootstrapper.ButtonGroup.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Button Groups</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.ButtonGroup.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Carousel" class="element ajax clickable class">
+<h1>Carousel<a href="../classes/Bootstrapper.Carousel.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant carousels</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Carousel.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ControlGroup" class="element ajax clickable class">
+<h1>ControlGroup<a href="../classes/Bootstrapper.ControlGroup.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant control groups (for forms)</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.ControlGroup.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="DropdownButton" class="element ajax clickable class">
+<h1>DropdownButton<a href="../classes/Bootstrapper.DropdownButton.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Dropdown Buttons</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.DropdownButton.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Form" class="element ajax clickable class">
+<h1>Form<a href="../classes/Bootstrapper.Form.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant forms</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Form.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Helpers" class="element ajax clickable class">
+<h1>Helpers<a href="../classes/Bootstrapper.Helpers.html">¶</a>
+</h1>
+<p class="short_description">Helper class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Helpers.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Icon" class="element ajax clickable class">
+<h1>Icon<a href="../classes/Bootstrapper.Icon.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Icons</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Icon.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Image" class="element ajax clickable class">
+<h1>Image<a href="../classes/Bootstrapper.Image.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant images</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Image.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="InputGroup" class="element ajax clickable class">
+<h1>InputGroup<a href="../classes/Bootstrapper.InputGroup.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant input groups (for forms)</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.InputGroup.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Label" class="element ajax clickable class">
+<h1>Label<a href="../classes/Bootstrapper.Label.html">¶</a>
+</h1>
+<p class="short_description">Creates bootstrap 3 compliant labels</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Label.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="MediaObject" class="element ajax clickable class">
+<h1>MediaObject<a href="../classes/Bootstrapper.MediaObject.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Media Objects</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.MediaObject.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Modal" class="element ajax clickable class">
+<h1>Modal<a href="../classes/Bootstrapper.Modal.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant modal</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Modal.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Navbar" class="element ajax clickable class">
+<h1>Navbar<a href="../classes/Bootstrapper.Navbar.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant navbars</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Navbar.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Navigation" class="element ajax clickable class">
+<h1>Navigation<a href="../classes/Bootstrapper.Navigation.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant navigation</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Navigation.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Panel" class="element ajax clickable class">
+<h1>Panel<a href="../classes/Bootstrapper.Panel.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant panels</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Panel.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProgressBar" class="element ajax clickable class">
+<h1>ProgressBar<a href="../classes/Bootstrapper.ProgressBar.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant progress bars</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.ProgressBar.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="RenderedObject" class="element ajax clickable class">
+<h1>RenderedObject<a href="../classes/Bootstrapper.RenderedObject.html">¶</a>
+</h1>
+<p class="short_description">Rendered Object abstract class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.RenderedObject.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Tabbable" class="element ajax clickable class">
+<h1>Tabbable<a href="../classes/Bootstrapper.Tabbable.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant tab elements</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Tabbable.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Table" class="element ajax clickable class">
+<h1>Table<a href="../classes/Bootstrapper.Table.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant tables</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Table.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Thumbnail" class="element ajax clickable class">
+<h1>Thumbnail<a href="../classes/Bootstrapper.Thumbnail.html">¶</a>
+</h1>
+<p class="short_description">Creates Bootstrap 3 compliant Thumbnail</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Thumbnail.html" class="more">« More »</a>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/Bootstrapper.html">Bootstrapper</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/Bootstrapper.Exceptions.html">Exceptions</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i title="Classes" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="CarouselException" class="element ajax clickable class">
+<h1>CarouselException<a href="../classes/Bootstrapper.Exceptions.CarouselException.html">¶</a>
+</h1>
+<p class="short_description">Exceptions thrown by the Carousel Class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Exceptions.CarouselException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ControlGroupException" class="element ajax clickable class">
+<h1>ControlGroupException<a href="../classes/Bootstrapper.Exceptions.ControlGroupException.html">¶</a>
+</h1>
+<p class="short_description">Exception for use in the ControlGroup Class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Exceptions.ControlGroupException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ImageException" class="element ajax clickable class">
+<h1>ImageException<a href="../classes/Bootstrapper.Exceptions.ImageException.html">¶</a>
+</h1>
+<p class="short_description">Exceptions for the Image class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Exceptions.ImageException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="MediaObjectException" class="element ajax clickable class">
+<h1>MediaObjectException<a href="../classes/Bootstrapper.Exceptions.MediaObjectException.html">¶</a>
+</h1>
+<p class="short_description">Exceptions for the MediaObject class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Exceptions.MediaObjectException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ModalException" class="element ajax clickable class">
+<h1>ModalException<a href="../classes/Bootstrapper.Exceptions.ModalException.html">¶</a>
+</h1>
+<p class="short_description">ModalException for use in Modals</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Exceptions.ModalException.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ThumbnailException" class="element ajax clickable class">
+<h1>ThumbnailException<a href="../classes/Bootstrapper.Exceptions.ThumbnailException.html">¶</a>
+</h1>
+<p class="short_description">Exception used by the Thumbnail class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Exceptions.ThumbnailException.html" class="more">« More »</a>
+</div>
+</div>
+<ul class="breadcrumb"><li>
+<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li><a href="../packages/Bootstrapper.html">Bootstrapper</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../packages/Bootstrapper.Facades.html">Facades</a>
+</li>
+</li></ul>
+<div class="package-indent">
+<h3>
+<i title="Classes" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+<div xmlns:php="http://php.net/xsl" id="Accordion" class="element ajax clickable class">
+<h1>Accordion<a href="../classes/Bootstrapper.Facades.Accordion.html">¶</a>
+</h1>
+<p class="short_description">Facade for Accordions</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Accordion.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Alert" class="element ajax clickable class">
+<h1>Alert<a href="../classes/Bootstrapper.Facades.Alert.html">¶</a>
+</h1>
+<p class="short_description">Facade for Bootstrapper Alerts</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Alert.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Badge" class="element ajax clickable class">
+<h1>Badge<a href="../classes/Bootstrapper.Facades.Badge.html">¶</a>
+</h1>
+<p class="short_description">Facade for Bootstrapper Badges</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Badge.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="BootstrapperFacade" class="element ajax clickable class">
+<h1>BootstrapperFacade<a href="../classes/Bootstrapper.Facades.BootstrapperFacade.html">¶</a>
+</h1>
+<p class="short_description">Facade for Bootstrapper classes. Have to use this because Laravel is a bit
+too clever for our liking and gives us the same instance each time. This
+is not helpful when we're using something like this and we have several
+instances of the object in use.</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.BootstrapperFacade.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Breadcrumb" class="element ajax clickable class">
+<h1>Breadcrumb<a href="../classes/Bootstrapper.Facades.Breadcrumb.html">¶</a>
+</h1>
+<p class="short_description">Facade for the Breadcrumb class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Breadcrumb.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Button" class="element ajax clickable class">
+<h1>Button<a href="../classes/Bootstrapper.Facades.Button.html">¶</a>
+</h1>
+<p class="short_description">Facade for Button class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Button.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ButtonGroup" class="element ajax clickable class">
+<h1>ButtonGroup<a href="../classes/Bootstrapper.Facades.ButtonGroup.html">¶</a>
+</h1>
+<p class="short_description">Facade for ButtonGroup</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.ButtonGroup.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Carousel" class="element ajax clickable class">
+<h1>Carousel<a href="../classes/Bootstrapper.Facades.Carousel.html">¶</a>
+</h1>
+<p class="short_description">Facade for Bootstrapper Carousel</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Carousel.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ControlGroup" class="element ajax clickable class">
+<h1>ControlGroup<a href="../classes/Bootstrapper.Facades.ControlGroup.html">¶</a>
+</h1>
+<p class="short_description">Facade for Control Groups</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.ControlGroup.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="DropdownButton" class="element ajax clickable class">
+<h1>DropdownButton<a href="../classes/Bootstrapper.Facades.DropdownButton.html">¶</a>
+</h1>
+<p class="short_description">Facade for DropdownButton class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.DropdownButton.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Form" class="element ajax clickable class">
+<h1>Form<a href="../classes/Bootstrapper.Facades.Form.html">¶</a>
+</h1>
+<p class="short_description">Facade for Form</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Form.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Helpers" class="element ajax clickable class">
+<h1>Helpers<a href="../classes/Bootstrapper.Facades.Helpers.html">¶</a>
+</h1>
+<p class="short_description">Facade for the helpers class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Helpers.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Icon" class="element ajax clickable class">
+<h1>Icon<a href="../classes/Bootstrapper.Facades.Icon.html">¶</a>
+</h1>
+<p class="short_description">Facade for Icon class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Icon.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Image" class="element ajax clickable class">
+<h1>Image<a href="../classes/Bootstrapper.Facades.Image.html">¶</a>
+</h1>
+<p class="short_description">Facade for Image class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Image.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Label" class="element ajax clickable class">
+<h1>Label<a href="../classes/Bootstrapper.Facades.Label.html">¶</a>
+</h1>
+<p class="short_description">Facade for the Label class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Label.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="MediaObject" class="element ajax clickable class">
+<h1>MediaObject<a href="../classes/Bootstrapper.Facades.MediaObject.html">¶</a>
+</h1>
+<p class="short_description">Facade for MediaObject class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.MediaObject.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Modal" class="element ajax clickable class">
+<h1>Modal<a href="../classes/Bootstrapper.Facades.Modal.html">¶</a>
+</h1>
+<p class="short_description">Facade for the Modal class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Modal.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Navbar" class="element ajax clickable class">
+<h1>Navbar<a href="../classes/Bootstrapper.Facades.Navbar.html">¶</a>
+</h1>
+<p class="short_description">Facade for Navbar class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Navbar.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Navigation" class="element ajax clickable class">
+<h1>Navigation<a href="../classes/Bootstrapper.Facades.Navigation.html">¶</a>
+</h1>
+<p class="short_description">Facade for the Navigation class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Navigation.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Panel" class="element ajax clickable class">
+<h1>Panel<a href="../classes/Bootstrapper.Facades.Panel.html">¶</a>
+</h1>
+<p class="short_description">Facade for the Panel class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Panel.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="ProgressBar" class="element ajax clickable class">
+<h1>ProgressBar<a href="../classes/Bootstrapper.Facades.ProgressBar.html">¶</a>
+</h1>
+<p class="short_description">Facade for ProgressBar</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.ProgressBar.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Tabbable" class="element ajax clickable class">
+<h1>Tabbable<a href="../classes/Bootstrapper.Facades.Tabbable.html">¶</a>
+</h1>
+<p class="short_description">Facade for Tabbable class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Tabbable.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Table" class="element ajax clickable class">
+<h1>Table<a href="../classes/Bootstrapper.Facades.Table.html">¶</a>
+</h1>
+<p class="short_description">Facade for the Table class</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Table.html" class="more">« More »</a>
+</div>
+<div xmlns:php="http://php.net/xsl" id="Thumbnail" class="element ajax clickable class">
+<h1>Thumbnail<a href="../classes/Bootstrapper.Facades.Thumbnail.html">¶</a>
+</h1>
+<p class="short_description">Facade for Thumbnails</p>
+<div class="details collapse"></div>
+<a href="../classes/Bootstrapper.Facades.Thumbnail.html" class="more">« More »</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.7.0</a> and<br>
+            generated on 2014-10-24T16:12:31+01:00.<br></footer></div>
+</div>
+</body>
+</html>

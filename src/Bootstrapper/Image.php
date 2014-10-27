@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Image class
+ */
 
 namespace Bootstrapper;
 
@@ -41,10 +44,6 @@ class Image extends RenderedObject
      * @var string The alt text for the image
      */
     protected $alt = '';
-    /**
-     * @var array
-     */
-    protected $attributes = [];
 
     /**
      * Renders the image
@@ -88,19 +87,6 @@ class Image extends RenderedObject
     public function withAlt($alt)
     {
         $this->alt = $alt;
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes of the image
-     *
-     * @param array $attributes
-     * @return $this
-     */
-    public function withAttributes($attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }
@@ -191,7 +177,7 @@ class Image extends RenderedObject
      *
      * @param string $class The class we need to add to the image
      * @internal Normally we'd use the Attributes object but we don't have
-     * access to it at this point :-(
+     *                      access to it at this point :-(
      */
     public function addClass($class)
     {

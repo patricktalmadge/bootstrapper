@@ -1,7 +1,15 @@
 <?php
+/**
+ * Bootstrapper panel facade
+ */
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for the Panel class
+ *
+ * @package Bootstrapper\Facades
+ */
 class Panel extends BootstrapperFacade
 {
 
@@ -12,6 +20,10 @@ class Panel extends BootstrapperFacade
     const DANGER = 'panel-danger';
     const NORMAL = 'panel-default';
 
+    /**
+     * {@inheritdoc}
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'panel';

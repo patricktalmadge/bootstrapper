@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Button class
+ */
 
 namespace Bootstrapper;
 
@@ -74,11 +77,6 @@ class Button extends RenderedObject
      * @var bool Whether the button is a block button or not
      */
     protected $block = false;
-
-    /**
-     * @var array The attributes of the button
-     */
-    protected $attributes = [];
 
     /**
      * @var string The contents of the button
@@ -356,19 +354,6 @@ class Button extends RenderedObject
     }
 
     /**
-     * Sets the attributes of the button
-     *
-     * @param $attributes array An array of attributes to add
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = array_merge($attributes, $this->attributes);
-
-        return $this;
-    }
-
-    /**
      * More descriptive version of withAttributes
      *
      * @see withAttributes
@@ -465,6 +450,8 @@ class Button extends RenderedObject
     }
 
     /**
+     * Gets the attributes of the button
+     *
      * @return array
      */
     public function getAttributes()

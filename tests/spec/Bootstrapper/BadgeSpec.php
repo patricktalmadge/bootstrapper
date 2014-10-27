@@ -19,11 +19,15 @@ class BadgeSpec extends ObjectBehavior
 
     function it_can_be_given_contents()
     {
-        $this->withContents("foo")->render()->shouldBe("<span class='badge'>foo</span>");
+        $this->withContents("foo")->render()->shouldBe(
+            "<span class='badge'>foo</span>"
+        );
     }
 
     function it_can_be_constructed_with_attributes()
     {
-        $this->withAttributes(['class' => 'foo'])->render()->shouldBe("<span class='badge foo'></span>");
+        $this->withAttributes(['class' => 'foo'])->render()->shouldBe(
+            "<span class='badge foo'></span>"
+        );
     }
 }

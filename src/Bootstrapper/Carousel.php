@@ -1,8 +1,9 @@
 <?php
+/**
+ * Bootstrapper Carousel class
+ */
 
 namespace Bootstrapper;
-
-use Bootstrapper\Exceptions\CarouselException;
 
 /**
  * Creates Bootstrap 3 compliant carousels
@@ -28,11 +29,6 @@ class Carousel extends RenderedObject
     protected $contents = [];
 
     /**
-     * @var array The attributes of the carousel
-     */
-    protected $attributes = [];
-
-    /**
      * @var int Which slide should be active at the beginning
      */
     protected $active = 0;
@@ -46,19 +42,6 @@ class Carousel extends RenderedObject
     public function named($name)
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes of the carousel
-     *
-     * @param array $attributes The new attributes
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }
@@ -82,13 +65,11 @@ class Carousel extends RenderedObject
      * Renders the carousel
      *
      * @return string
-     * @throws \Bootstrapper\Exceptions\CarouselException Thrown if the
-     * carousel has not been named
      */
     public function render()
     {
         if (!$this->name) {
-            throw new CarouselException("You haven't named the carousel");
+            $this->name = Helpers::generateId($this);
         }
 
         $attributes = new Attributes(
@@ -117,7 +98,8 @@ class Carousel extends RenderedObject
     protected function renderIndicators()
     {
         $string = "<ol class='carousel-indicators'>";
-        for ($i = 0; $i < count($this->contents); $i++) {
+        $count = count($this->contents);
+        for ($i = 0; $i < $count; $i++) {
             if ($i == $this->active) {
                 $string .= "<li data-target='#{$this->name}' data-slide-to='{$i}' class='active'></li>";
             } else {

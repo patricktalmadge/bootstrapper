@@ -15,7 +15,9 @@ class ThumbnailSpec extends ObjectBehavior
 
     function it_cannot_be_rendered_without_an_image()
     {
-        $this->shouldThrow('Bootstrapper\Exceptions\ThumbnailException')->duringRender();
+        $this->shouldThrow(
+            'Bootstrapper\Exceptions\ThumbnailException'
+        )->duringRender();
     }
 
     function it_can_be_given_an_image()

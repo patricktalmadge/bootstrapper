@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper InputGroup class
+ */
 
 namespace Bootstrapper;
 
@@ -39,11 +42,6 @@ class InputGroup extends RenderedObject
      * @var string The contents of the input group
      */
     protected $contents;
-
-    /**
-     * @var array The attributes of the input group
-     */
-    protected $attributes = [];
 
     /**
      * Renders the input group
@@ -106,19 +104,6 @@ class InputGroup extends RenderedObject
     }
 
     /**
-     * Sets the attributes
-     *
-     * @param array $attributes The new attributes of the input group
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
-    }
-
-    /**
      * Sets the size of the input group
      *
      * @param string $size The new size
@@ -159,8 +144,8 @@ class InputGroup extends RenderedObject
     /**
      * Appends something to the input
      *
-     * @param string     $append The value to append
-     * @param bool $isButton Whether the value is a button
+     * @param string $append   The value to append
+     * @param bool   $isButton Whether the value is a button
      * @return $this
      */
     public function append($append, $isButton = false)

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Navigation class
+ */
 
 namespace Bootstrapper;
 
@@ -33,11 +36,6 @@ class Navigation extends RenderedObject
     const NAVIGATION_DIVIDER = 'divider';
 
     /**
-     * @var array The attributes of the navigation element
-     */
-    protected $attributes = [];
-
-    /**
      * @var string The type
      */
     protected $type = 'nav-tabs';
@@ -55,7 +53,6 @@ class Navigation extends RenderedObject
      * <li>callback - A callback. If it return a result that is EXACTLY
      * equal to false then the link won't be shown</li>
      * </ul>
-     *
      * To create a dropdown, the inner array should instead be [$title, $links],
      * where $links is an array of arrays for links
      */
@@ -82,6 +79,13 @@ class Navigation extends RenderedObject
     protected $stacked = false;
 
     /**
+     * @var bool Whether the navigation links float right or not
+     */
+    protected $right = false;
+
+    /**
+     * Creates a new instance of Navigation
+     *
      * @param UrlGenerator $urlGenerator
      */
     public function __construct(UrlGenerator $urlGenerator)
@@ -109,34 +113,19 @@ class Navigation extends RenderedObject
             $attributes->addClass('nav-stacked');
         }
 
+        if ($this->right) {
+            $attributes->addClass('navbar-right');
+        }
+
         $string = "<ul {$attributes}>";
 
         foreach ($this->links as $link) {
-            if (!is_array($link)) {
-                $string .= $this->renderSeparator($link);
-            } elseif (isset($link['link'])) {
-                $string .= $this->renderLink($link);
-            } else {
-                $string .= $this->renderDropdown($link);
-            }
+            $string .= $this->renderItem($link);
         }
 
         $string .= "</ul>";
 
         return $string;
-    }
-
-    /**
-     * Set the attributes of the navigation object
-     *
-     * @param array $attributes The attributes
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
     }
 
     /**
@@ -261,10 +250,7 @@ class Navigation extends RenderedObject
         $string .= '<ul class=\'dropdown-menu\' role=\'menu\'>';
 
         foreach ($link[1] as $item) {
-            // @todo Eerily similar to the check in the render method
-            $string .= is_array($item) ?
-                $this->renderLink($item) :
-                $this->renderSeparator($item);
+            $string .= $this->renderItem($item);
         }
 
         $string .= '</ul>';
@@ -292,33 +278,6 @@ class Navigation extends RenderedObject
     }
 
     /**
-     * checks whether an item should be activated or not.
-     * If the item is not to be activated via URL::current(), it checks
-     * if the item is a dropdown and returns true if any of the children
-     * of items have target === URL::current()
-     *
-     * @param array $item item array
-     * @return boolean
-     */
-    protected static function shouldActivate($item)
-    {
-        // @todo Rewrite. We can't assume we have access to the URL facade
-        if (\URL::current() == $item['url']) {
-            return true;
-        }
-
-        if (isset($item['items']) and is_array($item['items'])) {
-            foreach ($item['items'] as $i) {
-                if (static::shouldActivate($i) === true) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Checks to see if the given item should be active
      *
      * @param mixed $link A link to check whether it should be active
@@ -331,6 +290,7 @@ class Navigation extends RenderedObject
         }
         $auto = $this->autoroute && $this->url->current() == $link['link'];
         $manual = isset($link['active']) && $link['active'];
+
         return $auto || $manual;
     }
 
@@ -371,6 +331,18 @@ class Navigation extends RenderedObject
     }
 
     /**
+     * Makes the navigation links float right
+     *
+     * @return $this
+     */
+    public function right()
+    {
+        $this->right = true;
+
+        return $this;
+    }
+
+    /**
      * Renders a separator
      *
      * @param string $separator
@@ -379,5 +351,24 @@ class Navigation extends RenderedObject
     protected function renderSeparator($separator)
     {
         return "<li class='{$separator}'></li>";
+    }
+
+    /**
+     * Renders an item
+     *
+     * @param string|array $link The item to render
+     * @return string
+     */
+    private function renderItem($link)
+    {
+        if (!is_array($link)) {
+            $string = $this->renderSeparator($link);
+        } elseif (isset($link['link'])) {
+            $string = $this->renderLink($link);
+        } else {
+            $string = $this->renderDropdown($link);
+        }
+
+        return $string;
     }
 }

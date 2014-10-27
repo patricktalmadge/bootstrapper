@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper label class
+ */
 
 namespace Bootstrapper;
 
@@ -51,11 +54,20 @@ class Label extends RenderedObject
     protected $contents;
 
     /**
-     * @return string Renders the label
+     * Renders the label
+     *
+     * @return string
      */
     public function render()
     {
-        return "<span class='label {$this->type}'>{$this->contents}</span>";
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'class' => "label {$this->type}"
+            ]
+        );
+
+        return "<span {$attributes}>{$this->contents}</span>";
     }
 
     /**

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Attributes class
+ */
 
 namespace Bootstrapper;
 
@@ -18,10 +21,12 @@ class Attributes implements \ArrayAccess
     protected $attributes;
 
     /**
+     * Creates a new instance of the attributes
+     *
      * @param array $attributes
      * @param array $defaults
      */
-    public function __construct($attributes, array $defaults = [])
+    public function __construct(array $attributes, array $defaults = [])
     {
         $this->attributes = array_merge($defaults, $attributes);
         if (isset($attributes['class']) && isset($defaults['class'])) {
@@ -32,7 +37,9 @@ class Attributes implements \ArrayAccess
     }
 
     /**
-     * @return string Renders the HTML attributes
+     * Renders the HTML attributes
+     *
+     * @return string
      */
     public function __toString()
     {
@@ -129,7 +136,9 @@ class Attributes implements \ArrayAccess
      */
     public function addClass($class)
     {
-        $this->attributes['class'] = isset($this->attributes['class']) ? $this->attributes['class'] . " {$class}" : $class;
+        $this->attributes['class'] = isset($this->attributes['class']) ?
+            trim($this->attributes['class']) . " {$class}" :
+            $class;
 
         return $this;
     }

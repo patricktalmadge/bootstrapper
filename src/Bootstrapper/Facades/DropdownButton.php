@@ -1,7 +1,16 @@
 <?php
+/**
+ * Bootstrapper DropdownButton facade
+ */
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for DropdownButton class
+ *
+ * @package Bootstrapper\Facades
+ * @see     Bootstrapper\DropdownButton
+ */
 class DropdownButton extends BootstrapperFacade
 {
     const DIVIDER = "<li class='divider'></li>";
@@ -14,6 +23,10 @@ class DropdownButton extends BootstrapperFacade
     const SMALL = 'btn-sm';
     const EXTRA_SMALL = 'btn-xs';
 
+    /**
+     * {@inheritdoc}
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'dropdownbutton';

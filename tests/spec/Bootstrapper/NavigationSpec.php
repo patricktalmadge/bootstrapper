@@ -125,42 +125,46 @@ class NavigationSpec extends ObjectBehavior
 
     function it_creates_dropdown_menus()
     {
-        $this->links([
+        $this->links(
             [
-                'dropdown',
                 [
+                    'dropdown',
                     [
-                        'link' => 'foo',
-                        'title' => 'bar',
-                    ],
-                    [
-                        'link' => 'goo',
-                        'title' => 'gar',
-                    ],
+                        [
+                            'link' => 'foo',
+                            'title' => 'bar',
+                        ],
+                        [
+                            'link' => 'goo',
+                            'title' => 'gar',
+                        ],
+                    ]
                 ]
             ]
-        ])->render()->shouldBe(
+        )->render()->shouldBe(
             "<ul class='nav nav-tabs'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul></li></ul>"
         );
     }
 
     function it_auto_actives_dropdown_menus_correctly()
     {
-        $this->links([
+        $this->links(
             [
-                'dropdown',
                 [
+                    'dropdown',
                     [
-                        'link' => 'link',
-                        'title' => 'bar',
-                    ],
-                    [
-                        'link' => 'goo',
-                        'title' => 'gar',
-                    ],
+                        [
+                            'link' => 'link',
+                            'title' => 'bar',
+                        ],
+                        [
+                            'link' => 'goo',
+                            'title' => 'gar',
+                        ],
+                    ]
                 ]
             ]
-        ])->render()->shouldBe(
+        )->render()->shouldBe(
             "<ul class='nav nav-tabs'><li class='dropdown active'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li class='active'><a href='link'>bar</a></li><li><a href='goo'>gar</a></li></ul></li></ul>"
         );
     }
@@ -176,6 +180,13 @@ class NavigationSpec extends ObjectBehavior
     {
         $this->stacked()->render()->shouldBe(
             "<ul class='nav nav-tabs nav-stacked'></ul>"
+        );
+    }
+
+    function it_can_be_right() # words are funny
+    {
+        $this->right()->render()->shouldBe(
+            "<ul class='nav nav-tabs navbar-right'></ul>"
         );
     }
 
@@ -253,7 +264,8 @@ class NavigationSpec extends ObjectBehavior
                         'link' => 'goo',
                         'title' => 'gar',
                     ],
-                ], $attributes
+                ],
+                $attributes
             )->render()->shouldBe(
                 "<ul class='nav nav-{$type} foo' data-bar='baz'><li><a href='foo'>bar</a></li><li><a href='goo'>gar</a></li></ul>"
             );
@@ -281,7 +293,8 @@ class NavigationSpec extends ObjectBehavior
 
     function it_lets_you_use_the_dividers_inside_a_dropdown()
     {
-        $this->links([
+        $this->links(
+            [
                 [
                     'dropdown',
                     [
@@ -296,7 +309,8 @@ class NavigationSpec extends ObjectBehavior
                         ],
                     ]
                 ]
-            ])->render()->shouldBe(
+            ]
+        )->render()->shouldBe(
             "<ul class='nav nav-tabs'><li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>dropdown <span class='caret'></span></a><ul class='dropdown-menu' role='menu'><li><a href='#'>bar</a></li><li class='divider'></li><li><a href='#'>gar</a></li></ul></li></ul>"
         );
     }
@@ -312,8 +326,7 @@ class NavigationSpec extends ObjectBehavior
                 [
                     'link' => 'goo',
                     'title' => 'gar',
-                    'callback' => function()
-                    {
+                    'callback' => function () {
                         return false;
                     }
                 ],
@@ -331,8 +344,7 @@ class NavigationSpec extends ObjectBehavior
                 [
                     'link' => 'foo',
                     'title' => 'bar',
-                    'callback' => function()
-                    {
+                    'callback' => function () {
                     }
                 ],
             ]

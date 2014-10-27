@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Alert class
+ */
 
 namespace Bootstrapper;
 
@@ -42,11 +45,6 @@ class Alert extends RenderedObject
     protected $contents;
 
     /**
-     * @var array The attributes of the alert
-     */
-    protected $attributes = [];
-
-    /**
      * @var string What should we use to generate a close tag
      */
     protected $closer;
@@ -77,10 +75,10 @@ class Alert extends RenderedObject
         );
 
         if ($this->closer) {
-            $attributes['class'] = trim(
-                    $attributes['class']
-                ) . ' alert-dismissable';
-            $this->contents = "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>{$this->closer}</button>{$this->contents}";
+            $attributes->addClass('alert-dismissable');
+            $this->contents = "<button type='button' class='close' " .
+                "data-dismiss='alert' aria-hidden='true'>{$this->closer}" .
+                "</button>{$this->contents}";
         }
 
         return "<div {$attributes}>{$this->contents}</div>";
@@ -152,19 +150,6 @@ class Alert extends RenderedObject
     public function close($closer = '&times;')
     {
         $this->closer = $closer;
-
-        return $this;
-    }
-
-    /**
-     * Sets the attributes of the alert
-     *
-     * @param $attributes
-     * @return $this
-     */
-    public function withAttributes($attributes)
-    {
-        $this->attributes = $attributes;
 
         return $this;
     }

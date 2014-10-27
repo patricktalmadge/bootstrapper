@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Helper functions
+ */
 
 namespace Bootstrapper;
 
@@ -11,6 +14,11 @@ use Illuminate\Config\Repository;
  */
 class Helpers
 {
+    /**
+     * @var array The number of times each class has been called
+     */
+    private static $counts = [
+    ];
 
     /**
      * The config repository
@@ -21,6 +29,8 @@ class Helpers
 
 
     /**
+     * Creates a new instance of the helpers class
+     *
      * @param \Illuminate\Config\Repository $config
      */
     public function __construct(Repository $config)
@@ -67,5 +77,27 @@ class Helpers
         $bootstrap = $this->config->get('bootstrapper::bootstrapVersion');
 
         return "<script src='http://code.jquery.com/jquery-{$jquery}.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
+    }
+
+    /**
+     * Generate an id of the form "x-class-name-x". These should always be
+     * unique.
+     *
+     * @param RenderedObject $caller The object that called this
+     * @return string A unique id
+     */
+    public static function generateId(RenderedObject $caller)
+    {
+        $class = get_class($caller);
+
+        if (isset(self::$counts[$class])) {
+            $count = self::$counts[$class];
+            self::$counts[$class] += 1;
+        } else {
+            $count = 1;
+            self::$counts[$class] = 2;
+        }
+
+        return static::slug(implode(' ', [$count, $class, $count]));
     }
 }

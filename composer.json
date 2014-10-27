@@ -1,42 +1,42 @@
 {
-    "name": "patricktalmadge/bootstrapper",
-    "description": "Twitter Bootstrap markup generator",
-    "license": "MIT",
-    "keywords": [
-        "bootstrap",
-        "laravel"
-    ],
-    "authors": [
-        {
-            "name": "Patrick Talmadge",
-            "email": "ptalmadge@gmail.com"
-        },
-        {
-            "name": "Maxime Fabre",
-            "email": "ehtnam6@gmail.com"
-        },
-        {
-            "name": "Patrick Rose",
-            "email": "pjr0911025@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.4.0",
-        "illuminate/html": "~4.2",
-        "illuminate/support": "~4.2",
-        "illuminate/config": "~4.2",
-        "illuminate/routing": "~4.2",
-        "twbs/bootstrap": "~3.2"
+  "name": "patricktalmadge/bootstrapper",
+  "description": "Twitter Bootstrap markup generator",
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "laravel"
+  ],
+  "authors": [
+    {
+      "name": "Patrick Talmadge",
+      "email": "ptalmadge@gmail.com"
     },
-    "require-dev": {
-        "mockery/mockery": "*",
-        "phpspec/phpspec": "*"
+    {
+      "name": "Maxime Fabre",
+      "email": "ehtnam6@gmail.com"
     },
-    "autoload": {
-        "psr-4": {
-            "Bootstrapper\\": "src\\Bootstrapper"
-        }
-    },
-    "minimum-stability": "stable"
+    {
+      "name": "Patrick Rose",
+      "email": "pjr0911025@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/html": "~4.2",
+    "illuminate/support": "~4.2",
+    "illuminate/config": "~4.2",
+    "illuminate/routing": "~4.2",
+    "twbs/bootstrap": "~3.2"
+  },
+  "require-dev": {
+    "mockery/mockery": "*",
+    "phpspec/phpspec": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bootstrapper\\": "src\\Bootstrapper"
+    }
+  },
+  "minimum-stability": "stable"
 }
 

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Bootstrapper Panel class
+ */
 
 namespace Bootstrapper;
 
@@ -39,11 +42,6 @@ class Panel extends RenderedObject
      * Constant for default panels
      */
     const NORMAL = 'panel-default';
-
-    /**
-     * @var array The attributes of the navigation object
-     */
-    protected $attributes = [];
 
     /**
      * @var string The type of the panel
@@ -96,21 +94,8 @@ class Panel extends RenderedObject
     }
 
     /**
-     * Sets the attributes of the panel
-     *
-     * @param array $attributes The attributes
-     * @return $this
-     */
-    public function withAttributes(array $attributes)
-    {
-        $this->attributes = $attributes;
-
-        return $this;
-    }
-
-    /**
      * Creates a primary panel
-     * 
+     *
      * @return $this
      */
     public function primary()

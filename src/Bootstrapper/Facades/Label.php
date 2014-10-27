@@ -1,7 +1,16 @@
 <?php
+/**
+ * Bootstrapper Image facade
+ */
 
 namespace Bootstrapper\Facades;
 
+/**
+ * Facade for the Label class
+ *
+ * @package Bootstrapper\Facades
+ * @see     Bootstrapper\Label
+ */
 class Label extends BootstrapperFacade
 {
 
@@ -12,6 +21,10 @@ class Label extends BootstrapperFacade
     const LABEL_DANGER = 'label-danger';
     const LABEL_DEFAULT = 'label-default';
 
+    /**
+     * {@inheritdoc}
+     * @return string
+     */
     protected static function getFacadeAccessor()
     {
         return 'label';
