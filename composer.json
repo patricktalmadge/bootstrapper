@@ -37,6 +37,6 @@
       "Bootstrapper\\": "src\\Bootstrapper"
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "dev"
 }
 
