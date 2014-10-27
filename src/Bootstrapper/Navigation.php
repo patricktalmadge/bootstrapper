@@ -278,33 +278,6 @@ class Navigation extends RenderedObject
     }
 
     /**
-     * checks whether an item should be activated or not.
-     * If the item is not to be activated via URL::current(), it checks
-     * if the item is a dropdown and returns true if any of the children
-     * of items have target === URL::current()
-     *
-     * @param array $item item array
-     * @return boolean
-     */
-    protected static function shouldActivate($item)
-    {
-        // @todo Rewrite. We can't assume we have access to the URL facade
-        if (\URL::current() == $item['url']) {
-            return true;
-        }
-
-        if (isset($item['items']) and is_array($item['items'])) {
-            foreach ($item['items'] as $i) {
-                if (static::shouldActivate($i) === true) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Checks to see if the given item should be active
      *
      * @param mixed $link A link to check whether it should be active
