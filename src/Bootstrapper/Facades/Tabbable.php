@@ -22,7 +22,7 @@ class Tabbable extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'tabbable';
+        return 'bootstrapper::tabbable';
     }
 
 }

@@ -29,7 +29,7 @@ class DropdownButton extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'dropdownbutton';
+        return 'bootstrapper::dropdownbutton';
     }
 
 }

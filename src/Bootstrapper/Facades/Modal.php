@@ -19,7 +19,7 @@ class Modal extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'modal';
+        return 'bootstrapper::modal';
     }
 
 }

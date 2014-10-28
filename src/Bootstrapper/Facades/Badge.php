@@ -20,7 +20,7 @@ class Badge extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'badge';
+        return 'bootstrapper::badge';
     }
 
 }
