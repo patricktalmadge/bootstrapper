@@ -20,7 +20,7 @@ class MediaObject extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'mediaobject';
+        return 'bootstrapper::mediaobject';
     }
 
 }

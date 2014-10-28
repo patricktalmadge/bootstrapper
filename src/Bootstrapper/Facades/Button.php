@@ -29,7 +29,7 @@ class Button extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'button';
+        return 'bootstrapper::button';
     }
 
 }

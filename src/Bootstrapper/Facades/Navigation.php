@@ -25,7 +25,7 @@ class Navigation extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'navigation';
+        return 'bootstrapper::navigation';
     }
 
 }

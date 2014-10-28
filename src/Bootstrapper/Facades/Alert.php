@@ -24,7 +24,7 @@ class Alert extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'alert';
+        return 'bootstrapper::alert';
     }
 
 }

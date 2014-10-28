@@ -25,7 +25,7 @@ class Table extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'table';
+        return 'bootstrapper::table';
     }
 
 }

@@ -20,7 +20,7 @@ class Carousel extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'carousel';
+        return 'bootstrapper::carousel';
     }
 
 }

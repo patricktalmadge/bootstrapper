@@ -25,7 +25,7 @@ class Image extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'image';
+        return 'bootstrapper::image';
     }
 
 }

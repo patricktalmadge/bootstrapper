@@ -30,7 +30,7 @@ class ButtonGroup extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'buttongroup';
+        return 'bootstrapper::buttongroup';
     }
 
 }

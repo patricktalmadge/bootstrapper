@@ -26,7 +26,7 @@ class Panel extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'panel';
+        return 'bootstrapper::panel';
     }
 
 }
