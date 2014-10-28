@@ -20,7 +20,7 @@ class Breadcrumb extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'breadcrumb';
+        return 'bootstrapper::breadcrumb';
     }
 
 }

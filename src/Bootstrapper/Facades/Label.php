@@ -27,7 +27,7 @@ class Label extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'label';
+        return 'bootstrapper::label';
     }
 
 }

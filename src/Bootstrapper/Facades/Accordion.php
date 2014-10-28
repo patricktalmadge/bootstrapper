@@ -20,6 +20,6 @@ class Accordion extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'accordion';
+        return 'bootstrapper::accordion';
     }
 }

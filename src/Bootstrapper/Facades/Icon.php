@@ -22,7 +22,7 @@ class Icon extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'icon';
+        return 'bootstrapper::icon';
     }
 
 }

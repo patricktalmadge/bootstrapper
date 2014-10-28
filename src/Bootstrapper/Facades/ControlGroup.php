@@ -20,7 +20,7 @@ class ControlGroup extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'controlgroup';
+        return 'bootstrapper::controlgroup';
     }
 
 }

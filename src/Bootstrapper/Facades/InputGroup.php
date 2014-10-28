@@ -23,7 +23,7 @@ class InputGroup extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'inputgroup';
+        return 'bootstrapper::inputgroup';
     }
 
 }

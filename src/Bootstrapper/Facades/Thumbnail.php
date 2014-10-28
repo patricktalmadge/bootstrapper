@@ -20,7 +20,7 @@ class Thumbnail extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'thumbnail';
+        return 'bootstrapper::thumbnail';
     }
 
 }

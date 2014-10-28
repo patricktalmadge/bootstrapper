@@ -26,7 +26,7 @@ class ProgressBar extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'progressbar';
+        return 'bootstrapper::progressbar';
     }
 
 }

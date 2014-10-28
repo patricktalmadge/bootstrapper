@@ -24,7 +24,7 @@ class Navbar extends BootstrapperFacade
      */
     protected static function getFacadeAccessor()
     {
-        return 'navbar';
+        return 'bootstrapper::navbar';
     }
 
 }
