@@ -339,7 +339,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->app->bind(
             'bootstrapper::tabbable',
             function ($app) {
-                return new Tabbable($app['navigation']);
+                return new Tabbable($app['bootstrapper::navigation']);
             }
         );
     }
