@@ -39,6 +39,10 @@ class Table extends RenderedObject
     protected $type;
 
     /**
+     * @var string A string to put content in to the footer of the table
+     */
+    protected $footer;
+    /**
      * @var mixed The contents of the table
      */
     protected $contents;
@@ -179,6 +183,9 @@ class Table extends RenderedObject
 
             $string .= $this->renderItem($item, $headers);
         }
+        if(!empty($this->footer)){
+            $string .= sprintf('<tfoot><tr><td colspan="%d">%s</td></tr></tfoot>',count($this->getHeaders()),$this->footer);
+        }
         $string .= '</tbody>';
 
         return $string;
@@ -284,6 +291,18 @@ class Table extends RenderedObject
     public function only(array $only)
     {
         $this->only = $only;
+
+        return $this;
+    }
+     /**
+     * Sets content to be rendered in to the table footer
+     *
+     * @param string $string
+     * @return $this
+     */
+    public function withFooter($string)
+    {
+        $this->footer = $string;
 
         return $this;
     }
