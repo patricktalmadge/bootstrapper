@@ -87,10 +87,14 @@ class Table extends RenderedObject
      * Sets the table type
      *
      * @param string $type The type of the table
+     *
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
     }
 
     /**
