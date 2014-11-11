@@ -39,6 +39,10 @@ class Table extends RenderedObject
     protected $type;
 
     /**
+     * @var string A string to put content in to the footer of the table
+     */
+    protected $footer;
+    /**
      * @var mixed The contents of the table
      */
     protected $contents = [];
@@ -76,6 +80,11 @@ class Table extends RenderedObject
 
         $string .= $this->renderHeaders();
 
+        if ($this->footer)
+        {
+            $string .= $this->renderFooter();
+        }
+
         if ($this->contents) {
             $string .= $this->renderContents();
         }
@@ -89,7 +98,6 @@ class Table extends RenderedObject
      * Sets the table type
      *
      * @param string $type The type of the table
-     *
      * @return $this
      */
     public function setType($type)
@@ -179,6 +187,7 @@ class Table extends RenderedObject
 
             $string .= $this->renderItem($item, $headers);
         }
+
         $string .= '</tbody>';
 
         return $string;
@@ -191,8 +200,7 @@ class Table extends RenderedObject
      */
     private function getHeaders()
     {
-        if ($this->only)
-        {
+        if ($this->only) {
             return $this->only;
         }
 
@@ -297,8 +305,7 @@ class Table extends RenderedObject
     {
         $headers = $this->getHeaders();
 
-        if (empty($headers))
-        {
+        if (empty($headers)) {
             return '';
         }
 
@@ -309,5 +316,28 @@ class Table extends RenderedObject
         $string .= '</tr></thead>';
 
         return $string;
+    }
+
+    /**
+     * Sets content to be rendered in to the table footer
+     *
+     * @param string $footer
+     * @return $this
+     */
+    public function withFooter($footer)
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * Renders the footer
+     *
+     * @return string
+     */
+    private function renderFooter()
+    {
+        return "<tfoot>{$this->footer}</tfoot>";
     }
 }
