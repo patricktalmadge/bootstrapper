@@ -98,4 +98,18 @@ class TableSpec extends ObjectBehavior
             "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>gar</td></tr></tbody></table>"
         );
     }
+
+    function it_renders_headers_if_you_use_only()
+    {
+        $this->only(['foo'])->render()->shouldBe(
+          "<table class='table'><thead><tr><th>foo</th></tr></thead></table>"
+        );
+    }
+
+    function it_renders_headers_if_you_use_callbacks()
+    {
+        $this->callback('foo', function() {})->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th></tr></thead></table>"
+        );
+    }
 }
