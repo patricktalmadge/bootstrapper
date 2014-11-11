@@ -191,6 +191,11 @@ class Table extends RenderedObject
      */
     private function getHeaders()
     {
+        if ($this->only)
+        {
+            return $this->only;
+        }
+
         $headers = [];
         foreach ($this->contents as $item) {
             if (!is_array($item)) {
@@ -217,16 +222,6 @@ class Table extends RenderedObject
 
             if (!in_array($key, $headers)) {
                 $headers[] = $key;
-            }
-        }
-
-        if ($this->only)
-        {
-            foreach ($this->only as $key) {
-                if (!in_array($key, $headers))
-                {
-                    $headers[] = $key;
-                }
             }
         }
 

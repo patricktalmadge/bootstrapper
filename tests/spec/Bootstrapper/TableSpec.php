@@ -102,14 +102,33 @@ class TableSpec extends ObjectBehavior
     function it_renders_headers_if_you_use_only()
     {
         $this->only(['foo'])->render()->shouldBe(
-          "<table class='table'><thead><tr><th>foo</th></tr></thead></table>"
+            "<table class='table'><thead><tr><th>foo</th></tr></thead></table>"
         );
     }
 
     function it_renders_headers_if_you_use_callbacks()
     {
-        $this->callback('foo', function() {})->render()->shouldBe(
+        $this->callback(
+            'foo',
+            function () {
+            }
+        )->render()->shouldBe(
             "<table class='table'><thead><tr><th>foo</th></tr></thead></table>"
+        );
+    }
+
+    function it_uses_the_correct_order_when_only_is_used()
+    {
+        $this->only(['foo', 'bar', 'baz'])->withContents(
+            [
+                [
+                    'baz' => 'baz',
+                    'foo' => 'foo',
+                    'bar' => 'bar'
+                ]
+            ]
+        )->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>bar</th><th>baz</th></tr></thead><tbody><tr><td>foo</td><td>bar</td><td>baz</td></tr></tbody></table>"
         );
     }
 }
