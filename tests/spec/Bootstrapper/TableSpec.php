@@ -131,4 +131,24 @@ class TableSpec extends ObjectBehavior
             "<table class='table'><thead><tr><th>foo</th><th>bar</th><th>baz</th></tr></thead><tbody><tr><td>foo</td><td>bar</td><td>baz</td></tr></tbody></table>"
         );
     }
+
+    function it_allows_you_to_add_a_footer()
+    {
+        $this->withFooter('Foo')->render()->shouldBe(
+            "<table class='table'><tfoot>Foo</tfoot></table>"
+        );
+    }
+
+    function it_renders_the_tfoot_tag_before_the_body()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo' => 'foo'
+                ]
+            ]
+        )->withFooter('Foo')->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th></tr></thead><tfoot>Foo</tfoot><tbody><tr><td>foo</td></tr></tbody></table>"
+        );
+    }
 }
