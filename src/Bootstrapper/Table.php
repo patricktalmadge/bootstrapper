@@ -41,7 +41,7 @@ class Table extends RenderedObject
     /**
      * @var mixed The contents of the table
      */
-    protected $contents;
+    protected $contents = [];
 
     /**
      * @var array A list of columns to ignore
@@ -56,7 +56,7 @@ class Table extends RenderedObject
     /**
      * @var bool|array An array of columns to get. False if none.
      */
-    protected $only = false;
+    protected $only = [];
 
     /**
      * Renders the table
@@ -74,6 +74,8 @@ class Table extends RenderedObject
 
         $string = "<table {$attributes}>";
 
+        $string .= $this->renderHeaders();
+
         if ($this->contents) {
             $string .= $this->renderContents();
         }
@@ -87,10 +89,14 @@ class Table extends RenderedObject
      * Sets the table type
      *
      * @param string $type The type of the table
+     *
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
     }
 
     /**
@@ -165,13 +171,7 @@ class Table extends RenderedObject
     {
         $headers = $this->getHeaders();
 
-        $string = '<thead><tr>';
-        foreach ($headers as $heading) {
-            $string .= "<th>{$heading}</th>";
-        }
-        $string .= '</tr></thead>';
-
-        $string .= '<tbody>';
+        $string = '<tbody>';
         foreach ($this->contents as $item) {
             if (!is_array($item)) {
                 $item = $item->getAttributes();
@@ -191,6 +191,11 @@ class Table extends RenderedObject
      */
     private function getHeaders()
     {
+        if ($this->only)
+        {
+            return $this->only;
+        }
+
         $headers = [];
         foreach ($this->contents as $item) {
             if (!is_array($item)) {
@@ -286,5 +291,23 @@ class Table extends RenderedObject
         $this->only = $only;
 
         return $this;
+    }
+
+    private function renderHeaders()
+    {
+        $headers = $this->getHeaders();
+
+        if (empty($headers))
+        {
+            return '';
+        }
+
+        $string = '<thead><tr>';
+        foreach ($headers as $heading) {
+            $string .= "<th>{$heading}</th>";
+        }
+        $string .= '</tr></thead>';
+
+        return $string;
     }
 }
