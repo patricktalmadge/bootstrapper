@@ -113,10 +113,13 @@ class Button extends RenderedObject
      *
      * @param $type string The new type of the button. Assumes that the btn-
      *              prefix is there
+     * @return $this
      */
     public function setType($type)
     {
         $this->type = $type;
+        
+        return $this;
     }
 
     /**
@@ -124,10 +127,13 @@ class Button extends RenderedObject
      *
      * @param $size string The new size of the button. Assumes that the btn-
      *              prefix is there
+     * @return $this
      */
     public function setSize($size)
     {
         $this->size = $size;
+        
+        return $this;
     }
 
     /**
@@ -183,9 +189,8 @@ class Button extends RenderedObject
      */
     public function normal($contents = '')
     {
-        $this->setType(self::NORMAL);
-
-        return $this->withValue($contents);
+        return $this->setType(self::NORMAL)
+            ->withValue($contents);
     }
 
     /**
@@ -197,9 +202,8 @@ class Button extends RenderedObject
      */
     public function primary($contents = '')
     {
-        $this->setType(self::PRIMARY);
-
-        return $this->withValue($contents);
+        return $this->setType(self::PRIMARY)
+            ->withValue($contents);
     }
 
     /**
@@ -211,9 +215,8 @@ class Button extends RenderedObject
      */
     public function success($contents = '')
     {
-        $this->setType(self::SUCCESS);
-
-        return $this->withValue($contents);
+        return $this->setType(self::SUCCESS)
+            ->withValue($contents);
     }
 
     /**
@@ -224,9 +227,8 @@ class Button extends RenderedObject
      */
     public function info($contents = '')
     {
-        $this->setType(self::INFO);
-
-        return $this->withValue($contents);
+        return $this->setType(self::INFO)
+            ->withValue($contents);
     }
 
     /**
@@ -237,9 +239,8 @@ class Button extends RenderedObject
      */
     public function warning($contents = '')
     {
-        $this->setType(self::WARNING);
-
-        return $this->withValue($contents);
+        return $this->setType(self::WARNING)
+            ->withValue($contents);
     }
 
     /**
@@ -250,9 +251,8 @@ class Button extends RenderedObject
      */
     public function danger($contents = '')
     {
-        $this->setType(self::DANGER);
-
-        return $this->withValue($contents);
+        return $this->setType(self::DANGER)
+            ->withValue($contents);
     }
 
     /**
@@ -263,9 +263,8 @@ class Button extends RenderedObject
      */
     public function link($contents = '')
     {
-        $this->setType(self::LINK);
-
-        return $this->withValue($contents);
+        return $this->setType(self::LINK)
+            ->withValue($contents);
     }
 
     /**
@@ -324,9 +323,7 @@ class Button extends RenderedObject
      */
     public function large()
     {
-        $this->setSize(self::LARGE);
-
-        return $this;
+        return $this->setSize(self::LARGE);
     }
 
     /**
@@ -336,9 +333,7 @@ class Button extends RenderedObject
      */
     public function small()
     {
-        $this->setSize(self::SMALL);
-
-        return $this;
+        return $this->setSize(self::SMALL);
     }
 
     /**
@@ -348,9 +343,7 @@ class Button extends RenderedObject
      */
     public function extraSmall()
     {
-        $this->setSize(self::EXTRA_SMALL);
-
-        return $this;
+        return $this->setSize(self::EXTRA_SMALL);
     }
 
     /**
