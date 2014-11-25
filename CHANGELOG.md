@@ -1,6 +1,12 @@
 Bootstrapper
 ------------
 
+5.3.0
+=====
+
+* Add `Table::withFooter()`
+* `Table::setType()` is now fluid
+
 5.2.0
 =====
 

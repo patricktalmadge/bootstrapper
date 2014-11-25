@@ -74,4 +74,11 @@ class CarouselSpec extends ObjectBehavior
 
     }
 
+    function it_allows_you_to_override_the_buttons()
+    {
+        $this->named('foo')->withControls('<div>previous</div>', '<div>next</div>')->render()->shouldBe(
+            "<div id='foo' class='carousel slide' data-ride='carousel'><ol class='carousel-indicators'></ol><div class='carousel-inner'></div><a class='left carousel-control' href='#foo' data-slide='prev'><div>previous</div></a><a class='right carousel-control' href='#foo' data-slide='next'><div>next</div></a></div>"
+        );
+    }
+
 }

@@ -17,6 +17,15 @@ class Carousel extends RenderedObject
      * @var string The name of the carousel
      */
     protected $name;
+    
+    /**
+     * @var string The icon or text for the control's previous slide
+     */
+    protected $previousButton = "<span class='glyphicon glyphicon-chevron-left'></span>";
+    /**
+     * @var string The icon or text for the control's next slide
+     */
+    protected $nextButton = "<span class='glyphicon glyphicon-chevron-right'></span>";
 
     /**
      * @var array The contents of the carousel. Should be an array of arrays,
@@ -45,7 +54,19 @@ class Carousel extends RenderedObject
 
         return $this;
     }
-
+    
+    /**
+     * Set the control icons or text
+     * @param string $previousButton Left arrorw, previous text
+     * @param string $nextButton right arrow, next string
+     * @return this
+     */
+    public function withControls($previousButton, $nextButton)
+    {
+        $this->previousButton = $previousButton;
+        $this->nextButton = $nextButton;
+        return $this;
+    }
     /**
      * Sets the contents of the carousel
      *
@@ -145,7 +166,7 @@ class Carousel extends RenderedObject
      */
     protected function renderControls()
     {
-        return "<a class='left carousel-control' href='#{$this->name}' data-slide='prev'><span class='glyphicon glyphicon-chevron-left'></span></a><a class='right carousel-control' href='#{$this->name}' data-slide='next'><span class='glyphicon glyphicon-chevron-right'></span></a>";
+        return "<a class='left carousel-control' href='#{$this->name}' data-slide='prev'>{$this->previousButton}</a><a class='right carousel-control' href='#{$this->name}' data-slide='next'>{$this->nextButton}</a>";
     }
 
 }
