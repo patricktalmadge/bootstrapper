@@ -11,7 +11,7 @@ use Exception;
  * TableException for use in Table
  *
  * @package Bootstrapper\Exceptions
- * @see     Bootstrapper\Modal
+ * @see     Bootstrapper\Table
  */
 class TableException extends Exception
 {
