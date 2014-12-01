@@ -175,6 +175,7 @@ class Table extends RenderedObject
     /**
      * Renders the contents of the table
      *
+     * @throws TableException when content rows are not array, eloquent or stdClass
      * @return string
      */
     private function renderContents()
