@@ -55,4 +55,21 @@ abstract class RenderedObject
         return $this;
     }
 
+    /**
+     * Set a tooltip on the object
+     * @param $message
+     * @param array $options animation, container, delay, html, placement, selector, template, title, trigger, viewport
+     * @see http://getbootstrap.com/javascript/#tooltips-usage
+     * @return $this
+     */
+    public function withTooltip($message, array $options = [])
+	{
+        $attributes = ['title'=>$message,'data-toggle'=>'tooltip'];
+		
+        foreach($options as $key => $value){
+            $attributes['data-'.$key] = $value;
+		}
+			
+        return $this->withAttributes($attributes);
+    }
 } 
