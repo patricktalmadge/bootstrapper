@@ -4,6 +4,8 @@
  */
 
 namespace Bootstrapper;
+use Eloquent;
+use Bootstrapper\Exceptions\TableException;
 
 /**
  * Creates Bootstrap 3 compliant tables
@@ -173,6 +175,7 @@ class Table extends RenderedObject
     /**
      * Renders the contents of the table
      *
+     * @throws TableException when content rows are not array, eloquent or stdClass
      * @return string
      */
     private function renderContents()
@@ -181,8 +184,16 @@ class Table extends RenderedObject
 
         $string = '<tbody>';
         foreach ($this->contents as $item) {
-            if (!is_array($item)) {
-                $item = $item->getAttributes();
+            switch(true){
+                case $item instanceof Eloquent:
+                    $item = $item->getAttributes();
+                    break;
+                case $item instanceof \stdClass:
+                    $item = get_object_vars($item);
+                    break;
+                case !is_array($item):
+                    throw new TableException('Table rows must be an array or instance of Eloquent or stdClass!');
+                    break;
             }
 
             $string .= $this->renderItem($item, $headers);
