@@ -4,6 +4,7 @@ namespace spec\Bootstrapper;
 
 use Illuminate\Support\Collection;
 use Mockery;
+use PhpSpec\Exception\Example\ErrorException;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -55,9 +56,32 @@ class TableSpec extends ObjectBehavior
         $model2 = Mockery::mock('Eloquent');
         $model2->shouldReceive('getAttributes')->andReturn(['foo' => 'baz']);
         $collection = new Collection([$model1, $model2]);
-        $this->withContents($collection)->render()->shouldBe(
-            "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>baz</td></tr></tbody></table>"
-        );
+        $wasThrown = false;
+        try
+        {
+            $this->withContents($collection)->render()->shouldBe(
+                "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>baz</td></tr></tbody></table>"
+            );
+        }
+        catch(ErrorException $e)
+        {
+            if (strpos($e->getMessage(), 'An object that does not implement the TableInterface '
+        . 'was passed to a table. This is depreciated and will be removed in '
+        . 'a future version of Bootstrapper') === false)
+            {
+                throw $e;
+            }
+            $wasThrown = true;
+        }
+
+        if (!$wasThrown) {
+            throw new ErrorException(
+                E_USER_WARNING,
+                'Expected an error to be triggered during ' . __METHOD__,
+                __FILE__,
+                __LINE__
+            );
+        }
     }
 
     function it_allows_you_to_ignore_attributes()
