@@ -1,16 +1,17 @@
 Contributor's Guide
 ===================
 
-If you're reading this you're probably interested in contributing to ``bootstrapper``.
-First, I'd like to say: thankyou! Projects like this one live-and-die based on
-the support they receive from others, and the fact that you're even
-*considering* supporting ``bootstrapper`` is incredibly generous of you.
+If you're reading this you're probably interested in contributing to 
+``bootstrapper``. First, I'd like to say: thank you! Projects like this one 
+live-and-die based on the support they receive from others, and the fact that
+you're even *considering* supporting ``bootstrapper`` is incredibly generous 
+of you.
 
-This document lays out guidelines and advice for contributing to ``bootstrapper``. If
-you're thinking of contributing, start by reading this thoroughly and getting a
-feel for how contributing to the project works. If you've still got questions
-after reading this, you should go ahead and contact Patrick (on
-[Twitter](http://twitter.com/DrugCrazed), or via
+This document lays out guidelines and advice for contributing to 
+``bootstrapper``. If you're thinking of contributing, start by reading this 
+thoroughly and getting a feel for how contributing to the project works. If 
+you've still got questions after reading this, you should go ahead and 
+contact Patrick (on [Twitter](http://twitter.com/DrugCrazed), or via
 [email](mailto:pjr0911025+github@googlemail.com))
 
 The guide is split into sections based on the type of contribution you're
@@ -22,10 +23,11 @@ All Contributions
 
 ### Be Cordial Or Be On Your Way ###
 
-``bootstrapper`` has one very important guideline governing all forms of contribution,
-including things like reporting bugs or requesting features. The guideline is
-[be cordial or be on your way](http://kennethreitz.org/be-cordial-or-be-on-your-way/)
-**All contributions are welcome**, but they come with an implicit social contract:
+``bootstrapper`` has one very important guideline governing all forms of 
+contribution, including things like reporting bugs or requesting features. 
+The guideline is [be cordial or be on your 
+way](http://kennethreitz.org/be-cordial-or-be-on-your-way/). **All 
+contributions are welcome**, but they come with an implicit social contract:
 everyone must be treated with respect.
 
 This can be a difficult area to judge, so the maintainer will enforce the
@@ -40,9 +42,9 @@ to the following steps:
 2. If the apology is not offered, any outstanding and future contributions from
    the violating contributor will be rejected immediately.
 
-Everyone involved in the ``bootstrapper`` project, the maintainer included, is bound
-by this policy. Failing to abide by it leads to the offender being kicked off
-the project.
+Everyone involved in the ``bootstrapper`` project, the maintainer included,  
+is bound by this policy. Failing to abide by it leads to the offender being 
+kicked off the project.
 
 #### Get Early Feedback ####
 
@@ -56,8 +58,9 @@ into a contribution that is not suitable for the project.
 ### Contribution Suitability ###
 
 The project maintainer has the last word on whether or not a contribution is
-suitable for ``bootstrapper``. All contributions will be considered, but from time to
-time contributions will be rejected because they do not suit the project.
+suitable for ``bootstrapper``. All contributions will be considered, but from
+time to time contributions will be rejected because they do not suit the 
+project.
 
 If your contribution is rejected, don't despair! So long as you followed these
 guidelines, you'll have a much better chance of getting your next contribution
@@ -94,9 +97,9 @@ the code coverage. We use ``phpspec`` for our tests, which is installed with
 Bootstrapper.
 
 If you've done this but want to get contributing right away, you can take
-advantage of the fact that ``bootstrapper`` uses a continuous integration system.
-This will automatically run the tests against any pull request raised against the
-main ``bootstrapper`` repository. 
+advantage of the fact that ``bootstrapper`` uses a continuous integration 
+system. This will automatically run the tests against any pull request raised
+against the main ``bootstrapper`` repository. 
 
 Before a contribution is merged it must have a green run through the CI system.
 
@@ -116,17 +119,19 @@ Documentation Contributions
 ---------------------------
 
 Documentation improvements are always welcome! The documentation files live in
-the [Bootstrapper Docs repository](https://github.com/PatrickRose/bootstrapper-docs)
-and are written using Laravel.
+the [Bootstrapper Docs 
+repository](https://github.com/PatrickRose/bootstrapper-docs) and are written
+using Laravel.
 
 Bug Reports
 -----------
 
 Bug reports are hugely important! Before you raise one, though, please check
-through the [GitHub issues](https://github.com/patricktalmadge/bootstrapper/issues),
-**both open and closed**, to confirm that the bug hasn't been reported before.
-Duplicate bug reports are a huge drain on the time of other contributors, and
-should be avoided as much as possible.
+through the [GitHub 
+issues](https://github.com/patricktalmadge/bootstrapper/issues), **both open 
+and closed**, to confirm that the bug hasn't been reported before. Duplicate 
+bug reports are a huge drain on the time of other contributors, and should be
+avoided as much as possible.
 
 Feature Requests
 ----------------
