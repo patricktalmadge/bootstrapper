@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Support\Collection;
 use Mockery;
 use PhpSpec\Exception\Example\ErrorException;
@@ -174,5 +175,33 @@ class TableSpec extends ObjectBehavior
         )->withFooter('Foo')->render()->shouldBe(
             "<table class='table'><thead><tr><th>foo</th></tr></thead><tfoot>Foo</tfoot><tbody><tr><td>foo</td></tr></tbody></table>"
         );
+    }
+
+    function it_expects_something_that_implements_the_table_interface()
+    {
+        $item = new TableSpecFoo();
+
+        $this->withContents([$item])->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>bar</th></tr></thead><tbody><tr><td>goo</td><td>gar</td></tr></tbody></table>"
+        );
+    }
+}
+
+class TableSpecFoo implements TableInterface
+{
+
+    private $values = [
+        'foo' => 'goo',
+        'bar' => 'gar',
+    ];
+
+    public function getTableHeaders()
+    {
+        return array_keys($this->values);
+    }
+
+    public function getValueForHeader($header)
+    {
+        return $this->values[$header];
     }
 }
