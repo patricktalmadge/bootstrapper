@@ -6,7 +6,8 @@ Travis status : [![Build Status](https://travis-ci.org/patricktalmadge/bootstrap
 
 Current supported Bootstrap version: 3.2.0
 
-Bootstrapper is a set of classes that allow you to quickly create Twitter Bootstrap 3 style markup.
+Bootstrapper is a set of classes that allow you to quickly create Twitter 
+Bootstrap 3 style markup.
 
 ## Installation
 
@@ -24,7 +25,8 @@ Then register Bootstrapper's service provider with Laravel :
 'Bootstrapper\BootstrapperServiceProvider',
 ```
 
-You can then (if you want to) add the following aliases to your `aliases` array in your `config/app.php` file.
+You can then (if you want to) add the following aliases to your `aliases` 
+array in your `config/app.php` file.
 
 ```php
 'Accordion' => 'Bootstrapper\Facades\Accordion',
@@ -55,7 +57,9 @@ You can then (if you want to) add the following aliases to your `aliases` array 
 
 ## Including Bootstrap
 
-Include the Bootstrap files just like any other css and js files! Download Bootstrap and JQuery from the [Bootstrap site](http://getbootstrap.com), place them in your public folder and then include them like so:
+Include the Bootstrap files just like any other css and js files! Download
+Bootstrap and JQuery from the [Bootstrap site](http://getbootstrap.com),
+place them in your public folder and then include them like so:
 
 ```php
 {{ HTML::style('path/to/bootstrap.css') }}
@@ -63,7 +67,9 @@ Include the Bootstrap files just like any other css and js files! Download Boots
 {{ HTML::script('path/to/bootstrap.js') }}
 ```
 
-Feel free to use a CDN, but bear in mind that you may get unexpected functionality if the version you use isn't the version Bootstrapper currently supports (but open an issue to let us know!).
+Feel free to use a CDN, but bear in mind that you may get unexpected
+functionality if the version you use isn't the version Bootstrapper currently
+supports (but open an issue to let us know!).
 
 ```html
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -79,16 +85,16 @@ Helpers::css()
 Helpers::js()
 ```
 
-We also have Twitter Bootstrap as a dependency, so you can grab the files from
-your vendor directory.
-
 If you want to stick at a certain version then use
 
 ```
 artisan config:publish patricktalmadge/bootstrapper
 ```
 
-And update the config file in app/config/packages.
+And update your config file in app/config/packages.
+
+We also have Twitter Bootstrap as a dependency, so you can grab the files from
+your vendor directory.
 
 ## Documentation
 
@@ -99,6 +105,8 @@ And update the config file in app/config/packages.
 
 ## Contributing
 
-Contributing is easy! Just fork the repo, make your changes then send a pull request
-on GitHub. If your PR is languishing in the queue and nothing seems to be happening, then send
-Patrick an [email](mailto:pjr0911025@googlemail.com) or a [tweet](http://twitter.com/DrugCrazed)
+Contributing is easy! Just fork the repo, make your changes then send a pull 
+request on GitHub. If your PR is languishing in the queue and nothing seems 
+to be happening, then send Patrick an 
+[email](mailto:pjr0911025@googlemail.com) or a 
+[tweet](http://twitter.com/DrugCrazed).
