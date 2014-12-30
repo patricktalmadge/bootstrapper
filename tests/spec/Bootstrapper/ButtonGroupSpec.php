@@ -142,4 +142,24 @@ class ButtonGroupSpec extends ObjectBehavior
             "<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger'><input type='checkbox' data-foo='bar'>Left</label><label class='btn btn-danger'><input type='checkbox' data-foo='bar'>Middle</label><label class='btn btn-danger'><input type='checkbox'>Right</label></div>"
         );
     }
+
+    function it_can_handle_just_links()
+    {
+        $this->links()->render()->shouldBe(
+            "<div class='btn-group'></div>"
+        );
+    }
+
+    function it_allows_you_to_use_links_as_a_shortcut()
+    {
+        $this->links(
+            [
+                '<div>Foo</div>',
+                '<div>Bar</div>',
+                '<div>Baz</div>'
+            ]
+        )->render()->shouldBe(
+            "<div class='btn-group'><div>Foo</div><div>Bar</div><div>Baz</div></div>"
+        );
+    }
 }

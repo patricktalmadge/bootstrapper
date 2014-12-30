@@ -34,6 +34,11 @@ class ButtonGroup extends RenderedObject
     protected $size;
 
     /**
+     * @var bool Whether the button group is just for links or not
+     */
+    protected $links = false;
+
+    /**
      * Constant for large button groups
      */
     const LARGE = 'btn-group-lg';
@@ -99,9 +104,13 @@ class ButtonGroup extends RenderedObject
             $this->attributes,
             [
                 'class' => $this->vertical ? 'btn-group-vertical' : 'btn-group',
-                'data-toggle' => 'buttons'
             ]
         );
+
+        if (!$this->links)
+        {
+            $attributes['data-toggle'] = 'buttons';
+        }
 
         if ($this->size) {
             $attributes->addClass($this->size);
@@ -250,4 +259,11 @@ class ButtonGroup extends RenderedObject
         return $contents;
     }
 
+
+    public function links(array $contents = [])
+    {
+        $this->links = true;
+
+        return $this->withContents($contents);
+    }
 }
