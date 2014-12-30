@@ -82,8 +82,7 @@ class Table extends RenderedObject
 
         $string .= $this->renderHeaders();
 
-        if ($this->footer)
-        {
+        if ($this->footer) {
             $string .= $this->renderFooter();
         }
 
@@ -337,25 +336,25 @@ class Table extends RenderedObject
 
     private function getKeysForItem($item)
     {
-        if (is_array($item))
-        {
+        if (is_array($item)) {
             return array_keys($item);
         }
 
-        if ($item instanceof TableInterface)
-        {
+        if ($item instanceof TableInterface) {
             return $item->getTableHeaders();
         }
 
         // Let the user know that the TableInterface will soon be the
         // only way to use tables in a future version of Bootstrapper
-        trigger_error('An object that does not implement the TableInterface '
-        . 'was passed to a table. This is depreciated and will be removed in '
-        . 'a future version of Bootstrapper', E_USER_DEPRECATED);
+        trigger_error(
+            'An object that does not implement the TableInterface '
+            . 'was passed to a table. This is depreciated and will be removed in '
+            . 'a future version of Bootstrapper',
+            E_USER_DEPRECATED
+        );
 
         // Handles eloquent models
-        if (is_callable([$item, 'getAttributes']))
-        {
+        if (is_callable([$item, 'getAttributes'])) {
             return $item->getAttributes();
         }
 
@@ -365,16 +364,11 @@ class Table extends RenderedObject
 
     private function getValueForItem($item, $heading)
     {
-        if (is_array($item))
-        {
+        if (is_array($item)) {
             $value = isset($item[$heading]) ? $item[$heading] : '';
-        }
-        elseif ($item instanceof TableInterface)
-        {
+        } elseif ($item instanceof TableInterface) {
             $value = $item->getValueForHeader($heading);
-        }
-        else
-        {
+        } else {
             $value = $item->$heading;
         }
 

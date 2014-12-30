@@ -17,7 +17,7 @@ class Carousel extends RenderedObject
      * @var string The name of the carousel
      */
     protected $name;
-    
+
     /**
      * @var string The icon or text for the control's previous slide
      */
@@ -54,11 +54,12 @@ class Carousel extends RenderedObject
 
         return $this;
     }
-    
+
     /**
      * Set the control icons or text
+     *
      * @param string $previousButton Left arrorw, previous text
-     * @param string $nextButton right arrow, next string
+     * @param string $nextButton     right arrow, next string
      * @return this
      */
     public function withControls($previousButton, $nextButton)
@@ -67,6 +68,7 @@ class Carousel extends RenderedObject
         $this->nextButton = $nextButton;
         return $this;
     }
+
     /**
      * Sets the contents of the carousel
      *

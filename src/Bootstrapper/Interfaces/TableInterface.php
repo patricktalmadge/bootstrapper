@@ -7,7 +7,8 @@ namespace Bootstrapper\Interfaces;
  *
  * @package Bootstrapper\Interfaces
  */
-interface TableInterface {
+interface TableInterface
+{
 
     /**
      * A list of headers to be used when a table is displayed
