@@ -132,7 +132,7 @@ guidelines will certainly be helpful.
   them knowing exactly what the result will be.
 * Methods should try to be no longer than 30 lines. This is usually enough to
   fit into the most people's editor window, and means that anyone can skim 
-  read the method and know what it does.fggGFGF
+  read the method and know what it does.
 
 Documentation Contributions
 ---------------------------
