@@ -74,15 +74,20 @@ Code Contributions
 
 When contributing code, you'll want to follow this checklist:
 
-1. Fork the repository on GitHub and run `composer install`.
-2. Run the tests to confirm they all pass on your system. If they don't, you'll
+1. Fork the repository on GitHub 
+2. Create yourself a new feature branch for your new feature, branching from 
+   the `develop` branch. There's no naming convention that you need to follow, 
+   but the name should be descriptive (if you're adding dropups to the Button 
+   class, a branch name like "dropup-buttons" would be appropriate). Then run 
+   `composer install`.
+3. Run the tests to confirm they all pass on your system. If they don't, you'll
    need to investigate why they fail. If you're unable to diagnose this
    yourself, contact Patrick.
-3. Write tests that demonstrate your bug or feature. Ensure that they fail.
-4. Make your change.
-5. Run the entire test suite again, confirming that all tests pass *including
+4. Write tests that demonstrate your bug or feature. Ensure that they fail.
+5. Make your change.
+6. Run the entire test suite again, confirming that all tests pass *including
    the ones you just added*.
-6. Send a GitHub Pull Request to the main repository's ``develop`` branch.
+7. Send a GitHub Pull Request to the main repository's ``develop`` branch.
    GitHub Pull Requests are the expected method of code collaboration on this
    project. If you object to the GitHub workflow, you may mail a patch to the
    maintainer.
@@ -114,6 +119,20 @@ event that you object to the code review feedback, you should make your case
 clearly and calmly. If, after doing so, the feedback is judged to still apply,
 you must either apply the feedback or withdraw your contribution.
 
+The following aren't all necessarily hard and fast rules, but following these
+guidelines will certainly be helpful.
+
+* Follow PSR-2 for your code. The quick rundown - use `camelCase` for your 
+  method names, `UpperCamelCase` for your class names, indent with 4 spaces. 
+  Most editors have some way of reformatting your code to follow these rules.
+* Most public methods should be chainable (ie, return `$this`)
+* New public method names should be chosen to be, for want of a better phrase, 
+  "human speakable". Most people will be using Bootstrapper just in their 
+  views, and should be able to read off a chained method call to someone with
+  them knowing exactly what the result will be.
+* Methods should try to be no longer than 30 lines. This is usually enough to
+  fit into the most people's editor window, and means that anyone can skim 
+  read the method and know what it does.fggGFGF
 
 Documentation Contributions
 ---------------------------
