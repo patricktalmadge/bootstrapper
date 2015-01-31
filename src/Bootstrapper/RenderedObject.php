@@ -55,4 +55,20 @@ abstract class RenderedObject
         return $this;
     }
 
-} 
+    public function addClass(array $classes)
+    {
+        $classes = implode(' ', $classes);
+
+        if (!isset($this->attributes['class']))
+        {
+            $this->attributes['class'] = $classes;
+        }
+        else
+        {
+            $this->attributes['class'] .= " $classes";
+        }
+
+        return $this;
+    }
+
+}
