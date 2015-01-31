@@ -172,18 +172,4 @@ class Image extends RenderedObject
         return $this->withSource($src)->withAlt($alt);
     }
 
-    /**
-     * Adds a class to the attributes
-     *
-     * @param string $class The class we need to add to the image
-     * @internal Normally we'd use the Attributes object but we don't have
-     *                      access to it at this point :-(
-     */
-    public function addClass($class)
-    {
-        $this->attributes['class'] = isset($this->attributes['class']) ?
-            $this->attributes['class'] . " {$class}" :
-            $class;
-    }
-
 }

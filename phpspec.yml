@@ -1,6 +1,11 @@
 suites:
-    markdown_suite:
+    bootstrapper_suite:
         namespace: Bootstrapper
         src_path: src
+        spec_path: tests
+        spec_prefix: spec
+    abstract_suite:
+        namespace: DummyClasses
+        src_path: tests
         spec_path: tests
         spec_prefix: spec
