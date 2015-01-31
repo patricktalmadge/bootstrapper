@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use PhpSpec\Exception\Example\ErrorException;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -86,5 +87,31 @@ class ImageSpec extends ObjectBehavior
         $this->circle('foo', 'bar')->render()->shouldBe(
             "<img src='foo' alt='bar' class='img-circle'>"
         );
+    }
+
+    function it_knows_that_add_class_with_a_string_is_depreciated()
+    {
+        $wasThrown = false;
+
+        try {
+            $this->addClass('test');
+        } catch (ErrorException $e) {
+            if (strpos($e->getMessage(), 'Passing strings to Image::getClass ' .
+            'is depreciated, and will be removed in a future version of ' .
+            'Bootstrapper') === false)
+            {
+                throw $e;
+            }
+            $wasThrown = true;
+        }
+
+        if (!$wasThrown) {
+            throw new ErrorException(
+                E_USER_WARNING,
+                'Expected an error to be triggered during ' . __METHOD__,
+                __FILE__,
+                __LINE__
+            );
+        }
     }
 }
