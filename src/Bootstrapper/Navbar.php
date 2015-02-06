@@ -50,6 +50,11 @@ class Navbar extends RenderedObject
      * @var array The content of the array
      */
     protected $content = [];
+    
+    /**
+     * @var array The content of the header array
+     */
+    protected $header_content = [];
 
     /**
      * @var string The type of the navbar
@@ -131,6 +136,9 @@ class Navbar extends RenderedObject
     protected function renderHeader()
     {
         $string = "<div class='navbar-header'>";
+        foreach($this->header_content as $item) {
+            $string .= $item;
+        }
         // Add the collapse button
         $string .= "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button>";
         if ($this->brand) {
@@ -175,6 +183,19 @@ class Navbar extends RenderedObject
         return $this;
     }
 
+    /**
+     * Adds some content to the navbar header
+     * 
+     * @param mixed $content Anything that can become a string!
+     * @return $this
+     */
+    public function withHeaderContent($content)
+    {
+        $this->header_content[] = $content;
+        
+        return $this;
+    }
+    
     /**
      * Sets the navbar to be inverse
      *
