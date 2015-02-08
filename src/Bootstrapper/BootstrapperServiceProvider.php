@@ -45,11 +45,22 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->registerTable();
         $this->registerThumbnail();
 
-        $this->package('patricktalmadge/bootstrapper');
-        $this->app['config']->package(
-            'patricktalmadge/bootstrapper',
-            __DIR__ . '/../config'
-        );
+
+
+        if (method_exists($this, 'publishes')) {
+	    $this->publishes([
+		__DIR__ . '/../config/config.php' => config_path('bootstrapper.php')
+	    ]);
+	    $this->mergeConfigFrom(
+		__DIR__ . '/../config/config.php', 'bootstrapper.php'
+	    );
+	} else {
+	    $this->package('patricktalmadge/bootstrapper');
+	    $this->app['config']->package(
+		'patricktalmadge/bootstrapper',
+		__DIR__ . '/../config'
+	    );
+        }
     }
 
     /**
