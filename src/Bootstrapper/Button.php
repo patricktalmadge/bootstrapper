@@ -118,7 +118,7 @@ class Button extends RenderedObject
     public function setType($type)
     {
         $this->type = $type;
-        
+
         return $this;
     }
 
@@ -132,7 +132,7 @@ class Button extends RenderedObject
     public function setSize($size)
     {
         $this->size = $size;
-        
+
         return $this;
     }
 

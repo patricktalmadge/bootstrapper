@@ -178,10 +178,17 @@ class Navbar extends RenderedObject
     /**
      * Sets the navbar to be inverse
      *
+     * @param string $position
+     * @param array  $attributes
      * @return $this
      */
-    public function inverse()
+    public function inverse($position = null, $attributes = [])
     {
+        if (isset($position)) {
+            $this->setPosition($position);
+            $this->withAttributes($attributes);
+        }
+
         $this->setType(self::NAVBAR_INVERSE);
 
         return $this;

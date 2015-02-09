@@ -5,6 +5,8 @@
 
 namespace Bootstrapper;
 
+use Bootstrapper\Interfaces\TableInterface;
+
 /**
  * Creates Bootstrap 3 compliant tables
  *
@@ -80,8 +82,7 @@ class Table extends RenderedObject
 
         $string .= $this->renderHeaders();
 
-        if ($this->footer)
-        {
+        if ($this->footer) {
             $string .= $this->renderFooter();
         }
 
@@ -181,10 +182,6 @@ class Table extends RenderedObject
 
         $string = '<tbody>';
         foreach ($this->contents as $item) {
-            if (!is_array($item)) {
-                $item = $item->getAttributes();
-            }
-
             $string .= $this->renderItem($item, $headers);
         }
 
@@ -206,11 +203,9 @@ class Table extends RenderedObject
 
         $headers = [];
         foreach ($this->contents as $item) {
-            if (!is_array($item)) {
-                $item = $item->getAttributes();
-            }
+            $keys = $this->getKeysForItem($item);
 
-            foreach (array_keys($item) as $key) {
+            foreach ($keys as $key) {
                 if (in_array($key, $this->ignores)) {
                     continue;
                 }
@@ -247,10 +242,8 @@ class Table extends RenderedObject
     {
         $string = '<tr>';
         foreach ($headers as $heading) {
-            $value = isset($item[$heading]) ? $item[$heading] : '';
-            if (isset($this->callbacks[$heading])) {
-                $value = $this->callbacks[$heading]($value, $item);
-            }
+            $value = $this->getValueForItem($item, $heading);
+
             $string .= "<td>{$value}</td>";
         }
         $string .= '</tr>';
@@ -339,5 +332,50 @@ class Table extends RenderedObject
     private function renderFooter()
     {
         return "<tfoot>{$this->footer}</tfoot>";
+    }
+
+    private function getKeysForItem($item)
+    {
+        if (is_array($item)) {
+            return array_keys($item);
+        }
+
+        if ($item instanceof TableInterface) {
+            return $item->getTableHeaders();
+        }
+
+        // Let the user know that the TableInterface will soon be the
+        // only way to use tables in a future version of Bootstrapper
+        trigger_error(
+            'An object that does not implement the TableInterface '
+            . 'was passed to a table. This is depreciated and will be removed in '
+            . 'a future version of Bootstrapper',
+            E_USER_DEPRECATED
+        );
+
+        // Handles eloquent models
+        if (is_callable([$item, 'getAttributes'])) {
+            return $item->getAttributes();
+        }
+
+        // Default fallback
+        return get_object_vars($item);
+    }
+
+    private function getValueForItem($item, $heading)
+    {
+        if (is_array($item)) {
+            $value = isset($item[$heading]) ? $item[$heading] : '';
+        } elseif ($item instanceof TableInterface) {
+            $value = $item->getValueForHeader($heading);
+        } else {
+            $value = $item->$heading;
+        }
+
+        if (isset($this->callbacks[$heading])) {
+            $value = $this->callbacks[$heading]($value, $item);
+        }
+
+        return $value;
     }
 }

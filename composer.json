@@ -34,7 +34,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Bootstrapper\\": "src\\Bootstrapper"
+      "Bootstrapper\\": "src\\Bootstrapper",
+      "DummyClasses\\": "tests\\DummyClasses"
     }
   },
   "minimum-stability": "dev"

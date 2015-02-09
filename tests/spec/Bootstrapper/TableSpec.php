@@ -2,8 +2,10 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Support\Collection;
 use Mockery;
+use PhpSpec\Exception\Example\ErrorException;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -55,9 +57,32 @@ class TableSpec extends ObjectBehavior
         $model2 = Mockery::mock('Eloquent');
         $model2->shouldReceive('getAttributes')->andReturn(['foo' => 'baz']);
         $collection = new Collection([$model1, $model2]);
-        $this->withContents($collection)->render()->shouldBe(
-            "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>baz</td></tr></tbody></table>"
-        );
+        $wasThrown = false;
+        try
+        {
+            $this->withContents($collection)->render()->shouldBe(
+                "<table class='table'><thead><tr><th>foo</th></tr></thead><tbody><tr><td>bar</td></tr><tr><td>baz</td></tr></tbody></table>"
+            );
+        }
+        catch(ErrorException $e)
+        {
+            if (strpos($e->getMessage(), 'An object that does not implement the TableInterface '
+        . 'was passed to a table. This is depreciated and will be removed in '
+        . 'a future version of Bootstrapper') === false)
+            {
+                throw $e;
+            }
+            $wasThrown = true;
+        }
+
+        if (!$wasThrown) {
+            throw new ErrorException(
+                E_USER_WARNING,
+                'Expected an error to be triggered during ' . __METHOD__,
+                __FILE__,
+                __LINE__
+            );
+        }
     }
 
     function it_allows_you_to_ignore_attributes()
@@ -150,5 +175,33 @@ class TableSpec extends ObjectBehavior
         )->withFooter('Foo')->render()->shouldBe(
             "<table class='table'><thead><tr><th>foo</th></tr></thead><tfoot>Foo</tfoot><tbody><tr><td>foo</td></tr></tbody></table>"
         );
+    }
+
+    function it_expects_something_that_implements_the_table_interface()
+    {
+        $item = new TableSpecFoo();
+
+        $this->withContents([$item])->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>bar</th></tr></thead><tbody><tr><td>goo</td><td>gar</td></tr></tbody></table>"
+        );
+    }
+}
+
+class TableSpecFoo implements TableInterface
+{
+
+    private $values = [
+        'foo' => 'goo',
+        'bar' => 'gar',
+    ];
+
+    public function getTableHeaders()
+    {
+        return array_keys($this->values);
+    }
+
+    public function getValueForHeader($header)
+    {
+        return $this->values[$header];
     }
 }
