@@ -98,7 +98,7 @@ class Image extends RenderedObject
      */
     public function responsive()
     {
-        $this->addClass(self::IMAGE_RESPONSIVE);
+        $this->addClass([self::IMAGE_RESPONSIVE]);
 
         return $this;
     }
@@ -114,7 +114,7 @@ class Image extends RenderedObject
      */
     public function rounded($src = null, $alt = null)
     {
-        $this->addClass(self::IMAGE_ROUNDED);
+        $this->addClass([self::IMAGE_ROUNDED]);
 
         if (!isset($src)) {
             $src = $this->src;
@@ -137,7 +137,7 @@ class Image extends RenderedObject
      */
     public function circle($src = null, $alt = null)
     {
-        $this->addClass(self::IMAGE_CIRCLE);
+        $this->addClass([self::IMAGE_CIRCLE]);
 
         if (!isset($src)) {
             $src = $this->src;
@@ -160,7 +160,7 @@ class Image extends RenderedObject
      */
     public function thumbnail($src = null, $alt = null)
     {
-        $this->addClass(self::IMAGE_THUMBNAIL);
+        $this->addClass([self::IMAGE_THUMBNAIL]);
 
         if (!isset($src)) {
             $src = $this->src;
@@ -170,6 +170,25 @@ class Image extends RenderedObject
         }
 
         return $this->withSource($src)->withAlt($alt);
+    }
+
+    /**
+     * BC version of Image::addClass()
+     *
+     * @param string|array $class
+     * @return $this
+     */
+    public function addClass($class)
+    {
+        if (is_string($class))
+        {
+            trigger_error('Passing strings to Image::getClass ' .
+                'is depreciated, and will be removed in a future version of ' .
+                'Bootstrapper', E_USER_DEPRECATED);
+            $class = [$class];
+        }
+
+        return parent::addClass($class);
     }
 
 }

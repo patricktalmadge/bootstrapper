@@ -55,6 +55,12 @@ abstract class RenderedObject
         return $this;
     }
 
+    /**
+     * Adds the given classes to attributes
+     *
+     * @param array $classes
+     * @return $this
+     */
     public function addClass(array $classes)
     {
         $classes = implode(' ', $classes);
