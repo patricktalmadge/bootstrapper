@@ -5,6 +5,8 @@
 
 namespace Bootstrapper;
 
+use Bootstrapper\Exceptions\ButtonGroupException;
+
 /**
  * Creates Bootstrap 3 compliant Button Groups
  *
@@ -37,6 +39,11 @@ class ButtonGroup extends RenderedObject
      * @var bool Whether the button group is just for links or not
      */
     protected $links = false;
+
+    /**
+     * @var array Which links should be activated
+     */
+    protected $activated = [];
 
     /**
      * Constant for large button groups
@@ -230,6 +237,7 @@ class ButtonGroup extends RenderedObject
      * Renders the contents of the button group
      *
      * @return string
+     * @throws ButtonGroupException if a string should be activated
      */
     public function renderContents()
     {
@@ -240,16 +248,21 @@ class ButtonGroup extends RenderedObject
                 $contents .= $item;
             }
         } else {
-            foreach ($this->contents as $item) {
+            foreach ($this->contents as $index => $item) {
+                $active = in_array($index + 1, $this->activated);
                 if ($item instanceof Button) {
-                    $class = $item->getType();
+                    $class = $item->getType() . ($active ? ' active' : '');
                     $value = $item->getValue();
                     $attributes = new Attributes(
                         $item->getAttributes(),
                         ['type' => $this->type]
                     );
+
                     $contents .= "<label class='btn {$class}'><input {$attributes}>{$value}</label>";
                 } else {
+                    if ($active) {
+                        throw ButtonGroupException::activatedAString();
+                    }
                     $contents .= $item;
                 }
             }
@@ -264,5 +277,18 @@ class ButtonGroup extends RenderedObject
         $this->links = true;
 
         return $this->withContents($contents);
+    }
+
+    /**
+     * Sets a link to be activated
+     *
+     * @param $toActivate
+     * @return $this
+     */
+    public function activate($toActivate)
+    {
+        $this->activated = is_array($toActivate) ? $toActivate : [$toActivate];
+
+        return $this;
     }
 }

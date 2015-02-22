@@ -162,4 +162,62 @@ class ButtonGroupSpec extends ObjectBehavior
             "<div class='btn-group'><div>Foo</div><div>Bar</div><div>Baz</div></div>"
         );
     }
+
+    function it_allows_you_to_activate_one_of_the_links()
+    {
+        $buttonLeft = new Button();
+        $buttonLeft->danger('Left')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonMiddle = new Button();
+        $buttonMiddle->danger('Middle')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonRight = new Button();
+        $buttonRight->danger('Right');
+
+        $this->checkbox(
+            [
+                $buttonLeft,
+                $buttonMiddle,
+                $buttonRight
+            ]
+        )->activate(1)->render()->shouldBe(
+            "<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger active'><input type='checkbox' data-foo='bar'>Left</label><label class='btn btn-danger'><input type='checkbox' data-foo='bar'>Middle</label><label class='btn btn-danger'><input type='checkbox'>Right</label></div>"
+        );
+    }
+
+    function it_allows_you_to_activate_several_links()
+    {
+        $buttonLeft = new Button();
+        $buttonLeft->danger('Left')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonMiddle = new Button();
+        $buttonMiddle->danger('Middle')->withAttributes(['data-foo' => 'bar']);
+
+        $buttonRight = new Button();
+        $buttonRight->danger('Right');
+
+        $this->checkbox(
+            [
+                $buttonLeft,
+                $buttonMiddle,
+                $buttonRight
+            ]
+        )->activate([1,2])->render()->shouldBe(
+            "<div class='btn-group' data-toggle='buttons'><label class='btn btn-danger active'><input type='checkbox' data-foo='bar'>Left</label><label class='btn btn-danger active'><input type='checkbox' data-foo='bar'>Middle</label><label class='btn btn-danger'><input type='checkbox'>Right</label></div>"
+        );
+    }
+
+    function it_errors_with_strings_being_activated()
+    {
+        $this->checkbox(
+            [
+                '<div>Foo</div>',
+                '<div>Bar</div>',
+                '<div>Baz</div>'
+            ]
+        )->activate(1);
+
+        $this->shouldThrow('Bootstrapper\Exceptions\ButtonGroupException')
+            ->duringRender();
+    }
 }
