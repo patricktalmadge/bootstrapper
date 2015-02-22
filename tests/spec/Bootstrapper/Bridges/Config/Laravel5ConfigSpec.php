@@ -30,7 +30,7 @@ class Laravel5ConfigSpec extends ObjectBehavior
 
     function it_has_a_method_of_getting_the_bootstrapper_version(Repository $repository)
     {
-        $repository->get('bootstrapper.bootstrapper_version')
+        $repository->get('bootstrapper.bootstrapVersion')
             ->willReturn('3.2.1')
             ->shouldBeCalled(1);
 
@@ -39,7 +39,7 @@ class Laravel5ConfigSpec extends ObjectBehavior
 
     function it_has_a_method_of_getting_the_jquery_version(Repository $repository)
     {
-        $repository->get('bootstrapper.jquery_version')
+        $repository->get('bootstrapper.jqueryVersion')
             ->willReturn('3.2.1')
             ->shouldBeCalled(1);
 

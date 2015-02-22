@@ -27,11 +27,11 @@ class Laravel4Config implements ConfigInterface
 
     public function getBootstrapperVersion()
     {
-        return $this->repository->get('bootstrapper::bootstrapper_version');
+        return $this->repository->get('bootstrapper::bootstrapVersion');
     }
 
     public function getJQueryVersion()
     {
-        return $this->repository->get('bootstrapper::jquery_version');
+        return $this->repository->get('bootstrapper::jqueryVersion');
     }
 }
