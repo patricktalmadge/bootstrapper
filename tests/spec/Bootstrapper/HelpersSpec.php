@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Bridges\Config\ConfigInterface;
 use Bootstrapper\RenderedObject;
 use Mockery;
 use PhpSpec\ObjectBehavior;
@@ -9,18 +10,12 @@ use Prophecy\Argument;
 
 class HelpersSpec extends ObjectBehavior
 {
-    function let()
+    function let(ConfigInterface $configInterface)
     {
-        $config = Mockery::mock('Illuminate\Config\Repository');
+        $configInterface->getJQueryVersion()->willReturn("2.1.0");
+        $configInterface->getBootstrapperVersion()->willReturn("3.1.1");
 
-        $config->shouldReceive('get')->with(
-            'bootstrapper::jqueryVersion'
-        )->andReturn("2.1.0");
-        $config->shouldReceive('get')->with(
-            'bootstrapper::bootstrapVersion'
-        )->andReturn("3.1.1");
-
-        $this->beConstructedWith($config);
+        $this->beConstructedWith($configInterface);
     }
 
     function it_is_initializable()
@@ -49,18 +44,11 @@ class HelpersSpec extends ObjectBehavior
         );
     }
 
-    function it_listens_to_the_config_file()
+    function it_listens_to_the_config_file(ConfigInterface $configInterface)
     {
-        $config = Mockery::mock('Illuminate\Config\Repository');
+        $configInterface->getJQueryVersion()->willReturn("2.1.1");
+        $configInterface->getBootstrapperVersion()->willReturn("3.2.1");
 
-        $config->shouldReceive('get')->with(
-            'bootstrapper::jqueryVersion'
-        )->andReturn("2.1.1");
-        $config->shouldReceive('get')->with(
-            'bootstrapper::bootstrapVersion'
-        )->andReturn("3.2.1");
-
-        $this->beConstructedWith($config);
         $this->css()->shouldBe(
             "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.2.1/css/bootstrap.min.css'><link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.2.1/css/bootstrap-theme.min.css'>"
         );

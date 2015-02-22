@@ -65,12 +65,9 @@ abstract class RenderedObject
     {
         $classes = implode(' ', $classes);
 
-        if (!isset($this->attributes['class']))
-        {
+        if (!isset($this->attributes['class'])) {
             $this->attributes['class'] = $classes;
-        }
-        else
-        {
+        } else {
             $this->attributes['class'] .= " $classes";
         }
 

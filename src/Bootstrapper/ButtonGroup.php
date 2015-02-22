@@ -107,8 +107,7 @@ class ButtonGroup extends RenderedObject
             ]
         );
 
-        if (!$this->links)
-        {
+        if (!$this->links) {
             $attributes['data-toggle'] = 'buttons';
         }
 

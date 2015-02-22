@@ -2,19 +2,18 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Bridges\Config\ConfigInterface;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class IconSpec extends ObjectBehavior
 {
-    function let()
+    function let(ConfigInterface $configInterface)
     {
-        $mock = Mockery::mock('Illuminate\\Config\\Repository');
-        $mock->shouldReceive('get')->with(
-            'bootstrapper::icon_prefix'
-        )->andReturn('glyphicon');
-        $this->beConstructedWith($mock);
+        $configInterface->getIconPrefix()->willReturn('glyphicon');
+
+        $this->beConstructedWith($configInterface);
     }
 
     function it_is_initializable()
@@ -29,13 +28,9 @@ class IconSpec extends ObjectBehavior
         );
     }
 
-    function it_listens_to_the_config_file()
+    function it_listens_to_the_config_file(ConfigInterface $configInterface)
     {
-        $mock = Mockery::mock('Illuminate\\Config\\Repository');
-        $mock->shouldReceive('get')->with(
-            'bootstrapper::icon_prefix'
-        )->andReturn('bar');
-        $this->beConstructedWith($mock);
+        $configInterface->getIconPrefix()->willReturn('bar');
 
         $this->create('foo')->shouldReturn("<span class='bar bar-foo'></span>");
     }

@@ -5,7 +5,7 @@
 
 namespace Bootstrapper;
 
-use Illuminate\Config\Repository;
+use Bootstrapper\Bridges\Config\ConfigInterface;
 
 /**
  * Creates Bootstrap 3 compliant Icons
@@ -23,9 +23,9 @@ class Icon
     /**
      * Creates a new instance of Icon
      *
-     * @param \Illuminate\Config\Repository $config The config repository
+     * @param ConfigInterface $config The config repository
      */
-    public function __construct(Repository $config)
+    public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
     }
@@ -38,7 +38,7 @@ class Icon
      */
     public function create($icon)
     {
-        $baseClass = $this->config->get('bootstrapper::icon_prefix');
+        $baseClass = $this->config->getIconPrefix();
         $icon = $this->normaliseIconString($icon);
 
         return "<span class='{$baseClass} {$baseClass}-{$icon}'></span>";

@@ -180,11 +180,13 @@ class Image extends RenderedObject
      */
     public function addClass($class)
     {
-        if (is_string($class))
-        {
-            trigger_error('Passing strings to Image::getClass ' .
+        if (is_string($class)) {
+            trigger_error(
+                'Passing strings to Image::getClass ' .
                 'is depreciated, and will be removed in a future version of ' .
-                'Bootstrapper', E_USER_DEPRECATED);
+                'Bootstrapper',
+                E_USER_DEPRECATED
+            );
             $class = [$class];
         }
 

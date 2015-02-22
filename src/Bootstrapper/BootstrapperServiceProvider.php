@@ -5,6 +5,7 @@
 
 namespace Bootstrapper;
 
+use Bootstrapper\Bridges\Config\Laravel5Config;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -14,12 +15,38 @@ use Illuminate\Support\ServiceProvider;
  */
 class BootstrapperServiceProvider extends ServiceProvider
 {
+    /**
+     * @var bool Tests if we are using laravel 5 or not
+     */
+    protected $isLaravel5 = false;
 
     /**
      * {@inheritdoc}
      */
     public function register()
     {
+
+        if (method_exists($this, 'publishes')) {
+            $this->publishes(
+                [
+                    __DIR__ . '/../config/config.php' => config_path(
+                        'bootstrapper.php'
+                    )
+                ]
+            );
+            $this->mergeConfigFrom(
+                __DIR__ . '/../config/bootstrapper.php',
+                'bootstrapper'
+            );
+            $this->isLaravel5 = true;
+        } else {
+            $this->package('patricktalmadge/bootstrapper');
+            $this->app['config']->package(
+                'patricktalmadge/bootstrapper',
+                __DIR__ . '/../config'
+            );
+        }
+
         $this->registerAccordion();
         $this->registerAlert();
         $this->registerBadge();
@@ -27,6 +54,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->registerButtonGroup();
         $this->registerButton();
         $this->registerCarousel();
+        $this->registerConfig();
         $this->registerControlGroup();
         $this->registerDropdownButton();
         $this->registerFormBuilder();
@@ -44,23 +72,6 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->registerTabbable();
         $this->registerTable();
         $this->registerThumbnail();
-
-
-
-        if (method_exists($this, 'publishes')) {
-	    $this->publishes([
-		__DIR__ . '/../config/config.php' => config_path('bootstrapper.php')
-	    ]);
-	    $this->mergeConfigFrom(
-		__DIR__ . '/../config/config.php', 'bootstrapper.php'
-	    );
-	} else {
-	    $this->package('patricktalmadge/bootstrapper');
-	    $this->app['config']->package(
-		'patricktalmadge/bootstrapper',
-		__DIR__ . '/../config'
-	    );
-        }
     }
 
     /**
@@ -154,6 +165,25 @@ class BootstrapperServiceProvider extends ServiceProvider
         );
     }
 
+    private function registerConfig()
+    {
+        if ($this->isLaravel5) {
+            $this->app->bind(
+                'bootstrapper::config',
+                function ($app) {
+                    return new Laravel5Config($app['config']);
+                }
+            );
+        } else {
+            $this->app->bind(
+                'bootstrapper::config',
+                function ($app) {
+                    return new Laravel4Config($app['config']);
+                }
+            );
+        }
+    }
+
     /**
      * Registers the ControlGroup class into the IoC
      */
@@ -207,7 +237,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->app->bind(
             'bootstrapper::icon',
             function ($app) {
-                return new Icon($app['config']);
+                return new Icon($app['bootstrapper::config']);
             }
         );
     }
@@ -259,7 +289,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->app->bind(
             'bootstrapper::helpers',
             function ($app) {
-                return new Helpers($app['config']);
+                return new Helpers($app['bootstrapper::config']);
             }
         );
     }

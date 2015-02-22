@@ -5,7 +5,7 @@
 
 namespace Bootstrapper;
 
-use Illuminate\Config\Repository;
+use Bootstrapper\Bridges\Config\ConfigInterface;
 
 /**
  * Helper class
@@ -31,9 +31,9 @@ class Helpers
     /**
      * Creates a new instance of the helpers class
      *
-     * @param \Illuminate\Config\Repository $config
+     * @param ConfigInterface $config The config interface
      */
-    public function __construct(Repository $config)
+    public function __construct(ConfigInterface $config)
     {
         $this->config = $config;
     }
@@ -57,7 +57,7 @@ class Helpers
      */
     public function css($withTheme = true)
     {
-        $version = $this->config->get('bootstrapper::bootstrapVersion');
+        $version = $this->config->getBootstrapperVersion();
         $string = "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap.min.css'>";
         if ($withTheme) {
             $string .= "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap-theme.min.css'>";
@@ -73,8 +73,8 @@ class Helpers
      */
     public function js()
     {
-        $jquery = $this->config->get('bootstrapper::jqueryVersion');
-        $bootstrap = $this->config->get('bootstrapper::bootstrapVersion');
+        $jquery = $this->config->getJQueryVersion();
+        $bootstrap = $this->config->getBootstrapperVersion();
 
         return "<script src='http://code.jquery.com/jquery-{$jquery}.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
     }
