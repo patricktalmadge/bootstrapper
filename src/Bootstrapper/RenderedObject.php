@@ -61,8 +61,13 @@ abstract class RenderedObject
      * @param array $classes
      * @return $this
      */
-    public function addClass(array $classes)
+    public function addClass($classes)
     {
+        if (!is_array($classes))
+        {
+            throw new \InvalidArgumentException('Add class must take an array');
+        }
+
         $classes = implode(' ', $classes);
 
         if (!isset($this->attributes['class'])) {
