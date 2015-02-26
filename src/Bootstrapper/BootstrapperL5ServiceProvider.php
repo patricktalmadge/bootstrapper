@@ -14,7 +14,7 @@ use Illuminate\Support\ServiceProvider;
  *
  * @package Bootstrapper
  */
-class BootstrapperServiceProvider extends ServiceProvider
+class BootstrapperL5ServiceProvider extends ServiceProvider
 {
 
     /**
@@ -22,18 +22,25 @@ class BootstrapperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (!method_exists($this, 'package')) {
+        if (!method_exists($this, 'publishes')) {
             throw new \Exception(
                 "This Service Provider doesn't support Laravel 5 - please use
                 Bootstrapper\\BootstrapperL5ServiceProvider"
             );
         }
 
-        $this->package('patricktalmadge/bootstrapper');
-        $this->app->make('config')->package(
-            'patricktalmadge/bootstrapper',
-            __DIR__ . '/../config'
+        $this->publishes(
+            [
+                __DIR__ . '/../config/config.php' => config_path(
+                    'bootstrapper.php'
+                )
+            ]
         );
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/bootstrapper.php',
+            'bootstrapper'
+        );
+
 
         $this->registerAccordion();
         $this->registerAlert();
@@ -158,7 +165,7 @@ class BootstrapperServiceProvider extends ServiceProvider
         $this->app->bind(
             'bootstrapper::config',
             function ($app) {
-                return new Laravel4Config($app->make('config'));
+                return new Laravel5Config($app->make('config'));
             }
         );
     }
