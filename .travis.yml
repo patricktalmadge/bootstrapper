@@ -10,7 +10,7 @@ env:
   - LARAVEL_VERSION="~5"
 
 before_install:
-  - sed -i sed -i s/~4.2\|\|~5/${LARAVEL_VERSION}/ composer.json
+  - sed -i s/~4.2\|\|~5/${LARAVEL_VERSION}/ composer.json
   - composer install
 
 script:
