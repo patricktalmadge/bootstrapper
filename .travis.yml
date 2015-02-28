@@ -11,7 +11,7 @@ env:
 
 before_install:
   - sed -i s/~4.2\|\|~5/${LARAVEL_VERSION}/ composer.json
-  - composer install
+  - composer update # Use update since we'll be changing the composer.json
 
 script:
   - vendor/bin/phpspec run
