@@ -6,6 +6,9 @@ use Illuminate\Contracts\Config\Repository;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+/**
+ * @require \Illuminate\Contracts\Config\Repository
+ */
 class Laravel5ConfigSpec extends ObjectBehavior
 {
     function let(Repository $repository)

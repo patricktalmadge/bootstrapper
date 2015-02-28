@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9dfe93fd13e5bf9b98c41eb5323f083c",
+    "hash": "6a2a0cd0016cfdb735312f2d26e280c6",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -1042,6 +1042,48 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "akeneo/phpspec-skip-example-extension",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akeneo/PhpSpecSkipExampleExtension.git",
+                "reference": "d3d6a1b4324bb511d50d03eff5900279342bb9fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akeneo/PhpSpecSkipExampleExtension/zipball/d3d6a1b4324bb511d50d03eff5900279342bb9fb",
+                "reference": "d3d6a1b4324bb511d50d03eff5900279342bb9fb",
+                "shasum": ""
+            },
+            "require": {
+                "phpspec/phpspec": "2.1.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev",
+                    "dev-1.0": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Akeneo": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gildas Quéméner",
+                    "email": "gildas@akeneo.com"
+                }
+            ],
+            "description": "Skip your PhpSpec examples through annotations",
+            "time": "2015-02-02 14:10:11"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.4",

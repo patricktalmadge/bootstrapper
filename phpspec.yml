@@ -9,3 +9,5 @@ suites:
         src_path: tests
         spec_path: tests
         spec_prefix: spec
+extensions:
+    - Akeneo\SkipExampleExtension

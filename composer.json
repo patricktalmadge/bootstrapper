@@ -29,8 +29,9 @@
     "twbs/bootstrap": "~3"
   },
   "require-dev": {
-    "mockery/mockery": "*",
-    "phpspec/phpspec": "*"
+    "mockery/mockery": "~0.9",
+    "phpspec/phpspec": "~2",
+    "akeneo/phpspec-skip-example-extension": "~1.1"
   },
   "autoload": {
     "psr-4": {
@@ -40,4 +41,3 @@
   },
   "minimum-stability": "stable"
 }
-
