@@ -50,6 +50,13 @@ class PanelSpec extends ObjectBehavior
         );
     }
 
+    function it_can_be_given_a_table()
+    {
+        $this->withTable("<table class='table'><thead><tr><th>foo</th><th>baz</th></tr></thead><tbody><tr><td>bar</td><td>bar</td></tr><tr><td>gar</td><td>gar</td></tr></tbody></table>")->render()->shouldBe(
+            "<div class='panel panel-default'><table class='table'><thead><tr><th>foo</th><th>baz</th></tr></thead><tbody><tr><td>bar</td><td>bar</td></tr><tr><td>gar</td><td>gar</td></tr></tbody></table></div>"
+        );
+    }
+
     function it_can_be_given_a_footer()
     {
         $this->withFooter('foo')->render()->shouldBe(
