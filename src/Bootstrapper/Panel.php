@@ -90,7 +90,7 @@ class Panel extends RenderedObject
         }
 
         if ($this->table) {
-            $string .= $this->renderTable();
+            $string .= $this->table;
         }
 
         if ($this->footer) {
@@ -236,16 +236,6 @@ class Panel extends RenderedObject
         $this->table = $table;
 
         return $this;
-    }
-
-    /**
-     * Renders the table
-     *
-     * @return string
-     */
-    protected function renderTable()
-    {
-        return $this->table;
     }
 
     /**
