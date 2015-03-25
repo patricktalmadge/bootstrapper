@@ -75,7 +75,7 @@ class PanelSpec extends ObjectBehavior
     {
         $table->render()->willThrow('ErrorException');
 
-        $this->shouldThrow('ErrorException')->during('withTable', [$table]);
+        $this->withTable($table)->shouldThrow('ErrorException')->during('render');
     }
 
     function it_can_be_given_a_footer()
