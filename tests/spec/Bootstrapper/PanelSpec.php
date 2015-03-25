@@ -71,6 +71,13 @@ class PanelSpec extends ObjectBehavior
         );
     }
 
+    function it_should_throw_when_the_table_object_throws(Table $table)
+    {
+        $table->render()->willThrow('ErrorException');
+
+        $this->shouldThrow('ErrorException')->during('withTable', [$table]);
+    }
+
     function it_can_be_given_a_footer()
     {
         $this->withFooter('foo')->render()->shouldBe(
