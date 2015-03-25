@@ -2,6 +2,7 @@
 
 namespace spec\Bootstrapper;
 
+use Bootstrapper\Table;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -55,6 +56,17 @@ class PanelSpec extends ObjectBehavior
         $this->withTable(
             "<table class='table'><thead><tr><th>foo</th><th>baz</th></tr></thead><tbody><tr><td>bar</td><td>bar</td></tr><tr><td>gar</td><td>gar</td></tr></tbody></table>"
         )->render()->shouldBe(
+            "<div class='panel panel-default'><table class='table'><thead><tr><th>foo</th><th>baz</th></tr></thead><tbody><tr><td>bar</td><td>bar</td></tr><tr><td>gar</td><td>gar</td></tr></tbody></table></div>"
+        );
+    }
+
+    function it_can_accept_a_table_object(Table $table)
+    {
+        $table->render()->willReturn(
+            "<table class='table'><thead><tr><th>foo</th><th>baz</th></tr></thead><tbody><tr><td>bar</td><td>bar</td></tr><tr><td>gar</td><td>gar</td></tr></tbody></table>"
+        );
+
+        $this->withTable($table)->render()->shouldBe(
             "<div class='panel panel-default'><table class='table'><thead><tr><th>foo</th><th>baz</th></tr></thead><tbody><tr><td>bar</td><td>bar</td></tr><tr><td>gar</td><td>gar</td></tr></tbody></table></div>"
         );
     }
