@@ -228,12 +228,16 @@ class Panel extends RenderedObject
     /**
      * Sets the table of the panel
      *
-     * @param string $table The table
+     * @param string|Table $table The table
      * @return $this
      */
     public function withTable($table)
     {
-        $this->table = $table;
+        if ($table instanceof Table) {
+            $this->table = $table->render();
+        } else {
+            $this->table = $table;
+        }
 
         return $this;
     }
