@@ -59,7 +59,7 @@ class Panel extends RenderedObject
     protected $body;
 
     /**
-     * @var string The table of the panel
+     * @var string|Table The table of the panel
      */
     protected $table;
 
@@ -90,7 +90,7 @@ class Panel extends RenderedObject
         }
 
         if ($this->table) {
-            $string .= $this->table;
+            $string .= $this->renderTable();
         }
 
         if ($this->footer) {
@@ -233,13 +233,23 @@ class Panel extends RenderedObject
      */
     public function withTable($table)
     {
-        if ($table instanceof Table) {
-            $this->table = $table->render();
-        } else {
-            $this->table = $table;
-        }
+        $this->table = $table;
 
         return $this;
+    }
+
+    /**
+     * Renders the body
+     *
+     * @return string
+     */
+    protected function renderTable()
+    {
+        if ($this->table instanceof Table) {
+            return $this->table->render();
+        } else {
+            return $this->table;
+        }
     }
 
     /**
