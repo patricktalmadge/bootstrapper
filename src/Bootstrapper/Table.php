@@ -355,7 +355,7 @@ class Table extends RenderedObject
 
         // Handles eloquent models
         if (is_callable([$item, 'getAttributes'])) {
-            return $item->getAttributes();
+            return array_keys($item->getAttributes());
         }
 
         // Default fallback
