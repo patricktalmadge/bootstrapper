@@ -3,6 +3,7 @@
 namespace spec\Bootstrapper;
 
 use Bootstrapper\Bridges\Config\ConfigInterface;
+use Bootstrapper\Exceptions\IconException;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -69,9 +70,9 @@ class IconSpec extends ObjectBehavior
     
     function it_blows_up_if_you_dont_use_the_create()
     {
-        $this->withAttributes(['foo' => 'bar'])->render()->shouldThrow(
-            'Bootstrapper\\Exceptions\\IconException'
-        );
+        $this->withAttributes(['foo' => 'bar'])->shouldThrow(
+            IconException::noIconSpecified()
+        )->duringRender();
     }
 
     function it_allows_you_to_add_attributes_magically()
