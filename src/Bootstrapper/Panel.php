@@ -59,6 +59,11 @@ class Panel extends RenderedObject
     protected $body;
 
     /**
+     * @var string|Table The table of the panel
+     */
+    protected $table;
+
+    /**
      * @var string The footer of the panel
      */
     protected $footer;
@@ -82,6 +87,10 @@ class Panel extends RenderedObject
 
         if ($this->body) {
             $string .= $this->renderBody();
+        }
+
+        if ($this->table) {
+            $string .= $this->renderTable();
         }
 
         if ($this->footer) {
@@ -214,6 +223,33 @@ class Panel extends RenderedObject
     protected function renderBody()
     {
         return "<div class='panel-body'>{$this->body}</div>";
+    }
+
+    /**
+     * Sets the table of the panel
+     *
+     * @param string|Table $table The table
+     * @return $this
+     */
+    public function withTable($table)
+    {
+        $this->table = $table;
+
+        return $this;
+    }
+
+    /**
+     * Renders the body
+     *
+     * @return string
+     */
+    protected function renderTable()
+    {
+        if ($this->table instanceof Table) {
+            return $this->table->render();
+        } else {
+            return $this->table;
+        }
     }
 
     /**
