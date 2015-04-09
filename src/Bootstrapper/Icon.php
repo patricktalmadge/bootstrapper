@@ -12,13 +12,18 @@ use Bootstrapper\Bridges\Config\ConfigInterface;
  *
  * @package Bootstrapper
  */
-class Icon
+class Icon extends RenderedObject
 {
 
     /**
      * @var \Illuminate\Config\Repository The config repository
      */
     protected $config;
+
+    /**
+     * @var string The icon
+     */
+    protected $icon;
 
     /**
      * Creates a new instance of Icon
@@ -31,6 +36,27 @@ class Icon
     }
 
     /**
+     * Renders the object
+     *
+     * @return string
+     */
+    public function render()
+    {
+        if (is_null($this->icon))
+        {
+
+        }
+
+        $baseClass = $this->config->getIconPrefix();
+        $icon = $this->icon;
+        $attributes = new Attributes($this->attributes, [
+            'class' => "$baseClass $baseClass-$icon"
+        ]);
+
+        return "<span $attributes></span>";
+    }
+
+    /**
      * Creates a span link with the correct icon link
      *
      * @param string $icon The icon name
@@ -38,10 +64,9 @@ class Icon
      */
     public function create($icon)
     {
-        $baseClass = $this->config->getIconPrefix();
-        $icon = $this->normaliseIconString($icon);
+        $this->icon = $this->normaliseIconString($icon);
 
-        return "<span class='{$baseClass} {$baseClass}-{$icon}'></span>";
+        return $this;
     }
 
     /**

@@ -5,15 +5,13 @@
 
 namespace Bootstrapper\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
 /**
  * Facade for Icon class
  *
  * @package Bootstrapper\Facades
  * @see     Bootstrapper\Icon
  */
-class Icon extends Facade
+class Icon extends BootstrapperFacade
 {
 
     /**
