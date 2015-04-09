@@ -76,7 +76,7 @@ class Helpers
         $jquery = $this->config->getJQueryVersion();
         $bootstrap = $this->config->getBootstrapperVersion();
 
-        return "<script src='http://code.jquery.com/jquery-{$jquery}.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
+        return "<script src='//code.jquery.com/jquery-{$jquery}.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
     }
 
     /**
