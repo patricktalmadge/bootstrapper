@@ -2,7 +2,6 @@
 
 namespace Bootstrapper\Bridges\Config;
 
-
 interface ConfigInterface
 {
 
@@ -11,5 +10,4 @@ interface ConfigInterface
     public function getBootstrapperVersion();
 
     public function getJQueryVersion();
-
 }

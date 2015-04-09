@@ -205,9 +205,9 @@ class ControlGroup extends RenderedObject
         foreach ($this->contents as $item) {
             if (isset($item['label'])) {
                 $string .= call_user_func_array(
-                        [$this->formBuilder, 'label'],
-                        $item['label']
-                    ) . ' ';
+                    [$this->formBuilder, 'label'],
+                    $item['label']
+                ) . ' ';
             }
 
             $input_args = $item['input'];

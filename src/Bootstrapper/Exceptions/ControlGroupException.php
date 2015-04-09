@@ -16,4 +16,4 @@ use Exception;
 class ControlGroupException extends Exception
 {
 
-} 
+}

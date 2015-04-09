@@ -16,4 +16,4 @@ use Exception;
 class ModalException extends Exception
 {
 
-} 
+}

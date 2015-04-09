@@ -22,5 +22,4 @@ class ControlGroup extends BootstrapperFacade
     {
         return 'bootstrapper::controlgroup';
     }
-
 }

@@ -31,5 +31,4 @@ class Button extends BootstrapperFacade
     {
         return 'bootstrapper::button';
     }
-
 }

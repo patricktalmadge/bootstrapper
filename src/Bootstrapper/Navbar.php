@@ -5,7 +5,6 @@
 
 namespace Bootstrapper;
 
-
 use Illuminate\Routing\UrlGenerator;
 
 /**
@@ -132,7 +131,9 @@ class Navbar extends RenderedObject
     {
         $string = "<div class='navbar-header'>";
         // Add the collapse button
-        $string .= "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button>";
+        $string .= "<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>";
+        $string .= "<span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span>";
+        $string .= "<span class='icon-bar'></span><span class='icon-bar'></span></button>";
         if ($this->brand) {
             $string .= "<a class='navbar-brand' href='{$this->brand['link']}'>{$this->brand['brand']}</a>";
         }

@@ -28,5 +28,4 @@ class ProgressBar extends BootstrapperFacade
     {
         return 'bootstrapper::progressbar';
     }
-
 }

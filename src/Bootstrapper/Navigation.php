@@ -246,7 +246,8 @@ class Navigation extends RenderedObject
             $string = '<li class=\'dropdown\'>';
         }
 
-        $string .= "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>{$link[0]} <span class='caret'></span></a>";
+        $string .= "<a class='dropdown-toggle' data-toggle='dropdown' href='#'>";
+        $string .= "{$link[0]} <span class='caret'></span></a>";
         $string .= '<ul class=\'dropdown-menu\' role=\'menu\'>';
 
         foreach ($link[1] as $item) {

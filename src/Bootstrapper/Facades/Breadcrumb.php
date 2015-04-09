@@ -22,5 +22,4 @@ class Breadcrumb extends BootstrapperFacade
     {
         return 'bootstrapper::breadcrumb';
     }
-
 }

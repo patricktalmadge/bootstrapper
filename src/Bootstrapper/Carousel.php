@@ -33,7 +33,6 @@ class Carousel extends RenderedObject
      * <dl><dt>image</dt><dd>A path to the image</dd> <dt>alt</dt><dd>The alt
      * text for the image</dd> <dt>caption (optional)</dt><dd>The caption for
      * that slide</dd></dl>
-
      */
     protected $contents = [];
 
@@ -168,7 +167,8 @@ class Carousel extends RenderedObject
      */
     protected function renderControls()
     {
-        return "<a class='left carousel-control' href='#{$this->name}' data-slide='prev'>{$this->previousButton}</a><a class='right carousel-control' href='#{$this->name}' data-slide='next'>{$this->nextButton}</a>";
+        return "<a class='left carousel-control' href='#{$this->name}' data-slide='prev'>"
+            . "{$this->previousButton}</a><a class='right carousel-control' href='#{$this->name}' data-slide='next'>"
+            . "{$this->nextButton}</a>";
     }
-
 }

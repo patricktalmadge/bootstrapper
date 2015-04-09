@@ -16,4 +16,4 @@ use Exception;
 class MediaObjectException extends Exception
 {
 
-} 
+}

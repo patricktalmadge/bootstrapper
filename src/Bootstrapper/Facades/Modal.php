@@ -21,5 +21,4 @@ class Modal extends BootstrapperFacade
     {
         return 'bootstrapper::modal';
     }
-
 }

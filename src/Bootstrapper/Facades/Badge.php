@@ -22,5 +22,4 @@ class Badge extends BootstrapperFacade
     {
         return 'bootstrapper::badge';
     }
-
 }

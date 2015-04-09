@@ -40,7 +40,7 @@ abstract class RenderedObject
      *
      * @return string
      */
-    public abstract function render();
+    abstract public function render();
 
     /**
      * Set the attributes of the object
@@ -63,8 +63,7 @@ abstract class RenderedObject
      */
     public function addClass($classes)
     {
-        if (!is_array($classes))
-        {
+        if (!is_array($classes)) {
             throw new \InvalidArgumentException('Add class must take an array');
         }
 
@@ -78,5 +77,4 @@ abstract class RenderedObject
 
         return $this;
     }
-
 }

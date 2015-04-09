@@ -8,13 +8,13 @@ use Exception;
  * Class IconException
  *
  * @package Bootstrapper\Exceptions
- * @see Bootstrapper\Icon
+ * @see     Bootstrapper\Icon
  */
-class IconException extends Exception {
+class IconException extends Exception
+{
 
-    public static function NoIconSpecified()
+    public static function noIconSpecified()
     {
         return new static('No icon specified when rendering the icon');
     }
-
 }

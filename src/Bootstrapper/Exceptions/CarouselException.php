@@ -15,5 +15,4 @@ class CarouselException extends \Exception
 {
 
     // Currently empty. May be removed in a future version
-
-} 
+}

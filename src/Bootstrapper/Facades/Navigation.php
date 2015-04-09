@@ -27,5 +27,4 @@ class Navigation extends BootstrapperFacade
     {
         return 'bootstrapper::navigation';
     }
-
 }

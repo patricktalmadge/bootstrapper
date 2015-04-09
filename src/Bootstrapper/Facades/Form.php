@@ -30,5 +30,4 @@ class Form extends Facade
     {
         return 'bootstrapper::form';
     }
-
 }

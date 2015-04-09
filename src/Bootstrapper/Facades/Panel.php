@@ -28,5 +28,4 @@ class Panel extends BootstrapperFacade
     {
         return 'bootstrapper::panel';
     }
-
 }

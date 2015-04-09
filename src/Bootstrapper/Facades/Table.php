@@ -27,5 +27,4 @@ class Table extends BootstrapperFacade
     {
         return 'bootstrapper::table';
     }
-
 }

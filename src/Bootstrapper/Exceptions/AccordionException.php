@@ -14,4 +14,4 @@ namespace Bootstrapper\Exceptions;
 class AccordionException extends \Exception
 {
 
-} 
+}

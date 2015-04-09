@@ -22,5 +22,4 @@ class Carousel extends BootstrapperFacade
     {
         return 'bootstrapper::carousel';
     }
-
 }

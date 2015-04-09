@@ -85,7 +85,8 @@ class Modal extends RenderedObject
             $title .= "<h4 class='modal-title'>{$this->title}</h4>";
         }
 
-        return "<div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>{$title}</div>";
+        return "<div class='modal-header'><button type='button' class='close' data-dismiss='modal' aria-hidden='true'>"
+            . "&times;</button>{$title}</div>";
     }
 
     /**
