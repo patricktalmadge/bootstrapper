@@ -23,7 +23,7 @@ class IconSpec extends ObjectBehavior
 
     function it_can_create_an_icon()
     {
-        $this->create('foo')->shouldReturn(
+        $this->create('foo')->render()->shouldReturn(
             "<span class='glyphicon glyphicon-foo'></span>"
         );
     }
@@ -32,7 +32,7 @@ class IconSpec extends ObjectBehavior
     {
         $configInterface->getIconPrefix()->willReturn('bar');
 
-        $this->create('foo')->shouldReturn("<span class='bar bar-foo'></span>");
+        $this->create('foo')->render()->shouldReturn("<span class='bar bar-foo'></span>");
     }
 
     function it_can_be_created_magically()
@@ -40,7 +40,7 @@ class IconSpec extends ObjectBehavior
         $types = ['foo', 'bar', 'baz'];
 
         foreach ($types as $type) {
-            $this->$type()->shouldReturn(
+            $this->$type()->render()->shouldReturn(
                 "<span class='glyphicon glyphicon-$type'></span>"
             );
         }
@@ -48,15 +48,42 @@ class IconSpec extends ObjectBehavior
 
     function it_can_create_an_icon_from_camel_case()
     {
-        $this->create('fooBar')->shouldReturn(
+        $this->create('fooBar')->render()->shouldReturn(
             "<span class='glyphicon glyphicon-foo-bar'></span>"
         );
     }
 
     function it_can_create_an_icon_from_underscore()
     {
-        $this->create('foo_bar')->shouldReturn(
+        $this->create('foo_bar')->render()->shouldReturn(
             "<span class='glyphicon glyphicon-foo-bar'></span>"
         );
+    }
+
+    function it_allows_you_to_add_attributes()
+    {
+        $this->create('foo')->withAttributes(['foo' => 'bar'])->render()->shouldReturn(
+            "<span class='glyphicon glyphicon-foo' foo='bar'></span>"
+        );
+    }
+    
+    function it_blows_up_if_you_dont_use_the_create()
+    {
+        $this->withAttributes(['foo' => 'bar'])->render()->shouldThrow(
+            'Bootstrapper\\Exceptions\\IconException'
+        );
+    }
+
+    function it_allows_you_to_add_attributes_magically()
+    {
+        $types = ['foo', 'bar', 'baz'];
+
+        foreach ($types as $type) {
+            $this->$type()->withAttributes([
+                'foo' => 'bar'
+            ])->render()->shouldReturn(
+                "<span class='glyphicon glyphicon-$type' foo='bar'></span>"
+            );
+        }
     }
 }
