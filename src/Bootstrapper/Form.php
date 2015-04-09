@@ -92,7 +92,7 @@ class Form extends FormBuilder
      * @param array $attributes The attributes of the array
      * @return string
      */
-    function inline($attributes = [])
+    public function inline($attributes = [])
     {
         $attributes['class'] = isset($attributes['class']) ?
             self::FORM_INLINE . ' ' . $attributes['class'] :
@@ -107,7 +107,7 @@ class Form extends FormBuilder
      * @param array $attributes
      * @return string
      */
-    function horizontal($attributes = [])
+    public function horizontal($attributes = [])
     {
         $attributes['class'] = isset($attributes['class']) ?
             self::FORM_HORIZONTAL . ' ' . $attributes['class'] :
@@ -207,8 +207,9 @@ class Form extends FormBuilder
             'form-group has-feedback ' . $attributes['class'] :
             'form-group has-feedback';
         $attributes = new Attributes($attributes);
+        $icon = "<span class='glyphicon glyphicon-{$icon} form-control-feedback'></span>";
 
-        return "<div {$attributes}>{$label}{$input}<span class='glyphicon glyphicon-{$icon} form-control-feedback'></span></div>";
+        return "<div {$attributes}>{$label}{$input}{$icon}</div>";
     }
 
     /**
@@ -359,7 +360,9 @@ class Form extends FormBuilder
      */
     public function datetime($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('datetime', $name, $value, $attributes);
     }
@@ -375,7 +378,9 @@ class Form extends FormBuilder
      */
     public function datetimelocal($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('datetime-local', $name, $value, $attributes);
     }
@@ -390,7 +395,9 @@ class Form extends FormBuilder
      */
     public function date($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('date', $name, $value, $attributes);
     }
@@ -405,7 +412,9 @@ class Form extends FormBuilder
      */
     public function month($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('month', $name, $value, $attributes);
     }
@@ -420,7 +429,9 @@ class Form extends FormBuilder
      */
     public function week($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('week', $name, $value, $attributes);
     }
@@ -435,7 +446,9 @@ class Form extends FormBuilder
      */
     public function time($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('time', $name, $value, $attributes);
     }
@@ -450,7 +463,9 @@ class Form extends FormBuilder
      */
     public function number($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('number', $name, $value, $attributes);
     }
@@ -465,7 +480,9 @@ class Form extends FormBuilder
      */
     public function url($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('url', $name, $value, $attributes);
     }
@@ -480,7 +497,9 @@ class Form extends FormBuilder
      */
     public function search($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('search', $name, $value, $attributes);
     }
@@ -495,7 +514,9 @@ class Form extends FormBuilder
      */
     public function tel($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('tel', $name, $value, $attributes);
     }
@@ -510,9 +531,10 @@ class Form extends FormBuilder
      */
     public function color($name, $value = null, $attributes = array())
     {
-        $attributes['class'] = isset($attributes['class']) ? self::FORM_CONTROL . ' ' . $attributes['class'] : self::FORM_CONTROL;
+        $attributes['class'] = isset($attributes['class']) ?
+            self::FORM_CONTROL . ' ' . $attributes['class'] :
+            self::FORM_CONTROL;
 
         return parent::input('color', $name, $value, $attributes);
     }
-
 }

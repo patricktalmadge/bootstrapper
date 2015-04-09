@@ -29,5 +29,4 @@ class Label extends BootstrapperFacade
     {
         return 'bootstrapper::label';
     }
-
 }

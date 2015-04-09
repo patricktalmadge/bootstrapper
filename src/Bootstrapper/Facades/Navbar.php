@@ -26,5 +26,4 @@ class Navbar extends BootstrapperFacade
     {
         return 'bootstrapper::navbar';
     }
-
 }

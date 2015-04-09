@@ -32,5 +32,4 @@ class ButtonGroup extends BootstrapperFacade
     {
         return 'bootstrapper::buttongroup';
     }
-
 }

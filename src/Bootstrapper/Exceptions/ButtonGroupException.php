@@ -13,5 +13,4 @@ class ButtonGroupException extends Exception
             'ButtonGroups can only activate options that are instances of Bootstrapper\\Button'
         );
     }
-
 }

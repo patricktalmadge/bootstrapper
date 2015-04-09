@@ -31,5 +31,4 @@ class DropdownButton extends BootstrapperFacade
     {
         return 'bootstrapper::dropdownbutton';
     }
-
 }

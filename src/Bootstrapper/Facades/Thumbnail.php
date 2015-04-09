@@ -22,5 +22,4 @@ class Thumbnail extends BootstrapperFacade
     {
         return 'bootstrapper::thumbnail';
     }
-
 }

@@ -6,7 +6,6 @@
 namespace Bootstrapper;
 
 use Bootstrapper\Bridges\Config\Laravel5Config;
-use Bootstrapper\Bridges\Config\Laravel4Config;
 use Illuminate\Support\ServiceProvider;
 
 /**

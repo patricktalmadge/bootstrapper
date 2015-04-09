@@ -22,5 +22,4 @@ class MediaObject extends BootstrapperFacade
     {
         return 'bootstrapper::mediaobject';
     }
-
 }

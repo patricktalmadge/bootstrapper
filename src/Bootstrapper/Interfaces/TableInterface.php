@@ -25,5 +25,4 @@ interface TableInterface
      * @return mixed
      */
     public function getValueForHeader($header);
-
 }

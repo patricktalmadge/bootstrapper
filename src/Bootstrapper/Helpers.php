@@ -60,7 +60,8 @@ class Helpers
         $version = $this->config->getBootstrapperVersion();
         $string = "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap.min.css'>";
         if ($withTheme) {
-            $string .= "<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap-theme.min.css'>";
+            $string .= "<link rel='stylesheet' "
+            . "href='//netdna.bootstrapcdn.com/bootstrap/{$version}/css/bootstrap-theme.min.css'>";
         }
 
         return $string;
@@ -76,7 +77,8 @@ class Helpers
         $jquery = $this->config->getJQueryVersion();
         $bootstrap = $this->config->getBootstrapperVersion();
 
-        return "<script src='//code.jquery.com/jquery-{$jquery}.min.js'></script><script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
+        return "<script src='//code.jquery.com/jquery-{$jquery}.min.js'></script>"
+        . "<script src='//netdna.bootstrapcdn.com/bootstrap/{$bootstrap}/js/bootstrap.min.js'></script>";
     }
 
     /**

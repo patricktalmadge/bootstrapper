@@ -6,6 +6,7 @@
 namespace Bootstrapper;
 
 use Bootstrapper\Bridges\Config\ConfigInterface;
+use Bootstrapper\Exceptions\IconException;
 
 /**
  * Creates Bootstrap 3 compliant Icons
@@ -39,19 +40,22 @@ class Icon extends RenderedObject
      * Renders the object
      *
      * @return string
+     * @throws IconException
      */
     public function render()
     {
-        if (is_null($this->icon))
-        {
-
+        if (is_null($this->icon)) {
+            throw IconException::noIconSpecified();
         }
 
         $baseClass = $this->config->getIconPrefix();
         $icon = $this->icon;
-        $attributes = new Attributes($this->attributes, [
-            'class' => "$baseClass $baseClass-$icon"
-        ]);
+        $attributes = new Attributes(
+            $this->attributes,
+            [
+                'class' => "$baseClass $baseClass-$icon"
+            ]
+        );
 
         return "<span $attributes></span>";
     }

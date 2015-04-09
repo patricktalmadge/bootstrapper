@@ -106,7 +106,8 @@ class Accordion extends RenderedObject
             $string .= "<div {$itemAttributes}>";
             $string .= "<div class='panel-heading'>";
             $string .= "<h4 class='panel-title'>";
-            $string .= "<a data-toggle='collapse' data-parent='#{$this->name}' href='#{$this->name}-{$count}'>{$item['title']}</a>";
+            $string .= "<a data-toggle='collapse' data-parent='#{$this->name}' "
+                     . "href='#{$this->name}-{$count}'>{$item['title']}</a>";
             $string .= "</h4>";
             $string .= "</div>";
 
@@ -131,5 +132,4 @@ class Accordion extends RenderedObject
 
         return $string;
     }
-
 }

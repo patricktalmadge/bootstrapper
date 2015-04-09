@@ -15,3 +15,4 @@ before_install:
 
 script:
   - vendor/bin/phpspec run
+  - vendor/bin/phpcs --standard=PSR2 src

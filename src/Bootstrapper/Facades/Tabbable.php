@@ -24,5 +24,4 @@ class Tabbable extends BootstrapperFacade
     {
         return 'bootstrapper::tabbable';
     }
-
 }

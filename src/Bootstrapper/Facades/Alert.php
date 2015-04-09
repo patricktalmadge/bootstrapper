@@ -26,5 +26,4 @@ class Alert extends BootstrapperFacade
     {
         return 'bootstrapper::alert';
     }
-
 }

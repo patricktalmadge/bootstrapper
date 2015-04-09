@@ -192,5 +192,4 @@ class Image extends RenderedObject
 
         return parent::addClass($class);
     }
-
 }

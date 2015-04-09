@@ -22,5 +22,4 @@ class Icon extends BootstrapperFacade
     {
         return 'bootstrapper::icon';
     }
-
 }

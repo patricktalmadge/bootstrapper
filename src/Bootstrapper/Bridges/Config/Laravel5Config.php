@@ -31,5 +31,4 @@ class Laravel5Config implements ConfigInterface
     {
         return $this->repository->get('bootstrapper.jqueryVersion');
     }
-
 }

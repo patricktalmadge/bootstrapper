@@ -25,5 +25,4 @@ class InputGroup extends BootstrapperFacade
     {
         return 'bootstrapper::inputgroup';
     }
-
 }

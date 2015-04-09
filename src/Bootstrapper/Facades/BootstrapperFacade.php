@@ -75,4 +75,4 @@ class BootstrapperFacade extends Facade
 
         return static::$instances[$facade];
     }
-} 
+}

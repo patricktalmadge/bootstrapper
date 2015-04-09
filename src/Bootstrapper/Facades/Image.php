@@ -27,5 +27,4 @@ class Image extends BootstrapperFacade
     {
         return 'bootstrapper::image';
     }
-
 }
