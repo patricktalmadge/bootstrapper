@@ -19,10 +19,17 @@ Add the following to your `composer.json` file :
 },
 ```
 
-Then register Bootstrapper's service provider with Laravel :
+Then register Bootstrapper's service provider with Laravel:
 
 ```php
 'Bootstrapper\BootstrapperServiceProvider',
+```
+
+If you are using Laravel 5, then you should instead use the Laravel 5 service
+provider.
+
+```php
+'Bootstrapper\BootstrapperL5ServiceProvider',
 ```
 
 You can then (if you want to) add the following aliases to your `aliases` 
