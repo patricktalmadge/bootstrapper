@@ -108,12 +108,6 @@ class ControlGroupSpec extends ObjectBehavior
         $this->shouldThrow(
             'Bootstrapper\\Exceptions\\ControlGroupException'
         )->duringWithLabel('', -1);
-        $this->shouldThrow(
-            'Bootstrapper\\Exceptions\\ControlGroupException'
-        )->duringWithLabel('', -0);
-        $this->shouldThrow(
-            'Bootstrapper\\Exceptions\\ControlGroupException'
-        )->duringWithLabel('', 12);
     }
 
     function it_handles_labels_correctly()
