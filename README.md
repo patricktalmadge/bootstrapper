@@ -15,7 +15,7 @@ Add the following to your `composer.json` file :
 
 ```json
 "require": {
-    "patricktalmadge/bootstrapper": "~5",
+    "jorgelsaud/bootstrapper": "~5",
 },
 ```
 
@@ -95,7 +95,7 @@ Helpers::js()
 If you want to stick at a certain version then use
 
 ```
-artisan config:publish patricktalmadge/bootstrapper
+artisan config:publish jorgelsaud/bootstrapper
 ```
 
 And update your config file in app/config/packages.
