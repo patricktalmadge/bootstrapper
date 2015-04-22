@@ -20,12 +20,6 @@
       "email": "pjr0911025@gmail.com"
     }
   ],
-  "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/patricktalmadge/bootstrapper"
-        }
-    ],
   "require": {
     "php": ">=5.4.0",
     "illuminate/html": "~4.2||~5",
