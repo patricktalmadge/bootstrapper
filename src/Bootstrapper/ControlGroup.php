@@ -301,6 +301,6 @@ class ControlGroup extends RenderedObject
      */
     protected function sizeIsInvalid($size)
     {
-        return $size < 1 || $size > 11;
+        return $size < 1 || $size > 12;
     }
 }
