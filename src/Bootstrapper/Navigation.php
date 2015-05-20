@@ -82,8 +82,13 @@ class Navigation extends RenderedObject
      * @var bool Whether the navigation links float right or not
      */
     protected $right = false;
+	
+	/**
+     * @var bool Whether the navigation links float left or not
+     */
+	protected $left = false;
 
-    /**
+	/**
      * Creates a new instance of Navigation
      *
      * @param UrlGenerator $urlGenerator
@@ -115,6 +120,9 @@ class Navigation extends RenderedObject
 
         if ($this->right) {
             $attributes->addClass('navbar-right');
+        }
+		elseif ($this->left) {
+            $attributes->addClass('navbar-left');
         }
 
         $string = "<ul {$attributes}>";
@@ -327,18 +335,32 @@ class Navigation extends RenderedObject
     public function stacked()
     {
         $this->stacked = true;
-
+		
         return $this;
     }
 
     /**
      * Makes the navigation links float right
-     *
+     * @param boolean $right set right to true or false
      * @return $this
      */
-    public function right()
+    public function right($right = true)
     {
-        $this->right = true;
+        $this->right = $right;
+		$this->left(false);
+
+        return $this;
+    }
+	
+	/**
+     * Makes the navigation links float left
+     * @param boolean $left set left to true or false
+     * @return $this
+     */
+    public function left($left = true)
+    {
+        $this->left = $left;
+		$this->right(false);
 
         return $this;
     }
