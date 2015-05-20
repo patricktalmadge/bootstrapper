@@ -347,7 +347,7 @@ class Navigation extends RenderedObject
     public function right($right = true)
     {
         $this->right = $right;
-		$this->left(false);
+		$this->left = !$right;
 
         return $this;
     }
@@ -360,7 +360,7 @@ class Navigation extends RenderedObject
     public function left($left = true)
     {
         $this->left = $left;
-		$this->right(false);
+		$this->right = !$left;
 
         return $this;
     }
