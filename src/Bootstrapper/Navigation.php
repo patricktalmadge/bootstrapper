@@ -14,6 +14,15 @@ use Illuminate\Routing\UrlGenerator;
  */
 class Navigation extends RenderedObject
 {
+    /**
+     * Constant for floating the navbar to the left
+     */
+    const NAVBAR_LEFT = 'navbar-left';
+
+    /**
+     * Constant for floating the navbar to the right
+     */
+    const NAVBAR_RIGHT = 'navbar-right';
 
     /**
      * Constant for navigation pills
@@ -79,9 +88,9 @@ class Navigation extends RenderedObject
     protected $stacked = false;
 
     /**
-     * @var bool Whether the navigation links float right or not
+     * @var string Whether the navigation should be floated
      */
-    protected $right = false;
+    protected $float;
 
     /**
      * Creates a new instance of Navigation
@@ -113,8 +122,8 @@ class Navigation extends RenderedObject
             $attributes->addClass('nav-stacked');
         }
 
-        if ($this->right) {
-            $attributes->addClass('navbar-right');
+        if ($this->float) {
+            $attributes->addClass($this->float);
         }
 
         $string = "<ul {$attributes}>";
@@ -206,9 +215,12 @@ class Navigation extends RenderedObject
             $string .= '<li>';
         }
 
-        $linkAttributes = isset($link['linkAttributes']) ?
-            $link['linkAttributes'] :
-            [];
+        if (isset($link['linkAttributes'])) {
+            $linkAttributes = $link['linkAttributes'];
+        } else {
+            $linkAttributes = [];
+        }
+
         $linkAttributes = new Attributes(
             $linkAttributes,
             ['href' => $link['link']]
@@ -338,7 +350,19 @@ class Navigation extends RenderedObject
      */
     public function right()
     {
-        $this->right = true;
+        $this->float = self::NAVBAR_RIGHT;
+
+        return $this;
+    }
+
+    /**
+     * Makes the navigation links float left
+     *
+     * @return $this
+     */
+    public function left()
+    {
+        $this->float = self::NAVBAR_LEFT;
 
         return $this;
     }
