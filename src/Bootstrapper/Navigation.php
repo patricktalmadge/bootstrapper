@@ -14,6 +14,15 @@ use Illuminate\Routing\UrlGenerator;
  */
 class Navigation extends RenderedObject
 {
+    /**
+     * Constant for floating the navbar to the left
+     */
+    const NAVBAR_LEFT = 'navbar-left';
+
+    /**
+     * Constant for floating the navbar to the right
+     */
+    const NAVBAR_RIGHT = 'navbar-right';
 
     /**
      * Constant for navigation pills
@@ -79,16 +88,11 @@ class Navigation extends RenderedObject
     protected $stacked = false;
 
     /**
-     * @var bool Whether the navigation links float right or not
+     * @var string Whether the navigation should be floated
      */
-    protected $right = false;
-	
-	/**
-     * @var bool Whether the navigation links float left or not
-     */
-	protected $left = false;
+    protected $float;
 
-	/**
+    /**
      * Creates a new instance of Navigation
      *
      * @param UrlGenerator $urlGenerator
@@ -118,11 +122,8 @@ class Navigation extends RenderedObject
             $attributes->addClass('nav-stacked');
         }
 
-        if ($this->right) {
-            $attributes->addClass('navbar-right');
-        }
-		elseif ($this->left) {
-            $attributes->addClass('navbar-left');
+        if ($this->float) {
+            $attributes->addClass($this->float);
         }
 
         $string = "<ul {$attributes}>";
@@ -214,9 +215,12 @@ class Navigation extends RenderedObject
             $string .= '<li>';
         }
 
-        $linkAttributes = isset($link['linkAttributes']) ?
-            $link['linkAttributes'] :
-            [];
+        if (isset($link['linkAttributes'])) {
+            $linkAttributes = $link['linkAttributes'];
+        } else {
+            $linkAttributes = [];
+        }
+
         $linkAttributes = new Attributes(
             $linkAttributes,
             ['href' => $link['link']]
@@ -335,32 +339,30 @@ class Navigation extends RenderedObject
     public function stacked()
     {
         $this->stacked = true;
-		
+
         return $this;
     }
 
     /**
      * Makes the navigation links float right
-     * @param boolean $right set right to true or false
+     *
      * @return $this
      */
-    public function right($right = true)
+    public function right()
     {
-        $this->right = $right;
-		$this->left = !$right;
+        $this->float = self::NAVBAR_RIGHT;
 
         return $this;
     }
-	
-	/**
+
+    /**
      * Makes the navigation links float left
-     * @param boolean $left set left to true or false
+     *
      * @return $this
      */
-    public function left($left = true)
+    public function left()
     {
-        $this->left = $left;
-		$this->right = !$left;
+        $this->float = self::NAVBAR_LEFT;
 
         return $this;
     }
