@@ -13,8 +13,6 @@ class NavbarSpec extends ObjectBehavior
 
     function let(UrlGenerator $generator)
     {
-        $generator->to('/')->willReturn('http://localhost');
-
         $this->beConstructedWith($generator);
     }
 
@@ -37,8 +35,10 @@ class NavbarSpec extends ObjectBehavior
         );
     }
 
-    function it_defaults_to_the_root_page_when_branding()
+    function it_defaults_to_the_root_page_when_branding(UrlGenerator $generator)
     {
+        $generator->to('/')->willReturn('http://localhost');
+
         $this->withBrand('foo')->render()->shouldBe(
             "<div class='navbar navbar-default' role='navigation'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><a class='navbar-brand' href='http://localhost'>foo</a></div><nav class='navbar-collapse collapse'></nav></div></div>"
         );
@@ -108,5 +108,31 @@ class NavbarSpec extends ObjectBehavior
         $this->inverse('foo', ['data-foo' => 'bar'])->render()->shouldBe(
             "<div class='navbar navbar-inverse foo' role='navigation' data-foo='bar'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button></div><nav class='navbar-collapse collapse'></nav></div></div>"
         );
+    }
+
+    function it_allows_you_to_add_a_navbar_image()
+    {
+        $this->withBrandImage('imagelink', 'brandlink', 'alttext')
+            ->render()->shouldBe(
+            "<div class='navbar navbar-default' role='navigation'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><a class='navbar-brand' href='brandlink'><img src='imagelink' alt='alttext'></a></div><nav class='navbar-collapse collapse'></nav></div></div>"
+        );
+    }
+
+    function it_doesnt_require_the_alttext()
+    {
+        $this->withBrandImage('imagelink', 'brandlink')
+            ->render()->shouldBe(
+                "<div class='navbar navbar-default' role='navigation'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><a class='navbar-brand' href='brandlink'><img src='imagelink'></a></div><nav class='navbar-collapse collapse'></nav></div></div>"
+            );
+    }
+
+    function it_doesnt_require_the_brandlink(UrlGenerator $generator)
+    {
+        $generator->to('/')->willReturn('http://localhost');
+
+        $this->withBrandImage('imagelink')
+            ->render()->shouldBe(
+                "<div class='navbar navbar-default' role='navigation'><div class='container'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar'></span></button><a class='navbar-brand' href='http://localhost'><img src='imagelink'></a></div><nav class='navbar-collapse collapse'></nav></div></div>"
+            );
     }
 }

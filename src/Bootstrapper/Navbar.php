@@ -162,6 +162,22 @@ class Navbar extends RenderedObject
     }
 
     /**
+     * Sets the brand of the navbar
+     *
+     * @param string      $image   The brand image
+     * @param null|string $link    The link. If not set we default to linking to
+     *                             '/' using the UrlGenerator
+     * @param string      $altText The alt text for the image
+     * @return $this
+     */
+    public function withBrandImage($image, $link = null, $altText = '')
+    {
+        $altText = $altText !== '' ? " alt='{$altText}'" : '';
+
+        return $this->withBrand("<img src='{$image}'{$altText}>", $link);
+    }
+
+    /**
      * Adds some content to the navbar
      *
      * @param mixed $content Anything that can become a string! If you pass in a
