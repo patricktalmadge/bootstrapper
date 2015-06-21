@@ -65,6 +65,11 @@ class Table extends RenderedObject
     protected $only = [];
 
     /**
+     * @var array A map of labels for column headings
+     */
+	protected $labels = [];
+	
+    /**
      * Renders the table
      *
      * @return string
@@ -170,7 +175,21 @@ class Table extends RenderedObject
 
         return $this;
     }
+    
+    /**
+     * Sets the labels 
+     *
+     * @param array $labels 
+     * 
+     * @return $this
+     */
+    public function withLabels($labels)
+    {
+        $this->labels = $labels;
 
+        return $this;
+    }
+    
     /**
      * Renders the contents of the table
      *
@@ -304,6 +323,7 @@ class Table extends RenderedObject
 
         $string = '<thead><tr>';
         foreach ($headers as $heading) {
+            $heading = in_array($heading, array_keys($this->labels)) ? $this->labels[$heading] : $heading;
             $string .= "<th>{$heading}</th>";
         }
         $string .= '</tr></thead>';
