@@ -166,6 +166,21 @@ class ControlGroup extends RenderedObject
     }
 
     /**
+     * Adds validation error if occured
+     *
+     * @param  string $name
+     * @return $this
+     */
+    public function withValidation($name)
+    {
+        if ($this->formBuilder->hasErrors($name)) {
+            $this->addClass(['has-error']);
+            $this->withHelp($this->formBuilder->getFormattedError($name));
+        }
+        return $this;
+    }
+
+    /**
      * Generates a full control group with a label, control and help block
      *
      * @param string $label       The label
