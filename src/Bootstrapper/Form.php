@@ -577,8 +577,6 @@ class Form extends FormBuilder
         $errors = $this->getSessionStore()->get('errors');
 
         // Return the formatted error message, if the form element has any.
-        return $errors->first(
-            $this->transformKey($name),
-            '<p class="help-block">:message</p>');
+        return $errors->first($this->transformKey($name), '<p class="help-block">:message</p>');
     }
 }
