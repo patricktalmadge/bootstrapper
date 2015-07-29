@@ -195,6 +195,12 @@ class FormSpec extends ObjectBehavior
         );
     }
 
+    function it_can_get_validation_errors()
+    {
+        $this->hasErrors('foo')->shouldBeBool();
+        $this->getFormattedError('foo')->shouldBeString();
+    }
+
 }
 
 class Foo
