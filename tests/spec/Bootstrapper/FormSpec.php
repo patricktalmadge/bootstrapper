@@ -197,10 +197,25 @@ class FormSpec extends ObjectBehavior
 
     function it_can_get_validation_errors()
     {
-        $this->hasErrors('foo')->shouldBeBool();
-        $this->getFormattedError('foo')->shouldBeString();
+        $messageBag = Mockery::mock('Illuminate\\Support\\MessageBag', function($mock) {
+            $mock->shouldReceive('has')->with('foo')->twice()->andReturn(true);
+            $mock->shouldReceive('first')->once()->andReturn('bar');
+        });
+        $session = Mockery::mock('Illuminate\\Session\\Store', function($mock) use ($messageBag) {
+            $mock->shouldReceive('has')->with('errors')->twice()->andReturn(true);
+            $mock->shouldReceive('get')->with('errors')->times(3)->andReturn($messageBag);
+        });
+
+        $this->setSessionStore($session);
+
+        $this->hasErrors('foo')->shouldBe(true);
+        $this->getFormattedError('foo')->shouldBe('bar');
     }
 
+    function letgo()
+    {
+        Mockery::close();
+    }
 }
 
 class Foo
