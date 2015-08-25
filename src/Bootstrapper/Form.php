@@ -5,14 +5,12 @@
 
 namespace Bootstrapper;
 
-use Illuminate\Html\FormBuilder;
-
 /**
  * Creates Bootstrap 3 compliant forms
  *
  * @package Bootstrapper
  */
-class Form extends FormBuilder
+class Form extends FormBuilderConflict
 {
 
     /**
