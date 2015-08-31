@@ -126,4 +126,22 @@ class ControlGroupSpec extends ObjectBehavior
         );
     }
 
+    function it_handles_validation()
+    {
+        $form = \Mockery::mock('Bootstrapper\\Form', function($mock) {
+            $mock->shouldReceive('hasErrors')->with('foo')->once()->andReturn(true);
+            $mock->shouldReceive('getFormattedError')->with('foo')->once()->andReturn(
+                "<span class='help-block'>message</span>"
+            );
+        });
+
+        $this->beConstructedWith($form);
+
+        $this->generate(
+            '<div>label</div>',
+            '<div>control</div>'
+        )->withValidation('foo')->render()->shouldBe(
+            "<div class='form-group has-error'><div>label</div><div>control</div><span class='help-block'>message</span></div>"
+        );
+    }
 }

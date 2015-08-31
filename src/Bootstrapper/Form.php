@@ -537,4 +537,46 @@ class Form extends FormBuilder
 
         return parent::input('color', $name, $value, $attributes);
     }
+
+    /**
+     * Determine whether the form element with the given name
+     * has any validation errors.
+     *
+     * @param  string $name
+     * @return bool
+     */
+    public function hasErrors($name)
+    {
+        $session = $this->getSessionStore();
+        if (is_null($session) || !$session->has('errors')) {
+            // If the session is not set, or the session doesn't contain
+            // any errors, the form element does not have any errors
+            // applied to it.
+            return false;
+        }
+        // Get the errors from the session.
+        $errors = $session->get('errors');
+        // Check if the errors contain the form element with the given name.
+        return $errors->has($this->transformKey($name));
+    }
+
+    /**
+     * Get the formatted errors for the form element with the given name.
+     *
+     * @param  string   $name
+     * @return string
+     */
+    public function getFormattedError($name)
+    {
+        if (!$this->hasErrors($name)) {
+            // If the form element does not have any errors, return
+            // an emptry string.
+            return '';
+        }
+        // Get the errors from the session.
+        $errors = $this->getSessionStore()->get('errors');
+
+        // Return the formatted error message, if the form element has any.
+        return $errors->first($this->transformKey($name), $this->help(':message'));
+    }
 }

@@ -195,6 +195,22 @@ class FormSpec extends ObjectBehavior
         );
     }
 
+    function it_can_get_validation_errors()
+    {
+        $messageBag = Mockery::mock('Illuminate\\Support\\MessageBag', function($mock) {
+            $mock->shouldReceive('has')->with('foo')->andReturn(true);
+            $mock->shouldReceive('first')->once()->andReturn('bar');
+        });
+        $session = Mockery::mock('Illuminate\\Session\\Store', function($mock) use ($messageBag) {
+            $mock->shouldReceive('has')->with('errors')->andReturn(true);
+            $mock->shouldReceive('get')->with('errors')->andReturn($messageBag);
+        });
+
+        $this->setSessionStore($session);
+
+        $this->hasErrors('foo')->shouldBe(true);
+        $this->getFormattedError('foo')->shouldBe('bar');
+    }
 }
 
 class Foo
