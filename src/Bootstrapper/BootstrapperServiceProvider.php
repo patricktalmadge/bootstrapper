@@ -193,11 +193,12 @@ class BootstrapperServiceProvider extends ServiceProvider
      */
     private function registerFormBuilder()
     {
+        $this->app->bind('laravel5::html', 'Illuminate\Html\HtmlBuilder');
         $this->app->bind(
             'bootstrapper::form',
             function ($app) {
                 $form = new Form(
-                    $app->make('html'),
+                    $app->make('laravel5::html'),
                     $app->make('url'),
                     $app['session.store']->getToken()
                 );
