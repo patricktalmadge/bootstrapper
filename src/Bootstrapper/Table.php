@@ -65,6 +65,11 @@ class Table extends RenderedObject
     protected $only = [];
 
     /**
+     * @var string Class(es) to apply to body tds
+     */
+    protected $tdClass;
+
+    /**
      * Renders the table
      *
      * @return string
@@ -244,7 +249,7 @@ class Table extends RenderedObject
         foreach ($headers as $heading) {
             $value = $this->getValueForItem($item, $heading);
 
-            $string .= "<td>{$value}</td>";
+            $string .= empty($this->tdClass) ? "<td>{$value}</td>" : "<td class='{$this->tdClass}'>{$value}</td>";
         }
         $string .= '</tr>';
 
@@ -377,5 +382,21 @@ class Table extends RenderedObject
         }
 
         return $value;
+    }
+
+    /**
+     * Uses given class(es) on body TDs.
+     * @param  mixed $classes The class(es) to apply.
+     * @return $this
+     */
+    public function tdClass($classes)
+    {
+        if (is_array($classes)) {
+            $this->tdClass = implode(' ', $classes);
+        } else {
+            $this->tdClass = $classes;
+        }
+
+        return $this;
     }
 }

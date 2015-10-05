@@ -185,6 +185,39 @@ class TableSpec extends ObjectBehavior
             "<table class='table'><thead><tr><th>foo</th><th>bar</th></tr></thead><tbody><tr><td>goo</td><td>gar</td></tr></tbody></table>"
         );
     }
+
+    function it_allows_specification_of_class_applied_to_all_tds()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo'  => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->tdClass('vert-middle')->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>fizz</th></tr></thead><tbody><tr><td class='vert-middle'>bar</td><td class='vert-middle'>buzz</td></tr></tbody></table>"
+        );
+    }
+
+    function it_allows_specification_of_td_classes_with_an_array()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo'  => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->tdClass(
+            [
+                'vert-middle',
+                'text-right',
+            ]
+        )->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>fizz</th></tr></thead><tbody><tr><td class='vert-middle text-right'>bar</td><td class='vert-middle text-right'>buzz</td></tr></tbody></table>"
+        );
+    }
 }
 
 class TableSpecFoo implements TableInterface
