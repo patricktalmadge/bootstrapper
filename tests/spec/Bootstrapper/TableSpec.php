@@ -23,13 +23,29 @@ class TableSpec extends ObjectBehavior
 
     function it_can_be_given_a_type()
     {
-        $types = ['striped', 'bordered', 'hover', 'condensed'];
+        $types = ['table-striped', 'table-bordered', 'table-hover', 'table-condensed'];
 
         foreach ($types as $type) {
-            $this->$type()->render()->shouldBe(
-                "<table class='table table-{$type}'></table>"
+            $this->addType($type)->render()->shouldBe(
+                "<table class='table {$type}'></table>"
             );
+
+            $this->removeType($type);
         }
+    }
+
+    function it_can_be_given_multiple_types()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->bordered()->striped()->render()->shouldBe(
+            "<table class='table table-bordered table-striped'><thead><tr><th>foo</th><th>fizz</th></tr></thead><tbody><tr><td>bar</td><td>buzz</td></tr></tbody></table>"
+        );
     }
 
     function it_can_be_given_an_array_as_contents()

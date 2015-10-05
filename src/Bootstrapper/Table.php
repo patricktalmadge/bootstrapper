@@ -36,9 +36,9 @@ class Table extends RenderedObject
     const TABLE_CONDENSED = 'table-condensed';
 
     /**
-     * @var string The type of the table
+     * @var string The types of the table
      */
-    protected $type;
+    protected $types = [];
 
     /**
      * @var string A string to put content in to the footer of the table
@@ -71,10 +71,12 @@ class Table extends RenderedObject
      */
     public function render()
     {
+        $tableClasses = implode(' ', $this->types);
+
         $attributes = new Attributes(
             $this->attributes,
             [
-                'class' => "table {$this->type}"
+                'class' => "table {$tableClasses}"
             ]
         );
 
@@ -96,14 +98,30 @@ class Table extends RenderedObject
     }
 
     /**
-     * Sets the table type
-     *
-     * @param string $type The type of the table
+     * Adds a type to the table if not already present.
+     * @param string $type The type to add to the table
+     */
+    public function addType($type)
+    {
+        if (!in_array($type, $this->types, true)) {
+            $this->types[] = $type;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Removes a type or types of the table.
+     * @param  mixed $type The type or types to be removed
      * @return $this
      */
-    public function setType($type)
+    public function removeType($type)
     {
-        $this->type = $type;
+        if (!is_array($type)) {
+            $this->types = array_diff($this->types, [$type]);
+        } else {
+            $this->types = array_diff($this->types, $type);
+        }
 
         return $this;
     }
@@ -115,7 +133,7 @@ class Table extends RenderedObject
      */
     public function striped()
     {
-        $this->setType(self::TABLE_STRIPED);
+        $this->addType(self::TABLE_STRIPED);
 
         return $this;
     }
@@ -127,7 +145,7 @@ class Table extends RenderedObject
      */
     public function bordered()
     {
-        $this->setType(self::TABLE_BORDERED);
+        $this->addType(self::TABLE_BORDERED);
 
         return $this;
     }
@@ -139,7 +157,7 @@ class Table extends RenderedObject
      */
     public function hover()
     {
-        $this->setType(self::TABLE_HOVER);
+        $this->addType(self::TABLE_HOVER);
 
         return $this;
     }
@@ -151,7 +169,7 @@ class Table extends RenderedObject
      */
     public function condensed()
     {
-        $this->setType(self::TABLE_CONDENSED);
+        $this->addType(self::TABLE_CONDENSED);
 
         return $this;
     }
