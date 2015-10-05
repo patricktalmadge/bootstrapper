@@ -101,26 +101,10 @@ class Table extends RenderedObject
      * Adds a type to the table if not already present.
      * @param string $type The type to add to the table
      */
-    public function addType($type)
+    private function addType($type)
     {
         if (!in_array($type, $this->types, true)) {
             $this->types[] = $type;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Removes a type or types of the table.
-     * @param  mixed $type The type or types to be removed
-     * @return $this
-     */
-    public function removeType($type)
-    {
-        if (!is_array($type)) {
-            $this->types = array_diff($this->types, [$type]);
-        } else {
-            $this->types = array_diff($this->types, $type);
         }
 
         return $this;

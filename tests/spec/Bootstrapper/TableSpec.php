@@ -21,19 +21,6 @@ class TableSpec extends ObjectBehavior
         $this->render()->shouldBe("<table class='table'></table>");
     }
 
-    function it_can_be_given_a_type()
-    {
-        $types = ['table-striped', 'table-bordered', 'table-hover', 'table-condensed'];
-
-        foreach ($types as $type) {
-            $this->addType($type)->render()->shouldBe(
-                "<table class='table {$type}'></table>"
-            );
-
-            $this->removeType($type);
-        }
-    }
-
     function it_can_be_given_multiple_types()
     {
         $this->withContents(
