@@ -5,7 +5,7 @@
 
 namespace Bootstrapper;
 
-use Illuminate\Html\FormBuilder;
+use Collective\Html\FormBuilder;
 
 /**
  * Creates Bootstrap 3 compliant forms
