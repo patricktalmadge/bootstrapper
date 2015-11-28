@@ -188,6 +188,94 @@ class TableSpec extends ObjectBehavior
             "<table class='table'><thead><tr><th>foo</th><th>bar</th></tr></thead><tbody><tr><td>goo</td><td>gar</td></tr></tbody></table>"
         );
     }
+
+    function it_allows_specification_of_class_applied_to_all_body_cells()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo'  => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->withBodyCellClass('vert-middle')->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>fizz</th></tr></thead><tbody><tr><td class='vert-middle'>bar</td><td class='vert-middle'>buzz</td></tr></tbody></table>"
+        );
+    }
+
+    function it_allows_specification_of_body_cell_classes_with_an_array()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo'  => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->withBodyCellClass(
+            [
+                'vert-middle',
+                'text-right',
+            ]
+        )->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th>fizz</th></tr></thead><tbody><tr><td class='vert-middle text-right'>bar</td><td class='vert-middle text-right'>buzz</td></tr></tbody></table>"
+        );
+    }
+
+    function it_allows_specification_of_class_on_column()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ],
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->withClassOnCellsInColumn('fizz', 'text-right')->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th class='text-right'>fizz</th></tr></thead><tbody><tr><td>bar</td><td class='text-right'>buzz</td></tr><tr><td>bar</td><td class='text-right'>buzz</td></tr></tbody></table>"
+        );
+    }
+
+    function it_allows_specification_of_classes_on_column_with_array()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ],
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->withClassOnCellsInColumn('fizz', [ 'text-right', 'text-primary' ])->render()->shouldBe(
+            "<table class='table'><thead><tr><th>foo</th><th class='text-right text-primary'>fizz</th></tr></thead><tbody><tr><td>bar</td><td class='text-right text-primary'>buzz</td></tr><tr><td>bar</td><td class='text-right text-primary'>buzz</td></tr></tbody></table>"
+        );
+    }
+
+    function it_allows_specification_of_classes_on_multiple_columns_with_array()
+    {
+        $this->withContents(
+            [
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+
+                ],
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->withClassOnCellsInColumn(['foo', 'fizz'], 'text-primary')->render()->shouldBe(
+            "<table class='table'><thead><tr><th class='text-primary'>foo</th><th class='text-primary'>fizz</th></tr></thead><tbody><tr><td class='text-primary'>bar</td><td class='text-primary'>buzz</td></tr><tr><td class='text-primary'>bar</td><td class='text-primary'>buzz</td></tr></tbody></table>"
+        );
+    }
 }
 
 class TableSpecFoo implements TableInterface

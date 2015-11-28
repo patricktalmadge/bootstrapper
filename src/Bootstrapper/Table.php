@@ -44,6 +44,7 @@ class Table extends RenderedObject
      * @var string A string to put content in to the footer of the table
      */
     protected $footer;
+
     /**
      * @var mixed The contents of the table
      */
@@ -63,6 +64,16 @@ class Table extends RenderedObject
      * @var bool|array An array of columns to get. False if none.
      */
     protected $only = [];
+
+    /**
+     * @var array An array of classes to apply to body tds
+     */
+    protected $bodyCellClasses = [];
+
+    /**
+     * @var  array An array of classes, of the form 'column' => 'class1 class2' (space delimitied)
+     */
+    protected $columnClasses = [];
 
     /**
      * Renders the table
@@ -243,10 +254,17 @@ class Table extends RenderedObject
     private function renderItem($item, array $headers)
     {
         $string = '<tr>';
+        $tdClasses = implode(' ', $this->bodyCellClasses);
+
         foreach ($headers as $heading) {
             $value = $this->getValueForItem($item, $heading);
 
-            $string .= "<td>{$value}</td>";
+            if (isset($this->columnClasses[$heading])) {
+                $classes = rtrim($this->columnClasses[$heading] . ' ' . $tdClasses);
+                $string .= "<td class='{$classes}'>{$value}</td>";
+            } else {
+                $string .= empty($tdClasses) ? "<td>{$value}</td>" : "<td class='{$tdClasses}'>{$value}</td>";
+            }
         }
         $string .= '</tr>';
 
@@ -306,7 +324,11 @@ class Table extends RenderedObject
 
         $string = '<thead><tr>';
         foreach ($headers as $heading) {
-            $string .= "<th>{$heading}</th>";
+            if (isset($this->columnClasses[$heading])) {
+                $string .= "<th class='{$this->columnClasses[$heading]}'>{$heading}</th>";
+            } else {
+                $string .= "<th>{$heading}</th>";
+            }
         }
         $string .= '</tr></thead>';
 
@@ -379,5 +401,38 @@ class Table extends RenderedObject
         }
 
         return $value;
+    }
+
+    /**
+     * Uses given class(es) on body TDs.
+     * @param  mixed $classes The class(es) to apply.
+     * @return $this
+     */
+    public function withBodyCellClass($classes)
+    {
+        if (is_array($classes)) {
+            $this->bodyCellClasses = $classes;
+        } else {
+            $this->bodyCellClasses = [ $classes ];
+        }
+
+        return $this;
+    }
+
+    public function withClassOnCellsInColumn($columns, $classes)
+    {
+        if (!is_array($columns)) {
+            $columns = [ $columns ];
+        }
+
+        if (is_array($classes)) {
+            $classes = implode(' ', $classes);
+        }
+
+        foreach ($columns as $column) {
+            $this->columnClasses[$column] = $classes;
+        }
+
+        return $this;
     }
 }
