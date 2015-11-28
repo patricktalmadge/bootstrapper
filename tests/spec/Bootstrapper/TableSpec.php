@@ -21,15 +21,18 @@ class TableSpec extends ObjectBehavior
         $this->render()->shouldBe("<table class='table'></table>");
     }
 
-    function it_can_be_given_a_type()
+    function it_can_be_given_multiple_types()
     {
-        $types = ['striped', 'bordered', 'hover', 'condensed'];
-
-        foreach ($types as $type) {
-            $this->$type()->render()->shouldBe(
-                "<table class='table table-{$type}'></table>"
-            );
-        }
+        $this->withContents(
+            [
+                [
+                    'foo' => 'bar',
+                    'fizz' => 'buzz',
+                ]
+            ]
+        )->bordered()->striped()->render()->shouldBe(
+            "<table class='table table-bordered table-striped'><thead><tr><th>foo</th><th>fizz</th></tr></thead><tbody><tr><td>bar</td><td>buzz</td></tr></tbody></table>"
+        );
     }
 
     function it_can_be_given_an_array_as_contents()
