@@ -241,6 +241,11 @@ class Table extends RenderedObject
             }
         }
 
+        if(is_array($this->specialheaders)):
+            foreach($headers as $key=>$val):
+                if(!empty($this->specialheaders[$val])) $headers[$key] = $this->specialheaders[$val];
+            endforeach;
+        endif;
         return $headers;
     }
 
@@ -311,6 +316,11 @@ class Table extends RenderedObject
     {
         $this->only = $only;
 
+        return $this;
+    }
+
+    public function withHeaders(array $x){
+        $this->specialheaders = $x;
         return $this;
     }
 
