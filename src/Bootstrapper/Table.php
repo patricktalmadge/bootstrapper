@@ -66,6 +66,11 @@ class Table extends RenderedObject
     protected $only = [];
 
     /**
+     * @var bool|array An array of aliases of columns. False if none.
+     */
+    protected $aliases = false;
+
+    /**
      * @var array An array of classes to apply to body tds
      */
     protected $bodyCellClasses = [];
@@ -314,6 +319,19 @@ class Table extends RenderedObject
         return $this;
     }
 
+    /**
+     * Sets columns aliases
+     *
+     * @param array $only
+     * @return $this
+     */
+    public function alias(array $aliases)
+    {
+        $this->aliases = $aliases;
+
+        return $this;
+    }
+
     private function renderHeaders()
     {
         $headers = $this->getHeaders();
@@ -324,10 +342,11 @@ class Table extends RenderedObject
 
         $string = '<thead><tr>';
         foreach ($headers as $heading) {
+            $heading_title = $this->aliases && array_key_exists($heading, $this->aliases) ? $this->aliases[$heading] : $heading;
             if (isset($this->columnClasses[$heading])) {
-                $string .= "<th class='{$this->columnClasses[$heading]}'>{$heading}</th>";
+                $string .= "<th class='{$this->columnClasses[$heading]}'>{$heading_title}</th>";
             } else {
-                $string .= "<th>{$heading}</th>";
+                $string .= "<th>{$heading_title}</th>";
             }
         }
         $string .= '</tr></thead>';
