@@ -22,10 +22,10 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "illuminate/html": "~4.2||~5",
-    "illuminate/support": "~4.2||~5",
-    "illuminate/config": "~4.2||~5",
-    "illuminate/routing": "~4.2||~5",
+    "laravelcollective/html": "~5",
+    "illuminate/support": "~5",
+    "illuminate/config": "~5",
+    "illuminate/routing": "~5",
     "twbs/bootstrap": "~3"
   },
   "require-dev": {

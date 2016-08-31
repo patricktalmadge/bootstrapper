@@ -5,7 +5,7 @@
 
 namespace Bootstrapper;
 
-use Illuminate\Html\FormBuilder;
+use Collective\Html\FormBuilder;
 
 /**
  * Creates Bootstrap 3 compliant forms
@@ -77,13 +77,13 @@ class Form extends FormBuilder
      * @param array       $options The options of the label
      * @return string
      */
-    public function label($name, $value = null, $options = array())
+    public function label($name, $value = null, $options = array(), $escape_html = true)
     {
         $options['class'] = isset($options['class']) ?
             self::LABEL . ' ' . $options['class'] :
             self::LABEL;
 
-        return parent::label($name, $value, $options);
+        return parent::label($name, $value, $options, $escape_html);
     }
 
     /**
