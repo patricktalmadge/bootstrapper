@@ -10,7 +10,7 @@ php:
   - 7.0
 
 before_install:
-  - composer install
+  - composer update
 
 script:
   - vendor/bin/phpspec run
