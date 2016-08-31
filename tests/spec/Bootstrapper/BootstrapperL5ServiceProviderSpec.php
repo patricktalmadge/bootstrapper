@@ -28,14 +28,6 @@ namespace spec\Bootstrapper {
 
         function it_can_register_things()
         {
-            if (!method_exists(
-                new BootstrapperServiceProvider($this->app),
-                'publishes'
-            )
-            ) {
-                throw new SkippingException('This test can only be run in L5');
-            }
-
             $this->register();
 
             $classes = [
@@ -74,18 +66,6 @@ namespace spec\Bootstrapper {
                 }
             }
         }
-
-        function it_falls_over_on_laravel_4()
-        {
-            if (method_exists(
-                new BootstrapperServiceProvider($this->app),
-                'publishes'
-            )) {
-                throw new SkippingException('This test can only be run in L4');
-            }
-
-            $this->shouldThrow('Exception')->duringRegister();
-        }
     }
 
     class FakeApp implements \ArrayAccess
@@ -120,6 +100,9 @@ namespace spec\Bootstrapper {
                 case 'files':
                     $mock = \Mockery::mock('Files');
                     $mock->shouldReceive('isDirectory');
+                    return $mock;
+                case 'view':
+                    $mock = \Mockery::mock('Illuminate\Contracts\View\Factory');
                     return $mock;
             }
 

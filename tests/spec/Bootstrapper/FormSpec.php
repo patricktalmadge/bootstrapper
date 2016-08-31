@@ -2,7 +2,7 @@
 
 namespace spec\Bootstrapper;
 
-use Illuminate\Html\HtmlBuilder;
+use Collective\Html\HtmlBuilder;
 use Mockery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -14,15 +14,16 @@ class FormSpec extends ObjectBehavior
         $url = Mockery::mock('Illuminate\Routing\UrlGenerator');
         $url->shouldReceive('current')->andReturn('foo');
         $token = "foo";
+        $view = Mockery::mock('Illuminate\Contracts\View\Factory');
 
-        $this->beConstructedWith(new HtmlBuilder($url), $url, $token);
+        $this->beConstructedWith(new HtmlBuilder($url, $view), $url, $view, $token);
     }
 
     function it_is_initializable()
     {
         $this->shouldHaveType('Bootstrapper\Form');
         // Since it should extend...
-        $this->shouldHaveType('Illuminate\Html\FormBuilder');
+        $this->shouldHaveType('Collective\Html\FormBuilder');
     }
 
     /**
@@ -30,7 +31,7 @@ class FormSpec extends ObjectBehavior
      */
     function it_can_close_the_form()
     {
-        $this->close()->shouldBe("</form>");
+        $this->close()->__toString()->shouldBe("</form>");
     }
 
     /**
@@ -38,29 +39,29 @@ class FormSpec extends ObjectBehavior
      */
     function it_can_open_a_form()
     {
-        $this->open()->shouldBe(
+        $this->open()->__toString()->shouldBe(
             '<form method="POST" action="foo" accept-charset="UTF-8"><input name="_token" type="hidden" value="foo">'
         );
     }
 
     function it_can_open_an_inline_form()
     {
-        $this->inline()->shouldBe(
+        $this->inline()->__toString()->shouldBe(
             '<form method="POST" action="foo" accept-charset="UTF-8" class="form-inline"><input name="_token" type="hidden" value="foo">'
         );
 
-        $this->inline(['class' => 'option'])->shouldBe(
+        $this->inline(['class' => 'option'])->__toString()->shouldBe(
             '<form method="POST" action="foo" accept-charset="UTF-8" class="form-inline option"><input name="_token" type="hidden" value="foo">'
         );
     }
 
     function it_can_open_a_horizontal_form()
     {
-        $this->horizontal()->shouldBe(
+        $this->horizontal()->__toString()->shouldBe(
             '<form method="POST" action="foo" accept-charset="UTF-8" class="form-horizontal"><input name="_token" type="hidden" value="foo">'
         );
 
-        $this->horizontal(['class' => 'option'])->shouldBe(
+        $this->horizontal(['class' => 'option'])->__toString()->shouldBe(
             '<form method="POST" action="foo" accept-charset="UTF-8" class="form-horizontal option"><input name="_token" type="hidden" value="foo">'
         );
     }
@@ -140,7 +141,7 @@ class FormSpec extends ObjectBehavior
             'inlineModel' => '<form method="POST" action="foo" accept-charset="UTF-8" class="form-inline"><input name="_token" type="hidden" value="foo">'
         ];
         foreach ($types as $type => $expected) {
-            $this->$type(new Foo())->shouldBe($expected);
+            $this->$type(new Foo())->__toString()->shouldBe($expected);
         }
     }
 
@@ -162,10 +163,10 @@ class FormSpec extends ObjectBehavior
             'color' => 'color'
         ];
         foreach ($types as $type => $expected) {
-            $this->$type('foo', 'bar', ['class' => 'baz'])->shouldBe(
+            $this->$type('foo', 'bar', ['class' => 'baz'])->__toString()->shouldBe(
                 '<input class="form-control baz" name="foo" type="' . $expected . '" value="bar">'
             );
-            $this->$type('foo', 'bar')->shouldBe(
+            $this->$type('foo', 'bar')->__toString()->shouldBe(
                 '<input class="form-control" name="foo" type="' . $expected . '" value="bar">'
             );
         }
@@ -173,24 +174,24 @@ class FormSpec extends ObjectBehavior
 
     function it_can_show_password()
     {
-        $this->password('foo', ['class' => 'baz'])->shouldBe(
+        $this->password('foo', ['class' => 'baz'])->__toString()->shouldBe(
             '<input class="form-control baz" name="foo" type="password" value="">'
         );
     }
 
     function it_overrides_the_label_method()
     {
-        $this->label('foo')->shouldBe(
+        $this->label('foo')->__toString()->shouldBe(
             '<label for="foo" class="control-label">Foo</label>'
         );
-        $this->label('foo', 'bar')->shouldBe(
+        $this->label('foo', 'bar')->__toString()->shouldBe(
             '<label for="foo" class="control-label">bar</label>'
         );
     }
 
     function it_overrides_the_submit_method()
     {
-        $this->submit('foo')->shouldBe(
+        $this->submit('foo')->__toString()->shouldBe(
             '<input class="btn btn-default" type="submit" value="foo">'
         );
     }

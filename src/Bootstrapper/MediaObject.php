@@ -143,7 +143,6 @@ class MediaObject extends RenderedObject
         }
 
         return 'pull-left';
-
     }
 
     /**
