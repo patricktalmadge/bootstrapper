@@ -19,6 +19,12 @@ Add the following to your `composer.json` file :
 },
 ```
 
+or execute
+
+```bash
+composer require patricktalmadge/bootstrapper
+```
+
 Then register Bootstrapper's service provider with Laravel:
 
 ```php
