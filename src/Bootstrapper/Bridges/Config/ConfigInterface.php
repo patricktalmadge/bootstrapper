@@ -12,5 +12,4 @@ interface ConfigInterface
     public function getBootstrapperVersion();
 
     public function getJQueryVersion();
-
 }
