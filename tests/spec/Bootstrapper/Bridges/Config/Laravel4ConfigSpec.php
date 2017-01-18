@@ -28,6 +28,15 @@ class Laravel4ConfigSpec extends ObjectBehavior
         $this->getIconPrefix()->shouldReturn('glyphicon');
     }
 
+    function it_has_a_method_for_getting_the_icon_tag(Repository $repository)
+    {
+        $repository->get('bootstrapper::icon_tag')
+            ->willReturn('span')
+            ->shouldBeCalled(1);
+
+        $this->getIconTag()->shouldReturn('span');
+    }
+
     function it_has_a_method_of_getting_the_bootstrapper_version(Repository $repository)
     {
         $repository->get('bootstrapper::bootstrapVersion')

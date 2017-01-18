@@ -10,6 +10,11 @@ class ConfigInterface implements \Bootstrapper\Bridges\Config\ConfigInterface
         return 'glyphicon';
     }
 
+    public function getIconTag()
+    {
+        return 'span';
+    }
+
     public function getBootstrapperVersion()
     {
         return '3.2.1';
