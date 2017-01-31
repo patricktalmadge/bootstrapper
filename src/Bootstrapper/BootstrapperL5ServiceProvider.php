@@ -208,7 +208,6 @@ class BootstrapperL5ServiceProvider extends ServiceProvider
                     $app->make('url'),
                     $app->make('view'),
                     (method_exists($app['session.store'], 'getToken') ? $app['session.store']->getToken() : $app['session.store']->token())
-
                 );
 
                 return $form->setSessionStore($app['session.store']);
