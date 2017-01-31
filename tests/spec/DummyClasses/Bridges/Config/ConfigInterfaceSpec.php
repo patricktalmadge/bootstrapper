@@ -18,6 +18,11 @@ class ConfigInterfaceSpec extends ObjectBehavior
         $this->getIconPrefix()->shouldReturn('glyphicon');
     }
 
+    function it_has_a_method_for_getting_the_icon_tag()
+    {
+        $this->getIconTag()->shouldReturn('span');
+    }
+
     function it_has_a_method_of_getting_the_bootstrapper_version()
     {
         $this->getBootstrapperVersion()->shouldReturn('3.2.1');

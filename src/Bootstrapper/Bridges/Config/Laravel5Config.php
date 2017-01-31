@@ -22,6 +22,11 @@ class Laravel5Config implements ConfigInterface
         return $this->repository->get('bootstrapper.icon_prefix');
     }
 
+    public function getIconTag()
+    {
+        return $this->repository->get('bootstrapper.icon_tag');
+    }
+
     public function getBootstrapperVersion()
     {
         return $this->repository->get('bootstrapper.bootstrapVersion');

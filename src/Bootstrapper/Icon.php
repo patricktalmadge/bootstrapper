@@ -57,7 +57,9 @@ class Icon extends RenderedObject
             ]
         );
 
-        return "<span $attributes></span>";
+        $tag = $this->config->getIconTag();
+
+        return "<$tag $attributes></$tag>";
     }
 
     /**

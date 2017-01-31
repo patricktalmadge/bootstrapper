@@ -13,6 +13,7 @@ class IconSpec extends ObjectBehavior
     function let(ConfigInterface $configInterface)
     {
         $configInterface->getIconPrefix()->willReturn('glyphicon');
+        $configInterface->getIconTag()->willReturn('span');
 
         $this->beConstructedWith($configInterface);
     }
@@ -86,5 +87,12 @@ class IconSpec extends ObjectBehavior
                 "<span class='glyphicon glyphicon-$type' foo='bar'></span>"
             );
         }
+    }
+
+    function it_allows_you_to_change_icon_tag(ConfigInterface $configInterface)
+    {
+        $configInterface->getIconTag()->willReturn('bar');
+
+        $this->create('foo')->render()->shouldReturn("<bar class='glyphicon glyphicon-foo'></bar>");
     }
 }
