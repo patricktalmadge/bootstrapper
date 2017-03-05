@@ -207,7 +207,7 @@ class BootstrapperL5ServiceProvider extends ServiceProvider
                     $app->make('collective::html'),
                     $app->make('url'),
                     $app->make('view'),
-                    $app['session.store']->getToken()
+                    csrf_token()
                 );
 
                 return $form->setSessionStore($app['session.store']);
