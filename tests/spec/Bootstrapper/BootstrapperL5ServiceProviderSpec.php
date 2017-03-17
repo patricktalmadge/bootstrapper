@@ -95,7 +95,7 @@ namespace spec\Bootstrapper {
                     return $mock;
                 case 'session.store':
                     $mock = \Mockery::mock('Illuminate\\Session\\Store');
-                    $mock->shouldReceive('getToken');
+                    $mock->shouldReceive('token');
                     return $mock;
                 case 'files':
                     $mock = \Mockery::mock('Files');
