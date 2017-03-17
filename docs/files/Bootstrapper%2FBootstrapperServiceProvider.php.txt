@@ -180,7 +180,7 @@ class BootstrapperServiceProvider extends ServiceProvider
                 $form = new Form(
                     $app['html'],
                     $app['url'],
-                    $app['session.store']->getToken()
+                    $app['session.store']->token()
                 );
 
                 return $form->setSessionStore($app['session.store']);
