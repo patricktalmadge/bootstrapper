@@ -1,5 +1,5 @@
 {
-  "name": "patricktalmadge/bootstrapper",
+  "name": "jorgelsaud/bootstrapper",
   "description": "Twitter Bootstrap markup generator",
   "license": "MIT",
   "keywords": [
@@ -18,6 +18,10 @@
     {
       "name": "Patrick Rose",
       "email": "pjr0911025@gmail.com"
+    },
+    {
+      "name": "Jorge Saud",
+      "email": "jorgelsaud@gmail.com"
     }
   ],
   "require": {
