@@ -276,10 +276,10 @@ class Form extends FormBuilder
      */
     public function select(
         $name,
-        $list = [],
+        $list = array(),
         $selected = null,
-        array $selectAttributes = [],
-        array $optionsAttributes = []
+        array $selectAttributes = array(),
+        array $optionsAttributes = array()
     ) {
         $selectAttributes['class'] = isset($selectAttributes['class']) ?
             self::FORM_CONTROL . ' ' . $selectAttributes['class'] :
