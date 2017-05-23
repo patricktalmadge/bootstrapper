@@ -270,20 +270,22 @@ class Form extends FormBuilder
      * @param string $name
      * @param array  $list
      * @param null   $selected
-     * @param array  $attributes
+     * @param array  $selectAttributes
+     * @param array  $optionsAttributes
      * @return string
      */
     public function select(
         $name,
         $list = array(),
         $selected = null,
-        $attributes = array()
+        array $selectAttributes = array(),
+        array $optionsAttributes = array()
     ) {
-        $attributes['class'] = isset($attributes['class']) ?
-            self::FORM_CONTROL . ' ' . $attributes['class'] :
+        $selectAttributes['class'] = isset($selectAttributes['class']) ?
+            self::FORM_CONTROL . ' ' . $selectAttributes['class'] :
             self::FORM_CONTROL;
 
-        return parent::select($name, $list, $selected, $attributes);
+        return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes);
     }
 
     /**
