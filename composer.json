@@ -40,5 +40,12 @@
       "DummyClasses\\": "tests\\DummyClasses"
     }
   },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Bootstrapper\\BootstrapperL5ServiceProvider"
+      ]
+    }
+  },
   "minimum-stability": "stable"
 }
