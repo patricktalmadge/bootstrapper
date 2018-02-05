@@ -47,7 +47,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        'Bootstrapper\\BootstrapperL5ServiceProvider'
+        "Bootstrapper\\BootstrapperL5ServiceProvider"
       ],
       "aliases": {
         "Accordion":"Bootstrapper\\Facades\\Accordion",
