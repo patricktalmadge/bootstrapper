@@ -279,13 +279,14 @@ class Form extends FormBuilder
         $list = [],
         $selected = null,
         array $selectAttributes = [],
-        array $optionsAttributes = []
+        array $optionsAttributes = [],
+        array $optgroupsAttributes = []
     ) {
         $selectAttributes['class'] = isset($selectAttributes['class']) ?
             self::FORM_CONTROL . ' ' . $selectAttributes['class'] :
             self::FORM_CONTROL;
 
-        return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes);
+        return parent::select($name, $list, $selected, $selectAttributes, $optionsAttributes, $optgroupsAttributes);
     }
 
     /**
