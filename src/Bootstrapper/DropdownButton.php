@@ -91,6 +91,11 @@ class DropdownButton extends RenderedObject
      * @var bool Whether the button should drop up
      */
     protected $dropup = false;
+    
+    /**
+     * @var bool Whether the menu should align right
+     */
+    protected $alignRight = false;
 
     /**
      * Set the label of the button
@@ -164,6 +169,18 @@ class DropdownButton extends RenderedObject
     public function dropup()
     {
         $this->dropup = true;
+
+        return $this;
+    }
+    
+    /**
+     * Sets the dropdown menu align right
+     *
+     * @return $this
+     */
+    public function alignRight()
+    {
+        $this->alignRight = true;
 
         return $this;
     }
@@ -323,7 +340,14 @@ class DropdownButton extends RenderedObject
             $string .= "<button {$attributes}>{$this->label} <span class='caret'></span></button>";
         }
 
-        $string .= "<ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'>";
+        $string .= "<ul class='dropdown-menu";
+        
+        if($this->alignRight)
+        {
+          $string .= " dropdown-menu-right";
+        }
+        
+        $string .= "' role='menu' aria-labelledby='dLabel'>";
         $string .= $this->renderItems();
         $string .= "</ul>";
         $string .= "</div>";
