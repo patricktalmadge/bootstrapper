@@ -10,4 +10,4 @@ suites:
         spec_path: tests
         spec_prefix: spec
 extensions:
-    - Akeneo\SkipExampleExtension
+    Akeneo\SkipExampleExtension: ~

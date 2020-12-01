@@ -139,6 +139,11 @@ namespace spec\Bootstrapper {
             unset($this->registered[$offset]);
             unset($this->classes[$offset]);
         }
+
+        public function configurationIsCached()
+        {
+            return false;
+        }
     }
 }
 namespace {
