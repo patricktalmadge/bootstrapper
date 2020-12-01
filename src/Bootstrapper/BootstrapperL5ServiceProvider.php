@@ -203,12 +203,11 @@ class BootstrapperL5ServiceProvider extends ServiceProvider
         $this->app->bind(
             'bootstrapper::form',
             function ($app) {
-                $tokenMethod = method_exists($app['session.store'], 'getToken') ? 'getToken' : 'token';
                 $form = new Form(
                     $app->make('collective::html'),
                     $app->make('url'),
                     $app->make('view'),
-                    $app['session.store']->$tokenMethod()
+                    $app['session.store']->token()
                 );
 
                 return $form->setSessionStore($app['session.store']);

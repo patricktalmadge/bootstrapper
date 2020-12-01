@@ -95,7 +95,6 @@ namespace spec\Bootstrapper {
                     return $mock;
                 case 'session.store':
                     $mock = \Mockery::mock('Illuminate\\Session\\Store');
-                    $mock->shouldReceive('getToken');
                     $mock->shouldReceive('token');
                     return $mock;
                 case 'files':
@@ -138,6 +137,11 @@ namespace spec\Bootstrapper {
         {
             unset($this->registered[$offset]);
             unset($this->classes[$offset]);
+        }
+
+        public function configurationIsCached()
+        {
+            return false;
         }
     }
 }
