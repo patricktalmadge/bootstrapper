@@ -132,6 +132,13 @@ class DropdownButtonSpec extends ObjectBehavior
         );
     }
 
+    function it_can_be_made_to_alignRight()
+    {
+        $this->alignRight()->render()->shouldBe(
+            "<div class='btn-group'><button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'> <span class='caret'></span></button><ul class='dropdown-menu dropdown-menu-right' role='menu' aria-labelledby='dLabel'></ul></div>"
+        );
+    }
+
     function it_has_shortcut_methods()
     {
         $types = ['primary', 'danger', 'warning', 'success', 'info', 'normal'];
