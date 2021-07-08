@@ -75,6 +75,8 @@ class Table extends RenderedObject
      */
     protected $columnClasses = [];
 
+    protected $headercaptions;
+
     /**
      * Renders the table
      *
@@ -314,6 +316,11 @@ class Table extends RenderedObject
         return $this;
     }
 
+    public function withHeaderCaptions(array $x){
+        $this->headercaptions = $x;
+        return $this;
+    }
+
     private function renderHeaders()
     {
         $headers = $this->getHeaders();
@@ -321,6 +328,12 @@ class Table extends RenderedObject
         if (empty($headers)) {
             return '';
         }
+
+        if(is_array($this->headercaptions)):
+            foreach($headers as $key=>$val):
+                if(!empty($this->headercaptions[$val])) $headers[$key] = $this->headercaptions[$val];
+            endforeach;
+        endif;
 
         $string = '<thead><tr>';
         foreach ($headers as $heading) {
