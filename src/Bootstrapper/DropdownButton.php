@@ -342,9 +342,8 @@ class DropdownButton extends RenderedObject
 
         $string .= "<ul class='dropdown-menu";
         
-        if($this->alignRight)
-        {
-          $string .= " dropdown-menu-right";
+        if ($this->alignRight) {
+            $string .= " dropdown-menu-right";
         }
         
         $string .= "' role='menu' aria-labelledby='dLabel'>";
